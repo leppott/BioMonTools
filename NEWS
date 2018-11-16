@@ -1,0 +1,35 @@
+NEWS
+================
+<Erik.Leppo@tetratech.com>
+
+<!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
+
+    #> Last Update: 2018-11-16 10:56:48
+
+# Planned Updates
+
+  - Metric Calculation
+  - Subsample (rarify)
+  - Excluded Taxa
+  - TaxaList Check
+
+# Future Updates
+
+  - Fish and Periphyton metrics.
+
+# Version History
+
+## Changes in Version 0.1.0.9001 (2018-11-16)
+
+  - Added basic package structure.
+      - Folders (data, data-raw, inst/doc, inst/extdata, man, R,
+        vignettes)
+      - NEWS, README, LICENSE
+  - Update DESCRIPTION, NEWS, and README
+  - Add functions and data
+      - rarify
+      - metric.values
+
+## Changes in Version 0.1.0 (2018-11-16)
+
+  - Initial commit on GitHub.

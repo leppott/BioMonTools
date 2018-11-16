@@ -1,0 +1,45 @@
+---
+title: "NEWS"
+author: Erik.Leppo@tetratech.com
+output: github_document
+  #md_document:
+   # variant: markdown_github
+---
+
+<!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
+
+```{r Options, echo = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.path = "NEWS-")
+```
+
+```{r LastUpdate, echo = FALSE}
+cat(paste0("Last Update: ",Sys.time()))
+```
+
+# Planned Updates
+
+* Metric Calculation
+* Subsample (rarify)
+* Excluded Taxa
+* TaxaList Check
+
+# Future Updates
+
+* Fish and Periphyton metrics.
+
+# Version History
+
+## Changes in Version 0.1.0.9001 (2018-11-16)
+
+* Added basic package structure.
+    + Folders (data, data-raw, inst/doc, inst/extdata, man, R, vignettes)
+    + NEWS, README, LICENSE
+* Update DESCRIPTION, NEWS, and README
+* Add functions and data
+    + rarify
+    + metric.values
+
+## Changes in Version 0.1.0 (2018-11-16)
+
+* Initial commit on GitHub.
+
