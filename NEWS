@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-11-20 13:30:33
+    #> Last Update: 2018-11-20 13:33:32
 
 # Planned Updates
 
@@ -18,8 +18,13 @@ NEWS
   - Metric scoring
   - Multimetric Index scoring
   - TaxaList Check
+  - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.2.0 (2018-11-20)
+
+  - Initial release version.
 
 ## Changes in Version 0.1.0.9004 (2018-11-20)
 

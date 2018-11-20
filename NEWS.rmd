@@ -28,8 +28,13 @@ cat(paste0("Last Update: ",Sys.time()))
 * Metric scoring
 * Multimetric Index scoring
 * TaxaList Check
+* Map taxon observations
 
 # Version History
+
+## Changes in Version 0.2.0 (2018-11-20)
+
+* Initial release version.
 
 ## Changes in Version 0.1.0.9004 (2018-11-20)
 
