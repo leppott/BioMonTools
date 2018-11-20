@@ -31,6 +31,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.1.0.9004 (2018-11-20)
+
+* Add SuperFamily
+    + function
+    + vignette
+    + example data file
+* Add metric names files to extdata and doc
+
 ## Changes in Version 0.1.0.9003 (2018-11-20)
 
 * markExcluded

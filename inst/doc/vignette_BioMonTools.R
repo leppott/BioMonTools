@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 ## ----Pkg_Help, eval=FALSE------------------------------------------------
 #  help(package="BioMonTools")
 
-## ----MetricValues_Keep2----------------------------------------------------------------------------
+## ----MetricValues_Keep2--------------------------------------------------
 # Packages
 library(readxl)
 library(knitr)
@@ -39,7 +39,7 @@ df.metval.ci <- df.metval[, c(col.ID, col.met2keep)]
 # RMD table
 kable(head(df.metval.ci), caption = "Metric Calculation, select metrics")
 
-## ----Excl01----------------------------------------------------------------------------------------
+## ----Excl01--------------------------------------------------------------
 # Packages
 library(readxl)
 library(dplyr)
@@ -62,6 +62,7 @@ TaxaLevels <- c("Kingdom"
                 , "SubClass"
                 , "Order"
                 , "SubOrder"
+                #, "SuperFamily"
                 , "Family"
                 , "SubFamily"
                 , "Tribe"
@@ -136,7 +137,7 @@ tbl_class$Percent <- round(tbl_class$Percent *100, 2)
 kable(tbl_class, caption="Classification Performance Metrics")
 
 
-## ----Excl02----------------------------------------------------------------------------------------
+## ----Excl02--------------------------------------------------------------
 # Packages
 library(readxl)
 library(dplyr)
@@ -159,6 +160,7 @@ TaxaLevels <- c("Kingdom"
                 , "SubClass"
                 , "Order"
                 , "SubOrder"
+                #, "SuperFamily"
                 , "Family"
                 , "SubFamily"
                 , "Tribe"
@@ -232,7 +234,7 @@ names(tbl_class2) <- c("Performance Metrics", "Percent")
 tbl_class2$Percent <- round(tbl_class2$Percent *100, 2)
 kable(tbl_class2, caption="Classification Performance Metrics")
 
-## ----rarify----------------------------------------------------------------------------------------
+## ----rarify--------------------------------------------------------------
 # Subsample to 500 organisms (from over 500 organisms) for 12 samples.
 
 # load bio data

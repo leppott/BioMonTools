@@ -66,6 +66,7 @@
 #'                 , "SubClass"
 #'                 , "Order"
 #'                 , "SubOrder"
+#'                 #, "SuperFamily"
 #'                 , "Family"
 #'                 , "SubFamily"
 #'                 , "Tribe"

@@ -614,58 +614,59 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb4-20" data-line-number="20">                , <span class="st">&quot;SubClass&quot;</span></a>
 <a class="sourceLine" id="cb4-21" data-line-number="21">                , <span class="st">&quot;Order&quot;</span></a>
 <a class="sourceLine" id="cb4-22" data-line-number="22">                , <span class="st">&quot;SubOrder&quot;</span></a>
-<a class="sourceLine" id="cb4-23" data-line-number="23">                , <span class="st">&quot;Family&quot;</span></a>
-<a class="sourceLine" id="cb4-24" data-line-number="24">                , <span class="st">&quot;SubFamily&quot;</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25">                , <span class="st">&quot;Tribe&quot;</span></a>
-<a class="sourceLine" id="cb4-26" data-line-number="26">                , <span class="st">&quot;Genus&quot;</span></a>
-<a class="sourceLine" id="cb4-27" data-line-number="27">                , <span class="st">&quot;SubGenus&quot;</span></a>
-<a class="sourceLine" id="cb4-28" data-line-number="28">                , <span class="st">&quot;Species&quot;</span></a>
-<a class="sourceLine" id="cb4-29" data-line-number="29">                , <span class="st">&quot;Variety&quot;</span>)</a>
-<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="co"># Taxa that should be treated as equivalent</span></a>
-<a class="sourceLine" id="cb4-31" data-line-number="31">Exceptions &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;TaxaID&quot;</span>=<span class="kw">c</span>(<span class="st">&quot;Sphaeriidae&quot;</span>), <span class="st">&quot;PhyloID&quot;</span>=<span class="kw">c</span>(<span class="st">&quot;Pisidiidae&quot;</span>))</a>
-<a class="sourceLine" id="cb4-32" data-line-number="32"></a>
-<a class="sourceLine" id="cb4-33" data-line-number="33"><span class="co"># Filter Data</span></a>
-<a class="sourceLine" id="cb4-34" data-line-number="34"><span class="co"># df_samptax &lt;- filter(df_samps_bugs, !!as.name(SampID) == &quot;08BEA3478__2013-08-21_0&quot;)</span></a>
-<a class="sourceLine" id="cb4-35" data-line-number="35"><span class="co"># df_tst_small &lt;- markExcluded(df_samptax, SampID, TaxaID, TaxaCount, TaxaLevels, Exceptions, Exclude)</span></a>
-<a class="sourceLine" id="cb4-36" data-line-number="36"></a>
-<a class="sourceLine" id="cb4-37" data-line-number="37"><span class="co"># EXAMPLE 1</span></a>
-<a class="sourceLine" id="cb4-38" data-line-number="38">df_tst &lt;-<span class="st"> </span><span class="kw">markExcluded</span>(df_samps_bugs, <span class="dt">SampID=</span><span class="st">&quot;SampleID&quot;</span>, <span class="dt">TaxaID=</span><span class="st">&quot;TaxaID&quot;</span>, <span class="dt">TaxaCount =</span> <span class="st">&quot;N_Taxa&quot;</span></a>
-<a class="sourceLine" id="cb4-39" data-line-number="39">                       , <span class="dt">Exclude=</span><span class="st">&quot;Exclude_New&quot;</span>, <span class="dt">TaxaLevels=</span>TaxaLevels, <span class="dt">Exceptions=</span>Exceptions)</a>
-<a class="sourceLine" id="cb4-40" data-line-number="40"><span class="co">#&gt; *</span><span class="al">WARNING</span><span class="co">*, 3 taxa levels missing from input data frame; </span></a>
-<a class="sourceLine" id="cb4-41" data-line-number="41"><span class="co">#&gt;  KINGDOM, SUBORDER, VARIETY</span></a>
-<a class="sourceLine" id="cb4-42" data-line-number="42"><span class="co">#&gt; [1] &quot;Working on item (1/11); PHYLUM&quot;</span></a>
-<a class="sourceLine" id="cb4-43" data-line-number="43"><span class="co">#&gt; [1] &quot;Working on item (2/11); SUBPHYLUM&quot;</span></a>
-<a class="sourceLine" id="cb4-44" data-line-number="44"><span class="co">#&gt; [1] &quot;Working on item (3/11); CLASS&quot;</span></a>
-<a class="sourceLine" id="cb4-45" data-line-number="45"><span class="co">#&gt; [1] &quot;Working on item (4/11); SUBCLASS&quot;</span></a>
-<a class="sourceLine" id="cb4-46" data-line-number="46"><span class="co">#&gt; [1] &quot;Working on item (5/11); ORDER&quot;</span></a>
-<a class="sourceLine" id="cb4-47" data-line-number="47"><span class="co">#&gt; [1] &quot;Working on item (6/11); FAMILY&quot;</span></a>
-<a class="sourceLine" id="cb4-48" data-line-number="48"><span class="co">#&gt; [1] &quot;Working on item (7/11); SUBFAMILY&quot;</span></a>
-<a class="sourceLine" id="cb4-49" data-line-number="49"><span class="co">#&gt; [1] &quot;Working on item (8/11); TRIBE&quot;</span></a>
-<a class="sourceLine" id="cb4-50" data-line-number="50"><span class="co">#&gt; [1] &quot;Working on item (9/11); GENUS&quot;</span></a>
-<a class="sourceLine" id="cb4-51" data-line-number="51"><span class="co">#&gt; [1] &quot;Working on item (10/11); SUBGENUS&quot;</span></a>
-<a class="sourceLine" id="cb4-52" data-line-number="52"><span class="co">#&gt; [1] &quot;Working on item (11/11); SPECIES&quot;</span></a>
-<a class="sourceLine" id="cb4-53" data-line-number="53"></a>
-<a class="sourceLine" id="cb4-54" data-line-number="54"><span class="co"># Compare</span></a>
-<a class="sourceLine" id="cb4-55" data-line-number="55">df_compare &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(dplyr<span class="op">::</span><span class="kw">group_by</span>(df_tst, SampleID)</a>
-<a class="sourceLine" id="cb4-56" data-line-number="56">                               , <span class="dt">Exclude_Import=</span><span class="kw">sum</span>(Exclude)</a>
-<a class="sourceLine" id="cb4-57" data-line-number="57">                               , <span class="dt">Exclude_R=</span><span class="kw">sum</span>(Exclude_New))</a>
-<a class="sourceLine" id="cb4-58" data-line-number="58">df_compare<span class="op">$</span>Diff &lt;-<span class="st"> </span>df_compare<span class="op">$</span>Exclude_Import <span class="op">-</span><span class="st"> </span>df_compare<span class="op">$</span>Exclude_R</a>
-<a class="sourceLine" id="cb4-59" data-line-number="59"><span class="co">#</span></a>
-<a class="sourceLine" id="cb4-60" data-line-number="60">tbl_diff &lt;-<span class="st"> </span><span class="kw">table</span>(df_compare<span class="op">$</span>Diff)</a>
-<a class="sourceLine" id="cb4-61" data-line-number="61"><span class="co">#kable(tbl_diff)</span></a>
-<a class="sourceLine" id="cb4-62" data-line-number="62"><span class="co"># sort</span></a>
-<a class="sourceLine" id="cb4-63" data-line-number="63">df_compare &lt;-<span class="st"> </span>df_compare <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Diff))</a>
-<a class="sourceLine" id="cb4-64" data-line-number="64"></a>
-<a class="sourceLine" id="cb4-65" data-line-number="65"><span class="co"># Number with issues</span></a>
-<a class="sourceLine" id="cb4-66" data-line-number="66"><span class="co">#sum(abs(df_compare$Diff))</span></a>
-<a class="sourceLine" id="cb4-67" data-line-number="67"><span class="co"># total samples</span></a>
-<a class="sourceLine" id="cb4-68" data-line-number="68"><span class="co">#nrow(df_compare)</span></a>
-<a class="sourceLine" id="cb4-69" data-line-number="69"></a>
-<a class="sourceLine" id="cb4-70" data-line-number="70"><span class="co"># confusion matrix</span></a>
-<a class="sourceLine" id="cb4-71" data-line-number="71">tbl_results &lt;-<span class="st"> </span><span class="kw">table</span>(df_tst<span class="op">$</span>Exclude, df_tst<span class="op">$</span>Exclude_New, <span class="dt">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</a>
-<a class="sourceLine" id="cb4-72" data-line-number="72"><span class="co">#</span></a>
-<a class="sourceLine" id="cb4-73" data-line-number="73"><span class="co"># Show differences</span></a>
-<a class="sourceLine" id="cb4-74" data-line-number="74"><span class="kw">kable</span>(tbl_results, <span class="dt">caption=</span><span class="st">&quot;Confusion Matrix&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb4-23" data-line-number="23">                <span class="co">#, &quot;SuperFamily&quot;</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">                , <span class="st">&quot;Family&quot;</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">                , <span class="st">&quot;SubFamily&quot;</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">                , <span class="st">&quot;Tribe&quot;</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">                , <span class="st">&quot;Genus&quot;</span></a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">                , <span class="st">&quot;SubGenus&quot;</span></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">                , <span class="st">&quot;Species&quot;</span></a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">                , <span class="st">&quot;Variety&quot;</span>)</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31"><span class="co"># Taxa that should be treated as equivalent</span></a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">Exceptions &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;TaxaID&quot;</span>=<span class="kw">c</span>(<span class="st">&quot;Sphaeriidae&quot;</span>), <span class="st">&quot;PhyloID&quot;</span>=<span class="kw">c</span>(<span class="st">&quot;Pisidiidae&quot;</span>))</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb4-34" data-line-number="34"><span class="co"># Filter Data</span></a>
+<a class="sourceLine" id="cb4-35" data-line-number="35"><span class="co"># df_samptax &lt;- filter(df_samps_bugs, !!as.name(SampID) == &quot;08BEA3478__2013-08-21_0&quot;)</span></a>
+<a class="sourceLine" id="cb4-36" data-line-number="36"><span class="co"># df_tst_small &lt;- markExcluded(df_samptax, SampID, TaxaID, TaxaCount, TaxaLevels, Exceptions, Exclude)</span></a>
+<a class="sourceLine" id="cb4-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb4-38" data-line-number="38"><span class="co"># EXAMPLE 1</span></a>
+<a class="sourceLine" id="cb4-39" data-line-number="39">df_tst &lt;-<span class="st"> </span><span class="kw">markExcluded</span>(df_samps_bugs, <span class="dt">SampID=</span><span class="st">&quot;SampleID&quot;</span>, <span class="dt">TaxaID=</span><span class="st">&quot;TaxaID&quot;</span>, <span class="dt">TaxaCount =</span> <span class="st">&quot;N_Taxa&quot;</span></a>
+<a class="sourceLine" id="cb4-40" data-line-number="40">                       , <span class="dt">Exclude=</span><span class="st">&quot;Exclude_New&quot;</span>, <span class="dt">TaxaLevels=</span>TaxaLevels, <span class="dt">Exceptions=</span>Exceptions)</a>
+<a class="sourceLine" id="cb4-41" data-line-number="41"><span class="co">#&gt; *</span><span class="al">WARNING</span><span class="co">*, 3 taxa levels missing from input data frame; </span></a>
+<a class="sourceLine" id="cb4-42" data-line-number="42"><span class="co">#&gt;  KINGDOM, SUBORDER, VARIETY</span></a>
+<a class="sourceLine" id="cb4-43" data-line-number="43"><span class="co">#&gt; [1] &quot;Working on item (1/11); PHYLUM&quot;</span></a>
+<a class="sourceLine" id="cb4-44" data-line-number="44"><span class="co">#&gt; [1] &quot;Working on item (2/11); SUBPHYLUM&quot;</span></a>
+<a class="sourceLine" id="cb4-45" data-line-number="45"><span class="co">#&gt; [1] &quot;Working on item (3/11); CLASS&quot;</span></a>
+<a class="sourceLine" id="cb4-46" data-line-number="46"><span class="co">#&gt; [1] &quot;Working on item (4/11); SUBCLASS&quot;</span></a>
+<a class="sourceLine" id="cb4-47" data-line-number="47"><span class="co">#&gt; [1] &quot;Working on item (5/11); ORDER&quot;</span></a>
+<a class="sourceLine" id="cb4-48" data-line-number="48"><span class="co">#&gt; [1] &quot;Working on item (6/11); FAMILY&quot;</span></a>
+<a class="sourceLine" id="cb4-49" data-line-number="49"><span class="co">#&gt; [1] &quot;Working on item (7/11); SUBFAMILY&quot;</span></a>
+<a class="sourceLine" id="cb4-50" data-line-number="50"><span class="co">#&gt; [1] &quot;Working on item (8/11); TRIBE&quot;</span></a>
+<a class="sourceLine" id="cb4-51" data-line-number="51"><span class="co">#&gt; [1] &quot;Working on item (9/11); GENUS&quot;</span></a>
+<a class="sourceLine" id="cb4-52" data-line-number="52"><span class="co">#&gt; [1] &quot;Working on item (10/11); SUBGENUS&quot;</span></a>
+<a class="sourceLine" id="cb4-53" data-line-number="53"><span class="co">#&gt; [1] &quot;Working on item (11/11); SPECIES&quot;</span></a>
+<a class="sourceLine" id="cb4-54" data-line-number="54"></a>
+<a class="sourceLine" id="cb4-55" data-line-number="55"><span class="co"># Compare</span></a>
+<a class="sourceLine" id="cb4-56" data-line-number="56">df_compare &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(dplyr<span class="op">::</span><span class="kw">group_by</span>(df_tst, SampleID)</a>
+<a class="sourceLine" id="cb4-57" data-line-number="57">                               , <span class="dt">Exclude_Import=</span><span class="kw">sum</span>(Exclude)</a>
+<a class="sourceLine" id="cb4-58" data-line-number="58">                               , <span class="dt">Exclude_R=</span><span class="kw">sum</span>(Exclude_New))</a>
+<a class="sourceLine" id="cb4-59" data-line-number="59">df_compare<span class="op">$</span>Diff &lt;-<span class="st"> </span>df_compare<span class="op">$</span>Exclude_Import <span class="op">-</span><span class="st"> </span>df_compare<span class="op">$</span>Exclude_R</a>
+<a class="sourceLine" id="cb4-60" data-line-number="60"><span class="co">#</span></a>
+<a class="sourceLine" id="cb4-61" data-line-number="61">tbl_diff &lt;-<span class="st"> </span><span class="kw">table</span>(df_compare<span class="op">$</span>Diff)</a>
+<a class="sourceLine" id="cb4-62" data-line-number="62"><span class="co">#kable(tbl_diff)</span></a>
+<a class="sourceLine" id="cb4-63" data-line-number="63"><span class="co"># sort</span></a>
+<a class="sourceLine" id="cb4-64" data-line-number="64">df_compare &lt;-<span class="st"> </span>df_compare <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Diff))</a>
+<a class="sourceLine" id="cb4-65" data-line-number="65"></a>
+<a class="sourceLine" id="cb4-66" data-line-number="66"><span class="co"># Number with issues</span></a>
+<a class="sourceLine" id="cb4-67" data-line-number="67"><span class="co">#sum(abs(df_compare$Diff))</span></a>
+<a class="sourceLine" id="cb4-68" data-line-number="68"><span class="co"># total samples</span></a>
+<a class="sourceLine" id="cb4-69" data-line-number="69"><span class="co">#nrow(df_compare)</span></a>
+<a class="sourceLine" id="cb4-70" data-line-number="70"></a>
+<a class="sourceLine" id="cb4-71" data-line-number="71"><span class="co"># confusion matrix</span></a>
+<a class="sourceLine" id="cb4-72" data-line-number="72">tbl_results &lt;-<span class="st"> </span><span class="kw">table</span>(df_tst<span class="op">$</span>Exclude, df_tst<span class="op">$</span>Exclude_New, <span class="dt">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</a>
+<a class="sourceLine" id="cb4-73" data-line-number="73"><span class="co">#</span></a>
+<a class="sourceLine" id="cb4-74" data-line-number="74"><span class="co"># Show differences</span></a>
+<a class="sourceLine" id="cb4-75" data-line-number="75"><span class="kw">kable</span>(tbl_results, <span class="dt">caption=</span><span class="st">&quot;Confusion Matrix&quot;</span>)</a></code></pre></div>
 <table>
 <caption>Confusion Matrix</caption>
 <thead>
@@ -775,56 +776,57 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb6-20" data-line-number="20">                , <span class="st">&quot;SubClass&quot;</span></a>
 <a class="sourceLine" id="cb6-21" data-line-number="21">                , <span class="st">&quot;Order&quot;</span></a>
 <a class="sourceLine" id="cb6-22" data-line-number="22">                , <span class="st">&quot;SubOrder&quot;</span></a>
-<a class="sourceLine" id="cb6-23" data-line-number="23">                , <span class="st">&quot;Family&quot;</span></a>
-<a class="sourceLine" id="cb6-24" data-line-number="24">                , <span class="st">&quot;SubFamily&quot;</span></a>
-<a class="sourceLine" id="cb6-25" data-line-number="25">                , <span class="st">&quot;Tribe&quot;</span></a>
-<a class="sourceLine" id="cb6-26" data-line-number="26">                , <span class="st">&quot;Genus&quot;</span></a>
-<a class="sourceLine" id="cb6-27" data-line-number="27">                , <span class="st">&quot;SubGenus&quot;</span></a>
-<a class="sourceLine" id="cb6-28" data-line-number="28">                , <span class="st">&quot;Species&quot;</span></a>
-<a class="sourceLine" id="cb6-29" data-line-number="29">                , <span class="st">&quot;Variety&quot;</span>)</a>
-<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="co"># Taxa that should be treated as equivalent</span></a>
-<a class="sourceLine" id="cb6-31" data-line-number="31">Exceptions &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb6-32" data-line-number="32"></a>
-<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="co"># EXAMPLE 2</span></a>
-<a class="sourceLine" id="cb6-34" data-line-number="34">## No Exceptions</a>
-<a class="sourceLine" id="cb6-35" data-line-number="35"></a>
-<a class="sourceLine" id="cb6-36" data-line-number="36">df_tst2 &lt;-<span class="st"> </span><span class="kw">markExcluded</span>(df_samps_bugs, <span class="dt">SampID=</span><span class="st">&quot;SampleID&quot;</span>, <span class="dt">TaxaID=</span><span class="st">&quot;TaxaID&quot;</span>, <span class="dt">TaxaCount =</span> <span class="st">&quot;N_Taxa&quot;</span></a>
-<a class="sourceLine" id="cb6-37" data-line-number="37">                        , <span class="dt">Exclude=</span><span class="st">&quot;Exclude_New&quot;</span>, <span class="dt">TaxaLevels=</span>TaxaLevels, <span class="dt">Exceptions=</span><span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="co">#&gt; *</span><span class="al">WARNING</span><span class="co">*, 3 taxa levels missing from input data frame; </span></a>
-<a class="sourceLine" id="cb6-39" data-line-number="39"><span class="co">#&gt;  KINGDOM, SUBORDER, VARIETY</span></a>
-<a class="sourceLine" id="cb6-40" data-line-number="40"><span class="co">#&gt; [1] &quot;Working on item (1/11); PHYLUM&quot;</span></a>
-<a class="sourceLine" id="cb6-41" data-line-number="41"><span class="co">#&gt; [1] &quot;Working on item (2/11); SUBPHYLUM&quot;</span></a>
-<a class="sourceLine" id="cb6-42" data-line-number="42"><span class="co">#&gt; [1] &quot;Working on item (3/11); CLASS&quot;</span></a>
-<a class="sourceLine" id="cb6-43" data-line-number="43"><span class="co">#&gt; [1] &quot;Working on item (4/11); SUBCLASS&quot;</span></a>
-<a class="sourceLine" id="cb6-44" data-line-number="44"><span class="co">#&gt; [1] &quot;Working on item (5/11); ORDER&quot;</span></a>
-<a class="sourceLine" id="cb6-45" data-line-number="45"><span class="co">#&gt; [1] &quot;Working on item (6/11); FAMILY&quot;</span></a>
-<a class="sourceLine" id="cb6-46" data-line-number="46"><span class="co">#&gt; [1] &quot;Working on item (7/11); SUBFAMILY&quot;</span></a>
-<a class="sourceLine" id="cb6-47" data-line-number="47"><span class="co">#&gt; [1] &quot;Working on item (8/11); TRIBE&quot;</span></a>
-<a class="sourceLine" id="cb6-48" data-line-number="48"><span class="co">#&gt; [1] &quot;Working on item (9/11); GENUS&quot;</span></a>
-<a class="sourceLine" id="cb6-49" data-line-number="49"><span class="co">#&gt; [1] &quot;Working on item (10/11); SUBGENUS&quot;</span></a>
-<a class="sourceLine" id="cb6-50" data-line-number="50"><span class="co">#&gt; [1] &quot;Working on item (11/11); SPECIES&quot;</span></a>
-<a class="sourceLine" id="cb6-51" data-line-number="51"></a>
-<a class="sourceLine" id="cb6-52" data-line-number="52"><span class="co"># Compare</span></a>
-<a class="sourceLine" id="cb6-53" data-line-number="53">df_compare2 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(dplyr<span class="op">::</span><span class="kw">group_by</span>(df_tst2, SampleID)</a>
-<a class="sourceLine" id="cb6-54" data-line-number="54">                               , <span class="dt">Exclude_Import=</span><span class="kw">sum</span>(Exclude)</a>
-<a class="sourceLine" id="cb6-55" data-line-number="55">                               , <span class="dt">Exclude_R=</span><span class="kw">sum</span>(Exclude_New))</a>
-<a class="sourceLine" id="cb6-56" data-line-number="56">df_compare2<span class="op">$</span>Diff &lt;-<span class="st"> </span>df_compare2<span class="op">$</span>Exclude_Import <span class="op">-</span><span class="st"> </span>df_compare2<span class="op">$</span>Exclude_R</a>
-<a class="sourceLine" id="cb6-57" data-line-number="57"><span class="co">#</span></a>
-<a class="sourceLine" id="cb6-58" data-line-number="58">tbl_diff2 &lt;-<span class="st"> </span><span class="kw">table</span>(df_compare2<span class="op">$</span>Diff)</a>
-<a class="sourceLine" id="cb6-59" data-line-number="59"><span class="co">#kable(tbl_diff2)</span></a>
-<a class="sourceLine" id="cb6-60" data-line-number="60"><span class="co"># sort</span></a>
-<a class="sourceLine" id="cb6-61" data-line-number="61">df_compare2 &lt;-<span class="st"> </span>df_compare2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Diff))</a>
-<a class="sourceLine" id="cb6-62" data-line-number="62"></a>
-<a class="sourceLine" id="cb6-63" data-line-number="63"><span class="co"># Number with issues</span></a>
-<a class="sourceLine" id="cb6-64" data-line-number="64"><span class="co">#sum(abs(df_compare2$Diff))</span></a>
-<a class="sourceLine" id="cb6-65" data-line-number="65"><span class="co"># total samples</span></a>
-<a class="sourceLine" id="cb6-66" data-line-number="66"><span class="co">#nrow(df_compare2)</span></a>
-<a class="sourceLine" id="cb6-67" data-line-number="67"></a>
-<a class="sourceLine" id="cb6-68" data-line-number="68"><span class="co"># confusion matrix</span></a>
-<a class="sourceLine" id="cb6-69" data-line-number="69">tbl_results2 &lt;-<span class="st"> </span><span class="kw">table</span>(df_tst2<span class="op">$</span>Exclude, df_tst2<span class="op">$</span>Exclude_New, <span class="dt">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</a>
-<a class="sourceLine" id="cb6-70" data-line-number="70"><span class="co">#</span></a>
-<a class="sourceLine" id="cb6-71" data-line-number="71"><span class="co"># Show differences</span></a>
-<a class="sourceLine" id="cb6-72" data-line-number="72"><span class="kw">kable</span>(tbl_results2, <span class="dt">caption=</span><span class="st">&quot;Confusion Matrix&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb6-23" data-line-number="23">                <span class="co">#, &quot;SuperFamily&quot;</span></a>
+<a class="sourceLine" id="cb6-24" data-line-number="24">                , <span class="st">&quot;Family&quot;</span></a>
+<a class="sourceLine" id="cb6-25" data-line-number="25">                , <span class="st">&quot;SubFamily&quot;</span></a>
+<a class="sourceLine" id="cb6-26" data-line-number="26">                , <span class="st">&quot;Tribe&quot;</span></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27">                , <span class="st">&quot;Genus&quot;</span></a>
+<a class="sourceLine" id="cb6-28" data-line-number="28">                , <span class="st">&quot;SubGenus&quot;</span></a>
+<a class="sourceLine" id="cb6-29" data-line-number="29">                , <span class="st">&quot;Species&quot;</span></a>
+<a class="sourceLine" id="cb6-30" data-line-number="30">                , <span class="st">&quot;Variety&quot;</span>)</a>
+<a class="sourceLine" id="cb6-31" data-line-number="31"><span class="co"># Taxa that should be treated as equivalent</span></a>
+<a class="sourceLine" id="cb6-32" data-line-number="32">Exceptions &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb6-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="co"># EXAMPLE 2</span></a>
+<a class="sourceLine" id="cb6-35" data-line-number="35">## No Exceptions</a>
+<a class="sourceLine" id="cb6-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb6-37" data-line-number="37">df_tst2 &lt;-<span class="st"> </span><span class="kw">markExcluded</span>(df_samps_bugs, <span class="dt">SampID=</span><span class="st">&quot;SampleID&quot;</span>, <span class="dt">TaxaID=</span><span class="st">&quot;TaxaID&quot;</span>, <span class="dt">TaxaCount =</span> <span class="st">&quot;N_Taxa&quot;</span></a>
+<a class="sourceLine" id="cb6-38" data-line-number="38">                        , <span class="dt">Exclude=</span><span class="st">&quot;Exclude_New&quot;</span>, <span class="dt">TaxaLevels=</span>TaxaLevels, <span class="dt">Exceptions=</span><span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb6-39" data-line-number="39"><span class="co">#&gt; *</span><span class="al">WARNING</span><span class="co">*, 3 taxa levels missing from input data frame; </span></a>
+<a class="sourceLine" id="cb6-40" data-line-number="40"><span class="co">#&gt;  KINGDOM, SUBORDER, VARIETY</span></a>
+<a class="sourceLine" id="cb6-41" data-line-number="41"><span class="co">#&gt; [1] &quot;Working on item (1/11); PHYLUM&quot;</span></a>
+<a class="sourceLine" id="cb6-42" data-line-number="42"><span class="co">#&gt; [1] &quot;Working on item (2/11); SUBPHYLUM&quot;</span></a>
+<a class="sourceLine" id="cb6-43" data-line-number="43"><span class="co">#&gt; [1] &quot;Working on item (3/11); CLASS&quot;</span></a>
+<a class="sourceLine" id="cb6-44" data-line-number="44"><span class="co">#&gt; [1] &quot;Working on item (4/11); SUBCLASS&quot;</span></a>
+<a class="sourceLine" id="cb6-45" data-line-number="45"><span class="co">#&gt; [1] &quot;Working on item (5/11); ORDER&quot;</span></a>
+<a class="sourceLine" id="cb6-46" data-line-number="46"><span class="co">#&gt; [1] &quot;Working on item (6/11); FAMILY&quot;</span></a>
+<a class="sourceLine" id="cb6-47" data-line-number="47"><span class="co">#&gt; [1] &quot;Working on item (7/11); SUBFAMILY&quot;</span></a>
+<a class="sourceLine" id="cb6-48" data-line-number="48"><span class="co">#&gt; [1] &quot;Working on item (8/11); TRIBE&quot;</span></a>
+<a class="sourceLine" id="cb6-49" data-line-number="49"><span class="co">#&gt; [1] &quot;Working on item (9/11); GENUS&quot;</span></a>
+<a class="sourceLine" id="cb6-50" data-line-number="50"><span class="co">#&gt; [1] &quot;Working on item (10/11); SUBGENUS&quot;</span></a>
+<a class="sourceLine" id="cb6-51" data-line-number="51"><span class="co">#&gt; [1] &quot;Working on item (11/11); SPECIES&quot;</span></a>
+<a class="sourceLine" id="cb6-52" data-line-number="52"></a>
+<a class="sourceLine" id="cb6-53" data-line-number="53"><span class="co"># Compare</span></a>
+<a class="sourceLine" id="cb6-54" data-line-number="54">df_compare2 &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(dplyr<span class="op">::</span><span class="kw">group_by</span>(df_tst2, SampleID)</a>
+<a class="sourceLine" id="cb6-55" data-line-number="55">                               , <span class="dt">Exclude_Import=</span><span class="kw">sum</span>(Exclude)</a>
+<a class="sourceLine" id="cb6-56" data-line-number="56">                               , <span class="dt">Exclude_R=</span><span class="kw">sum</span>(Exclude_New))</a>
+<a class="sourceLine" id="cb6-57" data-line-number="57">df_compare2<span class="op">$</span>Diff &lt;-<span class="st"> </span>df_compare2<span class="op">$</span>Exclude_Import <span class="op">-</span><span class="st"> </span>df_compare2<span class="op">$</span>Exclude_R</a>
+<a class="sourceLine" id="cb6-58" data-line-number="58"><span class="co">#</span></a>
+<a class="sourceLine" id="cb6-59" data-line-number="59">tbl_diff2 &lt;-<span class="st"> </span><span class="kw">table</span>(df_compare2<span class="op">$</span>Diff)</a>
+<a class="sourceLine" id="cb6-60" data-line-number="60"><span class="co">#kable(tbl_diff2)</span></a>
+<a class="sourceLine" id="cb6-61" data-line-number="61"><span class="co"># sort</span></a>
+<a class="sourceLine" id="cb6-62" data-line-number="62">df_compare2 &lt;-<span class="st"> </span>df_compare2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Diff))</a>
+<a class="sourceLine" id="cb6-63" data-line-number="63"></a>
+<a class="sourceLine" id="cb6-64" data-line-number="64"><span class="co"># Number with issues</span></a>
+<a class="sourceLine" id="cb6-65" data-line-number="65"><span class="co">#sum(abs(df_compare2$Diff))</span></a>
+<a class="sourceLine" id="cb6-66" data-line-number="66"><span class="co"># total samples</span></a>
+<a class="sourceLine" id="cb6-67" data-line-number="67"><span class="co">#nrow(df_compare2)</span></a>
+<a class="sourceLine" id="cb6-68" data-line-number="68"></a>
+<a class="sourceLine" id="cb6-69" data-line-number="69"><span class="co"># confusion matrix</span></a>
+<a class="sourceLine" id="cb6-70" data-line-number="70">tbl_results2 &lt;-<span class="st"> </span><span class="kw">table</span>(df_tst2<span class="op">$</span>Exclude, df_tst2<span class="op">$</span>Exclude_New, <span class="dt">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</a>
+<a class="sourceLine" id="cb6-71" data-line-number="71"><span class="co">#</span></a>
+<a class="sourceLine" id="cb6-72" data-line-number="72"><span class="co"># Show differences</span></a>
+<a class="sourceLine" id="cb6-73" data-line-number="73"><span class="kw">kable</span>(tbl_results2, <span class="dt">caption=</span><span class="st">&quot;Confusion Matrix&quot;</span>)</a></code></pre></div>
 <table>
 <caption>Confusion Matrix</caption>
 <thead>
@@ -1064,7 +1066,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb10-14" data-line-number="14">                     ,<span class="dt">abund=</span><span class="st">&quot;N_Taxa&quot;</span>,<span class="dt">subsiz=</span>mySize, <span class="dt">mySeed=</span>Seed_US)</a>
 <a class="sourceLine" id="cb10-15" data-line-number="15"><span class="co">#&gt; Rarify of samples complete. </span></a>
 <a class="sourceLine" id="cb10-16" data-line-number="16"><span class="co">#&gt;  Number of samples =  12 </span></a>
-<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="co">#&gt;  Execution time (sec) =  0.0300000000000011</span></a>
+<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="co">#&gt;  Execution time (sec) =  0.0200000000000031</span></a>
 <a class="sourceLine" id="cb10-18" data-line-number="18"></a>
 <a class="sourceLine" id="cb10-19" data-line-number="19"><span class="co"># view results</span></a>
 <a class="sourceLine" id="cb10-20" data-line-number="20"><span class="co">#dim(bugs_mysize)</span></a>
