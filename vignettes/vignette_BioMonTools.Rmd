@@ -1,0 +1,450 @@
+---
+title: "Vignette, BioMonTools"
+author: "Erik.Leppo@tetratech.com"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette, BioMonTools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+<!-- Data is in vignettes\data folder  -->
+```{r rmd_setup, include = FALSE}
+library(knitr)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# Purpose
+The `BioMonTools` package was created to enable users to have a common set of tools 
+for bioassessment and biomonitoring data.
+
+# Installation
+The package is hosted on GitHub (https://github.com/leppott/BioMonTools) and can be 
+installed using the following lines of code. It is necessary to install the 
+`devtools` package.
+
+```{r Pkg_Install, eval=FALSE}
+# Installing the BioMonTools library (with the vignette) from GitHub
+library(devtools) 
+install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+```
+
+# Help
+After the `BioMonTools` package has been installed running the following line of code 
+will open the help file with links to all functions.
+```{r Pkg_Help, eval=FALSE}
+help(package="BioMonTools")
+```
+
+# Package Functions
+The suite of functions in the `BioMonTools` package are presented below.
+
+* metric.values
+* markExcluded
+* rarify
+
+## metric.values
+Calculate metric values from a data frame with taxa by sample with fully qualified master taxa information.
+
+### Data Preparation
+There are a number of required fields for the input file. If any fields are 
+missing the user will be prompted as to which are missing and the user can decide 
+whether to continue or quit. If the user continues, the missing fields will be 
+added but will be filled with zero or NA (as appropriate). Any metrics based on 
+the missing fields will not be valid.
+
+Required Fields:
+
+*	SAMPLEID
+
+    +	Unique sample identifier
+
+    +	Valid entries: character or number, must be unique
+
+*	TAXAID
+
+    +	Unique taxa identifier
+
+    + Valid entries: character or number, must be unique
+
+*	N_TAXA
+
+    + Number of individuals
+
+    + Valid entries: number
+
+*	EXCLUDE
+
+    + Non-unique/non-distinct taxa are excluded from richness metric calculations 
+    but are counted in the other metrics. Appendix B of the ‘BCGcalc_README_20180919’ 
+    Word document describes the Excluded Taxa Decision Criteria that was used during 
+    BCG model calibration. 
+
+    + Valid entries: TRUE or FALSE 
+
+    +	Non-unique/non-distinct taxa should be entered as "TRUE"
+
+*	NONTARGET
+
+    +	Non-target taxa are not part of the intended capture list; e.g., fish, herps,
+    water column taxa.  They are excluded from all metric calculations.
+
+    +	Valid entries: TRUE or FALSE.
+    
+    + NonTarget taxa should be entered as "TRUE"
+
+*	INDEX_NAME
+
+    +	Name of the BCG rules worksheet in the ‘Rules’ file (in the ‘extdata’ folder) 
+    that the R code is referencing.
+
+    +	Valid entries for the Puget Lowlands/Willamette Valley model: 
+    BCG_PacNW_v1_500ct or BCG_PacNW_v1_300ct.
+
+*	SITE_TYPE
+
+    +	Select which BCG model to apply: Low (lo) gradient (<1% NHD+ v2 flowline 
+    slope) or high (hi) gradient (≥ 1% NHD+ v2 flowline slope).
+
+    +	Valid entries: “hi” or “lo”.
+
+*	PHYLUM, SUBPHYLUM, CLASS, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
+
+    +	Phylogeny
+    
+    + Other phylogenetic rankings (e.g., SubOrder or SuperFamily) can be included 
+    but are not used in the current metric calculations.
+
+    +	Valid entries: text
+
+*	BCG_Attr
+
+    +	BCG attribute assignments (for example, Stamp and Gerritsen 2018).
+
+    +	Valid entries: 1i, 1m, 2, 3, 4, 5, 6; if not available, leave blank or enter ‘NA’.
+
+*	FFG, HABIT, LIFE_CYCLE, TOLVAL, THERMAL_INDICATOR
+
+    +	FFG
+    
+        - Valid values for FFG: CG, CF, PR, SC, SH
+    
+        - Function feeding group  entries.
+
+    +	HABIT
+    
+        - Valid values for HABIT: BU, CB, CN, SP, SW
+    
+        - Habit designations.
+
+    +	LIFE_CYLCE
+    
+        - Valid values for LIFE_CYCLE: UNI, SEMI, MULTI
+
+        - Life cycle designations.
+    
+    + THERMAL_INDICATOR
+    
+        - Valid values for THERMAL_INDICATOR: COLD, COLD_COOL, COOL_WARM, WARM
+
+Fields that are optional can be in the output (see examples below). 
+
+```{r MetricValues_Keep2}
+# Packages
+library(readxl)
+library(knitr)
+library(BioMonTools)
+
+# Load Data
+df.data <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
+                                       , package="BioMonTools"))
+# Columns to keep
+myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
+
+# Run Function
+df.metval <- metric.values(df.data, "bugs", fun.cols2keep=myCols)
+# Metrics of Interest
+## thermal indicator (_ti_)
+#names(df.metval)[grepl("_ti_", names(df.metval))]
+col.met2keep <- c("ni_total", "nt_total", "nt_ti_c", "nt_ti_cc", "nt_ti_cw"
+                , "nt_ti_w", "pi_ti_c", "pi_ti_cc", "pi_ti_cw", "pi_ti_w"
+                , "pt_ti_c", "pt_ti_cc", "pt_ti_cw", "pt_ti_w")
+col.ID <- c("SAMPLEID", toupper(myCols), "INDEX_NAME", "SITE_TYPE")
+# Ouput
+df.metval.ci <- df.metval[, c(col.ID, col.met2keep)]
+# RMD table
+kable(head(df.metval.ci), caption = "Metric Calculation, select metrics")
+```
+
+## markExcluded
+Takes as an input data frame with Sample ID, Taxa ID, and phlogenetic name fields and returns a similar dataframe with a column for "excluded" taxa (TRUE or FALSE).
+
+Excluded taxa are refered to by multiple names; ambiguous, non-distinct, and non-unique. The "excluded" name was chosen so as to be consistent with "non-target" taxa. That is, taxa marked as "TRUE" are treated as undesireables. Excluded taxa are those that are present in a sample when taxa of the same group are present in the same sample are identified finer level. That is, the parent is marked as excluded when child taxa are present in the same sample.
+
+The excluded taxa are referenced in the metric values function. These taxa are removed from the taxa richness metrics. This is because these are coarser level taxa.
+
+Exceptions is a 2 column data frame of synonyms or other exceptions. Column 1 is the name used in the TaxaID column the input data frame (df_samptax). Column 2 is the name used in the TaxaLevels columns of the input data frame (df_samptax). The phylogenetic columns (TaxaLevels) will be modified from Column 2 of the Exceptions data frame to match Column 1 of the Exceptions data frame. This ensures that the algorithm for markExcluded works properly. The changes will not be stored and the original names provided in the input data frame (df_samptax) will be returned in the final result. The function example below includes a practical case.
+
+Taxa Levels are phylogenetic names that are to be checked. They should be listed in order from course (kingdom) to fine (species). Names not appearing in the data will be skipped.
+
+The spelling of names must be consistent (including case) for this function to produce the intended output.
+
+Returns a data frame of df_samptax with an additional column, ExcludedTaxa.
+
+```{r Excl01}
+# Packages
+library(readxl)
+library(dplyr)
+library(lazyeval)
+library(knitr)
+
+# Data
+df_samps_bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
+                                        , package="BioMonTools"), guess_max=10^6)
+
+# Variables
+SampID     <- "SampleID"
+TaxaID     <- "TaxaID"
+TaxaCount  <- "N_Taxa"
+Exclude    <- "Exclude_New"
+TaxaLevels <- c("Kingdom"
+                , "Phylum"
+                , "SubPhylum"
+                , "Class"
+                , "SubClass"
+                , "Order"
+                , "SubOrder"
+                , "Family"
+                , "SubFamily"
+                , "Tribe"
+                , "Genus"
+                , "SubGenus"
+                , "Species"
+                , "Variety")
+# Taxa that should be treated as equivalent
+Exceptions <- data.frame("TaxaID"=c("Sphaeriidae"), "PhyloID"=c("Pisidiidae"))
+
+# Filter Data
+# df_samptax <- filter(df_samps_bugs, !!as.name(SampID) == "08BEA3478__2013-08-21_0")
+# df_tst_small <- markExcluded(df_samptax, SampID, TaxaID, TaxaCount, TaxaLevels, Exceptions, Exclude)
+
+# EXAMPLE 1
+df_tst <- markExcluded(df_samps_bugs, SampID="SampleID", TaxaID="TaxaID", TaxaCount = "N_Taxa"
+                       , Exclude="Exclude_New", TaxaLevels=TaxaLevels, Exceptions=Exceptions)
+
+# Compare
+df_compare <- dplyr::summarise(dplyr::group_by(df_tst, SampleID)
+                               , Exclude_Import=sum(Exclude)
+                               , Exclude_R=sum(Exclude_New))
+df_compare$Diff <- df_compare$Exclude_Import - df_compare$Exclude_R
+#
+tbl_diff <- table(df_compare$Diff)
+#kable(tbl_diff)
+# sort
+df_compare <- df_compare %>% arrange(desc(Diff))
+
+# Number with issues
+#sum(abs(df_compare$Diff))
+# total samples
+#nrow(df_compare)
+
+# confusion matrix
+tbl_results <- table(df_tst$Exclude, df_tst$Exclude_New, useNA = "ifany")
+#
+# Show differences
+kable(tbl_results, caption="Confusion Matrix")
+# samples with differences
+samp_diff <- as.data.frame(df_compare[df_compare[,"Diff"]!=0, "SampleID"])
+# results for only those with differences
+df_tst_diff <- df_tst[df_tst[,"SampleID"] %in% samp_diff$SampleID, ]
+# add diff field
+df_tst_diff$Exclude_Diff <- df_tst_diff$Exclude - df_tst_diff$Exclude_New
+
+# Classification Performance Metrics
+class_TP <- tbl_results[2,2] # True Positive
+class_FN <- tbl_results[2,1] # False Negative
+class_FP <- tbl_results[1,2] # False Positive
+class_TN <- tbl_results[1,1] # True Negative
+class_n <- sum(tbl_results)  # total
+#
+# sensitivity (recall); TP / (TP+FN); measure model to ID true positives
+class_sens <- class_TP / (class_TP + class_FN)
+# precision; TP / (TP+FP); accuracy of model positives
+class_prec <- class_TP / (class_TP + class_FP)
+# specifity; TN / (TN + FP); measure model to ID true negatives
+class_spec <- class_TN  / (class_TN + class_FP)
+# overall accuracy; (TP + TN) / all cases; accuracy of all classifications
+class_acc <- (class_TP + class_TN) / class_n
+# F1; 2 * (class_prec*class_sens) / (class_prec+class_sens)
+## balance of precision and recall
+class_F1 <- 2 * (class_prec * class_sens) / (class_prec + class_sens)
+#
+results_names <- c("Sensitivity (Recall)", "Precision", "Specificity", "OVerall Accuracy", "F1")
+results_values <- c(class_sens, class_prec, class_spec, class_acc, class_F1)
+#
+tbl_class <- data.frame(results_names, results_values)
+names(tbl_class) <- c("Performance Metrics", "Percent")
+tbl_class$Percent <- round(tbl_class$Percent *100, 2)
+kable(tbl_class, caption="Classification Performance Metrics")
+
+```
+
+The same data with no "exceptions" leaves 8 records misclassified.
+```{r Excl02}
+# Packages
+library(readxl)
+library(dplyr)
+library(lazyeval)
+library(knitr)
+
+# Data
+df_samps_bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
+                                        , package="BioMonTools"), guess_max=10^6)
+
+# Variables
+SampID     <- "SampleID"
+TaxaID     <- "TaxaID"
+TaxaCount  <- "N_Taxa"
+Exclude    <- "Exclude_New"
+TaxaLevels <- c("Kingdom"
+                , "Phylum"
+                , "SubPhylum"
+                , "Class"
+                , "SubClass"
+                , "Order"
+                , "SubOrder"
+                , "Family"
+                , "SubFamily"
+                , "Tribe"
+                , "Genus"
+                , "SubGenus"
+                , "Species"
+                , "Variety")
+# Taxa that should be treated as equivalent
+Exceptions <- NA
+
+# EXAMPLE 2
+## No Exceptions
+
+df_tst2 <- markExcluded(df_samps_bugs, SampID="SampleID", TaxaID="TaxaID", TaxaCount = "N_Taxa"
+                        , Exclude="Exclude_New", TaxaLevels=TaxaLevels, Exceptions=NA)
+
+# Compare
+df_compare2 <- dplyr::summarise(dplyr::group_by(df_tst2, SampleID)
+                               , Exclude_Import=sum(Exclude)
+                               , Exclude_R=sum(Exclude_New))
+df_compare2$Diff <- df_compare2$Exclude_Import - df_compare2$Exclude_R
+#
+tbl_diff2 <- table(df_compare2$Diff)
+#kable(tbl_diff2)
+# sort
+df_compare2 <- df_compare2 %>% arrange(desc(Diff))
+
+# Number with issues
+#sum(abs(df_compare2$Diff))
+# total samples
+#nrow(df_compare2)
+
+# confusion matrix
+tbl_results2 <- table(df_tst2$Exclude, df_tst2$Exclude_New, useNA = "ifany")
+#
+# Show differences
+kable(tbl_results2, caption="Confusion Matrix")
+knitr::kable(df_compare2[1:10, ])
+knitr::kable(tail(df_compare2))
+# samples with differences
+(samp_diff2 <- as.data.frame(df_compare2[df_compare2[,"Diff"]!=0, "SampleID"]))
+# results for only those with differences
+df_tst_diff2 <- filter(df_tst2, SampleID %in% samp_diff2$SampleID)
+# add diff field
+df_tst_diff2$Exclude_Diff <- df_tst_diff2$Exclude - df_tst_diff2$Exclude_New
+
+# Classification Performance Metrics
+class_TP2 <- tbl_results2[2,2] # True Positive
+class_FN2 <- tbl_results2[2,1] # False Negative
+class_FP2 <- tbl_results2[1,2] # False Positive
+class_TN2 <- tbl_results2[1,1] # True Negative
+class_n2 <- sum(tbl_results2)  # total
+#
+# sensitivity (recall); TP / (TP+FN); measure model to ID true positives
+class_sens2 <- class_TP2 / (class_TP2 + class_FN2)
+# precision; TP / (TP+FP); accuracy of model positives
+class_prec2 <- class_TP2 / (class_TP2 + class_FP2)
+# specifity; TN / (TN + FP); measure model to ID true negatives
+class_spec2 <- class_TN2 / (class_TN2 + class_FP2)
+# overall accuracy; (TP + TN) / all cases; accuracy of all classifications
+class_acc2 <- (class_TP2 + class_TN2) / class_n2
+# F1; 2 * (class_prec*class_sens) / (class_prec+class_sens)
+## balance of precision and recall
+class_F12 <- 2 * (class_prec2 * class_sens2) / (class_prec2 + class_sens2)
+#
+results_names2 <- c("Sensitivity (Recall)", "Precision", "Specificity", "OVerall Accuracy", "F1")
+results_values2 <- c(class_sens2, class_prec2, class_spec2, class_acc2, class_F12)
+#
+tbl_class2 <- data.frame(results_names2, results_values2)
+names(tbl_class2) <- c("Performance Metrics", "Percent")
+tbl_class2$Percent <- round(tbl_class2$Percent *100, 2)
+kable(tbl_class2, caption="Classification Performance Metrics")
+```
+
+## rarify
+The rarify function subsamples count data to a fixed count per sample.  It 
+takes as an input a 3 column data frame (SampleID, TaxonID, Count) and returns a 
+similar dataframe with revised Counts.  The names of the columns does not matter 
+as they are specified in the code.  Any non-count taxa (e.g., fish in a bug sample) 
+should be removed prior to using the `rarify` function.  The function code is 
+from USEPA Corvallis John Van Sickle's R code for RIVPACS (v1.0, 2005-06-10) and 
+was tweaked for the addition of a user provided seed so repeatable results can 
+be obtained.
+
+The other function inputs are subsample size (target number of organisms in each 
+sample) and seed. The seed is given so the results can be reproduced from the 
+same input file. If no seed is given a random seed is used.  An example seed is 
+the date of admission to the Union for each state where the data is collected 
+(e.g., Washington is 18891111).  These values can be found on Wikipedia on the 
+right sidebar for each State.
+
+If you are running the 500-count BCG model and any of your samples have more 
+than 600 organisms (the upper limit for the model), you should randomly subsample 
+your data to 600 (600 is +20% of the 500-count target). This is done to make 
+richness metrics comparable across the 500-count samples. You can do this with 
+the Rarify routine.
+
+```{r rarify}
+# Subsample to 500 organisms (from over 500 organisms) for 12 samples.
+
+# load bio data
+df_biodata <- data_bio2rarify
+#dim(df_biodata)
+#kable(head(df_biodata))
+
+# subsample
+mySize <- 500
+Seed_OR <- 18590214
+Seed_WA <- 18891111
+Seed_US <- 17760704
+bugs_mysize <- rarify(inbug=df_biodata, sample.ID="SampleID"
+                     ,abund="N_Taxa",subsiz=mySize, mySeed=Seed_US)
+
+# view results
+#dim(bugs_mysize)
+#kable(head(bugs_mysize))
+
+# Compare pre- and post- subsample counts
+df_compare <- merge(df_biodata, bugs_mysize, by=c("SampleID", "TaxaID")
+                    , suffixes = c("_Orig","_500"))
+df_compare <- df_compare[,c("SampleID", "TaxaID", "N_Taxa_Orig", "N_Taxa_500")]
+kable(head(df_compare), caption = "Comparison, by Sample")
+
+# compare totals
+tbl_totals <- aggregate(cbind(N_Taxa_Orig, N_Taxa_500) ~ SampleID, df_compare, sum)
+kable(head(tbl_totals), caption = "Comparison, sample totals")
+
+## Not run: 
+# save the data
+#write.table(bugs_mysize, paste("bugs",mySize,"txt",sep="."),sep="\t")
+## End(Not run)
+```
+

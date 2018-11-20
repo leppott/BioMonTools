@@ -4,20 +4,40 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-11-16 12:44:05
+    #> Last Update: 2018-11-20 10:56:14
 
 # Planned Updates
 
-  - Metric Calculation
-  - Subsample (rarify)
-  - Excluded Taxa
-  - TaxaList Check
+  - ~~Metric Calculation~~
+  - ~~Subsample (rarify)~~
+  - ~~Excluded Taxa~~
 
 # Future Updates
 
   - Fish and Periphyton metrics.
+  - Metric scoring
+  - Multimetric Index scoring
+  - TaxaList Check
 
 # Version History
+
+## Changes in Version 0.1.0.9003 (2018-11-20)
+
+  - markExcluded
+      - Add function with examples
+  - extdata\_Benthos.xlsx
+      - Updated bad Excluded entries.
+          - FALSE to TRUE, n=6
+          - TRUE to FALSE, n=1
+  - DESCRIPTION
+      - Update Imports and Suggests
+  - NEWS
+      - Update Planned and Future Updates
+  - README
+      - Tweak language in Usage section.
+      - Update icons.
+      - Add Travis CI.
+  - Vignette
 
 ## Changes in Version 0.1.0.9002 (2018-11-16)
 
