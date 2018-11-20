@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-11-20 13:33:32
+    #> Last Update: 2018-11-20 13:43:16
 
 # Planned Updates
 
@@ -21,6 +21,10 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.2.0.9001 (2018-11-20)
+
+  - Add Travis CI.
 
 ## Changes in Version 0.2.0 (2018-11-20)
 
