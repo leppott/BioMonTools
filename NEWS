@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-11-20 13:43:16
+    #> Last Update: 2018-11-20 15:04:04
 
 # Planned Updates
 
@@ -21,6 +21,11 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.2.0.9002 (2018-11-20)
+
+  - Update SuperFamily Tipuloidea.
+      - Update data and examples in function and vignette
 
 ## Changes in Version 0.2.0.9001 (2018-11-20)
 
