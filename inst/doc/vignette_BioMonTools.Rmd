@@ -46,7 +46,7 @@ The suite of functions in the `BioMonTools` package are presented below.
 * rarify
 
 ## metric.values
-Calculate metric values from a data frame with taxa by sample with fully qualified master taxa information.
+Calculate metric values from a data frame with taxa by sample with fully qualified master taxa information.  All percent metric results are 0-1.
 
 ### Data Preparation
 There are a number of required fields for the input file. If any fields are 

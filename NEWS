@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-11-26 12:22:20
+    #> Last Update: 2018-11-26 12:41:24
 
 # Planned Updates
 
@@ -21,6 +21,10 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.2.0.9004 (2018-11-26)
+
+  - Percent metrics as 0-1. Issue \#9.
 
 ## Changes in Version 0.2.0.9003 (2018-11-26)
 
