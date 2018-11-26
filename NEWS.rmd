@@ -32,6 +32,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.2.0.9005 (2018-11-26)
+
+* Added MapTaxaObs.
+
 ## Changes in Version 0.2.0.9004 (2018-11-26)
 
 * Percent metrics as 0-1.  Issue #9.

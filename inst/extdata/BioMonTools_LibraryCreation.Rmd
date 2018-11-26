@@ -83,7 +83,7 @@ After creating the package reload it after restarting R within RStudio (Ctrl + S
 ```{r, eval=FALSE}
 # Restart R within RStudio:  Ctrl + Shift + F10
 myPkg <- "BioMonTools"
-library(BCGcalc)
+library(myPkg, character.only = TRUE)
 help(package=(myPkg))
 #
 citation(myPkg)
