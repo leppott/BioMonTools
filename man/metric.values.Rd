@@ -89,7 +89,8 @@ library(readxl)
 library(reshape2)
 
 df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx"
-                                       , package="BioMonTools"))
+                                       , package="BioMonTools")
+                            , guess_max = 10^6)
 
 # Columns to keep
 myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")

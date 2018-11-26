@@ -32,6 +32,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.2.0.9003 (2018-11-26)
+
+* Add qc.checks function from BCGcalc package.  Issue #9
+    + qc.checks.R
+    + Vignette
+    + extdata\MetricFlags.xlsx
+* Update read_excel with guess_max=10^6 for bio data file.
+
 ## Changes in Version 0.2.0.9002 (2018-11-20)
 
 * Update SuperFamily Tipuloidea.

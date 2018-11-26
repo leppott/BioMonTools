@@ -52,7 +52,8 @@
 #'
 #' # Data
 #' df_samps_bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
-#'                                         , package="BioMonTools"), guess_max=10^6)
+#'                                         , package="BioMonTools")
+#'                            , guess_max=10^6)
 #'
 #' # Variables
 #' SampID     <- "SampleID"

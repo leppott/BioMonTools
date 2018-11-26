@@ -21,7 +21,8 @@ library(BioMonTools)
 
 # Load Data
 df.data <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
-                                       , package="BioMonTools"))
+                                       , package="BioMonTools")
+                      , guess_max = 10^6)
 # Columns to keep
 myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
 
@@ -48,7 +49,8 @@ library(knitr)
 
 # Data
 df_samps_bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
-                                        , package="BioMonTools"), guess_max=10^6)
+                                        , package="BioMonTools")
+                            , guess_max=10^6)
 
 # Variables
 SampID     <- "SampleID"
@@ -146,7 +148,8 @@ library(knitr)
 
 # Data
 df_samps_bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
-                                        , package="BioMonTools"), guess_max=10^6)
+                                        , package="BioMonTools")
+                            , guess_max=10^6)
 
 # Variables
 SampID     <- "SampleID"
@@ -268,4 +271,44 @@ kable(head(tbl_totals), caption = "Comparison, sample totals")
 # save the data
 #write.table(bugs_mysize, paste("bugs",mySize,"txt",sep="."),sep="\t")
 ## End(Not run)
+
+## ----Flags, echo=TRUE, eval=TRUE-----------------------------------------
+# Packages
+library(readxl)
+library(reshape2)
+library(knitr)
+library(BioMonTools)
+
+# Import
+df.samps.bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
+                                        , package="BioMonTools")
+                            , guess_max = 10^6)
+
+# Calculate Metrics
+# Extra columns to keep in results
+keep.cols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
+# Run Function
+df.metrics <- metric.values(df.samps.bugs, "bugs", fun.cols2keep = keep.cols)
+
+# Flags
+# Import QC Checks
+df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
+                                          , package="BCGcalc"), sheet="Flags") 
+# Run Function
+df.flags <- qc.checks(df.metrics, df.checks)
+
+# Change terminology; PASS/FAIL to NA/flag
+df.flags[,"FLAG"][df.flags[,"FLAG"]=="FAIL"] <- "flag"
+df.flags[, "FLAG"][df.flags[,"FLAG"]=="PASS"] <- NA
+# long to wide format
+df.flags.wide <- dcast(df.flags, SAMPLEID ~ CHECKNAME, value.var="FLAG")
+# Calc number of "flag"s by row.
+df.flags.wide$NumFlags <- rowSums(df.flags.wide=="flag", na.rm=TRUE)
+# Rearrange columns
+NumCols <- ncol(df.flags.wide)
+df.flags.wide <- df.flags.wide[, c(1, NumCols, 2:(NumCols-1))]
+# View(df.flags.wide)
+
+# Summarize Results
+kable(table(df.flags[,"CHECKNAME"], df.flags[,"FLAG"], useNA="ifany"))
 
