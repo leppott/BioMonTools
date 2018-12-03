@@ -3,7 +3,7 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-11-20 09:16:10
+    #> Last Update: 2018-12-03 08:42:47
 
 Suite of functions and tools for bioassessment and biomonitoring.
 

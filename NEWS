@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-11-26 15:36:06
+    #> Last Update: 2018-12-03 08:43:03
 
 # Planned Updates
 
@@ -21,6 +21,13 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.2.0.9006 (2018-12-03)
+
+  - README.rmd
+      - install\_github command comes out as smart quotes if copy and
+        paste from GitHub website.
+      - Looks ok in RStudio but fixed to test if that is the issue.
 
 ## Changes in Version 0.2.0.9005 (2018-11-26)
 
