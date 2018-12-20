@@ -67,7 +67,7 @@ Required Fields:
 
 * INDEX_NAME
 
-* SITE_TYPE (BCG or MMI site category; e.g., for BCG PacNW valid values are "hi" or "lo")
+* INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values are "hi" or "lo")
 
 * NONTARGET (valid values are TRUE and FALSE)
 
@@ -109,7 +109,7 @@ View(df_metric_values_bugs)
 
 # Get data in long format so can QC results more easily
 df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID", "INDEX_NAME"
-                                                 , "SITE_TYPE", toupper(myCols))
+                                                 , "INDEX_REGION", toupper(myCols))
                           , variable.name="METRIC_NAME", value.name="METRIC_VALUE")
 
 \dontrun{

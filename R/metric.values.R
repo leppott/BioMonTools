@@ -42,7 +42,7 @@
 #'
 #' * INDEX_NAME
 #'
-#' * SITE_TYPE (BCG or MMI site category; e.g., for BCG PacNW valid values are "hi" or "lo")
+#' * INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values are "hi" or "lo")
 #'
 #' * NONTARGET (valid values are TRUE and FALSE)
 #'
@@ -94,7 +94,7 @@
 #'
 #' # Get data in long format so can QC results more easily
 #' df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID", "INDEX_NAME"
-#'                                                  , "SITE_TYPE", toupper(myCols))
+#'                                                  , "INDEX_REGION", toupper(myCols))
 #'                           , variable.name="METRIC_NAME", value.name="METRIC_VALUE")
 #'
 #'\dontrun{
@@ -131,7 +131,7 @@
 # View(df.metric.values.bugs)
 #
 # # Get data in long format so can QC results more easily
-# df.long <- melt(df.metric.values.bugs, id.vars=c("SAMPLEID", "INDEX_NAME", "SITE_TYPE")
+# df.long <- melt(df.metric.values.bugs, id.vars=c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
 #                           , variable.name="METRIC_NAME", value.name="METRIC_VALUE")
 # # Save Results
 # write.table(df.long, "metric.values.tsv", col.names=TRUE, row.names=FALSE, sep="\t")
@@ -152,7 +152,7 @@
 # names(fun.DF) <- toupper(names(fun.DF))
 # fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
 # fun.DF <- fun.DF[fun.DF[,"NONTARGET"]==FALSE,]
-# fun.DF[,"SITE_TYPE"] <- tolower(fun.DF[,"SITE_TYPE"])
+# fun.DF[,"INDEX_REGION"] <- tolower(fun.DF[,"INDEX_REGION"])
 # #
 # myDF <- fun.DF
 # #
@@ -197,7 +197,7 @@
 # # filter works here
 # # 5 taxa and 202 ind.
 #
-# met.val <- dplyr::summarise(dplyr::group_by(x, SAMPLEID, INDEX_NAME, SITE_TYPE)
+# met.val <- dplyr::summarise(dplyr::group_by(x, SAMPLEID, INDEX_NAME, INDEX_REGION)
 #                  # individuals #
 #                  , ni_total=sum(N_TAXA)
 #                  #
@@ -328,7 +328,7 @@ metric.values <- function(fun.DF, fun.Community, fun.MetricNames=NULL, boo.Adjus
   #}##IF.boo.NonTarget.Preset.START
   #
   # SiteType to lowercase
-  fun.DF[,"SITE_TYPE"] <- tolower(fun.DF[,"SITE_TYPE"])
+  fun.DF[,"INDEX_REGION"] <- tolower(fun.DF[,"INDEX_REGION"])
   # convert community to lowercase
   fun.Community <- tolower(fun.Community)
   # run the proper sub function
@@ -351,33 +351,34 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
   # QC ####
   # QC, Required Fields
   col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
-              , "SITE_TYPE", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
+              , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
               , "ORDER", "FAMILY", "SUBFAMILY", "TRIBE", "GENUS", "FFG", "HABIT"
-              , "LIFE_CYCLE", "TOLVAL", "BCG_ATTR", "THERMAL_INDICATOR")
+              , "LIFE_CYCLE", "TOLVAL", "BCG_ATTR", "THERMAL_INDICATOR"
+              , "LONGLIVED", "NOTEWORTHY", "FFG2", "TOLVAL2")
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
   # Trigger prompt if any missing fields (and session is interactive)
   if(num.col.req.missing!=0 & interactive()==TRUE){##IF.num.col.req.missing.START
-    myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data.")
-    myPrompt.02 <- col.req.missing
+    myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
+    myPrompt.02 <- paste(col.req.missing, collapse=", ")
     myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
     myPrompt.04 <- "For example, if the HABIT field is missing all habit related metrics will not be correct."
     myPrompt.05 <- "Do you wish to continue (YES or NO)?"
 
-    myPrompt <- paste(myPrompt.01, myPrompt.02, myPrompt.03, myPrompt.04
+    myPrompt <- paste(" ", myPrompt.01, myPrompt.02, " ", myPrompt.03, myPrompt.04
                       , myPrompt.05, sep="\n")
     #user.input <- readline(prompt=myPrompt)
     user.input <- NA
     user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
     # any answer other than "YES" will stop the function.
     if(user.input!=1){##IF.user.input.START
-      stop(paste("The user chose *not* to continue due to missing fields; "
-                  , col.req.missing,sep="\n"))
+      stop(paste("The user chose *not* to continue due to missing fields: "
+                  , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
     }##IF.user.input.END
     # Add missing fields
     myDF[,col.req.missing] <- NA
-    warning(paste("Metrics related to the following fields are invalid;"
-                  , col.req.missing, sep="\n"))
+    warning(paste("Metrics related to the following fields are invalid:"
+                  , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
   }##IF.num.col.req.missing.END
 
   # QC, Exclude as TRUE/FALSE
@@ -398,6 +399,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
   myDF[, "FFG"] <- toupper(myDF[, "FFG"])
   myDF[, "LIFE_CYCLE"] <- toupper(myDF[, "LIFE_CYCLE"])
   myDF[, "THERMAL_INDICATOR"] <- toupper(myDF[, "THERMAL_INDICATOR"])
+  myDF[, "FFG2"] <- toupper(myDF[, "FFG2"])
   # Add extra columns for FFG and Habit
   # (need unique values for functions in summarise)
   # each will be TRUE or FALSE
@@ -415,6 +417,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
   myDF[, "LC_MULTI"] <- grepl("MULTI", myDF[, "LIFE_CYCLE"])
   myDF[, "LC_SEMI"]  <- grepl("SEMI", myDF[, "LIFE_CYCLE"])
   myDF[, "LC_UNI"]   <- grepl("UNI", myDF[, "LIFE_CYCLE"])
+  myDF[, "FFG2_PRE"]  <- grepl("PR", myDF[, "FFG2"])
   # exact matches only
   myDF[, "TI_COLD"]     <- "COLD"      == myDF[, "THERMAL_INDICATOR"]
   myDF[, "TI_COLDCOOL"] <- "COLD_COOL" == myDF[, "THERMAL_INDICATOR"]
@@ -445,7 +448,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
   #
   # Calculate Metrics (could have used pipe, %>%)
   # met.val <- myDF %>%
-  #                 dplyr::group_by(SAMPLEID, INDEX_NAME, SITE_TYPE) %>%
+  #                 dplyr::group_by(SAMPLEID, INDEX_NAME, INDEX_REGION) %>%
   #                   dplyr::summarise(ni_total=sum(N_TAXA)
   #                         , nt_total=dplyr::n_distinct(TAXAID[EXCLUDE != TRUE], na.rm = TRUE)
   #                         , ni_max= max(N_TAXA)
@@ -454,7 +457,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
   #https://stackoverflow.com/questions/45365484/how-to-find-top-n-descending-values-in-group-in-dplyr
   # may have to create a 2nd output with domX metrics then join together.
   # dom.val <- myDF %>%
-  #               group_by(SAMPLEID, INDEX_NAME, SITE_TYPE) %>%
+  #               group_by(SAMPLEID, INDEX_NAME, INDEX_REGION) %>%
   #                 summarise(N_TAXA=n()) %>%
   #                   top_n(n=3, wt=N_TAXA) %>%
   #                     arrange()
@@ -508,28 +511,28 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
     dplyr::filter(dplyr::row_number()<=2)
 
   # Summarise Top N
-  df.dom01.sum <- dplyr::summarise(dplyr::group_by(df.dom01, SAMPLEID, INDEX_NAME, SITE_TYPE)
+  df.dom01.sum <- dplyr::summarise(dplyr::group_by(df.dom01, SAMPLEID, INDEX_NAME, INDEX_REGION)
                             , ni_dom01=sum(N_TAXA, na.rm = TRUE))
-  df.dom02.sum <- dplyr::summarise(dplyr::group_by(df.dom02, SAMPLEID, INDEX_NAME, SITE_TYPE)
+  df.dom02.sum <- dplyr::summarise(dplyr::group_by(df.dom02, SAMPLEID, INDEX_NAME, INDEX_REGION)
                             , ni_dom02=sum(N_TAXA, na.rm = TRUE))
-  df.dom03.sum <- dplyr::summarise(dplyr::group_by(df.dom03, SAMPLEID, INDEX_NAME, SITE_TYPE)
+  df.dom03.sum <- dplyr::summarise(dplyr::group_by(df.dom03, SAMPLEID, INDEX_NAME, INDEX_REGION)
                             , ni_dom03=sum(N_TAXA, na.rm = TRUE))
-  df.dom04.sum <- dplyr::summarise(dplyr::group_by(df.dom04, SAMPLEID, INDEX_NAME, SITE_TYPE)
+  df.dom04.sum <- dplyr::summarise(dplyr::group_by(df.dom04, SAMPLEID, INDEX_NAME, INDEX_REGION)
                             , ni_dom04=sum(N_TAXA, na.rm = TRUE))
-  df.dom05.sum <- dplyr::summarise(dplyr::group_by(df.dom05, SAMPLEID, INDEX_NAME, SITE_TYPE)
+  df.dom05.sum <- dplyr::summarise(dplyr::group_by(df.dom05, SAMPLEID, INDEX_NAME, INDEX_REGION)
                             , ni_dom05=sum(N_TAXA, na.rm = TRUE))
-  df.dom06.sum <- dplyr::summarise(dplyr::group_by(df.dom06, SAMPLEID, INDEX_NAME, SITE_TYPE)
+  df.dom06.sum <- dplyr::summarise(dplyr::group_by(df.dom06, SAMPLEID, INDEX_NAME, INDEX_REGION)
                             , ni_dom06=sum(N_TAXA, na.rm = TRUE))
-  df.dom07.sum <- dplyr::summarise(dplyr::group_by(df.dom07, SAMPLEID, INDEX_NAME, SITE_TYPE)
+  df.dom07.sum <- dplyr::summarise(dplyr::group_by(df.dom07, SAMPLEID, INDEX_NAME, INDEX_REGION)
                             , ni_dom07=sum(N_TAXA, na.rm = TRUE))
-  df.dom08.sum <- dplyr::summarise(dplyr::group_by(df.dom08, SAMPLEID, INDEX_NAME, SITE_TYPE)
+  df.dom08.sum <- dplyr::summarise(dplyr::group_by(df.dom08, SAMPLEID, INDEX_NAME, INDEX_REGION)
                             , ni_dom08=sum(N_TAXA, na.rm = TRUE))
-  df.dom09.sum <- dplyr::summarise(dplyr::group_by(df.dom09, SAMPLEID, INDEX_NAME, SITE_TYPE)
+  df.dom09.sum <- dplyr::summarise(dplyr::group_by(df.dom09, SAMPLEID, INDEX_NAME, INDEX_REGION)
                             , ni_dom09=sum(N_TAXA, na.rm = TRUE))
-  df.dom10.sum <- dplyr::summarise(dplyr::group_by(df.dom10, SAMPLEID, INDEX_NAME, SITE_TYPE)
+  df.dom10.sum <- dplyr::summarise(dplyr::group_by(df.dom10, SAMPLEID, INDEX_NAME, INDEX_REGION)
                             , ni_dom10=sum(N_TAXA, na.rm = TRUE))
   df.dom02_NoJugaRiss_BCG_att456.sum <- dplyr::summarise(dplyr::group_by(df.dom02_NoJugaRiss_BCG_att456
-                                                                       , SAMPLEID, INDEX_NAME, SITE_TYPE)
+                                                                       , SAMPLEID, INDEX_NAME, INDEX_REGION)
                                                        , ni_dom02_NoJugaRiss_BCG_att456=sum(N_TAXA))
   # Add column of domN to main DF
   myDF <- merge(myDF, df.dom01.sum, all.x=TRUE)
@@ -569,18 +572,18 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
   rm(df.dom02_NoJugaRiss_BCG_att456.sum)
 
   # Metric Calc ####
-  met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME, SITE_TYPE)
+  met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME, INDEX_REGION)
              #
              # one metric per line
              #
-             # individuals ####
+             # Individuals ####
              , ni_total=sum(N_TAXA, na.rm = TRUE)
              , ni_Americo = sum(N_TAXA[GENUS == "Americorophium"], na.rm=TRUE)
              , ni_Gnorimo = sum(N_TAXA[GENUS == "Gnorimosphaeroma"], na.rm=TRUE)
              , ni_brackish= ni_Americo + ni_Gnorimo
              , ni_Ramello = sum(N_TAXA[GENUS == "Ramellogammarus"], na.rm=TRUE)
 
-             # percent individuals####
+             # Percent Individuals####
              , pi_Amph = sum(N_TAXA[ORDER == "Amphipoda"], na.rm=TRUE)/ni_total
              , pi_Bival = sum(N_TAXA[CLASS == "Bivalvia"], na.rm=TRUE)/ni_total
              , pi_Caen = sum(N_TAXA[FAMILY == "Caenidae"], na.rm=TRUE)/ni_total
@@ -608,7 +611,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
              #Moll
 
 
-             # number of taxa ####
+             # Number of Taxa ####
              , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE], na.rm = TRUE)
              , nt_Amph = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Amphipoda"], na.rm = TRUE)
              , nt_Bival = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Bivalvia"], na.rm = TRUE)
@@ -738,6 +741,10 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
              # 20181018, MS, sensitive Coleoptera & (Family is Null or not Hydrophyilidae)
              , pi_Colesens = sum(N_TAXA[ORDER == "Coleoptera"
                              & (FAMILY!="Hydrophilidae" | is.na(FAMILY)==TRUE)], na.rm=TRUE)/ni_total
+             # 20181207, BCG PacNW, Level 1 Signal metrics
+             , nt_longlived=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & LONGLIVED==TRUE], na.rm=TRUE)
+             , nt_noteworthy=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & NOTEWORTHY==TRUE], na.rm=TRUE)
+             , nt_ffg2_pred=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & FFG2_PRE==TRUE], na.rm=TRUE)
 
 
              # Thermal Indicators ####
@@ -761,7 +768,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
              # Density ####
 
 
-             # percent of taxa ####
+             # Percent of Taxa ####
              , pt_Amph = nt_Amph/nt_total
              , pt_Bival = nt_Bival/nt_total
              , pt_Deca = nt_Deca/nt_total
@@ -773,19 +780,23 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
              # , POET,,, NonIns,
 
 
-             # tolerance ####
+             # Tolerance ####
              , nt_tv_intol=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=0 & TOLVAL<=3], na.rm=TRUE)
              , nt_tv_toler=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=7 & TOLVAL<=10], na.rm=TRUE)
              , pt_tv_intol = nt_tv_intol/nt_total
              , pt_tv_toler = nt_tv_toler/nt_total
              #,nt_tvfam_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & FAM_TV<=3 & !is.na(FAM_TV)])
-             #,pi_tv_intolurb=sum(N_TAXA[TOLVAL<=3 & !is.na(TOLVAL)])/sum(N_TAXA[!is.na(TOLVAL)])
-
              # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, pi_intol, pi_toler, , nt_intMol,
              # pt toler
 
 
-             # ffg #####
+             # Tolerance2 ####
+             ## special condition tolerance values
+             # MBSS
+             ,pi_tv2_intol=sum(N_TAXA[TOLVAL<=3 & !is.na(TOLVAL)])/sum(N_TAXA[!is.na(TOLVAL)])
+             , pi_tv_intolurb=pi_tv2_intol
+
+             # FFG #####
              ## nt_ffg
              , nt_ffg_col = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FFG_COL == TRUE], na.rm = TRUE)
              , nt_ffg_filt = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FFG_FIL == TRUE], na.rm = TRUE)
@@ -806,7 +817,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
              , pt_ffg_shred = nt_ffg_shred/nt_total
 
 
-             # habit ####
+             # Habit ####
              #(need to be wild card)
              ## nt_habit
              , nt_habit_burrow = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABIT_BU == TRUE], na.rm = TRUE)
@@ -872,7 +883,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
              # Shannon-Weiner
              #, x_Shan_Num= -sum(log(N_TAXA/ni_total)), na.rm=TRUE)
              #, x_Shan_e=x_Shan_Num/log(exp(1))
-            , x_Shan_e = -sum((N_TAXA/ni_total)*log((N_TAXA/ni_total)), na.rm=TRUE)
+             , x_Shan_e = -sum((N_TAXA/ni_total)*log((N_TAXA/ni_total)), na.rm=TRUE)
              , x_Shan_2=x_Shan_e/log(2)
              , x_Shan_10=x_Shan_e/log(10)
              #, x_D Simpson
@@ -1002,7 +1013,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
   if (!is.null(MetricNames)) {
     met2include <- MetricNames[!(MetricNames %in% "ni_total")]
     # remove ni_total if included as will always include it
-    met.val <- met.val[, c("SAMPLEID", "SITE_TYPE", "INDEX_NAME",
+    met.val <- met.val[, c("SAMPLEID", "INDEX_REGION", "INDEX_NAME",
                            "ni_total", met2include)]
   }
 

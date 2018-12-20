@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-12-03 08:43:03
+    #> Last Update: 2018-12-20 12:54:18
 
 # Planned Updates
 
@@ -22,9 +22,13 @@ NEWS
 
 # Version History
 
+## Changes in Version 0.2.0.9007 (2018-12-20)
+
+  - Metric scoring function, Issue \#12.
+
 ## Changes in Version 0.2.0.9006 (2018-12-03)
 
-  - README.rmd
+  - README.rmd, Issue \#11.
       - install\_github command comes out as smart quotes if copy and
         paste from GitHub website.
       - Looks ok in RStudio but fixed to test if that is the issue.
