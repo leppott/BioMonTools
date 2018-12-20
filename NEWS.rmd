@@ -32,6 +32,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3 (2018-12-20)
+
+* New release version.
+
 ## Changes in Version 0.2.0.9007 (2018-12-20)
 
 * Metric scoring function, Issue #12.
