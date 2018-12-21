@@ -14,7 +14,6 @@
 #'
 #' @examples
 #' library(readxl)
-#' library(BioMonTools)
 #'
 #' # Calculate Metrics
 #' df.samps.bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
@@ -30,7 +29,7 @@
 #'
 #' # Import Checks
 #' df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
-#'                                           , package="BCGcalc"), sheet="Flags")
+#'                                           , package="BioMonTools"), sheet="Flags")
 #' # View Checks
 #' View(df.checks)
 #'
@@ -74,7 +73,7 @@ qc.checks <- function(df.metrics, df.checks, input.shape="wide"){##FUNCTION.STAR
   #
   # Metrics to long
   if (input.shape=="wide") {##IF.input.shape.START
-    df.long <- reshape2::melt(df.metrics, id.vars=c("SAMPLEID", "INDEX_NAME", "SITE_TYPE")
+    df.long <- reshape2::melt(df.metrics, id.vars=c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
                              , variable.name="METRIC_NAME", value.name="METRIC_VALUE")
     # # compare to input
     # checks.metrics.input.col <- checks.metrics[checks.metrics %in% toupper(names(df.metrics))]
@@ -86,23 +85,18 @@ qc.checks <- function(df.metrics, df.checks, input.shape="wide"){##FUNCTION.STAR
   }##IF.input.shape.END
   #
 
-  # upper case metrics
+  # lower case metrics
   df.long$METRIC_NAME <- tolower(df.long$METRIC_NAME)
   df.checks$METRIC_NAME <- tolower(df.checks$METRIC_NAME)
 
-
-
-
-
-
   #
-  df.long[,"SITE_TYPE"] <- tolower(df.long[,"SITE_TYPE"])
-  df.checks[,"SITE_TYPE"] <- tolower(df.checks[,"SITE_TYPE"])
+  df.long[,"INDEX_REGION"] <- tolower(df.long[,"INDEX_REGION"])
+  df.checks[,"INDEX_REGION"] <- tolower(df.checks[,"INDEX_REGION"])
   #
   # merge metrics and checks
   df.merge <- merge(df.long, df.checks
-                    , by.x=c("INDEX_NAME", "SITE_TYPE", "METRIC_NAME")
-                    , by.y=c("INDEX_NAME", "SITE_TYPE", "METRIC_NAME"))
+                    , by.x=c("INDEX_NAME", "INDEX_REGION", "METRIC_NAME")
+                    , by.y=c("INDEX_NAME", "INDEX_REGION", "METRIC_NAME"))
   #
   # perform evaluation (adds Pass/Fail, default is NA)
 

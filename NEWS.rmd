@@ -32,6 +32,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9001 (2018-12-21)
+
+* Update QC flags input.
+* Add metric names to Excel file.
+* MetricName to METRIC_NAME in input files.
+
 ## Changes in Version 0.3 (2018-12-20)
 
 * New release version.

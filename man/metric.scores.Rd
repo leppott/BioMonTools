@@ -19,10 +19,10 @@ Index Region (strata).}
 (e.g., COASTAL).}
 
 \item{DF_Thresh_Metric}{Data frame of Scoring Thresholds for metrics (INDEX_NAME, INDEX_REGION,
-METRICNAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)}
+METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)}
 
 \item{DF_Thresh_Index}{Data frame of Scoring Thresholds for indices (INDEX_NAME, INDEX_REGION,
-METRICNAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)}
+METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)}
 }
 \value{
 vector of scores
@@ -60,7 +60,7 @@ df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx"
 myIndex <- "BCG.PacNW.L1"
 df_samps_bugs$INDEX_NAME   <- myIndex
 df_samps_bugs$INDEX_REGION <- "ALL"
-(myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[,"INDEX_NAME"]==myIndex,"METRICNAME"]))
+(myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[,"INDEX_NAME"]==myIndex,"METRIC_NAME"]))
 # Run Function
 df_metric_values_bugs <- metric.values(df_samps_bugs, "bugs", fun.MetricNames = myMetrics.Bugs)
 
@@ -91,7 +91,7 @@ myIndex <- "MBSS.2005.Bugs"
 # Thresholds
 # imported above
 # get metric names for myIndex
-(myMetrics.Bugs.MBSS <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[,"INDEX_NAME"]==myIndex,"METRICNAME"]))
+(myMetrics.Bugs.MBSS <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[,"INDEX_NAME"]==myIndex,"METRIC_NAME"]))
 # Taxa Data
 myDF.Bugs.MBSS <- MBSStools::taxa_bugs_genus
 myDF.Bugs.MBSS$NONTARGET <- FALSE
@@ -120,14 +120,23 @@ Nar.MBSS <- c("Very Poor", "Poor", "Fair", "Good")
 Metrics.Bugs.Scores.MBSS$Index_Nar <- factor(Metrics.Bugs.Scores.MBSS$Index_Nar, levels=Nar.MBSS, labels=Nar.MBSS, ordered=TRUE)
 table(Metrics.Bugs.Scores.MBSS$Index, Metrics.Bugs.Scores.MBSS$Index_Nar, useNA="ifany")
 
-# QC bug count
-Metrics.Bugs.Scores.MBSS[Metrics.Bugs.Scores.MBSS[,"totind"]>120,
+# QC bug count (manual)
+Metrics.Bugs.Scores.MBSS[Metrics.Bugs.Scores.MBSS[,"ni_total"]>120,
 "QC_Count"] <- "LARGE"
-Metrics.Bugs.Scores.MBSS[Metrics.Bugs.Scores.MBSS[,"totind"]<60,
+Metrics.Bugs.Scores.MBSS[Metrics.Bugs.Scores.MBSS[,"ni_total"]<60,
 "QC_Count"] <- "SMALL"
 Metrics.Bugs.Scores.MBSS[is.na(Metrics.Bugs.Scores.MBSS[,"QC_Count"]),
 "QC_Count"] <- "OK"
 # table of QC_Count
 table(Metrics.Bugs.Scores.MBSS$QC_Count)
+
+# QC bug count (with function)
+# Import Checks
+df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
+                                          , package="BioMonTools"), sheet="Flags")
+# Run Function
+df.flags <- qc.checks(Metrics.Bugs.Scores.MBSS, df.checks)
+# Summarize Results
+table(df.flags[,"CHECKNAME"], df.flags[,"FLAG"], useNA="ifany")
 
 }

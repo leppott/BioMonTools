@@ -793,7 +793,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
              # Tolerance2 ####
              ## special condition tolerance values
              # MBSS
-             ,pi_tv2_intol=sum(N_TAXA[TOLVAL<=3 & !is.na(TOLVAL)])/sum(N_TAXA[!is.na(TOLVAL)])
+             ,pi_tv2_intol=sum(N_TAXA[TOLVAL2<=3 & !is.na(TOLVAL2)])/sum(N_TAXA[!is.na(TOLVAL2)])
              , pi_tv_intolurb=pi_tv2_intol
 
              # FFG #####

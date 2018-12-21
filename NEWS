@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-12-20 13:01:40
+    #> Last Update: 2018-12-21 11:13:04
 
 # Planned Updates
 
@@ -21,6 +21,12 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.3.0.9001 (2018-12-21)
+
+  - Update QC flags input.
+  - Add metric names to Excel file.
+  - MetricName to METRIC\_NAME in input files.
 
 ## Changes in Version 0.3 (2018-12-20)
 

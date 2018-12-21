@@ -26,7 +26,6 @@ used reshape2 package
 }
 \examples{
 library(readxl)
-library(BioMonTools)
 
 # Calculate Metrics
 df.samps.bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
@@ -42,7 +41,7 @@ df.metric.values.bugs <- metric.values(myDF, "bugs", fun.cols2keep=myCols)
 
 # Import Checks
 df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
-                                          , package="BCGcalc"), sheet="Flags")
+                                          , package="BioMonTools"), sheet="Flags")
 # View Checks
 View(df.checks)
 

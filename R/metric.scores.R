@@ -18,9 +18,9 @@
 #' @param col_IndexRegion Name of column with relevant bioregion or site class
 #' (e.g., COASTAL).
 #' @param DF_Thresh_Metric Data frame of Scoring Thresholds for metrics (INDEX_NAME, INDEX_REGION,
-#' METRICNAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)
+#' METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)
 #' @param DF_Thresh_Index Data frame of Scoring Thresholds for indices (INDEX_NAME, INDEX_REGION,
-#' METRICNAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)
+#' METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)
 #'
 #' @return vector of scores
 #
@@ -44,7 +44,7 @@
 #' myIndex <- "BCG.PacNW.L1"
 #' df_samps_bugs$INDEX_NAME   <- myIndex
 #' df_samps_bugs$INDEX_REGION <- "ALL"
-#' (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[,"INDEX_NAME"]==myIndex,"METRICNAME"]))
+#' (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[,"INDEX_NAME"]==myIndex,"METRIC_NAME"]))
 #' # Run Function
 #' df_metric_values_bugs <- metric.values(df_samps_bugs, "bugs", fun.MetricNames = myMetrics.Bugs)
 #'
@@ -75,7 +75,7 @@
 #' # Thresholds
 #' # imported above
 #' # get metric names for myIndex
-#' (myMetrics.Bugs.MBSS <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[,"INDEX_NAME"]==myIndex,"METRICNAME"]))
+#' (myMetrics.Bugs.MBSS <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[,"INDEX_NAME"]==myIndex,"METRIC_NAME"]))
 #' # Taxa Data
 #' myDF.Bugs.MBSS <- MBSStools::taxa_bugs_genus
 #' myDF.Bugs.MBSS$NONTARGET <- FALSE
@@ -104,15 +104,24 @@
 #' Metrics.Bugs.Scores.MBSS$Index_Nar <- factor(Metrics.Bugs.Scores.MBSS$Index_Nar, levels=Nar.MBSS, labels=Nar.MBSS, ordered=TRUE)
 #' table(Metrics.Bugs.Scores.MBSS$Index, Metrics.Bugs.Scores.MBSS$Index_Nar, useNA="ifany")
 #'
-#' # QC bug count
-#' Metrics.Bugs.Scores.MBSS[Metrics.Bugs.Scores.MBSS[,"totind"]>120,
+#' # QC bug count (manual)
+#' Metrics.Bugs.Scores.MBSS[Metrics.Bugs.Scores.MBSS[,"ni_total"]>120,
 #' "QC_Count"] <- "LARGE"
-#' Metrics.Bugs.Scores.MBSS[Metrics.Bugs.Scores.MBSS[,"totind"]<60,
+#' Metrics.Bugs.Scores.MBSS[Metrics.Bugs.Scores.MBSS[,"ni_total"]<60,
 #' "QC_Count"] <- "SMALL"
 #' Metrics.Bugs.Scores.MBSS[is.na(Metrics.Bugs.Scores.MBSS[,"QC_Count"]),
 #' "QC_Count"] <- "OK"
 #' # table of QC_Count
 #' table(Metrics.Bugs.Scores.MBSS$QC_Count)
+#'
+#' # QC bug count (with function)
+#' # Import Checks
+#' df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
+#'                                           , package="BioMonTools"), sheet="Flags")
+#' # Run Function
+#' df.flags <- qc.checks(Metrics.Bugs.Scores.MBSS, df.checks)
+#' # Summarize Results
+#' table(df.flags[,"CHECKNAME"], df.flags[,"FLAG"], useNA="ifany")
 #'
 #' @export
 metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexRegion
@@ -141,7 +150,7 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
   #
   # QC, Column Names
   # Error check on fields (thresh metric)
-  myFlds <- c("INDEX_NAME", "INDEX_REGION", "METRICNAME", "Thresh_Lo", "Thresh_Mid", "Thresh_Hi", "Direction", "ScoreRegime")
+  myFlds <- c("INDEX_NAME", "INDEX_REGION", "METRIC_NAME", "Thresh_Lo", "Thresh_Mid", "Thresh_Hi", "Direction", "ScoreRegime")
   if (length(myFlds)!=sum(myFlds %in% names(DF_Thresh_Metric))) {
     myMsg <- paste0("Fields missing from DF_Thresh_Metric input data frame.  Expecting: \n",paste(myFlds,sep="",collapse=", "),collapse="")
     stop(myMsg)
@@ -168,7 +177,7 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     for (b in unique(as.matrix(DF_Metrics[,col_IndexRegion]))) {##FOR.b.START
       for (c in col_MetricNames){##FOR.c.START
         # Thresholds (filter with dplyr)
-        fun.Thresh.myMetric <- as.data.frame(dplyr::filter(DF_Thresh_Metric, INDEX_NAME==a & INDEX_REGION==b & METRICNAME==c))
+        fun.Thresh.myMetric <- as.data.frame(dplyr::filter(DF_Thresh_Metric, INDEX_NAME==a & INDEX_REGION==b & METRIC_NAME==c))
         # QC
         #stopifnot(nrow(fun.Thresh.myMetric)==1)
         if(nrow(fun.Thresh.myMetric)!=1){
