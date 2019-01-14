@@ -5,7 +5,7 @@
 \title{Taxa Observation Maps}
 \usage{
 MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long, output_dir,
-  output_prefix = "maps.taxa", output_type = "pdf", ...)
+  output_prefix = "maps.taxa", output_type = "pdf", database, regions, ...)
 }
 \arguments{
 \item{df_obs}{Observation data frame}
@@ -25,21 +25,25 @@ MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long, output_dir,
 \item{output_prefix}{Prefix to TaxaID for each file.  Default = "map.taxa."}
 
 \item{output_type}{File format for output; jpg or pdf.}
+
+\item{database}{maps::map function database; world, usa, state, county}
+
+\item{regions}{maps::map function regions.  Names pertinent to map_db.}
 }
 \value{
 Taxa maps to user defined directory as jpg or pdf.
 }
 \description{
-Map taxonomic observations from a data frame.  Input a dataframe with SampID, TaxaID, 
+Map taxonomic observations from a data frame.  Input a dataframe with SampID, TaxaID,
 TaxaCount, Latitude, and Longitude.
-Other arguments are format (jpg vs. pdf), file name prefix, and output directory.  
+Other arguments are format (jpg vs. pdf), file name prefix, and output directory.
 Files are saved with the prefix "map.taxa." by default.
 }
 \details{
 The user will pass arguments for maps::map function that is used for the map.
 For example, 'database' and 'regions'.  Without these arguments no map will be created.
 
-The map will have all points and colored points for each taxon.  
+The map will have all points and colored points for each taxon.
 In addition the map will include the number of samples by taxon.
 
 The example data is fish but can be used for benthic macroinvertebrates as well.
@@ -80,7 +84,7 @@ Long <- "Longitude83"
 output_dir <- getwd()
 output_prefix <- "maps.taxa."
 output_type <- "pdf"
-#' 
+#'
 # map arguments
 myDB <- "state"
 myRegion <- "maryland"

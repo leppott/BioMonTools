@@ -172,7 +172,7 @@ df.metval <- metric.values(df.data, "bugs", fun.cols2keep=myCols)
 col.met2keep <- c("ni_total", "nt_total", "nt_ti_c", "nt_ti_cc", "nt_ti_cw"
                 , "nt_ti_w", "pi_ti_c", "pi_ti_cc", "pi_ti_cw", "pi_ti_w"
                 , "pt_ti_c", "pt_ti_cc", "pt_ti_cw", "pt_ti_w")
-col.ID <- c("SAMPLEID", toupper(myCols), "INDEX_NAME", "SITE_TYPE")
+col.ID <- c("SAMPLEID", toupper(myCols), "INDEX_NAME", "INDEX_REGION")
 # Ouput
 df.metval.ci <- df.metval[, c(col.ID, col.met2keep)]
 # RMD table
@@ -357,8 +357,8 @@ tbl_results2 <- table(df_tst2$Exclude, df_tst2$Exclude_New, useNA = "ifany")
 #
 # Show differences
 kable(tbl_results2, caption="Confusion Matrix")
-knitr::kable(df_compare2[1:10, ])
-knitr::kable(tail(df_compare2))
+kable(df_compare2[1:10, ])
+kable(tail(df_compare2))
 # samples with differences
 (samp_diff2 <- as.data.frame(df_compare2[df_compare2[,"Diff"]!=0, "SampleID"]))
 # results for only those with differences
@@ -420,6 +420,9 @@ the Rarify routine.
 ```{r rarify}
 # Subsample to 500 organisms (from over 500 organisms) for 12 samples.
 
+# Packages
+library(knitr)
+
 # load bio data
 df_biodata <- data_bio2rarify
 #dim(df_biodata)
@@ -465,8 +468,8 @@ library(BioMonTools)
 
 # Import
 df.samps.bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
-                                        , package="BioMonTools")
-                            , guess_max = 10^6)
+                                       , package="BioMonTools")
+                           , guess_max = 10^6)
 
 # Calculate Metrics
 # Extra columns to keep in results
@@ -477,7 +480,7 @@ df.metrics <- metric.values(df.samps.bugs, "bugs", fun.cols2keep = keep.cols)
 # Flags
 # Import QC Checks
 df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
-                                          , package="BCGcalc"), sheet="Flags") 
+                                          , package="BioMonTools"), sheet="Flags") 
 # Run Function
 df.flags <- qc.checks(df.metrics, df.checks)
 

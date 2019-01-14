@@ -12,14 +12,14 @@
 
 <meta name="author" content="Erik.Leppo@tetratech.com" />
 
-<meta name="date" content="2018-11-26" />
+<meta name="date" content="2019-01-14" />
 
 <title>Vignette, BioMonTools</title>
 
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; position: absolute; }
@@ -83,7 +83,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -280,7 +302,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Vignette, BioMonTools</h1>
 <h4 class="author"><em><a href="mailto:Erik.Leppo@tetratech.com">Erik.Leppo@tetratech.com</a></em></h4>
-<h4 class="date"><em>2018-11-26</em></h4>
+<h4 class="date"><em>2019-01-14</em></h4>
 
 
 
@@ -409,7 +431,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb3-18" data-line-number="18">col.met2keep &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ni_total&quot;</span>, <span class="st">&quot;nt_total&quot;</span>, <span class="st">&quot;nt_ti_c&quot;</span>, <span class="st">&quot;nt_ti_cc&quot;</span>, <span class="st">&quot;nt_ti_cw&quot;</span></a>
 <a class="sourceLine" id="cb3-19" data-line-number="19">                , <span class="st">&quot;nt_ti_w&quot;</span>, <span class="st">&quot;pi_ti_c&quot;</span>, <span class="st">&quot;pi_ti_cc&quot;</span>, <span class="st">&quot;pi_ti_cw&quot;</span>, <span class="st">&quot;pi_ti_w&quot;</span></a>
 <a class="sourceLine" id="cb3-20" data-line-number="20">                , <span class="st">&quot;pt_ti_c&quot;</span>, <span class="st">&quot;pt_ti_cc&quot;</span>, <span class="st">&quot;pt_ti_cw&quot;</span>, <span class="st">&quot;pt_ti_w&quot;</span>)</a>
-<a class="sourceLine" id="cb3-21" data-line-number="21">col.ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SAMPLEID&quot;</span>, <span class="kw">toupper</span>(myCols), <span class="st">&quot;INDEX_NAME&quot;</span>, <span class="st">&quot;SITE_TYPE&quot;</span>)</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">col.ID &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SAMPLEID&quot;</span>, <span class="kw">toupper</span>(myCols), <span class="st">&quot;INDEX_NAME&quot;</span>, <span class="st">&quot;INDEX_REGION&quot;</span>)</a>
 <a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co"># Ouput</span></a>
 <a class="sourceLine" id="cb3-23" data-line-number="23">df.metval.ci &lt;-<span class="st"> </span>df.metval[, <span class="kw">c</span>(col.ID, col.met2keep)]</a>
 <a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co"># RMD table</span></a>
@@ -424,7 +446,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <th align="left">DENSITY_M2</th>
 <th align="left">DENSITY_FT2</th>
 <th align="left">INDEX_NAME</th>
-<th align="left">SITE_TYPE</th>
+<th align="left">INDEX_REGION</th>
 <th align="right">ni_total</th>
 <th align="right">nt_total</th>
 <th align="right">nt_ti_c</th>
@@ -862,7 +884,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">kable</span>(df_compare2[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, ])</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">kable</span>(df_compare2[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, ])</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -935,7 +957,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">tail</span>(df_compare2))</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">kable</span>(<span class="kw">tail</span>(df_compare2))</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1065,31 +1087,34 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>If you are running the 500-count BCG model and any of your samples have more than 600 organisms (the upper limit for the model), you should randomly subsample your data to 600 (600 is +20% of the 500-count target). This is done to make richness metrics comparable across the 500-count samples. You can do this with the Rarify routine.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># Subsample to 500 organisms (from over 500 organisms) for 12 samples.</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co"># load bio data</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">df_biodata &lt;-<span class="st"> </span>data_bio2rarify</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#dim(df_biodata)</span></a>
-<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co">#kable(head(df_biodata))</span></a>
-<a class="sourceLine" id="cb10-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co"># subsample</span></a>
-<a class="sourceLine" id="cb10-9" data-line-number="9">mySize &lt;-<span class="st"> </span><span class="dv">500</span></a>
-<a class="sourceLine" id="cb10-10" data-line-number="10">Seed_OR &lt;-<span class="st"> </span><span class="dv">18590214</span></a>
-<a class="sourceLine" id="cb10-11" data-line-number="11">Seed_WA &lt;-<span class="st"> </span><span class="dv">18891111</span></a>
-<a class="sourceLine" id="cb10-12" data-line-number="12">Seed_US &lt;-<span class="st"> </span><span class="dv">17760704</span></a>
-<a class="sourceLine" id="cb10-13" data-line-number="13">bugs_mysize &lt;-<span class="st"> </span><span class="kw">rarify</span>(<span class="dt">inbug=</span>df_biodata, <span class="dt">sample.ID=</span><span class="st">&quot;SampleID&quot;</span></a>
-<a class="sourceLine" id="cb10-14" data-line-number="14">                     ,<span class="dt">abund=</span><span class="st">&quot;N_Taxa&quot;</span>,<span class="dt">subsiz=</span>mySize, <span class="dt">mySeed=</span>Seed_US)</a>
-<a class="sourceLine" id="cb10-15" data-line-number="15"><span class="co">#&gt; Rarify of samples complete. </span></a>
-<a class="sourceLine" id="cb10-16" data-line-number="16"><span class="co">#&gt;  Number of samples =  12 </span></a>
-<a class="sourceLine" id="cb10-17" data-line-number="17"><span class="co">#&gt;  Execution time (sec) =  0.0100000000000016</span></a>
-<a class="sourceLine" id="cb10-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb10-19" data-line-number="19"><span class="co"># view results</span></a>
-<a class="sourceLine" id="cb10-20" data-line-number="20"><span class="co">#dim(bugs_mysize)</span></a>
-<a class="sourceLine" id="cb10-21" data-line-number="21"><span class="co">#kable(head(bugs_mysize))</span></a>
-<a class="sourceLine" id="cb10-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb10-23" data-line-number="23"><span class="co"># Compare pre- and post- subsample counts</span></a>
-<a class="sourceLine" id="cb10-24" data-line-number="24">df_compare &lt;-<span class="st"> </span><span class="kw">merge</span>(df_biodata, bugs_mysize, <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;SampleID&quot;</span>, <span class="st">&quot;TaxaID&quot;</span>)</a>
-<a class="sourceLine" id="cb10-25" data-line-number="25">                    , <span class="dt">suffixes =</span> <span class="kw">c</span>(<span class="st">&quot;_Orig&quot;</span>,<span class="st">&quot;_500&quot;</span>))</a>
-<a class="sourceLine" id="cb10-26" data-line-number="26">df_compare &lt;-<span class="st"> </span>df_compare[,<span class="kw">c</span>(<span class="st">&quot;SampleID&quot;</span>, <span class="st">&quot;TaxaID&quot;</span>, <span class="st">&quot;N_Taxa_Orig&quot;</span>, <span class="st">&quot;N_Taxa_500&quot;</span>)]</a>
-<a class="sourceLine" id="cb10-27" data-line-number="27"><span class="kw">kable</span>(<span class="kw">head</span>(df_compare), <span class="dt">caption =</span> <span class="st">&quot;Comparison, by Sample&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co"># Packages</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">library</span>(knitr)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"><span class="co"># load bio data</span></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">df_biodata &lt;-<span class="st"> </span>data_bio2rarify</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8"><span class="co">#dim(df_biodata)</span></a>
+<a class="sourceLine" id="cb10-9" data-line-number="9"><span class="co">#kable(head(df_biodata))</span></a>
+<a class="sourceLine" id="cb10-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="co"># subsample</span></a>
+<a class="sourceLine" id="cb10-12" data-line-number="12">mySize &lt;-<span class="st"> </span><span class="dv">500</span></a>
+<a class="sourceLine" id="cb10-13" data-line-number="13">Seed_OR &lt;-<span class="st"> </span><span class="dv">18590214</span></a>
+<a class="sourceLine" id="cb10-14" data-line-number="14">Seed_WA &lt;-<span class="st"> </span><span class="dv">18891111</span></a>
+<a class="sourceLine" id="cb10-15" data-line-number="15">Seed_US &lt;-<span class="st"> </span><span class="dv">17760704</span></a>
+<a class="sourceLine" id="cb10-16" data-line-number="16">bugs_mysize &lt;-<span class="st"> </span><span class="kw">rarify</span>(<span class="dt">inbug=</span>df_biodata, <span class="dt">sample.ID=</span><span class="st">&quot;SampleID&quot;</span></a>
+<a class="sourceLine" id="cb10-17" data-line-number="17">                     ,<span class="dt">abund=</span><span class="st">&quot;N_Taxa&quot;</span>,<span class="dt">subsiz=</span>mySize, <span class="dt">mySeed=</span>Seed_US)</a>
+<a class="sourceLine" id="cb10-18" data-line-number="18"><span class="co">#&gt; Rarify of samples complete. </span></a>
+<a class="sourceLine" id="cb10-19" data-line-number="19"><span class="co">#&gt;  Number of samples =  12 </span></a>
+<a class="sourceLine" id="cb10-20" data-line-number="20"><span class="co">#&gt;  Execution time (sec) =  0.00999999999999801</span></a>
+<a class="sourceLine" id="cb10-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb10-22" data-line-number="22"><span class="co"># view results</span></a>
+<a class="sourceLine" id="cb10-23" data-line-number="23"><span class="co">#dim(bugs_mysize)</span></a>
+<a class="sourceLine" id="cb10-24" data-line-number="24"><span class="co">#kable(head(bugs_mysize))</span></a>
+<a class="sourceLine" id="cb10-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb10-26" data-line-number="26"><span class="co"># Compare pre- and post- subsample counts</span></a>
+<a class="sourceLine" id="cb10-27" data-line-number="27">df_compare &lt;-<span class="st"> </span><span class="kw">merge</span>(df_biodata, bugs_mysize, <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;SampleID&quot;</span>, <span class="st">&quot;TaxaID&quot;</span>)</a>
+<a class="sourceLine" id="cb10-28" data-line-number="28">                    , <span class="dt">suffixes =</span> <span class="kw">c</span>(<span class="st">&quot;_Orig&quot;</span>,<span class="st">&quot;_500&quot;</span>))</a>
+<a class="sourceLine" id="cb10-29" data-line-number="29">df_compare &lt;-<span class="st"> </span>df_compare[,<span class="kw">c</span>(<span class="st">&quot;SampleID&quot;</span>, <span class="st">&quot;TaxaID&quot;</span>, <span class="st">&quot;N_Taxa_Orig&quot;</span>, <span class="st">&quot;N_Taxa_500&quot;</span>)]</a>
+<a class="sourceLine" id="cb10-30" data-line-number="30"><span class="kw">kable</span>(<span class="kw">head</span>(df_compare), <span class="dt">caption =</span> <span class="st">&quot;Comparison, by Sample&quot;</span>)</a></code></pre></div>
 <table>
 <caption>Comparison, by Sample</caption>
 <thead>
@@ -1201,8 +1226,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb13-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co"># Import</span></a>
 <a class="sourceLine" id="cb13-8" data-line-number="8">df.samps.bugs &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">system.file</span>(<span class="st">&quot;./extdata/Data_Benthos.xlsx&quot;</span></a>
-<a class="sourceLine" id="cb13-9" data-line-number="9">                                        , <span class="dt">package=</span><span class="st">&quot;BioMonTools&quot;</span>)</a>
-<a class="sourceLine" id="cb13-10" data-line-number="10">                            , <span class="dt">guess_max =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">                                       , <span class="dt">package=</span><span class="st">&quot;BioMonTools&quot;</span>)</a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">                           , <span class="dt">guess_max =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">6</span>)</a>
 <a class="sourceLine" id="cb13-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co"># Calculate Metrics</span></a>
 <a class="sourceLine" id="cb13-13" data-line-number="13"><span class="co"># Extra columns to keep in results</span></a>
@@ -1213,7 +1238,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb13-18" data-line-number="18"><span class="co"># Flags</span></a>
 <a class="sourceLine" id="cb13-19" data-line-number="19"><span class="co"># Import QC Checks</span></a>
 <a class="sourceLine" id="cb13-20" data-line-number="20">df.checks &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="kw">system.file</span>(<span class="st">&quot;./extdata/MetricFlags.xlsx&quot;</span></a>
-<a class="sourceLine" id="cb13-21" data-line-number="21">                                          , <span class="dt">package=</span><span class="st">&quot;BCGcalc&quot;</span>), <span class="dt">sheet=</span><span class="st">&quot;Flags&quot;</span>) </a>
+<a class="sourceLine" id="cb13-21" data-line-number="21">                                          , <span class="dt">package=</span><span class="st">&quot;BioMonTools&quot;</span>), <span class="dt">sheet=</span><span class="st">&quot;Flags&quot;</span>) </a>
 <a class="sourceLine" id="cb13-22" data-line-number="22"><span class="co"># Run Function</span></a>
 <a class="sourceLine" id="cb13-23" data-line-number="23">df.flags &lt;-<span class="st"> </span><span class="kw">qc.checks</span>(df.metrics, df.checks)</a>
 <a class="sourceLine" id="cb13-24" data-line-number="24"></a>

@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-12-21 11:13:04
+    #> Last Update: 2019-01-14 13:17:33
 
 # Planned Updates
 
@@ -21,6 +21,27 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.3.0.9003 (2019-01-14)
+
+  - MapTaxaObs
+      - Account for tibbles as input.
+          - Convert to a data frame inside the function. Otherwise
+            fails.
+      - Subset function not working in every case. Update line 128.
+      - Add map inputs database and regions and funcion inputs.
+  - extdata/Data\_Benthos.xlsx
+      - Update with TolVal2 for example in Vignette to avoid warning.
+  - Vignette
+      - SITE\_TYPE to INDEX\_REGION
+      - qc.checks
+          - Update example chunk to match example in function; package
+            BCGcalc to BioMonTools.
+
+## Changes in Version 0.3.0.9002 (2019-01-14)
+
+  - Vignette
+      - kable used without library(knitr) in rarify chunk.
 
 ## Changes in Version 0.3.0.9001 (2018-12-21)
 

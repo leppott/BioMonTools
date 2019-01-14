@@ -1,14 +1,14 @@
 #' Taxa Observation Maps
 #'
-#' Map taxonomic observations from a data frame.  Input a dataframe with SampID, TaxaID, 
+#' Map taxonomic observations from a data frame.  Input a dataframe with SampID, TaxaID,
 #' TaxaCount, Latitude, and Longitude.
-#' Other arguments are format (jpg vs. pdf), file name prefix, and output directory.  
+#' Other arguments are format (jpg vs. pdf), file name prefix, and output directory.
 #' Files are saved with the prefix "map.taxa." by default.
-#' 
+#'
 #' The user will pass arguments for maps::map function that is used for the map.
 #' For example, 'database' and 'regions'.  Without these arguments no map will be created.
-#' 
-#' The map will have all points and colored points for each taxon.  
+#'
+#' The map will have all points and colored points for each taxon.
 #' In addition the map will include the number of samples by taxon.
 #'
 #' The example data is fish but can be used for benthic macroinvertebrates as well.
@@ -24,13 +24,13 @@
 #' @param output_dir Directory to save output.  Default is working directory.
 #' @param output_prefix Prefix to TaxaID for each file.  Default = "map.taxa."
 #' @param output_type File format for output; jpg or pdf.
-# @param map_db maps::map function database; world, usa, state, county
-# @param map_regions maps::map function regions.  Names pertinent to map_db.
+#' @param database maps::map function database; world, usa, state, county
+#' @param regions maps::map function regions.  Names pertinent to map_db.
 # @param map_xlim maps::map function xlim;
 # @param map_ylim maps::map function ylim;
 #'
 #' @return Taxa maps to user defined directory as jpg or pdf.
-#' 
+#'
 #' @examples
 #' df_obs <- data_Taxa_MA
 #' SampID <- "estuary"
@@ -41,13 +41,13 @@
 #' output_dir <- getwd()
 #' output_prefix <- "maps.taxa."
 #' output_type <- "pdf"
-#' 
+#'
 # map arguments
 #' myDB <- "state"
 #' myRegion <- "massachusetts"
 #' myXlim     <- c(-(73+(30/60)), -(69+(56/60)))
 #' myYlim     <- c((41+(14/60)),(42+(53/60)))
-#' 
+#'
 #' # Run function with extra arguments for map
 #'\dontrun{
 #' MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
@@ -66,13 +66,13 @@
 #' output_dir <- getwd()
 #' output_prefix <- "maps.taxa."
 #' output_type <- "pdf"
-#' #' 
+#' #'
 #' # map arguments
 #' myDB <- "state"
 #' myRegion <- "maryland"
-#' 
+#'
 #' df_obs[,TaxaCount] <- 1
-#' 
+#'
 #' MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
 #'            , database=myDB, regions=myRegion)
 #' }
@@ -81,9 +81,12 @@
 #' @export
 MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
                   , output_dir, output_prefix="maps.taxa", output_type="pdf"
-                  , ...)
+                  , database, regions, ...)
 {##FUNCTION.MapTaxaObs.START
-  
+
+  # tibble to data frame
+  df_obs <- as.data.frame(df_obs)
+
   # Munge
   Samps.ALL         <- unique(df_obs[,SampID])
   NumSamps.ALL     <- length(Samps.ALL)
@@ -91,12 +94,12 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
   # reclass "Count" (ensure is numeric)
   df_obs[,TaxaCount] <- as.numeric(df_obs[,TaxaCount])
   Count.ALL        <- sum(df_obs[,TaxaCount],na.rm=TRUE)
-  
+
   # Calc Density
-  #df_obs[,"Pct"] <- 
-  
+  #df_obs[,"Pct"] <-
+
   TaxaNames <- unique(df_obs[,TaxaID])
-  
+
   # Define Counters for the Loop
   data2process <- TaxaNames
   myCounterStart <- 0 #set at number of columns not used
@@ -104,13 +107,13 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
   myCounter <- myCounterStart
   print(paste("Total files to process = ",myCounterStop-myCounterStart,sep=""))
   utils::flush.console()
-  
+
   #Define PDF
   if (output_type=="pdf") {##IF.output_type.START
     pdf(file=paste(output_prefix, "pdf", sep="."))##PDF.START
   }##IF.output_type.END
-  
-  
+
+
   while (myCounter < myCounterStop)
   { #LOOP.START
     # 1.0. Increase the Counter
@@ -121,18 +124,18 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
     # Update User
     print(paste("Map ",myCounter," of ",myCounterStop,"; ", myTargetMapCat, sep=""))
     flush.console()
-    
+
     # # subset
-    data.TargetMapCat <- subset(df_obs, df_obs[,TaxaID]==myTargetMapCat)
+    data.TargetMapCat <- subset(df_obs, TaxaID==myTargetMapCat)
     #
     # should be % occ in sample but use max as a surrogate (easier to see the dots)
     myDenom <- max(data.TargetMapCat[, TaxaCount])
-    
+
     # jpg
     if (output_type=="jpg") {##IF.output_type.START
       jpeg(filename = paste(output_prefix, myTargetMapCat, "jpg",sep="."), width=1024, height=768, quality=100, pointsize=20)
     }##IF.output_type.END
-    
+
     #~~~~~~~~~~~~~~~~~
     # Generate Base Map #####
     #~~~~~~~~~~~~~~~~~
@@ -140,9 +143,9 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
     #
     # Map.1. Default R outlines
     #map('state',region=State)#,) border=0.1)
-    maps::map(...)
+    maps::map(database, regions)
   #  map(database=myDB, regions=myRegion)
-    
+
     # Map Points
     #~~~~~~~~~~~~~~~~~
     # point size
@@ -173,22 +176,22 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
     # number of samples
     mtext(paste("n=",NumSamps.Target,sep=""),side=1)
     #
-    
-    
+
+
     if (output_type=="jpg") {##IF.output_type.START
       dev.off() ##JPEG.END
     }##IF.output_type.END
-      
+
     #
     # 1.6. Display progress to user (needs flush.console or only writes at end)
     # print(paste("Finished file ",myCounter-myCounterStart," of ",myCounterStop-myCounterStart,", ",data2process[myCounter],".",sep=""))
-    # flush.console()  	
+    # flush.console()
     #
     # 1.7. Some clean up
     #rm(data.TargetMapCat)
     #par(def.par)
 
-    
+
   } #LOOP.END
   #
   # Close Device
@@ -199,7 +202,7 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
   print(paste("Processing of ",myCounter-myCounterStart," of ",myCounterStop-myCounterStart," files complete.",sep=""))
   utils::flush.console()
   #data2process[myCounter] #use for troubleshooting if get error
-      
+
 
   #
 }##FUNCTION.MapTaxaObs.END
