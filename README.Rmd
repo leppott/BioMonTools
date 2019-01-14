@@ -33,6 +33,10 @@ library(devtools)  #install if needed
 
 install_github("leppott/BioMonTools")
 
+To get vignettes need to use the following.
+
+install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+
 Purpose
 ------------
 Functions to aid the data analysis of bioassessment and biomonitoring data.

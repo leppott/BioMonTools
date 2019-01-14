@@ -32,6 +32,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9004 (2019-01-14)
+
+* README
+    + Update install example to force vignettes.
+* metric.scores
+    + pt_habit metrics (n=5) used ni_total instead of nt_total in denominator.
+
 ## Changes in Version 0.3.0.9003 (2019-01-14)
 
 * MapTaxaObs

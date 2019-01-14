@@ -832,11 +832,11 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
              , pi_habit_sprawl = sum(N_TAXA[HABIT_SP == TRUE], na.rm=TRUE)/ni_total
              , pi_habit_swim = sum(N_TAXA[HABIT_SW == TRUE], na.rm=TRUE)/ni_total
               # pt for each
-             , pt_habit_burrow = nt_habit_burrow/ni_total
-             , pt_habit_climb = nt_habit_climb/ni_total
-             , pt_habit_cling = nt_habit_cling/ni_total
-             , pt_habit_sprawl = nt_habit_sprawl/ni_total
-             , pt_habit_swim = nt_habit_swim/ni_total
+             , pt_habit_burrow = nt_habit_burrow/nt_total
+             , pt_habit_climb = nt_habit_climb/nt_total
+             , pt_habit_cling = nt_habit_cling/nt_total
+             , pt_habit_sprawl = nt_habit_sprawl/nt_total
+             , pt_habit_swim = nt_habit_swim/nt_total
 
 
              # Life Cycle ####

@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-01-14 13:17:33
+    #> Last Update: 2019-01-14 14:49:51
 
 # Planned Updates
 
@@ -21,6 +21,14 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.3.0.9004 (2019-01-14)
+
+  - README
+      - Update install example to force vignettes.
+  - metric.scores
+      - pt\_habit metrics (n=5) used ni\_total instead of nt\_total in
+        denominator.
 
 ## Changes in Version 0.3.0.9003 (2019-01-14)
 
