@@ -34,6 +34,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 ## Changes in Version 0.3.0.9004 (2019-01-14)
 
+* DESCRIPTION
+    + maps package missing from Imports.
+        - Used in MapTaxaObs function.
+
+## Changes in Version 0.3.0.9004 (2019-01-14)
+
 * README
     + Update install example to force vignettes.
 * metric.scores

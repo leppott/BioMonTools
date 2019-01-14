@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-01-14 14:49:51
+    #> Last Update: 2019-01-14 15:40:56
 
 # Planned Updates
 
@@ -21,6 +21,12 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.3.0.9004 (2019-01-14)
+
+  - DESCRIPTION
+      - maps package missing from Imports.
+          - Used in MapTaxaObs function.
 
 ## Changes in Version 0.3.0.9004 (2019-01-14)
 
