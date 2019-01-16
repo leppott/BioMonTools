@@ -32,6 +32,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9008 (2019-01-17)
+
+* docs
+    + Added ExcludedTaxaDecisionCrit.docx
+
 ## Changes in Version 0.3.0.9007 (2019-01-17)
 
 * Remove metric names PDF
