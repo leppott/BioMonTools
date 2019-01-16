@@ -32,6 +32,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9010 (2019-01-17)
+
+* extdata/MetricNames.xlsx
+    + move "0-100" from notes to description.
+
 ## Changes in Version 0.3.0.9009 (2019-01-17)
 
 * metric.values
