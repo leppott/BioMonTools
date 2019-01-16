@@ -13,7 +13,7 @@ metric.values(fun.DF, fun.Community, fun.MetricNames = NULL,
 \item{fun.Community}{Community name for which to calculate metric values (bugs, fish, or algae)}
 
 \item{fun.MetricNames}{Optional vector of metric names to be returned.
-If none are supplied then all will be returned.}
+If none are supplied then all will be returned.  Default=NULL}
 
 \item{boo.Adjust}{Optional boolean value on whether to perform adjustments of
 values prior to scoring.  Default = FALSE but may be TRUE for certain metrics.}
@@ -87,6 +87,10 @@ Columns to keep are additional fields in the input file that the user wants
 retained in the output.  Fields need to be those that are unique per sample
 and not associated with the taxa.  For example, the fields used in qc.check();
 Area_mi2, SurfaceArea, Density_m2, and Density_ft2.
+
+If fun.MetricNames is provided only those metrics will be returned in the provided order.
+This variable can be used to sort the metrics into different groupings.
+By default the metric names will be returned in the groupings that were used for calculation.
 }
 \examples{
 # Example data

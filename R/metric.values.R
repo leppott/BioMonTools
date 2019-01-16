@@ -63,14 +63,21 @@
 #' and not associated with the taxa.  For example, the fields used in qc.check();
 #' Area_mi2, SurfaceArea, Density_m2, and Density_ft2.
 #'
+#' If fun.MetricNames is provided only those metrics will be returned in the provided order.
+#' This variable can be used to sort the metrics into different groupings.
+#' By default the metric names will be returned in the groupings that were used for calculation.
+# The user can set the variable "MetricSort" to "AZ" to return the metrics sorted
+# in alphabetical order without needing to specify fun.MetricNames.
+#'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param fun.DF Data frame of taxa (list required fields)
 #' @param fun.Community Community name for which to calculate metric values (bugs, fish, or algae)
 #' @param fun.MetricNames Optional vector of metric names to be returned.
-#' If none are supplied then all will be returned.
+#' If none are supplied then all will be returned.  Default=NULL
 #' @param boo.Adjust Optional boolean value on whether to perform adjustments of
 #' values prior to scoring.  Default = FALSE but may be TRUE for certain metrics.
 #' @param fun.cols2keep Column names of fun.DF to retain in the output.  Uses column names.
+# @param MetricSort How metric names should be sort; NA = as is, AZ = alphabetical.  Default = NA.
 #'
 #' @return data frame of SampleID and metric values
 #' @examples
@@ -301,7 +308,7 @@
 # fun.Community <- "fish"
 # fun.MetricNames <- myMetrics.Fish"
 #~~~~~~
-# fun.DF <- myDF
+# fun.DF <- df_samps_bugs
 # fun.Community <- "bugs"
 # fun.MetricNames <- c("nt_total", "nt_EPT")
 # boo.Adjust <- FALSE
@@ -310,7 +317,9 @@
 # cols2keep <- fun.cols2keep
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
-metric.values <- function(fun.DF, fun.Community, fun.MetricNames=NULL, boo.Adjust=FALSE, fun.cols2keep=NULL){##FUNCTION.metric.values.START
+metric.values <- function(fun.DF, fun.Community, fun.MetricNames=NULL
+                          , boo.Adjust=FALSE, fun.cols2keep=NULL){##FUNCTION.metric.values.START
+  #, MetricSort=NA
   # Data Munging (common to all data types)
   # Convert to data.frame.  Code breaks if myDF is a tibble.
   fun.DF <- as.data.frame(fun.DF)
@@ -343,7 +352,8 @@ metric.values <- function(fun.DF, fun.Community, fun.MetricNames=NULL, boo.Adjus
 #
 #
 #' @export
-metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2keep=NULL){##FUNCTION.metric.values.bugs.START
+metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
+                               , cols2keep=NULL, MetricSort=NA){##FUNCTION.metric.values.bugs.START
   #
   names(myDF) <- toupper(names(myDF))
   # not carrying over from previous?!
@@ -583,68 +593,105 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
              , ni_brackish= ni_Americo + ni_Gnorimo
              , ni_Ramello = sum(N_TAXA[GENUS == "Ramellogammarus"], na.rm=TRUE)
 
-             # Percent Individuals####
-             , pi_Amph = sum(N_TAXA[ORDER == "Amphipoda"], na.rm=TRUE)/ni_total
-             , pi_Bival = sum(N_TAXA[CLASS == "Bivalvia"], na.rm=TRUE)/ni_total
-             , pi_Caen = sum(N_TAXA[FAMILY == "Caenidae"], na.rm=TRUE)/ni_total
-             , pi_Coleo = sum(N_TAXA[ORDER == "Coleoptera"], na.rm=TRUE)/ni_total
-             , pi_Corb = sum(N_TAXA[GENUS == "Corbicula"], na.rm=TRUE)/ni_total
-             , pi_Deca = sum(N_TAXA[ORDER == "Decapoda"], na.rm=TRUE)/ni_total
-             , pi_Dipt = sum(N_TAXA[ORDER == "Diptera"], na.rm=TRUE)/ni_total
-             , pi_Ephem = sum(N_TAXA[ORDER == "Ephemeroptera"], na.rm=TRUE)/ni_total
-             , pi_EPT = sum(N_TAXA[ORDER == "Ephemeroptera" |
-                                     ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
-             , pi_Gast = sum(N_TAXA[CLASS == "Gastropoda"], na.rm=TRUE)/ni_total
-             , pi_Hydro = sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/ni_total
-             , pi_Iso = sum(N_TAXA[ORDER == "Isopoda"], na.rm=TRUE)/ni_total
-             , pi_NonIns = sum(N_TAXA[CLASS != "Insecta" | is.na(CLASS)], na.rm=TRUE)/ni_total
-             , pi_Odon = sum(N_TAXA[ORDER == "Odonata"], na.rm=TRUE)/ni_total
-             , pi_Oligo = sum(N_TAXA[CLASS == "Oligochaeta"], na.rm=TRUE)/ni_total
-             , pi_Pleco = sum(N_TAXA[ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
-             , pi_Trich = sum(N_TAXA[ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
-             #, pi_Tubif = sum(N_TAXA[FAMILY == "Tubificidae"], na.rm=TRUE)/ni_total
-             # Cole2Odon,
-             #CruMol
-             #Crus
-             #EphemNoCaen
-             #EPTsenstive
-             #Moll
-
-
              # Number of Taxa ####
              , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE], na.rm = TRUE)
              , nt_Amph = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Amphipoda"], na.rm = TRUE)
              , nt_Bival = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Bivalvia"], na.rm = TRUE)
              , nt_Coleo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Coleoptera"], na.rm = TRUE)
              , nt_CruMol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & PHYLUM == "Mollusca"], na.rm = TRUE) +
-                            dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & SUBPHYLUM == "Crustacea"], na.rm = TRUE)
+               dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & SUBPHYLUM == "Crustacea"], na.rm = TRUE)
              , nt_Deca = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Decapoda"], na.rm = TRUE)
              , nt_Dipt = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Diptera"], na.rm = TRUE)
              , nt_Ephem = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Ephemeroptera"], na.rm = TRUE)
              , nt_Ephemerellid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Ephemerellidae"], na.rm = TRUE)
              , nt_EPT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                        & (ORDER == "Ephemeroptera" | ORDER == "Trichoptera" | ORDER == "Plecoptera")], na.rm = TRUE)
+                                                 & (ORDER == "Ephemeroptera"
+                                                    | ORDER == "Trichoptera"
+                                                    | ORDER == "Plecoptera")], na.rm = TRUE)
              , nt_Gast = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Gastropoda"], na.rm = TRUE)
              , nt_Hepta = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Heptageniidae"], na.rm = TRUE)
              , nt_Insect = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Insecta"], na.rm = TRUE)
              , nt_Isop = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Isopoda"], na.rm = TRUE)
              , nt_Nemour = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Nemouridae"], na.rm = TRUE)
              , nt_NonIns = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                            & (CLASS != "Insecta" | is.na(CLASS))], na.rm = TRUE)
+                                                    & (CLASS != "Insecta" | is.na(CLASS))], na.rm = TRUE)
+             , nt_Odon = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Odonata"], na.rm = TRUE)
              , nt_Oligo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Oligochaeta"], na.rm = TRUE)
              , nt_Perlid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Perlidae"], na.rm = TRUE)
              , nt_Pleco = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Plecoptera"], na.rm = TRUE)
+             , nt_POET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                  & (ORDER == "Ephemeroptera"
+                                                     | ORDER == "Trichoptera"
+                                                     | ORDER == "Plecoptera"
+                                                     | ORDER == "Odonata")], na.rm = TRUE)
              , nt_Ptero = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "Pteronarcys"], na.rm = TRUE)
              , nt_Rhya = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "Rhyacophila"], na.rm = TRUE)
              , nt_Tipulid= dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Tipulidae"], na.rm = TRUE)
              , nt_Trich = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Trichoptera"], na.rm = TRUE)
-             # ,intolMol, , POET, Tubif
+             , nt_Tromb = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Trombidformes"], na.rm = TRUE)
+             , nt_Tubif = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Tubificidae"], na.rm = TRUE)
+             # ,intolMol, ,
+
+             # Percent Individuals####
+             , pi_Amph = sum(N_TAXA[ORDER == "Amphipoda"], na.rm=TRUE)/ni_total
+             , pi_Bival = sum(N_TAXA[CLASS == "Bivalvia"], na.rm=TRUE)/ni_total
+             , pi_Caen = sum(N_TAXA[FAMILY == "Caenidae"], na.rm=TRUE)/ni_total
+             , pi_Coleo = sum(N_TAXA[ORDER == "Coleoptera"], na.rm=TRUE)/ni_total
+             , pi_Corb = sum(N_TAXA[GENUS == "Corbicula"], na.rm=TRUE)/ni_total
+             , pi_Cru = sum(N_TAXA[SUBPHYLUM == "Crustacea"], na.rm=TRUE)/ni_total
+             , pi_CruMol = sum(N_TAXA[PHYLUM == "Mollusca" | SUBPHYLUM == "Crustacea"], na.rm=TRUE)/ni_total
+             , pi_Deca = sum(N_TAXA[ORDER == "Decapoda"], na.rm=TRUE)/ni_total
+             , pi_Dipt = sum(N_TAXA[ORDER == "Diptera"], na.rm=TRUE)/ni_total
+             , pi_Ephem = sum(N_TAXA[ORDER == "Ephemeroptera"], na.rm=TRUE)/ni_total
+             , pi_EphemNoCae = sum(N_TAXA[ORDER == "Ephemeroptera"
+                                          & (is.na(FAMILY)==TRUE | FAMILY != "Caenidae")], na.rm=TRUE)/ni_total
+             , pi_EphemNoCaeBae = sum(N_TAXA[ORDER == "Ephemeroptera"
+                                             & (is.na(FAMILY)==TRUE | FAMILY != "Caenidae" | FAMILY != "Baetidae")]
+                                      , na.rm=TRUE)/ni_total
+             , pi_EPT = sum(N_TAXA[ORDER == "Ephemeroptera" |
+                                     ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
+             , pi_Gast = sum(N_TAXA[CLASS == "Gastropoda"], na.rm=TRUE)/ni_total
+             , pi_Hydro = sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/ni_total
+             , pi_Insect = sum(N_TAXA[CLASS == "Insecta"], na.rm=TRUE)/ni_total
+             , pi_Isop = sum(N_TAXA[ORDER == "Isopoda"], na.rm=TRUE)/ni_total
+             , pi_Mol = sum(N_TAXA[PHYLUM == "Mollusca"], na.rm=TRUE)/ni_total
+             , pi_NonIns = sum(N_TAXA[CLASS != "Insecta" | is.na(CLASS)], na.rm=TRUE)/ni_total
+             , pi_Odon = sum(N_TAXA[ORDER == "Odonata"], na.rm=TRUE)/ni_total
+             , pi_Oligo = sum(N_TAXA[CLASS == "Oligochaeta"], na.rm=TRUE)/ni_total
+             , pi_Pleco = sum(N_TAXA[ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
+             , pi_Trich = sum(N_TAXA[ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
+             , pi_TricNoHydro = sum(N_TAXA[ORDER == "Trichoptera"
+                                           & (is.na(FAMILY)==TRUE | FAMILY != "Hydropsychidae")]
+                                    , na.rm=TRUE)/ni_total
+             , pi_Tubif = sum(N_TAXA[FAMILY == "Tubificidae"], na.rm=TRUE)/ni_total
+             # Cole2Odon,
+             #EPTsenstive
+
+
+             # Percent of Taxa ####
+             , pt_Amph = nt_Amph/nt_total
+             , pt_Bival = nt_Bival/nt_total
+             , pt_Coleo = nt_Coleo/nt_total
+             , pt_Deca = nt_Deca/nt_total
+             , pt_Dipt = nt_Dipt/nt_total
+             , pt_Ephem = nt_Ephem/nt_total
+             , pt_EPT = nt_EPT/nt_total
+             , pt_Gast = nt_Gast/nt_total
+             , pt_Insect = nt_Insect/nt_total
+             , pt_Isop = nt_Isop/nt_total
+             , pt_NonIns = nt_NonIns/nt_total
+             , pt_Odon = nt_Odon/nt_total
+             , pt_Oligo = nt_Oligo/nt_total
+             , pt_Pleco = nt_Pleco/nt_total
+             , pt_POET = nt_POET/nt_total
+             , pt_Trich = nt_Trich/nt_total
 
 
              # Midges ####
              , ni_Chiro = sum(N_TAXA[FAMILY == "Chironomidae"], na.rm=TRUE)
              , nt_Chiro = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Chironomidae"], na.rm = TRUE)
              , pi_Chiro = ni_Chiro/ni_total
+             , pt_Chiro = nt_Chiro/nt_total
              , pi_Tanyt = sum(N_TAXA[TRIBE == "Tanytarsini"], na.rm=TRUE)/ni_total
              , pi_Tanyp = sum(N_TAXA[SUBFAMILY == "Tanypodinae"], na.rm=TRUE)/ni_total
              # 20181018, MS, not the best but need to get it working
@@ -765,36 +812,32 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
              , pt_ti_w = nt_ti_w/nt_total
 
 
-             # Density ####
-
-
-             # Percent of Taxa ####
-             , pt_Amph = nt_Amph/nt_total
-             , pt_Bival = nt_Bival/nt_total
-             , pt_Deca = nt_Deca/nt_total
-             , pt_Dipt = nt_Dipt/nt_total
-             , pt_EPT = nt_EPT/nt_total
-             , pt_Gast = nt_Gast/nt_total
-             , pt_Isop = nt_Isop/nt_total
-             , pt_NonIns = nt_NonIns/nt_total
-             # , POET,,, NonIns,
-
-
              # Tolerance ####
              , nt_tv_intol=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=0 & TOLVAL<=3], na.rm=TRUE)
              , nt_tv_toler=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=7 & TOLVAL<=10], na.rm=TRUE)
+             , pi_tv_intol=sum(N_TAXA[TOLVAL>=0  & TOLVAL<=3], na.rm=TRUE)/ni_total
+             , pi_tv_toler=sum(N_TAXA[TOLVAL>=7  & TOLVAL<=10], na.rm=TRUE)/ni_total
              , pt_tv_intol = nt_tv_intol/nt_total
              , pt_tv_toler = nt_tv_toler/nt_total
              #,nt_tvfam_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & FAM_TV<=3 & !is.na(FAM_TV)])
              # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, pi_intol, pi_toler, , nt_intMol,
-             # pt toler
 
+             , nt_tv_ntol=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=0 & TOLVAL<6], na.rm=TRUE)
+             , nt_tv_stol=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=8 & TOLVAL<=10], na.rm=TRUE)
+             , pi_tv_ntol=sum(N_TAXA[TOLVAL>=0  & TOLVAL<6], na.rm=TRUE)/ni_total
+             , pi_tv_stol=sum(N_TAXA[TOLVAL>=8  & TOLVAL<=10], na.rm=TRUE)/ni_total
+             , pt_tv_ntol=nt_tv_ntol/nt_total
+             , pt_tv_stol=nt_tv_stol/nt_total
+
+             # USEPA, WSA and NRSA
+             ## ntol is not tolerant
+             ## stol is
 
              # Tolerance2 ####
              ## special condition tolerance values
              # MBSS
-             ,pi_tv2_intol=sum(N_TAXA[TOLVAL2<=3 & !is.na(TOLVAL2)])/sum(N_TAXA[!is.na(TOLVAL2)])
-             , pi_tv_intolurb=pi_tv2_intol
+             , pi_tv2_intol=sum(N_TAXA[TOLVAL2<=3 & !is.na(TOLVAL2)])/sum(N_TAXA[!is.na(TOLVAL2)])
+             #, pi_tv_intolurb=pi_tv2_intol
 
              # FFG #####
              ## nt_ffg
@@ -818,7 +861,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
 
 
              # Habit ####
-             #(need to be wild card)
+             #(need to be wild card. that is, counts both CN,CB and CB as climber)
              ## nt_habit
              , nt_habit_burrow = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABIT_BU == TRUE], na.rm = TRUE)
              , nt_habit_climb = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABIT_CB == TRUE], na.rm = TRUE)
@@ -857,16 +900,16 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
 
              # Dominant N ####
              ## uses previously defined values added to myDF
-             ,pi_dom01=max(N_TAXA)/ni_total
-             ,pi_dom02=max(ni_dom02)/ni_total
-             ,pi_dom03=max(ni_dom03)/ni_total
-             ,pi_dom04=max(ni_dom04)/ni_total
-             ,pi_dom05=max(ni_dom05)/ni_total
-             ,pi_dom06=max(ni_dom06)/ni_total
-             ,pi_dom07=max(ni_dom07)/ni_total
-             ,pi_dom08=max(ni_dom08)/ni_total
-             ,pi_dom09=max(ni_dom09)/ni_total
-             ,pi_dom10=max(ni_dom10)/ni_total
+             , pi_dom01=max(N_TAXA)/ni_total
+             , pi_dom02=max(ni_dom02)/ni_total
+             , pi_dom03=max(ni_dom03)/ni_total
+             , pi_dom04=max(ni_dom04)/ni_total
+             , pi_dom05=max(ni_dom05)/ni_total
+             , pi_dom06=max(ni_dom06)/ni_total
+             , pi_dom07=max(ni_dom07)/ni_total
+             , pi_dom08=max(ni_dom08)/ni_total
+             , pi_dom09=max(ni_dom09)/ni_total
+             , pi_dom10=max(ni_dom10)/ni_total
 
             # , pi_dom01alt= dplyr::top_n(N_TAXA, n=1)/ni_total
             #https://stackoverflow.com/questions/27766054/getting-the-top-values-by-group
@@ -895,6 +938,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
               # H / Hmax  Hmax is log(nt_total)
              , x_Evenness=x_Shan_e/log(nt_total)
 
+            # Density ####
 
              # BCG ####
              # 1i, 1m, 1t
@@ -965,35 +1009,6 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
              # pi_dom01_att 4, 5, 56
              # pi_dom05_att 123, not 456
 
-          # # MBSS metric names
-          # , ntaxa        = nt_total
-          # , nept         = nt_EPT
-          # , nephem       = nt_Ephem
-          # , totind       = ni_total
-          # , totephem     = ni_Ephem
-          # , nscrape      = nt_ffg_scrap
-          # , totclimb     = ni_habit_clmbrs
-          # , totchiron    = ni_Chiro
-          # , totcling     = ni_habit_clngrs
-          # , tottany      = ni_Tanyt
-          # , totscrape    = ni_ffg_scrap
-          # , totswim      = ni_habit_swmmrs
-          # , totdipt      = ni_Dipt
-          # , totintol_urb = ni_tv_intolurb
-          # , pephem       = 100 * pi_Ephem
-          # , pclimb       = 100 * pi_habit_clmbrs
-          # , pchiron      = 100 * pi_Chiro
-          # , pcling       = 100 * pi_habit_clngrs
-          # , ptany        = 100 * pi_Tanyt
-          # , pscrape      = 100 * pi_ffg_scrap
-          # , pswim        = 100 * pi_habit_swmmrs
-          # , pdipt        = 100 * pi_Dipt
-          # , pintol_urb   = 100 * pi_tv_intolurb
-          # # MSW
-          # , ndipt        = nt_Dipt
-          # , nintol       = nt_tv_intol
-          # , becks        = x_Becks
-          # , nintol_FAM   = nt_tvfam_intol
 
              #
           )## met.val.END
@@ -1001,21 +1016,24 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2ke
   # Clean Up ####
   # replace NA with 0
   met.val[is.na(met.val)] <- 0
+
   # # subset to only metrics specified by user
-  # myFlds.MBSS <- c("totind", "ntaxa", "nept", "nephem", "totephem", "nscrape", "totclimb"
-  #                  , "totchiron", "totcling", "tottany", "totscrape", "totswim"
-  #                  , "totdipt", "totintol_urb", "pephem", "pclimb", "pchiron"
-  #                  , "pcling", "ptany", "pscrape", "pswim", "pdipt", "pintol_urb"
-  #                  , "ndipt", "nintol", "becks", "nintol_FAM")
-
-
-
   if (!is.null(MetricNames)) {
     met2include <- MetricNames[!(MetricNames %in% "ni_total")]
     # remove ni_total if included as will always include it
     met.val <- met.val[, c("SAMPLEID", "INDEX_REGION", "INDEX_NAME",
                            "ni_total", met2include)]
   }
+
+  # # Sort ####
+  # if(is.na(MetricSort)==TRUE){##IF.MetricSort.START
+  #   # do nothing
+  # } else if(toupper(MetricSort)=="AZ"){
+  #   col_keep <- c("SAMPLEID", "INDEX_REGION", "INDEX_NAME")
+  #   col_met_sort <- sort(names(met.val)[!(names(met.val) %in% col_keep)])
+  #   met.val <- met.val[, c(col_keep, col_met_sort) ]
+  # }##IF.MetricSort.END
+
 
   # Add extra fields
   if(is.null(cols2keep)){##IF.is.null.cols2keep.START

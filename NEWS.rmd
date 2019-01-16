@@ -32,7 +32,17 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
-## Changes in Version 0.3.0.9004 (2019-01-14)
+## Changes in Version 0.3.0.9006 (2019-01-17)
+
+* metric.scores
+    + Additional metrics.
+    + Metric name sort variable.  Issue #13
+    + Organize metrics ni, nt, pi, pt for each section.
+    + Update extdata/MetricNames.xlsx
+* MapTaxaObs
+    + Set up for ability to sort taxa but not active.
+
+## Changes in Version 0.3.0.9005 (2019-01-14)
 
 * DESCRIPTION
     + maps package missing from Imports.
