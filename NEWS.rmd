@@ -32,6 +32,15 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9007 (2019-01-17)
+
+* Remove metric names PDF
+* metric.scores
+    + Add pi_Baet
+    + Percent metrics to 0-100 from 0-1.
+    + Add pi_Baet to extdata/MetricNames.xlsx
+    + input TolVal "NA" (character) to NA.
+
 ## Changes in Version 0.3.0.9006 (2019-01-17)
 
 * metric.scores
