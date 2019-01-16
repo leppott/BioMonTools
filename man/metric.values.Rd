@@ -29,7 +29,7 @@ Inputs are a data frame with SampleID and taxa with phylogenetic and autecologic
 (see below for required fields by community).  The dplyr package is used to generate the metric values.
 }
 \details{
-All percent metric results are 0-1.
+All percent metric results are 0-100.
 
 No manipulations of the taxa are performed by this routine.
 All benthic macroinvertebrate taxa should be identified to the appropriate
@@ -54,6 +54,10 @@ If any fields are missing the user will be prompted as to which are missing
 and if the user wants to continue or quit.  If the user continues the missing
 fields will be added but will be filled with zero or NA (as appropriate).
 Any metrics based on the missing fields will not be valid.
+
+A future update may turn these fields into function parameters.  This would
+allow the user to tweak the function inputs to match their data rather than
+having to update their data to match the function.
 
 Required Fields:
 
@@ -89,7 +93,7 @@ and not associated with the taxa.  For example, the fields used in qc.check();
 Area_mi2, SurfaceArea, Density_m2, and Density_ft2.
 
 If fun.MetricNames is provided only those metrics will be returned in the provided order.
-This variable can be used to sort the metrics into different groupings.
+This variable can be used to sort the metrics per the user's preferences..
 By default the metric names will be returned in the groupings that were used for calculation.
 }
 \examples{
@@ -125,4 +129,20 @@ library(DataExplorer)
 create_report(df_metric_values_bugs, "DataExplorer_Report_MetricValues.html")
 create_report(df_samps_bugs, "DataExplorer_Report_BugSamples.html")
 }
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Example 2, specific metrics or metrics in a specific order
+## reuse df_samps_bugs from above
+
+# metric names to keep (in this order)
+myMetrics <- c("ni_total", "nt_EPT", "nt_Ephem", "pi_tv_intol", "pi_Ephem"
+               , "nt_ffg_scrap", "pi_habit_climb")
+
+# Run Function
+df_metric_values_bugs_myMetrics <- metric.values(df_samps_bugs, "bugs"
+                                                , fun.MetricNames = myMetrics)
+
+# View Results
+View(df_metric_values_bugs_myMetrics)
+
 }

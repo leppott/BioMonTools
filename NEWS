@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-01-16 10:36:55
+    #> Last Update: 2019-01-16 13:30:41
 
 # Planned Updates
 
@@ -21,6 +21,18 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.3.0.9012 (2019-01-17)
+
+  - metric.values
+      - Remove metric sorting. Rely on fun.MetricNames to request and
+        sort metrics.
+      - Modify TolVal character check for NA.
+      - Add example keeping only some metrics.
+  - extdata/MetricScoring.xlsx
+      - Modify percent metric thresholds (from 0-1 to 0-100).
+  - extdata/MetricFlags.xlsx
+      - Modify percent metric thresholds (from 0-1 to 0-100).
 
 ## Changes in Version 0.3.0.9011 (2019-01-17)
 
