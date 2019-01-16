@@ -640,7 +640,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
 
              # Percent Individuals####
              , pi_Amph = 100*sum(N_TAXA[ORDER == "Amphipoda"], na.rm=TRUE)/ni_total
-             , pi_Baet = 100*sum(N_TAXA[Family == "Baetidae"], na.rm=TRUE)/ni_total
+             , pi_Baet = 100*sum(N_TAXA[FAMILY == "Baetidae"], na.rm=TRUE)/ni_total
              , pi_Bival = 100*sum(N_TAXA[CLASS == "Bivalvia"], na.rm=TRUE)/ni_total
              , pi_Caen = 100*sum(N_TAXA[FAMILY == "Caenidae"], na.rm=TRUE)/ni_total
              , pi_Coleo = 100*sum(N_TAXA[ORDER == "Coleoptera"], na.rm=TRUE)/ni_total
