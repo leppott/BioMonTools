@@ -637,6 +637,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , nt_Hepta = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Heptageniidae"], na.rm = TRUE)
              , nt_Insect = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Insecta"], na.rm = TRUE)
              , nt_Isop = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Isopoda"], na.rm = TRUE)
+             , nt_Mega = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Megaloptera"], na.rm = TRUE)
              , nt_Nemour = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Nemouridae"], na.rm = TRUE)
              , nt_NonIns = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                     & (CLASS != "Insecta" | is.na(CLASS))], na.rm = TRUE)
@@ -653,7 +654,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , nt_Rhya = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "Rhyacophila"], na.rm = TRUE)
              , nt_Tipulid= dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Tipulidae"], na.rm = TRUE)
              , nt_Trich = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Trichoptera"], na.rm = TRUE)
-             , nt_Tromb = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Trombidformes"], na.rm = TRUE)
+             , nt_Tromb = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Trombidiformes"], na.rm = TRUE)
              , nt_Tubif = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Tubificidae"], na.rm = TRUE)
              # ,intolMol, ,
 
@@ -680,6 +681,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , pi_Hydro = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/ni_total
              , pi_Insect = 100*sum(N_TAXA[CLASS == "Insecta"], na.rm=TRUE)/ni_total
              , pi_Isop = 100*sum(N_TAXA[ORDER == "Isopoda"], na.rm=TRUE)/ni_total
+             , pi_Mega = 100*sum(N_TAXA[ORDER == "Megaloptera"], na.rm=TRUE)/ni_total
              , pi_Mol = 100*sum(N_TAXA[PHYLUM == "Mollusca"], na.rm=TRUE)/ni_total
              , pi_NonIns = 100*sum(N_TAXA[CLASS != "Insecta" | is.na(CLASS)], na.rm=TRUE)/ni_total
              , pi_Odon = 100*sum(N_TAXA[ORDER == "Odonata"], na.rm=TRUE)/ni_total
@@ -705,6 +707,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , pt_Gast = 100*nt_Gast/nt_total
              , pt_Insect = 100*nt_Insect/nt_total
              , pt_Isop = 100*nt_Isop/nt_total
+             , pt_Mega = 100*nt_Mega/nt_total
              , pt_NonIns = 100*nt_NonIns/nt_total
              , pt_Odon = 100*nt_Odon/nt_total
              , pt_Oligo = 100*nt_Oligo/nt_total

@@ -32,6 +32,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9013 (2019-01-25)
+
+* metric.values
+    + Fixe Trombidiformes metric.
+        - Mispelled search term so wasn't working.
+    + Added Megaloptera metrics (nt, pi, and pt).
+
 ## Changes in Version 0.3.0.9012 (2019-01-17)
 
 * metric.values

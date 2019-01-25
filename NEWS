@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-01-16 13:30:41
+    #> Last Update: 2019-01-25 09:50:42
 
 # Planned Updates
 
@@ -21,6 +21,13 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.3.0.9013 (2019-01-25)
+
+  - metric.values
+      - Fixe Trombidiformes metric.
+          - Mispelled search term so wasn’t working.
+      - Added Megaloptera metrics (nt, pi, and pt).
 
 ## Changes in Version 0.3.0.9012 (2019-01-17)
 
