@@ -32,10 +32,18 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9014 (2019-04-02)
+
+* metric.values, Issue #15
+    + Fix metric pi_EphemNoCaeBae
+        - Was calculating the same as pi_Ephem.
+    + Checked all other "No" metrics.
+        - All ok.
+
 ## Changes in Version 0.3.0.9013 (2019-01-25)
 
 * metric.values
-    + Fixe Trombidiformes metric.
+    + Fix Trombidiformes metric.
         - Mispelled search term so wasn't working.
     + Added Megaloptera metrics (nt, pi, and pt).
 

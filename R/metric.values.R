@@ -673,7 +673,8 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , pi_EphemNoCae = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
                                           & (is.na(FAMILY)==TRUE | FAMILY != "Caenidae")], na.rm=TRUE)/ni_total
              , pi_EphemNoCaeBae = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
-                                             & (is.na(FAMILY)==TRUE | FAMILY != "Caenidae" | FAMILY != "Baetidae")]
+                                             & (is.na(FAMILY)==TRUE | FAMILY != "Caenidae")
+                                             & (is.na(FAMILY)==TRUE | FAMILY != "Baetidae")]
                                       , na.rm=TRUE)/ni_total
              , pi_EPT = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
                                      ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
