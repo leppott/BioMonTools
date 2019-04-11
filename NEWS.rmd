@@ -32,6 +32,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9015 (2019-04-11)
+
+* inst/extdata/MetricFlags.xlsx
+   + Update ni_total for Hi to match Lo (both 450), Issue #16
+
 ## Changes in Version 0.3.0.9014 (2019-04-02)
 
 * metric.values, Issue #15

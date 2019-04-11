@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-04-02 12:41:23
+    #> Last Update: 2019-04-11 08:51:08
 
 # Planned Updates
 
@@ -21,6 +21,11 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.3.0.9015 (2019-04-11)
+
+  - inst/extdata/MetricFlags.xlsx
+      - Update ni\_total for Hi to match Lo (both 450), Issue \#16
 
 ## Changes in Version 0.3.0.9014 (2019-04-02)
 
