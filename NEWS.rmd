@@ -32,6 +32,22 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9016 (2019-05-07)
+
+* Temp fix for staged install with R v3.6.0, Issue #18
+    + DESCRIPTION, StagedInstall: no
+* Add additional metrics (GA DNR).
+    + Files
+        - metric.values.R
+        - MetricNames.xlsx
+        - MetricScoring.xlsx
+    + Metrics
+        - pi_Hydro2EPT
+        - pi_Hydro2Trich
+        - pi_Ortho2Chi
+        - pi_Tanyp2Chi
+        - pi_ChCr2Chi
+
 ## Changes in Version 0.3.0.9015 (2019-04-11)
 
 * inst/extdata/MetricFlags.xlsx

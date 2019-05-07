@@ -5,8 +5,7 @@
 \title{Taxa Observation Maps}
 \usage{
 MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long, output_dir,
-  output_prefix = "maps.taxa", output_type = "pdf", database, regions,
-  ...)
+  output_prefix = "maps.taxa", output_type = "pdf", database, regions, ...)
 }
 \arguments{
 \item{df_obs}{Observation data frame}

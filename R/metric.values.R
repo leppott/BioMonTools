@@ -612,7 +612,11 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              # one metric per line
              #
              # Individuals ####
-             , ni_total=sum(N_TAXA, na.rm = TRUE)
+             , ni_total = sum(N_TAXA, na.rm = TRUE)
+             , ni_Chiro = sum(N_TAXA[FAMILY == "Chironomidae"], na.rm=TRUE)
+             , ni_EPT = sum(N_TAXA[ORDER == "Ephemeroptera" |
+                                     ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)
+             , ni_Trich = sum(N_TAXA[ORDER == "Trichoptera"], na.rm=TRUE)
              , ni_Americo = sum(N_TAXA[GENUS == "Americorophium"], na.rm=TRUE)
              , ni_Gnorimo = sum(N_TAXA[GENUS == "Gnorimosphaeroma"], na.rm=TRUE)
              , ni_brackish= ni_Americo + ni_Gnorimo
@@ -680,6 +684,8 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
                                      ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
              , pi_Gast = 100*sum(N_TAXA[CLASS == "Gastropoda"], na.rm=TRUE)/ni_total
              , pi_Hydro = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/ni_total
+             , pi_Hydro2EPT = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/1
+             , pi_Hydro2Trich = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/1
              , pi_Insect = 100*sum(N_TAXA[CLASS == "Insecta"], na.rm=TRUE)/ni_total
              , pi_Isop = 100*sum(N_TAXA[ORDER == "Isopoda"], na.rm=TRUE)/ni_total
              , pi_Mega = 100*sum(N_TAXA[ORDER == "Megaloptera"], na.rm=TRUE)/ni_total
@@ -718,26 +724,24 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
 
 
              # Midges ####
-             , ni_Chiro = sum(N_TAXA[FAMILY == "Chironomidae"], na.rm=TRUE)
              , nt_Chiro = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Chironomidae"], na.rm = TRUE)
              , pi_Chiro = 100*ni_Chiro/ni_total
              , pt_Chiro = 100*nt_Chiro/nt_total
              , pi_Tanyt = 100*sum(N_TAXA[TRIBE == "Tanytarsini"], na.rm=TRUE)/ni_total
              , pi_Tanyp = 100*sum(N_TAXA[SUBFAMILY == "Tanypodinae"], na.rm=TRUE)/ni_total
-             # 20181018, MS, not the best but need to get it working
              , pi_COC2Chi = 100*sum(N_TAXA[GENUS == "Chironomus"
                                        | GENUS=="Cricotopus"
                                        | GENUS=="Cricotopus/Orthocladius"
                                        | GENUS=="Orthocladius/Cricotopus"
                                        | GENUS=="Orthocladius"], na.rm=TRUE)/ni_Chiro
 
-             #,pi_CrCh2Chi  - cricotopus + chrionominus
-             #,pi_Orth2Chi
+             , pi_CrCh2Chi = 100*sum(N_TAXA[GENUS == "Chironomus"
+                                            | GENUS=="Cricotopus"], na.rm=TRUE)/ni_Chiro
+             , pi_Orth2Chi = 100*sum(N_TAXA[SUBFAMILY == "Orthocladiinae"], na.rm=TRUE)/ni_Chiro
+             , pi_Tanyp2Chi = 100*sum(N_TAXA[SUBFAMILY == "Tanypodinae"], na.rm=TRUE)/ni_Chiro
              #,nt_Ortho
              #MB_pi_OrthocladiinaeCricotopusChironomus2Chironomidae
-             #,pi-Tnyt2Chi,
-             # COC2Chi (Cricotopus, Orthocladius, Chironomus) [done 20181018]
-             # tanyp2Chir
+
              # subfamily = Orthocladiinae
              # subfamily= tanypodinae
              # subfamily = chironominae

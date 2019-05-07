@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-04-11 08:51:08
+    #> Last Update: 2019-05-07 13:03:56
 
 # Planned Updates
 
@@ -21,6 +21,22 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.3.0.9016 (2019-05-07)
+
+  - Temp fix for staged install with R v3.6.0, Issue \#18
+      - DESCRIPTION, StagedInstall: no
+  - Add additional metrics (GA DNR).
+      - Files
+          - metric.values.R
+          - MetricNames.xlsx
+          - MetricScoring.xlsx
+      - Metrics
+          - pi\_Hydro2EPT
+          - pi\_Hydro2Trich
+          - pi\_Ortho2Chi
+          - pi\_Tanyp2Chi
+          - pi\_ChCr2Chi
 
 ## Changes in Version 0.3.0.9015 (2019-04-11)
 
