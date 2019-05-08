@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-05-07 13:03:56
+    #> Last Update: 2019-05-08 10:03:00
 
 # Planned Updates
 
@@ -22,11 +22,23 @@ NEWS
 
 # Version History
 
+## Changes in Version 0.3.0.9017 (2019-05-08)
+
+  - Metric names, fix those added in previous update, Issue \#3
+      - Files
+          - metric.values.R
+          - MetricNames.xlsx
+          - MetricScoring.xlsx
+  - metric.scores, Issue \#19
+      - Continuous 0-100 scoring only reporting 1 value per column.
+      - Fixed so reports all values.
+          - Was taking median of column not per row.
+
 ## Changes in Version 0.3.0.9016 (2019-05-07)
 
   - Temp fix for staged install with R v3.6.0, Issue \#18
       - DESCRIPTION, StagedInstall: no
-  - Add additional metrics (GA DNR).
+  - Add additional metrics (GA DNR). Issue \#3.
       - Files
           - metric.values.R
           - MetricNames.xlsx

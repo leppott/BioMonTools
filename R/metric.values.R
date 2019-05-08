@@ -735,7 +735,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
                                        | GENUS=="Orthocladius/Cricotopus"
                                        | GENUS=="Orthocladius"], na.rm=TRUE)/ni_Chiro
 
-             , pi_CrCh2Chi = 100*sum(N_TAXA[GENUS == "Chironomus"
+             , pi_ChCr2Chi = 100*sum(N_TAXA[GENUS == "Chironomus"
                                             | GENUS=="Cricotopus"], na.rm=TRUE)/ni_Chiro
              , pi_Orth2Chi = 100*sum(N_TAXA[SUBFAMILY == "Orthocladiinae"], na.rm=TRUE)/ni_Chiro
              , pi_Tanyp2Chi = 100*sum(N_TAXA[SUBFAMILY == "Tanypodinae"], na.rm=TRUE)/ni_Chiro

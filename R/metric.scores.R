@@ -141,11 +141,11 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     col_IndexRegion <- "INDEX_REGION"
     DF_Thresh_Metric <- df_thresh_metric
     DF_Thresh_Index <- df_thresh_index
-    (a <- unique(as.matrix(DF_Metrics[,col_IndexName]))[1])
-    (b <- unique(as.matrix(DF_Metrics[,col_IndexRegion]))[1])
+    (a <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
+    (b <- unique(as.matrix(DF_Metrics[, col_IndexRegion]))[1])
     (c <- col_MetricNames[1])
-    (aa <- unique(as.matrix(DF_Metrics[,col_IndexName]))[1])
-    (bb <- unique(as.matrix(DF_Metrics[,col_IndexRegion]))[1])
+    (aa <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
+    (bb <- unique(as.matrix(DF_Metrics[, col_IndexRegion]))[1])
   }
   #
   # QC, Column Names
@@ -169,12 +169,12 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
   }
   #
   # Add "SCORE" columns for each metric
-  Score.MetricNames <- paste0("SC_",col_MetricNames)
-  DF_Metrics[,Score.MetricNames] <- 0
+  Score.MetricNames <- paste0("SC_", col_MetricNames)
+  DF_Metrics[, Score.MetricNames] <- 0
   #
   # Need to cycle based on Index (a), Region (b), and Metric (c)
-  for (a in unique(as.matrix(DF_Metrics[,col_IndexName]))){##FOR.a.START
-    for (b in unique(as.matrix(DF_Metrics[,col_IndexRegion]))) {##FOR.b.START
+  for (a in unique(as.matrix(DF_Metrics[, col_IndexName]))){##FOR.a.START
+    for (b in unique(as.matrix(DF_Metrics[, col_IndexRegion]))) {##FOR.b.START
       for (c in col_MetricNames){##FOR.c.START
         # Thresholds (filter with dplyr)
         fun.Thresh.myMetric <- as.data.frame(dplyr::filter(DF_Thresh_Metric, INDEX_NAME==a & INDEX_REGION==b & METRIC_NAME==c))
@@ -185,22 +185,23 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
           next
         }
         # thresholds
-        fun.Lo          <- suppressWarnings(as.numeric(fun.Thresh.myMetric[,"Thresh_Lo"]))
-        fun.Mid         <- suppressWarnings(as.numeric(fun.Thresh.myMetric[,"Thresh_Mid"]))
-        fun.Hi          <- suppressWarnings(as.numeric(fun.Thresh.myMetric[,"Thresh_Hi"]))
-        fun.Direction   <- toupper(fun.Thresh.myMetric[,"Direction"])
-        fun.ScoreRegime <- toupper(fun.Thresh.myMetric[,"ScoreRegime"])
+        fun.Lo          <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Lo"]))
+        fun.Mid         <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Mid"]))
+        fun.Hi          <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Hi"]))
+        fun.Direction   <- toupper(fun.Thresh.myMetric[, "Direction"])
+        fun.ScoreRegime <- toupper(fun.Thresh.myMetric[, "ScoreRegime"])
         #
         # default value
-        fun.Value <- DF_Metrics[,c]
+        fun.Value <- DF_Metrics[, c]
         fun.Result <- fun.Value * 0  #default value of zero
         #
         if(fun.ScoreRegime=="CONT_0100"){##IF.scoring.START
           if(fun.Direction=="DECREASE"){
-            fun.Result <- median(c(0,100,100*((fun.Value-fun.Lo)/(fun.Hi-fun.Lo))))
+            fun.calc <- 100*((fun.Value-fun.Lo)/(fun.Hi-fun.Lo))
           }else if (fun.Direction=="INCREASE") {
-            fun.Result <- median(c(0,100,100*((fun.Hi-fun.Value)/(fun.Hi-fun.Lo))))
+            fun.calc <- 100*((fun.Hi-fun.Value)/(fun.Hi-fun.Lo))
           }
+          fun.Result <- sapply(fun.calc, function(x) {median(c(0, 100, x))})
         } else if(fun.ScoreRegime=="CAT_135"){
           if(fun.Direction=="DECREASE") {
             fun.Result <- ifelse(fun.Value>=fun.Hi,5
@@ -238,8 +239,8 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
         }##IF.scoring.END
         #
         # Update input DF with matching values
-        myTF <- DF_Metrics[,col_IndexName]==a & DF_Metrics[,col_IndexRegion]==b
-        DF_Metrics[myTF,paste0("SC_",c)] <- fun.Result[myTF]
+        myTF <- DF_Metrics[, col_IndexName]==a & DF_Metrics[, col_IndexRegion]==b
+        DF_Metrics[myTF,paste0("SC_", c)] <- fun.Result[myTF]
       }##FOR.c.END
     }##FOR.a.END
   }##FOR.b.END
@@ -266,23 +267,23 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
       next
     }
     # thresholds
-    fun.NumMetrics  <- fun.Thresh.myIndex[,"NumMetrics"]
-    fun.ScoreRegime <- fun.Thresh.myIndex[,"ScoreRegime"]
-    fun.Index.Nar.Thresh <- fun.Thresh.myIndex[,c(paste0("Thresh0",1:6))]
-    fun.Index.Nar.Nar    <- fun.Thresh.myIndex[,c(paste0("Nar0",1:5))]
+    fun.NumMetrics  <- fun.Thresh.myIndex[, "NumMetrics"]
+    fun.ScoreRegime <- fun.Thresh.myIndex[, "ScoreRegime"]
+    fun.Index.Nar.Thresh <- fun.Thresh.myIndex[, c(paste0("Thresh0", 1:6))]
+    fun.Index.Nar.Nar    <- fun.Thresh.myIndex[, c(paste0("Nar0", 1:5))]
 
     fun.Index.Nar.Numb <- sum(!is.na(fun.Index.Nar.Nar))
 
     # default value
-    fun.Value <- DF_Metrics[,"sum_Index"]
+    fun.Value <- DF_Metrics[, "sum_Index"]
     fun.Result <- fun.Value * 0  #default value of zero
     #
     # Scoring
     if(fun.ScoreRegime=="AVERAGE"){##IF.scoring.START
-      fun.Result <- DF_Metrics[,"sum_Index"] / fun.NumMetrics
+      fun.Result <- DF_Metrics[, "sum_Index"] / fun.NumMetrics
     } else {
       # SUM
-      fun.Result <- DF_Metrics[,"sum_Index"]
+      fun.Result <- DF_Metrics[, "sum_Index"]
     }##IF.scoring.END
     #
     # Narrative
