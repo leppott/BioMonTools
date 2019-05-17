@@ -3,28 +3,33 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2018-12-03 08:42:47
+    #> Last Update: 2019-05-17 10:58:28
 
-Suite of functions and tools for bioassessment and biomonitoring.
+Suite of functions and tools for bioassessment and
+biomonitoring.
 
 ## Badges
 
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/leppott/BioMonTools/graphs/commit-activity)
+[![GitHub
+license](https://img.shields.io/github/license/leppott/BioMonTools.svg)](https://github.com/leppott/BioMonTools/blob/master/LICENSE)
 [![Travis-CI Build
 Status](https://travis-ci.org/leppott/BioMonTools.svg?branch=master)](https://travis-ci.org/leppott/BioMonTools)
 [![GitHub
-license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/leppott/BioMonTools/blob/master/LICENSE)
+issues](https://img.shields.io/github/issues/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/issues/)
+
 [![GitHub
-release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
+release](https://img.shields.io/github/release/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
 [![Github all
-releases](https://img.shields.io/github/downloads/Naereen/StrapDown.js/total.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
-[![GitHub
-issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://GitHub.com/leppott/BioMonTools/issues/)
+releases](https://img.shields.io/github/downloads/leppott/BioMonTools/total.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
 
 ## Installation
 
-library(devtools) \#install if needed
-
-install\_github(“leppott/BioMonTools”)
+``` r
+library(devtools)  #install if needed
+Sys.setenv("TAR" = "internal")  # needed for R v3.6.0
+install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+```
 
 ## Purpose
 
@@ -46,4 +51,8 @@ data for use with these tools.
 
 ## Documentation
 
-Vignette and install guide are planned for the future.
+Vignette and install guide udpates are planned for the future.
+
+## Issues
+
+<https://github.com/leppott/BioMonTools/issues>

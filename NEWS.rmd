@@ -32,6 +32,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9018 (2019-05-17)
+
+* Fixes for R v3.6.0, Issue #18
+    + DESCRIPTION
+        - Remove StagedInstall: no
+    + README
+        - Add directions for fix for devtools.
+* README
+    + Update badges.
+
 ## Changes in Version 0.3.0.9017 (2019-05-08)
 
 * Metric names, fix those added in previous update, Issue #3
