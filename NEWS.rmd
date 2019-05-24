@@ -32,6 +32,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9019 (2019-05-24)
+
+* Added metrics, Issue #3
+    + metric.values
+        - x_NCBI, x_D_Mg, x_D_G
+        - Additional QC for TolVal2 as numeric (same as TolVal).
+    + MetricNames.xlsx
+
 ## Changes in Version 0.3.0.9018 (2019-05-17)
 
 * Fixes for R v3.6.0, Issue #18

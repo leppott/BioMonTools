@@ -95,6 +95,10 @@ Area_mi2, SurfaceArea, Density_m2, and Density_ft2.
 If fun.MetricNames is provided only those metrics will be returned in the provided order.
 This variable can be used to sort the metrics per the user's preferences..
 By default the metric names will be returned in the groupings that were used for calculation.
+
+The fields TOLVAL2 and FFG2 are provided to allow the user to calculate metrics
+based on alternative scenarios.  For example, HBI and NCBI where the NCBI uses
+a different set of tolerance values (TOLVAL2).
 }
 \examples{
 # Example data

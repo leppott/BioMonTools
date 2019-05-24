@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-05-17 11:01:28
+    #> Last Update: 2019-05-24 08:48:48
 
 # Planned Updates
 
@@ -21,6 +21,13 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.3.0.9019 (2019-05-24)
+
+  - Added metrics, Issue \#3
+      - metric.values
+          - x\_NCBI, x\_D\_Mg, x\_D\_G
+      - MetricNames.xlsx
 
 ## Changes in Version 0.3.0.9018 (2019-05-17)
 

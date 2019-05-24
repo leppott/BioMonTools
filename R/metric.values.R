@@ -71,6 +71,10 @@
 #' This variable can be used to sort the metrics per the user's preferences..
 #' By default the metric names will be returned in the groupings that were used for calculation.
 #'
+#' The fields TOLVAL2 and FFG2 are provided to allow the user to calculate metrics
+#' based on alternative scenarios.  For example, HBI and NCBI where the NCBI uses
+#' a different set of tolerance values (TOLVAL2).
+#'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param fun.DF Data frame of taxa (list required fields)
 #' @param fun.Community Community name for which to calculate metric values (bugs, fish, or algae)
@@ -426,6 +430,14 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
   if(sum(TolVal_Char_NA, na.rm=TRUE)>0){
     myDF[TolVal_Char_NA, "TOLVAL"] <- NA
     myDF[, "TOLVAL"] <- as.numeric(myDF[, "TOLVAL"])
+  }
+
+  # QC, TolVal
+  # need as numeric, if have "NA" as character it fails
+  TolVal2_Char_NA <- myDF[, "TOLVAL2"]=="NA"
+  if(sum(TolVal2_Char_NA, na.rm=TRUE)>0){
+    myDF[TolVal2_Char_NA, "TOLVAL2"] <- NA
+    myDF[, "TOLVAL2"] <- as.numeric(myDF[, "TOLVAL2"])
   }
 
   # Data Munging ####
@@ -957,22 +969,27 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              #,x_HBI_numer=sum(N_TAXA*TOLVAL, na.rm=TRUE)
              #,x_HBI_denom=sum(N_TAXA[!is.na(TOLVAL) & TOLVAL>=0], na.rm=TRUE)
              , x_HBI = sum(N_TAXA * TOLVAL, na.rm=TRUE)/sum(N_TAXA[!is.na(TOLVAL) & TOLVAL >= 0], na.rm=TRUE)
+             , x_NCBI = sum(N_TAXA * TOLVAL2, na.rm=TRUE)/sum(N_TAXA[!is.na(TOLVAL2) & TOLVAL2 >= 0], na.rm=TRUE)
              # Shannon-Weiner
              #, x_Shan_Num= -sum(log(N_TAXA/ni_total)), na.rm=TRUE)
              #, x_Shan_e=x_Shan_Num/log(exp(1))
              , x_Shan_e = -sum((N_TAXA/ni_total)*log((N_TAXA/ni_total)), na.rm=TRUE)
-             , x_Shan_2=x_Shan_e/log(2)
-             , x_Shan_10=x_Shan_e/log(10)
+             , x_Shan_2 = x_Shan_e/log(2)
+             , x_Shan_10 = x_Shan_e/log(10)
              #, x_D Simpson
-             , x_D=1-sum((N_TAXA/ni_total)^2, na.rm = TRUE)
+             , x_D = 1-sum((N_TAXA/ni_total)^2, na.rm = TRUE)
+            #, X_D_G (Gleason) - [nt_total]/Log([ni_total])
+            , x_D_G = (nt_total) / log(ni_total)
+             #, x_D_Mg Margalef -  ([nt_total]-1)/Log([ni_total])
+             , x_D_Mg = (nt_total - 1) / log(ni_total)
              #, x_Hbe
-             #, x_D_Mg Margalef
              #, x_H (Shannon)
              # Evenness, Pielou
               # H / Hmax  Hmax is log(nt_total)
-             , x_Evenness=x_Shan_e/log(nt_total)
+             , x_Evenness = x_Shan_e/log(nt_total)
 
             # Density ####
+            # Numbers per area sampled
 
              # BCG ####
              # 1i, 1m, 1t
