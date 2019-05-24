@@ -32,6 +32,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.0.9020 (2019-05-24)
+
+* Updated metric names for MBISQ index, Issue #3
+    + MetricScoring.xlsx
+
 ## Changes in Version 0.3.0.9019 (2019-05-24)
 
 * Added metrics, Issue #3

@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-05-24 08:48:48
+    #> Last Update: 2019-05-24 13:38:02
 
 # Planned Updates
 
@@ -22,11 +22,17 @@ NEWS
 
 # Version History
 
+## Changes in Version 0.3.0.9020 (2019-05-24)
+
+  - Updated metric names for MBISQ index, Issue \#3
+      - MetricScoring.xlsx
+
 ## Changes in Version 0.3.0.9019 (2019-05-24)
 
   - Added metrics, Issue \#3
       - metric.values
           - x\_NCBI, x\_D\_Mg, x\_D\_G
+          - Additional QC for TolVal2 as numeric (same as TolVal).
       - MetricNames.xlsx
 
 ## Changes in Version 0.3.0.9018 (2019-05-17)
