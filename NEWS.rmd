@@ -34,6 +34,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 2019-05-31, Added "to do" and "references" to metricscoring.xlsx, Issue #3
 
+## Changes in Version 0.3.0.9024 (2019-06-27)
+
+* MetricScoring.xlsx, issue #22
+    + Some numbers to character with ' prefix.
+    + These numbers not importing correctly from Excel.
+        - Floating point errors in rounding.
+
 ## Changes in Version 0.3.0.9023 (2019-06-27)
 
 * MetricNames.xlsx

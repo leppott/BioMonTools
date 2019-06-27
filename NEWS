@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-06-27 11:56:12
+    #> Last Update: 2019-06-27 13:09:38
 
 # Planned Updates
 
@@ -25,6 +25,13 @@ NEWS
 2019-05-31, Added “to do” and “references” to metricscoring.xlsx, Issue
 \#3
 
+## Changes in Version 0.3.0.9024 (2019-06-27)
+
+  - MetricScoring.xlsx, issue \#22
+      - Some numbers to character with ’ prefix.
+      - These numbers not importing correctly from Excel.
+          - Floating point errors in rounding.
+
 ## Changes in Version 0.3.0.9023 (2019-06-27)
 
   - MetricNames.xlsx
@@ -33,7 +40,7 @@ NEWS
   - MetricScoring.xlsx
       - Update date on Notes worksheet.
   - metric.values.R
-      - Update demonstration fish metrics.
+      - Update demonstration fish metrics, Issue \#21.
 
 ## Changes in Version 0.3.0.9022 (2019-06-27)
 
