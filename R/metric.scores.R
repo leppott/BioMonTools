@@ -285,8 +285,8 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     # thresholds
     fun.NumMetrics  <- fun.Thresh.myIndex[, "NumMetrics"]
     fun.ScoreRegime <- fun.Thresh.myIndex[, "ScoreRegime"]
-    fun.Index.Nar.Thresh <- fun.Thresh.myIndex[, c(paste0("Thresh0", 1:6))]
-    fun.Index.Nar.Nar    <- fun.Thresh.myIndex[, c(paste0("Nar0", 1:5))]
+    fun.Index.Nar.Thresh <- fun.Thresh.myIndex[, c(paste0("Thresh0", 1:7))]
+    fun.Index.Nar.Nar    <- fun.Thresh.myIndex[, c(paste0("Nar0", 1:6))]
 
     fun.Index.Nar.Numb <- sum(!is.na(fun.Index.Nar.Nar))
 
@@ -303,7 +303,7 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     }##IF.scoring.END
     #
     # Narrative
-    myBreaks <- as.numeric(paste(fun.Index.Nar.Thresh[1, 1:(fun.Index.Nar.Numb+1)]))
+    myBreaks <- as.numeric(paste(fun.Index.Nar.Thresh[1, 1:(fun.Index.Nar.Numb + 1)]))
     myLabels <- paste(fun.Index.Nar.Nar[1, 1:fun.Index.Nar.Numb])
     fun.Result.Nar <- as.vector(cut(fun.Result, breaks=myBreaks, labels=myLabels
                           , include.lowest=TRUE, right=FALSE, ordered_result = TRUE))

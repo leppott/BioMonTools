@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-06-27 13:23:24
+    #> Last Update: 2019-06-27 15:56:21
 
 # Planned Updates
 
@@ -24,6 +24,15 @@ NEWS
 
 2019-05-31, Added “to do” and “references” to metricscoring.xlsx, Issue
 \#3
+
+## Changes in Version 0.3.1.9001 (2019-06-27)
+
+  - MetricScoring.xlsx, issue \#22
+      - New metric misspelled.
+  - Add capability for 6 narrative categories.
+      - MetricScoring.xlsx
+      - metric.scores.R
+          - Minor edit for number of columns.
 
 ## Changes in Version 0.3.1 (2019-06-27)
 
