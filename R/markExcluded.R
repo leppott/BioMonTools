@@ -237,7 +237,7 @@ markExcluded <- function(df_samptax, SampID="SAMPLEID", TaxaID="TAXAID", TaxaCou
   msg_warn <- paste0("*WARNING*, ",tl_missing_num," taxa levels missing from input data frame; \n ", paste(tl_missing, collapse=", ", sep=""),"\n")
   #warning(msg_warn, tl_missing_num>0) # (commented out)
   cat(msg_warn)
-  flush.console()
+  utils::flush.console()
 
   # QC, remove tibble from data frame
   df_samptax <- as.data.frame(df_samptax)
@@ -294,7 +294,7 @@ markExcluded <- function(df_samptax, SampID="SAMPLEID", TaxaID="TAXAID", TaxaCou
     i_len <- length(tl_present)
     msg_progress <- paste0("Working on item (", i_num, "/", i_len,"); ", i)
     print(msg_progress)
-    flush.console()
+    utils::flush.console()
 
     # Exceptions
     # Rename "Exceptions" in TaxaLevels (present) columns

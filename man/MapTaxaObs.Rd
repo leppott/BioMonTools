@@ -30,6 +30,8 @@ MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long, output_dir,
 \item{database}{maps::map function database; world, usa, state, county}
 
 \item{regions}{maps::map function regions.  Names pertinent to map_db.}
+
+\item{...}{Optional arguments to be passed to methods.}
 }
 \value{
 Taxa maps to user defined directory as jpg or pdf.

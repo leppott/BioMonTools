@@ -30,8 +30,10 @@
 #' # Import Checks
 #' df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
 #'                                           , package="BioMonTools"), sheet="Flags")
+#'\dontrun{
 #' # View Checks
 #' View(df.checks)
+#'}
 #'
 #' # Run Function
 #' df.flags <- qc.checks(df.metric.values.bugs, df.checks)
@@ -39,22 +41,25 @@
 #' # Summarize Results
 #' table(df.flags[,"CHECKNAME"], df.flags[,"FLAG"], useNA="ifany")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
-# # Rename UPPER CASE myCols in metric.values output
-# for (i in myCols){##IF.i.START
-#   i.match <- match(toupper(i), names(df.metric.values.bugs))
-#   if(!is.na(i.match)){##IF.is.na.START
-#       names(df.metric.values.bugs)[i.match] <- i
-#    }##IF.is.na.END
-# }##IF.i.END
-#~~~~~~~~~~~~~~~~~~~~~~~~~~
-# QC
-# df.metrics <- df.metric.values.bugs
-# df.checks <- df.checks
-# input.shape <- "wide"
-#~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
 qc.checks <- function(df.metrics, df.checks, input.shape="wide"){##FUNCTION.START
   #
+  boo_DEBUG <- FALSE
+  if(boo_DEBUG==TRUE){
+    # # Rename UPPER CASE myCols in metric.values output
+    # for (i in myCols){##IF.i.START
+    #   i.match <- match(toupper(i), names(df.metric.values.bugs))
+    #   if(!is.na(i.match)){##IF.is.na.START
+    #     names(df.metric.values.bugs)[i.match] <- i
+    #   }##IF.is.na.END
+    # }##IF.i.END
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #  QC
+    df.metrics <- df.metric.values.bugs
+    df.checks <- df.checks
+    input.shape <- "wide"
+  }##IF~boo_DEBUG~END
+
   # to data frame (from Tibble)
   df.metrics <- as.data.frame(df.metrics)
   df.checks <- as.data.frame(df.checks)

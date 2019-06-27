@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-06-27 10:21:44
+    #> Last Update: 2019-06-27 11:29:04
 
 # Planned Updates
 
@@ -24,6 +24,31 @@ NEWS
 
 2019-05-31, Added “to do” and “references” to metricscoring.xlsx, Issue
 \#3
+
+## Changes in Version 0.3.0.9022 (2019-06-27)
+
+  - Check
+      - DESCRIPTION
+          - rmarkdown listed under imports and suggests. Remove from
+            suggests.
+          - Add to suggests; ggplot2 and reshape2.
+          - Add MBSStools to suggests. May import the data later and
+            remove.
+      - Example, move “View” to dontrun.
+          - metric.scores.R
+          - metric.values.R
+          - qc.checks.R
+          - rarify.R
+      - Fix line widths greater than 100 characters:
+          - markExcluded.R
+          - metric.scores.R
+      - Properly declare functions from other packages:
+          - “grDevices”, “dev.off”, “jpeg”, “pdf”
+          - “graphics”, “mtext”, “points”
+          - “stats”, “median”, “runif”
+          - “utils”, “flush.console”
+      - MapTaxaObs.R
+          - Document the “…” argument.
 
 ## Changes in Version 0.3.0.9021 (2019-06-27)
 

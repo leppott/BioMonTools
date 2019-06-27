@@ -27,7 +27,9 @@
 #' # load bio data
 #' df_biodata <- data_bio2rarify
 #' dim(df_biodata)
+#'\dontrun{
 #' View(df_biodata)
+#'}
 #'
 #' # subsample
 #' mySize <- 500
@@ -39,19 +41,25 @@
 #'
 #' # view results
 #' dim(bugs_mysize)
+#'\dontrun{
 #' View(bugs_mysize)
+#'}
 #'
 #' # Compare pre- and post- subsample counts
 #' df_compare <- merge(df_biodata, bugs_mysize, by=c("SampleID", "TaxaID")
 #'                     , suffixes = c("_Orig","_500"))
 #' df_compare <- df_compare[,c("SampleID", "TaxaID", "N_Taxa_Orig", "N_Taxa_500")]
+#'
+#'\dontrun{
 #' View(df_compare)
+#' }
 #'
 #' # compare totals
 #' tbl_totals <- aggregate(cbind(N_Taxa_Orig, N_Taxa_500) ~ SampleID, df_compare, sum)
+#'
+#'\dontrun{
 #' View(tbl_totals)
 #'
-#' \dontrun{
 #' # save the data
 #' write.table(bugs_mysize, paste("bugs",mySize,"txt",sep="."),sep="\t")
 #' }
@@ -70,7 +78,7 @@ rarify<-function(inbug, sample.ID, abund, subsiz, mySeed=NA){##FUNCTION.rarify.S
   for(i in 1:nsamp) { ;
     #extract current sample;
     isamp<-sampid[i];
-    flush.console();
+    utils::flush.console();
     #print(as.character(isamp));
     onesamp<-inbug[inbug[,sample.ID]==isamp,];
     onesamp<-data.frame(onesamp,row.id=seq(1,dim(onesamp)[[1]])); #add sequence numbers as a new column;
@@ -79,7 +87,7 @@ rarify<-function(inbug, sample.ID, abund, subsiz, mySeed=NA){##FUNCTION.rarify.S
     nbug<-length(samp.expand); #number of bugs in sample;
     #vector of uniform random numbers;
     if(!is.na(mySeed)) set.seed(mySeed)  #use seed if provided.
-    ranvec<-runif(n=nbug);
+    ranvec <- stats::runif(n=nbug);
     #sort the expanded sample randomly;
     samp.ex2<-samp.expand[order(ranvec)];
     #keep only the first piece of ranvec, of the desired fixed count size;
@@ -97,6 +105,6 @@ rarify<-function(inbug, sample.ID, abund, subsiz, mySeed=NA){##FUNCTION.rarify.S
   elaps<-proc.time()-start.time;
   cat(c("Rarify of samples complete. \n Number of samples = ",nsamp,"\n"))
   cat(c(" Execution time (sec) = ", elaps[1]))
-  flush.console()
+  utils::flush.console()
   return(outbug) #return subsampled data set as function value;
 } #end of function; ##FUNCTION.rarify.END

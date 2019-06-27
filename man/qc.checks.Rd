@@ -42,8 +42,10 @@ df.metric.values.bugs <- metric.values(myDF, "bugs", fun.cols2keep=myCols)
 # Import Checks
 df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
                                           , package="BioMonTools"), sheet="Flags")
+\dontrun{
 # View Checks
 View(df.checks)
+}
 
 # Run Function
 df.flags <- qc.checks(df.metric.values.bugs, df.checks)

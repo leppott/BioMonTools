@@ -44,9 +44,11 @@
 #' myIndex <- "BCG.PacNW.L1"
 #' df_samps_bugs$INDEX_NAME   <- myIndex
 #' df_samps_bugs$INDEX_REGION <- "ALL"
-#' (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[,"INDEX_NAME"]==myIndex,"METRIC_NAME"]))
+#' (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
+#'                           , "INDEX_NAME"]==myIndex, "METRIC_NAME"]))
 #' # Run Function
-#' df_metric_values_bugs <- metric.values(df_samps_bugs, "bugs", fun.MetricNames = myMetrics.Bugs)
+#' df_metric_values_bugs <- metric.values(df_samps_bugs, "bugs"
+#'                                        , fun.MetricNames = myMetrics.Bugs)
 #'
 #' # index to BCG.PacNW.L1
 #' df_metric_values_bugs$INDEX_NAME <- myIndex
@@ -59,12 +61,16 @@
 #'                                        , "INDEX_REGION"
 #'                                        , df_thresh_metric
 #'                                        , df_thresh_index)
+#'
+#'\dontrun{
 #' # View Results
 #' View(df_metric_scores_bugs)
+#'}
 #' # QC, table
 #' table(df_metric_scores_bugs$Index, df_metric_scores_bugs$Index_Nar)
 #' # QC, plot
-#' hist(df_metric_scores_bugs$Index, main="PacNW BCG Example Data", xlab="Level 1 Indicator Taxa Index Score")
+#' hist(df_metric_scores_bugs$Index, main="PacNW BCG Example Data"
+#'      , xlab="Level 1 Indicator Taxa Index Score")
 #' abline(v=c(21,30), col="blue")
 #' text(21+c(-2,+2), 200, c("Low","Medium"), col="blue")
 #'
@@ -75,7 +81,8 @@
 #' # Thresholds
 #' # imported above
 #' # get metric names for myIndex
-#' (myMetrics.Bugs.MBSS <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[,"INDEX_NAME"]==myIndex,"METRIC_NAME"]))
+#' (myMetrics.Bugs.MBSS <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
+#'                               , "INDEX_NAME"]==myIndex, "METRIC_NAME"]))
 #' # Taxa Data
 #' myDF.Bugs.MBSS <- MBSStools::taxa_bugs_genus
 #' myDF.Bugs.MBSS$NONTARGET <- FALSE
@@ -90,18 +97,27 @@
 #' myDF.Bugs.MBSS$EXCLUDE <- myDF.Bugs.MBSS$EXCLUDE=="Y"
 #' myMetric.Values.Bugs.MBSS <- metric.values(myDF.Bugs.MBSS, "bugs", myMetrics.Bugs.MBSS)
 #' #
+#'\dontrun{
 #' View(myMetric.Values.Bugs.MBSS)
+#' }
 #' # SCORE
 #' myMetric.Values.Bugs.MBSS$INDEX_REGION <- toupper(myMetric.Values.Bugs.MBSS$INDEX_REGION)
-#' Metrics.Bugs.Scores.MBSS <- metric.scores(myMetric.Values.Bugs.MBSS, myMetrics.Bugs.MBSS
-#'                             , "INDEX_NAME", "INDEX_REGION", df_thresh_metric, df_thresh_index)
+#' Metrics.Bugs.Scores.MBSS <- metric.scores(myMetric.Values.Bugs.MBSS
+#'                                           , myMetrics.Bugs.MBSS
+#'                                           , "INDEX_NAME"
+#'                                           , "INDEX_REGION"
+#'                                           , df_thresh_metric
+#'                                           , df_thresh_index)
 #' # View Results
 #' View(Metrics.Bugs.Scores.MBSS)
 #'
 #' # QC Index Scores and Narratives
 #' # Set Narrative as Ordered Factor
 #' Nar.MBSS <- c("Very Poor", "Poor", "Fair", "Good")
-#' Metrics.Bugs.Scores.MBSS$Index_Nar <- factor(Metrics.Bugs.Scores.MBSS$Index_Nar, levels=Nar.MBSS, labels=Nar.MBSS, ordered=TRUE)
+#' Metrics.Bugs.Scores.MBSS$Index_Nar <- factor(Metrics.Bugs.Scores.MBSS$Index_Nar
+#'                                             , levels=Nar.MBSS
+#'                                             , labels=Nar.MBSS
+#'                                             , ordered=TRUE)
 #' table(Metrics.Bugs.Scores.MBSS$Index, Metrics.Bugs.Scores.MBSS$Index_Nar, useNA="ifany")
 #'
 #' # QC bug count (manual)
@@ -201,14 +217,14 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
           }else if (fun.Direction=="INCREASE") {
             fun.calc <- 100*((fun.Hi-fun.Value)/(fun.Hi-fun.Lo))
           }
-          fun.Result <- sapply(fun.calc, function(x) {median(c(0, 100, x))})
+          fun.Result <- sapply(fun.calc, function(x) {stats::median(c(0, 100, x))})
         } else if(fun.ScoreRegime=="CAT_135"){
           if(fun.Direction=="DECREASE") {
             fun.Result <- ifelse(fun.Value>=fun.Hi,5
                                  ,ifelse(fun.Value<fun.Lo,1,3))
             if(boo.QC==TRUE){##IF.boo.QC.START
               print(paste0("Metric=",c,", Value=",fun.Value,", Result=", fun.Result))
-              flush.console()
+              utils::flush.console()
             }##IF.boo.QC.END
           } else if (fun.Direction=="INCREASE") {
             fun.Result <- ifelse(fun.Value<=fun.Lo,5

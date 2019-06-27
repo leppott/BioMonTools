@@ -102,8 +102,10 @@
 #' # Run Function
 #' df_metric_values_bugs <- metric.values(df_samps_bugs, "bugs", fun.cols2keep=myCols)
 #'
+#'\dontrun{
 #' # View Results
 #' View(df_metric_values_bugs)
+#' }
 #'
 #' # Get data in long format so can QC results more easily
 #' df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID", "INDEX_NAME"
@@ -131,9 +133,10 @@
 #' # Run Function
 #' df_metric_values_bugs_myMetrics <- metric.values(df_samps_bugs, "bugs"
 #'                                                 , fun.MetricNames = myMetrics)
-#'
+#'\dontrun{
 #' # View Results
 #' View(df_metric_values_bugs_myMetrics)
+#' }
 #'
 # #~~~~~~~~~~~~~~~~~~~~~~~
 # # INDIANA BCG

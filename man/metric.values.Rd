@@ -116,8 +116,10 @@ myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
 # Run Function
 df_metric_values_bugs <- metric.values(df_samps_bugs, "bugs", fun.cols2keep=myCols)
 
+\dontrun{
 # View Results
 View(df_metric_values_bugs)
+}
 
 # Get data in long format so can QC results more easily
 df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID", "INDEX_NAME"
@@ -145,8 +147,9 @@ myMetrics <- c("ni_total", "nt_EPT", "nt_Ephem", "pi_tv_intol", "pi_Ephem"
 # Run Function
 df_metric_values_bugs_myMetrics <- metric.values(df_samps_bugs, "bugs"
                                                 , fun.MetricNames = myMetrics)
-
+\dontrun{
 # View Results
 View(df_metric_values_bugs_myMetrics)
+}
 
 }

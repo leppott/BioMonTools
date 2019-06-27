@@ -26,6 +26,7 @@
 #' @param output_type File format for output; jpg or pdf.
 #' @param database maps::map function database; world, usa, state, county
 #' @param regions maps::map function regions.  Names pertinent to map_db.
+#' @param ... Optional arguments to be passed to methods.
 # @param map_xlim maps::map function xlim;
 # @param map_ylim maps::map function ylim;
 #'
@@ -56,7 +57,7 @@
 #'
 #' #Example #2
 #' # (doesn't work right now)
-#' \dontrun{
+#'\dontrun{
 #' df_obs <- read.delim("Fish_MD.txt")
 #' SampID <- "SITEYR"
 #' TaxaID <- "FishTaxa"
@@ -75,7 +76,7 @@
 #'
 #' MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
 #'            , database=myDB, regions=myRegion)
-#' }
+#'}
 
 #
 #' @export
@@ -110,7 +111,7 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
 
   #Define PDF
   if (output_type=="pdf") {##IF.output_type.START
-    pdf(file=paste(output_prefix, "pdf", sep="."))##PDF.START
+    grDevices::pdf(file=paste(output_prefix, "pdf", sep="."))##PDF.START
   }##IF.output_type.END
 
 
@@ -123,7 +124,7 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
     myTargetMapCat <- data2process[myCounter]
     # Update User
     print(paste("Map ",myCounter," of ",myCounterStop,"; ", myTargetMapCat, sep=""))
-    flush.console()
+    utils::flush.console()
 
     # # subset
     data.TargetMapCat <- subset(df_obs, TaxaID==myTargetMapCat)
@@ -133,7 +134,7 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
 
     # jpg
     if (output_type=="jpg") {##IF.output_type.START
-      jpeg(filename = paste(output_prefix, myTargetMapCat, "jpg",sep="."), width=1024, height=768, quality=100, pointsize=20)
+      grDevices::jpeg(filename = paste(output_prefix, myTargetMapCat, "jpg",sep="."), width=1024, height=768, quality=100, pointsize=20)
     }##IF.output_type.END
 
     #~~~~~~~~~~~~~~~~~
@@ -157,35 +158,35 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
     myCEX <- 1 #myCEX.PctTarget
     #
     # map all sites (as gray, open circle)
-    points(df_obs[,Long], df_obs[,Lat], col="lightgray", pch=1, cex=1)
+    graphics::points(df_obs[,Long], df_obs[,Lat], col="lightgray", pch=1, cex=1)
     #
-    points(data.TargetMapCat[,Long], data.TargetMapCat[,Lat], col="blue", pch=19, cex=myCEX)
+    graphics::points(data.TargetMapCat[,Long], data.TargetMapCat[,Lat], col="blue", pch=19, cex=myCEX)
     # main
-    #mtext(paste(data2process[myCounter]," = ",myTargetMapCat,sep=""))
-    mtext(myTargetMapCat)
+    #graphics::mtext(paste(data2process[myCounter]," = ",myTargetMapCat,sep=""))
+    graphics::mtext(myTargetMapCat)
     # 20130923, Target samples and count (lower left, side=1,outer=T,adj=0)
     # Pct Count, top line (line=-2)
     (Count.Target <- sum(data.TargetMapCat[,TaxaCount]))
     (Pct.Count <- round(Count.Target/Count.ALL,2))
-  #  mtext(paste("Pct of Total Count (n=",Count.Target,")= ",Pct.Count,sep=""), side=1,outer=TRUE,adj=0,line=-2,cex=0.75)
+  #  graphics::mtext(paste("Pct of Total Count (n=",Count.Target,")= ",Pct.Count,sep=""), side=1,outer=TRUE,adj=0,line=-2,cex=0.75)
     # Pct Samps, bottom line (line=-1)
     Samps.Target <- unique(data.TargetMapCat[,SampID])
     (NumSamps.Target <- length(Samps.Target))
     (Pct.Samps <- round(NumSamps.Target/NumSamps.ALL,2))
-    mtext(paste("Pct of Total Samples (n=",NumSamps.ALL,") = ",Pct.Samps,sep=""),side=1,outer=TRUE,adj=0,line=-1,cex=0.75)
+    graphics::mtext(paste("Pct of Total Samples (n=",NumSamps.ALL,") = ",Pct.Samps,sep=""),side=1,outer=TRUE,adj=0,line=-1,cex=0.75)
     # number of samples
-    mtext(paste("n=",NumSamps.Target,sep=""),side=1)
+    graphics::mtext(paste("n=",NumSamps.Target,sep=""),side=1)
     #
 
 
     if (output_type=="jpg") {##IF.output_type.START
-      dev.off() ##JPEG.END
+      grDevices::dev.off() ##JPEG.END
     }##IF.output_type.END
 
     #
     # 1.6. Display progress to user (needs flush.console or only writes at end)
     # print(paste("Finished file ",myCounter-myCounterStart," of ",myCounterStop-myCounterStart,", ",data2process[myCounter],".",sep=""))
-    # flush.console()
+    # utils::flush.console()
     #
     # 1.7. Some clean up
     #rm(data.TargetMapCat)
@@ -196,7 +197,7 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
   #
   # Close Device
   if (output_type=="pdf") {##IF.output_type.START
-    dev.off() ##PDF.END
+    grDevices::dev.off() ##PDF.END
   }##IF.output_type.END
   #
   print(paste("Processing of ",myCounter-myCounterStart," of ",myCounterStop-myCounterStart," files complete.",sep=""))
