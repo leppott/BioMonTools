@@ -1122,14 +1122,11 @@ metric.values.fish <- function(myDF, SampleID, MetricNames=NULL, boo.Adjust=FALS
                        #
                        # percent individuals
                        # % RBS
-                       ,ni_rbs=sum(TOTAL[TYPE=="SUCKER" & PTOLR!="T"], na.rm = TRUE)
-                       ,pi_rbs=ni_rbs/ni_total
+                       ,pi_rbs=100*sum(TOTAL[TYPE=="SUCKER" & PTOLR!="T"], na.rm = TRUE)/ni_total
                        # Pct Brook Trout
-                       ,ni_brooktrout=sum(TOTAL[SPECIES=="BROOK TROUT"], na.rm = TRUE)
-                       ,pi_brooktrout=ni_brooktrout/ni_total
+                       ,pi_brooktrout=100*sum(TOTAL[SPECIES=="BROOK TROUT"], na.rm = TRUE)/ni_total
                        # Pct Sculpins
-                       ,ni_sculpin=sum(TOTAL[TYPE=="SCULPIN"], na.rm = TRUE)
-                       ,pi_sculpin=ni_sculpin/ni_total
+                       ,pi_sculpin=100*sum(TOTAL[TYPE=="SCULPIN"], na.rm = TRUE)/ni_total
                         #
                        # number of taxa
                        ,nt_total=dplyr::n_distinct(SPECIES)
@@ -1137,22 +1134,19 @@ metric.values.fish <- function(myDF, SampleID, MetricNames=NULL, boo.Adjust=FALS
                       #
                        # Feeding
                        # % Lithophilic spawners
-                       ,ni_lithophil=sum(TOTAL[SILT=="Y"], na.rm = TRUE)
-                       ,pi_lithophil=ni_lithophil/ni_total
+                       ,pi_lithophil=100*sum(TOTAL[SILT=="Y"], na.rm = TRUE)/ni_total
                        # % gen, omn, invert
-                       , ni_genomninvrt=sum(TOTAL[TROPHIC_MBSS=="GE" | TROPHIC_MBSS=="OM" | TROPHIC_MBSS=="IV"], na.rm = TRUE)
-                       ,pi_genomninvrt=ni_genomninvrt / ni_total
+                       , pi_genomninvrt=100*sum(TOTAL[TROPHIC_MBSS=="GE" | TROPHIC_MBSS=="OM" | TROPHIC_MBSS=="IV"], na.rm = TRUE)/ ni_total
                        # % insectivore
-                      ,ni_insectivore=sum(TOTAL[TROPHIC_MBSS=="IS"], na.rm = TRUE)
-                       ,pi_insectivore= ni_insectivore/ ni_total
+                      ,pi_insectivore=100*sum(TOTAL[TROPHIC_MBSS=="IS"], na.rm = TRUE)/ ni_total
                       #
                       # Tolerance
-                      , ni_tv_toler= sum(TOTAL[PTOLR=="T"], na.rm = TRUE)
-                      , pi_tv_toler= ni_tv_toler/ni_total
+                      , pi_tv_toler= 100*sum(TOTAL[PTOLR=="T"], na.rm = TRUE)/ni_total
+                      #
                       #
                        # indices
                        #,pi_dom01/2/3/5 #last? or nth
-                       ,pi_dom01=max(TOTAL)/ni_total
+                       ,pi_dom01=100*max(TOTAL)/ni_total
                       #
                        # Other
                        ,area=max(AVWID)*max(LEN_SAMP)
@@ -1169,24 +1163,24 @@ metric.values.fish <- function(myDF, SampleID, MetricNames=NULL, boo.Adjust=FALS
                        , STRMAREA  = area
                        , TOTCNT    = ni_total
                        , ABUNSQM   = ni_m2
-                       , PABDOM    = pi_dom01 * 100
+                       , PABDOM    = pi_dom01
                        , TOTBIOM   = x_biomass_total
                        , BIOM_MSQ  = x_biomass_m2
                        , NUMBENTSP = nt_benthic
-                       , NUMBROOK  = ni_brooktrout
-                       , PBROOK    = pi_brooktrout * 100
-                       , NUMGEOMIV = ni_genomninvrt
-                       , PGEOMIV   = pi_genomninvrt * 100
-                       , NUMIS     = ni_insectivore
-                       , P_IS      = pi_insectivore * 100
-                       , NUMLITH   = ni_lithophil
-                       , P_LITH    = pi_lithophil * 100
-                       , NUMROUND  = ni_rbs
-                       , PROUND    = pi_rbs * 100
-                       , NUMSCULP  = ni_sculpin
-                       , PSCULP    = pi_sculpin * 100
-                       , NUMTOL    = ni_tv_toler
-                       , PTOL      = pi_tv_toler * 100
+                       # , NUMBROOK  = ni_brooktrout
+                       , PBROOK    = pi_brooktrout
+                       # , NUMGEOMIV = ni_genomninvrt
+                       , PGEOMIV   = pi_genomninvrt
+                       # , NUMIS     = ni_insectivore
+                       , P_IS      = pi_insectivore
+                       # , NUMLITH   = ni_lithophil
+                       , P_LITH    = pi_lithophil
+                       # , NUMROUND  = ni_rbs
+                       , PROUND    = pi_rbs
+                       # , NUMSCULP  = ni_sculpin
+                       , PSCULP    = pi_sculpin
+                       # , NUMTOL    = ni_tv_toler
+                       , PTOL      = pi_tv_toler
                        #
   )## met.val.END
   #
@@ -1197,10 +1191,10 @@ metric.values.fish <- function(myDF, SampleID, MetricNames=NULL, boo.Adjust=FALS
   # if (!is.null(MetricNames)){
   #   met.val <- met.val[,c(Index_Name, SITE, FIBISTRATA, ACREAGE, LEN_SAMP, MetricNames)]
   # }
-  myFlds_Remove <- c("ni_total", "ni_rbs", "pi_rbs", "ni_brooktrout"
-                     , "pi_brooktrout", "ni_sculpin", "pi_sculpin", "nt_total"
-                     , "nt_benthic", "ni_lithophil", "pi_lithophil", "ni_genomninvrt"
-                     , "pi_genomninvrt", "ni_insectivore", "pi_insectivore", "ni_tv_toler"
+  myFlds_Remove <- c("ni_total", "pi_rbs",
+                     , "pi_brooktrout", "pi_sculpin", "nt_total"
+                     , "nt_benthic", "pi_lithophil",
+                     , "pi_genomninvrt", "pi_insectivore",
                      , "pi_tv_toler", "pi_dom01", "area", "ni_m2"
                      , "x_biomass_total", "x_biomass_m2")
   met.val <- met.val[,-match(myFlds_Remove,names(met.val))]

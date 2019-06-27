@@ -34,6 +34,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 2019-05-31, Added "to do" and "references" to metricscoring.xlsx, Issue #3
 
+## Changes in Version 0.3.0.9023 (2019-06-27)
+
+* MetricNames.xlsx
+    + Add fish metric names, Issue #21
+    + Demonstration only.  Not final format in function.
+* MetricScoring.xlsx
+    + Update date on Notes worksheet.
+* metric.values.R
+    + Update demonstration fish metrics, Issue #21.
+
 ## Changes in Version 0.3.0.9022 (2019-06-27)
 
 * Check

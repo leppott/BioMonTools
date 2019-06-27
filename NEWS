@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-06-27 11:29:04
+    #> Last Update: 2019-06-27 11:56:12
 
 # Planned Updates
 
@@ -24,6 +24,16 @@ NEWS
 
 2019-05-31, Added “to do” and “references” to metricscoring.xlsx, Issue
 \#3
+
+## Changes in Version 0.3.0.9023 (2019-06-27)
+
+  - MetricNames.xlsx
+      - Add fish metric names, Issue \#21
+      - Demonstration only. Not final format in function.
+  - MetricScoring.xlsx
+      - Update date on Notes worksheet.
+  - metric.values.R
+      - Update demonstration fish metrics.
 
 ## Changes in Version 0.3.0.9022 (2019-06-27)
 
