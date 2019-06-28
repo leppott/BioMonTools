@@ -34,6 +34,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 2019-05-31, Added "to do" and "references" to metricscoring.xlsx, Issue #3
 
+## Changes in Version 0.3.2 (2019-06-28)
+
+* New release version.
+
 ## Changes in Version 0.3.1.9001 (2019-06-27)
 
 * MetricScoring.xlsx, issue #22

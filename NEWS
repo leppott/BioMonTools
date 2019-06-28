@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-06-27 15:56:21
+    #> Last Update: 2019-06-28 09:30:04
 
 # Planned Updates
 
@@ -24,6 +24,10 @@ NEWS
 
 2019-05-31, Added “to do” and “references” to metricscoring.xlsx, Issue
 \#3
+
+## Changes in Version 0.3.2 (2019-06-28)
+
+  - New release version.
 
 ## Changes in Version 0.3.1.9001 (2019-06-27)
 
