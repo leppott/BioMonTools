@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-06-28 09:30:04
+    #> Last Update: 2019-07-02 14:00:14
 
 # Planned Updates
 
@@ -24,6 +24,12 @@ NEWS
 
 2019-05-31, Added “to do” and “references” to metricscoring.xlsx, Issue
 \#3
+
+## Changes in Version 0.3.2.9001 (2019-07-02)
+
+  - metric.scoring.xlsx
+      - Update “scoring formula” column for 2 MA WestHighlands metrics.
+      - Actual thresholds not affected.
 
 ## Changes in Version 0.3.2 (2019-06-28)
 
