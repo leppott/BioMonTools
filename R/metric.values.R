@@ -967,8 +967,8 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
             # Indices ####
              #,x_Becks.CLASS1=n_distinct(N_TAXA[EXCLUDE!=TRUE & TolVal>=0 & TolVal<=2.5])
              #,x_Becks.CLASS2=n_distinct(N_TAXA[EXCLUDE!=TRUE & TolVal>=2.5 & TolVal<=4])
-             , x_Becks = (2 * dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TOLVAL >= 0 & TOLVAL < 1.5], na.rm = TRUE)) +
-                          (1 * dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TOLVAL >= 1.5 & TOLVAL <= 4], na.rm = TRUE))
+             , x_Becks = (2 * dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TOLVAL >= 0 & TOLVAL <= 1.5], na.rm = TRUE)) +
+                          (1 * dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TOLVAL > 1.5 & TOLVAL <= 4], na.rm = TRUE))
              #,x_HBI_numer=sum(N_TAXA*TOLVAL, na.rm=TRUE)
              #,x_HBI_denom=sum(N_TAXA[!is.na(TOLVAL) & TOLVAL>=0], na.rm=TRUE)
              , x_HBI = sum(N_TAXA * TOLVAL, na.rm=TRUE)/sum(N_TAXA[!is.na(TOLVAL) & TOLVAL >= 0], na.rm=TRUE)

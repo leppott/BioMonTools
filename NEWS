@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-07-02 14:19:24
+    #> Last Update: 2019-07-03 09:17:28
 
 # Planned Updates
 
@@ -24,6 +24,13 @@ NEWS
 
 2019-05-31, Added “to do” and “references” to metricscoring.xlsx, Issue
 \#3
+
+## Changes in Version 0.3.3.9001 (2019-07-02)
+
+  - metric.values
+      - Update Beck’s Biotic Index cutoff signs.
+          - \< 1.5 and \>= 1.5 to \<= 1.5 and \> 1.5.
+          - Only affects tolerance values of exactly 1.5.
 
 ## Changes in Version 0.3.3 (2019-07-02)
 
