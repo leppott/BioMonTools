@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-07-03 09:17:28
+    #> Last Update: 2019-07-03 14:33:54
 
 # Planned Updates
 
@@ -24,6 +24,12 @@ NEWS
 
 2019-05-31, Added “to do” and “references” to metricscoring.xlsx, Issue
 \#3
+
+## Changes in Version 0.3.3.9002 (2019-07-03)
+
+  - metric.values, Issue \#3
+      - Add placeholders for marine/estuarine metrics
+          - Not yet in MetricScoring.xlsx or MetricNames.xlsx
 
 ## Changes in Version 0.3.3.9001 (2019-07-02)
 

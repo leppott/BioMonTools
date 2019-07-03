@@ -34,6 +34,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 2019-05-31, Added "to do" and "references" to metricscoring.xlsx, Issue #3
 
+## Changes in Version 0.3.3.9002 (2019-07-03)
+
+* metric.values, Issue #3
+    + Add placeholders for marine/estuarine metrics
+        - Not yet in MetricScoring.xlsx or MetricNames.xlsx
+
 ## Changes in Version 0.3.3.9001 (2019-07-02)
 
 * metric.values
