@@ -32,6 +32,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.3.9004 (2019-09-15)
+
+* Additional scoring and index.
+    + Gulf Biotic Index, 2011
+    + Mississippi Gulf Biotic Index, 2013
+
 ## Changes in Version 0.3.3.9003 (2019-09-15)
 
 * metric.values, Issue #3
