@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-07-03 14:33:54
+    #> Last Update: 2019-10-15 14:33:02
 
 # Planned Updates
 
@@ -22,8 +22,16 @@ NEWS
 
 # Version History
 
-2019-05-31, Added “to do” and “references” to metricscoring.xlsx, Issue
-\#3
+## Changes in Version 0.3.3.9003 (2019-09-15)
+
+  - metric.values, Issue \#3
+      - Additional estuary/marine metrics
+          - Gulf Biotic Index, 2011
+          - Mississippi Gulf Biotic Index, 2013
+      - Additional input parameter, boo.Marine
+      - Data\_Benthos.xlsx
+          - Add “InfraOrder” column.
+          - Require in metric.values
 
 ## Changes in Version 0.3.3.9002 (2019-07-03)
 
@@ -111,6 +119,7 @@ NEWS
 
   - Updated metric names for MA index, Issue \#3
       - MetricScoring.xlsx
+  - Added “to do” and “references” to metricscoring.xlsx, Issue \#3
 
 ## Changes in Version 0.3.0.9020 (2019-05-24)
 

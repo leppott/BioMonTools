@@ -50,9 +50,9 @@
 #'
 #' * NONTARGET (valid values are TRUE and FALSE)
 #'
-#' * PHYLUM, SUBPHYLUM, CLASS, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
+#' * PHYLUM, SUBPHYLUM, CLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
 #'
-#' * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR
+#' * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2
 #'
 #' Valid values for FFG: CG, CF, PR, SC, SH
 #'
@@ -84,6 +84,8 @@
 #' values prior to scoring.  Default = FALSE but may be TRUE for certain metrics.
 #' @param fun.cols2keep Column names of fun.DF to retain in the output.  Uses column names.
 # @param MetricSort How metric names should be sort; NA = as is, AZ = alphabetical.  Default = NA.
+#' @param boo.marine Should estuary/marine metrics be included.
+#' Ignored if fun.MetricNames is not null. Default = FALSE.
 #'
 #' @return data frame of SampleID and metric values
 #' @examples
@@ -343,7 +345,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
 metric.values <- function(fun.DF, fun.Community, fun.MetricNames=NULL
-                          , boo.Adjust=FALSE, fun.cols2keep=NULL){##FUNCTION.metric.values.START
+                          , boo.Adjust=FALSE, fun.cols2keep=NULL, boo.marine=FALSE){##FUNCTION.metric.values.START
   # Data Munging (common to all data types)
   # Convert to data.frame.  Code breaks if myDF is a tibble.
   fun.DF <- as.data.frame(fun.DF)
@@ -366,7 +368,7 @@ metric.values <- function(fun.DF, fun.Community, fun.MetricNames=NULL
   fun.Community <- tolower(fun.Community)
   # run the proper sub function
   if (fun.Community=="bugs") {##IF.START
-    metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, cols2keep)
+    metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, cols2keep, NA, boo.marine)
   } else if(fun.Community=="fish"){
     metric.values.fish(fun.DF, fun.MetricNames, boo.Adjust, cols2keep)
   # } else if(fun.Community=="algae"){
@@ -377,7 +379,7 @@ metric.values <- function(fun.DF, fun.Community, fun.MetricNames=NULL
 #
 #' @export
 metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
-                               , cols2keep=NULL, MetricSort=NA){##FUNCTION.metric.values.bugs.START
+                               , cols2keep=NULL, MetricSort=NA, boo.marine=FALSE){##FUNCTION.metric.values.bugs.START
   #
   names(myDF) <- toupper(names(myDF))
   # not carrying over from previous?!
@@ -385,7 +387,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
   # QC ####
   # QC, Required Fields
   col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
-              , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
+              , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS", "INFRAORDER"
               , "ORDER", "FAMILY", "SUBFAMILY", "TRIBE", "GENUS", "FFG", "HABIT"
               , "LIFE_CYCLE", "TOLVAL", "BCG_ATTR", "THERMAL_INDICATOR"
               , "LONGLIVED", "NOTEWORTHY", "FFG2", "TOLVAL2")
@@ -628,6 +630,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              #
              # Individuals ####
              , ni_total = sum(N_TAXA, na.rm = TRUE)
+             , li_total = log(ni_total)
              , ni_Chiro = sum(N_TAXA[FAMILY == "Chironomidae"], na.rm=TRUE)
              , ni_EPT = sum(N_TAXA[ORDER == "Ephemeroptera" |
                                      ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)
@@ -641,8 +644,8 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE], na.rm = TRUE)
              , nt_Amph = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Amphipoda"], na.rm = TRUE)
              , nt_Bival = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Bivalvia"], na.rm = TRUE)
-             #, nt_Capit
-             #, nt_Caridea
+             , nt_Capit = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Capitellidae"], na.rm = TRUE)
+             , nt_Caridea= dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & INFRAORDER == "Caridea"], na.rm = TRUE)
              #, nt_Chiro ## in special Chironomidae section
              , nt_Coleo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Coleoptera"], na.rm = TRUE)
              , nt_CruMol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & PHYLUM == "Mollusca"], na.rm = TRUE) +
@@ -660,10 +663,11 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , nt_Insect = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Insecta"], na.rm = TRUE)
              , nt_Isop = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Isopoda"], na.rm = TRUE)
              , nt_Mega = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Megaloptera"], na.rm = TRUE)
-             #, nt_Nereididae
+             , nt_Nereid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Nereididae"], na.rm = TRUE)
              , nt_Nemour = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Nemouridae"], na.rm = TRUE)
              , nt_NonIns = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                     & (CLASS != "Insecta" | is.na(CLASS))], na.rm = TRUE)
+             , nt_Nudib = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Nudibranchia"], na.rm = TRUE)
              , nt_Odon = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Odonata"], na.rm = TRUE)
              , nt_Oligo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Oligochaeta"], na.rm = TRUE)
              , nt_Perlid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Perlidae"], na.rm = TRUE)
@@ -673,29 +677,30 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
                                                      | ORDER == "Trichoptera"
                                                      | ORDER == "Plecoptera"
                                                      | ORDER == "Odonata")], na.rm = TRUE)
-             #, nt_Poly
-             #, nt_PolyNoSpion
+             , nt_Poly = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Polychaeta"], na.rm = TRUE)
+             , nt_PolyNoSpion = 100*sum(N_TAXA[CLASS == "Polychaeta"
+                                                & (is.na(FAMILY)==TRUE | FAMILY != "Spionidae")], na.rm=TRUE)
              , nt_Ptero = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "Pteronarcys"], na.rm = TRUE)
              , nt_Rhya = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "Rhyacophila"], na.rm = TRUE)
-             #, nt_Spion
-             , nt_Tipulid= dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Tipulidae"], na.rm = TRUE)
+             , nt_Spion = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Spionidae"], na.rm = TRUE)
+             , nt_Tipulid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Tipulidae"], na.rm = TRUE)
              , nt_Trich = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Trichoptera"], na.rm = TRUE)
              , nt_Tromb = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Trombidiformes"], na.rm = TRUE)
              , nt_Tubif = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Tubificidae"], na.rm = TRUE)
              # ,intolMol, ,
 
              # Percent Individuals####
-             #, pi_Ampeliscidae
-             #, pi_AmpHaus
+             , pi_Amp = NA #pi_Ampeliscidae
+             , pi_AmpHaust = NA
              , pi_Amph = 100*sum(N_TAXA[ORDER == "Amphipoda"], na.rm=TRUE)/ni_total
 
              , pi_Baet = 100*sum(N_TAXA[FAMILY == "Baetidae"], na.rm=TRUE)/ni_total
              #, pi_Baet2Ephem
              , pi_Bival = 100*sum(N_TAXA[CLASS == "Bivalvia"], na.rm=TRUE)/ni_total
              , pi_Caen = 100*sum(N_TAXA[FAMILY == "Caenidae"], na.rm=TRUE)/ni_total
-             #, pi_Capit
-             #, pi_Cirra
-             #, pi_Clite
+             , pi_Capit = 100*sum(N_TAXA[FAMILY == "Capitellidae"], na.rm=TRUE)/ni_total
+             , pi_Cirra = 100*sum(N_TAXA[FAMILY == "Cirratulidae"], na.rm=TRUE)/ni_total
+             , pi_Clite = 100*sum(N_TAXA[CLASS == "Clitellata"], na.rm=TRUE)/ni_total
              , pi_Coleo = 100*sum(N_TAXA[ORDER == "Coleoptera"], na.rm=TRUE)/ni_total
              , pi_Corb = 100*sum(N_TAXA[GENUS == "Corbicula"], na.rm=TRUE)/ni_total
              , pi_Cru = 100*sum(N_TAXA[SUBPHYLUM == "Crustacea"], na.rm=TRUE)/ni_total
@@ -712,34 +717,34 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , pi_EPT = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
                                      ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
              , pi_Gast = 100*sum(N_TAXA[CLASS == "Gastropoda"], na.rm=TRUE)/ni_total
-             #, pi_Haust
-             #, pi_Hesion
+             , pi_Haust = 100*sum(N_TAXA[FAMILY == "Haustoriidae"], na.rm=TRUE)/ni_total
+             , pi_Hesion = 100*sum(N_TAXA[FAMILY == "Hesionidae"], na.rm=TRUE)/ni_total
              , pi_Hydro = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/ni_total
-             , pi_Hydro2EPT = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/1
-             , pi_Hydro2Trich = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/1
+             , pi_Hydro2EPT = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/ni_EPT
+             , pi_Hydro2Trich = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/ni_Trich
              , pi_Insect = 100*sum(N_TAXA[CLASS == "Insecta"], na.rm=TRUE)/ni_total
              , pi_Isop = 100*sum(N_TAXA[ORDER == "Isopoda"], na.rm=TRUE)/ni_total
-             #, pi_Lucin
-             #, pi_LucinTellin
+             , pi_Lucin = 100*sum(N_TAXA[FAMILY == "Lucinidae"], na.rm=TRUE)/ni_total
+             , pi_LucinTellin = 100*sum(N_TAXA[FAMILY == "Lucinidae" | FAMILY == "Tellinidae"], na.rm=TRUE)/ni_total
              , pi_Mega = 100*sum(N_TAXA[ORDER == "Megaloptera"], na.rm=TRUE)/ni_total
              , pi_Mol = 100*sum(N_TAXA[PHYLUM == "Mollusca"], na.rm=TRUE)/ni_total
-             #, pi_Nereididae
-             #, pi_Nudibranchia
+             , pi_Nereid = 100*sum(N_TAXA[FAMILY == "Nereididae"], na.rm=TRUE)/ni_total
+             , pi_Nudib = 100*sum(N_TAXA[ORDER == "Nudibranchia"], na.rm=TRUE)/ni_total
              , pi_NonIns = 100*sum(N_TAXA[CLASS != "Insecta" | is.na(CLASS)], na.rm=TRUE)/ni_total
              , pi_Odon = 100*sum(N_TAXA[ORDER == "Odonata"], na.rm=TRUE)/ni_total
              , pi_Oligo = 100*sum(N_TAXA[CLASS == "Oligochaeta"], na.rm=TRUE)/ni_total
-             #, pi_Orbin
+             , pi_Orbin = 100*sum(N_TAXA[FAMILY == "Orbiniidae"], na.rm=TRUE)/ni_total
              , pi_Pleco = 100*sum(N_TAXA[ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
-             #, pi_Poly
-             #, pi_Spion
-             #, pi_Spion2Poly
-             #, pi_Tellin
+             , pi_Poly = 100*sum(N_TAXA[CLASS == "Polychaeta"], na.rm=TRUE)/ni_total
+             , pi_Spion = 100*sum(N_TAXA[FAMILY == "Spionidae"], na.rm=TRUE)/ni_total
+             , pi_Spion2Poly = 100*sum(N_TAXA[CLASS == "Polychaeta" | FAMILY == "Spionidae"], na.rm=TRUE)/ni_total
+             , pi_Tellin = 100*sum(N_TAXA[FAMILY == "Tellinidae"], na.rm=TRUE)/ni_total
              , pi_Trich = 100*sum(N_TAXA[ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
              , pi_TricNoHydro = 100*sum(N_TAXA[ORDER == "Trichoptera"
                                            & (is.na(FAMILY)==TRUE | FAMILY != "Hydropsychidae")]
                                     , na.rm=TRUE)/ni_total
              , pi_Tubif = 100*sum(N_TAXA[FAMILY == "Tubificidae"], na.rm=TRUE)/ni_total
-             #, pi_Xanthidae
+             , pi_Xanth = 100*sum(N_TAXA[FAMILY == "Xanthidae"], na.rm=TRUE)/ni_total
              # Cole2Odon,
              #EPTsenstive
 
@@ -757,42 +762,42 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , pt_Isop = 100*nt_Isop/nt_total
              , pt_Mega = 100*nt_Mega/nt_total
              , pt_NonIns = 100*nt_NonIns/nt_total
-             #, pt_Nudibr
+             , pt_Nudib = 100*nt_Nudib/nt_total
              , pt_Odon = 100*nt_Odon/nt_total
              , pt_Oligo = 100*nt_Oligo/nt_total
              , pt_Pleco = 100*nt_Pleco/nt_total
              , pt_POET = 100*nt_POET/nt_total
-             #, pt_Poly
-             #, pt_PolyNoSpion
-             #, pt_Spion
+             , pt_Poly = 100*nt_Poly/nt_total
+             , pt_PolyNoSpion = 100*nt_PolyNoSpion/nt_total
+             , pt_Spion = 100*nt_Spion/nt_total
              , pt_Trich = 100*nt_Trich/nt_total
 
              # Ratio of Taxa ####
              # nt_X / log(ni_total)
              # X = specialty group, e.g., Bivalves
              # Log is natural log
-             #, rt_Amph
-             #, rt_AmpCar
-             #, rt_Bivalve
-             #, rt_Capit
-             #, rt_Car
-             #, rt_Coleo
-             #, rt_cruMol
-             #, rt_Deca
-             #, rt_Ephem
-             #, rt_EPT
-             #, rt_Gast
-             #, rt_Isop
-             #, rt_Nereid
-             #, rt_Nudib
-             #, rt_Oligo
-             #, rt_Pleco
-             #, rt_Poly
-             #, rt_PolyNoSpion
-             #, rt_Ptero
-             #, rt_Spion
-             #, rt_Trich
-             #, rt_Tubif
+             #, rt_Amph = nt_Amph
+             #, rt_AmpCar = nt_AmpCar
+             #, rt_Bivalve = nt_Bivalve
+             #, rt_Capit = nt_Capit
+             #, rt_Car = nt_Car
+             #, rt_Coleo = nt_Coleo
+             #, rt_CruMol = nt_CruMol
+             #, rt_Deca = nt_Deca
+             #, rt_Ephem = nt_Ephem
+             #, rt_EPT = nt_EPT
+             #, rt_Gast = nt_Gast
+             #, rt_Isop = nt_Isop
+             #, rt_Nereid = nt_Nereid
+             #, rt_Nudib = nt_Nudib
+             #, rt_Oligo = nt_Oligo
+             #, rt_Pleco = nt_Pleco
+             #, rt_Poly = nt_Poly
+             #, rt_PolyNoSpion = nt_PolyNoSpion
+             #, rt_Ptero = nt_Ptero
+             #, rt_Spion = nt_Spion
+             #, rt_Trich = nt_Trich
+             #, rt_Tubif = nt_Tubif
 
 
              # Midges ####
@@ -931,7 +936,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , pt_tv_intol = 100*nt_tv_intol/nt_total
              , pt_tv_toler = 100*nt_tv_toler/nt_total
              #,nt_tvfam_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & FAM_TV<=3 & !is.na(FAM_TV)])
-             # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, pi_intol, pi_toler, ,
+             # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, , , ,
              # nt_intMol (for marine)
 
              , nt_tv_ntol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=0 & TOLVAL<6], na.rm=TRUE)
@@ -940,6 +945,9 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , pi_tv_stol = 100*sum(N_TAXA[TOLVAL>=8  & TOLVAL<=10], na.rm=TRUE)/ni_total
              , pt_tv_ntol = 100*nt_tv_ntol/nt_total
              , pt_tv_stol = 100*nt_tv_stol/nt_total
+
+
+
 
              # USEPA, WSA and NRSA
              ## ntol is not tolerant
@@ -950,6 +958,9 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              # MBSS
              , pi_tv2_intol=sum(N_TAXA[TOLVAL2<=3 & !is.na(TOLVAL2)])/sum(N_TAXA[!is.na(TOLVAL2)])
              #, pi_tv_intolurb=pi_tv2_intol
+             , pi_tv2_toler_ISA_SalHi_xFL = NA
+             , pi_tv2_intol_ISA_SalHi_xFL = NA
+             , pt_tv2_intol_ISA_SalHi_xFL = NA
 
              # FFG #####
              ## nt_ffg
@@ -970,13 +981,20 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , pt_ffg_pred = 100*nt_ffg_pred/nt_total
              , pt_ffg_scrap = 100*nt_ffg_scrap/nt_total
              , pt_ffg_shred = 100*nt_ffg_shred/nt_total
-             ## FFG marine
+
              #, pi_ffg_infc
              #, rt_ffg_infc, converborbelt, scavbrow, subsurf, watercol
              #, rt_ffg_pred
              # carnivoreomnivore, deepdeposit, suspension
-             # FFG2 = conveyorbelt, interface, scavengerbrowser, subsurface, watercolumn, predator
-
+             # FFG2 ####
+             # marine
+             ## nt_ffg2
+             , nt_ffg2_intface = NA
+             , nt_ffg2_subsurf = NA
+             ## pi_ffg2
+             , pi_ffg2_scavburr = NA
+             ## pt_ffg2
+             # = conveyorbelt, interface, scavengerbrowser, subsurface, watercolumn, predator
 
              # Habit ####
              #(need to be wild card. that is, counts both CN,CB and CB as climber)
@@ -1065,6 +1083,10 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
             # Density ####
             # Numbers per area sampled
 
+            # Estuary-Marine ####
+            # Mixed in with other metrics
+            , x_Becks_tv2 <- NA
+
              # BCG ####
              # 1i, 1m, 1t
              # Xi, Xm, Xt
@@ -1142,8 +1164,65 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
   # replace NA with 0
   met.val[is.na(met.val)] <- 0
 
+  # Marine Metrics
+  MetricNames_Marine <- c("nt_Capit"
+                          , "nt_Caridea"
+                          , "nt_Nereid"
+                          , "nt_Nudib"
+                          , "nt_Poly"
+                          , "nt_PolyNoSpion"
+                          , "nt_Spion"
+                          , "pi_Amp"
+                          , "pi_AmpHaust"
+                          , "pi_Capit"
+                          , "pi_Cirra"
+                          , "pi_Clite"
+                          , "pi_Haust"
+                          , "pi_Hesion"
+                          , "pi_Lucin"
+                          , "pi_LucinTellin"
+                          , "pi_Nereid"
+                          , "pi_Nudib"
+                          , "pi_Orbin"
+                          , "pi_Poly"
+                          , "pi_Spion"
+                          , "pi_Spion2Poly"
+                          , "pi_Tellin"
+                          , "pi_Xanth"
+                          , "pt_Nudib"
+                          , "pt_Poly"
+                          , "pt_PolyNoSpion"
+                          , "pt_Spion"
+                          , "rt_Amph"
+                          , "rt_Bivalve"
+                          , "rt_Capit"
+                          , "rt_Car"
+                          , "rt_Coleo"
+                          , "rt_CruMol"
+                          , "rt_Deca"
+                          , "rt_Ephem"
+                          , "rt_EPT"
+                          , "rt_Gast"
+                          , "rt_Isop"
+                          , "rt_Nereid"
+                          , "rt_Nudib"
+                          , "rt_Oligo"
+                          , "rt_Pleco"
+                          , "rt_Poly"
+                          , "rt_PolyNoSpion"
+                          , "rt_Ptero"
+                          , "rt_Spion"
+                          , "rt_Trich"
+                          , "rt_Tubif"
+                          , "x_Becks_tv2"
+                          )
+
+
   # # subset to only metrics specified by user
-  if (!is.null(MetricNames)) {
+  if (is.null(MetricNames)) {
+    # removed marine only if MetrcNames not provided
+    met.val <- met.val[, !(names(met.val %in% MetricNames_Marine))]
+  } else {
     met2include <- MetricNames[!(MetricNames %in% "ni_total")]
     # remove ni_total if included as will always include it
     met.val <- met.val[, c("SAMPLEID", "INDEX_REGION", "INDEX_NAME",

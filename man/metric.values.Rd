@@ -5,7 +5,7 @@
 \title{Calculate metric values}
 \usage{
 metric.values(fun.DF, fun.Community, fun.MetricNames = NULL,
-  boo.Adjust = FALSE, fun.cols2keep = NULL)
+  boo.Adjust = FALSE, fun.cols2keep = NULL, boo.marine = FALSE)
 }
 \arguments{
 \item{fun.DF}{Data frame of taxa (list required fields)}
@@ -19,6 +19,9 @@ If none are supplied then all will be returned.  Default=NULL}
 values prior to scoring.  Default = FALSE but may be TRUE for certain metrics.}
 
 \item{fun.cols2keep}{Column names of fun.DF to retain in the output.  Uses column names.}
+
+\item{boo.marine}{Should estuary/marine metrics be included.
+Ignored if fun.MetricNames is not null. Default = FALSE.}
 }
 \value{
 data frame of SampleID and metric values
@@ -75,9 +78,9 @@ Required Fields:
 
 * NONTARGET (valid values are TRUE and FALSE)
 
-* PHYLUM, SUBPHYLUM, CLASS, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
+* PHYLUM, SUBPHYLUM, CLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
 
-* FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR
+* FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2
 
 Valid values for FFG: CG, CF, PR, SC, SH
 
