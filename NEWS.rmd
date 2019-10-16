@@ -32,12 +32,23 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
-## Changes in Version 0.3.3.9005 (2019-09-15)
+## Changes in Version 0.3.3.9007 (2019-10-16)
+
+* MetricScoring.xlsx, Issue #3
+    + Updates for GBI_MS_2013
+    + Numeric to text. 
+
+## Changes in Version 0.3.3.9006 (2019-10-15)
 
 * MetricScoring.xlsx, Issue #3
     + Updates for GBI_MS_2013
 
-## Changes in Version 0.3.3.9004 (2019-09-15)
+## Changes in Version 0.3.3.9005 (2019-10-15)
+
+* MetricScoring.xlsx, Issue #3
+    + Updates for GBI_MS_2013
+
+## Changes in Version 0.3.3.9004 (2019-10-15)
 
 * Additional scoring and index.  Issue #3
     + Gulf Biotic Index, 2011

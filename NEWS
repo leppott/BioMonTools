@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-10-15 15:03:59
+    #> Last Update: 2019-10-16 15:01:58
 
 # Planned Updates
 
@@ -22,12 +22,23 @@ NEWS
 
 # Version History
 
-## Changes in Version 0.3.3.9005 (2019-09-15)
+## Changes in Version 0.3.3.9007 (2019-10-16)
+
+  - MetricScoring.xlsx, Issue \#3
+      - Updates for GBI\_MS\_2013
+      - Numeric to text.
+
+## Changes in Version 0.3.3.9006 (2019-10-15)
 
   - MetricScoring.xlsx, Issue \#3
       - Updates for GBI\_MS\_2013
 
-## Changes in Version 0.3.3.9004 (2019-09-15)
+## Changes in Version 0.3.3.9005 (2019-10-15)
+
+  - MetricScoring.xlsx, Issue \#3
+      - Updates for GBI\_MS\_2013
+
+## Changes in Version 0.3.3.9004 (2019-10-15)
 
   - Additional scoring and index. Issue \#3
       - Gulf Biotic Index, 2011
