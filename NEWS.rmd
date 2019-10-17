@@ -32,6 +32,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.3.9010 (2019-10-17)
+
+* MetricScoring.xlsx, Issue #3
+    + Numeric to text.
+
 ## Changes in Version 0.3.3.9009 (2019-10-17)
 
 * MetricScoring.xlsx, Issue #3
