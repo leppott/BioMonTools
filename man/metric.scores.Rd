@@ -4,8 +4,14 @@
 \alias{metric.scores}
 \title{Score metrics}
 \usage{
-metric.scores(DF_Metrics, col_MetricNames, col_IndexName, col_IndexRegion,
-  DF_Thresh_Metric, DF_Thresh_Index)
+metric.scores(
+  DF_Metrics,
+  col_MetricNames,
+  col_IndexName,
+  col_IndexRegion,
+  DF_Thresh_Metric,
+  DF_Thresh_Index
+)
 }
 \arguments{
 \item{DF_Metrics}{Data frame of metric values (as columns), Index Name, and
@@ -19,10 +25,13 @@ Index Region (strata).}
 (e.g., COASTAL).}
 
 \item{DF_Thresh_Metric}{Data frame of Scoring Thresholds for metrics (INDEX_NAME, INDEX_REGION,
-METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)}
+METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime
+, SingleValue_Add, NormDist_Tail_Lo, NormDist_Tail_Hi, CatGrad_xvar, CatGrad_InfPt
+, CatGrad_Lo_m,    CatGrad_Lo_b,    CatGrad_Mid_m,    CatGrad_Mid_b,    CatGrad_Hi_m,    CatGrad_Hi_b).}
 
 \item{DF_Thresh_Index}{Data frame of Scoring Thresholds for indices (INDEX_NAME, INDEX_REGION,
-METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)}
+METRIC_NAME, ScoreRegime, Thresh01, Thresh02, Thresh03, Thresh04, Thresh05, Thresh06, Thresh07
+, Nar01, Nar02, Nar03, Nar04, Nar05, Nar06).}
 }
 \value{
 vector of scores

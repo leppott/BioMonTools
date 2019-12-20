@@ -4,8 +4,15 @@
 \alias{markExcluded}
 \title{Mark "excluded" (non-distinct / non-unique / ambiguous) taxa}
 \usage{
-markExcluded(df_samptax, SampID = "SAMPLEID", TaxaID = "TAXAID",
-  TaxaCount = "N_TAXA", Exclude = "EXCLUDED", TaxaLevels, Exceptions)
+markExcluded(
+  df_samptax,
+  SampID = "SAMPLEID",
+  TaxaID = "TAXAID",
+  TaxaCount = "N_TAXA",
+  Exclude = "EXCLUDED",
+  TaxaLevels,
+  Exceptions
+)
 }
 \arguments{
 \item{df_samptax}{Input data frame.}

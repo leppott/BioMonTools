@@ -18,9 +18,13 @@
 #' @param col_IndexRegion Name of column with relevant bioregion or site class
 #' (e.g., COASTAL).
 #' @param DF_Thresh_Metric Data frame of Scoring Thresholds for metrics (INDEX_NAME, INDEX_REGION,
-#' METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)
+#' METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime
+#' , SingleValue_Add, NormDist_Tail_Lo, NormDist_Tail_Hi, CatGrad_xvar, CatGrad_InfPt
+#' , CatGrad_Lo_m,	CatGrad_Lo_b,	CatGrad_Mid_m,	CatGrad_Mid_b,	CatGrad_Hi_m,	CatGrad_Hi_b).
 #' @param DF_Thresh_Index Data frame of Scoring Thresholds for indices (INDEX_NAME, INDEX_REGION,
-#' METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)
+#' METRIC_NAME, ScoreRegime, Thresh01, Thresh02, Thresh03, Thresh04, Thresh05, Thresh06, Thresh07
+#' , Nar01, Nar02, Nar03, Nar04, Nar05, Nar06).
+# @param col_Xvar Name of column with additional variable needed to calculate scores.  For example, log10 drainage area.
 #'
 #' @return vector of scores
 #
@@ -166,21 +170,28 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
   #
   # QC, Column Names
   # Error check on fields (thresh metric)
-  myFlds <- c("INDEX_NAME", "INDEX_REGION", "METRIC_NAME", "Thresh_Lo", "Thresh_Mid", "Thresh_Hi", "Direction", "ScoreRegime")
+  myFlds <- c("INDEX_NAME", "INDEX_REGION", "METRIC_NAME", "Thresh_Lo", "Thresh_Mid", "Thresh_Hi"
+              , "Direction", "ScoreRegime", "SingleValue_Add", "NormDist_Tail_Lo", "NormDist_Tail_Hi"
+              , "CatGrad_xvar", "CatGrad_InfPt", "CatGrad_Lo_m",	"CatGrad_Lo_b",	"CatGrad_Mid_m"
+              ,	"CatGrad_Mid_b",	"CatGrad_Hi_m", "CatGrad_Hi_b")
   if (length(myFlds)!=sum(myFlds %in% names(DF_Thresh_Metric))) {
-    myMsg <- paste0("Fields missing from DF_Thresh_Metric input data frame.  Expecting: \n",paste(myFlds,sep="",collapse=", "),collapse="")
+    myMsg <- paste0("Fields missing from DF_Thresh_Metric input data frame (v0.3.3.9011 and after). Expecting: \n"
+                    , paste(myFlds[!(myFlds %in% names(DF_Thresh_Metric))], sep="", collapse=", "), collapse="")
     stop(myMsg)
   }
   # Error check on fields (metrics)
   myFlds_2 <- c("INDEX_NAME", "INDEX_REGION")
   if (length(myFlds_2)!=sum(myFlds_2 %in% names(DF_Metrics))) {
-    myMsg <- paste0("Fields missing from DF_Metrics input data frame.  Expecting: \n",paste(myFlds_2,sep="",collapse=", "),collapse="")
+    myMsg <- paste0("Fields missing from DF_Metrics input data frame.  Expecting: \n"
+                    , paste(myFlds_2, sep="", collapse=", "), collapse="")
     stop(myMsg)
   }
   # Error check on fields (thresh Index)
-  myFlds_Index <- c("INDEX_NAME", "INDEX_REGION", "NumMetrics", "ScoreRegime", paste0("Thresh0",1:6), paste0("Nar0",1:5))
+  myFlds_Index <- c("INDEX_NAME", "INDEX_REGION", "NumMetrics", "ScoreRegime"
+                    , paste0("Thresh0",1:6), paste0("Nar0",1:5))
   if (length(myFlds_Index)!=sum(myFlds_Index %in% names(DF_Thresh_Index))) {
-    myMsg <- paste0("Fields missing from DF_Metrics input data frame.  Expecting: \n",paste(myFlds_Index,sep="",collapse=", "),collapse="")
+    myMsg <- paste0("Fields missing from DF_Metrics input data frame.  Expecting: \n"
+                    , paste(myFlds_Index,sep="", collapse=", "), collapse="")
     stop(myMsg)
   }
   #
@@ -192,6 +203,7 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
   for (a in unique(as.matrix(DF_Metrics[, col_IndexName]))){##FOR.a.START
     for (b in unique(as.matrix(DF_Metrics[, col_IndexRegion]))) {##FOR.b.START
       for (c in col_MetricNames){##FOR.c.START
+        #
         # Thresholds (filter with dplyr)
         fun.Thresh.myMetric <- as.data.frame(dplyr::filter(DF_Thresh_Metric, INDEX_NAME==a & INDEX_REGION==b & METRIC_NAME==c))
         # QC
@@ -201,17 +213,31 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
           next
         }
         # thresholds
+        ## suppress warnings as some will be "NA".
         fun.Lo          <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Lo"]))
         fun.Mid         <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Mid"]))
         fun.Hi          <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Hi"]))
         fun.Direction   <- toupper(fun.Thresh.myMetric[, "Direction"])
         fun.ScoreRegime <- toupper(fun.Thresh.myMetric[, "ScoreRegime"])
+        fun.SV_Add      <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "SingleValue_Add"]))
+        fun.ND_Lo       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "NormDist_Tail_Lo"]))
+        fun.ND_Hi       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "NormDist_Tail_Hi"]))
+        fun.CG_xvar     <- fun.Thresh.myMetric[, "CatGrad_xvar"]
+        fun.CG_IP       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_InfPt"]))
+        fun.CG_Lo_m     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Lo_m"]))
+        fun.CG_Lo_b     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Lo_b"]))
+        fun.CG_Mid_m    <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Mid_m"]))
+        fun.CG_Mid_b    <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Mid_b"]))
+        fun.CG_Hi_m     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Hi_m"]))
+        fun.CG_Hi_b     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Hi_b"]))
+
         #
         # default value
         fun.Value <- DF_Metrics[, c]
         fun.Result <- fun.Value * 0  #default value of zero
         #
         if(fun.ScoreRegime=="CONT_0100"){##IF.scoring.START
+          # Cont_0100 ####
           if(fun.Direction=="DECREASE"){
             fun.calc <- 100*((fun.Value-fun.Lo)/(fun.Hi-fun.Lo))
           }else if (fun.Direction=="INCREASE") {
@@ -219,6 +245,7 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
           }
           fun.Result <- sapply(fun.calc, function(x) {stats::median(c(0, 100, x))})
         } else if(fun.ScoreRegime=="CAT_135"){
+          # Cat_135 ####
           if(fun.Direction=="DECREASE") {
             fun.Result <- ifelse(fun.Value>=fun.Hi,5
                                  ,ifelse(fun.Value<fun.Lo,1,3))
@@ -231,6 +258,7 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
                                  ,ifelse(fun.Value>fun.Hi,1,3))
           }
         } else if(fun.ScoreRegime=="CAT_0246" | fun.ScoreRegime=="CAT_0123") {
+          # Cat_0246 ####
           if(fun.Direction=="DECREASE") {
             fun.Result <- ifelse(fun.Value>=fun.Hi,6
                                  ,ifelse(fun.Value>=fun.Mid,4
@@ -248,9 +276,55 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
           } else if (fun.Direction=="SCOREVALUE"){##SCOREVALUE.START
             fun.Result <- fun.Value
           }##SCOREVALUE.END
+        } else if(fun.ScoreRegime=="NORM_DIST_135") {
+          # NormDist_135 ####
+          fun.Result <- ifelse(fun.Value < fun.ND_Lo | fun.Value > fun.ND_Hi, 1,
+                               ifelse(fun.Value >= fun.ND_Lo & fun.Value < fun.Lo, 3,
+                                      ifelse(fun.Value <= fun.ND_Hi & fun.Value > fun.Hi, 3,
+                                             ifelse(fun.Value >= fun.Lo & fun.Value <= fun.Hi, 5, NA))))
+        } else if(fun.ScoreRegime=="SINGLEVALUE"){
+          # SingleValue ####
+          if(!is.na(fun.Hi)){
+            fun.Result <- ifelse(fun.Value > fun.Hi, fun.SV_Add, 0)
+          }##SingleValue_Hi
+          #
+          if(!is.na(fun.Lo)){
+            fun.Result <- ifelse(fun.Value < fun.Lo, fun.SV_Add, 0)
+          }##SingleValue_Lo
+        } else if(fun.ScoreRegime=="CATGRAD_135") {
+          # ContGrad135 ####
+
+          # get xvar and calc Expected Score
+          fun.CG_xval     <- suppressWarnings(as.numeric(DF_Metrics[, fun.CG_xvar]))
+          #x_var <- fun.CG_xvar
+          #x_Obs <- fun.Value
+          # Xvar specific thresholds
+          # y = mx + b
+          x_Exp_Lo  <- (fun.CG_Lo_m * fun.CG_xval) + fun.CG_Lo_b
+          x_Exp_Mid <- (fun.CG_Mid_m * fun.CG_xval) + fun.CG_Mid_b
+          x_Exp_Hi  <- (fun.CG_Hi_m * fun.CG_xval) + fun.CG_Hi_b
+
+
+          # Check for inflection point, then score based on Gradient
+          # Gradient is only an decrease scoring regime
+          fun.Result <- ifelse(!is.na(fun.CG_IP) & fun.CG_xval >= fun.CG_IP
+                               # Cat_135 - Decrease
+                               , ifelse(fun.Direction == "DECREASE" & fun.Value >= fun.Hi, 5
+                                        , ifelse(fun.Direction == "DECREASE" & fun.Value < fun.Lo, 1
+                                                 # Cat_135 - Increase
+                                                 , ifelse(fun.Direction == "INCREASE" & fun.Value <= fun.Hi, 5
+                                                          , ifelse(fun.Direction == "INCREASE" & fun.Value > fun.Hi, 1, 3))))
+                               # Grad_135
+                               , ifelse(fun.CG_xval < fun.CG_IP
+                                        , ifelse(fun.Value >= x_Exp_Hi, 5
+                                                 , ifelse(fun.Value <= x_Exp_Lo, 1, 3)), -1))
+          # use dplyr::mutate
+          #~~~~~~~~~~
         } else if(is.na(fun.ScoreRegime)) {
+          # No Score Regime ####
           fun.Result <- 0
         } else {
+          # OTHER ####
           fun.Result <- 0
         }##IF.scoring.END
         #

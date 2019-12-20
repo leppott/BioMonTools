@@ -32,6 +32,15 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.3.9011 (2019-12-18)
+
+* MetricScoring.xlsx, Issue #3, Issue #30
+    + Added more columns for new scoring regimes for GA Fish IBI.
+* MetricNames.xlsx
+    + Added new fish metric names.
+* metric.scores.R
+    + Added more scoring regimes (GA Fish IBI).
+
 ## Changes in Version 0.3.3.9010 (2019-10-17)
 
 * MetricScoring.xlsx, Issue #3

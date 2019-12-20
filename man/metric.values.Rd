@@ -4,8 +4,14 @@
 \alias{metric.values}
 \title{Calculate metric values}
 \usage{
-metric.values(fun.DF, fun.Community, fun.MetricNames = NULL,
-  boo.Adjust = FALSE, fun.cols2keep = NULL, boo.marine = FALSE)
+metric.values(
+  fun.DF,
+  fun.Community,
+  fun.MetricNames = NULL,
+  boo.Adjust = FALSE,
+  fun.cols2keep = NULL,
+  boo.marine = FALSE
+)
 }
 \arguments{
 \item{fun.DF}{Data frame of taxa (list required fields)}
@@ -131,7 +137,7 @@ df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID", "INDEX_NAME"
 
 \dontrun{
 # Save Results
-write.table(df_long, "metric.values.tsv", col.names=TRUE, row.names=FALSE, sep="\\t")
+write.table(df_long, "metric.values.tsv", col.names=TRUE, row.names=FALSE, sep="\t")
 
 # DataExplorer Report
 library(DataExplorer)
