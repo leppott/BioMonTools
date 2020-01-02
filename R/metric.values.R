@@ -1221,7 +1221,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
   # # subset to only metrics specified by user
   if (is.null(MetricNames)) {
     # removed marine only if MetrcNames not provided
-    met.val <- met.val[, !(names(met.val %in% MetricNames_Marine))]
+    met.val <- met.val[, !(names(met.val) %in% MetricNames_Marine)]
   } else {
     met2include <- MetricNames[!(MetricNames %in% "ni_total")]
     # remove ni_total if included as will always include it

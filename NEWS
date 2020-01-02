@@ -3,7 +3,7 @@ NEWS
 <Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2019-12-20 11:15:24
+    #> Last Update: 2020-01-02 13:44:38
 
 Planned Updates
 ===============
@@ -23,6 +23,13 @@ Future Updates
 
 Version History
 ===============
+
+Changes in Version 0.3.3.9012 (2020-01-02)
+------------------------------------------
+
+-   metric.values.R
+-   Error in excluding marine metrics when no metric list given (i.e., want all metrics).
+    -   Misplaced ")". Issue \# 31.
 
 Changes in Version 0.3.3.9011 (2019-12-18)
 ------------------------------------------

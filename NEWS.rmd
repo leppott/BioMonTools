@@ -32,6 +32,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.3.9012 (2020-01-02)
+
+* metric.values.R
+  + Error in excluding marine metrics when no metric list given (i.e., want all metrics).
+      - Misplaced ")".  Issue # 31.
+
 ## Changes in Version 0.3.3.9011 (2019-12-18)
 
 * MetricScoring.xlsx, Issue #3, Issue #30
