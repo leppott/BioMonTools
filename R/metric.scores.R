@@ -155,15 +155,15 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     # col_IndexRegion <-  "INDEX_REGION"
     # DF_Thresh <- df_thresh
     #~~~~~~~~~~~~~~~~~~~~~
-    DF_Metrics <- df_metric_values_bugs
-    col_MetricNames <- myMetrics.Bugs
-    col_IndexName <- "INDEX_NAME"
-    col_IndexRegion <- "INDEX_REGION"
-    DF_Thresh_Metric <- df_thresh_metric
-    DF_Thresh_Index <- df_thresh_index
+    # DF_Metrics <- df_metric_values_bugs
+    # col_MetricNames <- myMetrics.Bugs
+    # col_IndexName <- "INDEX_NAME"
+    # col_IndexRegion <- "INDEX_REGION"
+    # DF_Thresh_Metric <- df_thresh_metric
+    # DF_Thresh_Index <- df_thresh_index
     (a <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
     (b <- unique(as.matrix(DF_Metrics[, col_IndexRegion]))[1])
-    (c <- col_MetricNames[1])
+    (c <- col_MetricNames[2])
     (aa <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
     (bb <- unique(as.matrix(DF_Metrics[, col_IndexRegion]))[1])
   }
@@ -250,8 +250,8 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
             fun.Result <- ifelse(fun.Value>=fun.Hi,5
                                  ,ifelse(fun.Value<fun.Lo,1,3))
             if(boo.QC==TRUE){##IF.boo.QC.START
-              print(paste0("Metric=",c,", Value=",fun.Value,", Result=", fun.Result))
-              utils::flush.console()
+              message(paste0("Metric=",c,", Value=",fun.Value,", Result=", fun.Result))
+              #utils::flush.console()
             }##IF.boo.QC.END
           } else if (fun.Direction=="INCREASE") {
             fun.Result <- ifelse(fun.Value<=fun.Lo,5
@@ -343,7 +343,7 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
 
   # Index, Sum
   # sum all metrics
-  DF_Metrics[,"sum_Index"] <- rowSums(DF_Metrics[,Score.MetricNames])
+  DF_Metrics[,"sum_Index"] <- rowSums(DF_Metrics[,Score.MetricNames], na.rm = TRUE)
 
   # Index, Value
     # Need to cycle based on Index (a), Region (b), and Metric (c)
