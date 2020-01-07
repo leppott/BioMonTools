@@ -3,7 +3,7 @@ NEWS
 <Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2020-01-07 10:20:29
+    #> Last Update: 2020-01-07 14:42:58
 
 Planned Updates
 ===============
@@ -23,6 +23,15 @@ Future Updates
 
 Version History
 ===============
+
+Changes in Version 0.3.3.9014 (2020-01-07)
+------------------------------------------
+
+-   metric.values.R
+    -   Tweak index NormDist\_135.
+-   MetricScoring.xlsx, Issue \#3
+    -   Tweak values for GA Fish IBI.
+        -   Convert some values to text.
 
 Changes in Version 0.3.3.9013 (2020-01-07)
 ------------------------------------------

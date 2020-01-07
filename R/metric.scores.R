@@ -162,11 +162,11 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     # DF_Thresh_Metric <- df_thresh_metric
     # DF_Thresh_Index <- df_thresh_index
     (a <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
-    (b <- unique(as.matrix(DF_Metrics[, col_IndexRegion]))[1])
-    (c <- col_MetricNames[2])
+    (b <- unique(as.matrix(DF_Metrics[, col_IndexRegion]))[2])
+    (c <- col_MetricNames[13])
     (aa <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
-    (bb <- unique(as.matrix(DF_Metrics[, col_IndexRegion]))[1])
-  }
+    (bb <- unique(as.matrix(DF_Metrics[, col_IndexRegion]))[2])
+  }##IF~boo.QC~END
   #
   # QC, Column Names
   # Error check on fields (thresh metric)
@@ -214,22 +214,23 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
         }
         # thresholds
         ## suppress warnings as some will be "NA".
-        fun.Lo          <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Lo"]))
-        fun.Mid         <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Mid"]))
-        fun.Hi          <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Hi"]))
-        fun.Direction   <- toupper(fun.Thresh.myMetric[, "Direction"])
-        fun.ScoreRegime <- toupper(fun.Thresh.myMetric[, "ScoreRegime"])
-        fun.SV_Add      <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "SingleValue_Add"]))
-        fun.ND_Lo       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "NormDist_Tail_Lo"]))
-        fun.ND_Hi       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "NormDist_Tail_Hi"]))
-        fun.CG_xvar     <- fun.Thresh.myMetric[, "CatGrad_xvar"]
-        fun.CG_IP       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_InfPt"]))
-        fun.CG_Lo_m     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Lo_m"]))
-        fun.CG_Lo_b     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Lo_b"]))
-        fun.CG_Mid_m    <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Mid_m"]))
-        fun.CG_Mid_b    <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Mid_b"]))
-        fun.CG_Hi_m     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Hi_m"]))
-        fun.CG_Hi_b     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Hi_b"]))
+        # use drop = TRUE so a Tibble behaves more like a data frame and returns a single value
+        fun.Lo          <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Lo", drop = TRUE]))
+        fun.Mid         <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Mid", drop = TRUE]))
+        fun.Hi          <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "Thresh_Hi", drop = TRUE]))
+        fun.Direction   <- toupper(fun.Thresh.myMetric[, "Direction", drop = TRUE])
+        fun.ScoreRegime <- toupper(fun.Thresh.myMetric[, "ScoreRegime", drop = TRUE])
+        fun.SV_Add      <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "SingleValue_Add", drop = TRUE]))
+        fun.ND_Lo       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "NormDist_Tail_Lo", drop = TRUE]))
+        fun.ND_Hi       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "NormDist_Tail_Hi", drop = TRUE]))
+        fun.CG_xvar     <- fun.Thresh.myMetric[, "CatGrad_xvar", drop = TRUE]
+        fun.CG_IP       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_InfPt", drop = TRUE]))
+        fun.CG_Lo_m     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Lo_m", drop = TRUE]))
+        fun.CG_Lo_b     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Lo_b", drop = TRUE]))
+        fun.CG_Mid_m    <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Mid_m", drop = TRUE]))
+        fun.CG_Mid_b    <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Mid_b", drop = TRUE]))
+        fun.CG_Hi_m     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Hi_m", drop = TRUE]))
+        fun.CG_Hi_b     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Hi_b", drop = TRUE]))
 
         #
         # default value
@@ -276,12 +277,12 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
           } else if (fun.Direction=="SCOREVALUE"){##SCOREVALUE.START
             fun.Result <- fun.Value
           }##SCOREVALUE.END
-        } else if(fun.ScoreRegime=="NORM_DIST_135") {
+        } else if(fun.ScoreRegime=="NORMDIST_135") {
           # NormDist_135 ####
-          fun.Result <- ifelse(fun.Value < fun.ND_Lo | fun.Value > fun.ND_Hi, 1,
-                               ifelse(fun.Value >= fun.ND_Lo & fun.Value < fun.Lo, 3,
-                                      ifelse(fun.Value <= fun.ND_Hi & fun.Value > fun.Hi, 3,
-                                             ifelse(fun.Value >= fun.Lo & fun.Value <= fun.Hi, 5, NA))))
+          fun.Result <- ifelse(fun.Value < fun.ND_Lo | fun.Value > fun.ND_Hi, 1
+                               , ifelse(fun.Value >= fun.ND_Lo & fun.Value < fun.Lo, 3
+                                        , ifelse(fun.Value <= fun.ND_Hi & fun.Value > fun.Hi, 3
+                                                 , ifelse(fun.Value >= fun.Lo & fun.Value <= fun.Hi, 5, NA))))
         } else if(fun.ScoreRegime=="SINGLEVALUE"){
           # SingleValue ####
           if(!is.na(fun.Hi)){
@@ -306,18 +307,18 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
 
 
           # Check for inflection point, then score based on Gradient
-          # Gradient is only an decrease scoring regime
-          fun.Result <- ifelse(!is.na(fun.CG_IP) & fun.CG_xval >= fun.CG_IP
-                               # Cat_135 - Decrease
-                               , ifelse(fun.Direction == "DECREASE" & fun.Value >= fun.Hi, 5
-                                        , ifelse(fun.Direction == "DECREASE" & fun.Value < fun.Lo, 1
-                                                 # Cat_135 - Increase
-                                                 , ifelse(fun.Direction == "INCREASE" & fun.Value <= fun.Hi, 5
-                                                          , ifelse(fun.Direction == "INCREASE" & fun.Value > fun.Hi, 1, 3))))
-                               # Grad_135
-                               , ifelse(fun.CG_xval < fun.CG_IP
-                                        , ifelse(fun.Value >= x_Exp_Hi, 5
-                                                 , ifelse(fun.Value <= x_Exp_Lo, 1, 3)), -1))
+          # Gradient is only a decrease scoring regime
+          if(is.na(fun.CG_IP)){
+            # ContGrad_135 w/o IP
+            fun.Result <- ifelse(fun.Value >= x_Exp_Hi, 5, ifelse(fun.Value < x_Exp_Lo, 1, 3))
+          } else {
+            fun.Result <- ifelse(fun.CG_xval >= fun.CG_IP
+                                 , ifelse(fun.Value >= fun.Hi, 5, ifelse(fun.Value < fun.Lo, 1, 3))
+                                 , ifelse(fun.Value >= x_Exp_Hi, 5, ifelse(fun.Value < x_Exp_Lo, 1, 3)))
+          }##IF~is.na(fun.CG_IP)~END
+
+
+
           # use dplyr::mutate
           #~~~~~~~~~~
         } else if(is.na(fun.ScoreRegime)) {
