@@ -32,6 +32,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.3.9015 (2020-01-08)
+
+* metric.values.R
+    + Minor edits.
+* MetricScoring.xlsx, Issue #3
+    + Tweak values for GA Fish IBI.
+        - Convert some values to text.
+
 ## Changes in Version 0.3.3.9014 (2020-01-07)
 
 * metric.values.R

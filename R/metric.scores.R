@@ -388,11 +388,15 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     DF_Metrics[myTF, "Index"]     <- fun.Result[myTF]
     DF_Metrics[myTF, "Index_Nar"] <- fun.Result.Nar[myTF]
 
+    # Add factor levels for Index_Nar
+    ## only works if doing a single index or multiple indices with the same narrative categories
+    # DF_Metrics[myTF, "Index_Nar"] <- factor(DF_Metrics[myTF, "Index_Nar"]
+    #                                         , levels = fun.Index.Nar.Nar
+    #                                         , labels = fun.Index.Nar.Nar
+    #                                         , ordered = TRUE)
+
     }##FOR.a.END
   }##FOR.b.END
-
-
-
 
 
   # Return original DF with added columns
