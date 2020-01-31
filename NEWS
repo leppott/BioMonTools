@@ -3,7 +3,7 @@ NEWS
 <Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2020-01-08 13:32:23
+    #> Last Update: 2020-01-31 13:01:52
 
 Planned Updates
 ===============
@@ -23,6 +23,13 @@ Future Updates
 
 Version History
 ===============
+
+Changes in Version 0.3.3.9016 (2020-01-31)
+------------------------------------------
+
+-   MetricScoring.xlsx, Issue \#3
+    -   Tweak values for GA Fish IBI.
+        -   ACF, 6b, inflection point is 2 not 1.
 
 Changes in Version 0.3.3.9015 (2020-01-08)
 ------------------------------------------

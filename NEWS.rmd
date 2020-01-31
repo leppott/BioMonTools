@@ -32,6 +32,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.3.3.9016 (2020-01-31)
+
+* MetricScoring.xlsx, Issue #3
+    + Tweak values for GA Fish IBI.
+        - ACF, 6b, inflection point is 2 not 1.
+
 ## Changes in Version 0.3.3.9015 (2020-01-08)
 
 * metric.values.R

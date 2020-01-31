@@ -70,7 +70,9 @@ setwd(paste0("./",myPkg))  # will fail as already in this directory
 devtools::document()
 ## Install New Package (locally)
 setwd("..") # return to root directory first
-devtools::install(myPkg, quick=FALSE, reload=TRUE, build_vignettes = FALSE)
+devtools::install(myPkg, quick=FALSE, reload=TRUE, build_vignettes = TRUE)
+
+# blank line above allows code to continue when install asks about package updates 
 ## Reload library
 library(myPkg, character.only = TRUE)
 # change wd back to package
