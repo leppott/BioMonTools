@@ -29,6 +29,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.4.0 (2020-02-24)
+
+* Changes to fish metric significant enough for a minor version update.
+    + Some previous calculations may not work.  Function made more generic.
+
 ## Changes in Version 0.3.3.9017 (2020-02-24)
 
 * MetricScoring.xlsx, Issue #3
