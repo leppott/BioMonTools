@@ -83,7 +83,7 @@
 #' @param boo.Adjust Optional boolean value on whether to perform adjustments of
 #' values prior to scoring.  Default = FALSE but may be TRUE for certain metrics.
 #' @param fun.cols2keep Column names of fun.DF to retain in the output.  Uses column names.
-# @param MetricSort How metric names should be sort; NA = as is, AZ = alphabetical.  Default = NA.
+# @param MetricSort How metric names should be sort; NA = as is, AZ = alphabetical.  Default = NULL.
 #' @param boo.marine Should estuary/marine metrics be included.
 #' Ignored if fun.MetricNames is not null. Default = FALSE.
 #'
@@ -186,7 +186,7 @@
 # names(fun.DF) <- toupper(names(fun.DF))
 # fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
 # fun.DF <- fun.DF[fun.DF[,"NONTARGET"]==FALSE,]
-# fun.DF[,"INDEX_REGION"] <- tolower(fun.DF[,"INDEX_REGION"])
+# fun.DF[,"INDEX_REGION"] <- toupper(fun.DF[,"INDEX_REGION"])
 # #
 # myDF <- fun.DF
 # #
@@ -344,44 +344,53 @@
 # cols2keep <- fun.cols2keep
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
-metric.values <- function(fun.DF, fun.Community, fun.MetricNames=NULL
-                          , boo.Adjust=FALSE, fun.cols2keep=NULL, boo.marine=FALSE){##FUNCTION.metric.values.START
+metric.values <- function(fun.DF
+                          , fun.Community
+                          , fun.MetricNames=NULL
+                          , boo.Adjust=FALSE
+                          , fun.cols2keep=NULL
+                          , boo.marine=FALSE){##FUNCTION.metric.values.START
+  # define pipe
+  `%>%` <- dplyr::`%>%`
+  # Munge ####
   # Data Munging (common to all data types)
   # Convert to data.frame.  Code breaks if myDF is a tibble.
   fun.DF <- as.data.frame(fun.DF)
   # convert Field Names to UPPER CASE
   names(fun.DF) <- toupper(names(fun.DF))
   # convert cols2keep to UPPER CASE
-  cols2keep <- toupper(fun.cols2keep)
+  if(!is.null(fun.cols2keep)){
+    #names(fun.cols2keep) <- toupper(fun.cols2keep)
+    fun.cols2keep <- toupper(fun.cols2keep)
+  }##IF~!is.null(fun.cols2keep)~END
   # Remove Count = 0 taxa
   fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
-  # Remove non-target taxa (only if have the field)
-  ## find "non-target" field
-  #boo.NonTarget.Present <- "NONTARGET" %in% names(fun.DF)
-  #if(boo.NonTarget.Present==TRUE){##IF.boo.NonTarget.Preset.START
-  fun.DF <- fun.DF[fun.DF[,"NONTARGET"]==FALSE,]
-  #}##IF.boo.NonTarget.Preset.START
+  # non-target taxa removed in community function, if appropriate
   #
-  # SiteType to lowercase
-  fun.DF[,"INDEX_REGION"] <- tolower(fun.DF[,"INDEX_REGION"])
-  # convert community to lowercase
-  fun.Community <- tolower(fun.Community)
+  # SiteType to upper case
+  fun.DF[,"INDEX_REGION"] <- toupper(fun.DF[,"INDEX_REGION"])
+  # convert community to upper case
+  fun.Community <- toupper(fun.Community)
   # run the proper sub function
-  if (fun.Community=="bugs") {##IF.START
-    metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, cols2keep, NA, boo.marine)
-  } else if(fun.Community=="fish"){
-    metric.values.fish(fun.DF, fun.MetricNames, boo.Adjust, cols2keep)
-  # } else if(fun.Community=="algae"){
+  if (fun.Community=="BUGS") {##IF.START
+    metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep, NA, boo.marine)
+  } else if(fun.Community=="FISH"){
+    metric.values.fish(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep)
+  # } else if(fun.Community=="ALGAE"){
   #   metric.values.algae(fun.DF, fun.MetricNames, boo.Adjust)
   }##IF.END
 }##FUNCTION.metric.values.START
 #
 #
 #' @export
-metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
-                               , cols2keep=NULL, MetricSort=NA, boo.marine=FALSE){##FUNCTION.metric.values.bugs.START
+metric.values.bugs <- function(myDF
+                               , MetricNames=NULL
+                               , boo.Adjust=FALSE
+                               , cols2keep=NULL
+                               , MetricSort=NA
+                               , boo.marine=FALSE){##FUNCTION.metric.values.bugs.START
   #
-  names(myDF) <- toupper(names(myDF))
+  #names(myDF) <- toupper(names(myDF))
   # not carrying over from previous?!
   #
   # QC ####
@@ -522,8 +531,6 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
 
   # Create Dominant N ####
   # Create df for Top N (without ties)
-  # define pipe
-  `%>%` <- dplyr::`%>%`
   #
   df.dom01 <- dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
                             dplyr::group_by(SAMPLEID)  %>%
@@ -1069,7 +1076,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
              , x_Shan_10 = x_Shan_e/log(10)
              #, x_D Simpson
              , x_D = 1-sum((N_TAXA/ni_total)^2, na.rm = TRUE)
-            #, X_D_G (Gleason) - [nt_total]/Log([ni_total])
+             #, X_D_G (Gleason) - [nt_total]/Log([ni_total])
             , x_D_G = (nt_total) / log(ni_total)
              #, x_D_Mg Margalef -  ([nt_total]-1)/Log([ni_total])
              , x_D_Mg = (nt_total - 1) / log(ni_total)
@@ -1227,7 +1234,7 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
     # remove ni_total if included as will always include it
     met.val <- met.val[, c("SAMPLEID", "INDEX_REGION", "INDEX_NAME",
                            "ni_total", met2include)]
-  }
+  }##IF~MetricNames~END
 
   # Add extra fields
   if(is.null(cols2keep)){##IF.is.null.cols2keep.START
@@ -1248,139 +1255,247 @@ metric.values.bugs <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE
 #
 #
 #' @export
-metric.values.fish <- function(myDF, SampleID, MetricNames=NULL, boo.Adjust=FALSE, cols2keep=NULL){##FUNCTION.metric.values.fish.START
+metric.values.fish <- function(myDF
+                               , MetricNames=NULL
+                               , boo.Adjust=FALSE
+                               , cols2keep=NULL){##FUNCTION.metric.values.fish.START
+  # QC ####
   # Remove Non-Target Taxa
-  #myDF <- myDF[myDF[,"NonTarget"]==0,]
-  # set case on fields
-  myFlds <- c("SPECIES", "TYPE", "PTOLR", "NATIVE_MBSS", "TROPHIC_MBSS", "SILT", "FIBISTRATA")
-  # Error check on fields
-  if (length(myFlds)!=sum(myFlds %in% names(myDF))) {
-    myMsg <- paste0("Fields missing from input data frame.  Expecting: \n",paste(myFlds,sep="",collapse=", "),collapse="")
-    stop(myMsg)
-  }
-  for (i in myFlds) {
-    myDF[,i] <- toupper(myDF[,i])
-  }
+  #myDF <- myDF[myDF[,"NonTarget"]==0,] # not relevant for fish
+  # QC, Required Fields
+  col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "N_ANOMALIES", "SAMP_BIOMASS"
+               , "INDEX_NAME", "INDEX_REGION"
+               , "DA_MI2", "SAMP_WIDTH_M", "SAMP_LENGTH_M"
+               , "TYPE", "TOLER", "NATIVE", "TROPHIC", "SILT"
+               )
+  col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
+  num.col.req.missing <- length(col.req.missing)
+  # Trigger prompt if any missing fields (and session is interactive)
+  if(num.col.req.missing!=0 & interactive()==TRUE){##IF.num.col.req.missing.START
+    myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
+    myPrompt.02 <- paste(col.req.missing, collapse=", ")
+    myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
+    myPrompt.04 <- "For example, if the NATIVE field is missing all native related metrics will not be correct."
+    myPrompt.05 <- "Do you wish to continue (YES or NO)?"
+
+    myPrompt <- paste(" ", myPrompt.01, myPrompt.02, " ", myPrompt.03, myPrompt.04
+                      , myPrompt.05, sep="\n")
+    #user.input <- readline(prompt=myPrompt)
+    user.input <- NA
+    user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
+    # any answer other than "YES" will stop the function.
+    if(user.input!=1){##IF.user.input.START
+      stop(paste("The user chose *not* to continue due to missing fields: "
+                 , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
+    }##IF.user.input.END
+    # Add missing fields
+    myDF[,col.req.missing] <- NA
+    warning(paste("Metrics related to the following fields are invalid:"
+                  , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
+  }##IF.num.col.req.missing.END
+
+  # Column Values to UPPER case
+  col2upper <- c("FAMILY", "GENUS", "TYPE", "TOLER", "NATIVE", "TROPHIC")
+  for (i in col2upper){
+    myDF[, i] <- toupper(myDF[, i])
+  }##FOR~i~END
+
+
+  # N_Anomalies
+  # By taxon or sample total
+  # Data set up to be by taxon.  But some report as sample total.
+  stats_anom <- myDF %>%
+    group_by(SAMPLEID) %>%
+    summarize(n =n(), n_distinct = n_distinct(N_ANOMALIES), mean = mean(N_ANOMALIES), sd = sd(N_ANOMALIES))
+  stats_anom[, "SUM_ANOMALIES"] <- stats_anom[, "mean"] / stats_anom[, "n"]
+  # make change;  n > 1 & n_distinct == 1
+  stats_anom$mod_anomalies <- ifelse(stats_anom$n >1 & stats_anom$n_distinct == 1, TRUE, FALSE)
+  # add back to myDF
+  myDF <- merge(myDF, stats_anom[stats_anom[, "mod_anomalies"]== TRUE, c("SAMPLEID", "SUM_ANOMALIES")]
+             , all.x = TRUE)
+  myDF[myDF$mod_anomalies==TRUE, "N_ANOMALIES"] <- myDF[myDF$mod_anomalies==TRUE, "SUM_ANOMALIES"]
+
+  # Metric Calc ####
+  # code above is different than benthos
   # Calculate Metrics (could have used pipe, %>%)
-  met.val <- dplyr::summarise(dplyr::group_by(myDF, Index_Name, SITE, FIBISTRATA, ACREAGE, LEN_SAMP, AVWID)
+  met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME, INDEX_REGION, SAMP_WIDTH_M, SAMP_LENGTH_M)
                        #
                        # MBSS 2005, 11 metrics
                        # (can do metrics as one step but MBSS output has numerator so will get that as well)
                        #
+                       # Individuals ####
                        # individuals, total
-                       ,ni_total=sum(TOTAL, na.rm = TRUE)
+                       , ni_total=sum(N_TAXA, na.rm = TRUE)
+                       , ni_natnonhybrid = sum(N_TAXA[NATIVE == "NATIVE" & HYBRID != TRUE], na.rm = TRUE)
+                       , ni_natnonhybridnonlepomis = sum(N_TAXA[NATIVE == "NATIVE" & HYBRID != TRUE & GENUS == "LEPOMIS"], na.rm = TRUE)
                        #
-                       # percent individuals
+                       # Percent Individuals ####
                        # % RBS
-                       ,pi_rbs=100*sum(TOTAL[TYPE=="SUCKER" & PTOLR!="T"], na.rm = TRUE)/ni_total
+                       , pi_rbs=100*sum(N_TAXA[TYPE == "RBS"], na.rm = TRUE)/ni_total
                        # Pct Brook Trout
-                       ,pi_brooktrout=100*sum(TOTAL[SPECIES=="BROOK TROUT"], na.rm = TRUE)/ni_total
+                       , pi_brooktrout=100*sum(N_TAXA[TYPE == "BROOK TROUT"], na.rm = TRUE)/ni_total
                        # Pct Sculpins
-                       ,pi_sculpin=100*sum(TOTAL[TYPE=="SCULPIN"], na.rm = TRUE)/ni_total
+                       , pi_sculpin=100*sum(N_TAXA[TYPE == "SCULPIN"], na.rm = TRUE)/ni_total
+                       , pi_lepomis = 100*sum(N_TAXA[GENUS == "LEPOMIS"], na.rm = TRUE)/ni_total
+
+                       # benthic fluvial specialist
+                       , pi_bfs = 100*sum(N_TAXA[(TYPE == "BENTHIC" & TROPHIC == "IV") | TYPE == "RBS" | TYPE == "SMM"], na.rm = TRUE)/ni_total
                         #
-                       # number of taxa
-                       ,nt_total=dplyr::n_distinct(SPECIES)
-                       ,nt_benthic=dplyr::n_distinct(SPECIES[TYPE=="DARTER"|TYPE=="SCULPIN"|TYPE=="MADTOM"|TYPE=="LAMPREY"])
-                      #
-                       # Feeding
+                       # Number of Taxa ####
+                       , nt_total=dplyr::n_distinct(TAXAID)
+                       #, nt_benthic=dplyr::n_distinct(TAXAID[TYPE == "DARTER" | TYPE == "SCULPIN" | TYPE == "MADTOM" | TYPE == "LAMPREY"])
+                       , nt_benthic=dplyr::n_distinct(TAXAID[TYPE == "BENTHIC"])
+                       , nt_native = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE"])
+                       , nt_beninvert = dplyr::n_distinct(TAXAID[TYPE == "BENTHIC" & TROPHIC == "IV"])
+                       , nt_natsunfish = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "SUNFISH"])
+                       , nt_natcent = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & FAMILY == "CENTRARCHIDAE"])
+                       , nt_natinsctcypr = dplyr::n_distinct(TAXAID[TROPHIC == "IS" & FAMILY == "CYPRINIDAE"])
+                       , nt_natrbs = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "RBS"])
+                       #
+                       # Feeding ####
                        # % Lithophilic spawners
-                       ,pi_lithophil=100*sum(TOTAL[SILT=="Y"], na.rm = TRUE)/ni_total
+                       , pi_lithophil=100*sum(N_TAXA[SILT == TRUE], na.rm = TRUE)/ni_total
                        # % gen, omn, invert
-                       , pi_genomninvrt=100*sum(TOTAL[TROPHIC_MBSS=="GE" | TROPHIC_MBSS=="OM" | TROPHIC_MBSS=="IV"], na.rm = TRUE)/ ni_total
+                       , pi_genomninvrt=100*sum(N_TAXA[TROPHIC == "GE" | TROPHIC == "OM" | TROPHIC == "IV"], na.rm = TRUE)/ ni_total
                        # % insectivore
-                      ,pi_insectivore=100*sum(TOTAL[TROPHIC_MBSS=="IS"], na.rm = TRUE)/ ni_total
-                      #
-                      # Tolerance
-                      , pi_tv_toler= 100*sum(TOTAL[PTOLR=="T"], na.rm = TRUE)/ni_total
-                      #
-                      #
-                       # indices
+                       , pi_insectivore=100*sum(N_TAXA[TROPHIC == "IS"], na.rm = TRUE)/ ni_total
+                       , pi_insctcypr = 100*sum(N_TAXA[TROPHIC == "IS" & FAMILY == "CYPRINIDAE"], na.rm = TRUE)/ ni_total
+                       , pi_genherb = 100*sum(N_TAXA[TROPHIC == "HB"], na.rm = TRUE)/ ni_total
+                       , pi_topcarn = 100*sum(N_TAXA[TROPHIC == "TC"], na.rm = TRUE)/ ni_total
+                       #
+                       # Tolerance ####
+                       , nt_tv_intol = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT"])
+                       , nt_tv_intolhwi = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT" | TOLER == "HWI"])
+                       , pi_tv_toler= 100*sum(N_TAXA[TOLER=="TOLERANT"], na.rm = TRUE)/ni_total
+                       #
+                       #
+                       # Indices ####
                        #,pi_dom01/2/3/5 #last? or nth
-                       ,pi_dom01=100*max(TOTAL)/ni_total
-                      #
-                       # Other
-                       ,area=max(AVWID)*max(LEN_SAMP)
+                       , pi_dom01=100*max(N_TAXA)/ni_total
+                       # Shannon-Weiner
+                       #, x_Shan_Num= -sum(log(N_TAXA/ni_total)), na.rm=TRUE)
+                       #, x_Shan_e=x_Shan_Num/log(exp(1))
+                       , x_Shan_e = -sum((N_TAXA/ni_total)*log((N_TAXA/ni_total)), na.rm=TRUE)
+                       , x_Shan_2 = x_Shan_e/log(2)
+                       , x_Shan_10 = x_Shan_e/log(10)
+                       , x_Evenness = x_Shan_e/log(nt_total)
+                       , x_Evenness100_ni99gt = ifelse(ni_total < 100, -99, x_Evenness * 100)
+                       #
+                       # Other ####
+                       #, area_m = max(SAMP_WIDTH_M, na.rm = TRUE)*max(SAMP_LENGTH_M, na.rm = TRUE)
+                       , length_m = max(SAMP_LENGTH_M, na.rm = TRUE)
                        # Abund / sq meter
-                       ,ni_m2=ni_total/area #/(StWidAvg*StLength)
+                       #, ni_m2=ni_total/area_m #/(StWidAvg*StLength)
+                       , ni_200m = 200 * ni_total / length_m
+                       , ni_natnonhybrid_200m = 200 * ni_natnonhybrid / length_m
+                       , ni_natnonhybridnonlepomis_200m = 200 * ni_natnonhybridnonlepomis / length_m
                        # biomass per square meter
-                      , x_biomass_total=max(TOTBIOM)
-                       ,x_biomass_m2=x_biomass_total/area #/(StWidAvg*StLength)
+                  #     , biomass_total=max(SAMP_BIOMASS, na.rm = TRUE)
+                  #     , biomass_m2=biomass_total/area_m #/(StWidAvg*StLength)
+                       # Anomalies
+                       , pi_anomalies = 100 * sum(N_ANOMALIES, na.rm = TRUE)/ni_total
                        # #
-                       # # BCG
+                       # BCG ####
                        # ,nt_BCG_att123=n_distinct(Count[EXCLUDE!=TRUE & (BCG_Atr=="1" | BCG_Atr=="2" | BCG_Atr=="3")])
                        #
-                       # MBSS metric names
-                       , STRMAREA  = area
-                       , TOTCNT    = ni_total
-                       , ABUNSQM   = ni_m2
-                       , PABDOM    = pi_dom01
-                       , TOTBIOM   = x_biomass_total
-                       , BIOM_MSQ  = x_biomass_m2
-                       , NUMBENTSP = nt_benthic
-                       # , NUMBROOK  = ni_brooktrout
-                       , PBROOK    = pi_brooktrout
-                       # , NUMGEOMIV = ni_genomninvrt
-                       , PGEOMIV   = pi_genomninvrt
-                       # , NUMIS     = ni_insectivore
-                       , P_IS      = pi_insectivore
-                       # , NUMLITH   = ni_lithophil
-                       , P_LITH    = pi_lithophil
-                       # , NUMROUND  = ni_rbs
-                       , PROUND    = pi_rbs
-                       # , NUMSCULP  = ni_sculpin
-                       , PSCULP    = pi_sculpin
-                       # , NUMTOL    = ni_tv_toler
-                       , PTOL      = pi_tv_toler
+                       # Clean Up ####
+                       # # MBSS metric names
+                       # , STRMAREA  = area
+                       # , TOTCNT    = ni_total
+                       # , ABUNSQM   = ni_m2
+                       # , PABDOM    = pi_dom01
+                       # , TOTBIOM   = x_biomass_total
+                       # , BIOM_MSQ  = x_biomass_m2
+                       # , NUMBENTSP = nt_benthic
+                       # # , NUMBROOK  = ni_brooktrout
+                       # , PBROOK    = pi_brooktrout
+                       # # , NUMGEOMIV = ni_genomninvrt
+                       # , PGEOMIV   = pi_genomninvrt
+                       # # , NUMIS     = ni_insectivore
+                       # , P_IS      = pi_insectivore
+                       # # , NUMLITH   = ni_lithophil
+                       # , P_LITH    = pi_lithophil
+                       # # , NUMROUND  = ni_rbs
+                       # , PROUND    = pi_rbs
+                       # # , NUMSCULP  = ni_sculpin
+                       # , PSCULP    = pi_sculpin
+                       # # , NUMTOL    = ni_tv_toler
+                       # , PTOL      = pi_tv_toler
                        #
   )## met.val.END
   #
   # replace NA with 0
   met.val[is.na(met.val)] <- 0
   #
+  # # # subset to only metrics specified by user
+  # # if (!is.null(MetricNames)){
+  # #   met.val <- met.val[,c(Index_Name, SITE, INDEX_REGION, ACREAGE, LEN_SAMP, MetricNames)]
+  # # }
+  # myFlds_Remove <- c("ni_total", "pi_rbs",
+  #                    , "pi_brooktrout", "pi_sculpin", "nt_total"
+  #                    , "nt_benthic", "pi_lithophil",
+  #                    , "pi_genomninvrt", "pi_insectivore",
+  #                    , "pi_tv_toler", "pi_dom01", "area", "ni_m2"
+  #                    , "x_biomass_total", "x_biomass_m2")
+  # met.val <- met.val[,-match(myFlds_Remove,names(met.val))]
+
   # # subset to only metrics specified by user
-  # if (!is.null(MetricNames)){
-  #   met.val <- met.val[,c(Index_Name, SITE, FIBISTRATA, ACREAGE, LEN_SAMP, MetricNames)]
-  # }
-  myFlds_Remove <- c("ni_total", "pi_rbs",
-                     , "pi_brooktrout", "pi_sculpin", "nt_total"
-                     , "nt_benthic", "pi_lithophil",
-                     , "pi_genomninvrt", "pi_insectivore",
-                     , "pi_tv_toler", "pi_dom01", "area", "ni_m2"
-                     , "x_biomass_total", "x_biomass_m2")
-  met.val <- met.val[,-match(myFlds_Remove,names(met.val))]
+  if (is.null(MetricNames)) {
+    #met.val <- met.val
+  } else {
+    met2include <- MetricNames[!(MetricNames %in% "ni_total")]
+    # remove ni_total if included as will always include it
+    met.val <- met.val[, c("SAMPLEID", "INDEX_REGION", "INDEX_NAME", met2include)]
+  }##IF~MetricNames~END
+
+  # Add extra fields
+  if(is.null(cols2keep)){##IF.is.null.cols2keep.START
+    df.return <- as.data.frame(met.val)
+  } else {
+    # create df with grouped fields
+    myDF.cols2keep <- myDF %>% dplyr::group_by_(.dots=c("SAMPLEID", cols2keep)) %>%
+      dplyr::summarize(col.drop=sum(N_TAXA))
+    col.drop <- ncol(myDF.cols2keep)
+    myDF.cols2keep <- myDF.cols2keep[,-col.drop]
+    # merge
+    df.return <- merge(as.data.frame(myDF.cols2keep), as.data.frame(met.val), by="SAMPLEID")
+  }##IF.is.null.cols2keep.END
 
 
+
+
+
+  # #
+  # # Adjust metrics (MBSS always adjust so remove IF/THEN)
+  # # added as extra columns to output
+  # #if (boo.Adjust==TRUE) {##IF.boo.Ajust.START
+  #   # MBSS.2005.Fish
+  #   # nt_benthic
+  #     met.val[,"NUMBENTSP_Obs"] <- met.val[,"NUMBENTSP"]
+  #     # Expected constants
+  #     ## m
+  #     met.val[,"NUMBENTSP_m"] <- NA
+  #     met.val[,"NUMBENTSP_m"][met.val[,"INDEX_REGION"]=="COASTAL"]   <- 1.69
+  #     met.val[,"NUMBENTSP_m"][met.val[,"INDEX_REGION"]=="EPIEDMONT"] <- 1.25
+  #     met.val[,"NUMBENTSP_m"][met.val[,"INDEX_REGION"]=="HIGHLAND"]  <- 1.23
+  #     ## b
+  #     met.val[,"NUMBENTSP_b"] <- NA
+  #     met.val[,"NUMBENTSP_b"][met.val[,"INDEX_REGION"]=="COASTAL"]   <- -3.33
+  #     met.val[,"NUMBENTSP_b"][met.val[,"INDEX_REGION"]=="EPIEDMONT"] <- -2.36
+  #     met.val[,"NUMBENTSP_b"][met.val[,"INDEX_REGION"]=="HIGHLAND"]  <- -2.35
+  #     # Calc Expected
+  #     met.val[,"NUMBENTSP_Exp"] <- (met.val[,"NUMBENTSP_m"] * log10(met.val[,"ACREAGE"])) + met.val[,"NUMBENTSP_b"]
+  #     # Calc Adjusted
+  #     met.val[,"NUMBENTSP_Adj"] <- met.val[,"NUMBENTSP_Obs"] / met.val[,"NUMBENTSP_Exp"]
+  #     # Rename base metric with adjusted value
+  #     met.val[,"NUMBENTSP"] <- met.val[,"NUMBENTSP_Adj"]
+  #     # NA to zero
+  #     met.val[,"NUMBENTSP"][is.na(met.val[,"NUMBENTSP"])] <- 0
   #
-  # Adjust metrics (MBSS always adjust so remove IF/THEN)
-  # added as extra columns to output
-  #if (boo.Adjust==TRUE) {##IF.boo.Ajust.START
-    # MBSS.2005.Fish
-    # nt_benthic
-      met.val[,"NUMBENTSP_Obs"] <- met.val[,"NUMBENTSP"]
-      # Expected constants
-      ## m
-      met.val[,"NUMBENTSP_m"] <- NA
-      met.val[,"NUMBENTSP_m"][met.val[,"FIBISTRATA"]=="COASTAL"]   <- 1.69
-      met.val[,"NUMBENTSP_m"][met.val[,"FIBISTRATA"]=="EPIEDMONT"] <- 1.25
-      met.val[,"NUMBENTSP_m"][met.val[,"FIBISTRATA"]=="HIGHLAND"]  <- 1.23
-      ## b
-      met.val[,"NUMBENTSP_b"] <- NA
-      met.val[,"NUMBENTSP_b"][met.val[,"FIBISTRATA"]=="COASTAL"]   <- -3.33
-      met.val[,"NUMBENTSP_b"][met.val[,"FIBISTRATA"]=="EPIEDMONT"] <- -2.36
-      met.val[,"NUMBENTSP_b"][met.val[,"FIBISTRATA"]=="HIGHLAND"]  <- -2.35
-      # Calc Expected
-      met.val[,"NUMBENTSP_Exp"] <- (met.val[,"NUMBENTSP_m"] * log10(met.val[,"ACREAGE"])) + met.val[,"NUMBENTSP_b"]
-      # Calc Adjusted
-      met.val[,"NUMBENTSP_Adj"] <- met.val[,"NUMBENTSP_Obs"] / met.val[,"NUMBENTSP_Exp"]
-      # Rename base metric with adjusted value
-      met.val[,"NUMBENTSP"] <- met.val[,"NUMBENTSP_Adj"]
-      # NA to zero
-      met.val[,"NUMBENTSP"][is.na(met.val[,"NUMBENTSP"])] <- 0
-
-  #}##IF.boo.Ajust.END
+  # #}##IF.boo.Ajust.END
   #
   # df to report back
-  return(met.val)
+  return(df.return)
 }##FUNCTION.metric.values.fish.END
 #
 #

@@ -155,18 +155,28 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     # col_IndexRegion <-  "INDEX_REGION"
     # DF_Thresh <- df_thresh
     #~~~~~~~~~~~~~~~~~~~~~
-    # DF_Metrics <- df_metric_values_bugs
-    # col_MetricNames <- myMetrics.Bugs
-    # col_IndexName <- "INDEX_NAME"
-    # col_IndexRegion <- "INDEX_REGION"
+    # DF_Metrics       <- df_metric_values_bugs
+    # col_MetricNames  <- myMetrics.Bugs
+    # col_IndexName    <- "INDEX_NAME"
+    # col_IndexRegion  <- "INDEX_REGION"
     # DF_Thresh_Metric <- df_thresh_metric
-    # DF_Thresh_Index <- df_thresh_index
+    # DF_Thresh_Index  <- df_thresh_index
     (a <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
-    (b <- unique(as.matrix(DF_Metrics[, col_IndexRegion]))[2])
-    (c <- col_MetricNames[13])
+    (b <- toupper(unique(as.matrix(DF_Metrics[, col_IndexRegion]))[2]))
+    (c <- col_MetricNames[16])
     (aa <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
-    (bb <- unique(as.matrix(DF_Metrics[, col_IndexRegion]))[2])
+    (bb <- toupper(unique(as.matrix(DF_Metrics[, col_IndexRegion]))[2]))
   }##IF~boo.QC~END
+
+  # define pipe
+  `%>%` <- dplyr::`%>%`
+
+  # QC ####
+  #
+  # Ensure have a data frame not a tibble
+  DF_Metrics       <- as.data.frame(DF_Metrics)
+  DF_Thresh_Metric <- as.data.frame(DF_Thresh_Metric)
+  DF_Thresh_Index  <- as.data.frame(DF_Thresh_Index)
   #
   # QC, Column Names
   # Error check on fields (thresh metric)
@@ -195,10 +205,18 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     stop(myMsg)
   }
   #
+  # Munge ####
+  #
+  # Index Region Field to upper case
+  DF_Metrics[,"INDEX_REGION"]       <- toupper(as.matrix(DF_Metrics[,"INDEX_REGION"]))
+  DF_Thresh_Metric[,"INDEX_REGION"] <- toupper(as.matrix(DF_Thresh_Metric[,"INDEX_REGION"]))
+  DF_Thresh_Index[,"INDEX_REGION"]  <- toupper(as.matrix(DF_Thresh_Index[,"INDEX_REGION"]))
+  #
   # Add "SCORE" columns for each metric
   Score.MetricNames <- paste0("SC_", col_MetricNames)
-  DF_Metrics[, Score.MetricNames] <- 0
+  DF_Metrics[, Score.MetricNames] <- NA
   #
+  # SCORING ####
   # Need to cycle based on Index (a), Region (b), and Metric (c)
   for (a in unique(as.matrix(DF_Metrics[, col_IndexName]))){##FOR.a.START
     for (b in unique(as.matrix(DF_Metrics[, col_IndexRegion]))) {##FOR.b.START
@@ -211,7 +229,15 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
         if(nrow(fun.Thresh.myMetric)!=1){
           #return(0)
           next
-        }
+        }##IF~nrow~END
+        #
+        # Debug
+        if(boo.QC){
+          myMsg <- paste0("\nIndex = ", a, ", Region = ", b, ", Metric = ", c)
+          message(myMsg)
+        }##IF~boo.QC~END
+
+        #
         # thresholds
         ## suppress warnings as some will be "NA".
         # use drop = TRUE so a Tibble behaves more like a data frame and returns a single value
@@ -223,7 +249,7 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
         fun.SV_Add      <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "SingleValue_Add", drop = TRUE]))
         fun.ND_Lo       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "NormDist_Tail_Lo", drop = TRUE]))
         fun.ND_Hi       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "NormDist_Tail_Hi", drop = TRUE]))
-        fun.CG_xvar     <- fun.Thresh.myMetric[, "CatGrad_xvar", drop = TRUE]
+        fun.CG_xvar     <- suppressWarnings(toupper(fun.Thresh.myMetric[, "CatGrad_xvar", drop = TRUE]))
         fun.CG_IP       <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_InfPt", drop = TRUE]))
         fun.CG_Lo_m     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Lo_m", drop = TRUE]))
         fun.CG_Lo_b     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Lo_b", drop = TRUE]))
@@ -231,11 +257,16 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
         fun.CG_Mid_b    <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Mid_b", drop = TRUE]))
         fun.CG_Hi_m     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Hi_m", drop = TRUE]))
         fun.CG_Hi_b     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Hi_b", drop = TRUE]))
+        #
+        fun.DepMet_Name  <- suppressWarnings(fun.Thresh.myMetric[, "DepMet_Master_Name", drop = TRUE])
+        fun.DepMet_Score <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "DepMet_Master_Score", drop = TRUE]))
+        fun.DepMet_Cond  <- suppressWarnings(fun.Thresh.myMetric[, "DepMet_Master_Condition", drop = TRUE])
+
 
         #
         # default value
         fun.Value <- DF_Metrics[, c]
-        fun.Result <- fun.Value * 0  #default value of zero
+        fun.Result <- fun.Value * NA  #default value of NA
         #
         if(fun.ScoreRegime=="CONT_0100"){##IF.scoring.START
           # Cont_0100 ####
@@ -251,7 +282,7 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
             fun.Result <- ifelse(fun.Value>=fun.Hi,5
                                  ,ifelse(fun.Value<fun.Lo,1,3))
             if(boo.QC==TRUE){##IF.boo.QC.START
-              message(paste0("Metric=",c,", Value=",fun.Value,", Result=", fun.Result))
+              message(paste0("\nMetric=",c,", Value=",fun.Value,", Result=", fun.Result))
               #utils::flush.console()
             }##IF.boo.QC.END
           } else if (fun.Direction=="INCREASE") {
@@ -294,8 +325,16 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
           }##SingleValue_Lo
         } else if(fun.ScoreRegime=="CATGRAD_135") {
           # ContGrad135 ####
-
+          #
           # get xvar and calc Expected Score
+          # QC to ensure xvar is present in data
+          boo_CG_xvar <- fun.CG_xvar %in% names(DF_Metrics)
+          if(boo_CG_xvar == FALSE){
+            myMsg <- paste0("\nField missing from DF_Metric input data frame. Expecting: \n"
+                            , fun.CG_xvar)
+            stop(myMsg)
+          }##IF~boo_CG_xvar~END
+          #
           fun.CG_xval     <- suppressWarnings(as.numeric(DF_Metrics[, fun.CG_xvar]))
           #x_var <- fun.CG_xvar
           #x_Obs <- fun.Value
@@ -304,8 +343,7 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
           x_Exp_Lo  <- (fun.CG_Lo_m * fun.CG_xval) + fun.CG_Lo_b
           x_Exp_Mid <- (fun.CG_Mid_m * fun.CG_xval) + fun.CG_Mid_b
           x_Exp_Hi  <- (fun.CG_Hi_m * fun.CG_xval) + fun.CG_Hi_b
-
-
+          #
           # Check for inflection point, then score based on Gradient
           # Gradient is only a decrease scoring regime
           if(is.na(fun.CG_IP)){
@@ -319,27 +357,81 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
 
 
 
-          # use dplyr::mutate
+          # use dplyr::mutate ?
           #~~~~~~~~~~
+
+        } else if(fun.ScoreRegime == "CAT_135_DEPMET") {
+          # Cat_135_DepMet ####
+          #
+          # QC, check for name
+          c_master_boo <- fun.DepMet_Name %in% col_MetricNames
+          if (c_master_boo == FALSE) {
+            myMsg <- paste0("\nField missing from DF_Metrics input data frame for dependant metric master.  Expecting: \n"
+                            , fun.DepMet_Name)
+            stop(myMsg)
+          }
+          # Check to see if "master" already scored
+          # Get Master Metric Score
+          c_master_score <- DF_Metrics[, paste0("SC_", fun.DepMet_Name)]
+          #
+          if(sum(is.na(c_master_score)) == length(c_master_score)){
+            myMsg <- paste0("\nMaster metric (", fun.DepMet_Name, ") not scored before dependent metric (", c, ").\n",
+                            "Reorder columns before proceeding.")
+            stop(myMsg)
+            # Scores for testing
+            if (boo.QC == TRUE) {
+              c_master_score <- rep_len(c(NA, 1, 3, 5), length(fun.Value))
+            }##IF~boo.QC~END
+          }##IF~c_master_Score~END
+          #
+          # Default Value
+          fun.Result <- NA
+          #
+          # Keep only relevant values
+          #fun.Value_orig <- fun.Value # for testing only
+          if(fun.DepMet_Cond == "greaterthan"){
+            fun.Value <- ifelse(c_master_score > fun.DepMet_Score, fun.Value, NA)
+          } else if (fun.DepMet_Cond == "equal") {
+            fun.Value <- ifelse(c_master_score == fun.DepMet_Score, fun.Value, NA)
+          } else {
+            fun.Value <- NA
+          }##IF~DepMetMaster~END
+          #
+          # Score (only non NA)
+          # Same Cat135 code as above
+          # Cat_135 ###
+          if(fun.Direction=="DECREASE") {
+            fun.Result <- ifelse(fun.Value>=fun.Hi,5
+                                 ,ifelse(fun.Value<fun.Lo,1,3))
+            if(boo.QC==TRUE){##IF.boo.QC.START
+              myMsg <- paste0("\nMetric=",c,", Value=",fun.Value,", Result=", fun.Result)
+              message(myMsg)
+              #utils::flush.console()
+            }##IF.boo.QC.END
+          } else if (fun.Direction=="INCREASE") {
+            fun.Result <- ifelse(fun.Value<=fun.Lo,5
+                                 ,ifelse(fun.Value>fun.Hi,1,3))
+          }##IF~fun.direction~END
+          #
         } else if(is.na(fun.ScoreRegime)) {
           # No Score Regime ####
-          fun.Result <- 0
+          fun.Result <- NA
         } else {
           # OTHER ####
-          fun.Result <- 0
+          fun.Result <- NA
         }##IF.scoring.END
         #
         # Update input DF with matching values
         myTF <- DF_Metrics[, col_IndexName]==a & DF_Metrics[, col_IndexRegion]==b
-        DF_Metrics[myTF,paste0("SC_", c)] <- fun.Result[myTF]
+        DF_Metrics[myTF, paste0("SC_", c)] <- fun.Result[myTF]
       }##FOR.c.END
     }##FOR.a.END
   }##FOR.b.END
   #
 
   # INDEX ####
-  DF_Metrics[,"sum_Index"] <- 0
-  DF_Metrics[,"Index"]     <- 0
+  DF_Metrics[,"sum_Index"] <- NA
+  DF_Metrics[,"Index"]     <- NA
   DF_Metrics[,"Index_Nar"] <- NA
 
   # Index, Sum
@@ -351,7 +443,8 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
   for (aa in unique(as.matrix(DF_Metrics[,col_IndexName]))){##FOR.a.START
     for (bb in unique(as.matrix(DF_Metrics[,col_IndexRegion]))) {##FOR.b.START
     # Thresholds (filter with dplyr)
-    fun.Thresh.myIndex <- as.data.frame(dplyr::filter(DF_Thresh_Index, INDEX_NAME==aa & INDEX_REGION==bb))
+    fun.Thresh.myIndex <- as.data.frame(dplyr::filter(DF_Thresh_Index
+                                                      , INDEX_NAME==aa & INDEX_REGION==bb))
     # QC
     if(nrow(fun.Thresh.myIndex)!=1){
       #return(0)
@@ -363,11 +456,11 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     fun.Index.Nar.Thresh <- fun.Thresh.myIndex[, c(paste0("Thresh0", 1:7))]
     fun.Index.Nar.Nar    <- fun.Thresh.myIndex[, c(paste0("Nar0", 1:6))]
 
-    fun.Index.Nar.Numb <- sum(!is.na(fun.Index.Nar.Nar))
+    fun.Index.Nar.Numb <- sum(!is.na(fun.Index.Nar.Nar), na.rm = TRUE)
 
     # default value
     fun.Value <- DF_Metrics[, "sum_Index"]
-    fun.Result <- fun.Value * 0  #default value of zero
+    fun.Result <- fun.Value * NA  #default value of NA
     #
     # Scoring
     if(fun.ScoreRegime=="AVERAGE"){##IF.scoring.START
@@ -380,8 +473,12 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     # Narrative
     myBreaks <- as.numeric(paste(fun.Index.Nar.Thresh[1, 1:(fun.Index.Nar.Numb + 1)]))
     myLabels <- paste(fun.Index.Nar.Nar[1, 1:fun.Index.Nar.Numb])
-    fun.Result.Nar <- as.vector(cut(fun.Result, breaks=myBreaks, labels=myLabels
-                          , include.lowest=TRUE, right=FALSE, ordered_result = TRUE))
+    fun.Result.Nar <- as.vector(cut(fun.Result
+                                    , breaks=myBreaks
+                                    , labels=myLabels
+                                    , include.lowest=TRUE
+                                    , right=FALSE
+                                    , ordered_result = TRUE))
     #
     # Update input DF with matching values
     myTF <- DF_Metrics[,col_IndexName]==aa & DF_Metrics[,col_IndexRegion]==bb

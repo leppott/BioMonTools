@@ -3,26 +3,45 @@ NEWS
 <Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2020-01-31 13:01:52
+    #> Last Update: 2020-02-24 13:48:49
 
 Planned Updates
 ===============
 
--   ~~Metric Calculation~~
--   ~~Subsample (rarify)~~
--   ~~Excluded Taxa~~
+-   None at this time.
 
-Future Updates
-==============
+Future Possible Updates
+=======================
 
--   Fish and Periphyton metrics.
+-   Periphyton metrics.
 -   Metric scoring
--   Multimetric Index scoring
 -   TaxaList Check
 -   Map taxon observations
 
 Version History
 ===============
+
+Changes in Version 0.3.3.9017 (2020-02-24)
+------------------------------------------
+
+-   MetricScoring.xlsx, Issue \#3
+    -   Tweak scoring for GA Fish IBI
+    -   Add metric value calculation for GA Fish IBI metrics.
+    -   New Scoring Regimes and associated columns.
+-   Remove MBSStools from Suggests in DESCRIPTION.
+-   metric.values
+    -   Modifications for GA Fish IBI.
+        -   All columns to upper case.
+    -   Default values to NA rather than zero.
+    -   Use toupper rater than tolower.
+-   metric.scores
+    -   Modifications for GA Fish IBI.
+        -   Additional Scoring Regimes.
+        -   Additional fish metrics.
+    -   All columns to upper case using toupper.
+    -   Default values to NA rather than zero.
+-   vignette\_BioMonTools.Rmd
+    -   Added library(dplyr) to one of the examples.
 
 Changes in Version 0.3.3.9016 (2020-01-31)
 ------------------------------------------

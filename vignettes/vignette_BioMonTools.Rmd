@@ -156,6 +156,7 @@ Fields that are optional can be in the output (see examples below).
 library(readxl)
 library(knitr)
 library(BioMonTools)
+library(dplyr)
 
 # Load Data
 df.data <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
