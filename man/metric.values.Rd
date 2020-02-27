@@ -108,6 +108,9 @@ By default the metric names will be returned in the groupings that were used for
 The fields TOLVAL2 and FFG2 are provided to allow the user to calculate metrics
 based on alternative scenarios.  For example, HBI and NCBI where the NCBI uses
 a different set of tolerance values (TOLVAL2).
+
+If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated.
+Other values for TAXAID with N_TAXA = 0 will be removed before calculations.
 }
 \examples{
 # Example data

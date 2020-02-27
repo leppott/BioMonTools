@@ -75,6 +75,9 @@
 #' based on alternative scenarios.  For example, HBI and NCBI where the NCBI uses
 #' a different set of tolerance values (TOLVAL2).
 #'
+#' If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated.
+#' Other values for TAXAID with N_TAXA = 0 will be removed before calculations.
+#'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param fun.DF Data frame of taxa (list required fields)
 #' @param fun.Community Community name for which to calculate metric values (bugs, fish, or algae)
@@ -363,8 +366,9 @@ metric.values <- function(fun.DF
     #names(fun.cols2keep) <- toupper(fun.cols2keep)
     fun.cols2keep <- toupper(fun.cols2keep)
   }##IF~!is.null(fun.cols2keep)~END
-  # Remove Count = 0 taxa
-  fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
+  # Remove Count = 0 taxa unless TaxaID = NONE
+  #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
+  fun.DF <- fun.DF %>% filter(N_TAXA > 0 | TAXAID == "NONE")
   # non-target taxa removed in community function, if appropriate
   #
   # SiteType to upper case
@@ -649,7 +653,8 @@ metric.values.bugs <- function(myDF
              , ni_Ramello = sum(N_TAXA[GENUS == "Ramellogammarus"], na.rm=TRUE)
 
              # Number of Taxa ####
-             , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE], na.rm = TRUE)
+             # account for "NONE" in nt_total, should be the only 0 N_TAXA
+             , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & N_TAXA > 0], na.rm = TRUE)
              , nt_Amph = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Amphipoda"], na.rm = TRUE)
              , nt_Bival = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Bivalvia"], na.rm = TRUE)
              , nt_Capit = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Capitellidae"], na.rm = TRUE)
@@ -1291,12 +1296,12 @@ metric.values.fish <- function(myDF
                  , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
     }##IF.user.input.END
     # Add missing fields
-    myDF[,col.req.missing] <- NA
+    myDF[, col.req.missing] <- NA
     warning(paste("Metrics related to the following fields are invalid:"
                   , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
   }##IF.num.col.req.missing.END
 
-  # Column Values to UPPER case
+  # Column Values to UPPER case for met.val below
   col2upper <- c("FAMILY", "GENUS", "TYPE", "TOLER", "NATIVE", "TROPHIC")
   for (i in col2upper){
     myDF[, i] <- toupper(myDF[, i])
@@ -1357,10 +1362,11 @@ metric.values.fish <- function(myDF
                                                    TYPE == "RBS" | TYPE == "SMM"], na.rm = TRUE)/ni_total
                         #
                        # Number of Taxa ####
-                       , nt_total=dplyr::n_distinct(TAXAID)
+                       # account for "NONE" in nt_total, should be the only 0 N_TAXA
+                       , nt_total=dplyr::n_distinct(TAXAID[N_TAXA > 0], na.rm = TRUE)
                        #, nt_benthic=dplyr::n_distinct(TAXAID[TYPE == "DARTER" | TYPE == "SCULPIN" | TYPE == "MADTOM" | TYPE == "LAMPREY"])
                        , nt_benthic=dplyr::n_distinct(TAXAID[TYPE == "BENTHIC"], na.rm = TRUE)
-                       , nt_native = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE"], na.rm = TRUE)
+                       , nt_native = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & N_TAXA > 0], na.rm = TRUE)
                        , nt_nativenonhybrid = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" &
                                                                          (HYBRID != TRUE | is.na(HYBRID))], na.rm = TRUE)
                        , nt_beninvert = dplyr::n_distinct(TAXAID[TYPE == "BENTHIC" & TROPHIC == "IV"], na.rm = TRUE)

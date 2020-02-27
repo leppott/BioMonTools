@@ -3,7 +3,7 @@ NEWS
 <Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2020-02-27 08:12:39
+    #> Last Update: 2020-02-27 12:49:52
 
 Planned Updates
 ===============
@@ -21,7 +21,18 @@ Future Possible Updates
 Version History
 ===============
 
-Changes in Version 0.4.0.9001 (2020-02-26)
+Changes in Version 0.4.0.9002 (2020-02-27)
+------------------------------------------
+
+-   metric.score.R
+    -   Account for "no organisms collected".
+        -   TAXAID needs to be "NONE".
+        -   N\_TAXA needs to be zero.
+        -   Both bugs and fish will exclude all other N\_TAXA = 0 but keep if TAXAID == "NONE".
+        -   nt\_total metric has condition for N\_TAXA &gt; 0.
+        -   All other metrics will calculate but receive values of 0, NA, or NaN as appropriate.
+
+Changes in Version 0.4.0.9001 (2020-02-27)
 ------------------------------------------
 
 -   Tweak for GA Fish IBI, Issue \#3
