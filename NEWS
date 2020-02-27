@@ -3,7 +3,7 @@ NEWS
 <Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2020-02-27 12:49:52
+    #> Last Update: 2020-02-27 14:36:42
 
 Planned Updates
 ===============
@@ -20,6 +20,13 @@ Future Possible Updates
 
 Version History
 ===============
+
+Changes in Version 0.4.0.9003 (2020-02-27)
+------------------------------------------
+
+-   Add ability to score index when have zero individuals.
+    -   metric.scores.R
+    -   MetricScoring.xlsx
 
 Changes in Version 0.4.0.9002 (2020-02-27)
 ------------------------------------------

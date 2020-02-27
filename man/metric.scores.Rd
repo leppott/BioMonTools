@@ -10,7 +10,8 @@ metric.scores(
   col_IndexName,
   col_IndexRegion,
   DF_Thresh_Metric,
-  DF_Thresh_Index
+  DF_Thresh_Index,
+  col_ni_total = "ni_total"
 )
 }
 \arguments{
@@ -32,6 +33,9 @@ METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime
 \item{DF_Thresh_Index}{Data frame of Scoring Thresholds for indices (INDEX_NAME, INDEX_REGION,
 METRIC_NAME, ScoreRegime, Thresh01, Thresh02, Thresh03, Thresh04, Thresh05, Thresh06, Thresh07
 , Nar01, Nar02, Nar03, Nar04, Nar05, Nar06).}
+
+\item{col_ni_total}{Name of column with total number of individuals.  Used
+for cases where sample was collected but no organisms collected.  Default = ni_total.}
 }
 \value{
 vector of scores

@@ -24,6 +24,8 @@
 #' @param DF_Thresh_Index Data frame of Scoring Thresholds for indices (INDEX_NAME, INDEX_REGION,
 #' METRIC_NAME, ScoreRegime, Thresh01, Thresh02, Thresh03, Thresh04, Thresh05, Thresh06, Thresh07
 #' , Nar01, Nar02, Nar03, Nar04, Nar05, Nar06).
+#' @param col_ni_total Name of column with total number of individuals.  Used
+#' for cases where sample was collected but no organisms collected.  Default = ni_total.
 # @param col_Xvar Name of column with additional variable needed to calculate scores.  For example, log10 drainage area.
 #'
 #' @return vector of scores
@@ -144,8 +146,13 @@
 #' table(df.flags[,"CHECKNAME"], df.flags[,"FLAG"], useNA="ifany")
 #'
 #' @export
-metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexRegion
-                          , DF_Thresh_Metric, DF_Thresh_Index) {##FUNCTION.metric.score.START
+metric.scores <- function(DF_Metrics
+                          , col_MetricNames
+                          , col_IndexName
+                          , col_IndexRegion
+                          , DF_Thresh_Metric
+                          , DF_Thresh_Index
+                          , col_ni_total = "ni_total") {##FUNCTION.metric.score.START
   #
   boo.QC <- FALSE
   if(boo.QC==TRUE){
@@ -436,12 +443,13 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
 
   # Index, Sum
   # sum all metrics
-  DF_Metrics[,"sum_Index"] <- rowSums(DF_Metrics[,Score.MetricNames], na.rm = TRUE)
+  DF_Metrics[,"sum_Index"] <- rowSums(DF_Metrics[, Score.MetricNames], na.rm = TRUE)
 
   # Index, Value
-    # Need to cycle based on Index (a), Region (b), and Metric (c)
+    # Need to cycle based on Index (aa) and Region (bb)
   for (aa in unique(as.matrix(DF_Metrics[,col_IndexName]))){##FOR.a.START
     for (bb in unique(as.matrix(DF_Metrics[,col_IndexRegion]))) {##FOR.b.START
+
     # Thresholds (filter with dplyr)
     fun.Thresh.myIndex <- as.data.frame(dplyr::filter(DF_Thresh_Index
                                                       , INDEX_NAME==aa & INDEX_REGION==bb))
@@ -451,12 +459,17 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
       next
     }
     # thresholds
-    fun.NumMetrics  <- fun.Thresh.myIndex[, "NumMetrics"]
-    fun.ScoreRegime <- fun.Thresh.myIndex[, "ScoreRegime"]
+    fun.NumMetrics       <- fun.Thresh.myIndex[, "NumMetrics"]
+    fun.ScoreRegime      <- fun.Thresh.myIndex[, "ScoreRegime"]
     fun.Index.Nar.Thresh <- fun.Thresh.myIndex[, c(paste0("Thresh0", 1:7))]
     fun.Index.Nar.Nar    <- fun.Thresh.myIndex[, c(paste0("Nar0", 1:6))]
 
     fun.Index.Nar.Numb <- sum(!is.na(fun.Index.Nar.Nar), na.rm = TRUE)
+
+    fun.ZeroInd_Use <- fun.Thresh.myIndex[, "Use_ZeroInd"]
+    fun.ZeroInd_Sc  <- fun.Thresh.myIndex[, "ZeroInd_Score"]
+    fun.ZeroInd_Nar <- fun.Thresh.myIndex[, "ZeroInd_Narrative"]
+
 
     # default value
     fun.Value <- DF_Metrics[, "sum_Index"]
@@ -479,7 +492,15 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
                                     , include.lowest=TRUE
                                     , right=FALSE
                                     , ordered_result = TRUE))
-    #
+
+    # Update for zero individuals
+    if(fun.ZeroInd_Use == TRUE) {
+      boo_zero_ni_total <- DF_Metrics[, col_ni_total] == 0
+      fun.Result[boo_zero_ni_total]     <- fun.ZeroInd_Sc
+      fun.Result.Nar[boo_zero_ni_total] <- fun.ZeroInd_Nar
+    }##IF~fun.zeroind_use~END
+
+
     # Update input DF with matching values
     myTF <- DF_Metrics[,col_IndexName]==aa & DF_Metrics[,col_IndexRegion]==bb
     DF_Metrics[myTF, "Index"]     <- fun.Result[myTF]
@@ -492,8 +513,8 @@ metric.scores <- function(DF_Metrics, col_MetricNames, col_IndexName, col_IndexR
     #                                         , labels = fun.Index.Nar.Nar
     #                                         , ordered = TRUE)
 
-    }##FOR.a.END
-  }##FOR.b.END
+    }##FOR.bb.END
+  }##FOR.aa.END
 
 
   # Return original DF with added columns
