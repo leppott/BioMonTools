@@ -640,7 +640,8 @@ metric.values.bugs <- function(myDF
              , li_total = log(ni_total)
              , ni_Chiro = sum(N_TAXA[FAMILY == "Chironomidae"], na.rm=TRUE)
              , ni_EPT = sum(N_TAXA[ORDER == "Ephemeroptera" |
-                                     ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)
+                                     ORDER == "Trichoptera" |
+                                     ORDER == "Plecoptera"], na.rm=TRUE)
              , ni_Trich = sum(N_TAXA[ORDER == "Trichoptera"], na.rm=TRUE)
              , ni_Americo = sum(N_TAXA[GENUS == "Americorophium"], na.rm=TRUE)
              , ni_Gnorimo = sum(N_TAXA[GENUS == "Gnorimosphaeroma"], na.rm=TRUE)
@@ -1267,6 +1268,7 @@ metric.values.fish <- function(myDF
                , "INDEX_NAME", "INDEX_REGION"
                , "DA_MI2", "SAMP_WIDTH_M", "SAMP_LENGTH_M"
                , "TYPE", "TOLER", "NATIVE", "TROPHIC", "SILT"
+               , "FAMILY", "GENUS", "HYBRID"
                )
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
@@ -1306,14 +1308,18 @@ metric.values.fish <- function(myDF
   # Data set up to be by taxon.  But some report as sample total.
   stats_anom <- myDF %>%
     group_by(SAMPLEID) %>%
-    summarize(n =n(), n_distinct = n_distinct(N_ANOMALIES), mean = mean(N_ANOMALIES), sd = sd(N_ANOMALIES))
+    summarize(n =n()
+              , n_distinct = n_distinct(N_ANOMALIES, na.rm = TRUE)
+              , mean = mean(N_ANOMALIES, na.rm = TRUE)
+              , sd = sd(N_ANOMALIES, na.rm = TRUE)
+              , sum = sum(N_ANOMALIES, na.rm = TRUE))
   stats_anom[, "SUM_ANOMALIES"] <- stats_anom[, "mean"] / stats_anom[, "n"]
   # make change;  n > 1 & n_distinct == 1
-  stats_anom$mod_anomalies <- ifelse(stats_anom$n >1 & stats_anom$n_distinct == 1, TRUE, FALSE)
+  stats_anom$MOD_ANOMALIES <- ifelse(stats_anom$n > 1 & stats_anom$n_distinct == 1, TRUE, FALSE)
   # add back to myDF
-  myDF <- merge(myDF, stats_anom[stats_anom[, "mod_anomalies"]== TRUE, c("SAMPLEID", "SUM_ANOMALIES")]
+  myDF <- merge(myDF, stats_anom[, c("SAMPLEID", "SUM_ANOMALIES", "MOD_ANOMALIES")]
              , all.x = TRUE)
-  myDF[myDF$mod_anomalies==TRUE, "N_ANOMALIES"] <- myDF[myDF$mod_anomalies==TRUE, "SUM_ANOMALIES"]
+  myDF[myDF$MOD_ANOMALIES==TRUE, "N_ANOMALIES"] <- myDF[myDF$MOD_ANOMALIES==TRUE, "SUM_ANOMALIES"]
 
   # Metric Calc ####
   # code above is different than benthos
@@ -1323,11 +1329,19 @@ metric.values.fish <- function(myDF
                        # MBSS 2005, 11 metrics
                        # (can do metrics as one step but MBSS output has numerator so will get that as well)
                        #
+                       # when invoke a "x != abc" need to include "| is.na(x)"
+                       # unless all "x" are populated (e.g., TRUE or FALSE)
+
                        # Individuals ####
                        # individuals, total
                        , ni_total=sum(N_TAXA, na.rm = TRUE)
-                       , ni_natnonhybrid = sum(N_TAXA[NATIVE == "NATIVE" & HYBRID != TRUE], na.rm = TRUE)
-                       , ni_natnonhybridnonlepomis = sum(N_TAXA[NATIVE == "NATIVE" & HYBRID != TRUE & GENUS == "LEPOMIS"], na.rm = TRUE)
+                       , ni_natnonhybridnonmf = sum(N_TAXA[NATIVE == "NATIVE" &
+                                                             (HYBRID != TRUE | is.na(HYBRID)) &
+                                                             (TYPE != "MOSQUITOFISH" | is.na(TYPE))], na.rm = TRUE)
+                       , ni_natnonhybridnonmfnonlepomis = sum(N_TAXA[NATIVE == "NATIVE" &
+                                                                       (HYBRID != TRUE | is.na(HYBRID)) &
+                                                                       (TYPE != "MOSQUITOFISH" | is.na(TYPE)) &
+                                                                       (GENUS != "LEPOMIS" | is.na(GENUS))], na.rm = TRUE)
                        #
                        # Percent Individuals ####
                        # % RBS
@@ -1339,18 +1353,22 @@ metric.values.fish <- function(myDF
                        , pi_lepomis = 100*sum(N_TAXA[GENUS == "LEPOMIS"], na.rm = TRUE)/ni_total
 
                        # benthic fluvial specialist
-                       , pi_bfs = 100*sum(N_TAXA[(TYPE == "BENTHIC" & TROPHIC == "IV") | TYPE == "RBS" | TYPE == "SMM"], na.rm = TRUE)/ni_total
+                       , pi_bfs = 100*sum(N_TAXA[(TYPE == "BENTHIC" & TROPHIC == "IV") |
+                                                   TYPE == "RBS" | TYPE == "SMM"], na.rm = TRUE)/ni_total
                         #
                        # Number of Taxa ####
                        , nt_total=dplyr::n_distinct(TAXAID)
                        #, nt_benthic=dplyr::n_distinct(TAXAID[TYPE == "DARTER" | TYPE == "SCULPIN" | TYPE == "MADTOM" | TYPE == "LAMPREY"])
-                       , nt_benthic=dplyr::n_distinct(TAXAID[TYPE == "BENTHIC"])
-                       , nt_native = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE"])
-                       , nt_beninvert = dplyr::n_distinct(TAXAID[TYPE == "BENTHIC" & TROPHIC == "IV"])
-                       , nt_natsunfish = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "SUNFISH"])
-                       , nt_natcent = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & FAMILY == "CENTRARCHIDAE"])
-                       , nt_natinsctcypr = dplyr::n_distinct(TAXAID[TROPHIC == "IS" & FAMILY == "CYPRINIDAE"])
-                       , nt_natrbs = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "RBS"])
+                       , nt_benthic=dplyr::n_distinct(TAXAID[TYPE == "BENTHIC"], na.rm = TRUE)
+                       , nt_native = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE"], na.rm = TRUE)
+                       , nt_nativenonhybrid = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" &
+                                                                         (HYBRID != TRUE | is.na(HYBRID))], na.rm = TRUE)
+                       , nt_beninvert = dplyr::n_distinct(TAXAID[TYPE == "BENTHIC" & TROPHIC == "IV"], na.rm = TRUE)
+                       , nt_natsunfish = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "SUNFISH"], na.rm = TRUE)
+                       , nt_natcent = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" &
+                                                                 (TYPE == "SUNFISH" | TYPE == "CENTRARCHIDAE")], na.rm = TRUE)
+                       , nt_natinsctcypr = dplyr::n_distinct(TAXAID[TROPHIC == "IS" & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
+                       , nt_natrbs = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "RBS"], na.rm = TRUE)
                        #
                        # Feeding ####
                        # % Lithophilic spawners
@@ -1360,18 +1378,18 @@ metric.values.fish <- function(myDF
                        # % insectivore
                        , pi_insectivore=100*sum(N_TAXA[TROPHIC == "IS"], na.rm = TRUE)/ ni_total
                        , pi_insctcypr = 100*sum(N_TAXA[TROPHIC == "IS" & FAMILY == "CYPRINIDAE"], na.rm = TRUE)/ ni_total
-                       , pi_genherb = 100*sum(N_TAXA[TROPHIC == "HB"], na.rm = TRUE)/ ni_total
+                       , pi_genherb = 100*sum(N_TAXA[TROPHIC == "GE" | TROPHIC == "HB"], na.rm = TRUE)/ ni_total
                        , pi_topcarn = 100*sum(N_TAXA[TROPHIC == "TC"], na.rm = TRUE)/ ni_total
                        #
                        # Tolerance ####
-                       , nt_tv_intol = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT"])
-                       , nt_tv_intolhwi = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT" | TOLER == "HWI"])
+                       , nt_tv_intol = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT"], na.rm = TRUE)
+                       , nt_tv_intolhwi = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT" | TOLER == "HWI"], na.rm = TRUE)
                        , pi_tv_toler= 100*sum(N_TAXA[TOLER=="TOLERANT"], na.rm = TRUE)/ni_total
                        #
                        #
                        # Indices ####
                        #,pi_dom01/2/3/5 #last? or nth
-                       , pi_dom01=100*max(N_TAXA)/ni_total
+                       , pi_dom01=100*max(N_TAXA, na.rm = TRUE)/ni_total
                        # Shannon-Weiner
                        #, x_Shan_Num= -sum(log(N_TAXA/ni_total)), na.rm=TRUE)
                        #, x_Shan_e=x_Shan_Num/log(exp(1))
@@ -1379,7 +1397,7 @@ metric.values.fish <- function(myDF
                        , x_Shan_2 = x_Shan_e/log(2)
                        , x_Shan_10 = x_Shan_e/log(10)
                        , x_Evenness = x_Shan_e/log(nt_total)
-                       , x_Evenness100_ni99gt = ifelse(ni_total < 100, -99, x_Evenness * 100)
+                       , x_Evenness100_ni99gt = ifelse(ni_total < 100, 1, x_Evenness * 100)
                        #
                        # Other ####
                        #, area_m = max(SAMP_WIDTH_M, na.rm = TRUE)*max(SAMP_LENGTH_M, na.rm = TRUE)
@@ -1387,8 +1405,8 @@ metric.values.fish <- function(myDF
                        # Abund / sq meter
                        #, ni_m2=ni_total/area_m #/(StWidAvg*StLength)
                        , ni_200m = 200 * ni_total / length_m
-                       , ni_natnonhybrid_200m = 200 * ni_natnonhybrid / length_m
-                       , ni_natnonhybridnonlepomis_200m = 200 * ni_natnonhybridnonlepomis / length_m
+                       , ni_natnonhybridnonmf_200m = 200 * ni_natnonhybridnonmf / length_m
+                       , ni_natnonhybridnonmfnonlepomis_200m = 200 * ni_natnonhybridnonmfnonlepomis / length_m
                        # biomass per square meter
                   #     , biomass_total=max(SAMP_BIOMASS, na.rm = TRUE)
                   #     , biomass_m2=biomass_total/area_m #/(StWidAvg*StLength)

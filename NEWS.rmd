@@ -29,6 +29,18 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.4.0.9001 (2020-02-27)
+
+* Tweak for GA Fish IBI, Issue #3
+    + Modify ni_natnonhybrid and ni_natnonhybridnonlepomis to also exclude mosquitofish.
+        - MetricScoring.xlsx
+        - metric.score.R
+    + Add nt_nativenonhybrid
+        - MetricScoring.xlsx
+        - metric.score.R
+* metric.score.R
+    + Update ni_natnonhybridnonlepomis.
+
 ## Changes in Version 0.4.0 (2020-02-24)
 
 * Changes to fish metric significant enough for a minor version update.

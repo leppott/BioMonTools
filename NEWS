@@ -3,7 +3,7 @@ NEWS
 <Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2020-02-24 13:59:44
+    #> Last Update: 2020-02-27 08:12:39
 
 Planned Updates
 ===============
@@ -20,6 +20,19 @@ Future Possible Updates
 
 Version History
 ===============
+
+Changes in Version 0.4.0.9001 (2020-02-26)
+------------------------------------------
+
+-   Tweak for GA Fish IBI, Issue \#3
+    -   Modify ni\_natnonhybrid and ni\_natnonhybridnonlepomis to also exclude mosquitofish.
+        -   MetricScoring.xlsx
+        -   metric.score.R
+    -   Add nt\_nativenonhybrid
+        -   MetricScoring.xlsx
+        -   metric.score.R
+-   metric.score.R
+    -   Update ni\_natnonhybridnonlepomis.
 
 Changes in Version 0.4.0 (2020-02-24)
 -------------------------------------
