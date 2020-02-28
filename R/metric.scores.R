@@ -170,7 +170,7 @@ metric.scores <- function(DF_Metrics
     # DF_Thresh_Index  <- df_thresh_index
     (a <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
     (b <- toupper(unique(as.matrix(DF_Metrics[, col_IndexRegion]))[2]))
-    (c <- col_MetricNames[16])
+    (c <- col_MetricNames[8])
     (aa <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
     (bb <- toupper(unique(as.matrix(DF_Metrics[, col_IndexRegion]))[2]))
   }##IF~boo.QC~END
@@ -265,11 +265,14 @@ metric.scores <- function(DF_Metrics
         fun.CG_Hi_m     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Hi_m", drop = TRUE]))
         fun.CG_Hi_b     <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "CatGrad_Hi_b", drop = TRUE]))
         #
-        fun.DepMet_Name  <- suppressWarnings(fun.Thresh.myMetric[, "DepMet_Master_Name", drop = TRUE])
-        fun.DepMet_Score <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "DepMet_Master_Score", drop = TRUE]))
-        fun.DepMet_Cond  <- suppressWarnings(fun.Thresh.myMetric[, "DepMet_Master_Condition", drop = TRUE])
-
-
+        fun.SelMet_Name  <- suppressWarnings(fun.Thresh.myMetric[, "SelMet_Master_Name", drop = TRUE])
+        fun.SelMet_Score <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "SelMet_Master_Score", drop = TRUE]))
+        fun.SelMet_Cond  <- suppressWarnings(fun.Thresh.myMetric[, "SelMet_Master_Condition", drop = TRUE])
+        #
+        fun.ScMet_Name  <- suppressWarnings(fun.Thresh.myMetric[, "ScMet_Master_Name", drop = TRUE])
+        fun.ScMet_Value <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "ScMet_Master_Score", drop = TRUE]))
+        fun.ScMet_Cond  <- suppressWarnings(fun.Thresh.myMetric[, "SelMet_Master_Condition", drop = TRUE])
+        fun.ScMet_ScMet <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "ScMet_Score", drop = TRUE]))
         #
         # default value
         fun.Value <- DF_Metrics[, c]
@@ -295,7 +298,7 @@ metric.scores <- function(DF_Metrics
           } else if (fun.Direction=="INCREASE") {
             fun.Result <- ifelse(fun.Value<=fun.Lo,5
                                  ,ifelse(fun.Value>fun.Hi,1,3))
-          }
+          }##IF~fun.Direction~END
         } else if(fun.ScoreRegime=="CAT_0246" | fun.ScoreRegime=="CAT_0123") {
           # Cat_0246 ####
           if(fun.Direction=="DECREASE") {
@@ -367,22 +370,22 @@ metric.scores <- function(DF_Metrics
           # use dplyr::mutate ?
           #~~~~~~~~~~
 
-        } else if(fun.ScoreRegime == "CAT_135_DEPMET") {
-          # Cat_135_DepMet ####
+        } else if(fun.ScoreRegime == "CAT_135_SELMET") {
+          # Cat_135_SelMet ####
           #
           # QC, check for name
-          c_master_boo <- fun.DepMet_Name %in% col_MetricNames
+          c_master_boo <- fun.SelMet_Name %in% col_MetricNames
           if (c_master_boo == FALSE) {
-            myMsg <- paste0("\nField missing from DF_Metrics input data frame for dependant metric master.  Expecting: \n"
-                            , fun.DepMet_Name)
+            myMsg <- paste0("\nField missing from DF_Metrics input data frame for master metric.  Expecting: \n"
+                            , fun.SelMet_Name)
             stop(myMsg)
           }
           # Check to see if "master" already scored
           # Get Master Metric Score
-          c_master_score <- DF_Metrics[, paste0("SC_", fun.DepMet_Name)]
+          c_master_score <- DF_Metrics[, paste0("SC_", fun.SelMet_Name)]
           #
           if(sum(is.na(c_master_score)) == length(c_master_score)){
-            myMsg <- paste0("\nMaster metric (", fun.DepMet_Name, ") not scored before dependent metric (", c, ").\n",
+            myMsg <- paste0("\nMaster metric (", fun.SelMet_Name, ") not scored before dependent metric (", c, ").\n",
                             "Reorder columns before proceeding.")
             stop(myMsg)
             # Scores for testing
@@ -396,17 +399,17 @@ metric.scores <- function(DF_Metrics
           #
           # Keep only relevant values
           #fun.Value_orig <- fun.Value # for testing only
-          if(fun.DepMet_Cond == "greaterthan"){
-            fun.Value <- ifelse(c_master_score > fun.DepMet_Score, fun.Value, NA)
-          } else if (fun.DepMet_Cond == "equal") {
-            fun.Value <- ifelse(c_master_score == fun.DepMet_Score, fun.Value, NA)
+          if(fun.SelMet_Cond == "greaterthan"){
+            fun.Value <- ifelse(c_master_score > fun.SelMet_Score, fun.Value, NA)
+          } else if (fun.SelMet_Cond == "equal") {
+            fun.Value <- ifelse(c_master_score == fun.SelMet_Score, fun.Value, NA)
           } else {
             fun.Value <- NA
-          }##IF~DepMetMaster~END
+          }##IF~SelMetMaster~END
           #
           # Score (only non NA)
           # Same Cat135 code as above
-          # Cat_135 ###
+          # Cat_135 #
           if(fun.Direction=="DECREASE") {
             fun.Result <- ifelse(fun.Value>=fun.Hi,5
                                  ,ifelse(fun.Value<fun.Lo,1,3))
@@ -420,6 +423,65 @@ metric.scores <- function(DF_Metrics
                                  ,ifelse(fun.Value>fun.Hi,1,3))
           }##IF~fun.direction~END
           #
+        } else if(fun.ScoreRegime == "CAT_135_SCMET") {
+          # Cat_135_ScMet ####
+          #
+          # QC, check for name
+          c_master_boo <- fun.ScMet_Name %in% col_MetricNames
+          if (c_master_boo == FALSE) {
+            myMsg <- paste0("\nField missing from DF_Metrics input data frame for master metric.  Expecting: \n"
+                            , fun.ScMet_Name)
+            stop(myMsg)
+          }
+          # Check to see if "master" already scored
+          # Get Master Metric Score
+          c_master_score <- DF_Metrics[, paste0("SC_", fun.ScMet_Name)]
+          c_master_value <- DF_Metrics[, fun.ScMet_Name]
+          #
+          # if(sum(is.na(c_master_value)) == length(c_master_value)){
+          #   myMsg <- paste0("\nMaster metric (", fun.ScMet_Name, ") not included before dependent metric (", c, ").\n",
+          #                   "Reorder columns before proceeding.")
+          #   stop(myMsg)
+          #   # # Scores for testing
+          #   # if (boo.QC == TRUE) {
+          #   #   c_master_score <- rep_len(c(NA, 1, 3, 5), length(fun.Value))
+          #   # }##IF~boo.QC~END
+          # }##IF~c_master_Score~END
+          # shouldn't matter, just needs to be included.
+          #
+          # Default Value
+          fun.Result <- NA
+          #
+
+          #
+          # Score (only non NA)
+          # Same Cat135 code as above
+          # Cat_135 #
+          if(fun.Direction=="DECREASE") {
+            fun.Result <- ifelse(fun.Value>=fun.Hi,5
+                                 ,ifelse(fun.Value<fun.Lo,1,3))
+            if(boo.QC==TRUE){##IF.boo.QC.START
+              myMsg <- paste0("\nMetric=",c,", Value=",fun.Value,", Result=", fun.Result)
+              message(myMsg)
+              #utils::flush.console()
+            }##IF.boo.QC.END
+          } else if (fun.Direction=="INCREASE") {
+            fun.Result <- ifelse(fun.Value<=fun.Lo,5
+                                 ,ifelse(fun.Value>fun.Hi,1,3))
+          }##IF~fun.direction~END
+
+          # Change scores if meet conditions
+          if(fun.ScMet_Cond == "greaterthan"){
+            fun.Result <- ifelse(c_master_value > fun.ScMet_Value, fun.ScMet_ScMet, fun.Result)
+          } else if (fun.ScMet_Cond == "equal") {
+            fun.Result <- ifelse(c_master_value == fun.ScMet_Value, fun.ScMet_ScMet, fun.Result)
+          } else {
+            # something not right.  Give "ERROR" rather than score so know is an issue.
+            # Don't want to "stop" as wouldn't be able to get results.
+            fun.Result <- "ERROR"
+          }##IF~SelMetMaster~END
+
+
         } else if(is.na(fun.ScoreRegime)) {
           # No Score Regime ####
           fun.Result <- NA

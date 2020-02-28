@@ -3,7 +3,7 @@ NEWS
 <Erik.Leppo@tetratech.com>
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
-    #> Last Update: 2020-02-27 14:36:42
+    #> Last Update: 2020-02-28 09:41:02
 
 Planned Updates
 ===============
@@ -20,6 +20,14 @@ Future Possible Updates
 
 Version History
 ===============
+
+Changes in Version 0.4.0.9004 (2020-02-28)
+------------------------------------------
+
+-   Change DepMet to SelMet.
+    -   Better terminology as selecting a metric to use.
+    -   metric.scores.R
+    -   MetricScoring.xlsx
 
 Changes in Version 0.4.0.9003 (2020-02-27)
 ------------------------------------------
