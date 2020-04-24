@@ -48,8 +48,8 @@
 #'                             , guess_max = 10^6)
 #'
 #' myIndex <- "BCG.PacNW.L1"
-#' df_samps_bugs$INDEX_NAME   <- myIndex
-#' df_samps_bugs$INDEX_REGION <- "ALL"
+#' df_samps_bugs$Index_Name   <- myIndex
+#' df_samps_bugs$Index_Region <- "ALL"
 #' (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
 #'                           , "INDEX_NAME"]==myIndex, "METRIC_NAME"]))
 #' # Run Function
@@ -87,8 +87,7 @@
 #' # Thresholds
 #' # imported above
 #' # get metric names for myIndex
-#' (myMetrics.Bugs.MBSS <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
-#'                               , "INDEX_NAME"]==myIndex, "METRIC_NAME"]))
+#' (myMetrics.Bugs.MBSS <- unique(df_thresh_metric[df_thresh_metric[, "INDEX_NAME"] == myIndex, "METRIC_NAME", TRUE]))
 #' # Taxa Data
 #' myDF.Bugs.MBSS <- MBSStools::taxa_bugs_genus
 #' myDF.Bugs.MBSS$NONTARGET <- FALSE
@@ -270,8 +269,8 @@ metric.scores <- function(DF_Metrics
         fun.SelMet_Cond  <- suppressWarnings(fun.Thresh.myMetric[, "SelMet_Master_Condition", drop = TRUE])
         #
         fun.ScMet_Name  <- suppressWarnings(fun.Thresh.myMetric[, "ScMet_Master_Name", drop = TRUE])
-        fun.ScMet_Value <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "ScMet_Master_Score", drop = TRUE]))
-        fun.ScMet_Cond  <- suppressWarnings(fun.Thresh.myMetric[, "SelMet_Master_Condition", drop = TRUE])
+        fun.ScMet_Value <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "ScMet_Master_Value", drop = TRUE]))
+        fun.ScMet_Cond  <- suppressWarnings(fun.Thresh.myMetric[, "ScMet_Master_Condition", drop = TRUE])
         fun.ScMet_ScMet <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "ScMet_Score", drop = TRUE]))
         #
         # default value

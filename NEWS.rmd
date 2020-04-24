@@ -29,7 +29,22 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
-## Changes in Version 0.4.0.9004 (2020-02-28)
+## Changes in Version 0.4.0.9006 (2020-04-24)
+
+* metric.values.R
+    + QC on line 371 did not declare package.  Issue #33.
+    + Define pipe in subfunctions.
+* metric.scores.R
+    + Modify example.  Issue #34.
+        - Only one occurence of Index_Name and Index_Region in the data.frame.
+        - Purge tibble error by converting to drop = TRUE.
+
+## Changes in Version 0.4.0.9005 (2020-02-28)
+
+* Tweak for SelMet.
+    + metric.scores.R
+
+## Changes in Version 0.4.0.9005 (2020-02-28)
 
 * Change DepMet to SelMet.
     + Better terminology as selecting a metric to use.

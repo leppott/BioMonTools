@@ -368,7 +368,7 @@ metric.values <- function(fun.DF
   }##IF~!is.null(fun.cols2keep)~END
   # Remove Count = 0 taxa unless TaxaID = NONE
   #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
-  fun.DF <- fun.DF %>% filter(N_TAXA > 0 | TAXAID == "NONE")
+  fun.DF <- fun.DF %>% dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
   # non-target taxa removed in community function, if appropriate
   #
   # SiteType to upper case
@@ -397,6 +397,8 @@ metric.values.bugs <- function(myDF
   #names(myDF) <- toupper(names(myDF))
   # not carrying over from previous?!
   #
+  # define pipe
+  `%>%` <- dplyr::`%>%`
   # QC ####
   # QC, Required Fields
   col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
@@ -1265,6 +1267,8 @@ metric.values.fish <- function(myDF
                                , MetricNames=NULL
                                , boo.Adjust=FALSE
                                , cols2keep=NULL){##FUNCTION.metric.values.fish.START
+  # define pipe
+  `%>%` <- dplyr::`%>%`
   # QC ####
   # Remove Non-Target Taxa
   #myDF <- myDF[myDF[,"NonTarget"]==0,] # not relevant for fish
@@ -1524,7 +1528,11 @@ metric.values.fish <- function(myDF
 #
 #
 #' @export
-metric.values.algae <- function(myDF, MetricNames=NULL, boo.Adjust=FALSE, cols2keep=NULL){##FUNCTION.metric.values.algae.START
+metric.values.algae <- function(myDF, MetricNames=NULL
+                                , boo.Adjust=FALSE
+                                , cols2keep=NULL){##FUNCTION.metric.values.algae.START
+  # define pipe
+  `%>%` <- dplyr::`%>%`
   # Calculate Metrics (could have used pipe, %>%)
     met.val <- dplyr::summarise(dplyr::group_by(myDF, SampleID, "Index_Name", "Index_Type")
                 #

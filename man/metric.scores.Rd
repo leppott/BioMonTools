@@ -71,8 +71,8 @@ df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx"
                             , guess_max = 10^6)
 
 myIndex <- "BCG.PacNW.L1"
-df_samps_bugs$INDEX_NAME   <- myIndex
-df_samps_bugs$INDEX_REGION <- "ALL"
+df_samps_bugs$Index_Name   <- myIndex
+df_samps_bugs$Index_Region <- "ALL"
 (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
                           , "INDEX_NAME"]==myIndex, "METRIC_NAME"]))
 # Run Function
@@ -110,8 +110,7 @@ myIndex <- "MBSS.2005.Bugs"
 # Thresholds
 # imported above
 # get metric names for myIndex
-(myMetrics.Bugs.MBSS <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
-                              , "INDEX_NAME"]==myIndex, "METRIC_NAME"]))
+(myMetrics.Bugs.MBSS <- unique(df_thresh_metric[df_thresh_metric[, "INDEX_NAME"] == myIndex, "METRIC_NAME", TRUE]))
 # Taxa Data
 myDF.Bugs.MBSS <- MBSStools::taxa_bugs_genus
 myDF.Bugs.MBSS$NONTARGET <- FALSE

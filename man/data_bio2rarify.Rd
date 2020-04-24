@@ -4,12 +4,14 @@
 \name{data_bio2rarify}
 \alias{data_bio2rarify}
 \title{rarify example data}
-\format{A data frame with 223 rows and 28 variables:
+\format{
+A data frame with 223 rows and 28 variables:
 \describe{
    \item{SampleID}{Sample ID}
    \item{TaxaID}{unique taxonomic identifier}
    \item{N_Taxa}{number of individuals in sample}
-}}
+}
+}
 \source{
 example data
 }
