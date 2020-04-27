@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-04-24 10:38:22
+    #> Last Update: 2020-04-27 08:09:55
 
 # Planned Updates
 
@@ -18,6 +18,14 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9007 (2020-04-27)
+
+  - metric.values.R
+      - Additional metrics
+          - nt\_BCG\_att1
+          - pi\_BCG\_att1
+          - pt\_BCG\_att1
 
 ## Changes in Version 0.4.0.9006 (2020-04-24)
 

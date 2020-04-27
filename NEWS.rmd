@@ -29,6 +29,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.4.0.9007 (2020-04-27)
+
+* metric.values.R
+    + Additional metrics
+        - nt_BCG_att1
+        - pi_BCG_att1
+        - pt_BCG_att1
+
 ## Changes in Version 0.4.0.9006 (2020-04-24)
 
 * metric.values.R
