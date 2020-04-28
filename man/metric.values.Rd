@@ -86,7 +86,8 @@ Required Fields:
 
 * PHYLUM, SUBPHYLUM, CLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
 
-* FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2
+* FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
+LONGLIVED, NOTEWORTHY, HABITAT
 
 Valid values for FFG: CG, CF, PR, SC, SH
 
@@ -96,25 +97,42 @@ Valid values for LIFE_CYCLE: UNI, SEMI, MULTI
 
 Valid values for THERMAL_INDICATOR: COLD, COLD_COOL, COOL_WARM, WARM
 
+Valid values for LONGLIVED: TRUE, FALSE
+
+Valid values for NOTEWORTHY: TRUE, FALSE
+
+Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN
+
 Columns to keep are additional fields in the input file that the user wants
 retained in the output.  Fields need to be those that are unique per sample
 and not associated with the taxa.  For example, the fields used in qc.check();
 Area_mi2, SurfaceArea, Density_m2, and Density_ft2.
 
 If fun.MetricNames is provided only those metrics will be returned in the provided order.
-This variable can be used to sort the metrics per the user's preferences..
+This variable can be used to sort the metrics per the user's preferences.
 By default the metric names will be returned in the groupings that were used for calculation.
 
 The fields TOLVAL2 and FFG2 are provided to allow the user to calculate metrics
 based on alternative scenarios.  For example, HBI and NCBI where the NCBI uses
 a different set of tolerance values (TOLVAL2).
 
-If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated.
+If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated with that record.
 Other values for TAXAID with N_TAXA = 0 will be removed before calculations.
 }
 \examples{
 # Example data
 
+df_metric_values_bugs <- metric.values(data_benthos_PacNW, "bugs")
+
+\dontrun{
+# View Results
+View(df_metric_values_bugs)
+}
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Example 2, data from Excel
+
+# Packages
 library(readxl)
 library(reshape2)
 
@@ -149,7 +167,7 @@ create_report(df_samps_bugs, "DataExplorer_Report_BugSamples.html")
 }
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Example 2, specific metrics or metrics in a specific order
+# Example 3, specific metrics or metrics in a specific order
 ## reuse df_samps_bugs from above
 
 # metric names to keep (in this order)

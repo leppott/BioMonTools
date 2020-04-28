@@ -1,0 +1,599 @@
+INDEX_NAME	Index_Region	SITE_TYPE	SampleID	TaxaID	N_TAXA	Exclude	NonTarget	Phylum	Class	Order	Family	Subfamily	Tribe	Genus	BCG_Attr	Thermal_Indicator	FFG	Clinger	LongLived	Noteworthy	Habitat	SubPhylum	InfraOrder	Habit	Life_Cycle	TolVal	FFG2	TolVal2
+BCG.PacNW.L1	ALL	hi	07067DFW	Baetis tricaudatus complex	26	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Baetis	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L2	ALL	hi	07067DFW	Boreochlus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Podonominae	Boreochlini	Boreochlus	NA	NA	GC	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L3	ALL	hi	07067DFW	Calineuria californica	10	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Calineuria	NA	cool_warm	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L4	ALL	hi	07067DFW	Capniidae	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Capniidae				NA	cold_cool	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L5	ALL	hi	07067DFW	Cinygmula	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Cinygmula	NA	cold	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L6	ALL	hi	07067DFW	Corynoneura	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Corynoneura	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L7	ALL	hi	07067DFW	Despaxia	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Leuctridae	Leuctrinae		Despaxia	NA	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L8	ALL	hi	07067DFW	Dicranota	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Pediciidae	Pediciinae		Dicranota	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L9	ALL	hi	07067DFW	Diphetor hageni	6	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Diphetor	4	cold_cool	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L10	ALL	hi	07067DFW	Dixella	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Dixidae			Dixella	4	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L11	ALL	hi	07067DFW	Glossosoma	33	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae	Glossosomatinae	Glossosomatini	Glossosoma	NA	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L12	ALL	hi	07067DFW	Hesperoperla pacifica	3	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Hesperoperla	NA	cold_cool	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L13	ALL	hi	07067DFW	Hexatoma	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Limoniinae		Hexatoma	NA	cold_cool	PR	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L14	ALL	hi	07067DFW	Hydropsyche	15	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Hydropsychinae		Hydropsyche	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L15	ALL	hi	07067DFW	Ironodes	4	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Ironodes	NA	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L16	ALL	hi	07067DFW	Juga	29	FALSE	FALSE	Mollusca	Gastropoda	Neotaenioglossa	Pleuroceridae			Juga	4	warm	SC	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L17	ALL	hi	07067DFW	Lara	1	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Larainae		Lara	4	cold_cool	SH	yes	TRUE	FALSE	SPEC							
+BCG.PacNW.L18	ALL	hi	07067DFW	Lepidostoma	13	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Lepidostomatidae	Lepidostomatinae		Lepidostoma	NA	NA	SH	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L19	ALL	hi	07067DFW	Micropsectra	28	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L20	ALL	hi	07067DFW	Neoleptophlebia/Paraleptophlebia	85	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Leptophlebiidae			Neoleptophlebia/Paraleptophlebia	NA	NA	NA	NA		FALSE	DEPO							
+BCG.PacNW.L21	ALL	hi	07067DFW	Neophylax	4	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Thremmatidae			Neophylax	NA	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L22	ALL	hi	07067DFW	Optioservus	24	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Optioservus	4	cool_warm	SC	yes	TRUE	FALSE	GENE							
+BCG.PacNW.L23	ALL	hi	07067DFW	Pagastia	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Diamesinae	Diamesini	Pagastia	NA	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L24	ALL	hi	07067DFW	Parakiefferiella	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parakiefferiella	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L25	ALL	hi	07067DFW	Parametriocnemus	9	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L26	ALL	hi	07067DFW	Perlidae	5	TRUE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae				NA	NA	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L27	ALL	hi	07067DFW	Polypedilum	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L28	ALL	hi	07067DFW	Rhabdomastix	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Chioneinae		Rhabdomastix	NA	cold_cool	PR	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L29	ALL	hi	07067DFW	Rhithrogena	29	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Rhithrogena	4	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L30	ALL	hi	07067DFW	Rhyacophila betteni group	9	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	NA	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L31	ALL	hi	07067DFW	Rhyacophila blarina	19	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	NA	cold_cool	PR	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L32	ALL	hi	07067DFW	Rhyacophila narvae	10	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	NA	cold	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L33	ALL	hi	07067DFW	Simulium	6	FALSE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae	Simuliinae	Simuliini	Simulium	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L34	ALL	hi	07067DFW	Sweltsa	19	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Chloroperlinae		Sweltsa	4	cold_cool	PR	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L35	ALL	hi	07067DFW	Tanytarsini	10	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini		4	NA	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L36	ALL	hi	07067DFW	Tanytarsus	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Tanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L37	ALL	hi	07067DFW	Tvetenia bavarica group	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Tvetenia	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L38	ALL	hi	07067DFW	Zaitzevia	6	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Zaitzevia	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L39	ALL	hi	07067DFW	Zapada cinctipes	56	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	4	cold_cool	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L40	ALL	hi	17008TIKL	Baetis tricaudatus complex	61	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Baetis	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L41	ALL	hi	17008TIKL	Brillia	32	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Brillia	4	cold_cool	SH	no	FALSE	FALSE	GENE							
+BCG.PacNW.L42	ALL	hi	17008TIKL	Calineuria californica	10	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Calineuria	NA	cool_warm	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L43	ALL	hi	17008TIKL	Cinygma	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Cinygma	4	cold_cool	SC	yes	FALSE	FALSE	DEPO							
+BCG.PacNW.L44	ALL	hi	17008TIKL	Clinocera	6	FALSE	FALSE	Arthropoda	Insecta	Diptera	Empididae	Clinocerinae		Clinocera	NA	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L45	ALL	hi	17008TIKL	Corynoneura	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Corynoneura	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L46	ALL	hi	17008TIKL	Dicranota	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Pediciidae	Pediciinae		Dicranota	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L47	ALL	hi	17008TIKL	Diphetor hageni	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Diphetor	4	cold_cool	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L48	ALL	hi	17008TIKL	Dixa	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Dixidae			Dixa	4	cold_cool	GC	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L49	ALL	hi	17008TIKL	Drunella doddsii	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Drunella	NA	cold	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L50	ALL	hi	17008TIKL	Empididae	1	TRUE	FALSE	Arthropoda	Insecta	Diptera	Empididae				4	NA	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L51	ALL	hi	17008TIKL	Epeorus	7	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Epeorus	NA	NA	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L52	ALL	hi	17008TIKL	Ephemerella tibialis	2	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Ephemerella	4	cold_cool	NA	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L53	ALL	hi	17008TIKL	Glossosoma	25	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae	Glossosomatinae	Glossosomatini	Glossosoma	NA	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L54	ALL	hi	17008TIKL	Hesperoperla pacifica	6	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Hesperoperla	NA	cold_cool	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L55	ALL	hi	17008TIKL	Hydropsyche	16	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Hydropsychinae		Hydropsyche	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L56	ALL	hi	17008TIKL	Ironodes	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Ironodes	NA	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L57	ALL	hi	17008TIKL	Juga	7	FALSE	FALSE	Mollusca	Gastropoda	Neotaenioglossa	Pleuroceridae			Juga	4	warm	SC	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L58	ALL	hi	17008TIKL	Kogotus/Rickera	5	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlodidae	Perlodinae	Diploperlini	Kogotus/Rickera	4	cold	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L59	ALL	hi	17008TIKL	Lepidostoma	8	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Lepidostomatidae	Lepidostomatinae		Lepidostoma	NA	NA	SH	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L60	ALL	hi	17008TIKL	Leptophlebiidae	7	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Leptophlebiidae				NA	NA	GC	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L61	ALL	hi	17008TIKL	Malenka	5	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae			Malenka	4	cool_warm	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L62	ALL	hi	17008TIKL	Maruina	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Psychodidae	Psychodinae		Maruina	1	cool_warm	SC	yes	FALSE	FALSE	SPEC							
+BCG.PacNW.L63	ALL	hi	17008TIKL	Micropsectra	31	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L64	ALL	hi	17008TIKL	Microvelia	2	FALSE	TRUE								NA	NA	NA	NA		NA								
+BCG.PacNW.L65	ALL	hi	17008TIKL	Narpus	9	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Narpus	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L66	ALL	hi	17008TIKL	Neophylax rickeri	2	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Thremmatidae			Neophylax	1	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L67	ALL	hi	17008TIKL	Oligochaeta	16	FALSE	FALSE	Annelida	Clitellata						4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L68	ALL	hi	17008TIKL	Optioservus	62	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Optioservus	4	cool_warm	SC	yes	TRUE	FALSE	GENE							
+BCG.PacNW.L69	ALL	hi	17008TIKL	Orthocladiinae	2	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae			4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L70	ALL	hi	17008TIKL	Parametriocnemus	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L71	ALL	hi	17008TIKL	Pisidium	1	FALSE	FALSE	Mollusca	Bivalvia	Veneroida	Sphaeriidae			Pisidium	4	cold_cool	FC	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L72	ALL	hi	17008TIKL	Polypedilum	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L73	ALL	hi	17008TIKL	Ramellogammarus	1	FALSE	FALSE	Arthropoda	Malacostraca	Amphipoda	Anisogammaridae			Ramellogammarus	4	cool_warm	NA	no	FALSE	FALSE	BRAC							
+BCG.PacNW.L74	ALL	hi	17008TIKL	Rhithrogena	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Rhithrogena	4	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L75	ALL	hi	17008TIKL	Rhyacophila	1	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	1	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L76	ALL	hi	17008TIKL	Rhyacophila betteni group	5	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	1	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L77	ALL	hi	17008TIKL	Rhyacophila brunnea/vemna groups	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L78	ALL	hi	17008TIKL	Rhyacophila hyalinata group	11	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	2	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L79	ALL	hi	17008TIKL	Simulium	21	FALSE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae	Simuliinae	Simuliini	Simulium	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L80	ALL	hi	17008TIKL	Skwala	15	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlodidae	Perlodinae	Arcynopterygini	Skwala	1	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L81	ALL	hi	17008TIKL	Stempellinella	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Stempellinella	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L82	ALL	hi	17008TIKL	Sweltsa	11	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Chloroperlinae		Sweltsa	4	cold_cool	PR	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L83	ALL	hi	17008TIKL	Synorthocladius	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Synorthocladius	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L84	ALL	hi	17008TIKL	Thienemannimyia group	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Thienemannimyia group	4	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L85	ALL	hi	17008TIKL	Timpanoga hecuba	2	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Timpanoga	1	cool_warm	NA	NA		TRUE	DEPO							
+BCG.PacNW.L86	ALL	hi	17008TIKL	Trepaxonemata	2	FALSE	FALSE	Platyhelminthes	Trepaxonemata						4	NA	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L87	ALL	hi	17008TIKL	Trichoptera	4	TRUE	FALSE	Arthropoda	Insecta	Trichoptera					NA	NA	NA	no	FALSE	FALSE	UNKN							
+BCG.PacNW.L88	ALL	hi	17008TIKL	Trombidiformes	38	FALSE	FALSE	Arthropoda	Arachnida	Trombidiformes					4	NA	NA	no	FALSE	FALSE	UNKN							
+BCG.PacNW.L89	ALL	hi	17008TIKL	Tvetenia	1	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Tvetenia	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L90	ALL	hi	17008TIKL	Tvetenia bavarica group	6	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Tvetenia	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L91	ALL	hi	17008TIKL	Zaitzevia	10	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Zaitzevia	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L92	ALL	hi	17008TIKL	Zapada cinctipes	50	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	4	cold_cool	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L93	ALL	hi	17008TIKL	Zapada oregonensis group	7	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	1	cold_cool	SH	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L94	ALL	hi	9120_14054	Baetis tricaudatus complex	56	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Baetis	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L95	ALL	hi	9120_14054	Brillia	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Brillia	4	cold_cool	SH	no	FALSE	FALSE	GENE							
+BCG.PacNW.L96	ALL	hi	9120_14054	Ceratopogoninae	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Ceratopogonidae	Ceratopogoninae			4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L97	ALL	hi	9120_14054	Chaetocladius	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Chaetocladius	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L98	ALL	hi	9120_14054	Chelifera/Metachela	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Empididae	Hemerodromiinae	Hemerodromiini	Chelifera/Metachela	4	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L99	ALL	hi	9120_14054	Corynoneura	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Corynoneura	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L100	ALL	hi	9120_14054	Crangonyx	6	FALSE	FALSE	Arthropoda	Malacostraca	Amphipoda	Crangonyctidae			Crangonyx	5	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L101	ALL	hi	9120_14054	Dicranota	18	FALSE	FALSE	Arthropoda	Insecta	Diptera	Pediciidae	Pediciinae		Dicranota	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L102	ALL	hi	9120_14054	Diphetor hageni	41	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Diphetor	4	cold_cool	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L103	ALL	hi	9120_14054	Diplocladius	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Diplocladius	5	cool_warm	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L104	ALL	hi	9120_14054	Dixa	7	FALSE	FALSE	Arthropoda	Insecta	Diptera	Dixidae			Dixa	4	cold_cool	GC	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L105	ALL	hi	9120_14054	Elmidae	4	TRUE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae				NA	NA	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L106	ALL	hi	9120_14054	Empididae	1	TRUE	FALSE	Arthropoda	Insecta	Diptera	Empididae				4	NA	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L107	ALL	hi	9120_14054	Eukiefferiella	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Eukiefferiella	4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L108	ALL	hi	9120_14054	Forcipomyiinae	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Ceratopogonidae	Forcipomyiinae			1	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L109	ALL	hi	9120_14054	Glossosoma	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae	Glossosomatinae	Glossosomatini	Glossosoma	1	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L110	ALL	hi	9120_14054	Glossosomatidae	1	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae				1	NA	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L111	ALL	hi	9120_14054	Hesperoperla pacifica	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Hesperoperla	1	cold_cool	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L112	ALL	hi	9120_14054	Heterlimnius corpulentus	6	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Heterlimnius	1	cold_cool	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L113	ALL	hi	9120_14054	Hydraena	2	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Hydraenidae	Hydraeninae	Hydraenini	Hydraena	1	cool_warm	PR	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L114	ALL	hi	9120_14054	Hydropsyche	64	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Hydropsychinae		Hydropsyche	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L115	ALL	hi	9120_14054	Lepidostoma	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Lepidostomatidae	Lepidostomatinae		Lepidostoma	1	NA	SH	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L116	ALL	hi	9120_14054	Lumbriculidae	20	FALSE	FALSE	Annelida	Clitellata	Lumbriculida	Lumbriculidae				4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L117	ALL	hi	9120_14054	Malenka	49	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae			Malenka	4	cool_warm	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L118	ALL	hi	9120_14054	Micropsectra	26	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L119	ALL	hi	9120_14054	Microtendipes	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Microtendipes	4	cool_warm	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L120	ALL	hi	9120_14054	Naididae	1	TRUE	FALSE	Annelida	Clitellata	Tubificida	Naididae				4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L121	ALL	hi	9120_14054	Naidinae	2	FALSE	FALSE	Annelida	Clitellata	Tubificida	Naididae	Naidinae			4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L122	ALL	hi	9120_14054	Narpus	4	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Narpus	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L123	ALL	hi	9120_14054	Nemata	6	FALSE	FALSE	Nemata							4	NA	OM	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L124	ALL	hi	9120_14054	Optioservus	2	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Optioservus	4	cool_warm	SC	yes	TRUE	FALSE	GENE							
+BCG.PacNW.L125	ALL	hi	9120_14054	Orthocladiinae	2	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae			4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L126	ALL	hi	9120_14054	Parametriocnemus	7	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L127	ALL	hi	9120_14054	Pentaneura	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Pentaneura	4	warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L128	ALL	hi	9120_14054	Physidae	1	FALSE	FALSE	Mollusca	Gastropoda	Basommatophora	Physidae				5	NA	NA	NA		FALSE	GENE							
+BCG.PacNW.L129	ALL	hi	9120_14054	Polypedilum	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L130	ALL	hi	9120_14054	Rheotanytarsus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Rheotanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L131	ALL	hi	9120_14054	Rhithrogena	6	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Rhithrogena	4	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L132	ALL	hi	9120_14054	Rhyacophila	1	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	1	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L133	ALL	hi	9120_14054	Rhyacophila betteni group	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	1	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L134	ALL	hi	9120_14054	Rhyacophila brunnea/vemna groups	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L135	ALL	hi	9120_14054	Sarcoptiformes	1	FALSE	FALSE	Arthropoda	Arachnida	Sarcoptiformes					4	NA	NA	NA		FALSE	UNKN							
+BCG.PacNW.L136	ALL	hi	9120_14054	Simulium	143	FALSE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae	Simuliinae	Simuliini	Simulium	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L137	ALL	hi	9120_14054	Skwala	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlodidae	Perlodinae	Arcynopterygini	Skwala	1	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L138	ALL	hi	9120_14054	Stempellinella	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Stempellinella	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L139	ALL	hi	9120_14054	Sweltsa	5	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Chloroperlinae		Sweltsa	4	cold_cool	PR	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L140	ALL	hi	9120_14054	Tanytarsus	7	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Tanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L141	ALL	hi	9120_14054	Thienemannimyia group	5	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Thienemannimyia group	4	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L142	ALL	hi	9120_14054	Trepaxonemata	1	FALSE	FALSE	Platyhelminthes	Trepaxonemata						4	NA	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L143	ALL	hi	9120_14054	Trombidiformes	29	FALSE	FALSE	Arthropoda	Arachnida	Trombidiformes					4	NA	NA	no	FALSE	FALSE	UNKN							
+BCG.PacNW.L144	ALL	hi	9120_14054	Tubificinae	1	FALSE	FALSE	Annelida	Clitellata	Tubificida	Naididae	Tubificinae			4	NA	NA	no	FALSE	FALSE	GENE							
+BCG.PacNW.L145	ALL	hi	9120_14054	Tvetenia bavarica group	15	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Tvetenia	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L146	ALL	hi	9120_14054	Zaitzevia	1	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Zaitzevia	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L147	ALL	hi	9120_14054	Zapada cinctipes	12	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	4	cold_cool	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L148	ALL	hi	9120_14054	Zavrelimyia	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Zavrelimyia	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L149	ALL	hi	9716_14734	Ameletus	2	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ameletidae			Ameletus	3	cold_cool	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L150	ALL	hi	9716_14734	Antocha	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Limoniinae		Antocha	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L151	ALL	hi	9716_14734	Attenella delantala	8	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Attenella	3	cold_cool	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L152	ALL	hi	9716_14734	Baetis tricaudatus complex	57	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Baetis	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L153	ALL	hi	9716_14734	Calineuria californica	20	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Calineuria	3	cool_warm	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L154	ALL	hi	9716_14734	Ceratopogoninae	5	FALSE	FALSE	Arthropoda	Insecta	Diptera	Ceratopogonidae	Ceratopogoninae			4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L155	ALL	hi	9716_14734	Cinygmula	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Cinygmula	3	cold	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L156	ALL	hi	9716_14734	Cleptelmis addenda	4	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Cleptelmis	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L157	ALL	hi	9716_14734	Constempellina	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Constempellina	4	NA	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L158	ALL	hi	9716_14734	Despaxia	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Leuctridae	Leuctrinae		Despaxia	3	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L159	ALL	hi	9716_14734	Dicranota	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Pediciidae	Pediciinae		Dicranota	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L160	ALL	hi	9716_14734	Diphetor hageni	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Diphetor	4	cold_cool	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L161	ALL	hi	9716_14734	Dixa	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Dixidae			Dixa	4	cold_cool	GC	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L162	ALL	hi	9716_14734	Doroneuria	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Doroneuria	2	cold	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L163	ALL	hi	9716_14734	Drunella doddsii	43	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Drunella	3	cold	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L164	ALL	hi	9716_14734	Dytiscidae	1	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Dytiscidae				3	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L165	ALL	hi	9716_14734	Enchytraeidae	14	FALSE	FALSE	Annelida	Clitellata		Enchytraeidae				4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L166	ALL	hi	9716_14734	Epeorus	6	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Epeorus	3	NA	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L167	ALL	hi	9716_14734	Ephemerella	5	TRUE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Ephemerella	3	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L168	ALL	hi	9716_14734	Ephemerella tibialis	2	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Ephemerella	4	cold_cool	NA	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L169	ALL	hi	9716_14734	Eukiefferiella	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Eukiefferiella	4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L170	ALL	hi	9716_14734	Forcipomyiinae	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Ceratopogonidae	Forcipomyiinae			3	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L171	ALL	hi	9716_14734	Glossosoma	37	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae	Glossosomatinae	Glossosomatini	Glossosoma	3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L172	ALL	hi	9716_14734	Glossosomatidae	4	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae				3	NA	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L173	ALL	hi	9716_14734	Glutops	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Pelecorhynchidae			Glutops	3	cold	PR	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L174	ALL	hi	9716_14734	Hesperoperla pacifica	2	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Hesperoperla	3	cold_cool	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L175	ALL	hi	9716_14734	Heterlimnius corpulentus	23	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Heterlimnius	3	cold_cool	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L176	ALL	hi	9716_14734	Hexatoma	6	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Limoniinae		Hexatoma	3	cold_cool	PR	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L177	ALL	hi	9716_14734	Hydropsyche	66	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Hydropsychinae		Hydropsyche	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L178	ALL	hi	9716_14734	Hydropsychidae	2	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae				4	NA	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L179	ALL	hi	9716_14734	Kathroperla	2	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Paraperlinae		Kathroperla	2	cold	PR	no	TRUE	TRUE	SPEC							
+BCG.PacNW.L180	ALL	hi	9716_14734	Lepidostoma	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Lepidostomatidae	Lepidostomatinae		Lepidostoma	3	NA	SH	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L181	ALL	hi	9716_14734	Leptophlebiidae	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Leptophlebiidae				3	NA	GC	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L182	ALL	hi	9716_14734	Leuctridae	1	TRUE	FALSE	Arthropoda	Insecta	Plecoptera	Leuctridae				3	cold_cool	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L183	ALL	hi	9716_14734	Lumbriculidae	2	FALSE	FALSE	Annelida	Clitellata	Lumbriculida	Lumbriculidae				4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L184	ALL	hi	9716_14734	Micrasema	13	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Brachycentridae			Micrasema	3	cold_cool	MH	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L185	ALL	hi	9716_14734	Micropsectra	15	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L186	ALL	hi	9716_14734	Moselia	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Leuctridae	Leuctrinae		Moselia	2	cold	SH	NA		TRUE	HEAD							
+BCG.PacNW.L187	ALL	hi	9716_14734	Nemata	2	FALSE	FALSE	Nemata							4	NA	OM	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L188	ALL	hi	9716_14734	Pacifastacus	1	FALSE	FALSE	Arthropoda	Malacostraca	Decapoda	Astacidae			Pacifastacus	4	cool_warm	OM	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L189	ALL	hi	9716_14734	Parametriocnemus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L190	ALL	hi	9716_14734	Paraperla	14	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Paraperlinae		Paraperla	3	cold	PR	yes	TRUE	FALSE	SPEC							
+BCG.PacNW.L191	ALL	hi	9716_14734	Perlodidae	2	TRUE	FALSE	Arthropoda	Insecta	Plecoptera	Perlodidae				3	NA	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L192	ALL	hi	9716_14734	Polycelis	1	FALSE	FALSE	Platyhelminthes	Turbellaria	Tricladida	Planariidae			Polycelis	3	cold	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L193	ALL	hi	9716_14734	Polypedilum	5	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L194	ALL	hi	9716_14734	Pteronarcys princeps	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Pteronarcyidae	Pteronarcyinae	Pteronarcyini	Pteronarcys	3	cold	SH	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L195	ALL	hi	9716_14734	Rheotanytarsus	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Rheotanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L196	ALL	hi	9716_14734	Rhithrogena	32	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Rhithrogena	4	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L197	ALL	hi	9716_14734	Rhyacophila betteni group	2	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L198	ALL	hi	9716_14734	Rhyacophila blarina	4	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L199	ALL	hi	9716_14734	Rhyacophila brunnea/vemna groups	9	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L200	ALL	hi	9716_14734	Rhyacophila hyalinata group	12	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	2	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L201	ALL	hi	9716_14734	Rhyacophila narvae	28	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L202	ALL	hi	9716_14734	Sarcoptiformes	1	FALSE	FALSE	Arthropoda	Arachnida	Sarcoptiformes					4	NA	NA	NA		FALSE	UNKN							
+BCG.PacNW.L203	ALL	hi	9716_14734	Skwala	6	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlodidae	Perlodinae	Arcynopterygini	Skwala	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L204	ALL	hi	9716_14734	Stempellinella	10	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Stempellinella	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L205	ALL	hi	9716_14734	Sweltsa	6	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Chloroperlinae		Sweltsa	4	cold_cool	PR	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L206	ALL	hi	9716_14734	Thienemannimyia group	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Thienemannimyia group	4	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L207	ALL	hi	9716_14734	Thremmatidae	2	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Thremmatidae				3	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L208	ALL	hi	9716_14734	Trombidiformes	15	FALSE	FALSE	Arthropoda	Arachnida	Trombidiformes					4	NA	NA	no	FALSE	FALSE	UNKN							
+BCG.PacNW.L209	ALL	hi	9716_14734	Tvetenia bavarica group	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Tvetenia	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L210	ALL	hi	9716_14734	Yoraperla	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Peltoperlidae	Peltoperlinae		Yoraperla	2	cold	SH	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L211	ALL	hi	9716_14734	Zapada cinctipes	7	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	4	cold_cool	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L212	ALL	hi	9716_14734	Zapada frigida	2	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	2	cold_cool	SH	no	TRUE	TRUE	RHEO							
+BCG.PacNW.L213	ALL	hi	9716_14734	Zavrelimyia	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Zavrelimyia	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L214	ALL	hi	BIO06600-CANY02_09_08_2016	Ameletus	2	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ameletidae			Ameletus	3	cold_cool	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L215	ALL	hi	BIO06600-CANY02_09_08_2016	Anafroptilum/Procloeon	2	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Anafroptilum/Procloeon	3	NA	NA	NA		FALSE	DEPO							
+BCG.PacNW.L216	ALL	hi	BIO06600-CANY02_09_08_2016	Attenella delantala	3	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Attenella	3	cold_cool	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L217	ALL	hi	BIO06600-CANY02_09_08_2016	Baetis tricaudatus complex	45	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Baetis	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L218	ALL	hi	BIO06600-CANY02_09_08_2016	Brillia	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Brillia	4	cold_cool	SH	no	FALSE	FALSE	GENE							
+BCG.PacNW.L219	ALL	hi	BIO06600-CANY02_09_08_2016	Calineuria californica	4	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Calineuria	3	cool_warm	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L220	ALL	hi	BIO06600-CANY02_09_08_2016	Ceratopogoninae	10	FALSE	FALSE	Arthropoda	Insecta	Diptera	Ceratopogonidae	Ceratopogoninae			4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L221	ALL	hi	BIO06600-CANY02_09_08_2016	Cinygmula	53	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Cinygmula	3	cold	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L222	ALL	hi	BIO06600-CANY02_09_08_2016	Dicranota	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Pediciidae	Pediciinae		Dicranota	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L223	ALL	hi	BIO06600-CANY02_09_08_2016	Diphetor hageni	9	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Diphetor	4	cold_cool	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L224	ALL	hi	BIO06600-CANY02_09_08_2016	Dixa	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Dixidae			Dixa	4	cold_cool	GC	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L225	ALL	hi	BIO06600-CANY02_09_08_2016	Drunella doddsii	2	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Drunella	3	cold	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L226	ALL	hi	BIO06600-CANY02_09_08_2016	Ecclisomyia	2	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Limnephilidae	Dicosmoecinae		Ecclisomyia	2	cold	GC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L227	ALL	hi	BIO06600-CANY02_09_08_2016	Eloeophila	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Limnophilinae		Eloeophila	3	NA	NA	NA		FALSE	DEPO							
+BCG.PacNW.L228	ALL	hi	BIO06600-CANY02_09_08_2016	Enchytraeidae	50	FALSE	FALSE	Annelida	Clitellata		Enchytraeidae				4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L229	ALL	hi	BIO06600-CANY02_09_08_2016	Ephemerella	2	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Ephemerella	3	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L230	ALL	hi	BIO06600-CANY02_09_08_2016	Glossosoma	10	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae	Glossosomatinae	Glossosomatini	Glossosoma	3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L231	ALL	hi	BIO06600-CANY02_09_08_2016	Glossosomatidae	4	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae				3	NA	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L232	ALL	hi	BIO06600-CANY02_09_08_2016	Glutops	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Pelecorhynchidae			Glutops	3	cold	PR	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L233	ALL	hi	BIO06600-CANY02_09_08_2016	Heleniella	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Heleniella	3	cold	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L234	ALL	hi	BIO06600-CANY02_09_08_2016	Hesperoconopa	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Chioneinae		Hesperoconopa	3	cold	GC	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L235	ALL	hi	BIO06600-CANY02_09_08_2016	Heterlimnius corpulentus	128	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Heterlimnius	3	cold_cool	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L236	ALL	hi	BIO06600-CANY02_09_08_2016	Hexatoma	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Limoniinae		Hexatoma	3	cold_cool	PR	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L237	ALL	hi	BIO06600-CANY02_09_08_2016	Hydropsyche	9	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Hydropsychinae		Hydropsyche	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L238	ALL	hi	BIO06600-CANY02_09_08_2016	Lepidostoma	5	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Lepidostomatidae	Lepidostomatinae		Lepidostoma	3	NA	SH	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L239	ALL	hi	BIO06600-CANY02_09_08_2016	Leptophlebiidae	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Leptophlebiidae				3	NA	GC	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L240	ALL	hi	BIO06600-CANY02_09_08_2016	Limnephilidae	6	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Limnephilidae				3	NA	SH	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L241	ALL	hi	BIO06600-CANY02_09_08_2016	Lumbriculidae	1	FALSE	FALSE	Annelida	Clitellata	Lumbriculida	Lumbriculidae				4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L242	ALL	hi	BIO06600-CANY02_09_08_2016	Micrasema	6	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Brachycentridae			Micrasema	3	cold_cool	MH	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L243	ALL	hi	BIO06600-CANY02_09_08_2016	Micropsectra	100	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L244	ALL	hi	BIO06600-CANY02_09_08_2016	Naididae	1	FALSE	FALSE	Annelida	Clitellata	Tubificida	Naididae				4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L245	ALL	hi	BIO06600-CANY02_09_08_2016	Narpus	1	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Narpus	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L246	ALL	hi	BIO06600-CANY02_09_08_2016	Parametriocnemus	8	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L247	ALL	hi	BIO06600-CANY02_09_08_2016	Paraperla	3	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Paraperlinae		Paraperla	3	cold	PR	yes	TRUE	FALSE	SPEC							
+BCG.PacNW.L248	ALL	hi	BIO06600-CANY02_09_08_2016	Pericomaini	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Psychodidae	Psychodinae	Pericomaini		3	NA	NA	NA		FALSE	GENE							
+BCG.PacNW.L249	ALL	hi	BIO06600-CANY02_09_08_2016	Polypedilum	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L250	ALL	hi	BIO06600-CANY02_09_08_2016	Rheocricotopus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Rheocricotopus	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L251	ALL	hi	BIO06600-CANY02_09_08_2016	Rhithrogena	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Rhithrogena	4	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L252	ALL	hi	BIO06600-CANY02_09_08_2016	Rhyacophila	1	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L253	ALL	hi	BIO06600-CANY02_09_08_2016	Rhyacophila arnaudi	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L254	ALL	hi	BIO06600-CANY02_09_08_2016	Rhyacophila atrata complex	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L255	ALL	hi	BIO06600-CANY02_09_08_2016	Rhyacophila brunnea/vemna groups	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L256	ALL	hi	BIO06600-CANY02_09_08_2016	Rhyacophila narvae	4	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L257	ALL	hi	BIO06600-CANY02_09_08_2016	Sarcoptiformes	1	FALSE	FALSE	Arthropoda	Arachnida	Sarcoptiformes					4	NA	NA	NA		FALSE	UNKN							
+BCG.PacNW.L258	ALL	hi	BIO06600-CANY02_09_08_2016	Simulium	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae	Simuliinae	Simuliini	Simulium	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L259	ALL	hi	BIO06600-CANY02_09_08_2016	Skwala	5	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlodidae	Perlodinae	Arcynopterygini	Skwala	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L260	ALL	hi	BIO06600-CANY02_09_08_2016	Sphaeriidae	1	FALSE	FALSE	Mollusca	Bivalvia	Veneroida	Sphaeriidae				4	NA	FC	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L261	ALL	hi	BIO06600-CANY02_09_08_2016	Stempellinella	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Stempellinella	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L262	ALL	hi	BIO06600-CANY02_09_08_2016	Sweltsa	4	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Chloroperlinae		Sweltsa	4	cold_cool	PR	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L263	ALL	hi	BIO06600-CANY02_09_08_2016	Tipula	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Tipulidae	Tipulinae		Tipula	4	cold_cool	SH	no	TRUE	FALSE	GENE							
+BCG.PacNW.L264	ALL	hi	BIO06600-CANY02_09_08_2016	Trombidiformes	20	FALSE	FALSE	Arthropoda	Arachnida	Trombidiformes					4	NA	NA	no	FALSE	FALSE	UNKN							
+BCG.PacNW.L265	ALL	hi	BIO06600-CANY02_09_08_2016	Zapada cinctipes	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	4	cold_cool	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L266	ALL	hi	BIO06600-CANY02_09_08_2016	Zapada oregonensis group	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	3	cold_cool	SH	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L267	ALL	hi	BIO06600-CANY02_09_08_2016	Zavrelimyia	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Zavrelimyia	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L268	ALL	hi	WAM06600-000413_07_05_2014	Ablabesmyia	7	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Ablabesmyia	5	warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L269	ALL	hi	WAM06600-000413_07_05_2014	Aeshnidae	1	FALSE	FALSE	Arthropoda	Insecta	Odonata	Aeshnidae				3	NA	PR	no	FALSE	TRUE	GENE							
+BCG.PacNW.L270	ALL	hi	WAM06600-000413_07_05_2014	Brillia	5	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Brillia	4	cold_cool	SH	no	FALSE	FALSE	GENE							
+BCG.PacNW.L271	ALL	hi	WAM06600-000413_07_05_2014	Brundiniella	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Macropelopiini	Brundiniella	4	cold_cool	PR	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L272	ALL	hi	WAM06600-000413_07_05_2014	Caecidotea	10	FALSE	FALSE	Arthropoda	Malacostraca	Isopoda	Asellidae			Caecidotea	5	cool_warm	GC	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L273	ALL	hi	WAM06600-000413_07_05_2014	Chironomus	9	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Chironomus	5	warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L274	ALL	hi	WAM06600-000413_07_05_2014	Corixidae	51	FALSE	TRUE								NA	NA	PR	no	FALSE	NA								
+BCG.PacNW.L275	ALL	hi	WAM06600-000413_07_05_2014	Corynoneura	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Corynoneura	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L276	ALL	hi	WAM06600-000413_07_05_2014	Cricotopus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Cricotopus	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L277	ALL	hi	WAM06600-000413_07_05_2014	Cryptochironomus	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Cryptochironomus	5	warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L278	ALL	hi	WAM06600-000413_07_05_2014	Culicidae	1	FALSE	TRUE								NA	NA	GC	no	FALSE	NA								
+BCG.PacNW.L279	ALL	hi	WAM06600-000413_07_05_2014	Dicranota	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Pediciidae	Pediciinae		Dicranota	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L280	ALL	hi	WAM06600-000413_07_05_2014	Dicrotendipes	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Dicrotendipes	5	warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L281	ALL	hi	WAM06600-000413_07_05_2014	Dixella	9	FALSE	FALSE	Arthropoda	Insecta	Diptera	Dixidae			Dixella	4	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L282	ALL	hi	WAM06600-000413_07_05_2014	Enchytraeidae	3	FALSE	FALSE	Annelida	Clitellata		Enchytraeidae				4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L283	ALL	hi	WAM06600-000413_07_05_2014	Ephydridae	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Ephydridae				4	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L284	ALL	hi	WAM06600-000413_07_05_2014	Forcipomyiinae	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Ceratopogonidae	Forcipomyiinae			3	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L285	ALL	hi	WAM06600-000413_07_05_2014	Heterotrissocladius marcidus group	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Heterotrissocladius	4	NA	NA	no	FALSE	FALSE	GENE							
+BCG.PacNW.L286	ALL	hi	WAM06600-000413_07_05_2014	Hyalella	3	FALSE	FALSE	Arthropoda	Malacostraca	Amphipoda	Hyalellidae			Hyalella	5	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L287	ALL	hi	WAM06600-000413_07_05_2014	Juga	2	FALSE	FALSE	Mollusca	Gastropoda	Neotaenioglossa	Pleuroceridae			Juga	4	warm	SC	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L288	ALL	hi	WAM06600-000413_07_05_2014	Labiobaetis	9	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Labiobaetis	4	NA	GC	yes	FALSE	FALSE	DEPO							
+BCG.PacNW.L289	ALL	hi	WAM06600-000413_07_05_2014	Lepidostoma	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Lepidostomatidae	Lepidostomatinae		Lepidostoma	3	NA	SH	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L290	ALL	hi	WAM06600-000413_07_05_2014	Limnophyes	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Limnophyes	5	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L291	ALL	hi	WAM06600-000413_07_05_2014	Micropsectra	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L292	ALL	hi	WAM06600-000413_07_05_2014	Naididae	4	TRUE	FALSE	Annelida	Clitellata	Tubificida	Naididae				4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L293	ALL	hi	WAM06600-000413_07_05_2014	Naidinae	1	FALSE	FALSE	Annelida	Clitellata	Tubificida	Naididae	Naidinae			4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L294	ALL	hi	WAM06600-000413_07_05_2014	Natarsia	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Natarsiini	Natarsia	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L295	ALL	hi	WAM06600-000413_07_05_2014	Nemata	1	FALSE	FALSE	Nemata							4	NA	OM	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L296	ALL	hi	WAM06600-000413_07_05_2014	Neoleptophlebia/Paraleptophlebia	6	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Leptophlebiidae			Neoleptophlebia/Paraleptophlebia	3	NA	NA	NA		FALSE	DEPO							
+BCG.PacNW.L297	ALL	hi	WAM06600-000413_07_05_2014	Pacifastacus	1	FALSE	FALSE	Arthropoda	Malacostraca	Decapoda	Astacidae			Pacifastacus	4	cool_warm	OM	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L298	ALL	hi	WAM06600-000413_07_05_2014	Paraphaenocladius	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Paraphaenocladius	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L299	ALL	hi	WAM06600-000413_07_05_2014	Paratanytarsus	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Paratanytarsus	5	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L300	ALL	hi	WAM06600-000413_07_05_2014	Paratendipes	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Paratendipes	4	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L301	ALL	hi	WAM06600-000413_07_05_2014	Phaenopsectra	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Phaenopsectra	4	cool_warm	SC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L302	ALL	hi	WAM06600-000413_07_05_2014	Physidae	2	FALSE	FALSE	Mollusca	Gastropoda	Basommatophora	Physidae				5	NA	NA	NA		FALSE	GENE							
+BCG.PacNW.L303	ALL	hi	WAM06600-000413_07_05_2014	Pisidium	24	FALSE	FALSE	Mollusca	Bivalvia	Veneroida	Sphaeriidae			Pisidium	4	cold_cool	FC	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L304	ALL	hi	WAM06600-000413_07_05_2014	Planorbidae	16	FALSE	FALSE	Mollusca	Gastropoda	Basommatophora	Planorbidae				4	cool_warm	SC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L305	ALL	hi	WAM06600-000413_07_05_2014	Polypedilum	19	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L306	ALL	hi	WAM06600-000413_07_05_2014	Procladius	25	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Procladiini	Procladius	5	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L307	ALL	hi	WAM06600-000413_07_05_2014	Prodiamesa	11	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Prodiamesinae		Prodiamesa	5	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L308	ALL	hi	WAM06600-000413_07_05_2014	Psectrotanypus	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Macropelopiini	Psectrotanypus	4	NA	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L309	ALL	hi	WAM06600-000413_07_05_2014	Sarcoptiformes	1	FALSE	FALSE	Arthropoda	Arachnida	Sarcoptiformes					4	NA	NA	NA		FALSE	UNKN							
+BCG.PacNW.L310	ALL	hi	WAM06600-000413_07_05_2014	Sialis	22	FALSE	FALSE	Arthropoda	Insecta	Megaloptera	Sialidae			Sialis	4	cool_warm	PR	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L311	ALL	hi	WAM06600-000413_07_05_2014	Sigara	1	FALSE	TRUE								NA	NA	PR	no	FALSE	NA								
+BCG.PacNW.L312	ALL	hi	WAM06600-000413_07_05_2014	Sphaerium	5	FALSE	FALSE	Mollusca	Bivalvia	Veneroida	Sphaeriidae			Sphaerium	4	cool_warm	GC	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L313	ALL	hi	WAM06600-000413_07_05_2014	Stempellinella	43	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Stempellinella	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L314	ALL	hi	WAM06600-000413_07_05_2014	Stictochironomus	21	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Stictochironomus	4	cool_warm	OM	no	FALSE	FALSE	GENE							
+BCG.PacNW.L315	ALL	hi	WAM06600-000413_07_05_2014	Tabanidae	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Tabanidae				4	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L316	ALL	hi	WAM06600-000413_07_05_2014	Tanypodinae	4	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae			4	NA	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L317	ALL	hi	WAM06600-000413_07_05_2014	Tanytarsus	14	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Tanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L318	ALL	hi	WAM06600-000413_07_05_2014	Telmatodrilinae	1	FALSE	FALSE	Annelida	Clitellata	Tubificida	Naididae	Telmatodrilinae			NA	NA	NA	NA		FALSE	GENE							
+BCG.PacNW.L319	ALL	hi	WAM06600-000413_07_05_2014	Tribelos	80	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Tribelos	4	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L320	ALL	hi	WAM06600-000413_07_05_2014	Trombidiformes	39	FALSE	FALSE	Arthropoda	Arachnida	Trombidiformes					4	NA	NA	no	FALSE	FALSE	UNKN							
+BCG.PacNW.L321	ALL	hi	WAM06600-000413_07_05_2014	Truncatelloidea	38	FALSE	FALSE	Mollusca	Gastropoda	Littorinimorpha					4	NA	SC	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L322	ALL	hi	WAM06600-000413_07_05_2014	Tubificinae	2	FALSE	FALSE	Annelida	Clitellata	Tubificida	Naididae	Tubificinae			4	NA	NA	no	FALSE	FALSE	GENE							
+BCG.PacNW.L323	ALL	hi	WAM06600-000413_07_05_2014	Zavrelimyia	5	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Zavrelimyia	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L324	ALL	lo	08004GRAS	Caenis	19	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Caenidae	Caeninae		Caenis	5	warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L325	ALL	lo	08004GRAS	Cladocera	1	FALSE	TRUE								NA	NA	FC	no	FALSE	NA								
+BCG.PacNW.L326	ALL	lo	08004GRAS	Coenagrionidae	1	FALSE	FALSE	Arthropoda	Insecta	Odonata	Coenagrionidae				4	warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L327	ALL	lo	08004GRAS	Corbiculoidea	11	FALSE	FALSE								NA	NA	NA	NA		NA								
+BCG.PacNW.L328	ALL	lo	08004GRAS	Corynoneura	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Corynoneura	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L329	ALL	lo	08004GRAS	Cricotopus trifascia group	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Cricotopus	4	NA	OM	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L330	ALL	lo	08004GRAS	Dicrotendipes	7	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Dicrotendipes	5	warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L331	ALL	lo	08004GRAS	Dubiraphia	2	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Dubiraphia	5	warm	GC	yes	TRUE	FALSE	GENE							
+BCG.PacNW.L332	ALL	lo	08004GRAS	Eukiefferiella coerulescens/claripennis groups	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Eukiefferiella	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L333	ALL	lo	08004GRAS	Gammarus	57	FALSE	FALSE	Arthropoda	Malacostraca	Amphipoda	Gammaridae			Gammarus	5	warm	OM	no	FALSE	FALSE	GENE							
+BCG.PacNW.L334	ALL	lo	08004GRAS	Hyalella	17	FALSE	FALSE	Arthropoda	Malacostraca	Amphipoda	Hyalellidae			Hyalella	5	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L335	ALL	lo	08004GRAS	Hydropsyche	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Hydropsychinae		Hydropsyche	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L336	ALL	lo	08004GRAS	Isopoda	12	FALSE	TRUE								NA	NA	GC	no	FALSE	NA								
+BCG.PacNW.L337	ALL	lo	08004GRAS	Menetus	2	FALSE	FALSE	Mollusca	Gastropoda	Basommatophora	Planorbidae			Menetus	4	cool_warm	NA	no	FALSE	FALSE	GENE							
+BCG.PacNW.L338	ALL	lo	08004GRAS	Micropsectra	28	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L339	ALL	lo	08004GRAS	Nemata	1	FALSE	FALSE	Nemata							4	NA	OM	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L340	ALL	lo	08004GRAS	Nilotanypus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Nilotanypus	4	cool_warm	PR	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L341	ALL	lo	08004GRAS	Oecetis	5	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Leptoceridae	Leptocerinae	Oecetini	Oecetis	4	warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L342	ALL	lo	08004GRAS	Oligochaeta	52	FALSE	FALSE	Annelida	Clitellata						4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L343	ALL	lo	08004GRAS	Optioservus	15	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Optioservus	4	cool_warm	SC	yes	TRUE	FALSE	GENE							
+BCG.PacNW.L344	ALL	lo	08004GRAS	Orthocladiinae	114	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae			4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L345	ALL	lo	08004GRAS	Ostracoda	8	FALSE	FALSE	Arthropoda	Ostracoda						4	NA	GC	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L346	ALL	lo	08004GRAS	Paratanytarsus	11	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Paratanytarsus	5	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L347	ALL	lo	08004GRAS	Petrophila	3	FALSE	FALSE	Arthropoda	Insecta	Lepidoptera	Crambidae	Nymphulinae	Argyractini	Petrophila	4	warm	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L348	ALL	lo	08004GRAS	Physidae	2	FALSE	FALSE	Mollusca	Gastropoda	Basommatophora	Physidae				5	NA	NA	NA		FALSE	GENE							
+BCG.PacNW.L349	ALL	lo	08004GRAS	Polypedilum	23	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L350	ALL	lo	08004GRAS	Rheotanytarsus	13	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Rheotanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L351	ALL	lo	08004GRAS	Simulium	68	FALSE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae	Simuliinae	Simuliini	Simulium	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L352	ALL	lo	08004GRAS	Tanytarsus	14	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Tanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L353	ALL	lo	08004GRAS	Thienemannimyia group	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Thienemannimyia group	4	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L354	ALL	lo	08004GRAS	Trepaxonemata	11	FALSE	FALSE	Platyhelminthes	Trepaxonemata						4	NA	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L355	ALL	lo	08004GRAS	Trombidiformes	1	FALSE	FALSE	Arthropoda	Arachnida	Trombidiformes					4	NA	NA	no	FALSE	FALSE	UNKN							
+BCG.PacNW.L356	ALL	lo	09112DFW	Arctopsyche	10	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Arctopsychinae		Arctopsyche	3	cold_cool	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L357	ALL	lo	09112DFW	Baetis tricaudatus complex	17	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Baetis	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L358	ALL	lo	09112DFW	Brillia	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Brillia	4	cold_cool	SH	no	FALSE	FALSE	GENE							
+BCG.PacNW.L359	ALL	lo	09112DFW	Calineuria californica	13	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Calineuria	3	cool_warm	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L360	ALL	lo	09112DFW	Ceratopogoninae	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Ceratopogonidae	Ceratopogoninae			4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L361	ALL	lo	09112DFW	Cleptelmis addenda	65	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Cleptelmis	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L362	ALL	lo	09112DFW	Dicosmoecus gilvipes	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Limnephilidae	Dicosmoecinae		Dicosmoecus	3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L363	ALL	lo	09112DFW	Dicranota	7	FALSE	FALSE	Arthropoda	Insecta	Diptera	Pediciidae	Pediciinae		Dicranota	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L364	ALL	lo	09112DFW	Drunella grandis/spinifera	3	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Drunella	3	NA	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L365	ALL	lo	09112DFW	Dytiscidae	13	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Dytiscidae				3	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L366	ALL	lo	09112DFW	Empididae	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Empididae				4	NA	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L367	ALL	lo	09112DFW	Fluminicola	1	FALSE	FALSE	Mollusca	Gastropoda	Littorinimorpha				Fluminicola	4	warm	SC	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L368	ALL	lo	09112DFW	Glossosoma	6	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae	Glossosomatinae	Glossosomatini	Glossosoma	3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L369	ALL	lo	09112DFW	Glutops	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Pelecorhynchidae			Glutops	3	cold	PR	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L370	ALL	lo	09112DFW	Gomphidae	1	FALSE	FALSE	Arthropoda	Insecta	Odonata	Gomphidae				3	cool_warm	PR	no	TRUE	TRUE	DEPO							
+BCG.PacNW.L371	ALL	lo	09112DFW	Gumaga	4	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Sericostomatidae			Gumaga	2	NA	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L372	ALL	lo	09112DFW	Hesperoperla pacifica	21	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Hesperoperla	3	cold_cool	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L373	ALL	lo	09112DFW	Heterlimnius corpulentus	52	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Heterlimnius	3	cold_cool	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L374	ALL	lo	09112DFW	Heteroplectron californicum	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Calamoceratidae	Calamoceratinae		Heteroplectron	2	NA	SH	no	FALSE	TRUE	DEPO							
+BCG.PacNW.L375	ALL	lo	09112DFW	Hexatoma	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Limoniinae		Hexatoma	3	cold_cool	PR	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L376	ALL	lo	09112DFW	Hydropsyche	72	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Hydropsychinae		Hydropsyche	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L377	ALL	lo	09112DFW	Juga	11	FALSE	FALSE	Mollusca	Gastropoda	Neotaenioglossa	Pleuroceridae			Juga	4	warm	SC	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L378	ALL	lo	09112DFW	Micrasema	5	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Brachycentridae			Micrasema	3	cold_cool	MH	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L379	ALL	lo	09112DFW	Narpus	2	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Narpus	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L380	ALL	lo	09112DFW	Neoleptophlebia/Paraleptophlebia	2	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Leptophlebiidae			Neoleptophlebia/Paraleptophlebia	3	NA	NA	NA		FALSE	DEPO							
+BCG.PacNW.L381	ALL	lo	09112DFW	Neophylax rickeri	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Thremmatidae			Neophylax	3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L382	ALL	lo	09112DFW	Optioservus	16	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Optioservus	4	cool_warm	SC	yes	TRUE	FALSE	GENE							
+BCG.PacNW.L383	ALL	lo	09112DFW	Pagastia	23	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Diamesinae	Diamesini	Pagastia	3	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L384	ALL	lo	09112DFW	Parametriocnemus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L385	ALL	lo	09112DFW	Polypedilum	47	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L386	ALL	lo	09112DFW	Psychoglypha	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Limnephilidae	Limnephilinae	Chilostigmini	Psychoglypha	3	cool_warm	GC	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L387	ALL	lo	09112DFW	Rheotanytarsus	36	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Rheotanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L388	ALL	lo	09112DFW	Rhyacophila arnaudi	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L389	ALL	lo	09112DFW	Rhyacophila betteni group	2	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L390	ALL	lo	09112DFW	Rhyacophila blarina	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L391	ALL	lo	09112DFW	Rhyacophila brunnea/vemna groups	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L392	ALL	lo	09112DFW	Rhyacophila narvae	17	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L393	ALL	lo	09112DFW	Simulium	17	FALSE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae	Simuliinae	Simuliini	Simulium	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L394	ALL	lo	09112DFW	Skwala	14	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlodidae	Perlodinae	Arcynopterygini	Skwala	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L395	ALL	lo	09112DFW	Sweltsa	21	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Chloroperlinae		Sweltsa	4	cold_cool	PR	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L396	ALL	lo	09112DFW	Tanytarsini	31	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini		4	NA	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L397	ALL	lo	09112DFW	Tvetenia bavarica group	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Tvetenia	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L398	ALL	lo	09112DFW	Yoraperla	7	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Peltoperlidae	Peltoperlinae		Yoraperla	2	cold	SH	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L399	ALL	lo	09112DFW	Zaitzevia	9	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Zaitzevia	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L400	ALL	lo	09112DFW	Zapada cinctipes	17	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	4	cold_cool	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L401	ALL	lo	09112DFW	Zavrelimyia	5	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Zavrelimyia	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L402	ALL	lo	5777_8650	Antocha	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Limoniinae		Antocha	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L403	ALL	lo	5777_8650	Attenella	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Attenella	3	NA	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L404	ALL	lo	5777_8650	Baetis	16	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Baetis	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L405	ALL	lo	5777_8650	Brillia	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Brillia	4	cold_cool	SH	no	FALSE	FALSE	GENE							
+BCG.PacNW.L406	ALL	lo	5777_8650	Calineuria californica	2	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Calineuria	3	cool_warm	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L407	ALL	lo	5777_8650	Chelifera/Metachela	6	FALSE	FALSE	Arthropoda	Insecta	Diptera	Empididae	Hemerodromiinae	Hemerodromiini	Chelifera/Metachela	4	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L408	ALL	lo	5777_8650	Cleptelmis addenda	3	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Cleptelmis	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L409	ALL	lo	5777_8650	Cricotopus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Cricotopus	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L410	ALL	lo	5777_8650	Dixa	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Dixidae			Dixa	4	cold_cool	GC	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L411	ALL	lo	5777_8650	Drunella	3	TRUE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Drunella	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L412	ALL	lo	5777_8650	Drunella doddsii	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Drunella	3	cold	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L413	ALL	lo	5777_8650	Dytiscidae	8	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Dytiscidae				3	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L414	ALL	lo	5777_8650	Eukiefferiella	9	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Eukiefferiella	4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L415	ALL	lo	5777_8650	Glossosoma	10	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae	Glossosomatinae	Glossosomatini	Glossosoma	3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L416	ALL	lo	5777_8650	Haliplus	2	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Haliplidae			Haliplus	4	NA	MH	no	FALSE	FALSE	GENE							
+BCG.PacNW.L417	ALL	lo	5777_8650	Hemerodromia	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Empididae	Hemerodromiinae	Hemerodromiini	Hemerodromia	5	cool_warm	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L418	ALL	lo	5777_8650	Hesperoperla pacifica	8	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Hesperoperla	3	cold_cool	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L419	ALL	lo	5777_8650	Heterlimnius corpulentus	47	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Heterlimnius	3	cold_cool	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L420	ALL	lo	5777_8650	Hexatoma	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Limoniinae		Hexatoma	3	cold_cool	PR	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L421	ALL	lo	5777_8650	Hydropsyche	179	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Hydropsychinae		Hydropsyche	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L422	ALL	lo	5777_8650	Hydroptila	20	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydroptilidae	Hydroptilinae	Hydroptilini	Hydroptila	4	cool_warm	SC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L423	ALL	lo	5777_8650	Isoperla	13	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlodidae	Isoperlinae		Isoperla	3	NA	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L424	ALL	lo	5777_8650	Lepidostoma	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Lepidostomatidae	Lepidostomatinae		Lepidostoma	3	NA	SH	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L425	ALL	lo	5777_8650	Micrasema	5	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Brachycentridae			Micrasema	3	cold_cool	MH	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L426	ALL	lo	5777_8650	Micropsectra	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L427	ALL	lo	5777_8650	Neaviperla/Suwallia	4	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae		Suwalliini	Neaviperla/Suwallia	3	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L428	ALL	lo	5777_8650	Neophylax rickeri	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Thremmatidae			Neophylax	3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L429	ALL	lo	5777_8650	Optioservus	10	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Optioservus	4	cool_warm	SC	yes	TRUE	FALSE	GENE							
+BCG.PacNW.L430	ALL	lo	5777_8650	Orthocladiinae	1	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae			4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L431	ALL	lo	5777_8650	Orthocladius	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L432	ALL	lo	5777_8650	Pagastia	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Diamesinae	Diamesini	Pagastia	3	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L433	ALL	lo	5777_8650	Paraleptophlebia bicornuta group	3	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Leptophlebiidae			Paraleptophlebia	3	cool_warm	GC	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L434	ALL	lo	5777_8650	Paraperla	3	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Paraperlinae		Paraperla	3	cold	PR	yes	TRUE	FALSE	SPEC							
+BCG.PacNW.L435	ALL	lo	5777_8650	Perlodidae	4	TRUE	FALSE	Arthropoda	Insecta	Plecoptera	Perlodidae				3	NA	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L436	ALL	lo	5777_8650	Polypedilum	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L437	ALL	lo	5777_8650	Potthastia gaedii group	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Diamesinae	Diamesini	Potthastia	3	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L438	ALL	lo	5777_8650	Rheotanytarsus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Rheotanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L439	ALL	lo	5777_8650	Rhithrogena	3	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Rhithrogena	4	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L440	ALL	lo	5777_8650	Rhyacophila	1	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L441	ALL	lo	5777_8650	Rhyacophila arnaudi	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L442	ALL	lo	5777_8650	Rhyacophila betteni group	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L443	ALL	lo	5777_8650	Rhyacophila blarina	8	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L444	ALL	lo	5777_8650	Rhyacophila brunnea/vemna groups	5	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L445	ALL	lo	5777_8650	Simulium	23	FALSE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae	Simuliinae	Simuliini	Simulium	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L446	ALL	lo	5777_8650	Skwala	2	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlodidae	Perlodinae	Arcynopterygini	Skwala	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L447	ALL	lo	5777_8650	Sweltsa	20	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Chloroperlinae		Sweltsa	4	cold_cool	PR	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L448	ALL	lo	5777_8650	Tanytarsini	1	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini		4	NA	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L449	ALL	lo	5777_8650	Tanytarsus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Tanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L450	ALL	lo	5777_8650	Thienemannimyia group	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Thienemannimyia group	4	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L451	ALL	lo	5777_8650	Timpanoga hecuba	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Timpanoga	3	cool_warm	NA	NA		TRUE	DEPO							
+BCG.PacNW.L452	ALL	lo	5777_8650	Trichoclinocera	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Empididae	Clinocerinae		Trichoclinocera	4	NA	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L453	ALL	lo	5777_8650	Trombidiformes	45	FALSE	FALSE	Arthropoda	Arachnida	Trombidiformes					4	NA	NA	no	FALSE	FALSE	UNKN							
+BCG.PacNW.L454	ALL	lo	5777_8650	Tvetenia bavarica group	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Tvetenia	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L455	ALL	lo	5777_8650	Uenoidae	2	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Uenoidae				2	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L456	ALL	lo	5777_8650	Wormaldia	14	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Philopotamidae	Philopotaminae		Wormaldia	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L457	ALL	lo	5777_8650	Zaitzevia	22	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Zaitzevia	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L458	ALL	lo	5777_8650	Zapada cinctipes	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	4	cold_cool	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L459	ALL	lo	8104_12970	Baetis tricaudatus complex	162	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Baetis	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L460	ALL	lo	8104_12970	Brillia	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Brillia	4	cold_cool	SH	no	FALSE	FALSE	GENE							
+BCG.PacNW.L461	ALL	lo	8104_12970	Caecidotea	2	FALSE	FALSE	Arthropoda	Malacostraca	Isopoda	Asellidae			Caecidotea	5	cool_warm	GC	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L462	ALL	lo	8104_12970	Cleptelmis addenda	7	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Cleptelmis	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L463	ALL	lo	8104_12970	Crangonyx	60	FALSE	FALSE	Arthropoda	Malacostraca	Amphipoda	Crangonyctidae			Crangonyx	5	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L464	ALL	lo	8104_12970	Dicranota	9	FALSE	FALSE	Arthropoda	Insecta	Diptera	Pediciidae	Pediciinae		Dicranota	4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L465	ALL	lo	8104_12970	Dixa	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Dixidae			Dixa	4	cold_cool	GC	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L466	ALL	lo	8104_12970	Enchytraeidae	8	FALSE	FALSE	Annelida	Clitellata		Enchytraeidae				4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L467	ALL	lo	8104_12970	Eukiefferiella	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Eukiefferiella	4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L468	ALL	lo	8104_12970	Lepidostoma	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Lepidostomatidae	Lepidostomatinae		Lepidostoma	3	NA	SH	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L469	ALL	lo	8104_12970	Lumbriculidae	74	FALSE	FALSE	Annelida	Clitellata	Lumbriculida	Lumbriculidae				4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L470	ALL	lo	8104_12970	Malenka	9	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae			Malenka	4	cool_warm	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L471	ALL	lo	8104_12970	Micropsectra	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L472	ALL	lo	8104_12970	Narpus	4	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Narpus	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L473	ALL	lo	8104_12970	Nemata	50	FALSE	FALSE	Nemata							4	NA	OM	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L474	ALL	lo	8104_12970	Neoplasta	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Empididae	Hemerodromiinae	Hemerodromiini	Neoplasta	4	cool_warm	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L475	ALL	lo	8104_12970	Optioservus	18	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Optioservus	4	cool_warm	SC	yes	TRUE	FALSE	GENE							
+BCG.PacNW.L476	ALL	lo	8104_12970	Pisidium	2	FALSE	FALSE	Mollusca	Bivalvia	Veneroida	Sphaeriidae			Pisidium	4	cold_cool	FC	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L477	ALL	lo	8104_12970	Polypedilum	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L478	ALL	lo	8104_12970	Psychodidae	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Psychodidae				3	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L479	ALL	lo	8104_12970	Rheotanytarsus	6	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Rheotanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L480	ALL	lo	8104_12970	Sarcoptiformes	2	FALSE	FALSE	Arthropoda	Arachnida	Sarcoptiformes					4	NA	NA	NA		FALSE	UNKN							
+BCG.PacNW.L481	ALL	lo	8104_12970	Simulium	45	FALSE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae	Simuliinae	Simuliini	Simulium	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L482	ALL	lo	8104_12970	Sphaeriidae	3	TRUE	FALSE	Mollusca	Bivalvia	Veneroida	Sphaeriidae				4	NA	FC	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L483	ALL	lo	8104_12970	Tanytarsini	1	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini		4	NA	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L484	ALL	lo	8104_12970	Tanytarsus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Tanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L485	ALL	lo	8104_12970	Trepaxonemata	28	FALSE	FALSE	Platyhelminthes	Trepaxonemata						4	NA	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L486	ALL	lo	8104_12970	Trombidiformes	20	FALSE	FALSE	Arthropoda	Arachnida	Trombidiformes					4	NA	NA	no	FALSE	FALSE	UNKN							
+BCG.PacNW.L487	ALL	lo	8104_12970	Tubificinae	6	FALSE	FALSE	Annelida	Clitellata	Tubificida	Naididae	Tubificinae			4	NA	NA	no	FALSE	FALSE	GENE							
+BCG.PacNW.L488	ALL	lo	9075_14009	Antocha	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Limoniinae		Antocha	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L489	ALL	lo	9075_14009	Arctopsyche	32	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Arctopsychinae		Arctopsyche	3	cold_cool	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L490	ALL	lo	9075_14009	Baetis tricaudatus complex	19	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Baetis	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L491	ALL	lo	9075_14009	Blephariceridae	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Blephariceridae				3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L492	ALL	lo	9075_14009	Calineuria californica	13	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Calineuria	3	cool_warm	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L493	ALL	lo	9075_14009	Caudatella	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Caudatella	2	cold	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L494	ALL	lo	9075_14009	Cleptelmis addenda	4	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Cleptelmis	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L495	ALL	lo	9075_14009	Crangonyx	1	FALSE	FALSE	Arthropoda	Malacostraca	Amphipoda	Crangonyctidae			Crangonyx	5	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L496	ALL	lo	9075_14009	Drunella doddsii	4	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Drunella	3	cold	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L497	ALL	lo	9075_14009	Empididae Genus B	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Empididae			Empididae Genus B	3	NA	NA	NA		TRUE	RHEO							
+BCG.PacNW.L498	ALL	lo	9075_14009	Enchytraeidae	1	FALSE	FALSE	Annelida	Clitellata		Enchytraeidae				4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L499	ALL	lo	9075_14009	Epeorus	3	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Epeorus	3	NA	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L500	ALL	lo	9075_14009	Ephemerella tibialis	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Ephemerella	4	cold_cool	NA	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L501	ALL	lo	9075_14009	Eukiefferiella	10	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Eukiefferiella	4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L502	ALL	lo	9075_14009	Glossosoma	132	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae	Glossosomatinae	Glossosomatini	Glossosoma	3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L503	ALL	lo	9075_14009	Glossosomatidae	3	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae				3	NA	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L504	ALL	lo	9075_14009	Hesperoperla pacifica	3	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae	Acroneuriinae	Acroneuriini	Hesperoperla	3	cold_cool	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L505	ALL	lo	9075_14009	Heterlimnius corpulentus	8	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Heterlimnius	3	cold_cool	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L506	ALL	lo	9075_14009	Hydropsyche	21	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Hydropsychinae		Hydropsyche	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L507	ALL	lo	9075_14009	Juga	72	FALSE	FALSE	Mollusca	Gastropoda	Neotaenioglossa	Pleuroceridae			Juga	4	warm	SC	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L508	ALL	lo	9075_14009	Lara	1	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Larainae		Lara	4	cold_cool	SH	yes	TRUE	FALSE	SPEC							
+BCG.PacNW.L509	ALL	lo	9075_14009	Lumbriculidae	9	FALSE	FALSE	Annelida	Clitellata	Lumbriculida	Lumbriculidae				4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L510	ALL	lo	9075_14009	Malenka	2	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae			Malenka	4	cool_warm	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L511	ALL	lo	9075_14009	Maruina	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Psychodidae	Psychodinae		Maruina	3	cool_warm	SC	yes	FALSE	FALSE	SPEC							
+BCG.PacNW.L512	ALL	lo	9075_14009	Micrasema	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Brachycentridae			Micrasema	3	cold_cool	MH	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L513	ALL	lo	9075_14009	Micropsectra	13	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L514	ALL	lo	9075_14009	Naidinae	1	FALSE	FALSE	Annelida	Clitellata	Tubificida	Naididae	Naidinae			4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L515	ALL	lo	9075_14009	Narpus	2	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Narpus	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L516	ALL	lo	9075_14009	Neaviperla/Suwallia	2	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae		Suwalliini	Neaviperla/Suwallia	3	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L517	ALL	lo	9075_14009	Nemata	2	FALSE	FALSE	Nemata							4	NA	OM	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L518	ALL	lo	9075_14009	Neophylax rickeri	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Thremmatidae			Neophylax	3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L519	ALL	lo	9075_14009	Neophylax splendens	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Thremmatidae			Neophylax	3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L520	ALL	lo	9075_14009	Neoplasta	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Empididae	Hemerodromiinae	Hemerodromiini	Neoplasta	4	cool_warm	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L521	ALL	lo	9075_14009	Optioservus	15	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Optioservus	4	cool_warm	SC	yes	TRUE	FALSE	GENE							
+BCG.PacNW.L522	ALL	lo	9075_14009	Parapsyche	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Arctopsychinae		Parapsyche	NA	NA	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L523	ALL	lo	9075_14009	Plecoptera	4	TRUE	FALSE	Arthropoda	Insecta	Plecoptera					1	NA	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L524	ALL	lo	9075_14009	Polypedilum	20	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L525	ALL	lo	9075_14009	Pteronarcella	2	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Pteronarcyidae	Pteronarcyinae	Pteronarcellini	Pteronarcella	3	cool_warm	SH	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L526	ALL	lo	9075_14009	Rhithrogena	27	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Rhithrogena	4	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L527	ALL	lo	9075_14009	Rhyacophila	6	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L528	ALL	lo	9075_14009	Rhyacophila angelita group	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L529	ALL	lo	9075_14009	Rhyacophila betteni group	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L530	ALL	lo	9075_14009	Rhyacophila brunnea/vemna groups	9	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L531	ALL	lo	9075_14009	Rhyacophila narvae	5	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Rhyacophilidae			Rhyacophila	3	cold	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L532	ALL	lo	9075_14009	Simulium	18	FALSE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae	Simuliinae	Simuliini	Simulium	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L533	ALL	lo	9075_14009	Skwala	11	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlodidae	Perlodinae	Arcynopterygini	Skwala	3	cold_cool	PR	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L534	ALL	lo	9075_14009	Sphaeriidae	1	FALSE	FALSE	Mollusca	Bivalvia	Veneroida	Sphaeriidae				4	NA	FC	no	TRUE	FALSE	DEPO							
+BCG.PacNW.L535	ALL	lo	9075_14009	Stempellinella	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Stempellinella	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L536	ALL	lo	9075_14009	Sweltsa	11	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae	Chloroperlinae		Sweltsa	4	cold_cool	PR	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L537	ALL	lo	9075_14009	Tanypodinae	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae			4	NA	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L538	ALL	lo	9075_14009	Thienemanniella	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Thienemanniella	3	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L539	ALL	lo	9075_14009	Trombidiformes	8	FALSE	FALSE	Arthropoda	Arachnida	Trombidiformes					4	NA	NA	no	FALSE	FALSE	UNKN							
+BCG.PacNW.L540	ALL	lo	9075_14009	Tvetenia bavarica group	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Tvetenia	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L541	ALL	lo	9075_14009	Wormaldia	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Philopotamidae	Philopotaminae		Wormaldia	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L542	ALL	lo	9075_14009	Yoraperla	3	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Peltoperlidae	Peltoperlinae		Yoraperla	2	cold	SH	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L543	ALL	lo	9075_14009	Zaitzevia	15	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Zaitzevia	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L544	ALL	lo	9075_14009	Zapada cinctipes	9	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	4	cold_cool	SH	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L545	ALL	lo	WAM06600-004802_07_09_2014	Acentrella insignificans	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Acentrella	4	NA	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L546	ALL	lo	WAM06600-004802_07_09_2014	Acentrella turbida	7	FALSE	TRUE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Acentrella	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L547	ALL	lo	WAM06600-004802_07_09_2014	Afghanurus	7	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Afghanurus	3	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L548	ALL	lo	WAM06600-004802_07_09_2014	Attenella margarita	7	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Attenella	4	NA	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L549	ALL	lo	WAM06600-004802_07_09_2014	Baetis	11	TRUE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Baetis	4	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L550	ALL	lo	WAM06600-004802_07_09_2014	Baetis tricaudatus complex	16	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Baetis	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L551	ALL	lo	WAM06600-004802_07_09_2014	Brachycentrus occidentalis	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Brachycentridae			Brachycentrus	3	NA	FC	yes	FALSE	FALSE	RIVE							
+BCG.PacNW.L552	ALL	lo	WAM06600-004802_07_09_2014	Ceratopogoninae	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Ceratopogonidae	Ceratopogoninae			4	cold_cool	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L553	ALL	lo	WAM06600-004802_07_09_2014	Cladotanytarsus	50	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Cladotanytarsus	3	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L554	ALL	lo	WAM06600-004802_07_09_2014	Cricotopus	2	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Cricotopus	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L555	ALL	lo	WAM06600-004802_07_09_2014	Cricotopus bicinctus group	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Cricotopus	5	NA	OM	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L556	ALL	lo	WAM06600-004802_07_09_2014	Diphetor hageni	3	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Diphetor	4	cold_cool	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L557	ALL	lo	WAM06600-004802_07_09_2014	Ephemerella tibialis	2	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Ephemerella	4	cold_cool	NA	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L558	ALL	lo	WAM06600-004802_07_09_2014	Eukiefferiella	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Eukiefferiella	4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L559	ALL	lo	WAM06600-004802_07_09_2014	Glossosoma	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Glossosomatidae	Glossosomatinae	Glossosomatini	Glossosoma	3	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L560	ALL	lo	WAM06600-004802_07_09_2014	Goera archaon	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Goeridae	Goerinae		Goera	3	NA	SC	no	FALSE	TRUE	RHEO							
+BCG.PacNW.L561	ALL	lo	WAM06600-004802_07_09_2014	Helobdella	1	FALSE	FALSE	Annelida	Clitellata	Rhynchobdellida	Glossiphoniidae	Haementeriinae		Helobdella	5	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L562	ALL	lo	WAM06600-004802_07_09_2014	Hexatoma	7	FALSE	FALSE	Arthropoda	Insecta	Diptera	Limoniidae	Limoniinae		Hexatoma	3	cold_cool	PR	no	FALSE	FALSE	DEPO							
+BCG.PacNW.L563	ALL	lo	WAM06600-004802_07_09_2014	Hydraena	1	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Hydraenidae	Hydraeninae	Hydraenini	Hydraena	3	cool_warm	PR	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L564	ALL	lo	WAM06600-004802_07_09_2014	Hydropsyche	1	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae	Hydropsychinae		Hydropsyche	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L565	ALL	lo	WAM06600-004802_07_09_2014	Juga	11	FALSE	FALSE	Mollusca	Gastropoda	Neotaenioglossa	Pleuroceridae			Juga	4	warm	SC	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L566	ALL	lo	WAM06600-004802_07_09_2014	Lopescladius	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Lopescladius	3	cool_warm	GC	no	FALSE	FALSE	SPEC							
+BCG.PacNW.L567	ALL	lo	WAM06600-004802_07_09_2014	Micropsectra	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L568	ALL	lo	WAM06600-004802_07_09_2014	Microtendipes	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Microtendipes	4	cool_warm	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L569	ALL	lo	WAM06600-004802_07_09_2014	Naidinae	28	FALSE	FALSE	Annelida	Clitellata	Tubificida	Naididae	Naidinae			4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L570	ALL	lo	WAM06600-004802_07_09_2014	Neaviperla/Suwallia	7	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Chloroperlidae		Suwalliini	Neaviperla/Suwallia	3	NA	NA	NA		FALSE	RHEO							
+BCG.PacNW.L571	ALL	lo	WAM06600-004802_07_09_2014	Optioservus	81	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Optioservus	4	cool_warm	SC	yes	TRUE	FALSE	GENE							
+BCG.PacNW.L572	ALL	lo	WAM06600-004802_07_09_2014	Orthocladiinae	1	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae			4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L573	ALL	lo	WAM06600-004802_07_09_2014	Orthocladius	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L574	ALL	lo	WAM06600-004802_07_09_2014	Paracladopelma	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Paracladopelma	4	NA	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L575	ALL	lo	WAM06600-004802_07_09_2014	Parakiefferiella	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parakiefferiella	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L576	ALL	lo	WAM06600-004802_07_09_2014	Paralauterborniella	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Paralauterborniella	4	cool_warm	GC	NA		FALSE	GENE							
+BCG.PacNW.L577	ALL	lo	WAM06600-004802_07_09_2014	Parametriocnemus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	4	cold_cool	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L578	ALL	lo	WAM06600-004802_07_09_2014	Paratanytarsus	5	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Paratanytarsus	5	cool_warm	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L579	ALL	lo	WAM06600-004802_07_09_2014	Perlidae	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae				3	NA	PR	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L580	ALL	lo	WAM06600-004802_07_09_2014	Phaenopsectra	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Phaenopsectra	4	cool_warm	SC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L581	ALL	lo	WAM06600-004802_07_09_2014	Polypedilum	18	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	cool_warm	SH	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L582	ALL	lo	WAM06600-004802_07_09_2014	Rheocricotopus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Rheocricotopus	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L583	ALL	lo	WAM06600-004802_07_09_2014	Rheotanytarsus	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Rheotanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L584	ALL	lo	WAM06600-004802_07_09_2014	Rhithrogena	3	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Heptageniidae			Rhithrogena	4	cold_cool	SC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L585	ALL	lo	WAM06600-004802_07_09_2014	Serratella micheneri	6	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Serratella	4	cool_warm	GC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L586	ALL	lo	WAM06600-004802_07_09_2014	Simulium	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae	Simuliinae	Simuliini	Simulium	4	cold_cool	FC	yes	FALSE	FALSE	RHEO							
+BCG.PacNW.L587	ALL	lo	WAM06600-004802_07_09_2014	Stempellinella	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Stempellinella	4	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L588	ALL	lo	WAM06600-004802_07_09_2014	Tanytarsus	20	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Tanytarsus	4	cool_warm	FC	yes	FALSE	FALSE	GENE							
+BCG.PacNW.L589	ALL	lo	WAM06600-004802_07_09_2014	Thienemanniella	4	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Thienemanniella	3	cold_cool	GC	no	FALSE	FALSE	GENE							
+BCG.PacNW.L590	ALL	lo	WAM06600-004802_07_09_2014	Thienemannimyia group	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Thienemannimyia group	4	cool_warm	PR	no	FALSE	FALSE	GENE							
+BCG.PacNW.L591	ALL	lo	WAM06600-004802_07_09_2014	Timpanoga hecuba	1	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Ephemerellidae			Timpanoga	3	cool_warm	NA	NA		TRUE	DEPO							
+BCG.PacNW.L592	ALL	lo	WAM06600-004802_07_09_2014	Tipulidae	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Tipulidae				4	NA	SH	no	FALSE	FALSE	GENE							
+BCG.PacNW.L593	ALL	lo	WAM06600-004802_07_09_2014	Tricorythodes	3	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Leptohyphidae			Tricorythodes	4	warm	GC	no	FALSE	FALSE	RHEO							
+BCG.PacNW.L594	ALL	lo	WAM06600-004802_07_09_2014	Trombidiformes	18	FALSE	FALSE	Arthropoda	Arachnida	Trombidiformes					4	NA	NA	no	FALSE	FALSE	UNKN							
+BCG.PacNW.L595	ALL	lo	WAM06600-004802_07_09_2014	Truncatelloidea	173	FALSE	FALSE	Mollusca	Gastropoda	Littorinimorpha					4	NA	SC	no	TRUE	FALSE	RHEO							
+BCG.PacNW.L596	ALL	lo	WAM06600-004802_07_09_2014	Tubificinae	1	FALSE	FALSE	Annelida	Clitellata	Tubificida	Naididae	Tubificinae			4	NA	NA	no	FALSE	FALSE	GENE							
+BCG.PacNW.L597	ALL	lo	WAM06600-004802_07_09_2014	Zaitzevia	7	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae	Elminae		Zaitzevia	4	cool_warm	GC	yes	TRUE	FALSE	RHEO							
+BCG.PacNW.L598	ALL	lo	WAM06600-004802_07_09_2014	Zapada cinctipes	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Nemouridae	Nemourinae		Zapada	4	cold_cool	SH	no	FALSE	FALSE	RHEO							

@@ -53,7 +53,7 @@ Use the code below to create the package.  Assumes you are in the development pa
 rmarkdown::render("NEWS.rmd", "all")
 file.copy("NEWS.md", "NEWS", overwrite = TRUE)
 file.remove("NEWS.html")
-file.remove("NEWS.md")
+#file.remove("NEWS.md")
 #
 myPkg <- "BioMonTools"
 # Load Library
@@ -70,7 +70,7 @@ setwd(paste0("./",myPkg))  # will fail as already in this directory
 devtools::document()
 ## Install New Package (locally)
 setwd("..") # return to root directory first
-devtools::install(myPkg, quick=FALSE, reload=TRUE, build_vignettes = TRUE)
+devtools::install(myPkg, quick=FALSE, reload=TRUE, build_vignettes = TRUE) # change to bv = TRUE
 
 # blank line above allows code to continue when install asks about package updates 
 ## Reload library
@@ -104,9 +104,12 @@ setwd("./_test")
 devtools::run_examples(pkg=pkg)
 ```
 
+### Data Documentation
+Use promptData to get data.r listing for columns.  Short cuts creating documentation.
 
-## Including Data
-All data should have already been created.
+```{r DocData}
+promptData(data_benthos_PacNW)
+```
 
 ## Check
 

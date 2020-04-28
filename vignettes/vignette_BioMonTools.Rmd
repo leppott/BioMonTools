@@ -148,7 +148,19 @@ Required Fields:
     + THERMAL_INDICATOR
     
         - Valid values for THERMAL_INDICATOR: COLD, COLD_COOL, COOL_WARM, WARM
-
+        
+    + LONGLIVED
+    
+        - Valid values for LONGLIVED: TRUE, FALSE
+        
+    + NOTEWORTHY
+    
+        - Valid values for NOTEWORTHY: TRUE, FALSE
+        
+    + HABITAT
+    
+        - Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN
+        
 Fields that are optional can be in the output (see examples below). 
 
 ```{r MetricValues_Keep2}

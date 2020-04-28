@@ -52,7 +52,8 @@
 #'
 #' * PHYLUM, SUBPHYLUM, CLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
 #'
-#' * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2
+#' * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
+#' LONGLIVED, NOTEWORTHY, HABITAT
 #'
 #' Valid values for FFG: CG, CF, PR, SC, SH
 #'
@@ -62,20 +63,26 @@
 #'
 #' Valid values for THERMAL_INDICATOR: COLD, COLD_COOL, COOL_WARM, WARM
 #'
+#' Valid values for LONGLIVED: TRUE, FALSE
+#'
+#' Valid values for NOTEWORTHY: TRUE, FALSE
+#'
+#' Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN
+#'
 #' Columns to keep are additional fields in the input file that the user wants
 #' retained in the output.  Fields need to be those that are unique per sample
 #' and not associated with the taxa.  For example, the fields used in qc.check();
 #' Area_mi2, SurfaceArea, Density_m2, and Density_ft2.
 #'
 #' If fun.MetricNames is provided only those metrics will be returned in the provided order.
-#' This variable can be used to sort the metrics per the user's preferences..
+#' This variable can be used to sort the metrics per the user's preferences.
 #' By default the metric names will be returned in the groupings that were used for calculation.
 #'
 #' The fields TOLVAL2 and FFG2 are provided to allow the user to calculate metrics
 #' based on alternative scenarios.  For example, HBI and NCBI where the NCBI uses
 #' a different set of tolerance values (TOLVAL2).
 #'
-#' If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated.
+#' If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated with that record.
 #' Other values for TAXAID with N_TAXA = 0 will be removed before calculations.
 #'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -94,6 +101,17 @@
 #' @examples
 #' # Example data
 #'
+#' df_metric_values_bugs <- metric.values(data_benthos_PacNW, "bugs")
+#'
+#' \dontrun{
+#' # View Results
+#' View(df_metric_values_bugs)
+#' }
+#'
+#' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' # Example 2, data from Excel
+#'
+#' # Packages
 #' library(readxl)
 #' library(reshape2)
 #'
@@ -128,7 +146,7 @@
 #' }
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' # Example 2, specific metrics or metrics in a specific order
+#' # Example 3, specific metrics or metrics in a specific order
 #' ## reuse df_samps_bugs from above
 #'
 #' # metric names to keep (in this order)
@@ -405,7 +423,7 @@ metric.values.bugs <- function(myDF
               , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS", "INFRAORDER"
               , "ORDER", "FAMILY", "SUBFAMILY", "TRIBE", "GENUS", "FFG", "HABIT"
               , "LIFE_CYCLE", "TOLVAL", "BCG_ATTR", "THERMAL_INDICATOR"
-              , "LONGLIVED", "NOTEWORTHY", "FFG2", "TOLVAL2")
+              , "LONGLIVED", "NOTEWORTHY", "FFG2", "TOLVAL2", "HABITAT")
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
   # Trigger prompt if any missing fields (and session is interactive)
@@ -452,7 +470,7 @@ metric.values.bugs <- function(myDF
     myDF[, "TOLVAL"] <- as.numeric(myDF[, "TOLVAL"])
   }
 
-  # QC, TolVal
+  # QC, TolVal2
   # need as numeric, if have "NA" as character it fails
   TolVal2_Char_NA <- myDF[, "TOLVAL2"]=="NA"
   if(sum(TolVal2_Char_NA, na.rm=TRUE)>0){
@@ -467,7 +485,8 @@ metric.values.bugs <- function(myDF
   myDF[, "LIFE_CYCLE"] <- toupper(myDF[, "LIFE_CYCLE"])
   myDF[, "THERMAL_INDICATOR"] <- toupper(myDF[, "THERMAL_INDICATOR"])
   myDF[, "FFG2"] <- toupper(myDF[, "FFG2"])
-  # Add extra columns for FFG and Habit
+  myDF[, "HABITAT"] <- toupper(myDF[, "HABITAT"])
+  # Add extra columns for some fields
   # (need unique values for functions in summarise)
   # each will be TRUE or FALSE
   # finds any match so "CN, CB" is both "CN" and "CB"
@@ -490,6 +509,16 @@ metric.values.bugs <- function(myDF
   myDF[, "TI_COLDCOOL"] <- "COLD_COOL" == myDF[, "THERMAL_INDICATOR"]
   myDF[, "TI_COOLWARM"] <- "COOL_WARM" == myDF[, "THERMAL_INDICATOR"]
   myDF[, "TI_WARM"]     <- "WARM"      == myDF[, "THERMAL_INDICATOR"]
+  myDF[, "HABITAT_BRAC"] <- "BRAC" == myDF[, "HABITAT"]
+  myDF[, "HABITAT_DEPO"] <- "DEPO" == myDF[, "HABITAT"]
+  myDF[, "HABITAT_GENE"] <- "GENE" == myDF[, "HABITAT"]
+  myDF[, "HABITAT_HEAD"] <- "HEAD" == myDF[, "HABITAT"]
+  myDF[, "HABITAT_RHEO"] <- "RHEO" == myDF[, "HABITAT"]
+  myDF[, "HABITAT_RIVE"] <- "RIVE" == myDF[, "HABITAT"]
+  myDF[, "HABITAT_SPEC"] <- "SPEC" == myDF[, "HABITAT"]
+  myDF[, "HABITAT_UNKN"] <- "UNKN" == myDF[, "HABITAT"]
+
+
   #
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # skip above in testing
@@ -1112,9 +1141,34 @@ metric.values.bugs <- function(myDF
             # RIVE riverine
             # SPEC specialist
             # UNKN unknown
-            ## nt_Habitat
-            ## pi_Habitat
-            ## pt_Habitat
+            #
+            ## nt_habitat
+            , nt_habitat_brac = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_BRAC == TRUE], na.rm = TRUE)
+            , nt_habitat_depo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_DEPO == TRUE], na.rm = TRUE)
+            , nt_habitat_gene = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_GENE == TRUE], na.rm = TRUE)
+            , nt_habitat_head = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_HEAD == TRUE], na.rm = TRUE)
+            , nt_habitat_rheo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_RHEO == TRUE], na.rm = TRUE)
+            , nt_habitat_rive = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_RIVE == TRUE], na.rm = TRUE)
+            , nt_habitat_spec = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_SPEC == TRUE], na.rm = TRUE)
+            , nt_habitat_unkn = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_UNKN == TRUE], na.rm = TRUE)
+            ## pi_habitat
+            , pi_habitat_brac = 100*sum(N_TAXA[HABITAT_BRAC == TRUE], na.rm=TRUE)/ni_total
+            , pi_habitat_depo = 100*sum(N_TAXA[HABITAT_DEPO == TRUE], na.rm=TRUE)/ni_total
+            , pi_habitat_gene = 100*sum(N_TAXA[HABITAT_GENE == TRUE], na.rm=TRUE)/ni_total
+            , pi_habitat_head = 100*sum(N_TAXA[HABITAT_HEAD == TRUE], na.rm=TRUE)/ni_total
+            , pi_habitat_rheo = 100*sum(N_TAXA[HABITAT_RHEO == TRUE], na.rm=TRUE)/ni_total
+            , pi_habitat_rive = 100*sum(N_TAXA[HABITAT_RIVE == TRUE], na.rm=TRUE)/ni_total
+            , pi_habitat_spec = 100*sum(N_TAXA[HABITAT_SPEC == TRUE], na.rm=TRUE)/ni_total
+            , pi_habitat_unkn = 100*sum(N_TAXA[HABITAT_UNKN == TRUE], na.rm=TRUE)/ni_total
+            ## pt_habitat
+            , pt_habitat_brac = 100*nt_habitat_brac/nt_total
+            , pt_habitat_depo = 100*nt_habitat_depo/nt_total
+            , pt_habitat_gene = 100*nt_habitat_gene/nt_total
+            , pt_habitat_head = 100*nt_habitat_head/nt_total
+            , pt_habitat_rheo = 100*nt_habitat_rheo/nt_total
+            , pt_habitat_rive = 100*nt_habitat_rive/nt_total
+            , pt_habitat_spec = 100*nt_habitat_spec/nt_total
+            , pt_habitat_unkn = 100*nt_habitat_unkn/nt_total
 
              # BCG ####
              # 1i, 1m, 1t
@@ -1140,8 +1194,7 @@ metric.values.bugs <- function(myDF
             , nt_BCG_att5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "5")], na.rm = TRUE)
             , nt_BCG_att56 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "5" | BCG_ATTR == "6")], na.rm = TRUE)
             , nt_BCG_att6 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE &  (BCG_ATTR == "6")], na.rm = TRUE)
-           # , nt_BCG_attNAT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE &  is.na(BCG_ATTR)], na.rm = TRUE)
-           # , nt_BCG_attNAF = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE &  is.na(BCG_ATTR)], na.rm = FALSE)
+            , nt_BCG_attNA = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE &  is.na(BCG_ATTR)], na.rm = TRUE)
 
             ## EPT
             , nt_EPT_BCG_att123 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (ORDER == "Ephemeroptera" | ORDER == "Trichoptera" | ORDER == "Plecoptera")
@@ -1165,6 +1218,7 @@ metric.values.bugs <- function(myDF
             , pi_BCG_att5 = 100*sum(N_TAXA[(BCG_ATTR == "5")], na.rm=TRUE)/ni_total
             , pi_BCG_att56 = 100*sum(N_TAXA[(BCG_ATTR == "5" | BCG_ATTR == "6")], na.rm=TRUE)/ni_total
             , pi_BCG_att6 = 100*sum(N_TAXA[(BCG_ATTR == "6")], na.rm=TRUE)/ni_total
+            , pi_BCG_attNA = 100*sum(N_TAXA[(is.na(BCG_ATTR) == TRUE)], na.rm=TRUE)/ni_total
 
             ## EPT
             , pi_EPT_BCG_att123 = 100*sum(N_TAXA[(ORDER == "Ephemeroptera" | ORDER == "Trichoptera" | ORDER == "Plecoptera")
@@ -1186,6 +1240,7 @@ metric.values.bugs <- function(myDF
             , pt_BCG_att5 = 100*nt_BCG_att5/nt_total
             , pt_BCG_att56 = 100*nt_BCG_att56/nt_total
             , pt_BCG_att6 = 100*nt_BCG_att6/nt_total
+            , pt_BCG_attNA = 100*nt_BCG_attNA/nt_total
 
             , pt_EPT_BCG_att123 = 100*nt_EPT_BCG_att123/nt_total
 

@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-04-27 08:09:55
+    #> Last Update: 2020-04-28 16:00:23
 
 # Planned Updates
 
@@ -19,10 +19,24 @@ NEWS
 
 # Version History
 
+## Changes in Version 0.4.0.9008 (2020-04-28)
+
+  - Start using R v4.0.0.
+  - metric.values.R
+      - Additional metrics, Issue \#3.
+          - nt\_BCG\_attNA
+          - pi\_BCG\_attNA
+          - pt\_BCG\_attNA
+          - Habitat metrics, 8 values, nt, pi, pt.
+  - MetricNames.xlsx
+      - Add new metrics.
+  - New data set to utitilize new metrics.
+      - data\_benthos\_PacNW
+
 ## Changes in Version 0.4.0.9007 (2020-04-27)
 
   - metric.values.R
-      - Additional metrics
+      - Additional metrics, Issue \#3.
           - nt\_BCG\_att1
           - pi\_BCG\_att1
           - pt\_BCG\_att1
