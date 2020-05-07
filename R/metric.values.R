@@ -692,6 +692,11 @@ metric.values.bugs <- function(myDF
              , nt_Caridea= dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & INFRAORDER == "Caridea"], na.rm = TRUE)
              #, nt_Chiro ## in special Chironomidae section
              , nt_Coleo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Coleoptera"], na.rm = TRUE)
+             , nt_COET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                  & (ORDER == "Ephemeroptera"
+                                                     | ORDER == "Trichoptera"
+                                                     | ORDER == "Coleoptera"
+                                                     | ORDER == "Odonata")], na.rm = TRUE)
              , nt_CruMol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & PHYLUM == "Mollusca"], na.rm = TRUE) +
                dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & SUBPHYLUM == "Crustacea"], na.rm = TRUE)
              , nt_Deca = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Decapoda"], na.rm = TRUE)
@@ -702,6 +707,9 @@ metric.values.bugs <- function(myDF
                                                  & (ORDER == "Ephemeroptera"
                                                     | ORDER == "Trichoptera"
                                                     | ORDER == "Plecoptera")], na.rm = TRUE)
+             , nt_ET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                 & (ORDER == "Ephemeroptera"
+                                                    | ORDER == "Trichoptera")], na.rm = TRUE)
              , nt_Gast = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Gastropoda"], na.rm = TRUE)
              , nt_Hepta = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Heptageniidae"], na.rm = TRUE)
              , nt_Insect = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Insecta"], na.rm = TRUE)
@@ -713,6 +721,10 @@ metric.values.bugs <- function(myDF
                                                     & (CLASS != "Insecta" | is.na(CLASS))], na.rm = TRUE)
              , nt_Nudib = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Nudibranchia"], na.rm = TRUE)
              , nt_Odon = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Odonata"], na.rm = TRUE)
+             , nt_OET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                  & (ORDER == "Ephemeroptera"
+                                                     | ORDER == "Trichoptera"
+                                                     | ORDER == "Odonata")], na.rm = TRUE)
              , nt_Oligo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Oligochaeta"], na.rm = TRUE)
              , nt_Perlid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Perlidae"], na.rm = TRUE)
              , nt_Pleco = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Plecoptera"], na.rm = TRUE)
@@ -737,7 +749,8 @@ metric.values.bugs <- function(myDF
              , pi_Amp = NA #pi_Ampeliscidae
              , pi_AmpHaust = NA
              , pi_Amph = 100*sum(N_TAXA[ORDER == "Amphipoda"], na.rm=TRUE)/ni_total
-
+             , pi_AmphIsop = 100*sum(N_TAXA[ORDER == "Amphipoda" |
+                                         ORDER == "Isopoda"], na.rm=TRUE)/ni_total
              , pi_Baet = 100*sum(N_TAXA[FAMILY == "Baetidae"], na.rm=TRUE)/ni_total
              #, pi_Baet2Ephem
              , pi_Bival = 100*sum(N_TAXA[CLASS == "Bivalvia"], na.rm=TRUE)/ni_total
@@ -746,6 +759,8 @@ metric.values.bugs <- function(myDF
              , pi_Cirra = 100*sum(N_TAXA[FAMILY == "Cirratulidae"], na.rm=TRUE)/ni_total
              , pi_Clite = 100*sum(N_TAXA[CLASS == "Clitellata"], na.rm=TRUE)/ni_total
              , pi_Coleo = 100*sum(N_TAXA[ORDER == "Coleoptera"], na.rm=TRUE)/ni_total
+             , pi_COET = 100*sum(N_TAXA[ORDER == "Coleoptera" | ORDER == "Odonata" |
+                                          ORDER == "Ephemeroptera" | ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
              , pi_Corb = 100*sum(N_TAXA[GENUS == "Corbicula"], na.rm=TRUE)/ni_total
              , pi_Cru = 100*sum(N_TAXA[SUBPHYLUM == "Crustacea"], na.rm=TRUE)/ni_total
              , pi_CruMol = 100*sum(N_TAXA[PHYLUM == "Mollusca" | SUBPHYLUM == "Crustacea"], na.rm=TRUE)/ni_total
@@ -760,6 +775,8 @@ metric.values.bugs <- function(myDF
                                       , na.rm=TRUE)/ni_total
              , pi_EPT = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
                                      ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
+             , pi_ET = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
+                                         ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
              , pi_Gast = 100*sum(N_TAXA[CLASS == "Gastropoda"], na.rm=TRUE)/ni_total
              , pi_Haust = 100*sum(N_TAXA[FAMILY == "Haustoriidae"], na.rm=TRUE)/ni_total
              , pi_Hesion = 100*sum(N_TAXA[FAMILY == "Hesionidae"], na.rm=TRUE)/ni_total
@@ -776,9 +793,13 @@ metric.values.bugs <- function(myDF
              , pi_Nudib = 100*sum(N_TAXA[ORDER == "Nudibranchia"], na.rm=TRUE)/ni_total
              , pi_NonIns = 100*sum(N_TAXA[CLASS != "Insecta" | is.na(CLASS)], na.rm=TRUE)/ni_total
              , pi_Odon = 100*sum(N_TAXA[ORDER == "Odonata"], na.rm=TRUE)/ni_total
+             , pi_OET = 100*sum(N_TAXA[ORDER == "Odonata" |
+                                         ORDER == "Ephemeroptera" | ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
              , pi_Oligo = 100*sum(N_TAXA[CLASS == "Oligochaeta"], na.rm=TRUE)/ni_total
              , pi_Orbin = 100*sum(N_TAXA[FAMILY == "Orbiniidae"], na.rm=TRUE)/ni_total
              , pi_Pleco = 100*sum(N_TAXA[ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
+             , pi_POET = 100*sum(N_TAXA[ORDER == "Plecoptera" | ORDER == "Odonata" |
+                                         ORDER == "Ephemeroptera" | ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
              , pi_Poly = 100*sum(N_TAXA[CLASS == "Polychaeta"], na.rm=TRUE)/ni_total
              , pi_Spion = 100*sum(N_TAXA[FAMILY == "Spionidae"], na.rm=TRUE)/ni_total
              , pi_Spion2Poly = 100*sum(N_TAXA[CLASS == "Polychaeta" | FAMILY == "Spionidae"], na.rm=TRUE)/ni_total
@@ -797,10 +818,12 @@ metric.values.bugs <- function(myDF
              , pt_Amph = 100*nt_Amph/nt_total
              , pt_Bival = 100*nt_Bival/nt_total
              , pt_Coleo = 100*nt_Coleo/nt_total
+             , pt_COET = 100*nt_COET/nt_total
              , pt_Deca = 100*nt_Deca/nt_total
              , pt_Dipt = 100*nt_Dipt/nt_total
              , pt_Ephem = 100*nt_Ephem/nt_total
              , pt_EPT = 100*nt_EPT/nt_total
+             , pt_ET = 100*nt_ET/nt_total
              , pt_Gast = 100*nt_Gast/nt_total
              , pt_Insect = 100*nt_Insect/nt_total
              , pt_Isop = 100*nt_Isop/nt_total
@@ -808,6 +831,7 @@ metric.values.bugs <- function(myDF
              , pt_NonIns = 100*nt_NonIns/nt_total
              , pt_Nudib = 100*nt_Nudib/nt_total
              , pt_Odon = 100*nt_Odon/nt_total
+             , pt_OET = 100*nt_OET/nt_total
              , pt_Oligo = 100*nt_Oligo/nt_total
              , pt_Pleco = 100*nt_Pleco/nt_total
              , pt_POET = 100*nt_POET/nt_total

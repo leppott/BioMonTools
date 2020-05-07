@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-04-28 16:00:23
+    #> Last Update: 2020-05-07 13:38:02
 
 # Planned Updates
 
@@ -18,6 +18,16 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9009 (2020-05-07)
+
+  - metric.values.R
+      - More new metrics.
+          - nt, pt, pi - ET (Trichoptera, and Ephemeroptera)
+          - nt, pt, pi - EOT (Odonata, Trichoptera, and Ephemeroptera)
+          - nt, pt, pi - COTE (Coleoptera, Odonata, Trichoptera, and
+            Ephemeroptera)
+          - % Individs Amphipoda + Isopoda
 
 ## Changes in Version 0.4.0.9008 (2020-04-28)
 
