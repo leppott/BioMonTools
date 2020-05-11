@@ -84,7 +84,7 @@ Required Fields:
 
 * NONTARGET (valid values are TRUE and FALSE)
 
-* PHYLUM, SUBPHYLUM, CLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
+* PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
 
 * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
 LONGLIVED, NOTEWORTHY, HABITAT
@@ -118,6 +118,8 @@ a different set of tolerance values (TOLVAL2).
 
 If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated with that record.
 Other values for TAXAID with N_TAXA = 0 will be removed before calculations.
+
+For 'Oligochete' metrics either Class or Subclass is required for calculation.
 }
 \examples{
 # Example data

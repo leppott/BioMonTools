@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-05-07 13:38:02
+    #> Last Update: 2020-05-11 10:34:41
 
 # Planned Updates
 
@@ -18,6 +18,12 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9010 (2020-05-11)
+
+  - metric.values.R, Issue \#35
+      - Modify Oligochaete metrics to use Class or Subclass.
+      - Add Subclass as a required field.
 
 ## Changes in Version 0.4.0.9009 (2020-05-07)
 

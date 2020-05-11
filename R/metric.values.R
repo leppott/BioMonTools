@@ -50,7 +50,7 @@
 #'
 #' * NONTARGET (valid values are TRUE and FALSE)
 #'
-#' * PHYLUM, SUBPHYLUM, CLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
+#' * PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
 #'
 #' * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
 #' LONGLIVED, NOTEWORTHY, HABITAT
@@ -85,6 +85,7 @@
 #' If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated with that record.
 #' Other values for TAXAID with N_TAXA = 0 will be removed before calculations.
 #'
+#' For 'Oligochete' metrics either Class or Subclass is required for calculation.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param fun.DF Data frame of taxa (list required fields)
 #' @param fun.Community Community name for which to calculate metric values (bugs, fish, or algae)
@@ -420,9 +421,9 @@ metric.values.bugs <- function(myDF
   # QC ####
   # QC, Required Fields
   col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
-              , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS", "INFRAORDER"
-              , "ORDER", "FAMILY", "SUBFAMILY", "TRIBE", "GENUS", "FFG", "HABIT"
-              , "LIFE_CYCLE", "TOLVAL", "BCG_ATTR", "THERMAL_INDICATOR"
+              , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS", "SUBCLASS"
+              , "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY", "TRIBE", "GENUS"
+              , "FFG", "HABIT", "LIFE_CYCLE", "TOLVAL", "BCG_ATTR", "THERMAL_INDICATOR"
               , "LONGLIVED", "NOTEWORTHY", "FFG2", "TOLVAL2", "HABITAT")
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
@@ -725,7 +726,7 @@ metric.values.bugs <- function(myDF
                                                   & (ORDER == "Ephemeroptera"
                                                      | ORDER == "Trichoptera"
                                                      | ORDER == "Odonata")], na.rm = TRUE)
-             , nt_Oligo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CLASS == "Oligochaeta"], na.rm = TRUE)
+             , nt_Oligo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (CLASS == "Oligochaeta" | SUBCLASS == "Oligochaeta")], na.rm = TRUE)
              , nt_Perlid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Perlidae"], na.rm = TRUE)
              , nt_Pleco = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ORDER == "Plecoptera"], na.rm = TRUE)
              , nt_POET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -795,7 +796,7 @@ metric.values.bugs <- function(myDF
              , pi_Odon = 100*sum(N_TAXA[ORDER == "Odonata"], na.rm=TRUE)/ni_total
              , pi_OET = 100*sum(N_TAXA[ORDER == "Odonata" |
                                          ORDER == "Ephemeroptera" | ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
-             , pi_Oligo = 100*sum(N_TAXA[CLASS == "Oligochaeta"], na.rm=TRUE)/ni_total
+             , pi_Oligo = 100*sum(N_TAXA[CLASS == "Oligochaeta" | SUBCLASS == "Oligochaeta"], na.rm=TRUE)/ni_total
              , pi_Orbin = 100*sum(N_TAXA[FAMILY == "Orbiniidae"], na.rm=TRUE)/ni_total
              , pi_Pleco = 100*sum(N_TAXA[ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
              , pi_POET = 100*sum(N_TAXA[ORDER == "Plecoptera" | ORDER == "Odonata" |
