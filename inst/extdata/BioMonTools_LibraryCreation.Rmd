@@ -91,6 +91,14 @@ help(package=(myPkg))
 citation(myPkg)
 ```
 
+# Package Down
+Create pkgdown website.
+```{r PkgDown}
+pkgdown::build_site()
+```
+
+
+
 ### Run All Examples
 Run all examples at once rather than going to each function individually.
 

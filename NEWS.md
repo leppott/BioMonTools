@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-06-01 15:15:23
+    #> Last Update: 2020-06-01 15:41:20
 
 # Planned Updates
 
@@ -17,6 +17,10 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9012 (2020-06-01)
+
+  - Update pkgdown website documentation.
 
 ## Changes in Version 0.4.0.9011 (2020-06-01)
 

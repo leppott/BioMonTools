@@ -28,6 +28,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.4.0.9012 (2020-06-01)
+
+* Update pkgdown website documentation.
+
 ## Changes in Version 0.4.0.9011 (2020-06-01)
 
 * metric.stats.R, Issue #36

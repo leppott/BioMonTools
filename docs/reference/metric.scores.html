@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -40,7 +44,6 @@
 Can generate scores for categories n=3 (e.g., 1/3/5, ScoreRegime=&quot;Cat_135&quot;)
 or n=4 (e.g., 0/2/4/6, ScoreRegime=&quot;Cat_0246&quot;)
 or continuous (e.g., 0-100, ScoreRegime=&quot;Cont_0100&quot;)." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -58,7 +61,7 @@ or continuous (e.g., 0-100, ScoreRegime=&quot;Cont_0100&quot;)." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,7 +75,7 @@ or continuous (e.g., 0-100, ScoreRegime=&quot;Cont_0100&quot;)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3.9010</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9011</span>
       </span>
     </div>
 
@@ -102,10 +105,13 @@ or continuous (e.g., 0-100, ScoreRegime=&quot;Cont_0100&quot;)." />
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/leppott/BioMonTools">
+  <a href="https://github.com/leppott/BioMonTools/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -135,8 +141,15 @@ or n=4 (e.g., 0/2/4/6, ScoreRegime="Cat_0246")
 or continuous (e.g., 0-100, ScoreRegime="Cont_0100").</p>
     </div>
 
-    <pre class="usage"><span class='fu'>metric.scores</span>(<span class='no'>DF_Metrics</span>, <span class='no'>col_MetricNames</span>, <span class='no'>col_IndexName</span>, <span class='no'>col_IndexRegion</span>,
-  <span class='no'>DF_Thresh_Metric</span>, <span class='no'>DF_Thresh_Index</span>)</pre>
+    <pre class="usage"><span class='fu'>metric.scores</span>(
+  <span class='no'>DF_Metrics</span>,
+  <span class='no'>col_MetricNames</span>,
+  <span class='no'>col_IndexName</span>,
+  <span class='no'>col_IndexRegion</span>,
+  <span class='no'>DF_Thresh_Metric</span>,
+  <span class='no'>DF_Thresh_Index</span>,
+  <span class='kw'>col_ni_total</span> <span class='kw'>=</span> <span class='st'>"ni_total"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -162,12 +175,20 @@ Index Region (strata).</p></td>
     <tr>
       <th>DF_Thresh_Metric</th>
       <td><p>Data frame of Scoring Thresholds for metrics (INDEX_NAME, INDEX_REGION,
-METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)</p></td>
+METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime
+, SingleValue_Add, NormDist_Tail_Lo, NormDist_Tail_Hi, CatGrad_xvar, CatGrad_InfPt
+, CatGrad_Lo_m,    CatGrad_Lo_b,    CatGrad_Mid_m,    CatGrad_Mid_b,    CatGrad_Hi_m,    CatGrad_Hi_b).</p></td>
     </tr>
     <tr>
       <th>DF_Thresh_Index</th>
       <td><p>Data frame of Scoring Thresholds for indices (INDEX_NAME, INDEX_REGION,
-METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime)</p></td>
+METRIC_NAME, ScoreRegime, Thresh01, Thresh02, Thresh03, Thresh04, Thresh05, Thresh06, Thresh07
+, Nar01, Nar02, Nar03, Nar04, Nar05, Nar06).</p></td>
+    </tr>
+    <tr>
+      <th>col_ni_total</th>
+      <td><p>Name of column with total number of individuals.  Used
+for cases where sample was collected but no organisms collected.  Default = ni_total.</p></td>
     </tr>
     </table>
 
@@ -199,8 +220,8 @@ In both cases a "sum_Index" field will be computed.</p>
                             , <span class='kw'>guess_max</span> <span class='kw'>=</span> <span class='fl'>10</span>^<span class='fl'>6</span>)
 
 <span class='no'>myIndex</span> <span class='kw'>&lt;-</span> <span class='st'>"BCG.PacNW.L1"</span>
-<span class='no'>df_samps_bugs</span>$<span class='no'>INDEX_NAME</span>   <span class='kw'>&lt;-</span> <span class='no'>myIndex</span>
-<span class='no'>df_samps_bugs</span>$<span class='no'>INDEX_REGION</span> <span class='kw'>&lt;-</span> <span class='st'>"ALL"</span>
+<span class='no'>df_samps_bugs</span>$<span class='no'>Index_Name</span>   <span class='kw'>&lt;-</span> <span class='no'>myIndex</span>
+<span class='no'>df_samps_bugs</span>$<span class='no'>Index_Region</span> <span class='kw'>&lt;-</span> <span class='st'>"ALL"</span>
 (<span class='no'>myMetrics.Bugs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>df_thresh_metric</span>)[<span class='no'>df_thresh_metric</span>[
                           , <span class='st'>"INDEX_NAME"</span>]<span class='kw'>==</span><span class='no'>myIndex</span>, <span class='st'>"METRIC_NAME"</span>]))</div><div class='output co'>#&gt;  [1] "nt_total"        "nt_EPT"          "nt_BCG_att1i2"   "x_Shan_e"       
 #&gt;  [5] "nt_longlived"    "nt_Ephemerellid" "nt_Hepta"        "nt_Nemour"      
@@ -227,24 +248,24 @@ In both cases a "sum_Index" field will be computed.</p>
 <span class='co'># QC, table</span>
 <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>df_metric_scores_bugs</span>$<span class='no'>Index</span>, <span class='no'>df_metric_scores_bugs</span>$<span class='no'>Index_Nar</span>)</div><div class='output co'>#&gt;     
 #&gt;      Low Medium
-#&gt;   0  163      0
-#&gt;   1   64      0
-#&gt;   2   45      0
+#&gt;   0  161      0
+#&gt;   1   65      0
+#&gt;   2   46      0
 #&gt;   3   44      0
-#&gt;   4   49      0
-#&gt;   5   33      0
-#&gt;   6   40      0
-#&gt;   7   35      0
+#&gt;   4   48      0
+#&gt;   5   31      0
+#&gt;   6   42      0
+#&gt;   7   36      0
 #&gt;   8   28      0
-#&gt;   9   27      0
-#&gt;   10  32      0
+#&gt;   9   26      0
+#&gt;   10  33      0
 #&gt;   11  19      0
 #&gt;   12  23      0
 #&gt;   13  10      0
 #&gt;   14  14      0
 #&gt;   15  17      0
-#&gt;   16  11      0
-#&gt;   17   6      0
+#&gt;   16   9      0
+#&gt;   17   8      0
 #&gt;   18   4      0
 #&gt;   19   3      0
 #&gt;   20   0      4
@@ -261,8 +282,7 @@ In both cases a "sum_Index" field will be computed.</p>
 <span class='co'># Thresholds</span>
 <span class='co'># imported above</span>
 <span class='co'># get metric names for myIndex</span>
-(<span class='no'>myMetrics.Bugs.MBSS</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>df_thresh_metric</span>)[<span class='no'>df_thresh_metric</span>[
-                              , <span class='st'>"INDEX_NAME"</span>]<span class='kw'>==</span><span class='no'>myIndex</span>, <span class='st'>"METRIC_NAME"</span>]))</div><div class='output co'>#&gt;  [1] "nt_total"       "nt_EPT"         "nt_Ephem"       "pi_tv_intolurb"
+(<span class='no'>myMetrics.Bugs.MBSS</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>df_thresh_metric</span>[<span class='no'>df_thresh_metric</span>[, <span class='st'>"INDEX_NAME"</span>] <span class='kw'>==</span> <span class='no'>myIndex</span>, <span class='st'>"METRIC_NAME"</span>, <span class='fl'>TRUE</span>]))</div><div class='output co'>#&gt;  [1] "nt_total"       "nt_EPT"         "nt_Ephem"       "pi_tv_intolurb"
 #&gt;  [5] "pi_Ephem"       "nt_ffg_scrap"   "pi_habit_climb" "pi_Chiro"      
 #&gt;  [9] "pi_habit_cling" "pi_Tanyt"       "pi_ffg_scrap"   "pi_habit_swim" 
 #&gt; [13] "pi_Dipt"       </div><div class='input'><span class='co'># Taxa Data</span>
@@ -289,7 +309,7 @@ In both cases a "sum_Index" field will be computed.</p>
                                           , <span class='st'>"INDEX_NAME"</span>
                                           , <span class='st'>"INDEX_REGION"</span>
                                           , <span class='no'>df_thresh_metric</span>
-                                          , <span class='no'>df_thresh_index</span>)</div><div class='output co'>#&gt; <span class='error'>Error in myFlds_2 %in% names(DF_Metrics): object 'myMetric.Values.Bugs.MBSS' not found</span></div><div class='input'><span class='co'># View Results</span>
+                                          , <span class='no'>df_thresh_index</span>)</div><div class='output co'>#&gt; <span class='error'>Error in as.data.frame(DF_Metrics): object 'myMetric.Values.Bugs.MBSS' not found</span></div><div class='input'><span class='co'># View Results</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span>(<span class='no'>Metrics.Bugs.Scores.MBSS</span>)</div><div class='output co'>#&gt; <span class='error'>Error in as.data.frame(x): object 'Metrics.Bugs.Scores.MBSS' not found</span></div><div class='input'>
 <span class='co'># QC Index Scores and Narratives</span>
 <span class='co'># Set Narrative as Ordered Factor</span>
@@ -313,15 +333,10 @@ In both cases a "sum_Index" field will be computed.</p>
 <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>df.flags</span>[,<span class='st'>"CHECKNAME"</span>], <span class='no'>df.flags</span>[,<span class='st'>"FLAG"</span>], <span class='kw'>useNA</span><span class='kw'>=</span><span class='st'>"ifany"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in table(df.flags[, "CHECKNAME"], df.flags[, "FLAG"], useNA = "ifany"): object 'df.flags' not found</span></div><div class='input'>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -332,7 +347,7 @@ In both cases a "sum_Index" field will be computed.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

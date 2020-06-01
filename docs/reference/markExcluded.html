@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -44,7 +48,6 @@ That is, taxa marked as &quot;TRUE&quot; are treated as undesireables.  Excluded
 that are present in a sample when taxa of the same group are present in the same sample
 are identified finer level.  That is, the parent is marked as excluded when child taxa are
 present in the same sample." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -62,7 +65,7 @@ present in the same sample." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -76,7 +79,7 @@ present in the same sample." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3.9010</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9011</span>
       </span>
     </div>
 
@@ -106,10 +109,13 @@ present in the same sample." />
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/leppott/BioMonTools">
+  <a href="https://github.com/leppott/BioMonTools/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -143,8 +149,15 @@ are identified finer level.  That is, the parent is marked as excluded when chil
 present in the same sample.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>markExcluded</span>(<span class='no'>df_samptax</span>, <span class='kw'>SampID</span> <span class='kw'>=</span> <span class='st'>"SAMPLEID"</span>, <span class='kw'>TaxaID</span> <span class='kw'>=</span> <span class='st'>"TAXAID"</span>,
-  <span class='kw'>TaxaCount</span> <span class='kw'>=</span> <span class='st'>"N_TAXA"</span>, <span class='kw'>Exclude</span> <span class='kw'>=</span> <span class='st'>"EXCLUDED"</span>, <span class='no'>TaxaLevels</span>, <span class='no'>Exceptions</span>)</pre>
+    <pre class="usage"><span class='fu'>markExcluded</span>(
+  <span class='no'>df_samptax</span>,
+  <span class='kw'>SampID</span> <span class='kw'>=</span> <span class='st'>"SAMPLEID"</span>,
+  <span class='kw'>TaxaID</span> <span class='kw'>=</span> <span class='st'>"TAXAID"</span>,
+  <span class='kw'>TaxaCount</span> <span class='kw'>=</span> <span class='st'>"N_TAXA"</span>,
+  <span class='kw'>Exclude</span> <span class='kw'>=</span> <span class='st'>"EXCLUDED"</span>,
+  <span class='no'>TaxaLevels</span>,
+  <span class='no'>Exceptions</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -311,8 +324,10 @@ from course (kingdom) to fine (species).  Names not appearing in the data will b
 #&gt; |Woodscres__2010-08-05_0 |             11|        11|    0|
 #&gt; |woodshand__2010-08-06_0 |             12|        12|    0|
 #&gt; |woodshand__2013-09-03_0 |              4|         4|    0|</div><div class='input'><span class='co'># samples with differences</span>
-<span class='no'>samp_diff</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>df_compare</span>[<span class='no'>df_compare</span>[,<span class='st'>"Diff"</span>]<span class='kw'>!=</span><span class='fl'>0</span>, <span class='st'>"SampleID"</span>])
-<span class='co'># results for only those with differences</span>
+<span class='no'>samp_diff</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='no'>df_compare</span>[<span class='no'>df_compare</span>[,<span class='st'>"Diff"</span>]<span class='kw'>!=</span><span class='fl'>0</span>, <span class='st'>"SampleID"</span>])</div><div class='output co'>#&gt; <span class='warning'>Warning: The `i` argument of ``[`()` can't be a matrix as of tibble 3.0.0.</span>
+#&gt; <span class='warning'>Convert to a vector.</span>
+#&gt; <span class='warning'><span style='color: #555555;'>This warning is displayed once every 8 hours.</span><span></span>
+#&gt; <span class='warning'></span><span style='color: #555555;'>Call `lifecycle::last_warnings()` to see where this warning was generated.</span><span></span></div><div class='input'><span class='co'># results for only those with differences</span>
 <span class='no'>df_tst_diff</span> <span class='kw'>&lt;-</span> <span class='no'>df_tst</span>[<span class='no'>df_tst</span>[,<span class='st'>"SampleID"</span>] <span class='kw'>%in%</span> <span class='no'>samp_diff</span>$<span class='no'>SampleID</span>, ]
 <span class='co'># add diff field</span>
 <span class='no'>df_tst_diff</span>$<span class='no'>Exclude_Diff</span> <span class='kw'>&lt;-</span> <span class='no'>df_tst_diff</span>$<span class='no'>Exclude</span> - <span class='no'>df_tst_diff</span>$<span class='no'>Exclude_New</span>
@@ -467,17 +482,12 @@ from course (kingdom) to fine (species).  Names not appearing in the data will b
 #&gt; |Precision            |  100.00|
 #&gt; |Specificity          |  100.00|
 #&gt; |OVerall Accuracy     |   99.97|
-#&gt; |F1                   |   99.83|</div></pre>
+#&gt; |F1                   |   99.83|</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -488,7 +498,7 @@ from course (kingdom) to fine (species).  Names not appearing in the data will b
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
