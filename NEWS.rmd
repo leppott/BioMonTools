@@ -23,11 +23,19 @@ cat(paste0("Last Update: ",Sys.time()))
 # Future Possible Updates
 
 * Periphyton metrics.
-* Metric scoring
 * TaxaList Check
 * Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9011 (2020-06-01)
+
+* metric.stats.R, Issue #36
+    + Add new function to calculate statistics for developing multi-metric index
+* data_mmi_dev
+    + Example data for metric.stats()
+* data.R
+    + Update for new data.
 
 ## Changes in Version 0.4.0.9010 (2020-05-11)
 

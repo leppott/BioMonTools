@@ -3,6 +3,7 @@
 export(MapTaxaObs)
 export(markExcluded)
 export(metric.scores)
+export(metric.stats)
 export(metric.values)
 export(metric.values.algae)
 export(metric.values.bugs)

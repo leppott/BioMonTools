@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-05-11 10:34:41
+    #> Last Update: 2020-06-01 15:15:23
 
 # Planned Updates
 
@@ -13,11 +13,20 @@ NEWS
 # Future Possible Updates
 
   - Periphyton metrics.
-  - Metric scoring
   - TaxaList Check
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9011 (2020-06-01)
+
+  - metric.stats.R, Issue \#36
+      - Add new function to calculate statistics for developing
+        multi-metric index
+  - data\_mmi\_dev
+      - Example data for metric.stats()
+  - data.R
+      - Update for new data.
 
 ## Changes in Version 0.4.0.9010 (2020-05-11)
 

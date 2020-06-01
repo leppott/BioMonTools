@@ -13,11 +13,11 @@
 #' @source example data
 "data_bio2rarify"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' @title Massachusetts esturary taxa data
+#' @title Estuary taxa data
 #'
 #' @description A dataset with example taxa data and locations for mapping.
 #'
-#' @format A data frame with 2675 observations on the following 15 variables.
+#' @format A data frame with 2,675 observations on the following 15 variables.
 #' \describe{
 #'  \item{\code{estuary}}{a factor with levels \code{BOSTON HARBOR} \code{BUZZARDS BAY} \code{CAPE COD BAY} \code{MASSACHUSETTS BAY} \code{WAQUOIT BAY}}
 #'  \item{\code{CommonName}}{a factor with levels \code{ALEWIFE} \code{AMERICAN EEL} \code{AMERICAN LOBSTER} \code{AMERICAN PLAICE} \code{AMERICAN SAND LANCE} \code{AMERICAN SHAD} \code{ATLANTIC COD} \code{ATLANTIC CROAKER} \code{ATLANTIC HERRING} \code{ATLANTIC MACKEREL} \code{ATLANTIC MENHADEN} \code{ATLANTIC ROCK CRAB} \code{ATLANTIC SALMON} \code{ATLANTIC STINGRAY} \code{ATLANTIC STURGEON} \code{ATLANTIC TOMCOD} \code{BAY ANCHOVY} \code{BAY SCALLOP} \code{BLACK DRUM} \code{BLACK SEA BASS} \code{BLUE CRAB} \code{BLUE MUSSEL} \code{BLUEBACK HERRING} \code{BLUEFISH} \code{BROWN SHRIMP} \code{BUTTERFISH} \code{CHANNEL CATFISH} \code{COWNOSE RAY} \code{CUNNER} \code{DAGGERBLADE GRASS SHRIMP} \code{EASTERN OYSTER} \code{FOURSPINE STICKLEBACK} \code{GOBIES} \code{GREEN CRAB} \code{GREEN SEA URCHIN} \code{GRUBBY} \code{HADDOCK} \code{HOGCHOKER} \code{JONAH CRAB} \code{KILLIFISHES} \code{LONGHORN SCULPIN} \code{MULLETS} \code{MUMMICHOG} \code{NINESPINE STICKLEBACK} \code{NORTHERN KINGFISH} \code{NORTHERN PIPEFISH} \code{NORTHERN SEAROBIN} \code{NORTHERN SHRIMP} \code{OCEAN POUT} \code{OYSTER TOADFISH} \code{PINFISH} \code{POLLOCK} \code{QUAHOG} \code{RAINBOW SMELT} \code{RED DRUM} \code{RED HAKE} \code{ROCK GUNNEL} \code{SCUP} \code{SEA SCALLOP} \code{SEVENSPINE BAY SHRIMP} \code{SHEEPSHEAD MINNOW} \code{SHORTHORN SCULPIN} \code{SHORTNOSE STURGEON} \code{SILVER HAKE} \code{SILVERSIDES} \code{SKATES} \code{SMOOTH FLOUNDER} \code{SOFTSHELL CLAM} \code{SPINY DOGFISH} \code{SPOT} \code{SPOTTED SEATROUT} \code{STRIPED BASS} \code{SUMMER FLOUNDER} \code{TAUTOG} \code{THREESPINE STICKLEBACK} \code{WEAKFISH} \code{WHITE HAKE} \code{WHITE PERCH} \code{WINDOWPANE FLOUNDER} \code{WINTER FLOUNDER} \code{YELLOW PERCH} \code{YELLOWTAIL FLOUNDER}}
@@ -76,3 +76,25 @@
 #'}
 #' @source example data
 "data_benthos_PacNW"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' @title Metric data for metric stats for mmi development
+#'
+#' @description A data set with example benthic macroinvertebrate data.
+#' Calculate metrics then statistics.
+#'
+#' @format A data frame with 10,574 observations on the following 10 variables.
+#'
+#'  \describe{
+#'    \item{\code{Class}}{a character vector}
+#'    \item{\code{Ref_v1}}{a character vector}
+#'    \item{\code{CalVal_Class4}}{a character vector}
+#'    \item{\code{Unique_ID}}{a character vector}
+#'   \item{\code{BenSampID}}{a character vector}
+#'    \item{\code{CollDate}}{a character vector}
+#'    \item{\code{CollMeth}}{a character vector}
+#'    \item{\code{TaxaID}}{a character vector}
+#'    \item{\code{Individuals}}{a numeric vector}
+#'    \item{\code{Exclude}}{a logical vector}
+#'  }
+#' @source example data
+"data_mmi_dev"
