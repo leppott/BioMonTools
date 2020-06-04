@@ -28,6 +28,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.4.0.9013 (2020-06-03)
+
+* metric.stats2.R, Issue #36
+    + Add DE and z-scores based on metric.stats and metric.values.
+
 ## Changes in Version 0.4.0.9012 (2020-06-01)
 
 * Update pkgdown website documentation.

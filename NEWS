@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-06-01 15:41:20
+    #> Last Update: 2020-06-03 21:56:01
 
 # Planned Updates
 
@@ -17,6 +17,11 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9013 (2020-06-03)
+
+  - metric.stats2.R, Issue \#36
+      - Add DE and z-scores based on metric.stats and metric.values.
 
 ## Changes in Version 0.4.0.9012 (2020-06-01)
 
