@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-06-03 21:56:01
+    #> Last Update: 2020-06-18 10:04:43
 
 # Planned Updates
 
@@ -17,6 +17,11 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9014 (2020-06-18)
+
+  - DESCRIPTION
+      - Add package tidyr to support metric.stats2(); Issue \# 37
 
 ## Changes in Version 0.4.0.9013 (2020-06-03)
 
