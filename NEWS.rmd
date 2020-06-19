@@ -28,6 +28,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.4.0.9015 (2020-06-19)
+
+* metric.values.R, Issue #35
+    + Add new metrics for PA and WV BIBIs.
+        - nt_tv_intol4
+        - nt_tv_intol4_EPT
+        - pi_Ortho
+        - pi_Chiro_Anne
+    + Need to document.
+        
 ## Changes in Version 0.4.0.9014 (2020-06-18)
 
 * DESCRIPTION

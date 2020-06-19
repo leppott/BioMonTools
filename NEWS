@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-06-18 10:04:43
+    #> Last Update: 2020-06-19 13:27:14
 
 # Planned Updates
 
@@ -17,6 +17,16 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9015 (2020-06-19)
+
+  - metric.values.R, Issue \#35
+      - Add new metrics for PA and WV BIBIs.
+          - nt\_tv\_intol4
+          - nt\_tv\_intol4\_EPT
+          - pi\_Ortho
+          - pi\_Chiro\_Anne
+      - Need to document.
 
 ## Changes in Version 0.4.0.9014 (2020-06-18)
 

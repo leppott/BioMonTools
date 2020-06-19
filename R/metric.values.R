@@ -878,6 +878,7 @@ metric.values.bugs <- function(myDF
              , nt_Chiro = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "Chironomidae"], na.rm = TRUE)
              , pi_Chiro = 100*ni_Chiro/ni_total
              , pt_Chiro = 100*nt_Chiro/nt_total
+             , pi_Ortho = 100*sum(N_TAXA[SUBFAMILY == "Orthocladiinae"], na.rm=TRUE)/ni_total
              , pi_Tanyt = 100*sum(N_TAXA[TRIBE == "Tanytarsini"], na.rm=TRUE)/ni_total
              , pi_Tanyp = 100*sum(N_TAXA[SUBFAMILY == "Tanypodinae"], na.rm=TRUE)/ni_total
              , pi_COC2Chi = 100*sum(N_TAXA[GENUS == "Chironomus"
@@ -893,6 +894,7 @@ metric.values.bugs <- function(myDF
              #,nt_Ortho (Marine)
              #MB_pi_OrthocladiinaeCricotopusChironomus2Chironomidae
              # rt_Chiro, Ortho, Tanyt
+             , pi_Chiro_Anne = 100*sum(N_TAXA[PHYLUM == "Annelida" | FAMILY == "Chironomidae"], na.rm=TRUE)/ni_total
 
 
 
@@ -999,14 +1001,23 @@ metric.values.bugs <- function(myDF
 
              # Tolerance ####
              , nt_tv_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=0 & TOLVAL<=3], na.rm=TRUE)
+             , nt_tv_intol4 = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=0 & TOLVAL<=4], na.rm=TRUE)
              , nt_tv_toler = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=7 & TOLVAL<=10], na.rm=TRUE)
              , pi_tv_intol = 100*sum(N_TAXA[TOLVAL>=0  & TOLVAL<=3], na.rm=TRUE)/ni_total
+             , pi_tv_intol4 = 100*sum(N_TAXA[TOLVAL>=0  & TOLVAL<=4], na.rm=TRUE)/ni_total
              , pi_tv_toler = 100*sum(N_TAXA[TOLVAL>=7  & TOLVAL<=10], na.rm=TRUE)/ni_total
              , pt_tv_intol = 100*nt_tv_intol/nt_total
+             , pt_tv_intol4 = 100*nt_tv_intol4/nt_total
              , pt_tv_toler = 100*nt_tv_toler/nt_total
              #,nt_tvfam_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & FAM_TV<=3 & !is.na(FAM_TV)])
              # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, , , ,
              # nt_intMol (for marine)
+             , nt_intol4_EPT = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
+                                                        & TOLVAL>=0
+                                                        & TOLVAL<=4
+                                                        & (ORDER == "Ephemeroptera"
+                                                           | ORDER == "Trichoptera"
+                                                           | ORDER == "Plecoptera")], na.rm=TRUE)
 
              , nt_tv_ntol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=0 & TOLVAL<6], na.rm=TRUE)
              , nt_tv_stol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=8 & TOLVAL<=10], na.rm=TRUE)
