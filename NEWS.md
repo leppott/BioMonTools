@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-06-19 13:27:14
+    #> Last Update: 2020-06-19 13:36:45
 
 # Planned Updates
 
@@ -18,9 +18,13 @@ NEWS
 
 # Version History
 
+## Changes in Version 0.4.0.9016 (2020-06-19)
+
+  - Referenced wrong issue in last update.
+
 ## Changes in Version 0.4.0.9015 (2020-06-19)
 
-  - metric.values.R, Issue \#35
+  - metric.values.R, Issue \#3
       - Add new metrics for PA and WV BIBIs.
           - nt\_tv\_intol4
           - nt\_tv\_intol4\_EPT
