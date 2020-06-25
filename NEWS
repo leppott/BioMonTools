@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-06-19 13:36:45
+    #> Last Update: 2020-06-25 08:45:01
 
 # Planned Updates
 
@@ -17,6 +17,19 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9017 (2020-06-25)
+
+  - metric.values.R
+      - Correct nt\_intol4\_EPT to nt\_tv\_intol4\_EPT
+      - Add x\_Becks3
+  - MetricScoring.xlsx
+      - Add PADEP Freestone IBI (metrics and scoring).
+  - MetricNames.xlsx
+      - Add new metrics.
+  - Use testthat
+      - Set up tests for PA Freestone IBI (values and scores).
+      - Passes both but test incomplete.
 
 ## Changes in Version 0.4.0.9016 (2020-06-19)
 

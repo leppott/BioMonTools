@@ -28,6 +28,19 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.4.0.9017 (2020-06-25)
+
+* metric.values.R
+    + Correct nt_intol4_EPT to nt_tv_intol4_EPT
+    + Add x_Becks3
+* MetricScoring.xlsx
+    + Add PADEP Freestone IBI (metrics and scoring).
+* MetricNames.xlsx
+    + Add new metrics.
+* Use testthat
+    + Set up tests for PA Freestone IBI (values and scores).
+    + Passes both but test incomplete.
+
 ## Changes in Version 0.4.0.9016 (2020-06-19)
 
 * Referenced wrong issue in last update.

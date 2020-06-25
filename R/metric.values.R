@@ -812,7 +812,7 @@ metric.values.bugs <- function(myDF
              , pi_Tubif = 100*sum(N_TAXA[FAMILY == "Tubificidae"], na.rm=TRUE)/ni_total
              , pi_Xanth = 100*sum(N_TAXA[FAMILY == "Xanthidae"], na.rm=TRUE)/ni_total
              # Cole2Odon,
-             #EPTsenstive
+             #EPTsenstive in tolerance group
 
 
              # Percent of Taxa ####
@@ -1010,15 +1010,17 @@ metric.values.bugs <- function(myDF
              , pt_tv_intol4 = 100*nt_tv_intol4/nt_total
              , pt_tv_toler = 100*nt_tv_toler/nt_total
              #,nt_tvfam_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & FAM_TV<=3 & !is.na(FAM_TV)])
-             # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, , , ,
+             # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, in Pct Ind group
              # nt_intMol (for marine)
-             , nt_intol4_EPT = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
+             , nt_tv_intol4_EPT = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
                                                         & TOLVAL>=0
                                                         & TOLVAL<=4
                                                         & (ORDER == "Ephemeroptera"
                                                            | ORDER == "Trichoptera"
                                                            | ORDER == "Plecoptera")], na.rm=TRUE)
-
+             # USEPA, WSA and NRSA
+             ## ntol is not tolerant
+             ## stol is super tolerant
              , nt_tv_ntol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=0 & TOLVAL<6], na.rm=TRUE)
              , nt_tv_stol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=8 & TOLVAL<=10], na.rm=TRUE)
              , pi_tv_ntol = 100*sum(N_TAXA[TOLVAL>=0  & TOLVAL<6], na.rm=TRUE)/ni_total
@@ -1026,12 +1028,6 @@ metric.values.bugs <- function(myDF
              , pt_tv_ntol = 100*nt_tv_ntol/nt_total
              , pt_tv_stol = 100*nt_tv_stol/nt_total
 
-
-
-
-             # USEPA, WSA and NRSA
-             ## ntol is not tolerant
-             ## stol is
 
              # Tolerance2 ####
              ## special condition tolerance values
@@ -1137,7 +1133,11 @@ metric.values.bugs <- function(myDF
              #,x_Becks.CLASS2=n_distinct(N_TAXA[EXCLUDE!=TRUE & TolVal>=2.5 & TolVal<=4])
              , x_Becks = (2 * dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TOLVAL >= 0 & TOLVAL <= 1.5], na.rm = TRUE)) +
                           (1 * dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TOLVAL > 1.5 & TOLVAL <= 4], na.rm = TRUE))
-             #,x_HBI_numer=sum(N_TAXA*TOLVAL, na.rm=TRUE)
+            , x_Becks3 = (3 * dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TOLVAL >= 0 & TOLVAL <= 0.5], na.rm = TRUE)) +
+              (2 * dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TOLVAL > 0.5 & TOLVAL <= 1.5], na.rm = TRUE)) +
+              (1 * dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TOLVAL > 1.5 & TOLVAL <= 2.5], na.rm = TRUE))
+
+            #,x_HBI_numer=sum(N_TAXA*TOLVAL, na.rm=TRUE)
              #,x_HBI_denom=sum(N_TAXA[!is.na(TOLVAL) & TOLVAL>=0], na.rm=TRUE)
              , x_HBI = sum(N_TAXA * TOLVAL, na.rm=TRUE)/sum(N_TAXA[!is.na(TOLVAL) & TOLVAL >= 0], na.rm=TRUE)
              , x_NCBI = sum(N_TAXA * TOLVAL2, na.rm=TRUE)/sum(N_TAXA[!is.na(TOLVAL2) & TOLVAL2 >= 0], na.rm=TRUE)
@@ -1165,7 +1165,7 @@ metric.values.bugs <- function(myDF
 
             # Estuary-Marine ####
             # Mixed in with other metrics
-            , x_Becks_tv2 <- NA
+            , x_Becks_tv2 = NA
 
             # Habitat ####
             # BCG PacNW group 2020
