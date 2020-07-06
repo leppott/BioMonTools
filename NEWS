@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-06-25 08:45:01
+    #> Last Update: 2020-07-06 07:57:29
 
 # Planned Updates
 
@@ -17,6 +17,15 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9018 (2020-07-06)
+
+  - WV GLIBPSS, Issue \#3
+      - MetricScoring.xlsx
+      - MetricNames.xlsx
+      - metric.values.R
+      - testthat
+  - Update pkgdown website.
 
 ## Changes in Version 0.4.0.9017 (2020-06-25)
 

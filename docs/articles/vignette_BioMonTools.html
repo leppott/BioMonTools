@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9011</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9018</span>
       </span>
     </div>
 
@@ -82,13 +82,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="vignette_BioMonTools_files/header-attrs-2.3/header-attrs.js"></script><script src="vignette_BioMonTools_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 class="date">2020-06-01</h4>
+            <h4 class="date">2020-07-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/master/vignettes/vignette_BioMonTools.Rmd"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -277,6 +277,11 @@
 
 <span class="co"># Run Function</span>
 <span class="no">df.metval</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/metric.values.html">metric.values</a></span>(<span class="no">df.data</span>, <span class="st">"bugs"</span>, <span class="kw">fun.cols2keep</span><span class="kw">=</span><span class="no">myCols</span>)
+<span class="co">#&gt; Warning: `group_by_()` is deprecated as of dplyr 0.7.0.</span>
+<span class="co">#&gt; Please use `group_by()` instead.</span>
+<span class="co">#&gt; See vignette('programming') for more help</span>
+<span class="co">#&gt; This warning is displayed once every 8 hours.</span>
+<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span>
 <span class="co"># Metrics of Interest</span>
 <span class="co">## thermal indicator (_ti_)</span>
 <span class="co">#names(df.metval)[grepl("_ti_", names(df.metval))]</span>
@@ -290,6 +295,29 @@
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">df.metval.ci</span>), <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"Metric Calculation, select metrics"</span>)</pre></body></html></div>
 <table class="table">
 <caption>Metric Calculation, select metrics</caption>
+<colgroup>
+<col width="11%">
+<col width="4%">
+<col width="5%">
+<col width="4%">
+<col width="5%">
+<col width="8%">
+<col width="5%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="3%">
+<col width="4%">
+<col width="4%">
+<col width="4%">
+<col width="4%">
+<col width="3%">
+<col width="4%">
+<col width="4%">
+<col width="4%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">SAMPLEID</th>
 <th align="right">AREA_MI2</th>
@@ -510,6 +538,10 @@
 <span class="co">#&gt; *WARNING*, 3 taxa levels missing from input data frame; </span>
 <span class="co">#&gt;  KINGDOM, SUBORDER, VARIETY</span>
 <span class="co">#&gt; [1] "Working on item (1/12); PHYLUM"</span>
+<span class="co">#&gt; Warning: `summarise_()` is deprecated as of dplyr 0.7.0.</span>
+<span class="co">#&gt; Please use `summarise()` instead.</span>
+<span class="co">#&gt; This warning is displayed once every 8 hours.</span>
+<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span>
 <span class="co">#&gt; [1] "Working on item (2/12); SUBPHYLUM"</span>
 <span class="co">#&gt; [1] "Working on item (3/12); CLASS"</span>
 <span class="co">#&gt; [1] "Working on item (4/12); SUBCLASS"</span>
@@ -526,6 +558,7 @@
 <span class="no">df_compare</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">df_tst</span>, <span class="no">SampleID</span>)
                                , <span class="kw">Exclude_Import</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">Exclude</span>)
                                , <span class="kw">Exclude_R</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">Exclude_New</span>))
+<span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span>
 <span class="no">df_compare</span>$<span class="no">Diff</span> <span class="kw">&lt;-</span> <span class="no">df_compare</span>$<span class="no">Exclude_Import</span> - <span class="no">df_compare</span>$<span class="no">Exclude_R</span>
 <span class="co">#</span>
 <span class="no">tbl_diff</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">df_compare</span>$<span class="no">Diff</span>)
@@ -546,18 +579,18 @@
 <table class="table">
 <caption>Confusion Matrix</caption>
 <thead><tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">FALSE</th>
 <th align="right">TRUE</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>FALSE</td>
+<td align="left">FALSE</td>
 <td align="right">24653</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td>TRUE</td>
+<td align="left">TRUE</td>
 <td align="right">0</td>
 <td align="right">2350</td>
 </tr>
@@ -688,6 +721,7 @@
 <span class="no">df_compare2</span> <span class="kw">&lt;-</span> <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">df_tst2</span>, <span class="no">SampleID</span>)
                                , <span class="kw">Exclude_Import</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">Exclude</span>)
                                , <span class="kw">Exclude_R</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">Exclude_New</span>))
+<span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span>
 <span class="no">df_compare2</span>$<span class="no">Diff</span> <span class="kw">&lt;-</span> <span class="no">df_compare2</span>$<span class="no">Exclude_Import</span> - <span class="no">df_compare2</span>$<span class="no">Exclude_R</span>
 <span class="co">#</span>
 <span class="no">tbl_diff2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">df_compare2</span>$<span class="no">Diff</span>)
@@ -708,18 +742,18 @@
 <table class="table">
 <caption>Confusion Matrix</caption>
 <thead><tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">FALSE</th>
 <th align="right">TRUE</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>FALSE</td>
+<td align="left">FALSE</td>
 <td align="right">24653</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td>TRUE</td>
+<td align="left">TRUE</td>
 <td align="right">8</td>
 <td align="right">2342</td>
 </tr>
@@ -940,7 +974,7 @@
                      ,<span class="kw">abund</span><span class="kw">=</span><span class="st">"N_Taxa"</span>,<span class="kw">subsiz</span><span class="kw">=</span><span class="no">mySize</span>, <span class="kw">mySeed</span><span class="kw">=</span><span class="no">Seed_US</span>)
 <span class="co">#&gt; Rarify of samples complete. </span>
 <span class="co">#&gt;  Number of samples =  12 </span>
-<span class="co">#&gt;  Execution time (sec) =  0.0199999999999996</span>
+<span class="co">#&gt;  Execution time (sec) =  0.0200000000000102</span>
 
 <span class="co"># view results</span>
 <span class="co">#dim(bugs_mysize)</span>
@@ -1091,58 +1125,58 @@
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span>(<span class="no">df.flags</span>[,<span class="st">"CHECKNAME"</span>], <span class="no">df.flags</span>[,<span class="st">"FLAG"</span>], <span class="kw">useNA</span><span class="kw">=</span><span class="st">"ifany"</span>))</pre></body></html></div>
 <table class="table">
 <thead><tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">flag</th>
 <th align="right">NA</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>brackish organisms present</td>
+<td align="left">brackish organisms present</td>
 <td align="right">7</td>
 <td align="right">671</td>
 </tr>
 <tr class="even">
-<td>catchment, Large</td>
+<td align="left">catchment, Large</td>
 <td align="right">0</td>
 <td align="right">678</td>
 </tr>
 <tr class="odd">
-<td>catchment, small</td>
+<td align="left">catchment, small</td>
 <td align="right">158</td>
 <td align="right">520</td>
 </tr>
 <tr class="even">
-<td>individuals, dominant 02, Large</td>
+<td align="left">individuals, dominant 02, Large</td>
 <td align="right">202</td>
 <td align="right">476</td>
 </tr>
 <tr class="odd">
-<td>individuals, Large</td>
+<td align="left">individuals, Large</td>
 <td align="right">0</td>
 <td align="right">678</td>
 </tr>
 <tr class="even">
-<td>individuals, small</td>
+<td align="left">individuals, small</td>
 <td align="right">77</td>
 <td align="right">601</td>
 </tr>
 <tr class="odd">
-<td>Low density (ft2)</td>
+<td align="left">Low density (ft2)</td>
 <td align="right">0</td>
 <td align="right">678</td>
 </tr>
 <tr class="even">
-<td>Low density (m2)</td>
+<td align="left">Low density (m2)</td>
 <td align="right">0</td>
 <td align="right">678</td>
 </tr>
 <tr class="odd">
-<td>Ramellogammarus</td>
+<td align="left">Ramellogammarus</td>
 <td align="right">8</td>
 <td align="right">670</td>
 </tr>
 <tr class="even">
-<td>surface area, small</td>
+<td align="left">surface area, small</td>
 <td align="right">112</td>
 <td align="right">566</td>
 </tr>

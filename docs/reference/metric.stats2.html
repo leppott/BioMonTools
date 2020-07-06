@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate metric statistics — metric.stats • BioMonTools</title>
+<title>Secondary metric statistics — metric.stats2 • BioMonTools</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,9 @@
 
 
 
-<meta property="og:title" content="Calculate metric statistics — metric.stats" />
-<meta property="og:description" content="This function calculates metric statistics for use with developing a
-multi-metric index.
-Inputs are a data frame with" />
+<meta property="og:title" content="Secondary metric statistics — metric.stats2" />
+<meta property="og:description" content="This function calculates secondary statistics (DE and z-score) on metric statistics for use with developing a
+multi-metric index." />
 
 
 
@@ -128,29 +127,30 @@ Inputs are a data frame with" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate metric statistics</h1>
-    <small class="dont-index">Source: <a href='https://github.com/leppott/BioMonTools/blob/master/R/metric.stats.R'><code>R/metric.stats.R</code></a></small>
-    <div class="hidden name"><code>metric.stats.Rd</code></div>
+    <h1>Secondary metric statistics</h1>
+    <small class="dont-index">Source: <a href='https://github.com/leppott/BioMonTools/blob/master/R/metric.stats2.R'><code>R/metric.stats2.R</code></a></small>
+    <div class="hidden name"><code>metric.stats2.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function calculates metric statistics for use with developing a
+    <p>This function calculates secondary statistics (DE and z-score) on metric statistics for use with developing a
 multi-metric index.</p>
-<p>Inputs are a data frame with</p>
     </div>
 
-    <pre class="usage"><span class='fu'>metric.stats</span>(
-  <span class='no'>fun.DF</span>,
-  <span class='no'>col_metrics</span>,
-  <span class='kw'>col_SampID</span> <span class='kw'>=</span> <span class='st'>"SAMPLEID"</span>,
-  <span class='kw'>col_RefStatus</span> <span class='kw'>=</span> <span class='st'>"Ref_Status"</span>,
+    <pre class="usage"><span class='fu'>metric.stats2</span>(
+  <span class='no'>data_metval</span>,
+  <span class='no'>data_metstat</span>,
+  <span class='kw'>col_metval_RefStatus</span> <span class='kw'>=</span> <span class='st'>"RefStatus"</span>,
+  <span class='kw'>col_metval_DataType</span> <span class='kw'>=</span> <span class='st'>"DataType"</span>,
+  <span class='kw'>col_metval_Subset</span> <span class='kw'>=</span> <span class='st'>"INDEX_REGION"</span>,
+  <span class='kw'>col_metstat_RefStatus</span> <span class='kw'>=</span> <span class='st'>"RefStatus"</span>,
+  <span class='kw'>col_metstat_DataType</span> <span class='kw'>=</span> <span class='st'>"DataType"</span>,
+  <span class='kw'>col_metstat_Subset</span> <span class='kw'>=</span> <span class='st'>"INDEX_REGION"</span>,
   <span class='kw'>RefStatus_Ref</span> <span class='kw'>=</span> <span class='st'>"Ref"</span>,
   <span class='kw'>RefStatus_Str</span> <span class='kw'>=</span> <span class='st'>"Str"</span>,
   <span class='kw'>RefStatus_Oth</span> <span class='kw'>=</span> <span class='st'>"Oth"</span>,
-  <span class='kw'>col_DataType</span> <span class='kw'>=</span> <span class='st'>"Data_Type"</span>,
   <span class='kw'>DataType_Cal</span> <span class='kw'>=</span> <span class='st'>"Cal"</span>,
   <span class='kw'>DataType_Ver</span> <span class='kw'>=</span> <span class='st'>"Ver"</span>,
-  <span class='kw'>col_Subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>Subset_Value</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
 )</pre>
 
@@ -158,90 +158,85 @@ multi-metric index.</p>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>fun.DF</th>
-      <td><p>Data frame.</p></td>
+      <th>data_metval</th>
+      <td><p>Data frame of metric values.</p></td>
     </tr>
     <tr>
-      <th>col_metrics</th>
-      <td><p>Column names for metrics.</p></td>
+      <th>data_metstat</th>
+      <td><p>Data frame of metric statistics</p></td>
     </tr>
     <tr>
-      <th>col_SampID</th>
-      <td><p>Column name for unique sample identifier.  Default = "SAMPLEID".</p></td>
-    </tr>
-    <tr>
-      <th>col_RefStatus</th>
+      <th>col_metval_RefStatus</th>
       <td><p>Column name for Reference Status.  Default = "Ref_Status"</p></td>
     </tr>
     <tr>
-      <th>RefStatus_Ref</th>
-      <td><p>Reference Status name for Reference used in col_ RefStatus.  Default = “Ref”.
-Use NULL if you don't use this value.</p></td>
-    </tr>
-    <tr>
-      <th>RefStatus_Str</th>
-      <td><p>Reference Status name for Stressed used in col_ RefStatus.  Default = “Str”.
-Use NULL if you don't use this value.</p></td>
-    </tr>
-    <tr>
-      <th>RefStatus_Oth</th>
-      <td><p>Reference Status name for Other used in col_ RefStatus.  Default = “Oth”.
-Use NULL if you don't use this value.</p></td>
-    </tr>
-    <tr>
-      <th>col_DataType</th>
+      <th>col_metval_DataType</th>
       <td><p>Column name for Data Type – Validation vs. Calibration.  Default = "Data_Type"</p></td>
     </tr>
     <tr>
+      <th>col_metstat_RefStatus</th>
+      <td><p>Column name for Reference Status.  Default = "Ref_Status"</p></td>
+    </tr>
+    <tr>
+      <th>col_metstat_DataType</th>
+      <td><p>Column name for Data Type – Validation vs. Calibration.  Default = "Data_Type"</p></td>
+    </tr>
+    <tr>
+      <th>col_metstat_Subset</th>
+      <td><p>Column name for Index_Region in data_metstats.  Default = xx.</p></td>
+    </tr>
+    <tr>
+      <th>RefStatus_Ref</th>
+      <td><p>RefStatus value for Reference.  Default = "Ref"</p></td>
+    </tr>
+    <tr>
+      <th>RefStatus_Str</th>
+      <td><p>RefStatus value for Stressed.  Default = "Str"</p></td>
+    </tr>
+    <tr>
+      <th>RefStatus_Oth</th>
+      <td><p>RefStatus value for Other. Default = "Oth"</p></td>
+    </tr>
+    <tr>
       <th>DataType_Cal</th>
-      <td><p>Datatype name for Calibration used in col_DataType.  Default = “Cal”.
-Use NULL if you don't use this value.</p></td>
+      <td><p>DataType value for Calibration. Default = "Cal"</p></td>
     </tr>
     <tr>
       <th>DataType_Ver</th>
-      <td><p>Datatype name for Varification used in col_DataType.  Default = “Ver”.
-Use NULL if you don't use this value.</p></td>
-    </tr>
-    <tr>
-      <th>col_Subset</th>
-      <td><p>Column name to subset the data and run on each subset.  Default = NULL.
-If NULL then no subset will be generated.</p></td>
+      <td><p>DataType value for Verification. Default = "Ver"</p></td>
     </tr>
     <tr>
       <th>Subset_Value</th>
-      <td><p>Subset name to be used for creating subset.  Default = NULL.</p></td>
+      <td><p>Subset value of Index_Region (site class).  Default = NULL</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>data frame of metrics (rows) and statistics (columns).
-This is in long format with columns for INDEX_REGION, RefStatus, and DataType.</p>
+    <p>A data frame of the metric.stats input is returned with new columns
+(z_score, DE25 and DE75).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Summary statistics for the data are calculated.</p>
-<p>The data is filtered by the column Subset for only a single value given by the user.
-If need further subsets re-run the function.  If no subset is give the entire data set is used.</p>
-<p>Statistics will be generated for up to 6 combinations for RefStatus (Ref, Oth, Str) and
-DataType (Cal, Ver).</p>
-<p>The resulting dataframe will have the statistics in columns with the first 4 columns as:
-INDEX_REGION (if col_Subset not provided), col_RefStatus, col_DataType, and Metric_Name.</p>
-<p>The following statistics are generated with na.rm = TRUE.</p>
-<p>* n = number</p>
-<p>* min = minimum</p>
-<p>* max = maximum</p>
-<p>* mean = mean</p>
-<p>* median = median</p>
-<p>* range = range (max - min)</p>
-<p>* sd = standard deviation</p>
-<p>* cv = coefficient of variation (sd/mean)</p>
-<p>* q05 = quantile, 5<!-- % --></p>
-<p>* q10 = quantile, 10<!-- % --></p>
-<p>* q25 = quantile, 25<!-- % --></p>
-<p>* q50 = quantile, 50<!-- % --></p>
-<p>* q75 = quantile, 75<!-- % --></p>
-<p>* q90 = quantile, 90<!-- % --></p>
-<p>* q95 = quantile, 95<!-- % --></p>
+    <p>Secondary metrics statistics for the data are calculated.</p>
+<p>Inputs are metric values and metric stats outputs.</p>
+<p>Metric values is a wide format with columns for each metric.
+Assumes only a single Subset.</p>
+<p>Metrics stats is a wide format with columns for each statistic with metrics in a single column.
+Assumes only a single Subset.</p>
+<p>Required fields are RefStatus, DataType, and Index_Region.  The user is allowed to enter their own
+values for these fields for each input file.</p>
+<p>The two statistics calculated are z-score and discrimination efficiency (DE) for each metric
+within each DataType (cal / val).</p>
+<p>Z-scores are calculated using the calibration (or development) data set
+for a given Index_Region (or Site Class).</p>
+<p>* (mean Ref - mean Str) / sd Ref</p>
+<p>DE is calculated without knowing the expected direction of response for each metric
+for a given Index_Region (or Site Class).  DE is the percentage (0-100) of **stressed**
+samples that fall **below** the **25th** quantile (for decreaser metrics, e.g., total taxa)
+or **above** the **75th** quantile (for increaser metrics, e.g., HBI) of the **reference** samples.</p>
+<p>A data frame of the metric.stats input is returned with new columns
+(z_score, DE25 and DE75).  The z-score is added for each Ref_Status.  DE25 and DE75 are only added
+where Ref_Status is labeled as Stressed.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># data, benthos</span>
@@ -272,13 +267,42 @@ INDEX_REGION (if col_Subset not provided), col_RefStatus, col_DataType, and Metr
 <span class='no'>DataType_Ver</span>  <span class='kw'>&lt;-</span> <span class='st'>"verif"</span>
 <span class='no'>col_Subset</span>    <span class='kw'>&lt;-</span> <span class='st'>"INDEX_REGION"</span>
 <span class='no'>Subset_Value</span>  <span class='kw'>&lt;-</span> <span class='st'>"CENTRALHILLS"</span>
-<span class='no'>df_stats</span> <span class='kw'>&lt;-</span> <span class='fu'>metric.stats</span>(<span class='no'>df_metval</span>, <span class='no'>col_metrics</span>, <span class='no'>col_SampID</span>
+<span class='no'>df_stats</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='metric.stats.html'>metric.stats</a></span>(<span class='no'>df_metval</span>, <span class='no'>col_metrics</span>, <span class='no'>col_SampID</span>
                          , <span class='no'>col_RefStatus</span>, <span class='no'>RefStatus_Ref</span>, <span class='no'>RefStatus_Str</span>, <span class='no'>RefStatus_Oth</span>
                          , <span class='no'>col_DataType</span>, <span class='no'>DataType_Cal</span>, <span class='no'>DataType_Ver</span>
                          , <span class='no'>col_Subset</span>, <span class='no'>Subset_Value</span>)</div><div class='output co'>#&gt; <span class='message'>Working on item 1/6; Ref___cal</span></div><div class='output co'>#&gt; <span class='message'>Working on item 2/6; Ref___verif</span></div><div class='output co'>#&gt; <span class='message'>Working on item 3/6; Strs___cal</span></div><div class='output co'>#&gt; <span class='message'>Working on item 4/6; Strs___verif</span></div><div class='output co'>#&gt; <span class='message'>Working on item 5/6; Other___cal</span></div><div class='output co'>#&gt; <span class='message'>Working on item 6/6; Other___verif</span></div><div class='input'>
+<span class='co'># Calc Stats2 (z-scores and DE)</span>
+<span class='no'>data_metval</span> <span class='kw'>&lt;-</span> <span class='no'>df_metval</span>
+<span class='no'>data_metstat</span> <span class='kw'>&lt;-</span> <span class='no'>df_stats</span>
+<span class='no'>col_metval_RefStatus</span> <span class='kw'>&lt;-</span> <span class='st'>"REF_V1"</span>
+<span class='no'>col_metval_DataType</span> <span class='kw'>&lt;-</span> <span class='st'>"CALVAL_CLASS4"</span>
+<span class='no'>col_metval_Subset</span> <span class='kw'>&lt;-</span> <span class='st'>"INDEX_REGION"</span>
+<span class='no'>col_metstat_RefStatus</span> <span class='kw'>&lt;-</span> <span class='st'>"REF_V1"</span>
+<span class='no'>col_metstat_DataType</span> <span class='kw'>&lt;-</span> <span class='st'>"CALVAL_CLASS4"</span>
+<span class='no'>col_metstat_Subset</span> <span class='kw'>&lt;-</span> <span class='st'>"INDEX_REGION"</span>
+<span class='no'>RefStatus_Ref</span> <span class='kw'>=</span> <span class='st'>"Ref"</span>
+<span class='no'>RefStatus_Str</span> <span class='kw'>=</span> <span class='st'>"Strs"</span>
+<span class='no'>RefStatus_Oth</span> <span class='kw'>=</span> <span class='st'>"Other"</span>
+<span class='no'>DataType_Cal</span> <span class='kw'>=</span> <span class='st'>"cal"</span>
+<span class='no'>DataType_Ver</span> <span class='kw'>=</span> <span class='st'>"verif"</span>
+<span class='no'>Subset_Value</span> <span class='kw'>=</span> <span class='st'>"CENTRALHILLS"</span>
+<span class='no'>df_stats2</span> <span class='kw'>&lt;-</span> <span class='fu'>metric.stats2</span>(<span class='no'>data_metval</span>
+                           , <span class='no'>data_metstat</span>
+                           , <span class='no'>col_metval_RefStatus</span>
+                           , <span class='no'>col_metval_DataType</span>
+                           , <span class='no'>col_metval_Subset</span>
+                           , <span class='no'>col_metstat_RefStatus</span>
+                           , <span class='no'>col_metstat_DataType</span>
+                           , <span class='no'>col_metstat_Subset</span>
+                           , <span class='no'>RefStatus_Ref</span>
+                           , <span class='no'>RefStatus_Str</span>
+                           , <span class='no'>RefStatus_Oth</span>
+                           , <span class='no'>DataType_Cal</span>
+                           , <span class='no'>DataType_Ver</span>
+                           , <span class='no'>Subset_Value</span>)</div><div class='output co'>#&gt; <span class='error'>Error in metric.stats2(data_metval, data_metstat, col_metval_RefStatus,     col_metval_DataType, col_metval_Subset, col_metstat_RefStatus,     col_metstat_DataType, col_metstat_Subset, RefStatus_Ref,     RefStatus_Str, RefStatus_Oth, DataType_Cal, DataType_Ver,     Subset_Value): object 'col_Subset' not found</span></div><div class='input'>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Save Results</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='no'>df_stats</span>, <span class='st'>"metric.stats.tsv"</span>, <span class='kw'>col.names</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>row.names</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>"\t"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='no'>df_stats2</span>, <span class='st'>"metric.stats2.tsv"</span>, <span class='kw'>col.names</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>row.names</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>"\t"</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

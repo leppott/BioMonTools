@@ -775,7 +775,10 @@ metric.values.bugs <- function(myDF
                                              & (is.na(FAMILY)==TRUE | FAMILY != "Baetidae")]
                                       , na.rm=TRUE)/ni_total
              , pi_EPT = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
-                                     ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
+                                     ORDER == "Trichoptera" | ORDER == "Plecoptera" &
+                                       (is.na(FAMILY)==TRUE | FAMILY != "Cheumatopsyche")], na.rm=TRUE)/ni_total
+             , pi_EPTNoCheu = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
+                                         ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
              , pi_ET = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
                                          ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
              , pi_Gast = 100*sum(N_TAXA[CLASS == "Gastropoda"], na.rm=TRUE)/ni_total
@@ -894,7 +897,7 @@ metric.values.bugs <- function(myDF
              #,nt_Ortho (Marine)
              #MB_pi_OrthocladiinaeCricotopusChironomus2Chironomidae
              # rt_Chiro, Ortho, Tanyt
-             , pi_Chiro_Anne = 100*sum(N_TAXA[PHYLUM == "Annelida" | FAMILY == "Chironomidae"], na.rm=TRUE)/ni_total
+             , pi_ChiroAnne = 100*sum(N_TAXA[PHYLUM == "Annelida" | FAMILY == "Chironomidae"], na.rm=TRUE)/ni_total
 
 
 

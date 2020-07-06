@@ -74,7 +74,7 @@ Inputs are a data frame with SampleID and taxa with phylogenetic and autecologic
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9011</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9018</span>
       </span>
     </div>
 
@@ -244,7 +244,10 @@ Other values for TAXAID with N_TAXA = 0 will be removed before calculations.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Example data</span>
 
-<span class='no'>df_metric_values_bugs</span> <span class='kw'>&lt;-</span> <span class='fu'>metric.values</span>(<span class='no'>data_benthos_PacNW</span>, <span class='st'>"bugs"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in n_distinct_multi(list(...), na.rm): object 'SUBCLASS' not found</span></div><div class='input'>
+<span class='no'>df_metric_values_bugs</span> <span class='kw'>&lt;-</span> <span class='fu'>metric.values</span>(<span class='no'>data_benthos_PacNW</span>, <span class='st'>"bugs"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: Problem with `summarise()` input `nt_Oligo`.</span>
+#&gt; <span class='error'><span style='color: #BB0000;'>x</span><span> object 'SUBCLASS' not found</span>
+#&gt; <span class='error'></span><span style='color: #0000BB;'>i</span><span> Input `nt_Oligo` is `dplyr::n_distinct(...)`.</span>
+#&gt; <span class='error'></span><span style='color: #0000BB;'>i</span><span> The error occured in group 1: SAMPLEID = "07067DFW", INDEX_NAME = "BCG.PacNW.L1", INDEX_REGION = "ALL".</span></div><div class='input'>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># View Results</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span>(<span class='no'>df_metric_values_bugs</span>)
@@ -301,7 +304,7 @@ Other values for TAXAID with N_TAXA = 0 will be removed before calculations.</p>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># View Results</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span>(<span class='no'>df_metric_values_bugs_myMetrics</span>)
-}</div></pre>
+}</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
