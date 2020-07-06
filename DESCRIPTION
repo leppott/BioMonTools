@@ -1,7 +1,7 @@
 Package: BioMonTools
 Type: Package
 Title: Tools for Biomonitoring and Bioassessment
-Version: 0.4.0.9018
+Version: 0.4.0.9019
 Author: c(
 	person("Erik W.", "Leppo", email="Erik.Leppo@tetratech.com",role=c("aut","cre")), 
 	person("Jen", "Stamp", role="ctb"),

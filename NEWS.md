@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-06 07:57:29
+    #> Last Update: 2020-07-06 14:24:18
 
 # Planned Updates
 
@@ -18,9 +18,17 @@ NEWS
 
 # Version History
 
+## Changes in Version 0.4.0.9019 (2020-07-06)
+
+  - WV GLIMPSS, Issue \#3
+      - Narrative categories are: Very good, Good, Degraded, Severely
+        degraded
+          - Pond et al. 2012
+          - MetricScoring.xlsx
+
 ## Changes in Version 0.4.0.9018 (2020-07-06)
 
-  - WV GLIBPSS, Issue \#3
+  - WV GLIMPSS, Issue \#3
       - MetricScoring.xlsx
       - MetricNames.xlsx
       - metric.values.R

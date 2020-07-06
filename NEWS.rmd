@@ -28,9 +28,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.4.0.9019 (2020-07-06)
+
+* WV GLIMPSS, Issue #3
+    + Narrative categories are: Very good, Good, Degraded, Severely degraded
+        - Pond et al. 2012
+        - MetricScoring.xlsx
+
 ## Changes in Version 0.4.0.9018 (2020-07-06)
 
-* WV GLIBPSS, Issue #3
+* WV GLIMPSS, Issue #3
     + MetricScoring.xlsx
     + MetricNames.xlsx
     + metric.values.R
