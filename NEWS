@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-06 14:24:18
+    #> Last Update: 2020-07-15 08:18:43
 
 # Planned Updates
 
@@ -17,6 +17,11 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9020 (2020-07-06)
+
+  - metric.values, NonTarget still counted; Issue \#39
+      - Inadvertently removed in v0.3.3.917 (2020-02-24)
 
 ## Changes in Version 0.4.0.9019 (2020-07-06)
 

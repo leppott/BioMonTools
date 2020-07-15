@@ -469,7 +469,7 @@ metric.values.bugs <- function(myDF
   if(sum(TolVal_Char_NA, na.rm=TRUE)>0){
     myDF[TolVal_Char_NA, "TOLVAL"] <- NA
     myDF[, "TOLVAL"] <- as.numeric(myDF[, "TOLVAL"])
-  }
+  }##IF ~ TOLVAL ~ END
 
   # QC, TolVal2
   # need as numeric, if have "NA" as character it fails
@@ -477,9 +477,11 @@ metric.values.bugs <- function(myDF
   if(sum(TolVal2_Char_NA, na.rm=TRUE)>0){
     myDF[TolVal2_Char_NA, "TOLVAL2"] <- NA
     myDF[, "TOLVAL2"] <- as.numeric(myDF[, "TOLVAL2"])
-  }
+  }##IF ~ TOLVAL2 ~ END
 
   # Data Munging ####
+  # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
+  myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE)
   # Convert values to upper case (FFG, Habit, Life_Cycle)
   myDF[, "HABIT"] <- toupper(myDF[, "HABIT"])
   myDF[, "FFG"] <- toupper(myDF[, "FFG"])
