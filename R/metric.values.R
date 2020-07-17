@@ -20,7 +20,7 @@
 #'
 #' Excluded taxa are ambiguous taxa (on a sample basis), i.e.,
 #' the parent taxa when child taxa are present.  For example, the parent taxa
-#' Chironomidae would be xcluded when the child taxa Tanytarsini is present.
+#' Chironomidae would be excluded when the child taxa Tanytarsini is present.
 #' Both would be excluded when Tanytarsus is present.  The markExcluded function
 #' can be used to populated this field.
 #'
@@ -791,6 +791,8 @@ metric.values.bugs <- function(myDF
              , pi_Hydro2Trich = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/ni_Trich
              , pi_Insect = 100*sum(N_TAXA[CLASS == "Insecta"], na.rm=TRUE)/ni_total
              , pi_Isop = 100*sum(N_TAXA[ORDER == "Isopoda"], na.rm=TRUE)/ni_total
+             , pi_IsoSnlLch = 100*sum(N_TAXA[ORDER == "Isopoda" | CLASS == "Gastropoda" | SUBCLASS == "Hirudinea"],
+                                      na.rm = TRUE)/ni_total
              , pi_Lucin = 100*sum(N_TAXA[FAMILY == "Lucinidae"], na.rm=TRUE)/ni_total
              , pi_LucinTellin = 100*sum(N_TAXA[FAMILY == "Lucinidae" | FAMILY == "Tellinidae"], na.rm=TRUE)/ni_total
              , pi_Mega = 100*sum(N_TAXA[ORDER == "Megaloptera"], na.rm=TRUE)/ni_total
