@@ -10,7 +10,8 @@ metric.values(
   fun.MetricNames = NULL,
   boo.Adjust = FALSE,
   fun.cols2keep = NULL,
-  boo.marine = FALSE
+  boo.marine = FALSE,
+  boo.Shiny = FALSE
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ values prior to scoring.  Default = FALSE but may be TRUE for certain metrics.}
 
 \item{boo.marine}{Should estuary/marine metrics be included.
 Ignored if fun.MetricNames is not null. Default = FALSE.}
+
+\item{boo.Shiny}{Boolean value for if the function is accessed via Shiny.  Default = FALSE.}
 }
 \value{
 data frame of SampleID and metric values
@@ -120,6 +123,10 @@ If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated with t
 Other values for TAXAID with N_TAXA = 0 will be removed before calculations.
 
 For 'Oligochete' metrics either Class or Subclass is required for calculation.
+
+The parameter boo.Shiny can be set to TRUE when accessing this function in Shiny.
+Normally the QC check for required fields is interactive.  Setting boo.Shiny to TRUE
+will always continue.  The default is FALSE.
 }
 \examples{
 # Example data

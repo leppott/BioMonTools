@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-15 08:18:43
+    #> Last Update: 2020-07-20 16:02:37
 
 # Planned Updates
 
@@ -17,6 +17,10 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9021 (2020-07-06)
+
+  - metric.values, Skip column QC check in Shiny; Issue \#40
 
 ## Changes in Version 0.4.0.9020 (2020-07-06)
 

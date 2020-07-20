@@ -86,6 +86,10 @@
 #' Other values for TAXAID with N_TAXA = 0 will be removed before calculations.
 #'
 #' For 'Oligochete' metrics either Class or Subclass is required for calculation.
+#'
+#' The parameter boo.Shiny can be set to TRUE when accessing this function in Shiny.
+#' Normally the QC check for required fields is interactive.  Setting boo.Shiny to TRUE
+#' will always continue.  The default is FALSE.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param fun.DF Data frame of taxa (list required fields)
 #' @param fun.Community Community name for which to calculate metric values (bugs, fish, or algae)
@@ -97,6 +101,7 @@
 # @param MetricSort How metric names should be sort; NA = as is, AZ = alphabetical.  Default = NULL.
 #' @param boo.marine Should estuary/marine metrics be included.
 #' Ignored if fun.MetricNames is not null. Default = FALSE.
+#' @param boo.Shiny Boolean value for if the function is accessed via Shiny.  Default = FALSE.
 #'
 #' @return data frame of SampleID and metric values
 #' @examples
@@ -371,7 +376,8 @@ metric.values <- function(fun.DF
                           , fun.MetricNames=NULL
                           , boo.Adjust=FALSE
                           , fun.cols2keep=NULL
-                          , boo.marine=FALSE){##FUNCTION.metric.values.START
+                          , boo.marine=FALSE
+                          , boo.Shiny=FALSE){##FUNCTION.metric.values.START
   # define pipe
   `%>%` <- dplyr::`%>%`
   # Munge ####
@@ -396,9 +402,10 @@ metric.values <- function(fun.DF
   fun.Community <- toupper(fun.Community)
   # run the proper sub function
   if (fun.Community=="BUGS") {##IF.START
-    metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep, NA, boo.marine)
+    metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep, NA
+                       , boo.marine, boo.Shiny)
   } else if(fun.Community=="FISH"){
-    metric.values.fish(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep)
+    metric.values.fish(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep, boo.Shiny)
   # } else if(fun.Community=="ALGAE"){
   #   metric.values.algae(fun.DF, fun.MetricNames, boo.Adjust)
   }##IF.END
@@ -411,7 +418,8 @@ metric.values.bugs <- function(myDF
                                , boo.Adjust=FALSE
                                , cols2keep=NULL
                                , MetricSort=NA
-                               , boo.marine=FALSE){##FUNCTION.metric.values.bugs.START
+                               , boo.marine=FALSE
+                               , boo.Shiny){##FUNCTION.metric.values.bugs.START
   #
   #names(myDF) <- toupper(names(myDF))
   # not carrying over from previous?!
@@ -439,7 +447,16 @@ metric.values.bugs <- function(myDF
                       , myPrompt.05, sep="\n")
     #user.input <- readline(prompt=myPrompt)
     user.input <- NA
-    user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
+    # special condition for Shiny
+    # Shiny counts as interactive()==TRUE but cannot access this prompt in Shiny.
+    if(boo.Shiny==FALSE){
+      user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
+    } else {
+      message(myPrompt)
+      message("boo.Shiny == TRUE so prompt skipped and value set to '1'.")
+      user.input <- 1
+    }## IF ~ boo.Shiny ~ END
+
     # any answer other than "YES" will stop the function.
     if(user.input!=1){##IF.user.input.START
       stop(paste("The user chose *not* to continue due to missing fields: "
@@ -1384,7 +1401,8 @@ metric.values.bugs <- function(myDF
 metric.values.fish <- function(myDF
                                , MetricNames=NULL
                                , boo.Adjust=FALSE
-                               , cols2keep=NULL){##FUNCTION.metric.values.fish.START
+                               , cols2keep=NULL
+                               , boo.Shiny){##FUNCTION.metric.values.fish.START
   # define pipe
   `%>%` <- dplyr::`%>%`
   # QC ####

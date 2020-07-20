@@ -28,6 +28,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.4.0.9021 (2020-07-06)
+
+* metric.values, Skip column QC check in Shiny; Issue #40
+
 ## Changes in Version 0.4.0.9020 (2020-07-06)
 
 * metric.values, NonTarget still counted; Issue #39
