@@ -808,7 +808,7 @@ metric.values.bugs <- function(myDF
              , pi_Hydro2Trich = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/ni_Trich
              , pi_Insect = 100*sum(N_TAXA[CLASS == "Insecta"], na.rm=TRUE)/ni_total
              , pi_Isop = 100*sum(N_TAXA[ORDER == "Isopoda"], na.rm=TRUE)/ni_total
-             , pi_IsoSnlLch = 100*sum(N_TAXA[ORDER == "Isopoda" | CLASS == "Gastropoda" | SUBCLASS == "Hirudinea"],
+             , pi_IsoMolHir = 100*sum(N_TAXA[ORDER == "Isopoda" | CLASS == "Gastropoda" | SUBCLASS == "Hirudinea"],
                                       na.rm = TRUE)/ni_total
              , pi_Lucin = 100*sum(N_TAXA[FAMILY == "Lucinidae"], na.rm=TRUE)/ni_total
              , pi_LucinTellin = 100*sum(N_TAXA[FAMILY == "Lucinidae" | FAMILY == "Tellinidae"], na.rm=TRUE)/ni_total
