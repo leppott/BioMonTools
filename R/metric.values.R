@@ -794,10 +794,14 @@ metric.values.bugs <- function(myDF
                                              & (is.na(FAMILY)==TRUE | FAMILY != "Baetidae")]
                                       , na.rm=TRUE)/ni_total
              , pi_EPT = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
-                                     ORDER == "Trichoptera" | ORDER == "Plecoptera" &
-                                       (is.na(FAMILY)==TRUE | FAMILY != "Cheumatopsyche")], na.rm=TRUE)/ni_total
-             , pi_EPTNoCheu = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
                                          ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
+             , pi_EPTNoCheu = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
+                                       ORDER == "Trichoptera" | ORDER == "Plecoptera" &
+                                       (is.na(FAMILY)==TRUE | FAMILY != "Cheumatopsyche")], na.rm=TRUE)/ni_total
+             , pi_EPTNoBH = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
+                                             ORDER == "Trichoptera" | ORDER == "Plecoptera" &
+                                             (is.na(FAMILY)==TRUE | FAMILY != "Baetidae" | FAMILY != "Hydropsychidae")]
+                                    , na.rm=TRUE)/ni_total
              , pi_ET = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
                                          ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
              , pi_Gast = 100*sum(N_TAXA[CLASS == "Gastropoda"], na.rm=TRUE)/ni_total
