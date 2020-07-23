@@ -20,7 +20,7 @@
 #'
 #' Excluded taxa are ambiguous taxa (on a sample basis), i.e.,
 #' the parent taxa when child taxa are present.  For example, the parent taxa
-#' Chironomidae would be xcluded when the child taxa Tanytarsini is present.
+#' Chironomidae would be excluded when the child taxa Tanytarsini is present.
 #' Both would be excluded when Tanytarsus is present.  The markExcluded function
 #' can be used to populated this field.
 #'
@@ -105,7 +105,7 @@
 #'
 #' @return data frame of SampleID and metric values
 #' @examples
-#' # Example data
+#' # Example data (missing SubClass)
 #'
 #' df_metric_values_bugs <- metric.values(data_benthos_PacNW, "bugs")
 #'
@@ -794,10 +794,10 @@ metric.values.bugs <- function(myDF
                                              & (is.na(FAMILY)==TRUE | FAMILY != "Baetidae")]
                                       , na.rm=TRUE)/ni_total
              , pi_EPT = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
+                                         ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
+             , pi_EPTNoCheu = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
                                      ORDER == "Trichoptera" | ORDER == "Plecoptera" &
                                        (is.na(FAMILY)==TRUE | FAMILY != "Cheumatopsyche")], na.rm=TRUE)/ni_total
-             , pi_EPTNoCheu = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
-                                         ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
              , pi_ET = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
                                          ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
              , pi_Gast = 100*sum(N_TAXA[CLASS == "Gastropoda"], na.rm=TRUE)/ni_total

@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-20 16:02:37
+    #> Last Update: 2020-07-23 10:56:14
 
 # Planned Updates
 
@@ -17,6 +17,12 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9022 (2020-07-23)
+
+  - metric.values; Issue \#3, Issue \#41
+      - Fix pi\_EPT and pi\_EPTNoCheu
+          - swamped when created in v0.4.0.9019 (2020-07-06).
 
 ## Changes in Version 0.4.0.9021 (2020-07-06)
 

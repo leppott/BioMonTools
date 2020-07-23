@@ -77,6 +77,8 @@ devtools::install(myPkg, quick=FALSE, reload=TRUE, build_vignettes = FALSE) # ch
 library(myPkg, character.only = TRUE)
 # change wd back to package
 setwd(paste0("./",myPkg))
+# Help page
+help(package=(myPkg))
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 

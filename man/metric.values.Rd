@@ -57,7 +57,7 @@ will be removed prior to any calculations.
 
 Excluded taxa are ambiguous taxa (on a sample basis), i.e.,
 the parent taxa when child taxa are present.  For example, the parent taxa
-Chironomidae would be xcluded when the child taxa Tanytarsini is present.
+Chironomidae would be excluded when the child taxa Tanytarsini is present.
 Both would be excluded when Tanytarsus is present.  The markExcluded function
 can be used to populated this field.
 
@@ -129,7 +129,7 @@ Normally the QC check for required fields is interactive.  Setting boo.Shiny to 
 will always continue.  The default is FALSE.
 }
 \examples{
-# Example data
+# Example data (missing SubClass)
 
 df_metric_values_bugs <- metric.values(data_benthos_PacNW, "bugs")
 

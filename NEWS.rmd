@@ -28,6 +28,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.4.0.9022 (2020-07-23)
+
+* metric.values; Issue #3, Issue #41
+    + Fix pi_EPT and pi_EPTNoCheu
+        - swamped when created in v0.4.0.9019 (2020-07-06).
+
 ## Changes in Version 0.4.0.9021 (2020-07-06)
 
 * metric.values, Skip column QC check in Shiny; Issue #40

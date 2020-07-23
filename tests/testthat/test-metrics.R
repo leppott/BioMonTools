@@ -337,7 +337,7 @@ test_that("metric.scores, WV GLIMPSS MT_SP", {
                                       , "pi_tv_toler6"))
   # if round first sum is 736.9
   df_metsc_qc[2, metric_nam_sc_BF] <- metsc_BF_corrected
-  df_metsc_qc[2, c("sum_Index", "Index", "Index_Nar")] <- c(736.9, 92.1, "Exceptional")
+  df_metsc_qc[2, c("sum_Index", "Index", "Index_Nar")] <- c(736.9, 92.1, "Very good")
   # Narrative table 16, section 8.12, p 47 (p59 of PDF)
 
   # Modify class
