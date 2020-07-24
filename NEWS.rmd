@@ -28,7 +28,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
-## Changes in Version 0.4.0.9024 (2020-07-23)
+## Changes in Version 0.4.0.9025 (2020-07-24)
+
+* Remove extra file (metric.values.tsv) from root folder of package.
+
+## Changes in Version 0.4.0.9024 (2020-07-24)
 
 * Updates for MI index; Issue #3
     + metric.values.R

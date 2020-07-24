@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-24 15:57:32
+    #> Last Update: 2020-07-24 16:15:07
 
 # Planned Updates
 
@@ -18,7 +18,11 @@ NEWS
 
 # Version History
 
-## Changes in Version 0.4.0.9024 (2020-07-23)
+## Changes in Version 0.4.0.9025 (2020-07-24)
+
+  - Remove extra file (metric.values.tsv) from root folder of package.
+
+## Changes in Version 0.4.0.9024 (2020-07-24)
 
   - Updates for MI index; Issue \#3
       - metric.values.R
