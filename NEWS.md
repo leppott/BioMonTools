@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-24 16:15:07
+    #> Last Update: 2020-07-24 16:31:44
 
 # Planned Updates
 
@@ -17,6 +17,12 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0 (2020-07-24)
+
+  - Update to new version number.
+  - Rebuild package down website.
+  - Create new release on GitHub.
 
 ## Changes in Version 0.4.0.9025 (2020-07-24)
 

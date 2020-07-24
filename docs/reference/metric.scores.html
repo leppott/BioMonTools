@@ -75,7 +75,7 @@ or continuous (e.g., 0-100, ScoreRegime=&quot;Cont_0100&quot;)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9018</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -248,24 +248,24 @@ In both cases a "sum_Index" field will be computed.</p>
 <span class='co'># QC, table</span>
 <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span>(<span class='no'>df_metric_scores_bugs</span>$<span class='no'>Index</span>, <span class='no'>df_metric_scores_bugs</span>$<span class='no'>Index_Nar</span>)</div><div class='output co'>#&gt;     
 #&gt;      Low Medium
-#&gt;   0  161      0
-#&gt;   1   65      0
-#&gt;   2   46      0
+#&gt;   0  163      0
+#&gt;   1   64      0
+#&gt;   2   45      0
 #&gt;   3   44      0
-#&gt;   4   48      0
-#&gt;   5   31      0
-#&gt;   6   42      0
-#&gt;   7   36      0
+#&gt;   4   49      0
+#&gt;   5   33      0
+#&gt;   6   40      0
+#&gt;   7   35      0
 #&gt;   8   28      0
-#&gt;   9   26      0
-#&gt;   10  33      0
+#&gt;   9   27      0
+#&gt;   10  32      0
 #&gt;   11  19      0
 #&gt;   12  23      0
 #&gt;   13  10      0
 #&gt;   14  14      0
 #&gt;   15  17      0
-#&gt;   16   9      0
-#&gt;   17   8      0
+#&gt;   16  11      0
+#&gt;   17   6      0
 #&gt;   18   4      0
 #&gt;   19   3      0
 #&gt;   20   0      4
@@ -282,7 +282,7 @@ In both cases a "sum_Index" field will be computed.</p>
 <span class='co'># Thresholds</span>
 <span class='co'># imported above</span>
 <span class='co'># get metric names for myIndex</span>
-(<span class='no'>myMetrics.Bugs.MBSS</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>df_thresh_metric</span>[<span class='no'>df_thresh_metric</span>[, <span class='st'>"INDEX_NAME"</span>] <span class='kw'>==</span> <span class='no'>myIndex</span>, <span class='st'>"METRIC_NAME"</span>, <span class='fl'>TRUE</span>]))</div><div class='output co'>#&gt;  [1] "nt_total"       "nt_EPT"         "nt_Ephem"       "pi_tv_intolurb"
+(<span class='no'>myMetrics.Bugs.MBSS</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span>(<span class='no'>df_thresh_metric</span>[<span class='no'>df_thresh_metric</span>[, <span class='st'>"INDEX_NAME"</span>] <span class='kw'>==</span> <span class='no'>myIndex</span>, <span class='st'>"METRIC_NAME"</span>, <span class='fl'>TRUE</span>]))</div><div class='output co'>#&gt;  [1] "nt_total"       "nt_EPT"         "nt_Ephem"       "pi_tv2_intol"  
 #&gt;  [5] "pi_Ephem"       "nt_ffg_scrap"   "pi_habit_climb" "pi_Chiro"      
 #&gt;  [9] "pi_habit_cling" "pi_Tanyt"       "pi_ffg_scrap"   "pi_habit_swim" 
 #&gt; [13] "pi_Dipt"       </div><div class='input'><span class='co'># Taxa Data</span>

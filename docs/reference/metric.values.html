@@ -74,7 +74,7 @@ Inputs are a data frame with SampleID and taxa with phylogenetic and autecologic
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9018</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -145,7 +145,8 @@ Inputs are a data frame with SampleID and taxa with phylogenetic and autecologic
   <span class='kw'>fun.MetricNames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>boo.Adjust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>fun.cols2keep</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>boo.marine</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>boo.marine</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>boo.Shiny</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -178,6 +179,10 @@ values prior to scoring.  Default = FALSE but may be TRUE for certain metrics.</
       <td><p>Should estuary/marine metrics be included.
 Ignored if fun.MetricNames is not null. Default = FALSE.</p></td>
     </tr>
+    <tr>
+      <th>boo.Shiny</th>
+      <td><p>Boolean value for if the function is accessed via Shiny.  Default = FALSE.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -198,7 +203,7 @@ a benthic sample.  The target list will vary by program.  The non-target taxa
 will be removed prior to any calculations.</p>
 <p>Excluded taxa are ambiguous taxa (on a sample basis), i.e.,
 the parent taxa when child taxa are present.  For example, the parent taxa
-Chironomidae would be xcluded when the child taxa Tanytarsini is present.
+Chironomidae would be excluded when the child taxa Tanytarsini is present.
 Both would be excluded when Tanytarsus is present.  The markExcluded function
 can be used to populated this field.</p>
 <p>There are a number of required fields (see below) for metric to calculation.
@@ -240,9 +245,12 @@ a different set of tolerance values (TOLVAL2).</p>
 <p>If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated with that record.
 Other values for TAXAID with N_TAXA = 0 will be removed before calculations.</p>
 <p>For 'Oligochete' metrics either Class or Subclass is required for calculation.</p>
+<p>The parameter boo.Shiny can be set to TRUE when accessing this function in Shiny.
+Normally the QC check for required fields is interactive.  Setting boo.Shiny to TRUE
+will always continue.  The default is FALSE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example data</span>
+    <pre class="examples"><div class='input'><span class='co'># Example data (missing SubClass)</span>
 
 <span class='no'>df_metric_values_bugs</span> <span class='kw'>&lt;-</span> <span class='fu'>metric.values</span>(<span class='no'>data_benthos_PacNW</span>, <span class='st'>"bugs"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: Problem with `summarise()` input `nt_Oligo`.</span>
 #&gt; <span class='error'><span style='color: #BB0000;'>x</span><span> object 'SUBCLASS' not found</span>

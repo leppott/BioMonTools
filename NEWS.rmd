@@ -28,6 +28,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0 (2020-07-24)
+
+* Update to new version number.
+* Rebuild package down website.
+* Create new release on GitHub.
+
 ## Changes in Version 0.4.0.9025 (2020-07-24)
 
 * Remove extra file (metric.values.tsv) from root folder of package.
