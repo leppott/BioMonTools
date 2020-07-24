@@ -1,7 +1,7 @@
 Package: BioMonTools
 Type: Package
 Title: Tools for Biomonitoring and Bioassessment
-Version: 0.4.0.9022
+Version: 0.4.0.9024
 Author: c(
 	person("Erik W.", "Leppo", email="Erik.Leppo@tetratech.com",role=c("aut","cre")), 
 	person("Jen", "Stamp", role="ctb"),
@@ -15,8 +15,6 @@ License: MIT
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.3.3)
-URL: https://github.com/leppott/BioMonTools
-BugReports: https://github.com/leppott/BioMonTools/issues
 Imports:
     dplyr,
     knitr,
@@ -31,5 +29,7 @@ Suggests:
     reshape2,
     XLConnect,
     testthat
+URL: https://github.com/leppott/BioMonTools
+BugReports: https://github.com/leppott/BioMonTools/issues
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1

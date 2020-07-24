@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-23 10:56:14
+    #> Last Update: 2020-07-24 15:57:32
 
 # Planned Updates
 
@@ -17,6 +17,35 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.4.0.9024 (2020-07-23)
+
+  - Updates for MI index; Issue \#3
+      - metric.values.R
+          - Add pi\_IsopGastHiru
+          - Add pi\_EPTNoBaeHydro
+          - Add pi\_tv\_toler6
+          - Modified intol4 metrics from \<= to \<.
+          - Modified toler6 metrics from \>= to \>.
+      - MetricNames.xlsx
+          - Add missing metrics.
+          - Community name bmi to bugs.
+          - Modified text on intol4 and toler6 metrics.
+      - MetricScoring.xlsx
+          - Community names to bugs and fish on both tabs.
+  - Add test to for metric names, Community = bugs.
+      - metric.values and MetricNames.xlsx.
+      - MetricScoring.xlsx and MetricNames.xlsx
+      - MetricScroing.xlsx and metric.values()
+      - Resolved issues.
+  - Update dataset “data\_benthos\_PacNW”.
+      - Index\_Name had a number and was different on each line (Excel
+        autofill error).
+      - Last updated 0.4.0.9008 (2020-04-28).
+  - Update tests for metric.values calc.
+  - metric.values.R
+      - Modify NonTarget check for is.na() in cases where the column is
+        missing; Issue \#39
 
 ## Changes in Version 0.4.0.9022 (2020-07-23)
 
@@ -31,7 +60,7 @@ NEWS
 ## Changes in Version 0.4.0.9020 (2020-07-06)
 
   - metric.values, NonTarget still counted; Issue \#39
-      - Inadvertently removed in v0.3.3.917 (2020-02-24)
+      - Inadvertently removed in v0.3.3.9017 (2020-02-24)
 
 ## Changes in Version 0.4.0.9019 (2020-07-06)
 

@@ -498,7 +498,9 @@ metric.values.bugs <- function(myDF
 
   # Data Munging ####
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
-  myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE)
+  # Function fails if all NA (e.g., column was missing) (20200724)
+  myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
+
   # Convert values to upper case (FFG, Habit, Life_Cycle)
   myDF[, "HABIT"] <- toupper(myDF[, "HABIT"])
   myDF[, "FFG"] <- toupper(myDF[, "FFG"])
@@ -766,8 +768,8 @@ metric.values.bugs <- function(myDF
              # ,intolMol, ,
 
              # Percent Individuals####
-             , pi_Amp = NA #pi_Ampeliscidae
-             , pi_AmpHaust = NA
+             , pi_Ampe = NA #pi_Ampeliscidae
+             , pi_AmpeHaust = NA
              , pi_Amph = 100*sum(N_TAXA[ORDER == "Amphipoda"], na.rm=TRUE)/ni_total
              , pi_AmphIsop = 100*sum(N_TAXA[ORDER == "Amphipoda" |
                                          ORDER == "Isopoda"], na.rm=TRUE)/ni_total
@@ -794,10 +796,17 @@ metric.values.bugs <- function(myDF
                                              & (is.na(FAMILY)==TRUE | FAMILY != "Baetidae")]
                                       , na.rm=TRUE)/ni_total
              , pi_EPT = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
-                                         ORDER == "Trichoptera" | ORDER == "Plecoptera"], na.rm=TRUE)/ni_total
+                                         ORDER == "Trichoptera" | ORDER == "Plecoptera"]
+                                , na.rm=TRUE)/ni_total
+             , pi_EPTNoBaeHydro = 100*sum(N_TAXA[(ORDER == "Ephemeroptera" & (is.na(FAMILY)==TRUE | FAMILY != "Baetidae"))
+                                                 | (ORDER == "Trichoptera" & (is.na(FAMILY)==TRUE | FAMILY != "Hydropsychidae"))
+                                                 | ORDER == "Plecoptera"]
+                                          , na.rm=TRUE)/ni_total
+
              , pi_EPTNoCheu = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
                                      ORDER == "Trichoptera" | ORDER == "Plecoptera" &
-                                       (is.na(FAMILY)==TRUE | FAMILY != "Cheumatopsyche")], na.rm=TRUE)/ni_total
+                                       (is.na(FAMILY)==TRUE | FAMILY != "Cheumatopsyche")]
+                                     , na.rm=TRUE)/ni_total
              , pi_ET = 100*sum(N_TAXA[ORDER == "Ephemeroptera" |
                                          ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
              , pi_Gast = 100*sum(N_TAXA[CLASS == "Gastropoda"], na.rm=TRUE)/ni_total
@@ -808,6 +817,10 @@ metric.values.bugs <- function(myDF
              , pi_Hydro2Trich = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"], na.rm=TRUE)/ni_Trich
              , pi_Insect = 100*sum(N_TAXA[CLASS == "Insecta"], na.rm=TRUE)/ni_total
              , pi_Isop = 100*sum(N_TAXA[ORDER == "Isopoda"], na.rm=TRUE)/ni_total
+             , pi_IsopGastHiru = 100*sum(N_TAXA[ORDER == "Isopoda" |
+                                                  CLASS == "Gastropoda" |
+                                                  SUBCLASS == "Hirudinea"]
+                                         , na.rm=TRUE)/ni_total
              , pi_Lucin = 100*sum(N_TAXA[FAMILY == "Lucinidae"], na.rm=TRUE)/ni_total
              , pi_LucinTellin = 100*sum(N_TAXA[FAMILY == "Lucinidae" | FAMILY == "Tellinidae"], na.rm=TRUE)/ni_total
              , pi_Mega = 100*sum(N_TAXA[ORDER == "Megaloptera"], na.rm=TRUE)/ni_total
@@ -916,9 +929,8 @@ metric.values.bugs <- function(myDF
              #,nt_Ortho (Marine)
              #MB_pi_OrthocladiinaeCricotopusChironomus2Chironomidae
              # rt_Chiro, Ortho, Tanyt
-             , pi_ChiroAnne = 100*sum(N_TAXA[PHYLUM == "Annelida" | FAMILY == "Chironomidae"], na.rm=TRUE)/ni_total
-
-
+             , pi_ChiroAnne = 100*sum(N_TAXA[PHYLUM == "Annelida"
+                                             | FAMILY == "Chironomidae"], na.rm=TRUE)/ni_total
 
 
 
@@ -1022,18 +1034,21 @@ metric.values.bugs <- function(myDF
 
 
              # Tolerance ####
+             # 4 and 6 are WV GLIMPSS (no equal)
              , nt_tv_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=0 & TOLVAL<=3], na.rm=TRUE)
-             , nt_tv_intol4 = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=0 & TOLVAL<=4], na.rm=TRUE)
+             , nt_tv_intol4 = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=0 & TOLVAL<4], na.rm=TRUE)
              , nt_tv_toler = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & TOLVAL>=7 & TOLVAL<=10], na.rm=TRUE)
              , pi_tv_intol = 100*sum(N_TAXA[TOLVAL>=0  & TOLVAL<=3], na.rm=TRUE)/ni_total
-             , pi_tv_intol4 = 100*sum(N_TAXA[TOLVAL>=0  & TOLVAL<=4], na.rm=TRUE)/ni_total
+             , pi_tv_intol4 = 100*sum(N_TAXA[TOLVAL>=0  & TOLVAL<4], na.rm=TRUE)/ni_total
              , pi_tv_toler = 100*sum(N_TAXA[TOLVAL>=7  & TOLVAL<=10], na.rm=TRUE)/ni_total
+             , pi_tv_toler6 = 100*sum(N_TAXA[TOLVAL>6  & TOLVAL<=10], na.rm=TRUE)/ni_total
              , pt_tv_intol = 100*nt_tv_intol/nt_total
              , pt_tv_intol4 = 100*nt_tv_intol4/nt_total
              , pt_tv_toler = 100*nt_tv_toler/nt_total
              #,nt_tvfam_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & FAM_TV<=3 & !is.na(FAM_TV)])
              # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, in Pct Ind group
              # nt_intMol (for marine)
+             # intol4_EPT is PA not WV so [0-4].
              , nt_tv_intol4_EPT = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
                                                         & TOLVAL>=0
                                                         & TOLVAL<=4
@@ -1370,8 +1385,10 @@ metric.values.bugs <- function(myDF
 
   # # subset to only metrics specified by user
   if (is.null(MetricNames)) {
-    # removed marine only if MetrcNames not provided
-    met.val <- met.val[, !(names(met.val) %in% MetricNames_Marine)]
+    # remove marine if MetrcNames not provided and boo.marine = false (default)
+    if(boo.marine == FALSE){
+      met.val <- met.val[, !(names(met.val) %in% MetricNames_Marine)]
+    }## IF ~ boo.marine ~ END
   } else {
     met2include <- MetricNames[!(MetricNames %in% "ni_total")]
     # remove ni_total if included as will always include it
