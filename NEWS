@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-24 16:31:44
+    #> Last Update: 2020-08-11 09:07:21
 
 # Planned Updates
 
@@ -17,6 +17,25 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9004 (2020-08-11)
+
+  - Update NEWS for pull request.
+  - Update notes in MetricScoring.xlsx
+
+## Changes in Version 0.5.0.9003 (2020-08-11)
+
+  - Merged Pull Request \#44 (0.5.0.9001 and 9002)
+
+## Changes in Version 0.5.0.9002 (2020-08-10)
+
+  - MetricScoring.xlsx
+      - Updated MI narratives.
+
+## Changes in Version 0.5.0.9001 (2020-08-03)
+
+  - MetricScoring.xlsx
+      - Changed MI narratives and fixed NumMetrics error for MI - East.
 
 ## Changes in Version 0.5.0 (2020-07-24)
 
