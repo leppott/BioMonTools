@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-09-04 09:12:11
+    #> Last Update: 2020-09-04 10:04:24
 
 # Planned Updates
 
@@ -17,6 +17,11 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9007 (2020-09-04)
+
+  - MetricScoring.xlsx
+      - Update MassDEP\_2019\_Bugs, Issue \#3.
 
 ## Changes in Version 0.5.0.9006 (2020-09-04)
 
