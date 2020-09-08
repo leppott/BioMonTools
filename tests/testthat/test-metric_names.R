@@ -12,7 +12,7 @@ test_that("metric.values, names, bugs, Function, xlNames", {
   metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"]=="bugs", "METRIC_NAME", drop = TRUE]
 
   # Function
-  df_metval <- suppressWarnings(suppressMessages(metric.values(data_benthos_PacNW, "bugs", boo.marine = TRUE, boo.Shiny = TRUE)))
+  df_metval <- suppressWarnings(suppressMessages(BioMonTools::metric.values(BioMonTools::data_benthos_PacNW, "bugs", boo.marine = TRUE, boo.Shiny = TRUE)))
   metnam_fun <- colnames(df_metval)[-c(1:3)] # remove first 3 columns
 
   # Check
@@ -70,7 +70,7 @@ test_that("metric.values, names, bugs, Function, Names", {
   metnam_xlScoring <- unique(df_metnam_xlScoring[df_metnam_xlScoring[, "Community"]=="bugs", "METRIC_NAME", drop = TRUE])
 
   # Function
-  df_metval <- suppressWarnings(suppressMessages(metric.values(data_benthos_PacNW, "bugs", boo.marine = TRUE, boo.Shiny = TRUE)))
+  df_metval <- suppressWarnings(suppressMessages(BioMonTools::metric.values(BioMonTools::data_benthos_PacNW, "bugs", boo.marine = TRUE, boo.Shiny = TRUE)))
   metnam_fun <- colnames(df_metval)[-c(1:3)] # remove first 3 columns
 
   # Check

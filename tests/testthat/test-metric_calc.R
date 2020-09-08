@@ -150,7 +150,7 @@ test_that("metric.values, PA Freestone IBI", {
   df_bugs <- data.frame(SAMPLEID, STRAHLER, DA_MI2, INDEX_NAME, INDEX_REGION
                         , TAXAID, N_TAXA, TOLVAL, ORDER, EXCLUDE)
   # metric values
-  df_metval <- suppressMessages(suppressWarnings(metric.values(df_bugs, "bugs", boo.Shiny = TRUE)))
+  df_metval <- suppressMessages(suppressWarnings(BioMonTools::metric.values(df_bugs, "bugs", boo.Shiny = TRUE)))
   #1
 
   # df, calc
@@ -183,8 +183,8 @@ test_that("metric.values, PA Freestone IBI", {
 
   # Thresholds
   fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
-  df_thresh_metric <- read_excel(fn_thresh, sheet="metric.scoring")
-  df_thresh_index <- read_excel(fn_thresh, sheet="index.scoring")
+  df_thresh_metric <- readxl::read_excel(fn_thresh, sheet="metric.scoring")
+  df_thresh_index <- readxl::read_excel(fn_thresh, sheet="index.scoring")
 
   myIndex <- "PADEP_Freestone"
   (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
@@ -193,7 +193,7 @@ test_that("metric.values, PA Freestone IBI", {
   df_metval_calc[, "INDEX_NAME"] <- "PADEP_Freestone"
   df_metval_calc[, "INDEX_REGION"] <- c("LARGE", "SMALL")
 
-  df_metsc_calc <- metric.scores(df_metval_calc, myMetrics.Bugs, "INDEX_NAME", "INDEX_REGION"
+  df_metsc_calc <- BioMonTools::metric.scores(df_metval_calc, myMetrics.Bugs, "INDEX_NAME", "INDEX_REGION"
                             , df_thresh_metric, df_thresh_index)
   # For report all numbers rounded
   df_metsc_calc[, 10:17] <- round(df_metsc_calc[, 10:17], 1)
@@ -227,7 +227,7 @@ test_that("metric.scores, WV GLIMPSS MT_SP", {
   #http://dep.wv.gov/WWE/watershed/bio_fish/Documents/20110829GLIMPSSFinalWVDEP.pdf
 
   # Packages
-  #library(readxl)
+  library(readxl)
 
   # Create Data
   ## Table D-1
@@ -316,7 +316,7 @@ test_that("metric.scores, WV GLIMPSS MT_SP", {
     , "INDEX_NAME"]==myIndex, "METRIC_NAME"]))
 
 
-  df_metsc_calc <- metric.scores(df_metval
+  df_metsc_calc <- BioMonTools::metric.scores(df_metval
                                 , metric_nam[-1]
                                 , "INDEX_NAME"
                                 , "INDEX_REGION"
