@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-09-04 10:04:24
+    #> Last Update: 2020-10-05 11:38:35
 
 # Planned Updates
 
@@ -17,6 +17,11 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9008 (2020-10-05)
+
+  - MetricScoring.xlsx
+      - Update GADNR\_Fish\_2020, Issue \#3.
 
 ## Changes in Version 0.5.0.9007 (2020-09-04)
 
