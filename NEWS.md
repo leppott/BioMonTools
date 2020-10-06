@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-10-06 12:19:01
+    #> Last Update: 2020-10-06 12:29:47
 
 # Planned Updates
 
@@ -18,12 +18,17 @@ NEWS
 
 # Version History
 
-## Changes in Version 0.5.0.9009 (2020-10-05)
+## Changes in Version 0.5.0.9010 (2020-10-06)
 
   - MetricScoring.xlsx
       - Update GADNR\_Fish\_2020, Issue \#3.
 
-## Changes in Version 0.5.0.9009 (2020-10-05)
+## Changes in Version 0.5.0.9009 (2020-10-06)
+
+  - MetricScoring.xlsx
+      - Update GADNR\_Fish\_2020, Issue \#3.
+
+## Changes in Version 0.5.0.9008 (2020-10-05)
 
   - MetricScoring.xlsx
       - Update GADNR\_Fish\_2020, Issue \#3.
