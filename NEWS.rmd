@@ -28,7 +28,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
-## Changes in Version 0.5.0.9008 (2020-10-05)
+## Changes in Version 0.5.0.9009 (2020-10-05)
+
+* MetricScoring.xlsx
+    + Update GADNR_Fish_2020, Issue #3.
+
+## Changes in Version 0.5.0.9009 (2020-10-05)
 
 * MetricScoring.xlsx
     + Update GADNR_Fish_2020, Issue #3.
