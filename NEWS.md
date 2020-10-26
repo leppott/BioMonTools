@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-10-06 12:29:47
+    #> Last Update: 2020-10-26 16:21:39
 
 # Planned Updates
 
@@ -17,6 +17,13 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9011 (2020-10-26)
+
+  - MetricScoring.xlsx
+      - Add MA indices, Issue \#3.
+  - test-metric\_calc.R
+      - Update for MA indices.
 
 ## Changes in Version 0.5.0.9010 (2020-10-06)
 

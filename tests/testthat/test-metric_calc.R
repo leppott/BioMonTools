@@ -1,5 +1,5 @@
-# metric.values, PA Freestone IBI ####
-test_that("metric.values, PA Freestone IBI", {
+# met val/sc, PA Freestone IBI ####
+test_that("metric values/scores, PA Freestone IBI", {
   SAMPLEID <- c(rep("DriftwoodBr", 31), rep("WestBr", 15))
   STRAHLER <- c(rep(5, 31), rep(1, 15))
   DA_MI2 <- c(rep(84.5, 31), rep(0.3, 15))
@@ -222,8 +222,8 @@ test_that("metric.values, PA Freestone IBI", {
 })## Test - PA Freestone ~ END
 
 
-# metric.scores, WV GLIMPSS MT_SP ####
-test_that("metric.scores, WV GLIMPSS MT_SP", {
+# metric scores, WV GLIMPSS MT_SP ####
+test_that("metric scores, WV GLIMPSS MT_SP", {
   #http://dep.wv.gov/WWE/watershed/bio_fish/Documents/20110829GLIMPSSFinalWVDEP.pdf
 
   # Packages
