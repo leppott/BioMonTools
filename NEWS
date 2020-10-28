@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-10-26 16:21:39
+    #> Last Update: 2020-10-28 11:39:48
 
 # Planned Updates
 
@@ -17,6 +17,28 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9012 (2020-10-28)
+
+  - MetricScoring.xlsx, Issue \#3
+      - Update MassDEP and SNEP index scoring
+      - Replace “.” with "\_"; MBSS\_2005\_Bugs, MSW\_1999\_Bugs,
+        MBSS\_2005\_Fish, BCG\_PacNW\_L1
+      - Remove NMSCI\_2006 as had index scoring but not metric scroing.
+  - Update tests.
+      - Rename “test” files.
+      - Update tests to pass.
+  - Rename R function files with "\_" rather than “.”.
+  - metric\_scores.R
+      - Update examples from “.” to "\_".
+      - Change MBSStools::taxa\_bugs\_genus to internal data
+        taxa\_benthos\_MBSS.
+  - Add new data taxa\_benthos\_MBSS from MBSStools::taxa\_bugs\_genus,
+    Issue \#32
+      - Add ProcessData\_benthos\_MBSS.R to data-raw.
+      - Add to data.R
+  - MetricFlags.xlsx
+      - MBSS.2005.Bugs to MBSS\_2005\_Bugs
 
 ## Changes in Version 0.5.0.9011 (2020-10-26)
 

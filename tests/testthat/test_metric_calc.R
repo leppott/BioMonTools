@@ -1,4 +1,5 @@
-# met val/sc, PA Freestone IBI ####
+# met val, PA Freestone IBI ####
+# met sc, PA Freestone IBI ####
 test_that("metric values/scores, PA Freestone IBI", {
   SAMPLEID <- c(rep("DriftwoodBr", 31), rep("WestBr", 15))
   STRAHLER <- c(rep(5, 31), rep(1, 15))
@@ -149,9 +150,48 @@ test_that("metric values/scores, PA Freestone IBI", {
   EXCLUDE <- rep(FALSE, 46)
   df_bugs <- data.frame(SAMPLEID, STRAHLER, DA_MI2, INDEX_NAME, INDEX_REGION
                         , TAXAID, N_TAXA, TOLVAL, ORDER, EXCLUDE)
+
+  # Add extra columns
+  col_extra <- c("NONTARGET"
+                 , "PHYLUM"
+                 , "SUBPHYLUM"
+                 , "CLASS"
+                 , "SUBCLASS"
+                 , "INFRAORDER"
+                 , "FAMILY"
+                 , "SUBFAMILY"
+                 , "TRIBE"
+                 , "GENUS"
+                 , "FFG"
+                 , "HABIT"
+                 , "LIFE_CYCLE"
+                 , "BCG_ATTR"
+                 , "THERMAL_INDICATOR"
+                 , "LONGLIVED"
+                 , "NOTEWORTHY"
+                 , "FFG2"
+                 , "TOLVAL2"
+                 , "HABITAT")
+  df_bugs[, col_extra] <- NA
+  df_bugs[, "NONTARGET"] <- FALSE
+
+  # ADD extra row for EXCLUDE = TRUE
+  df_bugs[nrow(df_bugs) + 1, ] <- NA
+  df_bugs[nrow(df_bugs), "SAMPLEID"] <- "Test_Remove"
+  df_bugs[nrow(df_bugs), "INDEX_NAME"] <- "PADEP_Freestone"
+  df_bugs[nrow(df_bugs), "INDEX_REGION"] <- "large"
+  df_bugs[nrow(df_bugs), "TAXAID"] <- "Test_Remove"
+  df_bugs[nrow(df_bugs), "N_TAXA"] <- 999
+  df_bugs[nrow(df_bugs), "EXCLUDE"] <- TRUE
+
   # metric values
-  df_metval <- suppressMessages(suppressWarnings(BioMonTools::metric.values(df_bugs, "bugs", boo.Shiny = TRUE)))
-  #1
+  df_metval <- BioMonTools::metric.values(df_bugs, "bugs", boo.Shiny = TRUE)
+  # get warnings and test fail if don't put in dummy data to fool test
+
+  # REMOVE extra row for EXCLUDE = TRUE
+  df_metval <- df_metval[df_metval[, "SAMPLEID"] != "Test_Remove", ]
+  # redo row numbers for expect_equal()
+  rownames(df_metval) <- 1:nrow(df_metval)
 
   # df, calc
   col_qc <- c("SAMPLEID", "nt_total", "nt_tv_intol4_EPT", "x_Becks3", "x_HBI"
@@ -179,7 +219,7 @@ test_that("metric values/scores, PA Freestone IBI", {
 
   # Metric.Scores
 
-  library(readxl)
+  #library(readxl)
 
   # Thresholds
   fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
@@ -221,8 +261,8 @@ test_that("metric values/scores, PA Freestone IBI", {
 
 })## Test - PA Freestone ~ END
 
-
-# metric scores, WV GLIMPSS MT_SP ####
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# met sc, WV GLIMPSS MT_SP ####
 test_that("metric scores, WV GLIMPSS MT_SP", {
   #http://dep.wv.gov/WWE/watershed/bio_fish/Documents/20110829GLIMPSSFinalWVDEP.pdf
 
@@ -384,3 +424,4 @@ test_that("metric scores, WV GLIMPSS MT_SP", {
   testthat::expect_equal(x, y)
 
 })## Test ~ WV GLIMPSS ~ END
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

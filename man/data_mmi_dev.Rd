@@ -12,7 +12,7 @@ A data frame with 10,574 observations on the following 10 variables.
    \item{\code{Ref_v1}}{a character vector}
    \item{\code{CalVal_Class4}}{a character vector}
    \item{\code{Unique_ID}}{a character vector}
-  \item{\code{BenSampID}}{a character vector}
+   \item{\code{BenSampID}}{a character vector}
    \item{\code{CollDate}}{a character vector}
    \item{\code{CollMeth}}{a character vector}
    \item{\code{TaxaID}}{a character vector}

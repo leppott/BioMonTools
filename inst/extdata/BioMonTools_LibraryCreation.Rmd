@@ -118,7 +118,7 @@ devtools::run_examples(pkg=pkg)
 Use promptData to get data.r listing for columns.  Short cuts creating documentation.
 
 ```{r DocData}
-promptData(data_benthos_PacNW)
+promptData(data_benthos_MBSS)
 ```
 
 ## Check

@@ -28,6 +28,25 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9012 (2020-10-28)
+
+* MetricScoring.xlsx, Issue #3
+    + Update MassDEP and SNEP index scoring
+    + Replace "." with "_"; MBSS_2005_Bugs, MSW_1999_Bugs, MBSS_2005_Fish, BCG_PacNW_L1
+    + Remove NMSCI_2006 as had index scoring but not metric scroing.
+* Update tests.
+    + Rename "test" files.
+    + Update tests to pass.
+* Rename R function files with "_" rather than ".".
+* metric_scores.R
+    + Update examples from "." to "_".
+    + Change MBSStools::taxa_bugs_genus to internal data taxa_benthos_MBSS.
+* Add new data taxa_benthos_MBSS from MBSStools::taxa_bugs_genus, Issue #32
+    + Add ProcessData_benthos_MBSS.R to data-raw.
+    + Add to data.R
+* MetricFlags.xlsx
+    + MBSS.2005.Bugs to MBSS_2005_Bugs
+
 ## Changes in Version 0.5.0.9011 (2020-10-26)
 
 * MetricScoring.xlsx

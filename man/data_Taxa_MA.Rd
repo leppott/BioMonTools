@@ -31,6 +31,6 @@ example data
 data_Taxa_MA
 }
 \description{
-A dataset with example taxa data and locations for mapping.
+A dataset with example fish taxa data and locations for mapping.
 }
 \keyword{datasets}

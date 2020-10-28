@@ -1,4 +1,5 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_bio2rarify" ####
 #' @title rarify example data
 #'
 #' @description A dataset with example benthic macroinvertebrate data (600 count)
@@ -13,9 +14,10 @@
 #' @source example data
 "data_bio2rarify"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_fish_MA" ####
 #' @title Estuary taxa data
 #'
-#' @description A dataset with example taxa data and locations for mapping.
+#' @description A dataset with example fish taxa data and locations for mapping.
 #'
 #' @format A data frame with 2,675 observations on the following 15 variables.
 #' \describe{
@@ -38,7 +40,8 @@
 #' @source example data
 "data_Taxa_MA"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' @title Pacific Northwest benthic macroinvertebrate taxa data
+# "data_benthos_PacNW" ####
+#' @title Benthic macroinvertebrate taxa data; Pacific Northwest
 #'
 #' @description A dataset with example taxa data and attributes for calculating metric values.
 #'
@@ -77,6 +80,7 @@
 #' @source example data
 "data_benthos_PacNW"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_mmi_dev" ####
 #' @title Metric data for metric stats for mmi development
 #'
 #' @description A data set with example benthic macroinvertebrate data.
@@ -89,7 +93,7 @@
 #'    \item{\code{Ref_v1}}{a character vector}
 #'    \item{\code{CalVal_Class4}}{a character vector}
 #'    \item{\code{Unique_ID}}{a character vector}
-#'   \item{\code{BenSampID}}{a character vector}
+#'    \item{\code{BenSampID}}{a character vector}
 #'    \item{\code{CollDate}}{a character vector}
 #'    \item{\code{CollMeth}}{a character vector}
 #'    \item{\code{TaxaID}}{a character vector}
@@ -98,3 +102,36 @@
 #'  }
 #' @source example data
 "data_mmi_dev"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_benthos_MBSS" ####
+#' @title Benthic macroinvertebrate taxa data; MBSS
+#'
+#' @description A data set with example benthic macroinvertebrate data.
+#' Calculate metrics then statistics.  Data from MBSS.
+#'
+#' @format A data frame with 50,664 observations on the following 20 variables.
+#'
+#'  \describe{
+#'   \item{\code{Index.Name}}{a character vector}
+#'   \item{\code{SITE}}{a character vector}
+#'   \item{\code{DATE}}{a character vector}
+#'   \item{\code{TAXON}}{a character vector}
+#'   \item{\code{N_TAXA}}{a numeric vector, count}
+#'   \item{\code{N_GRIDS}}{a numeric vector, number of grids in subsample (max = 30)}
+#'   \item{\code{EXCLUDE}}{a character vector, whether taxon should be excluded from taxa richness metrics}
+#'   \item{\code{strata_r}}{a character vector, index region}
+#'   \item{\code{Phylum}}{a character vector}
+#'   \item{\code{Class}}{a character vector}
+#'   \item{\code{Order}}{a character vector}
+#'   \item{\code{Family}}{a character vector}
+#'   \item{\code{Genus}}{a character vector}
+#'   \item{\code{Other_Taxa}}{a character vector}
+#'   \item{\code{Tribe}}{a character vector}
+#'   \item{\code{FFG}}{a character vector}
+#'   \item{\code{FAM_TV}}{a numeric vector}
+#'   \item{\code{Habit}}{a character vector}
+#'   \item{\code{FinalTolVal07}}{a numeric vector}
+#'   \item{\code{FinalTolVal08}}{a numeric vector}
+#'  }
+#' @source example data from MBSS
+"data_benthos_MBSS"

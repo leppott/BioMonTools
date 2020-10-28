@@ -3,7 +3,7 @@
 \docType{data}
 \name{data_benthos_PacNW}
 \alias{data_benthos_PacNW}
-\title{Pacific Northwest benthic macroinvertebrate taxa data}
+\title{Benthic macroinvertebrate taxa data; Pacific Northwest}
 \format{
 A data frame with 598 observations on the following 29 variables.
 \describe{
