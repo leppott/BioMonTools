@@ -87,7 +87,8 @@
 #' # Thresholds
 #' # imported above
 #' # get metric names for myIndex
-#' (myMetrics_Bugs_MBSS <- unique(df_thresh_metric[df_thresh_metric[, "INDEX_NAME"] == myIndex, "METRIC_NAME", TRUE]))
+#' (myMetrics_Bugs_MBSS <- unique(df_thresh_metric[df_thresh_metric[, "INDEX_NAME"]
+#'                                == myIndex, "METRIC_NAME", TRUE]))
 #' # Taxa Data
 #' myDF_Bugs_MBSS <- data_benthos_MBSS
 #' myDF_Bugs_MBSS$NONTARGET <- FALSE

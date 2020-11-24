@@ -1480,7 +1480,7 @@ metric.values.fish <- function(myDF
     summarize(n =n()
               , n_distinct = n_distinct(N_ANOMALIES, na.rm = TRUE)
               , mean = mean(N_ANOMALIES, na.rm = TRUE)
-              , sd = sd(N_ANOMALIES, na.rm = TRUE)
+              , sd = stats::sd(N_ANOMALIES, na.rm = TRUE)
               , sum = sum(N_ANOMALIES, na.rm = TRUE))
   stats_anom[, "SUM_ANOMALIES"] <- stats_anom[, "mean"] / stats_anom[, "n"]
   # make change;  n > 1 & n_distinct == 1

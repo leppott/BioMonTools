@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-11-24 11:44:00
+    #> Last Update: 2020-11-24 11:55:04
 
 # Planned Updates
 
@@ -17,6 +17,14 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9015 (2020-11-24)
+
+  - Check
+      - Shorten lines longer than 100 characters.
+          - markExcluded.R
+          - metric\_scores.R
+      - Add stats to DESCRIPTION, IMPORTS
 
 ## Changes in Version 0.5.0.9014 (2020-11-24)
 

@@ -28,6 +28,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9015 (2020-11-24)
+
+* Check
+    + Shorten lines longer than 100 characters.
+        - markExcluded.R
+        - metric_scores.R
+    + Add stats to DESCRIPTION, IMPORTS
+
 ## Changes in Version 0.5.0.9014 (2020-11-24)
 
 * metric_scores.R
