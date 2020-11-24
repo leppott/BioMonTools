@@ -100,6 +100,12 @@ pkgdown::build_site()
 ```
 
 
+**code coverage**
+```{r CodeCoverage}
+#library(covr)
+covr::report()
+```
+
 
 ### Run All Examples
 Run all examples at once rather than going to each function individually.

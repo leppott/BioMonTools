@@ -127,7 +127,8 @@ test_that("metric.scores, index, number metrics", {
   df_indsc<- readxl::read_excel(fn_xlScoring, sheet="index.scoring")
   # Number of metrics by index name and region
   df_indsc_cnt_met <- df_indsc %>%
-    dplyr::filter(ScoreRegime == "AVERAGE" | ScoreRegime == "SUM") %>%
+    dplyr::filter(ScoreRegime == "AVERAGE" | ScoreRegime == "SUM"
+                  | ScoreRegime == "AVERAGE_10" | ScoreRegime == "AVERAGE_20") %>%
     dplyr::select(INDEX_NAME, INDEX_REGION, NumMetrics)
 
   # Merge

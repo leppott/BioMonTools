@@ -28,6 +28,19 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9013 (2020-11-24)
+
+* MetricScoring.xlsx, Issue #3
+    + Add Fairfax County, VA
+* MetricNames.xlsx
+    + Add 2 new metrics for Fairfax Co.
+    + Rename pi_TricNoHydro to pi_TrichNoHydro
+* metric_values.R
+    + Add x_HBI2
+    + Add pi_habit_cling_PlecoNoCling
+    + Rename pi_TricNoHydro to pi_TrichNoHydro
+* Update Test for number metric names for scoring index.
+
 ## Changes in Version 0.5.0.9012 (2020-10-28)
 
 * MetricScoring.xlsx, Issue #3

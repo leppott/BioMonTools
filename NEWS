@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-10-28 11:39:48
+    #> Last Update: 2020-11-24 11:17:29
 
 # Planned Updates
 
@@ -17,6 +17,19 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9013 (2020-11-24)
+
+  - MetricScoring.xlsx, Issue \#3
+      - Add Fairfax County, VA
+  - MetricNames.xlsx
+      - Add 2 new metrics for Fairfax Co.
+      - Rename pi\_TricNoHydro to pi\_TrichNoHydro
+  - metric\_values.R
+      - Add x\_HBI2
+      - Add pi\_habit\_cling\_PlecoNoCling
+      - Rename pi\_TricNoHydro to pi\_TrichNoHydro
+  - Update Test for number metric names for scoring index.
 
 ## Changes in Version 0.5.0.9012 (2020-10-28)
 

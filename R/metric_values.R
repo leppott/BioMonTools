@@ -841,7 +841,7 @@ metric.values.bugs <- function(myDF
              , pi_Spion2Poly = 100*sum(N_TAXA[CLASS == "Polychaeta" | FAMILY == "Spionidae"], na.rm=TRUE)/ni_total
              , pi_Tellin = 100*sum(N_TAXA[FAMILY == "Tellinidae"], na.rm=TRUE)/ni_total
              , pi_Trich = 100*sum(N_TAXA[ORDER == "Trichoptera"], na.rm=TRUE)/ni_total
-             , pi_TricNoHydro = 100*sum(N_TAXA[ORDER == "Trichoptera"
+             , pi_TrichNoHydro = 100*sum(N_TAXA[ORDER == "Trichoptera"
                                            & (is.na(FAMILY)==TRUE | FAMILY != "Hydropsychidae")]
                                     , na.rm=TRUE)/ni_total
              , pi_Tubif = 100*sum(N_TAXA[FAMILY == "Tubificidae"], na.rm=TRUE)/ni_total
@@ -1129,6 +1129,12 @@ metric.values.bugs <- function(myDF
              , pt_habit_cling = 100*nt_habit_cling/nt_total
              , pt_habit_sprawl = 100*nt_habit_sprawl/nt_total
              , pt_habit_swim = 100*nt_habit_swim/nt_total
+             ## Oddball
+             # might not need habit != cling for Pleco
+             , pi_habit_cling_PlecoNoCling = 100*sum(N_TAXA[HABIT_CN == TRUE |
+                                                 (ORDER == "Plecoptera" & HABIT_CN == FALSE)]
+                                                 , na.rm=TRUE)/ni_total
+
 
 
              # Life Cycle ####
@@ -1177,7 +1183,8 @@ metric.values.bugs <- function(myDF
             #,x_HBI_numer=sum(N_TAXA*TOLVAL, na.rm=TRUE)
              #,x_HBI_denom=sum(N_TAXA[!is.na(TOLVAL) & TOLVAL>=0], na.rm=TRUE)
              , x_HBI = sum(N_TAXA * TOLVAL, na.rm=TRUE)/sum(N_TAXA[!is.na(TOLVAL) & TOLVAL >= 0], na.rm=TRUE)
-             , x_NCBI = sum(N_TAXA * TOLVAL2, na.rm=TRUE)/sum(N_TAXA[!is.na(TOLVAL2) & TOLVAL2 >= 0], na.rm=TRUE)
+            , x_HBI2 = sum(N_TAXA * TOLVAL2, na.rm=TRUE)/sum(N_TAXA[!is.na(TOLVAL2) & TOLVAL2 >= 0], na.rm=TRUE)
+            , x_NCBI = sum(N_TAXA * TOLVAL2, na.rm=TRUE)/sum(N_TAXA[!is.na(TOLVAL2) & TOLVAL2 >= 0], na.rm=TRUE)
              # Shannon-Weiner
              #, x_Shan_Num= -sum(log(N_TAXA/ni_total)), na.rm=TRUE)
              #, x_Shan_e=x_Shan_Num/log(exp(1))
