@@ -28,6 +28,18 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9014 (2020-11-24)
+
+* metric_scores.R
+    * Add CONT_0010 scoring regime.
+    * Modify CONT_0100 to match CONT_0010 with score_max variable.
+    * Add index scoring regimes.
+        - AVERAGE_10
+        - AVERAGE_20
+* MetricScoring.xlsx
+    * FFXCOVA_2018, INDEX_REGION
+        - Triassic to Triassic Basin
+
 ## Changes in Version 0.5.0.9013 (2020-11-24)
 
 * MetricScoring.xlsx, Issue #3

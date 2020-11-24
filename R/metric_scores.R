@@ -279,12 +279,22 @@ metric.scores <- function(DF_Metrics
         #
         if(fun.ScoreRegime=="CONT_0100"){##IF.scoring.START
           # Cont_0100 ####
+          score_max <- 100
           if(fun.Direction=="DECREASE"){
-            fun.calc <- 100*((fun.Value-fun.Lo)/(fun.Hi-fun.Lo))
+            fun.calc <- score_max*((fun.Value-fun.Lo)/(fun.Hi-fun.Lo))
           }else if (fun.Direction=="INCREASE") {
-            fun.calc <- 100*((fun.Hi-fun.Value)/(fun.Hi-fun.Lo))
+            fun.calc <- score_max*((fun.Hi-fun.Value)/(fun.Hi-fun.Lo))
           }
-          fun.Result <- sapply(fun.calc, function(x) {stats::median(c(0, 100, x))})
+          fun.Result <- sapply(fun.calc, function(x) {stats::median(c(0, score_max, x))})
+        } else if(fun.ScoreRegime=="CONT_0010"){
+          # Cont_0010 ####
+          score_max <- 10
+          if(fun.Direction=="DECREASE"){
+            fun.calc <- score_max*((fun.Value-fun.Lo)/(fun.Hi-fun.Lo))
+          }else if (fun.Direction=="INCREASE") {
+            fun.calc <- score_max*((fun.Hi-fun.Value)/(fun.Hi-fun.Lo))
+          }
+          fun.Result <- sapply(fun.calc, function(x) {stats::median(c(0, score_max, x))})
         } else if(fun.ScoreRegime=="CAT_135"){
           # Cat_135 ####
           if(fun.Direction=="DECREASE") {
@@ -536,9 +546,16 @@ metric.scores <- function(DF_Metrics
     fun.Value <- DF_Metrics[, "sum_Index"]
     fun.Result <- fun.Value * NA  #default value of NA
     #
+    # Score Regime, INDEX ####
     # Scoring
-    if(fun.ScoreRegime=="AVERAGE"){##IF.scoring.START
+    if(fun.ScoreRegime == "AVERAGE"){##IF.scoring.START
       fun.Result <- DF_Metrics[, "sum_Index"] / fun.NumMetrics
+    } else if (fun.ScoreRegime == "AVERAGE_10"){
+      sr_mult    <- 10
+      fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
+    } else if (fun.ScoreRegime == "AVERAGE_20"){
+      sr_mult    <- 20
+      fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
     } else {
       # SUM
       fun.Result <- DF_Metrics[, "sum_Index"]

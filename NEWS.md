@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-11-24 11:17:29
+    #> Last Update: 2020-11-24 11:44:00
 
 # Planned Updates
 
@@ -17,6 +17,18 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9014 (2020-11-24)
+
+  - metric\_scores.R
+      - Add CONT\_0010 scoring regime.
+      - Modify CONT\_0100 to match CONT\_0010 with score\_max variable.
+      - Add index scoring regimes.
+          - AVERAGE\_10
+          - AVERAGE\_20
+  - MetricScoring.xlsx
+      - FFXCOVA\_2018, INDEX\_REGION
+          - Triassic to Triassic Basin
 
 ## Changes in Version 0.5.0.9013 (2020-11-24)
 
