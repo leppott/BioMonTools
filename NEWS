@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-11-24 11:55:04
+    #> Last Update: 2020-11-30 08:13:59
 
 # Planned Updates
 
@@ -17,6 +17,14 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9016 (2020-11-30)
+
+  - Change index scoring regimes.
+      - Replace AVERAGE\_10 and AVERAGE\_20 with AVERAGE\_100
+          - Use number of metrics for the scaling to 100.
+          - metric\_scores.R
+          - MetricScoring.xlsx, FFXCOVA indices.
 
 ## Changes in Version 0.5.0.9015 (2020-11-24)
 

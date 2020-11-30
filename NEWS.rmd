@@ -28,6 +28,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9016 (2020-11-30)
+
+* Change index scoring regimes.
+    + Replace AVERAGE_10 and AVERAGE_20 with AVERAGE_100
+        - Use number of metrics for the scaling to 100.
+        - metric_scores.R
+        - MetricScoring.xlsx, FFXCOVA indices.
+
 ## Changes in Version 0.5.0.9015 (2020-11-24)
 
 * Check

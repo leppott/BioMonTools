@@ -7,9 +7,15 @@
 #'
 #' The R library dplyr is needed for this function.
 #'
-#' ScoreRegime for metrics is as above.  ScoreRegime for an index is "SUM" or "AVERAGE".
-#' That is, for SUM all metric scores are added together.  For AVERAGE all metric scores are averaged.
-#' In both cases a "sum_Index" field will be computed.
+#' For all ScoreRegime cases at the index level a "sum_Index" field is computed
+#' that is the sum of all metric scores.  Valid "ScoreRegime" values are:
+#'
+#' * SUM = all metric scores added together.
+#'
+#' * AVERAGE = all metric scores added and divided by the number of metrics.
+#' The index is on the same scale as the individual metric scores.
+#'
+#' * AVERAGE_100 = AVERAGE is scaled 0 to 100.
 #
 #' @param DF_Metrics Data frame of metric values (as columns), Index Name, and
 #' Index Region (strata).
@@ -551,11 +557,14 @@ metric.scores <- function(DF_Metrics
     # Scoring
     if(fun.ScoreRegime == "AVERAGE"){##IF.scoring.START
       fun.Result <- DF_Metrics[, "sum_Index"] / fun.NumMetrics
-    } else if (fun.ScoreRegime == "AVERAGE_10"){
-      sr_mult    <- 10
-      fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
-    } else if (fun.ScoreRegime == "AVERAGE_20"){
-      sr_mult    <- 20
+    # } else if (fun.ScoreRegime == "AVERAGE_10"){
+    #   sr_mult    <- 10
+    #   fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
+    # } else if (fun.ScoreRegime == "AVERAGE_20"){
+    #   sr_mult    <- 20
+    #   fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
+    } else if (fun.ScoreRegime == "AVERAGE_100"){
+      sr_mult    <- 100 / fun.NumMetrics
       fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
     } else {
       # SUM
