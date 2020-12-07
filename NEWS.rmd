@@ -28,6 +28,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9017 (2020-12-07)
+
+* MetricScoring.xlsx
+    + Modify MassDEP metrics and index scoring.
+* Update Test
+    + test_metric_names
+    + Update test for AVERAGE_10 and AVERAGE_20 to AVERAGE_100.
+
 ## Changes in Version 0.5.0.9016 (2020-11-30)
 
 * Change index scoring regimes.

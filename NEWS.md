@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-11-30 08:13:59
+    #> Last Update: 2020-12-07 16:38:30
 
 # Planned Updates
 
@@ -17,6 +17,14 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9017 (2020-12-07)
+
+  - MetricScoring.xlsx
+      - Modify MassDEP metrics and index scoring.
+  - Update Test
+      - test\_metric\_names
+      - Update test for AVERAGE\_10 and AVERAGE\_20 to AVERAGE\_100.
 
 ## Changes in Version 0.5.0.9016 (2020-11-30)
 
