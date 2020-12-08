@@ -28,6 +28,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9018 (2020-12-07)
+
+* MetricScoring.xlsx
+    + Fix two index threshold values with floating point errors; GBI_MS_2013
+* Update Test
+    + test_thresholds_numdigits
+    + Test for any values with more than 11 digits.
+
 ## Changes in Version 0.5.0.9017 (2020-12-07)
 
 * MetricScoring.xlsx

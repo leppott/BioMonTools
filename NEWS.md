@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-12-07 16:38:30
+    #> Last Update: 2020-12-07 20:53:02
 
 # Planned Updates
 
@@ -17,6 +17,15 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9018 (2020-12-07)
+
+  - MetricScoring.xlsx
+      - Fix two index threshold values with floating point errors;
+        GBI\_MS\_2013
+  - Update Test
+      - test\_thresholds\_numdigits
+      - Test for any values with more than 11 digits.
 
 ## Changes in Version 0.5.0.9017 (2020-12-07)
 
