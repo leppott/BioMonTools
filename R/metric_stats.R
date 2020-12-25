@@ -285,7 +285,7 @@ metric.stats <- function(fun.DF
     df_i_stats[, "Metric_Name"] <- rownames(df_i_stats)
     rownames(df_i_stats) <- c()
     # reorder columns
-    col_ordered <- c((length(col_StatNames)+1):length(colnames(df_i_stats)), 1:length(col_StatNames))
+    col_ordered <- c((length(col_StatNames)+1):length(colnames(df_i_stats)), seq_len(length(col_StatNames)))
     df_i_stats <- df_i_stats[, col_ordered]
 
     # Create DF to hold results

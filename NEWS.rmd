@@ -28,9 +28,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9024 (2020-12-25)
+
+* refactor: change 1:foo() to seq_len(foo())
+    + test_metric_calc
+    + metric_stats
+    + qc_checks
+
 ## Changes in Version 0.5.0.9023 (2020-12-25)
 
-* style: rafify, remove trailing ;
+* style: rarify, remove trailing ;
 
 ## Changes in Version 0.5.0.9022 (2020-12-25)
 

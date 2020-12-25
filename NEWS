@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-12-25 12:01:56
+    #> Last Update: 2020-12-25 12:13:31
 
 # Planned Updates
 
@@ -18,9 +18,16 @@ NEWS
 
 # Version History
 
+## Changes in Version 0.5.0.9024 (2020-12-25)
+
+  - refactor: change 1:foo() to seq\_len(foo())
+      - test\_metric\_calc
+      - metric\_stats
+      - qc\_checks
+
 ## Changes in Version 0.5.0.9023 (2020-12-25)
 
-  - style: rafify, remove trailing ;
+  - style: rarify, remove trailing ;
 
 ## Changes in Version 0.5.0.9022 (2020-12-25)
 

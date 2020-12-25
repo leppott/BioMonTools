@@ -191,7 +191,7 @@ test_that("metric values/scores, PA Freestone IBI", {
   # REMOVE extra row for EXCLUDE = TRUE
   df_metval <- df_metval[df_metval[, "SAMPLEID"] != "Test_Remove", ]
   # redo row numbers for expect_equal()
-  rownames(df_metval) <- 1:nrow(df_metval)
+  rownames(df_metval) <- seq_len(nrow(df_metval))
 
   # df, calc
   col_qc <- c("SAMPLEID", "nt_total", "nt_tv_intol4_EPT", "x_Becks3", "x_HBI"

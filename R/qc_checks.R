@@ -120,7 +120,7 @@ qc.checks <- function(df.metrics, df.checks, input.shape="wide"){##FUNCTION.STAR
   # eval(parse(text=x))
 
   # temporary (quick and dirty)
-  for (i in 1:nrow(df.merge)){
+  for (i in seq_len(nrow(df.merge))){
     df.merge[i, "EVAL"] <- eval(parse(text=df.merge[i, "EXPR"]))
   }
 
