@@ -3,18 +3,19 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2019-05-17 10:58:28
+    #> Last Update: 2020-12-25 11:45:00
 
-Suite of functions and tools for bioassessment and
-biomonitoring.
+Suite of functions and tools for bioassessment and biomonitoring.
 
 ## Badges
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/leppott/BioMonTools/graphs/commit-activity)
+[![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![GitHub
 license](https://img.shields.io/github/license/leppott/BioMonTools.svg)](https://github.com/leppott/BioMonTools/blob/master/LICENSE)
-[![Travis-CI Build
-Status](https://travis-ci.org/leppott/BioMonTools.svg?branch=master)](https://travis-ci.org/leppott/BioMonTools)
+
+[![R-CMD-check](https://github.com/leppott/BioMonTools/workflows/R-CMD-check/badge.svg)](https://github.com/leppott/BioMonTools/actions)
+
 [![GitHub
 issues](https://img.shields.io/github/issues/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/issues/)
 
