@@ -28,6 +28,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9023 (2020-12-25)
+
+* style: rafify, remove trailing ;
+
 ## Changes in Version 0.5.0.9022 (2020-12-25)
 
 * docs: Change to pkgdown from manual (docs in main branch) to GitHub Action (gh-pages branch)

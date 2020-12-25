@@ -66,45 +66,45 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
 rarify<-function(inbug, sample.ID, abund, subsiz, mySeed=NA){##FUNCTION.rarify.START
-  start.time=proc.time();
-  outbug<-inbug;
-  sampid<-unique(inbug[,sample.ID]);
-  nsamp<-length(sampid);
-  #parameters are set up;
-  #zero out all abundances in output data set;
-  outbug[,abund]<-0;
-  #loop over samples, rarify each one in turn;
+  start.time=proc.time()
+  outbug<-inbug
+  sampid<-unique(inbug[,sample.ID])
+  nsamp<-length(sampid)
+  #parameters are set up
+  #zero out all abundances in output data set
+  outbug[,abund]<-0
+  #loop over samples, rarify each one in turn
 
-  for(i in 1:nsamp) { ;
-    #extract current sample;
-    isamp<-sampid[i];
-    utils::flush.console();
-    #print(as.character(isamp));
-    onesamp<-inbug[inbug[,sample.ID]==isamp,];
-    onesamp<-data.frame(onesamp,row.id=seq(1,dim(onesamp)[[1]])); #add sequence numbers as a new column;
-    #expand the sample into a vector of individuals;
-    samp.expand<-rep(x=onesamp$row.id,times=onesamp[,abund]);
-    nbug<-length(samp.expand); #number of bugs in sample;
-    #vector of uniform random numbers;
+  for(i in 1:nsamp) {
+    #extract current sample
+    isamp<-sampid[i]
+    utils::flush.console()
+    #print(as.character(isamp))
+    onesamp<-inbug[inbug[,sample.ID]==isamp,]
+    onesamp<-data.frame(onesamp,row.id=seq(1,dim(onesamp)[[1]])) #add sequence numbers as a new column
+    #expand the sample into a vector of individuals
+    samp.expand<-rep(x=onesamp$row.id,times=onesamp[,abund])
+    nbug<-length(samp.expand) #number of bugs in sample
+    #vector of uniform random numbers
     if(!is.na(mySeed)) set.seed(mySeed)  #use seed if provided.
-    ranvec <- stats::runif(n=nbug);
-    #sort the expanded sample randomly;
-    samp.ex2<-samp.expand[order(ranvec)];
-    #keep only the first piece of ranvec, of the desired fixed count size;
-    #if there are fewer bugs than the fixed count size, keep them all;
-    if(nbug>subsiz){subsamp<-samp.ex2[1:subsiz]} else{subsamp<-samp.ex2};
-    #tabulate bugs in subsample;
-    subcnt<-table(subsamp);
-    #define new subsample frame and fill it with new reduced counts;
-    newsamp<-onesamp;
-    newsamp[,abund]<-0;
-    newsamp[match(newsamp$row.id,names(subcnt),nomatch=0)>0,abund]<-as.vector(subcnt);
-    outbug[outbug[,sample.ID]==isamp,abund]<-newsamp[,abund];
-  }; #end of sample loop;
+    ranvec <- stats::runif(n=nbug)
+    #sort the expanded sample randomly
+    samp.ex2<-samp.expand[order(ranvec)]
+    #keep only the first piece of ranvec, of the desired fixed count size
+    #if there are fewer bugs than the fixed count size, keep them all
+    if(nbug>subsiz){subsamp<-samp.ex2[1:subsiz]} else{subsamp<-samp.ex2}
+    #tabulate bugs in subsample
+    subcnt<-table(subsamp)
+    #define new subsample frame and fill it with new reduced counts
+    newsamp<-onesamp
+    newsamp[,abund]<-0
+    newsamp[match(newsamp$row.id,names(subcnt),nomatch=0)>0,abund]<-as.vector(subcnt)
+    outbug[outbug[,sample.ID]==isamp,abund]<-newsamp[,abund]
+  } #end of sample loop
 
-  elaps<-proc.time()-start.time;
+  elaps<-proc.time()-start.time
   cat(c("Rarify of samples complete. \n Number of samples = ",nsamp,"\n"))
   cat(c(" Execution time (sec) = ", elaps[1]))
   utils::flush.console()
-  return(outbug) #return subsampled data set as function value;
-} #end of function; ##FUNCTION.rarify.END
+  return(outbug) #return subsampled data set as function value
+} #end of function ##FUNCTION.rarify.END
