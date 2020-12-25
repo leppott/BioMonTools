@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-12-07 20:53:02
+    #> Last Update: 2020-12-25 11:42:14
 
 # Planned Updates
 
@@ -17,6 +17,12 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9019 (2020-12-25)
+
+  - ci: Change from TravisCI to GitHub Actions
+  - docs: ReadMe, Add CI badge
+  - docs: ReadMe, add lifecycle badge
 
 ## Changes in Version 0.5.0.9018 (2020-12-07)
 
