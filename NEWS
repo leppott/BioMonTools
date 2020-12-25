@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-12-25 11:48:53
+    #> Last Update: 2020-12-25 11:56:37
 
 # Planned Updates
 
@@ -17,6 +17,11 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9022 (2020-12-25)
+
+  - docs: Change to pkgdown from manual (docs in main branch) to GitHub
+    Action (gh-pages branch)
 
 ## Changes in Version 0.5.0.9021 (2020-12-25)
 
