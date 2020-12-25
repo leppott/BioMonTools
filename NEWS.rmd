@@ -28,6 +28,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9021 (2020-12-25)
+
+* docs: ReadMe, add badges for codefactor and codecov
+
 ## Changes in Version 0.5.0.9020 (2020-12-25)
 
 * docs: ReadMe, knit with updates from previous commit

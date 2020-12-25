@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-12-25 11:45:11
+    #> Last Update: 2020-12-25 11:48:53
 
 # Planned Updates
 
@@ -17,6 +17,10 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9021 (2020-12-25)
+
+  - docs: ReadMe, add badges for codefactor and codecov
 
 ## Changes in Version 0.5.0.9020 (2020-12-25)
 
