@@ -4,9 +4,11 @@ test_that("thresholds, num digits, index", {
   #library(readxl) # part of BioMonTools
 
   # Thresholds
-  fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
-  df_thresh_metric <- readxl::read_excel(fn_thresh, sheet="metric.scoring")
-  df_thresh_index <- readxl::read_excel(fn_thresh, sheet="index.scoring")
+  fn_thresh <- file.path(system.file(package = "BioMonTools")
+                         , "extdata"
+                         , "MetricScoring.xlsx")
+  df_thresh_metric <- readxl::read_excel(fn_thresh, sheet = "metric.scoring")
+  df_thresh_index <- readxl::read_excel(fn_thresh, sheet = "index.scoring")
 
   # Number of Characters (as character)
   index_thresh01 <- nchar(as.character(df_thresh_index$Thresh01))
@@ -51,4 +53,3 @@ test_that("thresholds, num digits, index", {
 })## Test ~ thresholds, num digits ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-

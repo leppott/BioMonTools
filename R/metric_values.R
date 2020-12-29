@@ -1688,13 +1688,19 @@ metric.values.fish <- function(myDF
 #
 #
 #' @export
-metric.values.algae <- function(myDF, MetricNames=NULL
+metric.values.algae <- function(myDF
+                                , MetricNames=NULL
                                 , boo.Adjust=FALSE
-                                , cols2keep=NULL){##FUNCTION.metric.values.algae.START
+                                , cols2keep=NULL){
+  ##FUNCTION ~ metric.values.algae ~ START
+
   # define pipe
   `%>%` <- dplyr::`%>%`
   # Calculate Metrics (could have used pipe, %>%)
-    met.val <- dplyr::summarise(dplyr::group_by(myDF, SampleID, "Index_Name", "Index_Type")
+    met.val <- dplyr::summarise(dplyr::group_by(myDF
+                                                , SampleID
+                                                , "Index_Name"
+                                                , "Index_Type")
                 #
                 # individuals, total
                 ,ni_total=sum(N_TAXA)

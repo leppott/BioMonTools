@@ -28,6 +28,17 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9027 (2020-12-29)
+
+* refactor: Add foo:: to missing functions
+    + ProcessData_TaxaMater_Ben_BCG_PacNW.R
+    + test_metric_calc.R
+* refactor: Trim lines to 80 characters
+
+## Changes in Version 0.5.0.9026 (2020-12-27)
+
+* refactor: Add foo:: to missing functions
+
 ## Changes in Version 0.5.0.9025 (2020-12-25)
 
 * ci: Add code coverage GitHub Action

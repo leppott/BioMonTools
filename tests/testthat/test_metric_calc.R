@@ -267,7 +267,7 @@ test_that("metric scores, WV GLIMPSS MT_SP", {
   #http://dep.wv.gov/WWE/watershed/bio_fish/Documents/20110829GLIMPSSFinalWVDEP.pdf
 
   # Packages
-  library(readxl)
+  #library(readxl)
 
   # Create Data
   ## Table D-1

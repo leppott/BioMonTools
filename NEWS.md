@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-12-25 19:41:42
+    #> Last Update: 2020-12-29 12:38:01
 
 # Planned Updates
 
@@ -17,6 +17,17 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9027 (2020-12-29)
+
+  - refactor: Add foo:: to missing functions
+      - ProcessData\_TaxaMater\_Ben\_BCG\_PacNW.R
+      - test\_metric\_calc.R
+  - refactor: Trim lines to 80 characters
+
+## Changes in Version 0.5.0.9026 (2020-12-27)
+
+  - refactor: Add foo:: to missing functions
 
 ## Changes in Version 0.5.0.9025 (2020-12-25)
 

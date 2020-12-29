@@ -253,7 +253,7 @@ metric.stats <- function(fun.DF
     metrics_min   <- sapply(df_i[, col_metrics], min, na.rm = TRUE)
     metrics_max   <- sapply(df_i[, col_metrics], max, na.rm = TRUE)
     metrics_mean  <- sapply(df_i[, col_metrics], mean, na.rm = TRUE)
-    metrics_median  <- sapply(df_i[, col_metrics], median, na.rm = TRUE)
+    metrics_median  <- sapply(df_i[, col_metrics], stats::median, na.rm = TRUE)
     metrics_range <- metrics_max - metrics_min
     metrics_sd    <- sapply(df_i[, col_metrics], sd, na.rm = TRUE)
     metrics_cv    <- metrics_sd / metrics_mean
@@ -261,7 +261,7 @@ metric.stats <- function(fun.DF
     # percentiles to run
     p=c(5, 10, 25, 50, 75, 90, 95)/100
     # percentiles
-    metrics_quantiles <- sapply(df_i[, col_metrics], quantile, probs=p, na.rm = TRUE)
+    metrics_quantiles <- sapply(df_i[, col_metrics], stats::quantile, probs=p, na.rm = TRUE)
     #
     metrics_all <- rbind(metrics_n, metrics_min, metrics_max, metrics_mean
                          , metrics_range, metrics_sd, metrics_cv, metrics_quantiles)

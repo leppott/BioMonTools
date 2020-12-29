@@ -26,7 +26,8 @@ MapTaxaObs(
 
 \item{TaxaID}{df_obs column name, Unique Taxa identifier}
 
-\item{TaxaCount}{df_obs column name, Number of individuals for TaxonID and SampID}
+\item{TaxaCount}{df_obs column name, Number of individuals for TaxonID and
+SampID}
 
 \item{Lat}{df_obs column name, Latitude}
 
@@ -48,19 +49,21 @@ MapTaxaObs(
 Taxa maps to user defined directory as jpg or pdf.
 }
 \description{
-Map taxonomic observations from a data frame.  Input a dataframe with SampID, TaxaID,
-TaxaCount, Latitude, and Longitude.
-Other arguments are format (jpg vs. pdf), file name prefix, and output directory.
-Files are saved with the prefix "map.taxa." by default.
+Map taxonomic observations from a data frame.  Input a dataframe with SampID,
+TaxaID, TaxaCount, Latitude, and Longitude. Other arguments are format (jpg
+vs. pdf), file name prefix, and output directory. Files are saved with the
+prefix "map.taxa." by default.
 }
 \details{
 The user will pass arguments for maps::map function that is used for the map.
-For example, 'database' and 'regions'.  Without these arguments no map will be created.
+For example, 'database' and 'regions'.  Without these arguments no map will
+be created.
 
 The map will have all points and colored points for each taxon.
 In addition the map will include the number of samples by taxon.
 
-The example data is fish but can be used for benthic macroinvertebrates as well.
+The example data is fish but can be used for benthic macroinvertebrates as
+well.
 
 The R package maps is required for this function.
 }
@@ -82,8 +85,16 @@ myYlim     <- c((41+(14/60)),(42+(53/60)))
 
 # Run function with extra arguments for map
 \dontrun{
-MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
-           , database="state", regions="massachusetts", xlim=myXlim, ylim=myYlim)
+MapTaxaObs(df_obs
+           , SampID
+           , TaxaID
+           , TaxaCount
+           , Lat
+           , Long
+           , database="state"
+           , regions="massachusetts"
+           , xlim=myXlim
+           , ylim=myYlim)
 }
 
 #Example #2

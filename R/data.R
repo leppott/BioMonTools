@@ -2,8 +2,8 @@
 # "data_bio2rarify" ####
 #' @title rarify example data
 #'
-#' @description A dataset with example benthic macroinvertebrate data (600 count)
-#' to be used with the rarify function.  Includes 12 samples.
+#' @description A dataset with example benthic macroinvertebrate data
+#' (600 count) to be used with the rarify function.  Includes 12 samples.
 #'
 #' @format A data frame with 223 rows and 28 variables:
 #' \describe{
@@ -21,9 +21,39 @@
 #'
 #' @format A data frame with 2,675 observations on the following 15 variables.
 #' \describe{
-#'  \item{\code{estuary}}{a factor with levels \code{BOSTON HARBOR} \code{BUZZARDS BAY} \code{CAPE COD BAY} \code{MASSACHUSETTS BAY} \code{WAQUOIT BAY}}
-#'  \item{\code{CommonName}}{a factor with levels \code{ALEWIFE} \code{AMERICAN EEL} \code{AMERICAN LOBSTER} \code{AMERICAN PLAICE} \code{AMERICAN SAND LANCE} \code{AMERICAN SHAD} \code{ATLANTIC COD} \code{ATLANTIC CROAKER} \code{ATLANTIC HERRING} \code{ATLANTIC MACKEREL} \code{ATLANTIC MENHADEN} \code{ATLANTIC ROCK CRAB} \code{ATLANTIC SALMON} \code{ATLANTIC STINGRAY} \code{ATLANTIC STURGEON} \code{ATLANTIC TOMCOD} \code{BAY ANCHOVY} \code{BAY SCALLOP} \code{BLACK DRUM} \code{BLACK SEA BASS} \code{BLUE CRAB} \code{BLUE MUSSEL} \code{BLUEBACK HERRING} \code{BLUEFISH} \code{BROWN SHRIMP} \code{BUTTERFISH} \code{CHANNEL CATFISH} \code{COWNOSE RAY} \code{CUNNER} \code{DAGGERBLADE GRASS SHRIMP} \code{EASTERN OYSTER} \code{FOURSPINE STICKLEBACK} \code{GOBIES} \code{GREEN CRAB} \code{GREEN SEA URCHIN} \code{GRUBBY} \code{HADDOCK} \code{HOGCHOKER} \code{JONAH CRAB} \code{KILLIFISHES} \code{LONGHORN SCULPIN} \code{MULLETS} \code{MUMMICHOG} \code{NINESPINE STICKLEBACK} \code{NORTHERN KINGFISH} \code{NORTHERN PIPEFISH} \code{NORTHERN SEAROBIN} \code{NORTHERN SHRIMP} \code{OCEAN POUT} \code{OYSTER TOADFISH} \code{PINFISH} \code{POLLOCK} \code{QUAHOG} \code{RAINBOW SMELT} \code{RED DRUM} \code{RED HAKE} \code{ROCK GUNNEL} \code{SCUP} \code{SEA SCALLOP} \code{SEVENSPINE BAY SHRIMP} \code{SHEEPSHEAD MINNOW} \code{SHORTHORN SCULPIN} \code{SHORTNOSE STURGEON} \code{SILVER HAKE} \code{SILVERSIDES} \code{SKATES} \code{SMOOTH FLOUNDER} \code{SOFTSHELL CLAM} \code{SPINY DOGFISH} \code{SPOT} \code{SPOTTED SEATROUT} \code{STRIPED BASS} \code{SUMMER FLOUNDER} \code{TAUTOG} \code{THREESPINE STICKLEBACK} \code{WEAKFISH} \code{WHITE HAKE} \code{WHITE PERCH} \code{WINDOWPANE FLOUNDER} \code{WINTER FLOUNDER} \code{YELLOW PERCH} \code{YELLOWTAIL FLOUNDER}}
-#'  \item{\code{LifeStage}}{a factor with levels \code{ADULTS} \code{EGGS} \code{JUVENILES} \code{LARVAE} \code{MATING} \code{PARTURITION} \code{SPAWNING}}
+#'  \item{\code{estuary}}{a factor with levels \code{BOSTON HARBOR}
+#'  \code{BUZZARDS BAY} \code{CAPE COD BAY} \code{MASSACHUSETTS BAY}
+#'  \code{WAQUOIT BAY}}
+#'  \item{\code{CommonName}}{a factor with levels \code{ALEWIFE}
+#'  \code{AMERICAN EEL} \code{AMERICAN LOBSTER} \code{AMERICAN PLAICE}
+#'  \code{AMERICAN SAND LANCE} \code{AMERICAN SHAD} \code{ATLANTIC COD}
+#'  \code{ATLANTIC CROAKER} \code{ATLANTIC HERRING} \code{ATLANTIC MACKEREL}
+#'  \code{ATLANTIC MENHADEN} \code{ATLANTIC ROCK CRAB} \code{ATLANTIC SALMON}
+#'  \code{ATLANTIC STINGRAY} \code{ATLANTIC STURGEON} \code{ATLANTIC TOMCOD}
+#'  \code{BAY ANCHOVY} \code{BAY SCALLOP} \code{BLACK DRUM}
+#'  \code{BLACK SEA BASS} \code{BLUE CRAB} \code{BLUE MUSSEL}
+#'  \code{BLUEBACK HERRING} \code{BLUEFISH} \code{BROWN SHRIMP}
+#'  \code{BUTTERFISH} \code{CHANNEL CATFISH} \code{COWNOSE RAY} \code{CUNNER}
+#'  \code{DAGGERBLADE GRASS SHRIMP} \code{EASTERN OYSTER}
+#'  \code{FOURSPINE STICKLEBACK} \code{GOBIES} \code{GREEN CRAB}
+#'  \code{GREEN SEA URCHIN} \code{GRUBBY} \code{HADDOCK} \code{HOGCHOKER}
+#'  \code{JONAH CRAB} \code{KILLIFISHES} \code{LONGHORN SCULPIN} \code{MULLETS}
+#'  \code{MUMMICHOG} \code{NINESPINE STICKLEBACK} \code{NORTHERN KINGFISH}
+#'  \code{NORTHERN PIPEFISH} \code{NORTHERN SEAROBIN} \code{NORTHERN SHRIMP}
+#'  \code{OCEAN POUT} \code{OYSTER TOADFISH} \code{PINFISH} \code{POLLOCK}
+#'  \code{QUAHOG} \code{RAINBOW SMELT} \code{RED DRUM} \code{RED HAKE}
+#'  \code{ROCK GUNNEL} \code{SCUP} \code{SEA SCALLOP}
+#'  \code{SEVENSPINE BAY SHRIMP} \code{SHEEPSHEAD MINNOW}
+#'  \code{SHORTHORN SCULPIN} \code{SHORTNOSE STURGEON} \code{SILVER HAKE}
+#'  \code{SILVERSIDES} \code{SKATES} \code{SMOOTH FLOUNDER}
+#'  \code{SOFTSHELL CLAM} \code{SPINY DOGFISH} \code{SPOT}
+#'  \code{SPOTTED SEATROUT} \code{STRIPED BASS} \code{SUMMER FLOUNDER}
+#'  \code{TAUTOG} \code{THREESPINE STICKLEBACK} \code{WEAKFISH}
+#'  \code{WHITE HAKE} \code{WHITE PERCH} \code{WINDOWPANE FLOUNDER}
+#'  \code{WINTER FLOUNDER} \code{YELLOW PERCH} \code{YELLOWTAIL FLOUNDER}}
+#'  \item{\code{LifeStage}}{a factor with levels \code{ADULTS} \code{EGGS}
+#'  \code{JUVENILES} \code{LARVAE} \code{MATING} \code{PARTURITION}
+#'  \code{SPAWNING}}
 #'  \item{\code{SalZone}}{a factor with levels \code{>25 ppt} \code{0.5-25 ppt}}
 #'  \item{\code{Winter}}{a numeric vector}
 #'  \item{\code{Spring}}{a numeric vector}
@@ -43,7 +73,8 @@
 # "data_benthos_PacNW" ####
 #' @title Benthic macroinvertebrate taxa data; Pacific Northwest
 #'
-#' @description A dataset with example taxa data and attributes for calculating metric values.
+#' @description A dataset with example taxa data and attributes for calculating
+#' metric values.
 #'
 #' @format A data frame with 598 observations on the following 29 variables.
 #' \describe{
@@ -117,8 +148,10 @@
 #'   \item{\code{DATE}}{a character vector}
 #'   \item{\code{TAXON}}{a character vector}
 #'   \item{\code{N_TAXA}}{a numeric vector, count}
-#'   \item{\code{N_GRIDS}}{a numeric vector, number of grids in subsample (max = 30)}
-#'   \item{\code{EXCLUDE}}{a character vector, whether taxon should be excluded from taxa richness metrics}
+#'   \item{\code{N_GRIDS}}{a numeric vector, number of grids in subsample
+#'   (max = 30)}
+#'   \item{\code{EXCLUDE}}{a character vector, whether taxon should be excluded
+#'   from taxa richness metrics}
 #'   \item{\code{strata_r}}{a character vector, index region}
 #'   \item{\code{Phylum}}{a character vector}
 #'   \item{\code{Class}}{a character vector}

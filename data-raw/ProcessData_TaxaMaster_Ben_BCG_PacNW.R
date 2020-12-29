@@ -7,7 +7,7 @@
 
 # 0. Prep####
 wd <- file.path(system.file(package="BCGcalc"), "extdata") # assume is package directory
-library(readxl)
+#library(readxl)
 
 # df.1, date, time, and datetime
 # df.2 only datetime (different format)
@@ -17,7 +17,7 @@ library(readxl)
 # 1.1. Import Data
 myFile <- "TaxaMaster_Bug_BCG_PacNW_v1.xlsx"
 ws <- "TaxaMaster_Ben_BCG_PacNW"
-df <- as.data.frame(read_excel(file.path(wd,myFile), sheet = ws))
+df <- as.data.frame(readxl::read_excel(file.path(wd,myFile), sheet = ws))
 
 # 1.2. Process Data
 View(df)

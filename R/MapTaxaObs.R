@@ -1,24 +1,27 @@
 #' Taxa Observation Maps
 #'
-#' Map taxonomic observations from a data frame.  Input a dataframe with SampID, TaxaID,
-#' TaxaCount, Latitude, and Longitude.
-#' Other arguments are format (jpg vs. pdf), file name prefix, and output directory.
-#' Files are saved with the prefix "map.taxa." by default.
+#' Map taxonomic observations from a data frame.  Input a dataframe with SampID,
+#' TaxaID, TaxaCount, Latitude, and Longitude. Other arguments are format (jpg
+#' vs. pdf), file name prefix, and output directory. Files are saved with the
+#' prefix "map.taxa." by default.
 #'
 #' The user will pass arguments for maps::map function that is used for the map.
-#' For example, 'database' and 'regions'.  Without these arguments no map will be created.
+#' For example, 'database' and 'regions'.  Without these arguments no map will
+#' be created.
 #'
 #' The map will have all points and colored points for each taxon.
 #' In addition the map will include the number of samples by taxon.
 #'
-#' The example data is fish but can be used for benthic macroinvertebrates as well.
+#' The example data is fish but can be used for benthic macroinvertebrates as
+#' well.
 #'
 #' The R package maps is required for this function.
 #'
 #' @param df_obs Observation data frame
 #' @param SampID df_obs column name, Unique Sample identifier
 #' @param TaxaID df_obs column name, Unique Taxa identifier
-#' @param TaxaCount df_obs column name, Number of individuals for TaxonID and SampID
+#' @param TaxaCount df_obs column name, Number of individuals for TaxonID and
+#' SampID
 #' @param Lat df_obs column name, Latitude
 #' @param Long df_obs column name, Longitude
 #' @param output_dir Directory to save output.  Default is working directory.
@@ -51,8 +54,16 @@
 #'
 #' # Run function with extra arguments for map
 #'\dontrun{
-#' MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
-#'            , database="state", regions="massachusetts", xlim=myXlim, ylim=myYlim)
+#' MapTaxaObs(df_obs
+#'            , SampID
+#'            , TaxaID
+#'            , TaxaCount
+#'            , Lat
+#'            , Long
+#'            , database="state"
+#'            , regions="massachusetts"
+#'            , xlim=myXlim
+#'            , ylim=myYlim)
 #'}
 #'
 #' #Example #2
@@ -123,18 +134,27 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
     # define Target Taxa for this iteration of the loop
     myTargetMapCat <- data2process[myCounter]
     # Update User
-    print(paste("Map ",myCounter," of ",myCounterStop,"; ", myTargetMapCat, sep=""))
+    print(paste("Map ",myCounter," of ",myCounterStop,"; "
+                , myTargetMapCat, sep=""))
     utils::flush.console()
 
     # # subset
     data.TargetMapCat <- subset(df_obs, TaxaID==myTargetMapCat)
     #
-    # should be % occ in sample but use max as a surrogate (easier to see the dots)
+    # should be % occ in sample but use max as a surrogate
+    #  (easier to see the dots)
     myDenom <- max(data.TargetMapCat[, TaxaCount])
 
     # jpg
     if (output_type=="jpg") {##IF.output_type.START
-      grDevices::jpeg(filename = paste(output_prefix, myTargetMapCat, "jpg",sep="."), width=1024, height=768, quality=100, pointsize=20)
+      grDevices::jpeg(filename = paste(output_prefix
+                                       , myTargetMapCat
+                                       , "jpg"
+                                       , sep=".")
+                      , width=1024
+                      , height=768
+                      , quality=100
+                      , pointsize=20)
     }##IF.output_type.END
 
     #~~~~~~~~~~~~~~~~~
@@ -160,7 +180,11 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
     # map all sites (as gray, open circle)
     graphics::points(df_obs[,Long], df_obs[,Lat], col="lightgray", pch=1, cex=1)
     #
-    graphics::points(data.TargetMapCat[,Long], data.TargetMapCat[,Lat], col="blue", pch=19, cex=myCEX)
+    graphics::points(data.TargetMapCat[,Long]
+                     , data.TargetMapCat[,Lat]
+                     , col="blue"
+                     , pch=19
+                     , cex=myCEX)
     # main
     #graphics::mtext(paste(data2process[myCounter]," = ",myTargetMapCat,sep=""))
     graphics::mtext(myTargetMapCat)
@@ -168,12 +192,19 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
     # Pct Count, top line (line=-2)
     (Count.Target <- sum(data.TargetMapCat[,TaxaCount]))
     (Pct.Count <- round(Count.Target/Count.ALL,2))
-  #  graphics::mtext(paste("Pct of Total Count (n=",Count.Target,")= ",Pct.Count,sep=""), side=1,outer=TRUE,adj=0,line=-2,cex=0.75)
+  #  graphics::mtext(paste("Pct of Total Count (n=",Count.Target,")= "
+    # ,Pct.Count,sep=""), side=1,outer=TRUE,adj=0,line=-2,cex=0.75)
     # Pct Samps, bottom line (line=-1)
     Samps.Target <- unique(data.TargetMapCat[,SampID])
     (NumSamps.Target <- length(Samps.Target))
     (Pct.Samps <- round(NumSamps.Target/NumSamps.ALL,2))
-    graphics::mtext(paste("Pct of Total Samples (n=",NumSamps.ALL,") = ",Pct.Samps,sep=""),side=1,outer=TRUE,adj=0,line=-1,cex=0.75)
+    graphics::mtext(paste("Pct of Total Samples (n=",NumSamps.ALL,") = "
+                          ,Pct.Samps,sep="")
+                    ,side=1
+                    ,outer=TRUE
+                    ,adj=0
+                    ,line=-1
+                    ,cex=0.75)
     # number of samples
     graphics::mtext(paste("n=",NumSamps.Target,sep=""),side=1)
     #
@@ -185,7 +216,8 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
 
     #
     # 1.6. Display progress to user (needs flush.console or only writes at end)
-    # print(paste("Finished file ",myCounter-myCounterStart," of ",myCounterStop-myCounterStart,", ",data2process[myCounter],".",sep=""))
+    # print(paste("Finished file ",myCounter-myCounterStart," of "
+    #  ,myCounterStop-myCounterStart,", ",data2process[myCounter],".",sep=""))
     # utils::flush.console()
     #
     # 1.7. Some clean up
@@ -200,7 +232,12 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
     grDevices::dev.off() ##PDF.END
   }##IF.output_type.END
   #
-  print(paste("Processing of ",myCounter-myCounterStart," of ",myCounterStop-myCounterStart," files complete.",sep=""))
+  print(paste("Processing of "
+              ,myCounter-myCounterStart
+              ," of "
+              ,myCounterStop-myCounterStart
+              ," files complete."
+              ,sep=""))
   utils::flush.console()
   #data2process[myCounter] #use for troubleshooting if get error
 

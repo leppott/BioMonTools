@@ -19,7 +19,7 @@ example data
 data_bio2rarify
 }
 \description{
-A dataset with example benthic macroinvertebrate data (600 count)
-to be used with the rarify function.  Includes 12 samples.
+A dataset with example benthic macroinvertebrate data
+(600 count) to be used with the rarify function.  Includes 12 samples.
 }
 \keyword{datasets}

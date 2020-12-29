@@ -13,8 +13,10 @@ A data frame with 50,664 observations on the following 20 variables.
   \item{\code{DATE}}{a character vector}
   \item{\code{TAXON}}{a character vector}
   \item{\code{N_TAXA}}{a numeric vector, count}
-  \item{\code{N_GRIDS}}{a numeric vector, number of grids in subsample (max = 30)}
-  \item{\code{EXCLUDE}}{a character vector, whether taxon should be excluded from taxa richness metrics}
+  \item{\code{N_GRIDS}}{a numeric vector, number of grids in subsample
+  (max = 30)}
+  \item{\code{EXCLUDE}}{a character vector, whether taxon should be excluded
+  from taxa richness metrics}
   \item{\code{strata_r}}{a character vector, index region}
   \item{\code{Phylum}}{a character vector}
   \item{\code{Class}}{a character vector}

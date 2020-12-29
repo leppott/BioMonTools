@@ -66,9 +66,9 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
 rarify<-function(inbug, sample.ID, abund, subsiz, mySeed=NA){##FUNCTION.rarify.START
-  start.time=proc.time()
+  start.time <- proc.time()
   outbug<-inbug
-  sampid<-unique(inbug[,sample.ID])
+  sampid<-unique(inbug[, sample.ID])
   nsamp<-length(sampid)
   #parameters are set up
   #zero out all abundances in output data set
@@ -80,7 +80,7 @@ rarify<-function(inbug, sample.ID, abund, subsiz, mySeed=NA){##FUNCTION.rarify.S
     isamp<-sampid[i]
     utils::flush.console()
     #print(as.character(isamp))
-    onesamp<-inbug[inbug[,sample.ID]==isamp,]
+    onesamp<-inbug[inbug[,sample.ID] == isamp, ]
     onesamp<-data.frame(onesamp,row.id=seq(1,dim(onesamp)[[1]])) #add sequence numbers as a new column
     #expand the sample into a vector of individuals
     samp.expand<-rep(x=onesamp$row.id,times=onesamp[,abund])
