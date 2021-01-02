@@ -283,7 +283,7 @@ metric.stats <- function(fun.DF
     df_i_stats[, col_RefStatus] <- combo_RefStatus
     df_i_stats[, col_DataType] <- combo_DataType
     df_i_stats[, "Metric_Name"] <- rownames(df_i_stats)
-    rownames(df_i_stats) <- c()
+    rownames(df_i_stats) <- NULL # c()
     # reorder columns
     col_ordered <- c((length(col_StatNames)+1):length(colnames(df_i_stats)), seq_len(length(col_StatNames)))
     df_i_stats <- df_i_stats[, col_ordered]

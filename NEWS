@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-12-29 12:38:01
+    #> Last Update: 2021-01-02 17:47:02
 
 # Planned Updates
 
@@ -17,6 +17,18 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9028 (2021-01-02)
+
+  - refactor: Remove unneeded concatenations
+      - metric\_stats
+      - vignette\_BioMonTools
+  - refactor: Remove undesireable function, replace library(foo) with
+    foo::bar()
+      - vignette\_BioMonTools
+  - style: Trim to 80 character lines.
+      - vignette\_BioMonTools
+      - NEWS
 
 ## Changes in Version 0.5.0.9027 (2020-12-29)
 
@@ -126,7 +138,7 @@ NEWS
   - MetricScoring.xlsx, Issue \#3
       - Update MassDEP and SNEP index scoring
       - Replace “.” with "\_"; MBSS\_2005\_Bugs, MSW\_1999\_Bugs,
-        MBSS\_2005\_Fish, BCG\_PacNW\_L1
+        MBSS\_2005\_Fish , BCG\_PacNW\_L1
       - Remove NMSCI\_2006 as had index scoring but not metric scroing.
   - Update tests.
       - Rename “test” files.

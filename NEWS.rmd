@@ -28,6 +28,17 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9028 (2021-01-02)
+
+* refactor: Remove unneeded concatenations
+    + metric_stats
+    + vignette_BioMonTools
+* refactor: Remove undesireable function, replace library(foo) with foo::bar()
+    + vignette_BioMonTools
+* style: Trim to 80 character lines.
+    + vignette_BioMonTools
+    + NEWS
+
 ## Changes in Version 0.5.0.9027 (2020-12-29)
 
 * refactor: Add foo:: to missing functions
@@ -56,7 +67,8 @@ cat(paste0("Last Update: ",Sys.time()))
 
 ## Changes in Version 0.5.0.9022 (2020-12-25)
 
-* docs: Change to pkgdown from manual (docs in main branch) to GitHub Action (gh-pages branch)
+* docs: Change to pkgdown from manual (docs in main branch) to GitHub Action 
+(gh-pages branch)
 
 ## Changes in Version 0.5.0.9021 (2020-12-25)
 
@@ -133,7 +145,8 @@ cat(paste0("Last Update: ",Sys.time()))
 
 * MetricScoring.xlsx, Issue #3
     + Update MassDEP and SNEP index scoring
-    + Replace "." with "_"; MBSS_2005_Bugs, MSW_1999_Bugs, MBSS_2005_Fish, BCG_PacNW_L1
+    + Replace "." with "_"; MBSS_2005_Bugs, MSW_1999_Bugs, MBSS_2005_Fish
+    , BCG_PacNW_L1
     + Remove NMSCI_2006 as had index scoring but not metric scroing.
 * Update tests.
     + Rename "test" files.
@@ -234,11 +247,13 @@ cat(paste0("Last Update: ",Sys.time()))
     + MetricScroing.xlsx and metric.values()
     + Resolved issues.
 * Update dataset "data_benthos_PacNW".
-    + Index_Name had a number and was different on each line (Excel autofill error).
+    + Index_Name had a number and was different on each line (Excel autofill 
+    error).
     + Last updated 0.4.0.9008 (2020-04-28).
 * Update tests for metric.values calc.
 * metric.values.R
-    + Modify NonTarget check for is.na() in cases where the column is missing; Issue #39
+    + Modify NonTarget check for is.na() in cases where the column is missing; 
+    Issue #39
 
 ## Changes in Version 0.4.0.9022 (2020-07-23)
 
@@ -333,7 +348,8 @@ cat(paste0("Last Update: ",Sys.time()))
     + More new metrics.
         - nt, pt, pi - ET (Trichoptera, and Ephemeroptera)
         - nt, pt, pi - EOT (Odonata, Trichoptera, and Ephemeroptera)
-        - nt, pt, pi - COTE (Coleoptera, Odonata, Trichoptera, and Ephemeroptera)
+        - nt, pt, pi - COTE (Coleoptera, Odonata, Trichoptera, and 
+        Ephemeroptera)
         - % Individs Amphipoda + Isopoda
 
 ## Changes in Version 0.4.0.9008 (2020-04-28)
@@ -392,14 +408,17 @@ cat(paste0("Last Update: ",Sys.time()))
     + Account for "no organisms collected".
         - TAXAID needs to be "NONE".
         - N_TAXA needs to be zero.
-        - Both bugs and fish will exclude all other N_TAXA = 0 but keep if TAXAID == "NONE".
+        - Both bugs and fish will exclude all other N_TAXA = 0 but keep if 
+        TAXAID == "NONE".
         - nt_total metric has condition for N_TAXA > 0.
-        - All other metrics will calculate but receive values of 0, NA, or NaN as appropriate.
+        - All other metrics will calculate but receive values of 0, NA, or NaN 
+        as appropriate.
 
 ## Changes in Version 0.4.0.9001 (2020-02-27)
 
 * Tweak for GA Fish IBI, Issue #3
-    + Modify ni_natnonhybrid and ni_natnonhybridnonlepomis to also exclude mosquitofish.
+    + Modify ni_natnonhybrid and ni_natnonhybridnonlepomis to also exclude 
+    mosquitofish.
         - MetricScoring.xlsx
         - metric.score.R
     + Add nt_nativenonhybrid
@@ -466,7 +485,8 @@ cat(paste0("Last Update: ",Sys.time()))
 ## Changes in Version 0.3.3.9012 (2020-01-02)
 
 * metric.values.R
-    + Error in excluding marine metrics when no metric list given (i.e., want all metrics).
+    + Error in excluding marine metrics when no metric list given (i.e., want 
+    all metrics).
         - Misplaced ")".  Issue # 31.
 
 ## Changes in Version 0.3.3.9011 (2019-12-18)
@@ -687,7 +707,8 @@ cat(paste0("Last Update: ",Sys.time()))
 ## Changes in Version 0.3.0.9012 (2019-01-17)
 
 * metric.values
-    + Remove metric sorting.  Rely on fun.MetricNames to request and sort metrics.
+    + Remove metric sorting.  Rely on fun.MetricNames to request and sort 
+    metrics.
     + Modify TolVal character check for NA.
     + Add example keeping only some metrics.
 * extdata/MetricScoring.xlsx
@@ -759,7 +780,8 @@ cat(paste0("Last Update: ",Sys.time()))
 * Vignette
     + SITE_TYPE to INDEX_REGION
     + qc.checks
-        - Update example chunk to match example in function; package BCGcalc to BioMonTools.
+        - Update example chunk to match example in function; package BCGcalc to 
+        BioMonTools.
 
 ## Changes in Version 0.3.0.9002 (2019-01-14)
 
@@ -783,7 +805,8 @@ cat(paste0("Last Update: ",Sys.time()))
 ## Changes in Version 0.2.0.9006 (2018-12-03)
 
 * README.rmd, Issue #11.
-    + install_github command comes out as smart quotes if copy and paste from GitHub website.
+    + install_github command comes out as smart quotes if copy and paste from 
+    GitHub website.
     + Looks ok in RStudio but fixed to test if that is the issue.
 
 ## Changes in Version 0.2.0.9005 (2018-11-26)
