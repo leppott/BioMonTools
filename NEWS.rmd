@@ -28,6 +28,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9030 (2021-01-02)
+
+* doc: Delete doc\vignettes so will rebuild.
+* style: Remove undesireable function, replace library(foo) with foo::bar()
+    + vignette_MapTaxaObs
+* style: Trim to 80 character lines
+    + vignette_MapTaxaObs
+
 ## Changes in Version 0.5.0.9029 (2021-01-02)
 
 test: Add tests
@@ -41,7 +49,7 @@ test: Add tests
     + vignette_BioMonTools
 * refactor: Remove undesireable function, replace library(foo) with foo::bar()
     + vignette_BioMonTools
-* style: Trim to 80 character lines.
+* style: Trim to 80 character lines
     + vignette_BioMonTools
     + NEWS
 

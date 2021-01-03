@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-01-02 19:18:02
+    #> Last Update: 2021-01-03 14:34:32
 
 # Planned Updates
 
@@ -18,6 +18,15 @@ NEWS
 
 # Version History
 
+## Changes in Version 0.5.0.9030 (2021-01-02)
+
+  - doc: Delete docso will rebuild.
+  - style: Remove undesireable function, replace library(foo) with
+    foo::bar()
+      - vignette\_MapTaxaObs
+  - style: Trim to 80 character lines
+      - vignette\_MapTaxaObs
+
 ## Changes in Version 0.5.0.9029 (2021-01-02)
 
 test: Add tests + rarify + qc\_checks (gives warning but passes)
@@ -30,7 +39,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
   - refactor: Remove undesireable function, replace library(foo) with
     foo::bar()
       - vignette\_BioMonTools
-  - style: Trim to 80 character lines.
+  - style: Trim to 80 character lines
       - vignette\_BioMonTools
       - NEWS
 

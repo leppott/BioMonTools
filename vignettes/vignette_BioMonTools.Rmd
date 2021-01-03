@@ -10,7 +10,7 @@ vignette: >
 ---
 <!-- Data is in vignettes\data folder  -->
 ```{r rmd_setup, include = FALSE}
-library(knitr)
+#library(knitr)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
