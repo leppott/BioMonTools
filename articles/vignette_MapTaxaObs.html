@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9029</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9030</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
 <div id="usage" class="section level1">
 <h1 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h1>
-<p>Map taxonomic observations from a data frame. Input a dataframe with SampID, TaxaID, TaxaCount, Latitude, and Longitude. Other arguments are format (jpg vs. pdf), file name prefix, and output directory. Files are saved with the prefix “map.taxa.” by default.</p>
+<p>Map taxonomic observations from a data frame. Input a dataframe with SampID , TaxaID, TaxaCount, Latitude, and Longitude. Other arguments are format (jpg vs. pdf), file name prefix, and output directory. Files are saved with the prefix “map.taxa.” by default.</p>
 <p>Uses the <code>maps</code> package map function.</p>
 <p>For maps package map function need database (usa, state, county) and regions (e.g., maryland). Additional map function arguments can be passed through the MapTaxaObs function.</p>
 </div>
@@ -261,24 +261,21 @@
 <p>The <code>ggplot2</code> package can be used to create single maps that are returned to the console for further editing.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Packages</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/leppott/BioMonTools">BioMonTools</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
+<span class="co">#library(BioMonTools)</span>
+<span class="co">#library(ggplot2)</span>
+<span class="co">#library(knitr)</span>
 
 <span class="co">#</span>
-<span class="va">df_obs</span> <span class="op">&lt;-</span> <span class="va">data_Taxa_MA</span>
+<span class="va">df_obs</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="va"><a href="../reference/data_Taxa_MA.html">data_Taxa_MA</a></span>
 
 <span class="va">TaxaID</span> <span class="op">&lt;-</span> <span class="st">"TaxaName"</span>
 <span class="va">TaxaCount</span> <span class="op">&lt;-</span> <span class="st">"Count"</span>
 <span class="va">Lat</span> <span class="op">&lt;-</span> <span class="st">"Latitude"</span>
 <span class="va">Long</span> <span class="op">&lt;-</span> <span class="st">"Longitude"</span>
 
-
-
-
 <span class="va">myTaxa</span> <span class="op">&lt;-</span> <span class="st">"ALEWIFE, ADULTS, 0.5-25 ppt"</span>
 
-<span class="va">df_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">df_obs</span>, <span class="va">df_obs</span><span class="op">[</span>,<span class="va">TaxaID</span><span class="op">]</span><span class="op">==</span><span class="va">myTaxa</span><span class="op">)</span>
+<span class="va">df_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">df_obs</span>, <span class="va">df_obs</span><span class="op">[</span>, <span class="va">TaxaID</span><span class="op">]</span> <span class="op">==</span> <span class="va">myTaxa</span><span class="op">)</span>
 
 <span class="va">myDB</span> <span class="op">&lt;-</span> <span class="st">"state"</span>
 <span class="va">myRegion</span> <span class="op">&lt;-</span> <span class="st">"massachusetts"</span>
@@ -286,24 +283,37 @@
 <span class="va">Lat</span> <span class="op">&lt;-</span> <span class="st">"Latitude"</span>
 <span class="va">Long</span> <span class="op">&lt;-</span> <span class="st">"Longitude"</span>
 
-
-
-
 <span class="co"># Base Map</span>
-<span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/map_data.html">map_data</a></span><span class="op">(</span><span class="va">myDB</span><span class="op">)</span>, <span class="va">region</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">myRegion</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">long</span>, y<span class="op">=</span><span class="va">lat</span>, group<span class="op">=</span><span class="va">group</span><span class="op">)</span>, fill<span class="op">=</span><span class="st">"light gray"</span>, color<span class="op">=</span><span class="st">"black"</span><span class="op">)</span> <span class="op">+</span> 
-          <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="fl">1.3</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/map_data.html">map_data</a></span><span class="op">(</span><span class="va">myDB</span><span class="op">)</span>
+                                  , <span class="va">region</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">myRegion</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+          <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">long</span>
+                                    , y <span class="op">=</span> <span class="va">lat</span>
+                                    , group <span class="op">=</span> <span class="va">group</span><span class="op">)</span>
+                                , fill <span class="op">=</span> <span class="st">"light gray"</span>,
+                                color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span> <span class="op">+</span> 
+          <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span><span class="fl">1.3</span><span class="op">)</span> <span class="op">+</span> 
+          <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co"># Add points (all)</span>
-<span class="va">m1</span> <span class="op">&lt;-</span> <span class="va">m1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">df_obs</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">df_obs</span><span class="op">[</span>,<span class="va">Long</span><span class="op">]</span>, <span class="va">df_obs</span><span class="op">[</span>,<span class="va">Lat</span><span class="op">]</span><span class="op">)</span>, fill<span class="op">=</span><span class="cn">NA</span>, color<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span>
+<span class="va">m1</span> <span class="op">&lt;-</span> <span class="va">m1</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">df_obs</span>
+                               , <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">df_obs</span><span class="op">[</span>, <span class="va">Long</span><span class="op">]</span>
+                                              , <span class="va">df_obs</span><span class="op">[</span>, <span class="va">Lat</span><span class="op">]</span><span class="op">)</span>
+                               , fill<span class="op">=</span><span class="cn">NA</span>
+                               , color<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span>
 <span class="co"># Add points (Taxa)</span>
-<span class="va">m1</span> <span class="op">&lt;-</span> <span class="va">m1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">df_map</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">df_map</span><span class="op">[</span>,<span class="va">Long</span><span class="op">]</span>, <span class="va">df_map</span><span class="op">[</span>,<span class="va">Lat</span><span class="op">]</span><span class="op">)</span>, color<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span>
+<span class="va">m1</span> <span class="op">&lt;-</span> <span class="va">m1</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">df_map</span>
+                               , <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">df_map</span><span class="op">[</span>,<span class="va">Long</span><span class="op">]</span>
+                                              , <span class="va">df_map</span><span class="op">[</span>,<span class="va">Lat</span><span class="op">]</span><span class="op">)</span>
+                               , color<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span>
 <span class="co"># Map Title (center)</span>
-<span class="va">m1</span> <span class="op">&lt;-</span> <span class="va">m1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="va">myTaxa</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>
+<span class="va">m1</span> <span class="op">&lt;-</span> <span class="va">m1</span> <span class="op">+</span> 
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="va">myTaxa</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>
 <span class="co"># Caption (left justified)</span>
-<span class="va">m1</span> <span class="op">&lt;-</span> <span class="va">m1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"caption1 \n caption2"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span>
+<span class="va">m1</span> <span class="op">&lt;-</span> <span class="va">m1</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"caption1 \n caption2"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Show Results</span>
-<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_obs</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_obs</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="7%">
@@ -465,13 +475,14 @@
 
 <span class="va">myDB</span> <span class="op">&lt;-</span> <span class="st">"state"</span>
 <span class="va">myRegion</span> <span class="op">&lt;-</span> <span class="st">"massachusetts"</span>
-<span class="va">myXlim</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">73</span><span class="op">+</span><span class="op">(</span><span class="fl">30</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span>, <span class="op">-</span><span class="op">(</span><span class="fl">69</span><span class="op">+</span><span class="op">(</span><span class="fl">56</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">myYlim</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">(</span><span class="fl">41</span><span class="op">+</span><span class="op">(</span><span class="fl">14</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span>,<span class="op">(</span><span class="fl">42</span><span class="op">+</span><span class="op">(</span><span class="fl">53</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">myXlim</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">73</span> <span class="op">+</span> <span class="op">(</span><span class="fl">30</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span>, <span class="op">-</span><span class="op">(</span><span class="fl">69</span> <span class="op">+</span> <span class="op">(</span><span class="fl">56</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">myYlim</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">(</span><span class="fl">41</span> <span class="op">+</span> <span class="op">(</span><span class="fl">14</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span>, <span class="op">(</span><span class="fl">42</span> <span class="op">+</span> <span class="op">(</span><span class="fl">53</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Run function with extra arguments for map</span>
-<span class="fu"><a href="../reference/MapTaxaObs.html">MapTaxaObs</a></span><span class="op">(</span><span class="va">df_obs</span>, <span class="va">SampID</span>, <span class="va">TaxaID</span>, <span class="va">TaxaCount</span>, <span class="va">Lat</span>, <span class="va">Long</span>
-           , <span class="va">output_dir</span>, <span class="va">output_prefix</span>, <span class="va">output_type</span>
-           , database<span class="op">=</span><span class="st">"state"</span>, regions<span class="op">=</span><span class="st">"massachusetts"</span>, xlim<span class="op">=</span><span class="va">myXlim</span>, ylim<span class="op">=</span><span class="va">myYlim</span><span class="op">)</span></code></pre></div>
+<span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/MapTaxaObs.html">MapTaxaObs</a></span><span class="op">(</span><span class="va">df_obs</span>, <span class="va">SampID</span>, <span class="va">TaxaID</span>, <span class="va">TaxaCount</span>, <span class="va">Lat</span>, <span class="va">Long</span>
+                        , <span class="va">output_dir</span>, <span class="va">output_prefix</span>, <span class="va">output_type</span>
+                        , database<span class="op">=</span><span class="st">"state"</span>, regions<span class="op">=</span><span class="st">"massachusetts"</span>
+                        , xlim<span class="op">=</span><span class="va">myXlim</span>, ylim<span class="op">=</span><span class="va">myYlim</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 
