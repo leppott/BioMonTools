@@ -131,7 +131,7 @@ myDF_Bugs_MBSS$TOLVAL <- myDF_Bugs_MBSS$FinalTolVal07
 myDF_Bugs_MBSS$TOLVAL2 <- myDF_Bugs_MBSS$FinalTolVal08
 myDF_Bugs_MBSS$EXCLUDE <- myDF_Bugs_MBSS$EXCLUDE=="Y"
 myMetric_Values_Bugs_MBSS <- metric.values(myDF_Bugs_MBSS, "bugs", myMetrics_Bugs_MBSS)
-#
+
 \dontrun{
 View(myMetric_Values_Bugs_MBSS)
 }
@@ -143,8 +143,10 @@ Metrics_Bugs_Scores_MBSS <- metric.scores(myMetric_Values_Bugs_MBSS
                                           , "INDEX_REGION"
                                           , df_thresh_metric
                                           , df_thresh_index)
+\dontrun{
 # View Results
 View(Metrics_Bugs_Scores_MBSS)
+}
 
 # QC Index Scores and Narratives
 # Set Narrative as Ordered Factor
@@ -167,11 +169,11 @@ table(Metrics_Bugs_Scores_MBSS$QC_Count)
 
 # QC bug count (with function)
 # Import Checks
-df_checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
-                                          , package="BioMonTools"), sheet="Flags")
+#df_checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
+#                                           , package="BioMonTools"), sheet="Flags")
 # Run Function
-df_flags <- qc.checks(Metrics_Bugs_Scores_MBSS, df_checks)
+#df_flags <- qc.checks(Metrics_Bugs_Scores_MBSS, df_checks)
 # Summarize Results
-table(df_flags[,"CHECKNAME"], df_flags[,"FLAG"], useNA="ifany")
+# table(df_flags[,"CHECKNAME"], df_flags[,"FLAG"], useNA="ifany")
 
 }

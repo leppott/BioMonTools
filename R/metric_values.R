@@ -452,10 +452,13 @@ metric.values.bugs <- function(myDF
 
   # global variable bindings ----
   INDEX_NAME <- INDEX_REGION <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
-    BCG_ATTR <- NONTARGET <- LONGLIVED <- NOTEWORTHY <- NULL
-  desc <- FFG2_PRE <- TI_COLD <- TI_COLDCOOL <- NULL
+    BCG_ATTR <- NONTARGET <- LONGLIVED <- NOTEWORTHY <- TOLVAL <- TOLVAL2 <-
+    NULL
+  FFG2_PRE <- TI_COLD <- TI_COLDCOOL <- TI_COOLWARM <- TI_WARM <- NULL
   PHYLUM <- SUBPHYLUM <- CLASS <- SUBCLASS <- INFRAORDER <- ORDER <-
     FAMILY <- SUBFAMILY <- TRIBE <- GENUS <- NULL
+  FFG_COL <- FFG_FIL <- FFG_PRE <- FFG_SCR <- FFG_SHR <- HABITAT_SPEC <-
+    HABITAT_UNKN <- NULL
   ni_total <- ni_Americo <- ni_Gnorimo <- ni_EPT <- ni_Trich <- nt_Amph <-
     nt_total <- nt_Bival <- nt_Coleo <- nt_COET <- nt_Deca <- nt_Dipt <-
     nt_Ephem <- nt_EPT <- nt_ET <- nt_Gast <- nt_Insect <- nt_Isop <- nt_Mega <-
@@ -467,7 +470,19 @@ metric.values.bugs <- function(myDF
     nt_BCG_att12 <- nt_BCG_att1i2 <- nt_BCG_att123 <- nt_BCG_att1i23 <-
     nt_BCG_att2 <- nt_BCG_att23 <- nt_BCG_att234 <- nt_BCG_att3 <-
     nt_BCG_att4 <- nt_BCG_att45 <- nt_BCG_att5 <- nt_BCG_att56 <- nt_BCG_att6 <-
-    nt_BCG_attNA <- nt_EPT_BCG_att123 <- NULL
+    nt_BCG_attNA <- nt_EPT_BCG_att123 <- nt_ti_c <- nt_ti_cc <- nt_ti_cw <-
+    nt_ti_w <- nt_tv_intol <- nt_tv_intol4 <- nt_tv_toler <- nt_tv_ntol <-
+    nt_tv_stol <- nt_ffg_col <- nt_ffg_filt <- nt_ffg_pred <- nt_habitat_brac <-
+    nt_habitat_depo <- nt_habitat_gene <- nt_habitat_head <- nt_habitat_rheo <-
+    nt_habitat_rive <- nt_habitat_spec <- nt_habitat_unkn <- nt_BCG_att1 <-
+    nt_BCG_att1i <- HABITAT_BRAC <- HABITAT_DEPO <- HABITAT_GENE <-
+    HABITAT_HEAD <- HABITAT_RHEO <- HABITAT_RIVE <- HABIT_BU <- HABIT_CB <-
+    HABIT_CN <- HABIT_SP <- HABIT_SW <- LC_MULTI <- LC_SEMI <- LC_UNI <-
+    ni_dom02 <- ni_dom03 <- ni_dom04 <- ni_dom05 <- ni_dom06 <- ni_dom07 <-
+    ni_dom08 <- ni_dom09 <- ni_dom10 <- nt_ffg_scrap <- nt_ffg_shred <-
+    nt_habit_burrow <- nt_habit_climb <- nt_habit_cling <- nt_habit_sprawl <-
+    nt_habit_swim <- nt_volt_multi <- nt_volt_semi <- nt_volt_uni <- x_Shan_e <-
+    NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -634,37 +649,38 @@ metric.values.bugs <- function(myDF
   # Create Dominant N ####
   # Create df for Top N (without ties)
   #
-  df.dom01 <- dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
+  df.dom01 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
                             dplyr::group_by(SAMPLEID)  %>%
                                 dplyr::filter(dplyr::row_number()<=1)
-  df.dom02 <-  dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
+  df.dom02 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(dplyr::row_number()<=2)
-  df.dom03 <-  dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
+  df.dom03 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number()<=3)
-  df.dom04 <-  dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
+  df.dom04 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number()<=4)
-  df.dom05 <-  dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
+  df.dom05 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number()<=5)
-  df.dom06 <-  dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
+  df.dom06 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number()<=6)
-  df.dom07 <-  dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
+  df.dom07 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number()<=7)
-  df.dom08 <-  dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
+  df.dom08 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number()<=8)
-  df.dom09 <- dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
+  df.dom09 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number()<=9)
-  df.dom10 <-  dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
+  df.dom10 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(dplyr::row_number()<=10)
-  df.dom02_NoJugaRiss_BCG_att456 <-  dplyr::arrange(myDF, SAMPLEID, desc(N_TAXA)) %>%
+  df.dom02_NoJugaRiss_BCG_att456 <-  dplyr::arrange(myDF, SAMPLEID
+                                                    , dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter((is.na(GENUS) == TRUE | GENUS!="Juga")
                   & (is.na(ORDER)==TRUE | ORDER!="Rissooidea")

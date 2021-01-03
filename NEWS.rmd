@@ -28,6 +28,21 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9032 (2021-01-03)
+
+* refactor: Add global variable binding
+    + metric.stats
+    + metric.scores
+* test: qc.check test not working, comment out
+* docs: Document undocumented argument
+    + metric.stats2
+* chore: Rebuild data_benthos_MBSS with missing columns so no warnings in 
+example
+* chore: Add to .Rbuildignore
+    + NEWS.rmd
+    + README.rmd
+    + data-raw folder
+
 ## Changes in Version 0.5.0.9031 (2021-01-03)
 
 * docs: DESCRIPTION, move packages from Imports to Suggests

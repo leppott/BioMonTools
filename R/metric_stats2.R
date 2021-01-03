@@ -37,18 +37,25 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param data_metval Data frame of metric values.
 #' @param data_metstat Data frame of metric statistics
-#' @param col_metval_RefStatus Column name for Reference Status.  Default = "Ref_Status"
-#' @param col_metval_DataType Column name for Data Type – Validation vs. Calibration.  Default = "Data_Type"
-#' @param col_metstat_Subset Column name for Index_Region in data_metstats.  Default = xx.
-#' @param col_metstat_RefStatus Column name for Reference Status.  Default = "Ref_Status"
-#' @param col_metstat_DataType Column name for Data Type – Validation vs. Calibration.  Default = "Data_Type"
-#' @param col_metstat_Subset Column name for Index_Region in data_metstats.  Default = xx.
+#' @param col_metval_RefStatus Column name for Reference Status.
+#' Default = "Ref_Status"
+#' @param col_metval_DataType Column name for Data Type – Validation vs.
+#' Calibration.  Default = "Data_Type"
+#' @param col_metval_Subset Column name for Index_Region in data_metstats.
+#' Default = INDEX_REGION
+#' @param col_metstat_RefStatus Column name for Reference Status.
+#' Default = "Ref_Status"
+#' @param col_metstat_DataType Column name for Data Type – Validation vs.
+#' Calibration.  Default = "Data_Type"
+#' @param col_metstat_Subset Column name for Index_Region in data_metstats.
+#' Default = xx.
 #' @param RefStatus_Ref RefStatus value for Reference.  Default = "Ref"
 #' @param RefStatus_Str RefStatus value for Stressed.  Default = "Str"
 #' @param RefStatus_Oth RefStatus value for Other. Default = "Oth"
 #' @param DataType_Cal DataType value for Calibration. Default = "Cal"
 #' @param DataType_Ver DataType value for Verification. Default = "Ver"
-#' @param Subset_Value Subset value of Index_Region (site class).  Default = NULL
+#' @param Subset_Value Subset value of Index_Region (site class).
+#' Default = NULL
 #'
 #' @return A data frame of the metric.stats input is returned with new columns
 #' (z_score, DE25 and DE75).
@@ -343,7 +350,7 @@ metric.stats2 <- function(data_metval
 
   # Str metric values in long format
   data_metval_str_longer <- tidyr::pivot_longer(data_metval[data_metval[, col_RefStatus] == RefStatus_Str, ]
-                                            , cols = tidyr::all_of(col_metnam)
+                                            , cols = tidyselect::all_of(col_metnam)
                                             , names_to = "Metric_Name"
                                             , values_to = "Metric_Value")
   # merge

@@ -8,3 +8,6 @@ _test/
 ^docs$
 ^pkgdown$
 ^\.github$
+NEWS.rmd
+README.rmd
+^data-raw$

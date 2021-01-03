@@ -125,6 +125,9 @@ metric.stats <- function(fun.DF
                          , col_Subset = NULL
                          , Subset_Value = NULL
                          ){##FUNCTION.metric.values.START
+  # global variable bindings ----
+  data_mmi_dev <- NULL
+
   # debug
   boo_debug <- FALSE
   if (boo_debug == TRUE){
@@ -162,6 +165,7 @@ metric.stats <- function(fun.DF
 
   # define pipe
   `%>%` <- dplyr::`%>%`
+
   # Munge ####
   # Data Munging (common to all data types)
   # Convert to data.frame.  Code breaks if myDF is a tibble.

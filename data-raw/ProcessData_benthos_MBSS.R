@@ -25,9 +25,15 @@ dim(df)
 # structure
 str(df)
 
+# Add columns so don't get any warnings
+col2add <- c("SUBCLASS", "INFRAORDER", "LIFE_CYCLE", "BCG_ATTR"
+             , "THERMAL_INDICATOR", "LONGLIVED", "NOTEWORTHY", "FFG2"
+             , "HABITAT")
+df[, col2add] <- NA
+
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 2. Save as RDA for use in package####
 #
 data_benthos_MBSS <- df
-usethis::use_data(data_benthos_MBSS, overwrite = TRUE) # change from devtools:: to usethis::
-
+usethis::use_data(data_benthos_MBSS, overwrite = TRUE)
+# change from devtools:: to usethis::

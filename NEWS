@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-01-03 15:50:04
+    #> Last Update: 2021-01-03 18:04:44
 
 # Planned Updates
 
@@ -17,6 +17,21 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9032 (2021-01-03)
+
+  - refactor: Add global variable binding
+      - metric.stats
+      - metric.scores
+  - test: qc.check test not working, comment out
+  - docs: Document undocumented argument
+      - metric.stats2
+  - chore: Rebuild data\_benthos\_MBSS with missing columns so no
+    warnings in example
+  - chore: Add to .Rbuildignore
+      - NEWS.rmd
+      - README.rmd
+      - data-raw folder
 
 ## Changes in Version 0.5.0.9031 (2021-01-03)
 

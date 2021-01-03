@@ -115,9 +115,9 @@ Add "/_test" to gitignore
 (Needs tweaking to get it working properly)
 
 ```{r AllExamples, eval=FALSE}
-pkg <- "BCGcalc"
-setwd("./_test")
-devtools::run_examples(pkg=pkg)
+#pkg <- "BioMonTools" # from root directory of pkg
+#setwd("./_test")
+devtools::run_examples()
 ```
 
 ### Data Documentation

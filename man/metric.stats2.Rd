@@ -26,15 +26,23 @@ metric.stats2(
 
 \item{data_metstat}{Data frame of metric statistics}
 
-\item{col_metval_RefStatus}{Column name for Reference Status.  Default = "Ref_Status"}
+\item{col_metval_RefStatus}{Column name for Reference Status.
+Default = "Ref_Status"}
 
-\item{col_metval_DataType}{Column name for Data Type – Validation vs. Calibration.  Default = "Data_Type"}
+\item{col_metval_DataType}{Column name for Data Type – Validation vs.
+Calibration.  Default = "Data_Type"}
 
-\item{col_metstat_RefStatus}{Column name for Reference Status.  Default = "Ref_Status"}
+\item{col_metval_Subset}{Column name for Index_Region in data_metstats.
+Default = INDEX_REGION}
 
-\item{col_metstat_DataType}{Column name for Data Type – Validation vs. Calibration.  Default = "Data_Type"}
+\item{col_metstat_RefStatus}{Column name for Reference Status.
+Default = "Ref_Status"}
 
-\item{col_metstat_Subset}{Column name for Index_Region in data_metstats.  Default = xx.}
+\item{col_metstat_DataType}{Column name for Data Type – Validation vs.
+Calibration.  Default = "Data_Type"}
+
+\item{col_metstat_Subset}{Column name for Index_Region in data_metstats.
+Default = xx.}
 
 \item{RefStatus_Ref}{RefStatus value for Reference.  Default = "Ref"}
 
@@ -46,7 +54,8 @@ metric.stats2(
 
 \item{DataType_Ver}{DataType value for Verification. Default = "Ver"}
 
-\item{Subset_Value}{Subset value of Index_Region (site class).  Default = NULL}
+\item{Subset_Value}{Subset value of Index_Region (site class).
+Default = NULL}
 }
 \value{
 A data frame of the metric.stats input is returned with new columns
