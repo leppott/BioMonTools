@@ -41,8 +41,9 @@
 
 <meta property="og:title" content="Calculate metric values — metric.values" />
 <meta property="og:description" content="This function calculates metric values for bugs and fish.
-Inputs are a data frame with SampleID and taxa with phylogenetic and autecological information
-(see below for required fields by community).  The dplyr package is used to generate the metric values." />
+Inputs are a data frame with SampleID and taxa with phylogenetic and
+autecological information #' (see below for required fields by community).
+The dplyr package is used to generate the metric values." />
 
 
 
@@ -74,7 +75,7 @@ Inputs are a data frame with SampleID and taxa with phylogenetic and autecologic
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9030</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9031</span>
       </span>
     </div>
 
@@ -135,8 +136,9 @@ Inputs are a data frame with SampleID and taxa with phylogenetic and autecologic
 
     <div class="ref-description">
     <p>This function calculates metric values for bugs and fish.
-Inputs are a data frame with SampleID and taxa with phylogenetic and autecological information
-(see below for required fields by community).  The dplyr package is used to generate the metric values.</p>
+Inputs are a data frame with SampleID and taxa with phylogenetic and
+autecological information #' (see below for required fields by community).
+The dplyr package is used to generate the metric values.</p>
     </div>
 
     <pre class="usage"><span class='fu'>metric.values</span><span class='op'>(</span>
@@ -158,7 +160,8 @@ Inputs are a data frame with SampleID and taxa with phylogenetic and autecologic
     </tr>
     <tr>
       <th>fun.Community</th>
-      <td><p>Community name for which to calculate metric values (bugs, fish, or algae)</p></td>
+      <td><p>Community name for which to calculate metric values
+(bugs, fish, or algae)</p></td>
     </tr>
     <tr>
       <th>fun.MetricNames</th>
@@ -168,11 +171,13 @@ If none are supplied then all will be returned.  Default=NULL</p></td>
     <tr>
       <th>boo.Adjust</th>
       <td><p>Optional boolean value on whether to perform adjustments of
-values prior to scoring.  Default = FALSE but may be TRUE for certain metrics.</p></td>
+values prior to scoring.  Default = FALSE but may be TRUE for certain
+metrics.</p></td>
     </tr>
     <tr>
       <th>fun.cols2keep</th>
-      <td><p>Column names of fun.DF to retain in the output.  Uses column names.</p></td>
+      <td><p>Column names of fun.DF to retain in the output.  Uses
+column names.</p></td>
     </tr>
     <tr>
       <th>boo.marine</th>
@@ -181,7 +186,8 @@ Ignored if fun.MetricNames is not null. Default = FALSE.</p></td>
     </tr>
     <tr>
       <th>boo.Shiny</th>
-      <td><p>Boolean value for if the function is accessed via Shiny.  Default = FALSE.</p></td>
+      <td><p>Boolean value for if the function is accessed via Shiny.
+Default = FALSE.</p></td>
     </tr>
     </table>
 
@@ -197,10 +203,10 @@ operational taxonomic unit (OTU).</p>
 <p>Any non-count taxa should be identified in the "Exclude" field as "TRUE".
 These taxa will be excluded from taxa richness metrics (but will count for
 all others).  #' Any non-target taxa should be identified in the "NonTarget"
-field as "TRUE".  Non-target taxa are those that are not part of your intended
-capture list; e.g., fish,  herps, water column taxa, or water surface taxa in
-a benthic sample.  The target list will vary by program.  The non-target taxa
-will be removed prior to any calculations.</p>
+field as "TRUE".  Non-target taxa are those that are not part of your
+intended #' capture list; e.g., fish,  herps, water column taxa, or water
+surface taxa in a benthic sample.  The target list will vary by program.  The
+non-target taxa will be removed prior to any calculations.</p>
 <p>Excluded taxa are ambiguous taxa (on a sample basis), i.e.,
 the parent taxa when child taxa are present.  For example, the parent taxa
 Chironomidae would be excluded when the child taxa Tanytarsini is present.
@@ -220,9 +226,11 @@ having to update their data to match the function.</p>
 <p>* N_TAXA</p>
 <p>* EXCLUDE (valid values are TRUE and FALSE)</p>
 <p>* INDEX_NAME</p>
-<p>* INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values are "hi" or "lo")</p>
+<p>* INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values
+are "hi" or "lo")</p>
 <p>* NONTARGET (valid values are TRUE and FALSE)</p>
-<p>* PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS</p>
+<p>* PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY,
+TRIBE, GENUS</p>
 <p>* FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
 LONGLIVED, NOTEWORTHY, HABITAT</p>
 <p>Valid values for FFG: CG, CF, PR, SC, SH</p>
@@ -234,29 +242,29 @@ LONGLIVED, NOTEWORTHY, HABITAT</p>
 <p>Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN</p>
 <p>Columns to keep are additional fields in the input file that the user wants
 retained in the output.  Fields need to be those that are unique per sample
-and not associated with the taxa.  For example, the fields used in qc.check();
-Area_mi2, SurfaceArea, Density_m2, and Density_ft2.</p>
-<p>If fun.MetricNames is provided only those metrics will be returned in the provided order.
-This variable can be used to sort the metrics per the user's preferences.
-By default the metric names will be returned in the groupings that were used for calculation.</p>
-<p>The fields TOLVAL2 and FFG2 are provided to allow the user to calculate metrics
-based on alternative scenarios.  For example, HBI and NCBI where the NCBI uses
-a different set of tolerance values (TOLVAL2).</p>
-<p>If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated with that record.
-Other values for TAXAID with N_TAXA = 0 will be removed before calculations.</p>
-<p>For 'Oligochete' metrics either Class or Subclass is required for calculation.</p>
-<p>The parameter boo.Shiny can be set to TRUE when accessing this function in Shiny.
-Normally the QC check for required fields is interactive.  Setting boo.Shiny to TRUE
-will always continue.  The default is FALSE.</p>
+and not associated with the taxa.  For example, the fields used in
+qc.check(); Area_mi2, SurfaceArea, Density_m2, and Density_ft2.</p>
+<p>If fun.MetricNames is provided only those metrics will be returned in the
+provided order. This variable can be used to sort the metrics per the user's
+preferences. By default the metric names will be returned in the groupings
+that were used for calculation.</p>
+<p>The fields TOLVAL2 and FFG2 are provided to allow the user to calculate
+metrics based on alternative scenarios.  For example, HBI and NCBI where the
+NCBI uses a different set of tolerance values (TOLVAL2).</p>
+<p>If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated
+with that record. Other values for TAXAID with N_TAXA = 0 will be removed
+before calculations.</p>
+<p>For 'Oligochete' metrics either Class or Subclass is required for
+calculation.</p>
+<p>The parameter boo.Shiny can be set to TRUE when accessing this function in
+Shiny. Normally the QC check for required fields is interactive.  Setting
+boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Example data (missing SubClass)</span>
 
 <span class='va'>df_metric_values_bugs</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>data_benthos_PacNW</span>, <span class='st'>"bugs"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error: Problem with `summarise()` input `nt_Oligo`.</span>
-#&gt; <span class='error'><span style='color: #BB0000;'>✖</span><span> object 'SUBCLASS' not found</span>
-#&gt; <span class='error'></span><span style='color: #0000BB;'>ℹ</span><span> Input `nt_Oligo` is `dplyr::n_distinct(...)`.</span>
-#&gt; <span class='error'></span><span style='color: #0000BB;'>ℹ</span><span> The error occurred in group 1: SAMPLEID = "07067DFW", INDEX_NAME = "BCG.PacNW.L1", INDEX_REGION = "ALL".</span></div><div class='input'>
+
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># View Results</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span><span class='op'>)</span>
@@ -277,7 +285,9 @@ will always continue.  The default is FALSE.</p>
 <span class='va'>myCols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Area_mi2"</span>, <span class='st'>"SurfaceArea"</span>, <span class='st'>"Density_m2"</span>, <span class='st'>"Density_ft2"</span><span class='op'>)</span>
 
 <span class='co'># Run Function</span>
-<span class='va'>df_metric_values_bugs</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>df_samps_bugs</span>, <span class='st'>"bugs"</span>, fun.cols2keep<span class='op'>=</span><span class='va'>myCols</span><span class='op'>)</span>
+<span class='va'>df_metric_values_bugs</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>df_samps_bugs</span>
+                                       , <span class='st'>"bugs"</span>
+                                       , fun.cols2keep<span class='op'>=</span><span class='va'>myCols</span><span class='op'>)</span>
 
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># View Results</span>
@@ -285,13 +295,17 @@ will always continue.  The default is FALSE.</p>
 <span class='op'>}</span>
 
 <span class='co'># Get data in long format so can QC results more easily</span>
-<span class='va'>df_long</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/reshape2/man/melt.html'>melt</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span>, id.vars<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"SAMPLEID"</span>, <span class='st'>"INDEX_NAME"</span>
-                                                 , <span class='st'>"INDEX_REGION"</span>, <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>toupper</a></span><span class='op'>(</span><span class='va'>myCols</span><span class='op'>)</span><span class='op'>)</span>
-                          , variable.name<span class='op'>=</span><span class='st'>"METRIC_NAME"</span>, value.name<span class='op'>=</span><span class='st'>"METRIC_VALUE"</span><span class='op'>)</span>
+<span class='va'>df_long</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/reshape2/man/melt.html'>melt</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span>, id.vars<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"SAMPLEID"</span>
+                                                 , <span class='st'>"INDEX_NAME"</span>
+                                                 , <span class='st'>"INDEX_REGION"</span>
+                                                 , <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>toupper</a></span><span class='op'>(</span><span class='va'>myCols</span><span class='op'>)</span><span class='op'>)</span>
+                          , variable.name<span class='op'>=</span><span class='st'>"METRIC_NAME"</span>
+                          , value.name<span class='op'>=</span><span class='st'>"METRIC_VALUE"</span><span class='op'>)</span>
 
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Save Results</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span><span class='va'>df_long</span>, <span class='st'>"metric.values.tsv"</span>, col.names<span class='op'>=</span><span class='cn'>TRUE</span>, row.names<span class='op'>=</span><span class='cn'>FALSE</span>, sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span><span class='va'>df_long</span>, <span class='st'>"metric.values.tsv"</span>, col.names<span class='op'>=</span><span class='cn'>TRUE</span>, row.names<span class='op'>=</span><span class='cn'>FALSE</span>
+  , sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span>
 
 <span class='co'># DataExplorer Report</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://boxuancui.github.io/DataExplorer/'>DataExplorer</a></span><span class='op'>)</span>
@@ -309,13 +323,13 @@ will always continue.  The default is FALSE.</p>
 
 <span class='co'># Run Function</span>
 <span class='va'>df_metric_values_bugs_myMetrics</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>df_samps_bugs</span>, <span class='st'>"bugs"</span>
-                                                , fun.MetricNames <span class='op'>=</span> <span class='va'>myMetrics</span><span class='op'>)</span>
+                                               , fun.MetricNames <span class='op'>=</span> <span class='va'>myMetrics</span><span class='op'>)</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># View Results</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs_myMetrics</span><span class='op'>)</span>
 <span class='op'>}</span>
 
-</div></span></pre>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
