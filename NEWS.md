@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-01-02 17:47:02
+    #> Last Update: 2021-01-02 19:18:02
 
 # Planned Updates
 
@@ -17,6 +17,10 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9029 (2021-01-02)
+
+test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.5.0.9028 (2021-01-02)
 
