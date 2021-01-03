@@ -160,7 +160,6 @@ metric.stats <- function(fun.DF
     #
   }## IF ~ boo_debug ~ END
 
-
   # define pipe
   `%>%` <- dplyr::`%>%`
   # Munge ####
@@ -255,7 +254,7 @@ metric.stats <- function(fun.DF
     metrics_mean  <- sapply(df_i[, col_metrics], mean, na.rm = TRUE)
     metrics_median  <- sapply(df_i[, col_metrics], stats::median, na.rm = TRUE)
     metrics_range <- metrics_max - metrics_min
-    metrics_sd    <- sapply(df_i[, col_metrics], sd, na.rm = TRUE)
+    metrics_sd    <- sapply(df_i[, col_metrics], stats::sd, na.rm = TRUE)
     metrics_cv    <- metrics_sd / metrics_mean
     #
     # percentiles to run

@@ -138,7 +138,7 @@ metric.stats2 <- function(data_metval
                           , DataType_Ver = "Ver"
                           , Subset_Value = NULL
                          ){##FUNCTION.metric.values.START
-  # debug
+  # debug ----
   boo_debug <- FALSE
   if (boo_debug == TRUE){
     ## Create Metric Values
@@ -193,9 +193,12 @@ metric.stats2 <- function(data_metval
 
   }## IF ~ boo_debug ~ END
 
+  # global variable bindings ----
+  data_mmi_dev <- q25_lt <- n_Str <- q75_gt <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
+
   # Munge ####
   # Data Munging (common to all data types)
   # Convert to data.frame.  Code breaks if myDF is a tibble.
@@ -340,7 +343,7 @@ metric.stats2 <- function(data_metval
 
   # Str metric values in long format
   data_metval_str_longer <- tidyr::pivot_longer(data_metval[data_metval[, col_RefStatus] == RefStatus_Str, ]
-                                            , cols = all_of(col_metnam)
+                                            , cols = tidyr::all_of(col_metnam)
                                             , names_to = "Metric_Name"
                                             , values_to = "Metric_Value")
   # merge

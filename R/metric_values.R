@@ -1,8 +1,9 @@
 #' @title Calculate metric values
 #'
 #' @description This function calculates metric values for bugs and fish.
-#' Inputs are a data frame with SampleID and taxa with phylogenetic and autecological information
-#' (see below for required fields by community).  The dplyr package is used to generate the metric values.
+#' Inputs are a data frame with SampleID and taxa with phylogenetic and
+#' autecological information #' (see below for required fields by community).
+#' The dplyr package is used to generate the metric values.
 #'
 #' @details All percent metric results are 0-100.
 #'
@@ -13,10 +14,10 @@
 #' Any non-count taxa should be identified in the "Exclude" field as "TRUE".
 #' These taxa will be excluded from taxa richness metrics (but will count for
 #' all others).  #' Any non-target taxa should be identified in the "NonTarget"
-#' field as "TRUE".  Non-target taxa are those that are not part of your intended
-#' capture list; e.g., fish,  herps, water column taxa, or water surface taxa in
-#' a benthic sample.  The target list will vary by program.  The non-target taxa
-#' will be removed prior to any calculations.
+#' field as "TRUE".  Non-target taxa are those that are not part of your
+#' intended #' capture list; e.g., fish,  herps, water column taxa, or water
+#' surface taxa in a benthic sample.  The target list will vary by program.  The
+#' non-target taxa will be removed prior to any calculations.
 #'
 #' Excluded taxa are ambiguous taxa (on a sample basis), i.e.,
 #' the parent taxa when child taxa are present.  For example, the parent taxa
@@ -46,11 +47,13 @@
 #'
 #' * INDEX_NAME
 #'
-#' * INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values are "hi" or "lo")
+#' * INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values
+#' are "hi" or "lo")
 #'
 #' * NONTARGET (valid values are TRUE and FALSE)
 #'
-#' * PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
+#' * PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY,
+#' TRIBE, GENUS
 #'
 #' * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
 #' LONGLIVED, NOTEWORTHY, HABITAT
@@ -71,37 +74,45 @@
 #'
 #' Columns to keep are additional fields in the input file that the user wants
 #' retained in the output.  Fields need to be those that are unique per sample
-#' and not associated with the taxa.  For example, the fields used in qc.check();
-#' Area_mi2, SurfaceArea, Density_m2, and Density_ft2.
+#' and not associated with the taxa.  For example, the fields used in
+#' qc.check(); Area_mi2, SurfaceArea, Density_m2, and Density_ft2.
 #'
-#' If fun.MetricNames is provided only those metrics will be returned in the provided order.
-#' This variable can be used to sort the metrics per the user's preferences.
-#' By default the metric names will be returned in the groupings that were used for calculation.
+#' If fun.MetricNames is provided only those metrics will be returned in the
+#' provided order. This variable can be used to sort the metrics per the user's
+#' preferences. By default the metric names will be returned in the groupings
+#' that were used for calculation.
 #'
-#' The fields TOLVAL2 and FFG2 are provided to allow the user to calculate metrics
-#' based on alternative scenarios.  For example, HBI and NCBI where the NCBI uses
-#' a different set of tolerance values (TOLVAL2).
+#' The fields TOLVAL2 and FFG2 are provided to allow the user to calculate
+#' metrics based on alternative scenarios.  For example, HBI and NCBI where the
+#' NCBI uses a different set of tolerance values (TOLVAL2).
 #'
-#' If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated with that record.
-#' Other values for TAXAID with N_TAXA = 0 will be removed before calculations.
+#' If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated
+#' with that record. Other values for TAXAID with N_TAXA = 0 will be removed
+#' before calculations.
 #'
-#' For 'Oligochete' metrics either Class or Subclass is required for calculation.
+#' For 'Oligochete' metrics either Class or Subclass is required for
+#' calculation.
 #'
-#' The parameter boo.Shiny can be set to TRUE when accessing this function in Shiny.
-#' Normally the QC check for required fields is interactive.  Setting boo.Shiny to TRUE
-#' will always continue.  The default is FALSE.
+#' The parameter boo.Shiny can be set to TRUE when accessing this function in
+#' Shiny. Normally the QC check for required fields is interactive.  Setting
+#' boo.Shiny to TRUE will always continue.  The default is FALSE.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param fun.DF Data frame of taxa (list required fields)
-#' @param fun.Community Community name for which to calculate metric values (bugs, fish, or algae)
+#' @param fun.Community Community name for which to calculate metric values
+#' (bugs, fish, or algae)
 #' @param fun.MetricNames Optional vector of metric names to be returned.
 #' If none are supplied then all will be returned.  Default=NULL
 #' @param boo.Adjust Optional boolean value on whether to perform adjustments of
-#' values prior to scoring.  Default = FALSE but may be TRUE for certain metrics.
-#' @param fun.cols2keep Column names of fun.DF to retain in the output.  Uses column names.
-# @param MetricSort How metric names should be sort; NA = as is, AZ = alphabetical.  Default = NULL.
+#' values prior to scoring.  Default = FALSE but may be TRUE for certain
+#' metrics.
+#' @param fun.cols2keep Column names of fun.DF to retain in the output.  Uses
+#' column names.
+# @param MetricSort How metric names should be sort; NA = as is, AZ =
+# alphabetical.  Default = NULL.
 #' @param boo.marine Should estuary/marine metrics be included.
 #' Ignored if fun.MetricNames is not null. Default = FALSE.
-#' @param boo.Shiny Boolean value for if the function is accessed via Shiny.  Default = FALSE.
+#' @param boo.Shiny Boolean value for if the function is accessed via Shiny.
+#' Default = FALSE.
 #'
 #' @return data frame of SampleID and metric values
 #' @examples
@@ -129,7 +140,9 @@
 #' myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
 #'
 #' # Run Function
-#' df_metric_values_bugs <- metric.values(df_samps_bugs, "bugs", fun.cols2keep=myCols)
+#' df_metric_values_bugs <- metric.values(df_samps_bugs
+#'                                        , "bugs"
+#'                                        , fun.cols2keep=myCols)
 #'
 #'\dontrun{
 #' # View Results
@@ -137,13 +150,17 @@
 #' }
 #'
 #' # Get data in long format so can QC results more easily
-#' df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID", "INDEX_NAME"
-#'                                                  , "INDEX_REGION", toupper(myCols))
-#'                           , variable.name="METRIC_NAME", value.name="METRIC_VALUE")
+#' df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID"
+#'                                                  , "INDEX_NAME"
+#'                                                  , "INDEX_REGION"
+#'                                                  , toupper(myCols))
+#'                           , variable.name="METRIC_NAME"
+#'                           , value.name="METRIC_VALUE")
 #'
 #'\dontrun{
 #' # Save Results
-#' write.table(df_long, "metric.values.tsv", col.names=TRUE, row.names=FALSE, sep="\t")
+#' write.table(df_long, "metric.values.tsv", col.names=TRUE, row.names=FALSE
+#'   , sep="\t")
 #'
 #' # DataExplorer Report
 #' library(DataExplorer)
@@ -161,7 +178,7 @@
 #'
 #' # Run Function
 #' df_metric_values_bugs_myMetrics <- metric.values(df_samps_bugs, "bugs"
-#'                                                 , fun.MetricNames = myMetrics)
+#'                                                , fun.MetricNames = myMetrics)
 #'\dontrun{
 #' # View Results
 #' View(df_metric_values_bugs_myMetrics)
@@ -192,10 +209,14 @@
 # View(df.metric.values.bugs)
 #
 # # Get data in long format so can QC results more easily
-# df.long <- melt(df.metric.values.bugs, id.vars=c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
-#                           , variable.name="METRIC_NAME", value.name="METRIC_VALUE")
+# df.long <- melt(df.metric.values.bugs, id.vars=c("SAMPLEID"
+#                                                 , "INDEX_NAME"
+#                                                 , "INDEX_REGION")
+#                           , variable.name="METRIC_NAME"
+#                           , value.name="METRIC_VALUE")
 # # Save Results
-# write.table(df.long, "metric.values.tsv", col.names=TRUE, row.names=FALSE, sep="\t")
+# write.table(df.long, "metric.values.tsv", col.names=TRUE, row.names=FALSE
+#      , sep="\t")
 #
 # # DataExplorer Report
 # library(DataExplorer)
@@ -247,7 +268,8 @@
 # mySamp <- "06039CSR_Bug_2006-07-13_0"
 # x <- dplyr::filter(myDF, SAMPLEID==mySamp)
 # # 26 taxa
-# x <- dplyr::filter(myDF, SAMPLEID==mySamp, (BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6"))
+# x <- dplyr::filter(myDF, SAMPLEID==mySamp, (BCG_ATTR == "4" | BCG_ATTR == "5"
+#                                     | BCG_ATTR == "6"))
 # # 22 taxa (good)
 # x <- dplyr::filter(myDF, SAMPLEID==mySamp
 #                    , (is.na(CLASS)==TRUE | (CLASS != "Insecta" & CLASS != "Arachnida"))
@@ -373,11 +395,15 @@
 #' @export
 metric.values <- function(fun.DF
                           , fun.Community
-                          , fun.MetricNames=NULL
-                          , boo.Adjust=FALSE
-                          , fun.cols2keep=NULL
-                          , boo.marine=FALSE
-                          , boo.Shiny=FALSE){##FUNCTION.metric.values.START
+                          , fun.MetricNames = NULL
+                          , boo.Adjust = FALSE
+                          , fun.cols2keep = NULL
+                          , boo.marine = FALSE
+                          , boo.Shiny = FALSE){##FUNCTION.metric.values.START
+
+  # global variable bindings
+  N_TAXA <- TAXAID <- NULL
+
   # define pipe
   `%>%` <- dplyr::`%>%`
   # Munge ####
@@ -414,16 +440,35 @@ metric.values <- function(fun.DF
 #
 #' @export
 metric.values.bugs <- function(myDF
-                               , MetricNames=NULL
-                               , boo.Adjust=FALSE
-                               , cols2keep=NULL
-                               , MetricSort=NA
-                               , boo.marine=FALSE
+                               , MetricNames = NULL
+                               , boo.Adjust = FALSE
+                               , cols2keep = NULL
+                               , MetricSort = NA
+                               , boo.marine = FALSE
                                , boo.Shiny){##FUNCTION.metric.values.bugs.START
   #
   #names(myDF) <- toupper(names(myDF))
   # not carrying over from previous?!
-  #
+
+  # global variable bindings ----
+  INDEX_NAME <- INDEX_REGION <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
+    BCG_ATTR <- NONTARGET <- LONGLIVED <- NOTEWORTHY <- NULL
+  desc <- FFG2_PRE <- TI_COLD <- TI_COLDCOOL <- NULL
+  PHYLUM <- SUBPHYLUM <- CLASS <- SUBCLASS <- INFRAORDER <- ORDER <-
+    FAMILY <- SUBFAMILY <- TRIBE <- GENUS <- NULL
+  ni_total <- ni_Americo <- ni_Gnorimo <- ni_EPT <- ni_Trich <- nt_Amph <-
+    nt_total <- nt_Bival <- nt_Coleo <- nt_COET <- nt_Deca <- nt_Dipt <-
+    nt_Ephem <- nt_EPT <- nt_ET <- nt_Gast <- nt_Insect <- nt_Isop <- nt_Mega <-
+    nt_NonIns <- nt_Nudib <- nt_Odon <- nt_OET <- nt_Oligo <- nt_Pleco <-
+    nt_POET <- nt_Poly <- nt_PolyNoSpion <- nt_Spion <- nt_Trich <- ni_Chiro <-
+    nt_Chiro <- nt_NonInsArachDeca_BCG_att456 <-
+    nt_NonInsArachDecaJugaRiss_BCG_att456 <- ni_dom02_NoJugaRiss_BCG_att456 <-
+    nt_NonIns_BCG_att456 <- nt_NonInsJugaRiss_BCG_att456 <- nt_BCG_att1m <-
+    nt_BCG_att12 <- nt_BCG_att1i2 <- nt_BCG_att123 <- nt_BCG_att1i23 <-
+    nt_BCG_att2 <- nt_BCG_att23 <- nt_BCG_att234 <- nt_BCG_att3 <-
+    nt_BCG_att4 <- nt_BCG_att45 <- nt_BCG_att5 <- nt_BCG_att56 <- nt_BCG_att6 <-
+    nt_BCG_attNA <- nt_EPT_BCG_att123 <- NULL
+
   # define pipe
   `%>%` <- dplyr::`%>%`
   # QC ####
@@ -1427,6 +1472,14 @@ metric.values.fish <- function(myDF
                                , boo.Adjust=FALSE
                                , cols2keep=NULL
                                , boo.Shiny){##FUNCTION.metric.values.fish.START
+
+  # global variable bindings ----
+  SAMPLEID <- INDEX_NAME <- INDEX_REGION <- TAXAID <- N_TAXA <- NATIVE <-
+    HYBRID <- TYPE <- TROPHIC <- SILT <- TOLER <- N_ANOMALIES <- GENUS <-
+    FAMILY <- SAMP_WIDTH_M <- SAMP_LENGTH_M <- NULL
+  ni_total <- x_Shan_e <- nt_total <- x_Evenness <- length_m <-
+    ni_natnonhybridnonmf <- ni_natnonhybridnonmfnonlepomis <- NULL
+
   # define pipe
   `%>%` <- dplyr::`%>%`
   # QC ####
@@ -1476,27 +1529,34 @@ metric.values.fish <- function(myDF
   # By taxon or sample total
   # Data set up to be by taxon.  But some report as sample total.
   stats_anom <- myDF %>%
-    group_by(SAMPLEID) %>%
-    summarize(n =n()
-              , n_distinct = n_distinct(N_ANOMALIES, na.rm = TRUE)
+    dplyr::group_by(SAMPLEID) %>%
+    dplyr::summarize(n = dplyr::n()
+              , n_distinct = dplyr::n_distinct(N_ANOMALIES, na.rm = TRUE)
               , mean = mean(N_ANOMALIES, na.rm = TRUE)
               , sd = stats::sd(N_ANOMALIES, na.rm = TRUE)
               , sum = sum(N_ANOMALIES, na.rm = TRUE))
   stats_anom[, "SUM_ANOMALIES"] <- stats_anom[, "mean"] / stats_anom[, "n"]
   # make change;  n > 1 & n_distinct == 1
-  stats_anom$MOD_ANOMALIES <- ifelse(stats_anom$n > 1 & stats_anom$n_distinct == 1, TRUE, FALSE)
+  stats_anom$MOD_ANOMALIES <- ifelse(stats_anom$n > 1 &
+                                       stats_anom$n_distinct == 1, TRUE, FALSE)
   # add back to myDF
-  myDF <- merge(myDF, stats_anom[, c("SAMPLEID", "SUM_ANOMALIES", "MOD_ANOMALIES")]
+  myDF <- merge(myDF, stats_anom[, c("SAMPLEID"
+                                     , "SUM_ANOMALIES"
+                                     , "MOD_ANOMALIES")]
              , all.x = TRUE)
-  myDF[myDF$MOD_ANOMALIES==TRUE, "N_ANOMALIES"] <- myDF[myDF$MOD_ANOMALIES==TRUE, "SUM_ANOMALIES"]
+  myDF[myDF$MOD_ANOMALIES==TRUE, "N_ANOMALIES"] <- myDF[myDF$MOD_ANOMALIES==TRUE
+                                                        , "SUM_ANOMALIES"]
 
   # Metric Calc ####
   # code above is different than benthos
   # Calculate Metrics (could have used pipe, %>%)
-  met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME, INDEX_REGION, SAMP_WIDTH_M, SAMP_LENGTH_M)
+  met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME
+                                              , INDEX_REGION, SAMP_WIDTH_M
+                                              , SAMP_LENGTH_M)
                        #
                        # MBSS 2005, 11 metrics
-                       # (can do metrics as one step but MBSS output has numerator so will get that as well)
+                       # (can do metrics as one step but MBSS output has
+                       # numerator so will get that as well)
                        #
                        # when invoke a "x != abc" need to include "| is.na(x)"
                        # unless all "x" are populated (e.g., TRUE or FALSE)
@@ -1693,6 +1753,9 @@ metric.values.algae <- function(myDF
                                 , boo.Adjust=FALSE
                                 , cols2keep=NULL){
   ##FUNCTION ~ metric.values.algae ~ START
+
+  # global variable bindings ----
+  SampleID <- N_TAXA <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`

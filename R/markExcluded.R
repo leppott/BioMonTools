@@ -215,6 +215,9 @@ markExcluded <- function(df_samptax, SampID="SAMPLEID", TaxaID="TAXAID", TaxaCou
   #
   boo_QC <- FALSE
 
+  # global variable bindings ----
+  count_tl <- NULL
+
   # retain original dataframe
   df_orig <- df_samptax
 

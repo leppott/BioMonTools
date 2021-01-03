@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-01-03 14:34:32
+    #> Last Update: 2021-01-03 15:50:04
 
 # Planned Updates
 
@@ -18,7 +18,24 @@ NEWS
 
 # Version History
 
-## Changes in Version 0.5.0.9030 (2021-01-02)
+## Changes in Version 0.5.0.9031 (2021-01-03)
+
+  - docs: DESCRIPTION, move packages from Imports to Suggests
+      - knitr
+      - rmarkdown
+  - docs: DESCRIPTION, set license
+  - refactor: Add foo:: to missing functions
+      - metric.stats
+      - metric.stats2
+  - refactor: Add global variable binding
+      - markExcluded
+      - metric.scores
+      - metric.stats
+      - metric.stats2
+      - metric.values
+      - qc.checks
+
+## Changes in Version 0.5.0.9030 (2021-01-03)
 
   - doc: Delete docso will rebuild.
   - style: Remove undesireable function, replace library(foo) with

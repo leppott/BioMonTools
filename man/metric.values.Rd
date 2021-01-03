@@ -17,28 +17,33 @@ metric.values(
 \arguments{
 \item{fun.DF}{Data frame of taxa (list required fields)}
 
-\item{fun.Community}{Community name for which to calculate metric values (bugs, fish, or algae)}
+\item{fun.Community}{Community name for which to calculate metric values
+(bugs, fish, or algae)}
 
 \item{fun.MetricNames}{Optional vector of metric names to be returned.
 If none are supplied then all will be returned.  Default=NULL}
 
 \item{boo.Adjust}{Optional boolean value on whether to perform adjustments of
-values prior to scoring.  Default = FALSE but may be TRUE for certain metrics.}
+values prior to scoring.  Default = FALSE but may be TRUE for certain
+metrics.}
 
-\item{fun.cols2keep}{Column names of fun.DF to retain in the output.  Uses column names.}
+\item{fun.cols2keep}{Column names of fun.DF to retain in the output.  Uses
+column names.}
 
 \item{boo.marine}{Should estuary/marine metrics be included.
 Ignored if fun.MetricNames is not null. Default = FALSE.}
 
-\item{boo.Shiny}{Boolean value for if the function is accessed via Shiny.  Default = FALSE.}
+\item{boo.Shiny}{Boolean value for if the function is accessed via Shiny.
+Default = FALSE.}
 }
 \value{
 data frame of SampleID and metric values
 }
 \description{
 This function calculates metric values for bugs and fish.
-Inputs are a data frame with SampleID and taxa with phylogenetic and autecological information
-(see below for required fields by community).  The dplyr package is used to generate the metric values.
+Inputs are a data frame with SampleID and taxa with phylogenetic and
+autecological information #' (see below for required fields by community).
+The dplyr package is used to generate the metric values.
 }
 \details{
 All percent metric results are 0-100.
@@ -50,10 +55,10 @@ operational taxonomic unit (OTU).
 Any non-count taxa should be identified in the "Exclude" field as "TRUE".
 These taxa will be excluded from taxa richness metrics (but will count for
 all others).  #' Any non-target taxa should be identified in the "NonTarget"
-field as "TRUE".  Non-target taxa are those that are not part of your intended
-capture list; e.g., fish,  herps, water column taxa, or water surface taxa in
-a benthic sample.  The target list will vary by program.  The non-target taxa
-will be removed prior to any calculations.
+field as "TRUE".  Non-target taxa are those that are not part of your
+intended #' capture list; e.g., fish,  herps, water column taxa, or water
+surface taxa in a benthic sample.  The target list will vary by program.  The
+non-target taxa will be removed prior to any calculations.
 
 Excluded taxa are ambiguous taxa (on a sample basis), i.e.,
 the parent taxa when child taxa are present.  For example, the parent taxa
@@ -83,11 +88,13 @@ Required Fields:
 
 * INDEX_NAME
 
-* INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values are "hi" or "lo")
+* INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values
+are "hi" or "lo")
 
 * NONTARGET (valid values are TRUE and FALSE)
 
-* PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
+* PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY,
+TRIBE, GENUS
 
 * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
 LONGLIVED, NOTEWORTHY, HABITAT
@@ -108,25 +115,28 @@ Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN
 
 Columns to keep are additional fields in the input file that the user wants
 retained in the output.  Fields need to be those that are unique per sample
-and not associated with the taxa.  For example, the fields used in qc.check();
-Area_mi2, SurfaceArea, Density_m2, and Density_ft2.
+and not associated with the taxa.  For example, the fields used in
+qc.check(); Area_mi2, SurfaceArea, Density_m2, and Density_ft2.
 
-If fun.MetricNames is provided only those metrics will be returned in the provided order.
-This variable can be used to sort the metrics per the user's preferences.
-By default the metric names will be returned in the groupings that were used for calculation.
+If fun.MetricNames is provided only those metrics will be returned in the
+provided order. This variable can be used to sort the metrics per the user's
+preferences. By default the metric names will be returned in the groupings
+that were used for calculation.
 
-The fields TOLVAL2 and FFG2 are provided to allow the user to calculate metrics
-based on alternative scenarios.  For example, HBI and NCBI where the NCBI uses
-a different set of tolerance values (TOLVAL2).
+The fields TOLVAL2 and FFG2 are provided to allow the user to calculate
+metrics based on alternative scenarios.  For example, HBI and NCBI where the
+NCBI uses a different set of tolerance values (TOLVAL2).
 
-If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated with that record.
-Other values for TAXAID with N_TAXA = 0 will be removed before calculations.
+If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated
+with that record. Other values for TAXAID with N_TAXA = 0 will be removed
+before calculations.
 
-For 'Oligochete' metrics either Class or Subclass is required for calculation.
+For 'Oligochete' metrics either Class or Subclass is required for
+calculation.
 
-The parameter boo.Shiny can be set to TRUE when accessing this function in Shiny.
-Normally the QC check for required fields is interactive.  Setting boo.Shiny to TRUE
-will always continue.  The default is FALSE.
+The parameter boo.Shiny can be set to TRUE when accessing this function in
+Shiny. Normally the QC check for required fields is interactive.  Setting
+boo.Shiny to TRUE will always continue.  The default is FALSE.
 }
 \examples{
 # Example data (missing SubClass)
@@ -153,7 +163,9 @@ df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx"
 myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
 
 # Run Function
-df_metric_values_bugs <- metric.values(df_samps_bugs, "bugs", fun.cols2keep=myCols)
+df_metric_values_bugs <- metric.values(df_samps_bugs
+                                       , "bugs"
+                                       , fun.cols2keep=myCols)
 
 \dontrun{
 # View Results
@@ -161,13 +173,17 @@ View(df_metric_values_bugs)
 }
 
 # Get data in long format so can QC results more easily
-df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID", "INDEX_NAME"
-                                                 , "INDEX_REGION", toupper(myCols))
-                          , variable.name="METRIC_NAME", value.name="METRIC_VALUE")
+df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID"
+                                                 , "INDEX_NAME"
+                                                 , "INDEX_REGION"
+                                                 , toupper(myCols))
+                          , variable.name="METRIC_NAME"
+                          , value.name="METRIC_VALUE")
 
 \dontrun{
 # Save Results
-write.table(df_long, "metric.values.tsv", col.names=TRUE, row.names=FALSE, sep="\t")
+write.table(df_long, "metric.values.tsv", col.names=TRUE, row.names=FALSE
+  , sep="\t")
 
 # DataExplorer Report
 library(DataExplorer)
@@ -185,7 +201,7 @@ myMetrics <- c("ni_total", "nt_EPT", "nt_Ephem", "pi_tv_intol", "pi_Ephem"
 
 # Run Function
 df_metric_values_bugs_myMetrics <- metric.values(df_samps_bugs, "bugs"
-                                                , fun.MetricNames = myMetrics)
+                                               , fun.MetricNames = myMetrics)
 \dontrun{
 # View Results
 View(df_metric_values_bugs_myMetrics)

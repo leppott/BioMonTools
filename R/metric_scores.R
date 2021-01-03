@@ -181,6 +181,9 @@ metric.scores <- function(DF_Metrics
     (bb <- toupper(unique(as.matrix(DF_Metrics[, col_IndexRegion]))[2]))
   }##IF~boo.QC~END
 
+  # global variable bindings ----
+  INDEX_NAME <- INDEX_REGION <- METRIC_NAME <- NULL
+
   # define pipe
   `%>%` <- dplyr::`%>%`
 

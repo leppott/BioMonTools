@@ -44,6 +44,8 @@
 #' @export
 qc.checks <- function(df.metrics, df.checks, input.shape="wide"){##FUNCTION.START
   #
+  # global variable bindings ----
+  df.metric.values.bugs <- NULL
   boo_DEBUG <- FALSE
   if(boo_DEBUG==TRUE){
     # # Rename UPPER CASE myCols in metric.values output
@@ -53,7 +55,7 @@ qc.checks <- function(df.metrics, df.checks, input.shape="wide"){##FUNCTION.STAR
     #     names(df.metric.values.bugs)[i.match] <- i
     #   }##IF.is.na.END
     # }##IF.i.END
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~
     #  QC
     df.metrics <- df.metric.values.bugs
     df.checks <- df.checks
@@ -73,7 +75,6 @@ qc.checks <- function(df.metrics, df.checks, input.shape="wide"){##FUNCTION.STAR
   # #
   # # metrics to check
   # checks.metrics <- unique(df.checks$Metric_Name)
-
 
   #
   # Metrics to long
