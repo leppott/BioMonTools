@@ -75,7 +75,7 @@ or continuous (e.g., 0-100, ScoreRegime=&quot;Cont_0100&quot;)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9031</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9032</span>
       </span>
     </div>
 
@@ -308,21 +308,23 @@ The index is on the same scale as the individual metric scores.</p>
 <span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>TOLVAL2</span> <span class='op'>&lt;-</span> <span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>FinalTolVal08</span>
 <span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>EXCLUDE</span> <span class='op'>&lt;-</span> <span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>EXCLUDE</span><span class='op'>==</span><span class='st'>"Y"</span>
 <span class='va'>myMetric_Values_Bugs_MBSS</span> <span class='op'>&lt;-</span> <span class='fu'><a href='metric.values.html'>metric.values</a></span><span class='op'>(</span><span class='va'>myDF_Bugs_MBSS</span>, <span class='st'>"bugs"</span>, <span class='va'>myMetrics_Bugs_MBSS</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(myDF, , "LIFE_CYCLE"): undefined columns selected</span></div><div class='input'><span class='co'>#</span>
+
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>myMetric_Values_Bugs_MBSS</span><span class='op'>)</span>
 <span class='op'>}</span>
 <span class='co'># SCORE</span>
 <span class='va'>myMetric_Values_Bugs_MBSS</span><span class='op'>$</span><span class='va'>INDEX_REGION</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>toupper</a></span><span class='op'>(</span><span class='va'>myMetric_Values_Bugs_MBSS</span><span class='op'>$</span><span class='va'>INDEX_REGION</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in toupper(myMetric_Values_Bugs_MBSS$INDEX_REGION): object 'myMetric_Values_Bugs_MBSS' not found</span></div><div class='input'><span class='va'>Metrics_Bugs_Scores_MBSS</span> <span class='op'>&lt;-</span> <span class='fu'>metric.scores</span><span class='op'>(</span><span class='va'>myMetric_Values_Bugs_MBSS</span>
+<span class='va'>Metrics_Bugs_Scores_MBSS</span> <span class='op'>&lt;-</span> <span class='fu'>metric.scores</span><span class='op'>(</span><span class='va'>myMetric_Values_Bugs_MBSS</span>
                                           , <span class='va'>myMetrics_Bugs_MBSS</span>
                                           , <span class='st'>"INDEX_NAME"</span>
                                           , <span class='st'>"INDEX_REGION"</span>
                                           , <span class='va'>df_thresh_metric</span>
                                           , <span class='va'>df_thresh_index</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in as.data.frame(DF_Metrics): object 'myMetric_Values_Bugs_MBSS' not found</span></div><div class='input'><span class='co'># View Results</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='co'># View Results</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in as.data.frame(x): object 'Metrics_Bugs_Scores_MBSS' not found</span></div><div class='input'>
+<span class='op'>}</span>
+
 <span class='co'># QC Index Scores and Narratives</span>
 <span class='co'># Set Narrative as Ordered Factor</span>
 <span class='va'>Nar_MBSS</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Very Poor"</span>, <span class='st'>"Poor"</span>, <span class='st'>"Fair"</span>, <span class='st'>"Good"</span><span class='op'>)</span>
@@ -330,27 +332,62 @@ The index is on the same scale as the individual metric scores.</p>
                                             , levels<span class='op'>=</span><span class='va'>Nar_MBSS</span>
                                             , labels<span class='op'>=</span><span class='va'>Nar_MBSS</span>
                                             , ordered<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in factor(Metrics_Bugs_Scores_MBSS$Index_Nar, levels = Nar_MBSS,     labels = Nar_MBSS, ordered = TRUE): object 'Metrics_Bugs_Scores_MBSS' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>$</span><span class='va'>Index</span>, <span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>$</span><span class='va'>Index_Nar</span>, useNA<span class='op'>=</span><span class='st'>"ifany"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in table(Metrics_Bugs_Scores_MBSS$Index, Metrics_Bugs_Scores_MBSS$Index_Nar,     useNA = "ifany"): object 'Metrics_Bugs_Scores_MBSS' not found</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>$</span><span class='va'>Index</span>, <span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>$</span><span class='va'>Index_Nar</span>, useNA<span class='op'>=</span><span class='st'>"ifany"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                   
+#&gt;                    Very Poor Poor Fair Good
+#&gt;   1                        7    0    0    0
+#&gt;   1.28571428571429         3    0    0    0
+#&gt;   1.33333333333333         8    0    0    0
+#&gt;   1.5                      8    0    0    0
+#&gt;   1.57142857142857         2    0    0    0
+#&gt;   1.66666666666667         9    0    0    0
+#&gt;   1.75                     5    0    0    0
+#&gt;   1.85714285714286         6    0    0    0
+#&gt;   2                        0   17    0    0
+#&gt;   2.14285714285714         0    6    0    0
+#&gt;   2.25                     0    4    0    0
+#&gt;   2.33333333333333         0   10    0    0
+#&gt;   2.42857142857143         0    6    0    0
+#&gt;   2.5                      0    3    0    0
+#&gt;   2.66666666666667         0   13    0    0
+#&gt;   2.71428571428571         0    6    0    0
+#&gt;   2.75                     0    2    0    0
+#&gt;   3                        0    0   20    0
+#&gt;   3.25                     0    0    4    0
+#&gt;   3.28571428571429         0    0    3    0
+#&gt;   3.33333333333333         0    0   12    0
+#&gt;   3.5                      0    0    5    0
+#&gt;   3.57142857142857         0    0    1    0
+#&gt;   3.66666666666667         0    0   10    0
+#&gt;   3.75                     0    0    6    0
+#&gt;   3.85714285714286         0    0    6    0
+#&gt;   4                        0    0    0    4
+#&gt;   4.14285714285714         0    0    0   10
+#&gt;   4.25                     0    0    0    4
+#&gt;   4.33333333333333         0    0    0    6
+#&gt;   4.42857142857143         0    0    0    4
+#&gt;   4.5                      0    0    0    1</div><div class='input'>
 <span class='co'># QC bug count (manual)</span>
 <span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span>,<span class='st'>"ni_total"</span><span class='op'>]</span><span class='op'>&gt;</span><span class='fl'>120</span>,
 <span class='st'>"QC_Count"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"LARGE"</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in Metrics_Bugs_Scores_MBSS[Metrics_Bugs_Scores_MBSS[, "ni_total"] &gt;     120, "QC_Count"] &lt;- "LARGE": object 'Metrics_Bugs_Scores_MBSS' not found</span></div><div class='input'><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span>,<span class='st'>"ni_total"</span><span class='op'>]</span><span class='op'>&lt;</span><span class='fl'>60</span>,
+<span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span>,<span class='st'>"ni_total"</span><span class='op'>]</span><span class='op'>&lt;</span><span class='fl'>60</span>,
 <span class='st'>"QC_Count"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"SMALL"</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in Metrics_Bugs_Scores_MBSS[Metrics_Bugs_Scores_MBSS[, "ni_total"] &lt;     60, "QC_Count"] &lt;- "SMALL": object 'Metrics_Bugs_Scores_MBSS' not found</span></div><div class='input'><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span>,<span class='st'>"QC_Count"</span><span class='op'>]</span><span class='op'>)</span>,
+<span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span>,<span class='st'>"QC_Count"</span><span class='op'>]</span><span class='op'>)</span>,
 <span class='st'>"QC_Count"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"OK"</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in Metrics_Bugs_Scores_MBSS[is.na(Metrics_Bugs_Scores_MBSS[, "QC_Count"]),     "QC_Count"] &lt;- "OK": object 'Metrics_Bugs_Scores_MBSS' not found</span></div><div class='input'><span class='co'># table of QC_Count</span>
+<span class='co'># table of QC_Count</span>
 <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>$</span><span class='va'>QC_Count</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in table(Metrics_Bugs_Scores_MBSS$QC_Count): object 'Metrics_Bugs_Scores_MBSS' not found</span></div><div class='input'>
+</div><div class='output co'>#&gt; 
+#&gt; LARGE    OK 
+#&gt;    90   121 </div><div class='input'>
 <span class='co'># QC bug count (with function)</span>
 <span class='co'># Import Checks</span>
-<span class='va'>df_checks</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"./extdata/MetricFlags.xlsx"</span>
-                                          , package<span class='op'>=</span><span class='st'>"BioMonTools"</span><span class='op'>)</span>, sheet<span class='op'>=</span><span class='st'>"Flags"</span><span class='op'>)</span>
+<span class='co'>#df_checks &lt;- read_excel(system.file("./extdata/MetricFlags.xlsx"</span>
+<span class='co'>#                                           , package="BioMonTools"), sheet="Flags")</span>
 <span class='co'># Run Function</span>
-<span class='va'>df_flags</span> <span class='op'>&lt;-</span> <span class='fu'><a href='qc.checks.html'>qc.checks</a></span><span class='op'>(</span><span class='va'>Metrics_Bugs_Scores_MBSS</span>, <span class='va'>df_checks</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in as.data.frame(df.metrics): object 'Metrics_Bugs_Scores_MBSS' not found</span></div><div class='input'><span class='co'># Summarize Results</span>
-<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>df_flags</span><span class='op'>[</span>,<span class='st'>"CHECKNAME"</span><span class='op'>]</span>, <span class='va'>df_flags</span><span class='op'>[</span>,<span class='st'>"FLAG"</span><span class='op'>]</span>, useNA<span class='op'>=</span><span class='st'>"ifany"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in table(df_flags[, "CHECKNAME"], df_flags[, "FLAG"], useNA = "ifany"): object 'df_flags' not found</span></div><div class='input'>
+<span class='co'>#df_flags &lt;- qc.checks(Metrics_Bugs_Scores_MBSS, df_checks)</span>
+<span class='co'># Summarize Results</span>
+<span class='co'># table(df_flags[,"CHECKNAME"], df_flags[,"FLAG"], useNA="ifany")</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
