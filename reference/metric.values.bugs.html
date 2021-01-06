@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • BioMonTools</title>
+<title>Calculate metric values, Fish — metric.values.bugs • BioMonTools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Calculate metric values, Fish — metric.values.bugs" />
+<meta property="og:description" content="Subfunction of metric.values for use with Benthic
+Macroinvertebrates" />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -123,114 +125,75 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Calculate metric values, Fish</h1>
+    <small class="dont-index">Source: <a href='https://github.com/leppott/BioMonTools/blob/master/R/metric_values.R'><code>R/metric_values.R</code></a></small>
+    <div class="hidden name"><code>metric.values.bugs.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Subfunction of metric.values for use with Benthic
+Macroinvertebrates</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>metric.values.bugs</span><span class='op'>(</span>
+  <span class='va'>myDF</span>,
+  MetricNames <span class='op'>=</span> <span class='cn'>NULL</span>,
+  boo.Adjust <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  cols2keep <span class='op'>=</span> <span class='cn'>NULL</span>,
+  MetricSort <span class='op'>=</span> <span class='cn'>NA</span>,
+  boo.marine <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>boo.Shiny</span>
+<span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="MapTaxaObs.html">MapTaxaObs()</a></code> </p>
-        </td>
-        <td><p>Taxa Observation Maps</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data_Taxa_MA.html">data_Taxa_MA</a></code> </p>
-        </td>
-        <td><p>Estuary taxa data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data_benthos_MBSS.html">data_benthos_MBSS</a></code> </p>
-        </td>
-        <td><p>Benthic macroinvertebrate taxa data; MBSS</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data_benthos_PacNW.html">data_benthos_PacNW</a></code> </p>
-        </td>
-        <td><p>Benthic macroinvertebrate taxa data; Pacific Northwest</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data_bio2rarify.html">data_bio2rarify</a></code> </p>
-        </td>
-        <td><p>rarify example data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="data_mmi_dev.html">data_mmi_dev</a></code> </p>
-        </td>
-        <td><p>Metric data for metric stats for mmi development</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="markExcluded.html">markExcluded()</a></code> </p>
-        </td>
-        <td><p>Mark "excluded" (non-distinct / non-unique / ambiguous) taxa</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="metric.scores.html">metric.scores()</a></code> </p>
-        </td>
-        <td><p>Score metrics</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="metric.stats.html">metric.stats()</a></code> </p>
-        </td>
-        <td><p>Calculate metric statistics</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="metric.stats2.html">metric.stats2()</a></code> </p>
-        </td>
-        <td><p>Secondary metric statistics</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="metric.values.html">metric.values()</a></code> </p>
-        </td>
-        <td><p>Calculate metric values</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="qc.checks.html">qc.checks()</a></code> </p>
-        </td>
-        <td><p>QC checks on metric values</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rarify.html">rarify()</a></code> </p>
-        </td>
-        <td><p>Rarify (subsample) biological sample to fixed count</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>myDF</th>
+      <td><p>Data frame of taxa.</p></td>
+    </tr>
+    <tr>
+      <th>MetricNames</th>
+      <td><p>Optional vector of metric names to be returned.</p></td>
+    </tr>
+    <tr>
+      <th>boo.Adjust</th>
+      <td><p>Optional boolean value on whether to perform adjustments of
+values prior to scoring.  Default = FALSE but may be TRUE for certain
+metrics.</p></td>
+    </tr>
+    <tr>
+      <th>cols2keep</th>
+      <td><p>Column names of fun.DF to retain in the output.  Uses
+column names.</p></td>
+    </tr>
+    <tr>
+      <th>MetricSort</th>
+      <td><p>How metric names should be sort; NA = as is
+, AZ = alphabetical.  Default = NULL.</p></td>
+    </tr>
+    <tr>
+      <th>boo.marine</th>
+      <td><p>Should estuary/marine metrics be included.
+Ignored if fun.MetricNames is not null. Default = FALSE.</p></td>
+    </tr>
+    <tr>
+      <th>boo.Shiny</th>
+      <td><p>Boolean value for if the function is accessed via Shiny.
+Default = FALSE.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Data frame</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>For internal use only.  Called from metric.values().</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
