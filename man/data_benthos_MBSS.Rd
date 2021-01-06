@@ -5,7 +5,7 @@
 \alias{data_benthos_MBSS}
 \title{Benthic macroinvertebrate taxa data; MBSS}
 \format{
-A data frame with 50,664 observations on the following 20 variables.
+A data frame with 50,664 observations on the following 29 variables.
 
  \describe{
   \item{\code{Index.Name}}{a character vector}
@@ -30,6 +30,15 @@ A data frame with 50,664 observations on the following 20 variables.
   \item{\code{Habit}}{a character vector}
   \item{\code{FinalTolVal07}}{a numeric vector}
   \item{\code{FinalTolVal08}}{a numeric vector}
+  \item{\code{SUBCLASS}}{a character vector}
+  \item{\code{INFRAORDER}}{a character vector}
+  \item{\code{LIFE_CYCLE}}{a character vector}
+  \item{\code{BCG_ATTR}}{a character vector}
+  \item{\code{THERMAL_INDICATOR}}{a character vector}
+  \item{\code{LONGLIVED}}{a character vector}
+  \item{\code{NOTEWORTHY}}{a character vector}
+  \item{\code{FFG2}}{a character vector}
+  \item{\code{HABITAT}}{a character vector}
  }
 }
 \source{

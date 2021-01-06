@@ -115,6 +115,7 @@
 #' Default = FALSE.
 #'
 #' @return data frame of SampleID and metric values
+#'
 #' @examples
 #' # Example data (missing SubClass)
 #'
@@ -436,8 +437,32 @@ metric.values <- function(fun.DF
   #   metric.values.algae(fun.DF, fun.MetricNames, boo.Adjust)
   }##IF.END
 }##FUNCTION.metric.values.START
-#
-#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' @title Calculate metric values, Fish
+#'
+#' @description Subfunction of metric.values for use with Benthic
+#' Macroinvertebrates
+#'
+#' @details For internal use only.  Called from metric.values().
+#'
+#' @param myDF Data frame of taxa.
+#' @param MetricNames Optional vector of metric names to be returned.
+#' @param boo.Adjust Optional boolean value on whether to perform adjustments of
+#' values prior to scoring.  Default = FALSE but may be TRUE for certain
+#' metrics.
+#' @param cols2keep Column names of fun.DF to retain in the output.  Uses
+#' column names.
+#' @param MetricSort How metric names should be sort; NA = as is
+#' , AZ = alphabetical.  Default = NULL.
+#' @param boo.marine Should estuary/marine metrics be included.
+#' Ignored if fun.MetricNames is not null. Default = FALSE.
+#' @param boo.Shiny Boolean value for if the function is accessed via Shiny.
+#' Default = FALSE.
+#'
+#' @return Data frame
+#'
+#' @keywords internal
+#'
 #' @export
 metric.values.bugs <- function(myDF
                                , MetricNames = NULL
@@ -1480,8 +1505,27 @@ metric.values.bugs <- function(myDF
   # df to report back
   return(df.return)
 }##FUNCTION.metric.values.bugs.END
-#
-#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' @title Calculate metric values, Fish
+#'
+#' @description Subfunction of metric.values for use with Fish.
+#'
+#' @details For internal use only.  Called from metric.values().
+#'
+#' @param myDF Data frame of taxa.
+#' @param MetricNames Optional vector of metric names to be returned.
+#' @param boo.Adjust Optional boolean value on whether to perform adjustments of
+#' values prior to scoring.  Default = FALSE but may be TRUE for certain
+#' metrics.
+#' @param cols2keep Column names of fun.DF to retain in the output.  Uses
+#' column names.
+#' @param boo.Shiny Boolean value for if the function is accessed via Shiny.
+#' Default = FALSE.
+#'
+#' @return Data frame
+#'
+#' @keywords internal
+#'
 #' @export
 metric.values.fish <- function(myDF
                                , MetricNames=NULL
@@ -1761,8 +1805,25 @@ metric.values.fish <- function(myDF
   # df to report back
   return(df.return)
 }##FUNCTION.metric.values.fish.END
-#
-#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' @title Calculate metric values, Algae
+#'
+#' @description Subfunction of metric.values for use with Algae.
+#'
+#' @details For internal use only.  Called from metric.values().
+#'
+#' @param myDF Data frame of taxa.
+#' @param MetricNames Optional vector of metric names to be returned.
+#' @param boo.Adjust Optional boolean value on whether to perform adjustments of
+#' values prior to scoring.  Default = FALSE but may be TRUE for certain
+#' metrics.
+#' @param cols2keep Column names of fun.DF to retain in the output.  Uses
+#' column names.
+#'
+#' @return Data frame
+#'
+#' @keywords internal
+#'
 #' @export
 metric.values.algae <- function(myDF
                                 , MetricNames=NULL

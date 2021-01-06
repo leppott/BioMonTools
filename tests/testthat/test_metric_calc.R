@@ -1,6 +1,6 @@
-# met val, PA Freestone IBI ####
-# met sc, PA Freestone IBI ####
-test_that("metric values/scores, PA Freestone IBI", {
+# met val_sc, PA Freestone IBI ----
+test_that("metric values_scores, PA Freestone IBI", {
+  # _Metric.Values ----
   SAMPLEID <- c(rep("DriftwoodBr", 31), rep("WestBr", 15))
   STRAHLER <- c(rep(5, 31), rep(1, 15))
   DA_MI2 <- c(rep(84.5, 31), rep(0.3, 15))
@@ -217,9 +217,7 @@ test_that("metric values/scores, PA Freestone IBI", {
   #expect_equal(df_metval_calc, df_metval_qc, tolerance = 0.01)
 
 
-  # Metric.Scores
-
-  #library(readxl)
+  # _Metric.Scores ----
 
   # Thresholds
   fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
@@ -262,7 +260,7 @@ test_that("metric values/scores, PA Freestone IBI", {
 })## Test - PA Freestone ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# met sc, WV GLIMPSS MT_SP ####
+# met sc, WV GLIMPSS MT_SP ----
 test_that("metric scores, WV GLIMPSS MT_SP", {
   #http://dep.wv.gov/WWE/watershed/bio_fish/Documents/20110829GLIMPSSFinalWVDEP.pdf
 
@@ -425,3 +423,969 @@ test_that("metric scores, WV GLIMPSS MT_SP", {
 
 })## Test ~ WV GLIMPSS ~ END
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# met val_sc, MA kick_lograd IBI ----
+test_that("metric values_scores, MA kick/lowgrad IBI", {
+  # _Metric.Values ----
+  SAMPLEID <- c(rep("1985006", 16), rep("2011036", 19), rep("1985024", 21))
+  INDEX_NAME <- "MassDEP_2020_Bugs"
+  INDEX_REGION <- c(rep("KickIBI_CH_100ct", 16), rep("LowGradientIBI", 19), rep("KickIBI_WH_100ct", 21))
+  TAXAID <- c("Cricotopus"
+              ,"Cricotopus bicinctus"
+              ,"Cricotopus bicinctus group"
+              ,"Cricotopus tremulus group"
+              ,"Cricotopus trifasciatus group"
+              ,"Cricotopus/Orthocladius"
+              ,"Helobdella modesta"
+              ,"Nanocladius"
+              ,"Orthocladiinae"
+              ,"Physa"
+              ,"Polypedilum"
+              ,"Polypedilum fallax group"
+              ,"Polypedilum trigonum"
+              ,"Thienemannimyia"
+              ,"Thienemannimyia group"
+              ,"Triaenodes"
+              ,"Acerpenna"
+              ,"Alotanypus"
+              ,"Anchytarsus bicolor"
+              ,"Dicranota"
+              ,"Diplectrona modesta group"
+              ,"Heterotrissocladius marcidus group"
+              ,"Larsia"
+              ,"Leuctra"
+              ,"Lumbriculidae"
+              ,"Micropsectra"
+              ,"Nigronia serricornis"
+              ,"Parachaetocladius"
+              ,"Parametriocnemus"
+              ,"Polypedilum"
+              ,"Rheotanytarsus exiguus group"
+              ,"Simulium"
+              ,"Thienemannimyia group"
+              ,"Tribelos"
+              ,"Tubificoid Naididae"
+              ,"Acariformes"
+              ,"Baetidae"
+              ,"Baetidae"
+              ,"Baetis"
+              ,"Cricotopus"
+              ,"Cricotopus bicinctus"
+              ,"Cricotopus tremulus group"
+              ,"Cricotopus/Orthocladius"
+              ,"Drunella cornutella"
+              ,"Ephemerella dorothea"
+              ,"Ephemerellidae"
+              ,"Eukiefferiella"
+              ,"Eukiefferiella gracei group"
+              ,"Hemerodromia"
+              ,"Hydropsyche"
+              ,"Orthocladiinae"
+              ,"Orthocladius"
+              ,"Parametriocnemus"
+              ,"Polypedilum flavum"
+              ,"Rheocricotopus"
+              ,"Simulium")
+  N_TAXA <- c(5
+              ,11
+              ,1
+              ,35
+              ,10
+              ,16
+              ,1
+              ,1
+              ,1
+              ,1
+              ,1
+              ,8
+              ,1
+              ,1
+              ,6
+              ,1
+              ,1
+              ,1
+              ,2
+              ,1
+              ,8
+              ,3
+              ,2
+              ,3
+              ,1
+              ,7
+              ,1
+              ,1
+              ,10
+              ,1
+              ,1
+              ,59
+              ,4
+              ,1
+              ,1
+              ,1
+              ,5
+              ,3
+              ,22
+              ,1
+              ,3
+              ,7
+              ,28
+              ,2
+              ,2
+              ,5
+              ,3
+              ,1
+              ,2
+              ,4
+              ,1
+              ,3
+              ,1
+              ,4
+              ,1
+              ,1)
+  TOLVAL <- c(7
+              ,7
+              ,7
+              ,7
+              ,7
+              ,7
+              ,8
+              ,4
+              ,5
+              ,9
+              ,6
+              ,6
+              ,6
+              ,6
+              ,6
+              ,6
+              ,5
+              ,NA
+              ,2
+              ,5
+              ,2
+              ,5
+              ,5
+              ,2
+              ,5
+              ,5
+              ,5
+              ,2
+              ,5
+              ,5
+              ,5
+              ,5
+              ,NA
+              ,5
+              ,8
+              ,6
+              ,5
+              ,5
+              ,6
+              ,7
+              ,7
+              ,7
+              ,7
+              ,1
+              ,1
+              ,1
+              ,6
+              ,4
+              ,6
+              ,4
+              ,5
+              ,6
+              ,5
+              ,6
+              ,6
+              ,5)
+  FFG <- c("SH"
+           ,"CG"
+           ,"CG"
+           ,"SH"
+           ,"SH"
+           ,"CG"
+           ,"PR"
+           ,"CG"
+           ,"CG"
+           ,"CG"
+           ,"SH"
+           ,"SH"
+           ,"SH"
+           ,"PR"
+           ,"PR"
+           ,"SH"
+           ,"CG"
+           ,"PR"
+           ,"SH"
+           ,"PR"
+           ,"CF"
+           ,"CG"
+           ,"PR"
+           ,"SH"
+           ,"CG"
+           ,"CG"
+           ,"PR"
+           ,"CG"
+           ,"CG"
+           ,"SH"
+           ,"CF"
+           ,"CF"
+           ,"PR"
+           ,"CG"
+           ,'CG'
+           ,"PR"
+           ,"CG"
+           ,"CG"
+           ,"CG"
+           ,"SH"
+           ,"CG"
+           ,"SH"
+           ,"CG"
+           ,"SC"
+           ,"CG"
+           ,"CG"
+           ,"CG"
+           ,"CG"
+           ,"PR"
+           ,"CF"
+           ,"CG"
+           ,"CG"
+           ,"CG"
+           ,"SH"
+           ,"CG"
+           ,"CF")
+  LIFE_CYCLE <- c(NA
+                  ,NA
+                  ,NA
+                  ,NA
+                  ,NA
+                  ,NA
+                  ,"multi"
+                  ,NA
+                  ,NA
+                  ,NA
+                  ,"multi"
+                  ,"multi"
+                  ,"multi"
+                  ,NA
+                  ,NA
+                  ,"uni"
+                  ,"multi"
+                  ,NA
+                  ,"semi"
+                  ,"uni"
+                  ,"uni"
+                  ,NA
+                  ,NA
+                  ,"uni"
+                  ,NA
+                  ,"multi"
+                  ,"semi"
+                  ,NA
+                  ,"multi"
+                  ,"multi"
+                  ,"multi"
+                  ,"multi"
+                  ,NA
+                  ,NA
+                  ,NA
+                  ,NA
+                  ,NA
+                  ,NA
+                  ,"multi"
+                  ,NA
+                  ,NA
+                  ,NA
+                  ,NA
+                  ,"uni"
+                  ,"uni"
+                  ,NA
+                  ,"multi"
+                  ,"multi"
+                  ,NA
+                  ,"uni"
+                  ,NA
+                  ,NA
+                  ,"multi"
+                  ,"multi"
+                  ,NA
+                  ,"multi")
+  EXCLUDE <- c(TRUE
+               ,FALSE
+               ,TRUE
+               ,FALSE
+               ,FALSE
+               ,TRUE
+               ,FALSE
+               ,FALSE
+               ,TRUE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,TRUE
+               ,FALSE
+               ,FALSE
+               ,TRUE
+               ,FALSE
+               ,FALSE
+               ,TRUE
+               ,FALSE
+               ,FALSE
+               ,TRUE
+               ,TRUE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,TRUE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE
+               ,FALSE)
+  NONTARGET <- rep(FALSE, 56)
+  PHYLUM <- c("Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Annelida"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Mollusca"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Annelida"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Annelida"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda"
+              ,"Arthropoda")
+  CLASS <- c("Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Hirudinea"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Gastropoda"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Clitellata"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Clitellata"
+             ,"Arachnida"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,'Insecta'
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta"
+             ,"Insecta")
+  ORDER <- c("Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Rhynchobdellida"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Basommatophora"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Trichoptera"
+             ,"Ephemeroptera"
+             ,"Diptera"
+             ,"Coleoptera"
+             ,"Diptera"
+             ,"Trichoptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Plecoptera"
+             ,"Lumbriculida"
+             ,"Diptera"
+             ,"Megaloptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Tubificida"
+             ,NA
+             ,"Ephemeroptera"
+             ,"Ephemeroptera"
+             ,"Ephemeroptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Ephemeroptera"
+             ,"Ephemeroptera"
+             ,"Ephemeroptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Trichoptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera"
+             ,"Diptera")
+
+  FAMILY <- c("Chironomidae"
+              ,'Chironomidae'
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Glossiphoniidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Physidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Leptoceridae"
+              ,"Baetidae"
+              ,"Chironomidae"
+              ,"Ptilodactylidae"
+              ,"Tipulidae"
+              ,"Hydropsychidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Leuctridae"
+              ,"Lumbriculidae"
+              ,"Chironomidae"
+              ,"Corydalidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Simuliidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Naididae"
+              ,NA
+              ,"Baetidae"
+              ,"Baetidae"
+              ,"Baetidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Ephemerellidae"
+              ,"Ephemerellidae"
+              ,"Ephemerellidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Empididae"
+              ,"Hydropsychidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Chironomidae"
+              ,"Simuliidae")
+
+  SUBFAMILY <- c("Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,NA
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,NA
+                 ,"Chironominae"
+                 ,"Chironominae"
+                 ,"Chironominae"
+                 ,"Tanypodinae"
+                 ,"Tanypodinae"
+                 ,NA
+                 ,NA
+                 ,"Tanypodinae"
+                 ,NA
+                 ,NA
+                 ,NA
+                 ,"Orthocladiinae"
+                 ,"Tanypodinae"
+                 ,NA
+                 ,NA
+                 ,"Chironominae"
+                 ,NA
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,"Chironominae"
+                 ,"Chironominae"
+                 ,NA
+                 ,"Tanypodinae"
+                 ,"Chironominae"
+                 ,NA
+                 ,NA
+                 ,NA
+                 ,NA
+                 ,NA
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,NA
+                 ,NA
+                 ,NA
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,NA
+                 ,NA
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,"Orthocladiinae"
+                 ,"Chironominae"
+                 ,"Orthocladiinae"
+                 ,NA)
+
+  TRIBE <- c(NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,"Chironomini"
+             ,'Chironomini'
+             ,"Chironomini"
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,"Coelotanypodini"
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,"Pentaneurini"
+             ,NA
+             ,NA
+             ,"Tanytarsini"
+             ,NA
+             ,NA
+             ,NA
+             ,"Chironomini"
+             ,"Tanytarsini"
+             ,NA
+             ,NA
+             ,"Chironomini"
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,"Chironomini"
+             ,NA
+             ,NA)
+
+  GENUS <- c("Cricotopus"
+             ,"Cricotopus"
+             ,"Cricotopus"
+             ,"Cricotopus"
+             ,"Cricotopus"
+             ,NA
+             ,"Helobdella"
+             ,"Nanocladius"
+             ,NA
+             ,"Physa"
+             ,"Polypedilum"
+             ,"Polypedilum"
+             ,"Polypedilum"
+             ,"Thienemannimyia"
+             ,"Thienemannimyia"
+             ,"Triaenodes"
+             ,"Acerpenna"
+             ,"Alotanypus"
+             ,"Anchytarsus"
+             ,"Dicranota"
+             ,"Diplectrona"
+             ,"Heterotrissocladius"
+             ,"Larsia"
+             ,"Leuctra"
+             ,NA
+             ,"Micropsectra"
+             ,"Nigronia"
+             ,"Parachaetocladius"
+             ,"Parametriocnemus"
+             ,"Polypedilum"
+             ,"Rheotanytarsus"
+             ,"Simulium"
+             ,"Thienemannimyia"
+             ,"Tribelos"
+             ,NA
+             ,NA
+             ,NA
+             ,NA
+             ,"Baetis"
+             ,"Cricotopus"
+             ,"Cricotopus"
+             ,"Cricotopus"
+             ,NA
+             ,"Drunella"
+             ,"Ephemerella"
+             ,NA
+             ,"Eukiefferiella"
+             ,"Eukiefferiella"
+             ,"Hemerodromia"
+             ,"Hydropsyche"
+             ,NA
+             ,"Orthocladius"
+             ,"Parametriocnemus"
+             ,"Polypedilum"
+             ,"Rheocricotopus"
+             ,"Simulium")
+
+  df_bugs <- data.frame(INDEX_NAME
+                        , INDEX_REGION
+                        , SAMPLEID
+                        , TAXAID
+                        , N_TAXA
+                        , EXCLUDE
+                        , NONTARGET
+                        , PHYLUM
+                        , CLASS
+                        , ORDER
+                        , FAMILY
+                        , SUBFAMILY
+                        , TRIBE
+                        , GENUS
+                        , TOLVAL
+                        , FFG
+                        , LIFE_CYCLE
+                        , SUBPHYLUM = NA
+                        , SUBCLASS = NA
+                        , INFRAORDER = NA
+                        , HABIT = NA
+                        , BCG_ATTR = NA
+                        , THERMAL_INDICATOR = NA
+                        , LONGLIVED = NA
+                        , NOTEWORTHY = NA
+                        , FFG2 = NA
+                        , TOLVAL2 = NA
+                        , HABITAT = NA)
+  # metric values
+  df_metval <- BioMonTools::metric.values(df_bugs, "bugs", boo.Shiny = TRUE)
+  #1
+
+  # df, calc
+  col_qc <- c("SAMPLEID"
+              ,"nt_total"
+              ,"pt_EPT"
+              ,"pi_EphemNoCaeBae"
+              ,"pi_ffg_filt"
+              ,"pt_ffg_pred"
+              ,"pt_tv_intol"
+              ,"pi_Pleco"
+              ,"pi_ffg_shred"
+              ,"pi_tv_intol"
+              ,"x_Becks"
+              ,"pi_OET"
+              ,"pt_NonIns"
+              ,"pt_POET"
+              ,"pt_tv_toler"
+              ,"pt_volt_semi")
+
+  df_metval_calc <- df_metval[, col_qc]
+  # Round values to 1 or 2 digits
+  df_metval_calc[, c("pt_EPT", "pi_EphemNoCaeBae", "pi_ffg_filt",	"pt_ffg_pred",	"pt_tv_intol", "pi_Pleco",
+                     "pi_ffg_shred",	"pi_tv_intol",	"pi_OET",	"pt_NonIns",	"pt_POET",	"pt_tv_toler","pt_volt_semi")] <- round(
+                       df_metval_calc[, c("pt_EPT", "pi_EphemNoCaeBae", "pi_ffg_filt",	"pt_ffg_pred",	"pt_tv_intol", "pi_Pleco",
+                                          "pi_ffg_shred",	"pi_tv_intol",	"pi_OET",	"pt_NonIns",	"pt_POET",	"pt_tv_toler","pt_volt_semi")], 2)
+
+  # df, QC
+  SAMPLEID <- c("1985006"
+                ,"1985024"
+                ,"2011036")
+  nt_total <- c(12
+                ,15
+                ,19)
+  pt_EPT <- c(8.33
+              ,33.33
+              ,15.79)
+  pi_EphemNoCaeBae <- c(0
+                        ,9
+                        ,0)
+  pi_ffg_filt <- c(0
+                   ,5
+                   ,62.96)
+  pt_ffg_pred <- c(25
+                   ,13.33
+                   ,26.32)
+  pt_tv_intol <- c(0
+                   ,13.33
+                   ,21.05)
+  pi_Pleco <- c(0
+                ,0
+                ,2.78)
+  pi_ffg_shred <- c(61
+                    ,12
+                    ,5.56)
+  pi_tv_intol <- c(0
+                   ,9
+                   ,12.96)
+  x_Becks <- c(1
+               ,6
+               ,4)
+  pi_OET <- c(1
+              ,43
+              ,8.33)
+  pt_NonIns <- c(16.67
+                 ,6.67
+                 ,10.53)
+  pt_POET <- c(8.33
+               ,33.33
+               ,15.79)
+  pt_tv_toler <- c(41.67
+                   ,13.33
+                   ,5.26)
+  pt_volt_semi <- c(0
+                    ,0
+                    ,10.53)
+
+
+  df_metval_qc <- data.frame(SAMPLEID
+                             ,nt_total
+                             ,pt_EPT
+                             ,pi_EphemNoCaeBae
+                             ,pi_ffg_filt
+                             ,pt_ffg_pred
+                             ,pt_tv_intol
+                             ,pi_Pleco
+                             ,pi_ffg_shred
+                             ,pi_tv_intol
+                             ,x_Becks
+                             ,pi_OET
+                             ,pt_NonIns
+                             ,pt_POET
+                             ,pt_tv_toler
+                             ,pt_volt_semi)
+
+  # test
+  testthat::expect_equal(df_metval_calc, df_metval_qc)
+  # Below works but the QC data is not consistent in the number of decimal places
+  #expect_equal(df_metval_calc, df_metval_qc, tolerance = 0.01)
+
+
+  # _Metric.Scores ----
+
+  # Thresholds
+  fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
+  df_thresh_metric <- readxl::read_excel(fn_thresh, sheet="metric.scoring")
+  df_thresh_index <- readxl::read_excel(fn_thresh, sheet="index.scoring")
+
+  myIndex <- "MassDEP_2020_Bugs"
+  (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
+    , "INDEX_NAME"]==myIndex, "METRIC_NAME"]))
+
+
+  df_metval_calc[, "INDEX_NAME"] <- "MassDEP_2020_Bugs"
+  df_metval_calc[, "INDEX_REGION"] <- c("KickIBI_CH_100ct", "KickIBI_WH_100ct", "LowGradientIBI")
+
+  df_metsc_calc <- BioMonTools::metric.scores(df_metval_calc, myMetrics.Bugs, "INDEX_NAME", "INDEX_REGION"
+                                              , df_thresh_metric, df_thresh_index)
+  # For report all numbers rounded
+  df_metsc_calc[, 19:35] <- round(df_metsc_calc[, 19:35], 1)
+
+  # df_QC
+  df_metsc_qc <- df_metval_qc
+  df_metsc_qc$INDEX_NAME   <- "MassDEP_2020_Bugs"
+  df_metsc_qc$INDEX_REGION <- c("KICKIBI_CH_100CT", "KICKIBI_WH_100CT", "LOWGRADIENTIBI")
+  df_metsc_qc$SC_nt_total <- c(34.4
+                               ,38.7
+                               ,NA)
+  df_metsc_qc$SC_pi_EphemNoCaeBae <- c(0
+                                       ,NA
+                                       ,NA)
+  df_metsc_qc$SC_pi_ffg_filt <- c(100
+                                  ,100
+                                  ,NA)
+  df_metsc_qc$SC_pi_ffg_shred <- c(NA
+                                   ,52.2
+                                   ,NA)
+  df_metsc_qc$SC_pi_OET <- c(NA
+                             ,NA
+                             ,17)
+  df_metsc_qc$SC_pi_Pleco <- c(NA
+                               ,0
+                               ,NA)
+  df_metsc_qc$SC_pi_tv_intol <- c(NA
+                                  ,17.5
+                                  ,NA)
+  df_metsc_qc$SC_pt_EPT <- c(15.3
+                             ,NA
+                             ,NA)
+  df_metsc_qc$SC_pt_ffg_pred <- c(87.7
+                                  ,NA
+                                  ,82.2)
+  df_metsc_qc$SC_pt_NonIns <- c(NA
+                                ,NA
+                                ,84.5)
+  df_metsc_qc$SC_pt_POET <- c(NA
+                              ,NA
+                              ,39.5)
+  df_metsc_qc$SC_pt_tv_intol <- c(0
+                                  ,NA
+                                  ,NA)
+  df_metsc_qc$SC_pt_tv_toler <- c(NA
+                                  ,NA
+                                  ,93.2)
+  df_metsc_qc$SC_pt_volt_semi <- c(NA
+                                   ,NA
+                                   ,87.8)
+  df_metsc_qc$SC_x_Becks <- c(NA
+                              ,16.3
+                              ,NA)
+  df_metsc_qc$sum_Index <- c(237.4
+                             ,224.6
+                             ,404.1)
+  df_metsc_qc$Index <- c(39.6
+                         ,37.4
+                         ,67.3)
+  df_metsc_qc$Index_Nar <- c("Moderately Degraded"
+                             ,"Moderately Degraded"
+                             ,"Satisfactory")
+
+  # test
+  #testthat::expect_equal(df_metsc_calc, df_metsc_qc)
+
+  col_order<- names(df_metsc_calc)
+
+  # `%>%` <- dplyr::`%>%`
+  # df_metsc_qc<- df_metsc_qc %>%
+  #   dplyr::select(dplyr::all_of(col_order))
+
+  df_metsc_qc <- df_metsc_qc[, col_order]
+
+  x <- sum(df_metsc_calc == df_metsc_qc, na.rm = TRUE)
+  y <- sum(!is.na(df_metsc_qc))
+  testthat::expect_equal(x, y)
+
+})## Test - met val_sc, MA kick/lograd IBI ~ END

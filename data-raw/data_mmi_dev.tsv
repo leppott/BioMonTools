@@ -219,7 +219,7 @@ CentralHills	Other	cal	B0083	2008031	04-Aug-08	RBP kicknet	Nigronia serricornis	
 CentralHills	Other	cal	B0083	2008031	04-Aug-08	RBP kicknet	Nilotanypus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Nilotanypus	6	PR	SP
 CentralHills	Other	cal	B0083	2008031	04-Aug-08	RBP kicknet	Ophiogomphus	1	FALSE	FALSE	Arthropoda	Insecta	Odonata	Gomphidae			Ophiogomphus	1	PR	BU
 CentralHills	Other	cal	B0083	2008031	04-Aug-08	RBP kicknet	Optioservus	1	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Optioservus	4	SC	CN
-CentralHills	Other	cal	B0083	2008031	04-Aug-08	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
+CentralHills	Other	cal	B0083	2008031	04-Aug-08	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
 CentralHills	Other	cal	B0083	2008031	04-Aug-08	RBP kicknet	Oulimnius latiusculus	2	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Oulimnius	4	SC	CN
 CentralHills	Other	cal	B0083	2008031	04-Aug-08	RBP kicknet	Parametriocnemus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	5	CG	SP
 CentralHills	Other	cal	B0083	2008031	04-Aug-08	RBP kicknet	Plauditus	3	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Plauditus	4	CG	SW
@@ -1423,7 +1423,7 @@ CentralHills	Other	cal	B0535	2004026	26-Aug-04	RBP kicknet	Leptophlebiidae	1	FAL
 CentralHills	Other	cal	B0535	2004026	26-Aug-04	RBP kicknet	Microtendipes rydalensis group	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Microtendipes	6	CF	CN
 CentralHills	Other	cal	B0535	2004026	26-Aug-04	RBP kicknet	Nigronia serricornis	5	FALSE	FALSE	Arthropoda	Insecta	Megaloptera	Corydalidae			Nigronia	4	PR	CN
 CentralHills	Other	cal	B0535	2004026	26-Aug-04	RBP kicknet	Optioservus	2	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Optioservus	4	SC	CN
-CentralHills	Other	cal	B0535	2004026	26-Aug-04	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
+CentralHills	Other	cal	B0535	2004026	26-Aug-04	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
 CentralHills	Other	cal	B0535	2004026	26-Aug-04	RBP kicknet	Oulimnius latiusculus	6	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Oulimnius	4	SC	CN
 CentralHills	Other	cal	B0535	2004026	26-Aug-04	RBP kicknet	Pagastia	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Diamesinae	Diamesini	Pagastia	4	CG	SP
 CentralHills	Other	cal	B0535	2004026	26-Aug-04	RBP kicknet	Parametriocnemus	8	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	5	CG	SP
@@ -6037,7 +6037,7 @@ CentralHills	Strs	cal	B0704	2011027	14-Jul-11	RBP kicknet	Diamesa	2	FALSE	FALSE	
 CentralHills	Strs	cal	B0704	2011027	14-Jul-11	RBP kicknet	Eukiefferiella claripennis group	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Eukiefferiella	8	CG	SP
 CentralHills	Strs	cal	B0704	2011027	14-Jul-11	RBP kicknet	Hydropsyche betteni	3	FALSE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae			Hydropsyche	6	CF	CN
 CentralHills	Strs	cal	B0704	2011027	14-Jul-11	RBP kicknet	Hydropsychidae	1	TRUE	FALSE	Arthropoda	Insecta	Trichoptera	Hydropsychidae				4	CF	CN
-CentralHills	Strs	cal	B0704	2011027	14-Jul-11	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
+CentralHills	Strs	cal	B0704	2011027	14-Jul-11	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
 CentralHills	Strs	cal	B0704	2011027	14-Jul-11	RBP kicknet	Polypedilum flavum	9	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	6	SH	CN
 CentralHills	Strs	cal	B0704	2011027	14-Jul-11	RBP kicknet	Simulium	46	TRUE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae			Simulium	5	CF	CN
 CentralHills	Strs	cal	B0704	2011027	14-Jul-11	RBP kicknet	Simulium verecundum	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Simuliidae			Simulium	5	CF	CN
@@ -7937,7 +7937,7 @@ WestHighland	Other	verif	B0172	2001043	06-Sep-01	RBP kicknet	Maccaffertium	1	FAL
 WestHighland	Other	verif	B0172	2001043	06-Sep-01	RBP kicknet	Micropsectra	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	6	CG	SP
 WestHighland	Other	verif	B0172	2001043	06-Sep-01	RBP kicknet	Neoperla	1	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae			Neoperla	3	PR	CN
 WestHighland	Other	verif	B0172	2001043	06-Sep-01	RBP kicknet	Optioservus trivittatus	1	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Optioservus	4	SC	CN
-WestHighland	Other	verif	B0172	2001043	06-Sep-01	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
+WestHighland	Other	verif	B0172	2001043	06-Sep-01	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
 WestHighland	Other	verif	B0172	2001043	06-Sep-01	RBP kicknet	Oulimnius latiusculus	1	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Oulimnius	4	SC	CN
 WestHighland	Other	verif	B0172	2001043	06-Sep-01	RBP kicknet	Paragnetina	2	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae			Paragnetina	1	PR	CN
 WestHighland	Other	verif	B0172	2001043	06-Sep-01	RBP kicknet	Parametriocnemus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	5	CG	SP
@@ -7967,7 +7967,7 @@ WestHighland	Other	verif	B0258	2002029	13-Aug-02	RBP kicknet	Microtendipes pedel
 WestHighland	Other	verif	B0258	2002029	13-Aug-02	RBP kicknet	Nais behningi	1	FALSE	FALSE	Annelida	Oligochaeta	Tubificida	Naididae			Nais	6	CG	BU
 WestHighland	Other	verif	B0258	2002029	13-Aug-02	RBP kicknet	Nais communis	1	FALSE	FALSE	Annelida	Oligochaeta	Tubificida	Naididae			Nais	8	CG	BU
 WestHighland	Other	verif	B0258	2002029	13-Aug-02	RBP kicknet	Optioservus fastiditus	3	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Optioservus	4	SC	CN
-WestHighland	Other	verif	B0258	2002029	13-Aug-02	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
+WestHighland	Other	verif	B0258	2002029	13-Aug-02	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
 WestHighland	Other	verif	B0258	2002029	13-Aug-02	RBP kicknet	Parametriocnemus	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	5	CG	SP
 WestHighland	Other	verif	B0258	2002029	13-Aug-02	RBP kicknet	Polypedilum aviceps	11	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	SH	CN
 WestHighland	Other	verif	B0258	2002029	13-Aug-02	RBP kicknet	Rheotanytarsus exiguus group	14	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Rheotanytarsus	6	CF	CN
@@ -8183,7 +8183,7 @@ WestHighland	Ref	cal	B0035	2017011.Ar	20-Jul-17	RBP kicknet	Microvelia	1	FALSE	T
 WestHighland	Ref	cal	B0035	2017011.Ar	20-Jul-17	RBP kicknet	Optioservus ovalis	4	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Optioservus	4	SC	CN
 WestHighland	Ref	cal	B0035	2017011.Ar	20-Jul-17	RBP kicknet	Oreogeton	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Empididae			Oreogeton	6	PR	SP
 WestHighland	Ref	cal	B0035	2017011.Ar	20-Jul-17	RBP kicknet	Orthocladiinae	2	TRUE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae			5		
-WestHighland	Ref	cal	B0035	2017011.Ar	20-Jul-17	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
+WestHighland	Ref	cal	B0035	2017011.Ar	20-Jul-17	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
 WestHighland	Ref	cal	B0035	2017011.Ar	20-Jul-17	RBP kicknet	Oulimnius latiusculus	3	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Oulimnius	4	SC	CN
 WestHighland	Ref	cal	B0035	2017011.Ar	20-Jul-17	RBP kicknet	Parametriocnemus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	5	CG	SP
 WestHighland	Ref	cal	B0035	2017011.Ar	20-Jul-17	RBP kicknet	Polypedilum aviceps	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Chironomini	Polypedilum	4	SH	CN
@@ -9671,7 +9671,7 @@ WestHighland	Strs	cal	B0502	2002040	10-Sep-02	RBP kicknet	Maccaffertium	8	FALSE	
 WestHighland	Strs	cal	B0502	2002040	10-Sep-02	RBP kicknet	Nigronia serricornis	2	FALSE	FALSE	Arthropoda	Insecta	Megaloptera	Corydalidae			Nigronia	4	PR	CN
 WestHighland	Strs	cal	B0502	2002040	10-Sep-02	RBP kicknet	Nilotanypus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Tanypodinae	Pentaneurini	Nilotanypus	6	PR	SP
 WestHighland	Strs	cal	B0502	2002040	10-Sep-02	RBP kicknet	Optioservus trivittatus	4	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Optioservus	4	SC	CN
-WestHighland	Strs	cal	B0502	2002040	10-Sep-02	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
+WestHighland	Strs	cal	B0502	2002040	10-Sep-02	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
 WestHighland	Strs	cal	B0502	2002040	10-Sep-02	RBP kicknet	Oulimnius latiusculus	15	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Oulimnius	4	SC	CN
 WestHighland	Strs	cal	B0502	2002040	10-Sep-02	RBP kicknet	Paragnetina	3	FALSE	FALSE	Arthropoda	Insecta	Plecoptera	Perlidae			Paragnetina	1	PR	CN
 WestHighland	Strs	cal	B0502	2002040	10-Sep-02	RBP kicknet	Parametriocnemus	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	5	CG	SP
@@ -9914,7 +9914,7 @@ WestHighland	Strs	cal	B0633	2007043	29-Aug-07	RBP kicknet	Maccaffertium vicarium
 WestHighland	Strs	cal	B0633	2007043	29-Aug-07	RBP kicknet	Micropsectra	9	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Chironominae	Tanytarsini	Micropsectra	6	CG	SP
 WestHighland	Strs	cal	B0633	2007043	29-Aug-07	RBP kicknet	Optioservus ovalis	2	FALSE	FALSE	Arthropoda	Insecta	Coleoptera	Elmidae			Optioservus	4	SC	CN
 WestHighland	Strs	cal	B0633	2007043	29-Aug-07	RBP kicknet	Orthocladius dubitatus	2	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	6	CG	SP
-WestHighland	Strs	cal	B0633	2007043	29-Aug-07	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
+WestHighland	Strs	cal	B0633	2007043	29-Aug-07	RBP kicknet	Orthocladius lignicola	1	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Orthocladius	5	SH	SP
 WestHighland	Strs	cal	B0633	2007043	29-Aug-07	RBP kicknet	Paraleptophlebia	3	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Leptophlebiidae			Paraleptophlebia	1	CG	SW
 WestHighland	Strs	cal	B0633	2007043	29-Aug-07	RBP kicknet	Parametriocnemus	3	FALSE	FALSE	Arthropoda	Insecta	Diptera	Chironomidae	Orthocladiinae		Parametriocnemus	5	CG	SP
 WestHighland	Strs	cal	B0633	2007043	29-Aug-07	RBP kicknet	Plauditus	2	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae			Plauditus	4	CG	SW

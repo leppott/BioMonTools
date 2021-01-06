@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-01-03 18:04:44
+    #> Last Update: 2021-01-06 08:01:57
 
 # Planned Updates
 
@@ -17,6 +17,16 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9033 (2021-01-06)
+
+  - tests: Add metric.values and metrics.scores for MA kick/logradient
+    IBI
+  - docs: Update data.R for missing columns
+      - data\_benthos\_MBSS
+      - data\_mmi\_dev
+  - refactor: document internal functions of metric.values()
+  - chore: Remove non-ASCII character from data\_mmi\_dev
 
 ## Changes in Version 0.5.0.9032 (2021-01-03)
 
