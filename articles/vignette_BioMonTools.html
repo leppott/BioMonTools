@@ -88,7 +88,7 @@
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 class="date">2021-01-06</h4>
+            <h4 class="date">2021-01-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/master/vignettes/vignette_BioMonTools.Rmd"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -272,11 +272,6 @@
 
 <span class="co"># Run Function</span>
 <span class="va">df.metval</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df.data</span>, <span class="st">"bugs"</span>, fun.cols2keep<span class="op">=</span><span class="va">myCols</span><span class="op">)</span>
-<span class="co">#&gt; Warning: `group_by_()` is deprecated as of dplyr 0.7.0.</span>
-<span class="co">#&gt; Please use `group_by()` instead.</span>
-<span class="co">#&gt; See vignette('programming') for more help</span>
-<span class="co">#&gt; This warning is displayed once every 8 hours.</span>
-<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span>
 <span class="co"># Metrics of Interest</span>
 <span class="co">## thermal indicator (_ti_)</span>
 <span class="co">#names(df.metval)[grepl("_ti_", names(df.metval))]</span>
@@ -546,6 +541,11 @@
 <span class="co">#&gt; [1] "Working on item (1/12); PHYLUM"</span>
 <span class="co">#&gt; Warning: `summarise_()` is deprecated as of dplyr 0.7.0.</span>
 <span class="co">#&gt; Please use `summarise()` instead.</span>
+<span class="co">#&gt; This warning is displayed once every 8 hours.</span>
+<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span>
+<span class="co">#&gt; Warning: `group_by_()` is deprecated as of dplyr 0.7.0.</span>
+<span class="co">#&gt; Please use `group_by()` instead.</span>
+<span class="co">#&gt; See vignette('programming') for more help</span>
 <span class="co">#&gt; This warning is displayed once every 8 hours.</span>
 <span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span>
 <span class="co">#&gt; [1] "Working on item (2/12); SUBPHYLUM"</span>
