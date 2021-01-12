@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-01-06 08:01:57
+    #> Last Update: 2021-01-12 14:29:01
 
 # Planned Updates
 
@@ -17,6 +17,16 @@ NEWS
   - Map taxon observations
 
 # Version History
+
+## Changes in Version 0.5.0.9034 (2021-01-12)
+
+  - chore: Replace instances of deprecated functions
+      - Change dplyr::group\_by\_ to dplyr::group\_by
+          - metric.values
+  - test: Add tests
+      - qc\_checks
+      - markExcluded
+      - metric.stats
 
 ## Changes in Version 0.5.0.9033 (2021-01-06)
 

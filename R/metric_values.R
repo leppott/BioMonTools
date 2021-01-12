@@ -1494,7 +1494,7 @@ metric.values.bugs <- function(myDF
     df.return <- as.data.frame(met.val)
   } else {
     # create df with grouped fields
-    myDF.cols2keep <- myDF %>% dplyr::group_by_(.dots=c("SAMPLEID", cols2keep)) %>%
+    myDF.cols2keep <- myDF %>% dplyr::group_by(.dots=c("SAMPLEID", cols2keep)) %>%
       dplyr::summarize(col.drop=sum(N_TAXA))
     col.drop <- ncol(myDF.cols2keep)
     myDF.cols2keep <- myDF.cols2keep[,-col.drop]
@@ -1761,7 +1761,7 @@ metric.values.fish <- function(myDF
     df.return <- as.data.frame(met.val)
   } else {
     # create df with grouped fields
-    myDF.cols2keep <- myDF %>% dplyr::group_by_(.dots=c("SAMPLEID", cols2keep)) %>%
+    myDF.cols2keep <- myDF %>% dplyr::group_by(.dots=c("SAMPLEID", cols2keep)) %>%
       dplyr::summarize(col.drop=sum(N_TAXA))
     col.drop <- ncol(myDF.cols2keep)
     myDF.cols2keep <- myDF.cols2keep[,-col.drop]
