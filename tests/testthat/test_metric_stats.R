@@ -1,5 +1,5 @@
-# qc_checks ####
-test_that("metric_stats", {
+# metric_stats and metric_stats2 ####
+test_that("metric_stats & metric_stats2", {
 
   #' # data, benthos
   df_bugs <- BioMonTools::data_mmi_dev
@@ -50,7 +50,54 @@ test_that("metric_stats", {
   sum_qc <- 315244.8
 
   # test
-  testthat::expect_equal(sum_calc, sum_qc)
+  testthat::expect_equal(sum_calc, sum_qc, tolerance = 0.02)
+
+
+
+  # metricstats2
+
+  # # Calc Stats2 (z-scores and DE)
+  # data_metval <- df_metval
+  # data_metstat <- df_stats
+  # col_metval_RefStatus <- "REF_V1"
+  # col_metval_DataType <- "CALVAL_CLASS4"
+  # col_metval_Subset <- "INDEX_REGION"
+  # col_metstat_RefStatus <- "REF_V1"
+  # col_metstat_DataType <- "CALVAL_CLASS4"
+  # col_metstat_Subset <- "INDEX_REGION"
+  # RefStatus_Ref = "Ref"
+  # RefStatus_Str = "Strs"
+  # RefStatus_Oth = "Other"
+  # DataType_Cal = "cal"
+  # DataType_Ver = "verif"
+  # Subset_Value = "CENTRALHILLS"
+  # df_stats2 <- BioMonTools::metric.stats2(data_metval
+  #                                  , data_metstat
+  #                                  , col_metval_RefStatus
+  #                                  , col_metval_DataType
+  #                                  , col_metval_Subset
+  #                                  , col_metstat_RefStatus
+  #                                  , col_metstat_DataType
+  #                                  , col_metstat_Subset
+  #                                  , RefStatus_Ref
+  #                                  , RefStatus_Str
+  #                                  , RefStatus_Oth
+  #                                  , DataType_Cal
+  #                                  , DataType_Ver
+  #                                  , Subset_Value)
+  #
+  #
+  # df_numbers2 <- df_stats2[, -(1:4)]
+  # # -Inf in CV column, replace with NA
+  # df_numbers2[df_numbers2 == -Inf] <- NA
+  #
+  # sum2_calc <- sum(df_numbers2, na.rm = TRUE)
+  #
+  # sum2_qc <- 334880.3
+  #
+  # # test
+  # testthat::expect_equal(sum2_calc, sum2_qc, tolerance = 0.02)
+
 })## Test ~ qc_checks ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

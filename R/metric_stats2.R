@@ -365,7 +365,10 @@ metric.stats2 <- function(data_metval
 
   # summarize
   df_de <- df_merge4de %>%
-    dplyr::group_by_(col_metval_Subset, col_metval_DataType, col_metval_RefStatus, "Metric_Name") %>%
+    dplyr::group_by(col_metval_Subset
+                    , col_metval_DataType
+                    , col_metval_RefStatus
+                    , "Metric_Name") %>%
     dplyr::summarize(DE25 = 100 * sum(q25_lt / n_Str)
                      , DE75 = 100 * sum(q75_gt / n_Str))
   df_de <- data.frame(df_de)
