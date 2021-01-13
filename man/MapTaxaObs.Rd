@@ -74,7 +74,7 @@ TaxaID <- "TaxaName"
 TaxaCount <- "Count"
 Lat <- "Latitude"
 Long <- "Longitude"
-output_dir <- getwd()
+output_dir <- tempdir()
 output_prefix <- "maps.taxa."
 output_type <- "pdf"
 
@@ -93,30 +93,34 @@ MapTaxaObs(df_obs
            , Long
            , database="state"
            , regions="massachusetts"
-           , xlim=myXlim
-           , ylim=myYlim)
+           , xlim = myXlim
+           , ylim = myYlim)
 }
 
 #Example #2
 # (doesn't work right now)
-\dontrun{
-df_obs <- read.delim("Fish_MD.txt")
-SampID <- "SITEYR"
-TaxaID <- "FishTaxa"
-TaxaCount <- "Count"
-Lat <- "Latitude83"
-Long <- "Longitude83"
-output_dir <- getwd()
-output_prefix <- "maps.taxa."
-output_type <- "pdf"
+#df_obs <- read.delim("Fish_MD.txt")
+ESampID <- "SITEYR"
+ETaxaID <- "FishTaxa"
+#TaxaCount <- "Count"
+#Lat <- "Latitude83"
+#Long <- "Longitude83"
+#output_dir <- tempdir()
+#output_prefix <- "maps.taxa."
+#output_type <- "pdf"
 #'
 # map arguments
-myDB <- "state"
-myRegion <- "maryland"
+#myDB <- "state"
+#myRegion <- "maryland"
 
-df_obs[,TaxaCount] <- 1
+#df_obs[,TaxaCount] <- 1
 
-MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
-           , database=myDB, regions=myRegion)
-}
+#MapTaxaObs(df_obs
+ #          , SampID
+  #         , TaxaID
+   #        , TaxaCount
+    #       , Lat
+     #      , Long
+      #     , database = myDB
+       #    , regions = myRegion)
 }

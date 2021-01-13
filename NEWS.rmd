@@ -28,9 +28,18 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9036 (2021-01-13)
+
+* test: Add blank testing file for any function without a test
+    + MapTaxaObs
+* refactor: Update MapTaxaObs example
+    + Direct to tempdir() instead of getwd()
+    + Comment out 2nd non-working example
+* style: Update MapTaxaObs for readability
+
 ## Changes in Version 0.5.0.9035 (2021-01-12)
 
-* chore: Replace instances of deprecated functions
+* fix: Replace instances of deprecated functions
     + Change dplyr::group_by_ to dplyr::group_by
         - metric.stats2
 * test: Add tests
@@ -44,7 +53,7 @@ cat(paste0("Last Update: ",Sys.time()))
 
 ## Changes in Version 0.5.0.9034 (2021-01-12)
 
-* chore: Replace instances of deprecated functions
+* fix: Replace instances of deprecated functions
     + Change dplyr::group_by_ to dplyr::group_by
         - metric.values
 * test: Add tests
@@ -54,12 +63,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 ## Changes in Version 0.5.0.9033 (2021-01-06)
 
-* tests: Add metric.values and metrics.scores for MA kick/logradient IBI
+* test: Add metric.values and metrics.scores for MA kick/logradient IBI
 * docs: Update data.R for missing columns
     + data_benthos_MBSS
     + data_mmi_dev
 * refactor: document internal functions of metric.values()
-* chore: Remove non-ASCII character from data_mmi_dev
+* fix: Remove non-ASCII character from data_mmi_dev
 
 ## Changes in Version 0.5.0.9032 (2021-01-03)
 
@@ -69,7 +78,7 @@ cat(paste0("Last Update: ",Sys.time()))
 * test: qc.check test not working, comment out
 * docs: Document undocumented argument
     + metric.stats2
-* chore: Rebuild data_benthos_MBSS with missing columns so no warnings in 
+* fix: Rebuild data_benthos_MBSS with missing columns so no warnings in 
 example
 * chore: Add to .Rbuildignore
     + NEWS.rmd

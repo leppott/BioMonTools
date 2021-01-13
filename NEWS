@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-01-12 20:44:13
+    #> Last Update: 2021-01-13 07:01:29
 
 # Planned Updates
 
@@ -18,9 +18,18 @@ NEWS
 
 # Version History
 
+## Changes in Version 0.5.0.9036 (2021-01-13)
+
+  - test: Add blank testing file for any function without a test
+      - MapTaxaObs
+  - refactor: Update MapTaxaObs example
+      - Direct to tempdir() instead of getwd()
+      - Comment out 2nd non-working example
+  - style: Update MapTaxaObs for readability
+
 ## Changes in Version 0.5.0.9035 (2021-01-12)
 
-  - chore: Replace instances of deprecated functions
+  - fix: Replace instances of deprecated functions
       - Change dplyr::group\_by\_ to dplyr::group\_by
           - metric.stats2
   - test: Add tests
@@ -34,7 +43,7 @@ NEWS
 
 ## Changes in Version 0.5.0.9034 (2021-01-12)
 
-  - chore: Replace instances of deprecated functions
+  - fix: Replace instances of deprecated functions
       - Change dplyr::group\_by\_ to dplyr::group\_by
           - metric.values
   - test: Add tests
@@ -44,13 +53,13 @@ NEWS
 
 ## Changes in Version 0.5.0.9033 (2021-01-06)
 
-  - tests: Add metric.values and metrics.scores for MA kick/logradient
+  - test: Add metric.values and metrics.scores for MA kick/logradient
     IBI
   - docs: Update data.R for missing columns
       - data\_benthos\_MBSS
       - data\_mmi\_dev
   - refactor: document internal functions of metric.values()
-  - chore: Remove non-ASCII character from data\_mmi\_dev
+  - fix: Remove non-ASCII character from data\_mmi\_dev
 
 ## Changes in Version 0.5.0.9032 (2021-01-03)
 
@@ -60,8 +69,8 @@ NEWS
   - test: qc.check test not working, comment out
   - docs: Document undocumented argument
       - metric.stats2
-  - chore: Rebuild data\_benthos\_MBSS with missing columns so no
-    warnings in example
+  - fix: Rebuild data\_benthos\_MBSS with missing columns so no warnings
+    in example
   - chore: Add to .Rbuildignore
       - NEWS.rmd
       - README.rmd

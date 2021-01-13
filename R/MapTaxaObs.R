@@ -42,7 +42,7 @@
 #' TaxaCount <- "Count"
 #' Lat <- "Latitude"
 #' Long <- "Longitude"
-#' output_dir <- getwd()
+#' output_dir <- tempdir()
 #' output_prefix <- "maps.taxa."
 #' output_type <- "pdf"
 #'
@@ -62,38 +62,49 @@
 #'            , Long
 #'            , database="state"
 #'            , regions="massachusetts"
-#'            , xlim=myXlim
-#'            , ylim=myYlim)
+#'            , xlim = myXlim
+#'            , ylim = myYlim)
 #'}
 #'
 #' #Example #2
 #' # (doesn't work right now)
-#'\dontrun{
-#' df_obs <- read.delim("Fish_MD.txt")
-#' SampID <- "SITEYR"
-#' TaxaID <- "FishTaxa"
-#' TaxaCount <- "Count"
-#' Lat <- "Latitude83"
-#' Long <- "Longitude83"
-#' output_dir <- getwd()
-#' output_prefix <- "maps.taxa."
-#' output_type <- "pdf"
+#' #df_obs <- read.delim("Fish_MD.txt")
+#' ESampID <- "SITEYR"
+#' ETaxaID <- "FishTaxa"
+#' #TaxaCount <- "Count"
+#' #Lat <- "Latitude83"
+#' #Long <- "Longitude83"
+#' #output_dir <- tempdir()
+#' #output_prefix <- "maps.taxa."
+#' #output_type <- "pdf"
 #' #'
 #' # map arguments
-#' myDB <- "state"
-#' myRegion <- "maryland"
+#' #myDB <- "state"
+#' #myRegion <- "maryland"
 #'
-#' df_obs[,TaxaCount] <- 1
+#' #df_obs[,TaxaCount] <- 1
 #'
-#' MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
-#'            , database=myDB, regions=myRegion)
-#'}
-
+#' #MapTaxaObs(df_obs
+#'  #          , SampID
+#'   #         , TaxaID
+#'    #        , TaxaCount
+#'     #       , Lat
+#'      #      , Long
+#'       #     , database = myDB
+#'        #    , regions = myRegion)
 #
 #' @export
-MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
-                  , output_dir, output_prefix="maps.taxa", output_type="pdf"
-                  , database, regions, ...)
+MapTaxaObs <- function(df_obs
+                       , SampID
+                       , TaxaID
+                       , TaxaCount
+                       , Lat
+                       , Long
+                       , output_dir
+                       , output_prefix = "maps.taxa"
+                       , output_type = "pdf"
+                       , database
+                       , regions, ...)
 {##FUNCTION.MapTaxaObs.START
 
   # tibble to data frame
@@ -104,8 +115,8 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
   NumSamps.ALL     <- length(Samps.ALL)
 
   # reclass "Count" (ensure is numeric)
-  df_obs[,TaxaCount] <- as.numeric(df_obs[,TaxaCount])
-  Count.ALL        <- sum(df_obs[,TaxaCount],na.rm=TRUE)
+  df_obs[,TaxaCount] <- as.numeric(df_obs[, TaxaCount])
+  Count.ALL        <- sum(df_obs[, TaxaCount], na.rm=TRUE)
 
   # Calc Density
   #df_obs[,"Pct"] <-
@@ -117,7 +128,9 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
   myCounterStart <- 0 #set at number of columns not used
   myCounterStop <- length(data2process)
   myCounter <- myCounterStart
-  print(paste("Total files to process = ",myCounterStop-myCounterStart,sep=""))
+  print(paste("Total files to process = "
+              , myCounterStop - myCounterStart
+              , sep = ""))
   utils::flush.console()
 
   #Define PDF
@@ -134,12 +147,17 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
     # define Target Taxa for this iteration of the loop
     myTargetMapCat <- data2process[myCounter]
     # Update User
-    print(paste("Map ",myCounter," of ",myCounterStop,"; "
-                , myTargetMapCat, sep=""))
+    print(paste("Map "
+                , myCounter
+                , " of "
+                , myCounterStop
+                , "; "
+                , myTargetMapCat
+                , sep = ""))
     utils::flush.console()
 
     # # subset
-    data.TargetMapCat <- subset(df_obs, TaxaID==myTargetMapCat)
+    data.TargetMapCat <- subset(df_obs, TaxaID == myTargetMapCat)
     #
     # should be % occ in sample but use max as a surrogate
     #  (easier to see the dots)
@@ -178,35 +196,41 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
     myCEX <- 1 #myCEX.PctTarget
     #
     # map all sites (as gray, open circle)
-    graphics::points(df_obs[,Long], df_obs[,Lat], col="lightgray", pch=1, cex=1)
+    graphics::points(df_obs[, Long]
+                     , df_obs[, Lat]
+                     , col = "lightgray"
+                     , pch = 1
+                     , cex = 1)
     #
-    graphics::points(data.TargetMapCat[,Long]
-                     , data.TargetMapCat[,Lat]
-                     , col="blue"
-                     , pch=19
-                     , cex=myCEX)
+    graphics::points(data.TargetMapCat[, Long]
+                     , data.TargetMapCat[, Lat]
+                     , col = "blue"
+                     , pch = 19
+                     , cex = myCEX)
     # main
     #graphics::mtext(paste(data2process[myCounter]," = ",myTargetMapCat,sep=""))
     graphics::mtext(myTargetMapCat)
     # 20130923, Target samples and count (lower left, side=1,outer=T,adj=0)
     # Pct Count, top line (line=-2)
-    (Count.Target <- sum(data.TargetMapCat[,TaxaCount]))
-    (Pct.Count <- round(Count.Target/Count.ALL,2))
+    (Count.Target <- sum(data.TargetMapCat[, TaxaCount]))
+    (Pct.Count <- round(Count.Target / Count.ALL ,2))
   #  graphics::mtext(paste("Pct of Total Count (n=",Count.Target,")= "
     # ,Pct.Count,sep=""), side=1,outer=TRUE,adj=0,line=-2,cex=0.75)
     # Pct Samps, bottom line (line=-1)
     Samps.Target <- unique(data.TargetMapCat[,SampID])
     (NumSamps.Target <- length(Samps.Target))
     (Pct.Samps <- round(NumSamps.Target/NumSamps.ALL,2))
-    graphics::mtext(paste("Pct of Total Samples (n=",NumSamps.ALL,") = "
-                          ,Pct.Samps,sep="")
-                    ,side=1
-                    ,outer=TRUE
-                    ,adj=0
-                    ,line=-1
-                    ,cex=0.75)
+    graphics::mtext(paste("Pct of Total Samples (n="
+                          , NumSamps.ALL,") = "
+                          , Pct.Samps
+                          , sep = "")
+                    , side = 1
+                    , outer = TRUE
+                    , adj = 0
+                    , line = -1
+                    , cex = 0.75)
     # number of samples
-    graphics::mtext(paste("n=",NumSamps.Target,sep=""),side=1)
+    graphics::mtext(paste("n=", NumSamps.Target, sep = ""), side = 1)
     #
 
 
@@ -228,16 +252,16 @@ MapTaxaObs <- function(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
   } #LOOP.END
   #
   # Close Device
-  if (output_type=="pdf") {##IF.output_type.START
+  if (output_type == "pdf") {##IF.output_type.START
     grDevices::dev.off() ##PDF.END
   }##IF.output_type.END
   #
   print(paste("Processing of "
-              ,myCounter-myCounterStart
-              ," of "
-              ,myCounterStop-myCounterStart
-              ," files complete."
-              ,sep=""))
+              , myCounter - myCounterStart
+              , " of "
+              , myCounterStop  -myCounterStart
+              , " files complete."
+              , sep = ""))
   utils::flush.console()
   #data2process[myCounter] #use for troubleshooting if get error
 
