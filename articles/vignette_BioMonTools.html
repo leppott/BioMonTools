@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9036</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9037</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 class="date">2021-01-13</h4>
+            <h4 class="date">2021-01-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/master/vignettes/vignette_BioMonTools.Rmd"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -272,6 +272,9 @@
 
 <span class="co"># Run Function</span>
 <span class="va">df.metval</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df.data</span>, <span class="st">"bugs"</span>, fun.cols2keep<span class="op">=</span><span class="va">myCols</span><span class="op">)</span>
+<span class="co">#&gt; Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span>
+<span class="co">#&gt; This warning is displayed once every 8 hours.</span>
+<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span>
 <span class="co"># Metrics of Interest</span>
 <span class="co">## thermal indicator (_ti_)</span>
 <span class="co">#names(df.metval)[grepl("_ti_", names(df.metval))]</span>
@@ -564,7 +567,6 @@
 <span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">df_tst</span>, <span class="va">SampleID</span><span class="op">)</span>
                                , Exclude_Import<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Exclude</span><span class="op">)</span>
                                , Exclude_R<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Exclude_New</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span>
 <span class="va">df_compare</span><span class="op">$</span><span class="va">Diff</span> <span class="op">&lt;-</span> <span class="va">df_compare</span><span class="op">$</span><span class="va">Exclude_Import</span> <span class="op">-</span> <span class="va">df_compare</span><span class="op">$</span><span class="va">Exclude_R</span>
 <span class="co">#</span>
 <span class="va">tbl_diff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">$</span><span class="va">Diff</span><span class="op">)</span>
@@ -744,7 +746,6 @@
 <span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">df_tst2</span>, <span class="va">SampleID</span><span class="op">)</span>
                                , Exclude_Import <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Exclude</span><span class="op">)</span>
                                , Exclude_R <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Exclude_New</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; `summarise()` ungrouping output (override with `.groups` argument)</span>
 <span class="va">df_compare2</span><span class="op">$</span><span class="va">Diff</span> <span class="op">&lt;-</span> <span class="va">df_compare2</span><span class="op">$</span><span class="va">Exclude_Import</span> <span class="op">-</span> <span class="va">df_compare2</span><span class="op">$</span><span class="va">Exclude_R</span>
 <span class="co">#</span>
 <span class="va">tbl_diff2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">$</span><span class="va">Diff</span><span class="op">)</span>
@@ -1013,7 +1014,7 @@
                                    , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span>
 <span class="co">#&gt; Rarify of samples complete. </span>
 <span class="co">#&gt;  Number of samples =  12 </span>
-<span class="co">#&gt;  Execution time (sec) =  0.0150000000000006</span>
+<span class="co">#&gt;  Execution time (sec) =  0.014999999999997</span>
 
 <span class="co"># view results</span>
 <span class="co">#dim(bugs_mysize)</span>
