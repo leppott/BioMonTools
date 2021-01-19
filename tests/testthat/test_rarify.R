@@ -1,1076 +1,1076 @@
 # rarify ####
 test_that("rarify", {
-  # # load bio data
-  # df_biodata <- BioMonTools::data_bio2rarify
-  # # subsample
-  # mySize <- 500
-  # Seed_US <- 17760704
-  # df_calc <- BioMonTools::rarify(inbug=df_biodata
-  #                                , sample.ID = "SampleID"
-  #                                , abund = "N_Taxa"
-  #                                , subsiz = mySize
-  #                                , mySeed = Seed_US)
-  #
-  #
-  # # QC data
-  # SampleID <- c("01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "01103CSR_Bug_2001-08-27_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "02087REF_Bug_2002-08-22_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03013CSR_Bug_2003-07-01_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03053CSR_Bug_2003-08-14_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "03054CSR_Bug_2003-08-18_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06012CSR_Bug_2006-09-05_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06019CSRw_Bug_2006-09-14_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06021CSR_Bug_2006-08-01_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06022CSR_Bug_2006-08-17_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06024CSR_Bug_2006-07-27_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06025CSR_Bug_2006-08-03_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  #               , "06027CSR_Bug_2006-07-17_0"
-  # )
-  # TaxaID <- c("Ephemerellidae"
-  #             , "Mystacides"
-  #             , "Zaitzevia"
-  #             , "Ceratopogoninae"
-  #             , "Chironomini"
-  #             , "Elmidae"
-  #             , "Hyalella"
-  #             , "Hydropsyche"
-  #             , "Hydrozoa"
-  #             , "Libellulidae"
-  #             , "Limonia"
-  #             , "Oligochaeta"
-  #             , "Optioservus"
-  #             , "Orthocladiinae"
-  #             , "Ostracoda"
-  #             , "Tanypodinae"
-  #             , "Tanytarsini"
-  #             , "Trepaxonemata"
-  #             , "Tricorythodes"
-  #             , "Trombidiformes"
-  #             , "Cheumatopsyche"
-  #             , "Coenagrionidae"
-  #             , "Dubiraphia"
-  #             , "Ephydridae"
-  #             , "Physella"
-  #             , "Planorbidae"
-  #             , "Prostoma"
-  #             , "Corbicula"
-  #             , "Cladocera"
-  #             , "Calineuria californica"
-  #             , "Drunella doddsii"
-  #             , "Neophylax splendens"
-  #             , "Octogomphus specularis"
-  #             , "Cinygmula"
-  #             , "Diphetor hageni"
-  #             , "Dixa"
-  #             , "Glossosoma"
-  #             , "Hesperoperla pacifica"
-  #             , "Heterlimnius corpulentus"
-  #             , "Maruina"
-  #             , "Rhithrogena"
-  #             , "Rhyacophila brunnea/vemna group"
-  #             , "Sweltsa"
-  #             , "Wormaldia"
-  #             , "Zaitzevia"
-  #             , "Zapada oregonensis group"
-  #             , "Baetis tricaudatus complex"
-  #             , "Ceratopogoninae"
-  #             , "Chelifera/Metachela"
-  #             , "Cinygma"
-  #             , "Dicranota"
-  #             , "Hydropsyche"
-  #             , "Juga"
-  #             , "Lara"
-  #             , "Malenka"
-  #             , "Narpus concolor"
-  #             , "Oligochaeta"
-  #             , "Optioservus"
-  #             , "Orthocladiinae"
-  #             , "Paraleptophlebia"
-  #             , "Pericoma/Telmatoscopus"
-  #             , "Simulium"
-  #             , "Sphaeriidae"
-  #             , "Tanypodinae"
-  #             , "Tanytarsini"
-  #             , "Trombidiformes"
-  #             , "Zapada cinctipes"
-  #             , "Chloroperlidae"
-  #             , "Baetidae"
-  #             , "Baetis tricaudatus complex"
-  #             , "Chelifera/Metachela"
-  #             , "Chironomini"
-  #             , "Ferrissia"
-  #             , "Hydroptila"
-  #             , "Juga"
-  #             , "Oligochaeta"
-  #             , "Orthocladiinae"
-  #             , "Paraleptophlebia"
-  #             , "Simulium"
-  #             , "Sphaeriidae"
-  #             , "Tanypodinae"
-  #             , "Tanytarsini"
-  #             , "Trombidiformes"
-  #             , "Cheumatopsyche"
-  #             , "Copepoda"
-  #             , "Cinygmula"
-  #             , "Despaxia augusta"
-  #             , "Diphetor hageni"
-  #             , "Epeorus"
-  #             , "Epeorus albertae group"
-  #             , "Glossosoma"
-  #             , "Glossosomatidae"
-  #             , "Heptageniidae"
-  #             , "Hesperoperla pacifica"
-  #             , "Ironodes"
-  #             , "Micrasema"
-  #             , "Perlidae"
-  #             , "Perlodidae"
-  #             , "Rhyacophila betteni group"
-  #             , "Rhyacophila blarina"
-  #             , "Sweltsa"
-  #             , "Wormaldia"
-  #             , "Zaitzevia"
-  #             , "Zapada"
-  #             , "Zapada oregonensis group"
-  #             , "Baetidae"
-  #             , "Baetis tricaudatus complex"
-  #             , "Ceratopogoninae"
-  #             , "Chelifera/Metachela"
-  #             , "Chironomini"
-  #             , "Dicranota"
-  #             , "Ferrissia"
-  #             , "Hydropsyche"
-  #             , "Juga"
-  #             , "Lara"
-  #             , "Malenka"
-  #             , "Nemata"
-  #             , "Oligochaeta"
-  #             , "Optioservus"
-  #             , "Orthocladiinae"
-  #             , "Paraleptophlebia"
-  #             , "Simulium"
-  #             , "Tanypodinae"
-  #             , "Tanytarsini"
-  #             , "Trombidiformes"
-  #             , "Zapada cinctipes"
-  #             , "Limnephilidae"
-  #             , "Yoraperla"
-  #             , "Diphetor hageni"
-  #             , "Isoperla"
-  #             , "Baetidae"
-  #             , "Baetis tricaudatus complex"
-  #             , "Hydropsychidae"
-  #             , "Juga"
-  #             , "Oligochaeta"
-  #             , "Paraleptophlebia"
-  #             , "Simulium"
-  #             , "Sphaeriidae"
-  #             , "Tanypodinae"
-  #             , "Tanytarsini"
-  #             , "Cheumatopsyche"
-  #             , "Gammarus"
-  #             , "Ampumixis dispar"
-  #             , "Blephariceridae"
-  #             , "Calineuria californica"
-  #             , "Drunella doddsii"
-  #             , "Acentrella turbida"
-  #             , "Clinocera"
-  #             , "Dicosmoecus gilvipes"
-  #             , "Diphetor hageni"
-  #             , "Epeorus albertae group"
-  #             , "Hesperoperla pacifica"
-  #             , "Neophylax rickeri"
-  #             , "Ordobrevia nubifera"
-  #             , "Perlidae"
-  #             , "Perlodidae"
-  #             , "Rhithrogena"
-  #             , "Rhyacophila brunnea/vemna group"
-  #             , "Stempellinella"
-  #             , "Wormaldia"
-  #             , "Zaitzevia"
-  #             , "Baetis flavistriga complex"
-  #             , "Baetis tricaudatus complex"
-  #             , "Cricotopus bicinctus group"
-  #             , "Cricotopus/Orthocladius"
-  #             , "Eukiefferiella"
-  #             , "Fluminicola"
-  #             , "Hydropsyche"
-  #             , "Juga"
-  #             , "Lepidostoma"
-  #             , "Leucotrichia"
-  #             , "Malenka"
-  #             , "Micropsectra"
-  #             , "Optioservus"
-  #             , "Pagastia"
-  #             , "Paraleptophlebia"
-  #             , "Polypedilum"
-  #             , "Rheocricotopus"
-  #             , "Rheotanytarsus"
-  #             , "Simulium"
-  #             , "Trombidiformes"
-  #             , "Zapada cinctipes"
-  #             , "Cheumatopsyche"
-  #             , "Goera archaon"
-  #             , "Centroptilum/Procloeon"
-  #             , "Isoperla"
-  #             , "Paraleptophlebia bicornuta group"
-  #             , "Zaitzevia"
-  #             , "Caenis"
-  #             , "Chironomidae"
-  #             , "Ferrissia"
-  #             , "Fluminicola"
-  #             , "Juga"
-  #             , "Oligochaeta"
-  #             , "Optioservus"
-  #             , "Paralauterborniella"
-  #             , "Paraleptophlebia"
-  #             , "Stictochironomus"
-  #             , "Tricorythodes"
-  #             , "Trombidiformes"
-  #             , "Copepoda"
-  #             , "Calineuria californica"
-  #             , "Doroneuria"
-  #             , "Octogomphus specularis"
-  #             , "Chloroperlidae"
-  #             , "Cinygmula"
-  #             , "Diphetor hageni"
-  #             , "Dixa"
-  #             , "Glossosoma"
-  #             , "Hesperoperla pacifica"
-  #             , "Isoperla"
-  #             , "Sweltsa"
-  #             , "Zaitzevia"
-  #             , "Baetidae"
-  #             , "Ceratopogoninae"
-  #             , "Chelifera/Metachela"
-  #             , "Dicranota"
-  #             , "Hydropsyche"
-  #             , "Juga"
-  #             , "Lepidostoma-panel case larvae"
-  #             , "Malenka"
-  #             , "Micropsectra"
-  #             , "Narpus concolor"
-  #             , "Nemata"
-  #             , "Oligochaeta"
-  #             , "Optioservus"
-  #             , "Paraleptophlebia"
-  #             , "Parametriocnemus"
-  #             , "Polypedilum"
-  #             , "Simulium"
-  #             , "Sphaeriidae"
-  #             , "Trombidiformes"
-  #             , "Zapada cinctipes"
-  #             , "Stempellinella/Zavrelia (Bad ID)"
-  #             , "Ablabesmyia"
-  #             , "Ceratopogoninae"
-  #             , "Chironomidae"
-  #             , "Cladotanytarsus"
-  #             , "Corynoneura"
-  #             , "Dicrotendipes"
-  #             , "Hyalella"
-  #             , "Labrundinia"
-  #             , "Micropsectra"
-  #             , "Oecetis"
-  #             , "Oligochaeta"
-  #             , "Ostracoda"
-  #             , "Paracricotopus"
-  #             , "Polypedilum"
-  #             , "Pseudochironomus"
-  #             , "Tanytarsus"
-  #             , "Trepaxonemata"
-  #             , "Trombidiformes"
-  #             , "Coenagrionidae"
-  #             , "Cryptochironomus"
-  #             , "Dubiraphia"
-  #             , "Endochironomus"
-  #             , "Gammarus"
-  #             , "Helobdella"
-  #             , "Oxyethira"
-  #             , "Physella"
-  #             , "Planorbidae"
-  #             , "Procladius"
-  #             , "Tanypus"
-  #             , "Cladocera"
-  #             , "Copepoda"
-  #             , "Corixidae"
-  #             , "Alotanypus"
-  #             , "Baetidae"
-  #             , "Chironomini"
-  #             , "Cricotopus/Orthocladius"
-  #             , "Oligochaeta"
-  #             , "Orthocladiinae"
-  #             , "Paratendipes"
-  #             , "Phaenopsectra"
-  #             , "Sialis"
-  #             , "Sphaeriidae"
-  #             , "Tanytarsini"
-  #             , "Thienemannimyia group"
-  #             , "Chironomus"
-  #             , "Cryptochironomus"
-  #             , "Ephydridae"
-  #             , "Gammarus"
-  #             , "Lymnaeidae"
-  #             , "Physella"
-  #             , "Planorbidae"
-  #             , "Copepoda"
-  #             , "Clinocera"
-  #             , "Argia"
-  #             , "Baetidae"
-  #             , "Baetis tricaudatus complex"
-  #             , "Brillia"
-  #             , "Chelifera/Metachela"
-  #             , "Dytiscidae"
-  #             , "Eukiefferiella claripennis group"
-  #             , "Ferrissia"
-  #             , "Micropsectra"
-  #             , "Oligochaeta"
-  #             , "Polypedilum"
-  #             , "Rheotanytarsus"
-  #             , "Simulium"
-  #             , "Sphaeriidae"
-  #             , "Tanypodinae"
-  #             , "Thienemannimyia group"
-  #             , "Tipula"
-  #             , "Menetus"
-  #             , "Physella"
-  #             , "Copepoda"
-  #             , "Calineuria californica"
-  #             , "Cleptelmis addenda"
-  #             , "Diphetor hageni"
-  #             , "Heptageniidae"
-  #             , "Hesperoperla pacifica"
-  #             , "Ironodes"
-  #             , "Isoperla"
-  #             , "Rhyacophila betteni group"
-  #             , "Rhyacophila brunnea/vemna group"
-  #             , "Skwala"
-  #             , "Sweltsa"
-  #             , "Wormaldia"
-  #             , "Zaitzevia"
-  #             , "Baetidae"
-  #             , "Baetis tricaudatus complex"
-  #             , "Brillia"
-  #             , "Chelifera/Metachela"
-  #             , "Chironomini"
-  #             , "Cricotopus"
-  #             , "Dicranota"
-  #             , "Eukiefferiella claripennis group"
-  #             , "Eukiefferiella gracei group"
-  #             , "Ferrissia"
-  #             , "Hydropsychidae"
-  #             , "Hydroptila"
-  #             , "Juga"
-  #             , "Micropsectra"
-  #             , "Nilotanypus"
-  #             , "Optioservus"
-  #             , "Paraleptophlebia"
-  #             , "Parametriocnemus"
-  #             , "Polypedilum"
-  #             , "Rheotanytarsus"
-  #             , "Simulium"
-  #             , "Sphaeriidae"
-  #             , "Tanytarsus"
-  #             , "Thienemannimyia group"
-  #             , "Trombidiformes"
-  #             , "Truncatelloidea"
-  #             , "Zapada cinctipes"
-  #             , "Cheumatopsyche"
-  #             , "Gammarus"
-  #             , "Isopoda"
-  # )
-  # N_Taxa <- c(56
-  #             , 2
-  #             , 24
-  #             , 142
-  #             , 4
-  #             , 16
-  #             , 4
-  #             , 5
-  #             , 34
-  #             , 13
-  #             , 11
-  #             , 1
-  #             , 28
-  #             , 37
-  #             , 2
-  #             , 1
-  #             , 1
-  #             , 14
-  #             , 9
-  #             , 11
-  #             , 0
-  #             , 1
-  #             , 9
-  #             , 18
-  #             , 25
-  #             , 9
-  #             , 21
-  #             , 1
-  #             , 1
-  #             , 1
-  #             , 3
-  #             , 1
-  #             , 1
-  #             , 14
-  #             , 6
-  #             , 1
-  #             , 14
-  #             , 6
-  #             , 5
-  #             , 1
-  #             , 9
-  #             , 2
-  #             , 8
-  #             , 2
-  #             , 4
-  #             , 1
-  #             , 10
-  #             , 1
-  #             , 1
-  #             , 1
-  #             , 1
-  #             , 6
-  #             , 319
-  #             , 1
-  #             , 4
-  #             , 1
-  #             , 1
-  #             , 2
-  #             , 23
-  #             , 10
-  #             , 1
-  #             , 1
-  #             , 2
-  #             , 1
-  #             , 25
-  #             , 7
-  #             , 3
-  #             , 1
-  #             , 44
-  #             , 50
-  #             , 7
-  #             , 160
-  #             , 1
-  #             , 1
-  #             , 130
-  #             , 29
-  #             , 40
-  #             , 4
-  #             , 4
-  #             , 1
-  #             , 2
-  #             , 13
-  #             , 3
-  #             , 9
-  #             , 1
-  #             , 18
-  #             , 3
-  #             , 8
-  #             , 4
-  #             , 2
-  #             , 25
-  #             , 23
-  #             , 8
-  #             , 1
-  #             , 1
-  #             , 1
-  #             , 5
-  #             , 1
-  #             , 11
-  #             , 47
-  #             , 27
-  #             , 6
-  #             , 5
-  #             , 2
-  #             , 3
-  #             , 4
-  #             , 13
-  #             , 3
-  #             , 6
-  #             , 7
-  #             , 4
-  #             , 0
-  #             , 36
-  #             , 34
-  #             , 1
-  #             , 2
-  #             , 1
-  #             , 18
-  #             , 21
-  #             , 2
-  #             , 30
-  #             , 11
-  #             , 2
-  #             , 72
-  #             , 4
-  #             , 27
-  #             , 1
-  #             , 2
-  #             , 1
-  #             , 6
-  #             , 3
-  #             , 29
-  #             , 48
-  #             , 6
-  #             , 1
-  #             , 23
-  #             , 8
-  #             , 3
-  #             , 1
-  #             , 5
-  #             , 345
-  #             , 19
-  #             , 1
-  #             , 13
-  #             , 5
-  #             , 6
-  #             , 38
-  #             , 1
-  #             , 1
-  #             , 4
-  #             , 4
-  #             , 2
-  #             , 1
-  #             , 2
-  #             , 1
-  #             , 1
-  #             , 42
-  #             , 1
-  #             , 1
-  #             , 40
-  #             , 3
-  #             , 2
-  #             , 44
-  #             , 1
-  #             , 1
-  #             , 13
-  #             , 1
-  #             , 80
-  #             , 2
-  #             , 2
-  #             , 1
-  #             , 2
-  #             , 16
-  #             , 12
-  #             , 1
-  #             , 2
-  #             , 26
-  #             , 1
-  #             , 1
-  #             , 28
-  #             , 1
-  #             , 11
-  #             , 85
-  #             , 1
-  #             , 2
-  #             , 8
-  #             , 6
-  #             , 10
-  #             , 313
-  #             , 3
-  #             , 9
-  #             , 33
-  #             , 36
-  #             , 16
-  #             , 13
-  #             , 1
-  #             , 6
-  #             , 4
-  #             , 21
-  #             , 10
-  #             , 8
-  #             , 3
-  #             , 1
-  #             , 6
-  #             , 10
-  #             , 14
-  #             , 21
-  #             , 2
-  #             , 1
-  #             , 11
-  #             , 6
-  #             , 8
-  #             , 2
-  #             , 8
-  #             , 6
-  #             , 3
-  #             , 1
-  #             , 19
-  #             , 262
-  #             , 1
-  #             , 2
-  #             , 1
-  #             , 1
-  #             , 3
-  #             , 6
-  #             , 7
-  #             , 19
-  #             , 7
-  #             , 2
-  #             , 0
-  #             , 8
-  #             , 7
-  #             , 37
-  #             , 15
-  #             , 3
-  #             , 5
-  #             , 3
-  #             , 1
-  #             , 1
-  #             , 5
-  #             , 125
-  #             , 16
-  #             , 1
-  #             , 14
-  #             , 65
-  #             , 1
-  #             , 3
-  #             , 1
-  #             , 2
-  #             , 2
-  #             , 53
-  #             , 31
-  #             , 12
-  #             , 1
-  #             , 4
-  #             , 3
-  #             , 3
-  #             , 2
-  #             , 2
-  #             , 17
-  #             , 4
-  #             , 1
-  #             , 4
-  #             , 45
-  #             , 69
-  #             , 1
-  #             , 1
-  #             , 0
-  #             , 1
-  #             , 3
-  #             , 45
-  #             , 1
-  #             , 2
-  #             , 1
-  #             , 9
-  #             , 205
-  #             , 1
-  #             , 1
-  #             , 1
-  #             , 1
-  #             , 1
-  #             , 135
-  #             , 3
-  #             , 86
-  #             , 2
-  #             , 1
-  #             , 1
-  #             , 1
-  #             , 18
-  #             , 59
-  #             , 97
-  #             , 3
-  #             , 1
-  #             , 26
-  #             , 1
-  #             , 124
-  #             , 1
-  #             , 2
-  #             , 1
-  #             , 132
-  #             , 5
-  #             , 5
-  #             , 1
-  #             , 6
-  #             , 9
-  #             , 7
-  #             , 0
-  #             , 1
-  #             , 2
-  #             , 6
-  #             , 1
-  #             , 2
-  #             , 1
-  #             , 2
-  #             , 1
-  #             , 5
-  #             , 4
-  #             , 1
-  #             , 4
-  #             , 33
-  #             , 22
-  #             , 65
-  #             , 4
-  #             , 5
-  #             , 5
-  #             , 1
-  #             , 11
-  #             , 2
-  #             , 16
-  #             , 1
-  #             , 5
-  #             , 1
-  #             , 5
-  #             , 2
-  #             , 1
-  #             , 20
-  #             , 8
-  #             , 90
-  #             , 10
-  #             , 13
-  #             , 83
-  #             , 1
-  #             , 3
-  #             , 6
-  #             , 1
-  #             , 1
-  #             , 11
-  #             , 36
-  #             , 5
-  #             , 3
-  # )
-  # df_QC <- data.frame(SampleID, TaxaID, N_Taxa, stringsAsFactors = TRUE)
-  #
-  #
-  # # test
-  # testthat::expect_equivalent(df_calc, df_QC, tolerance = 0.01)
+  # load bio data
+  df_biodata <- BioMonTools::data_bio2rarify
+  # subsample
+  mySize <- 500
+  Seed_US <- 17760704
+  df_calc <- BioMonTools::rarify(inbug=df_biodata
+                                 , sample.ID = "SampleID"
+                                 , abund = "N_Taxa"
+                                 , subsiz = mySize
+                                 , mySeed = Seed_US)
+
+
+  # QC data
+  SampleID <- c("01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "01103CSR_Bug_2001-08-27_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "02087REF_Bug_2002-08-22_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03013CSR_Bug_2003-07-01_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03053CSR_Bug_2003-08-14_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "03054CSR_Bug_2003-08-18_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06012CSR_Bug_2006-09-05_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06019CSRw_Bug_2006-09-14_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06021CSR_Bug_2006-08-01_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06022CSR_Bug_2006-08-17_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06024CSR_Bug_2006-07-27_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06025CSR_Bug_2006-08-03_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+                , "06027CSR_Bug_2006-07-17_0"
+  )
+  TaxaID <- c("Ephemerellidae"
+              , "Mystacides"
+              , "Zaitzevia"
+              , "Ceratopogoninae"
+              , "Chironomini"
+              , "Elmidae"
+              , "Hyalella"
+              , "Hydropsyche"
+              , "Hydrozoa"
+              , "Libellulidae"
+              , "Limonia"
+              , "Oligochaeta"
+              , "Optioservus"
+              , "Orthocladiinae"
+              , "Ostracoda"
+              , "Tanypodinae"
+              , "Tanytarsini"
+              , "Trepaxonemata"
+              , "Tricorythodes"
+              , "Trombidiformes"
+              , "Cheumatopsyche"
+              , "Coenagrionidae"
+              , "Dubiraphia"
+              , "Ephydridae"
+              , "Physella"
+              , "Planorbidae"
+              , "Prostoma"
+              , "Corbicula"
+              , "Cladocera"
+              , "Calineuria californica"
+              , "Drunella doddsii"
+              , "Neophylax splendens"
+              , "Octogomphus specularis"
+              , "Cinygmula"
+              , "Diphetor hageni"
+              , "Dixa"
+              , "Glossosoma"
+              , "Hesperoperla pacifica"
+              , "Heterlimnius corpulentus"
+              , "Maruina"
+              , "Rhithrogena"
+              , "Rhyacophila brunnea/vemna group"
+              , "Sweltsa"
+              , "Wormaldia"
+              , "Zaitzevia"
+              , "Zapada oregonensis group"
+              , "Baetis tricaudatus complex"
+              , "Ceratopogoninae"
+              , "Chelifera/Metachela"
+              , "Cinygma"
+              , "Dicranota"
+              , "Hydropsyche"
+              , "Juga"
+              , "Lara"
+              , "Malenka"
+              , "Narpus concolor"
+              , "Oligochaeta"
+              , "Optioservus"
+              , "Orthocladiinae"
+              , "Paraleptophlebia"
+              , "Pericoma/Telmatoscopus"
+              , "Simulium"
+              , "Sphaeriidae"
+              , "Tanypodinae"
+              , "Tanytarsini"
+              , "Trombidiformes"
+              , "Zapada cinctipes"
+              , "Chloroperlidae"
+              , "Baetidae"
+              , "Baetis tricaudatus complex"
+              , "Chelifera/Metachela"
+              , "Chironomini"
+              , "Ferrissia"
+              , "Hydroptila"
+              , "Juga"
+              , "Oligochaeta"
+              , "Orthocladiinae"
+              , "Paraleptophlebia"
+              , "Simulium"
+              , "Sphaeriidae"
+              , "Tanypodinae"
+              , "Tanytarsini"
+              , "Trombidiformes"
+              , "Cheumatopsyche"
+              , "Copepoda"
+              , "Cinygmula"
+              , "Despaxia augusta"
+              , "Diphetor hageni"
+              , "Epeorus"
+              , "Epeorus albertae group"
+              , "Glossosoma"
+              , "Glossosomatidae"
+              , "Heptageniidae"
+              , "Hesperoperla pacifica"
+              , "Ironodes"
+              , "Micrasema"
+              , "Perlidae"
+              , "Perlodidae"
+              , "Rhyacophila betteni group"
+              , "Rhyacophila blarina"
+              , "Sweltsa"
+              , "Wormaldia"
+              , "Zaitzevia"
+              , "Zapada"
+              , "Zapada oregonensis group"
+              , "Baetidae"
+              , "Baetis tricaudatus complex"
+              , "Ceratopogoninae"
+              , "Chelifera/Metachela"
+              , "Chironomini"
+              , "Dicranota"
+              , "Ferrissia"
+              , "Hydropsyche"
+              , "Juga"
+              , "Lara"
+              , "Malenka"
+              , "Nemata"
+              , "Oligochaeta"
+              , "Optioservus"
+              , "Orthocladiinae"
+              , "Paraleptophlebia"
+              , "Simulium"
+              , "Tanypodinae"
+              , "Tanytarsini"
+              , "Trombidiformes"
+              , "Zapada cinctipes"
+              , "Limnephilidae"
+              , "Yoraperla"
+              , "Diphetor hageni"
+              , "Isoperla"
+              , "Baetidae"
+              , "Baetis tricaudatus complex"
+              , "Hydropsychidae"
+              , "Juga"
+              , "Oligochaeta"
+              , "Paraleptophlebia"
+              , "Simulium"
+              , "Sphaeriidae"
+              , "Tanypodinae"
+              , "Tanytarsini"
+              , "Cheumatopsyche"
+              , "Gammarus"
+              , "Ampumixis dispar"
+              , "Blephariceridae"
+              , "Calineuria californica"
+              , "Drunella doddsii"
+              , "Acentrella turbida"
+              , "Clinocera"
+              , "Dicosmoecus gilvipes"
+              , "Diphetor hageni"
+              , "Epeorus albertae group"
+              , "Hesperoperla pacifica"
+              , "Neophylax rickeri"
+              , "Ordobrevia nubifera"
+              , "Perlidae"
+              , "Perlodidae"
+              , "Rhithrogena"
+              , "Rhyacophila brunnea/vemna group"
+              , "Stempellinella"
+              , "Wormaldia"
+              , "Zaitzevia"
+              , "Baetis flavistriga complex"
+              , "Baetis tricaudatus complex"
+              , "Cricotopus bicinctus group"
+              , "Cricotopus/Orthocladius"
+              , "Eukiefferiella"
+              , "Fluminicola"
+              , "Hydropsyche"
+              , "Juga"
+              , "Lepidostoma"
+              , "Leucotrichia"
+              , "Malenka"
+              , "Micropsectra"
+              , "Optioservus"
+              , "Pagastia"
+              , "Paraleptophlebia"
+              , "Polypedilum"
+              , "Rheocricotopus"
+              , "Rheotanytarsus"
+              , "Simulium"
+              , "Trombidiformes"
+              , "Zapada cinctipes"
+              , "Cheumatopsyche"
+              , "Goera archaon"
+              , "Centroptilum/Procloeon"
+              , "Isoperla"
+              , "Paraleptophlebia bicornuta group"
+              , "Zaitzevia"
+              , "Caenis"
+              , "Chironomidae"
+              , "Ferrissia"
+              , "Fluminicola"
+              , "Juga"
+              , "Oligochaeta"
+              , "Optioservus"
+              , "Paralauterborniella"
+              , "Paraleptophlebia"
+              , "Stictochironomus"
+              , "Tricorythodes"
+              , "Trombidiformes"
+              , "Copepoda"
+              , "Calineuria californica"
+              , "Doroneuria"
+              , "Octogomphus specularis"
+              , "Chloroperlidae"
+              , "Cinygmula"
+              , "Diphetor hageni"
+              , "Dixa"
+              , "Glossosoma"
+              , "Hesperoperla pacifica"
+              , "Isoperla"
+              , "Sweltsa"
+              , "Zaitzevia"
+              , "Baetidae"
+              , "Ceratopogoninae"
+              , "Chelifera/Metachela"
+              , "Dicranota"
+              , "Hydropsyche"
+              , "Juga"
+              , "Lepidostoma-panel case larvae"
+              , "Malenka"
+              , "Micropsectra"
+              , "Narpus concolor"
+              , "Nemata"
+              , "Oligochaeta"
+              , "Optioservus"
+              , "Paraleptophlebia"
+              , "Parametriocnemus"
+              , "Polypedilum"
+              , "Simulium"
+              , "Sphaeriidae"
+              , "Trombidiformes"
+              , "Zapada cinctipes"
+              , "Stempellinella/Zavrelia (Bad ID)"
+              , "Ablabesmyia"
+              , "Ceratopogoninae"
+              , "Chironomidae"
+              , "Cladotanytarsus"
+              , "Corynoneura"
+              , "Dicrotendipes"
+              , "Hyalella"
+              , "Labrundinia"
+              , "Micropsectra"
+              , "Oecetis"
+              , "Oligochaeta"
+              , "Ostracoda"
+              , "Paracricotopus"
+              , "Polypedilum"
+              , "Pseudochironomus"
+              , "Tanytarsus"
+              , "Trepaxonemata"
+              , "Trombidiformes"
+              , "Coenagrionidae"
+              , "Cryptochironomus"
+              , "Dubiraphia"
+              , "Endochironomus"
+              , "Gammarus"
+              , "Helobdella"
+              , "Oxyethira"
+              , "Physella"
+              , "Planorbidae"
+              , "Procladius"
+              , "Tanypus"
+              , "Cladocera"
+              , "Copepoda"
+              , "Corixidae"
+              , "Alotanypus"
+              , "Baetidae"
+              , "Chironomini"
+              , "Cricotopus/Orthocladius"
+              , "Oligochaeta"
+              , "Orthocladiinae"
+              , "Paratendipes"
+              , "Phaenopsectra"
+              , "Sialis"
+              , "Sphaeriidae"
+              , "Tanytarsini"
+              , "Thienemannimyia group"
+              , "Chironomus"
+              , "Cryptochironomus"
+              , "Ephydridae"
+              , "Gammarus"
+              , "Lymnaeidae"
+              , "Physella"
+              , "Planorbidae"
+              , "Copepoda"
+              , "Clinocera"
+              , "Argia"
+              , "Baetidae"
+              , "Baetis tricaudatus complex"
+              , "Brillia"
+              , "Chelifera/Metachela"
+              , "Dytiscidae"
+              , "Eukiefferiella claripennis group"
+              , "Ferrissia"
+              , "Micropsectra"
+              , "Oligochaeta"
+              , "Polypedilum"
+              , "Rheotanytarsus"
+              , "Simulium"
+              , "Sphaeriidae"
+              , "Tanypodinae"
+              , "Thienemannimyia group"
+              , "Tipula"
+              , "Menetus"
+              , "Physella"
+              , "Copepoda"
+              , "Calineuria californica"
+              , "Cleptelmis addenda"
+              , "Diphetor hageni"
+              , "Heptageniidae"
+              , "Hesperoperla pacifica"
+              , "Ironodes"
+              , "Isoperla"
+              , "Rhyacophila betteni group"
+              , "Rhyacophila brunnea/vemna group"
+              , "Skwala"
+              , "Sweltsa"
+              , "Wormaldia"
+              , "Zaitzevia"
+              , "Baetidae"
+              , "Baetis tricaudatus complex"
+              , "Brillia"
+              , "Chelifera/Metachela"
+              , "Chironomini"
+              , "Cricotopus"
+              , "Dicranota"
+              , "Eukiefferiella claripennis group"
+              , "Eukiefferiella gracei group"
+              , "Ferrissia"
+              , "Hydropsychidae"
+              , "Hydroptila"
+              , "Juga"
+              , "Micropsectra"
+              , "Nilotanypus"
+              , "Optioservus"
+              , "Paraleptophlebia"
+              , "Parametriocnemus"
+              , "Polypedilum"
+              , "Rheotanytarsus"
+              , "Simulium"
+              , "Sphaeriidae"
+              , "Tanytarsus"
+              , "Thienemannimyia group"
+              , "Trombidiformes"
+              , "Truncatelloidea"
+              , "Zapada cinctipes"
+              , "Cheumatopsyche"
+              , "Gammarus"
+              , "Isopoda"
+  )
+  N_Taxa <- c(56
+              , 2
+              , 24
+              , 142
+              , 4
+              , 16
+              , 4
+              , 5
+              , 34
+              , 13
+              , 11
+              , 1
+              , 28
+              , 37
+              , 2
+              , 1
+              , 1
+              , 14
+              , 9
+              , 11
+              , 0
+              , 1
+              , 9
+              , 18
+              , 25
+              , 9
+              , 21
+              , 1
+              , 1
+              , 1
+              , 3
+              , 1
+              , 1
+              , 14
+              , 6
+              , 1
+              , 14
+              , 6
+              , 5
+              , 1
+              , 9
+              , 2
+              , 8
+              , 2
+              , 4
+              , 1
+              , 10
+              , 1
+              , 1
+              , 1
+              , 1
+              , 6
+              , 319
+              , 1
+              , 4
+              , 1
+              , 1
+              , 2
+              , 23
+              , 10
+              , 1
+              , 1
+              , 2
+              , 1
+              , 25
+              , 7
+              , 3
+              , 1
+              , 44
+              , 50
+              , 7
+              , 160
+              , 1
+              , 1
+              , 130
+              , 29
+              , 40
+              , 4
+              , 4
+              , 1
+              , 2
+              , 13
+              , 3
+              , 9
+              , 1
+              , 18
+              , 3
+              , 8
+              , 4
+              , 2
+              , 25
+              , 23
+              , 8
+              , 1
+              , 1
+              , 1
+              , 5
+              , 1
+              , 11
+              , 47
+              , 27
+              , 6
+              , 5
+              , 2
+              , 3
+              , 4
+              , 13
+              , 3
+              , 6
+              , 7
+              , 4
+              , 0
+              , 36
+              , 34
+              , 1
+              , 2
+              , 1
+              , 18
+              , 21
+              , 2
+              , 30
+              , 11
+              , 2
+              , 72
+              , 4
+              , 27
+              , 1
+              , 2
+              , 1
+              , 6
+              , 3
+              , 29
+              , 48
+              , 6
+              , 1
+              , 23
+              , 8
+              , 3
+              , 1
+              , 5
+              , 345
+              , 19
+              , 1
+              , 13
+              , 5
+              , 6
+              , 38
+              , 1
+              , 1
+              , 4
+              , 4
+              , 2
+              , 1
+              , 2
+              , 1
+              , 1
+              , 42
+              , 1
+              , 1
+              , 40
+              , 3
+              , 2
+              , 44
+              , 1
+              , 1
+              , 13
+              , 1
+              , 80
+              , 2
+              , 2
+              , 1
+              , 2
+              , 16
+              , 12
+              , 1
+              , 2
+              , 26
+              , 1
+              , 1
+              , 28
+              , 1
+              , 11
+              , 85
+              , 1
+              , 2
+              , 8
+              , 6
+              , 10
+              , 313
+              , 3
+              , 9
+              , 33
+              , 36
+              , 16
+              , 13
+              , 1
+              , 6
+              , 4
+              , 21
+              , 10
+              , 8
+              , 3
+              , 1
+              , 6
+              , 10
+              , 14
+              , 21
+              , 2
+              , 1
+              , 11
+              , 6
+              , 8
+              , 2
+              , 8
+              , 6
+              , 3
+              , 1
+              , 19
+              , 262
+              , 1
+              , 2
+              , 1
+              , 1
+              , 3
+              , 6
+              , 7
+              , 19
+              , 7
+              , 2
+              , 0
+              , 8
+              , 7
+              , 37
+              , 15
+              , 3
+              , 5
+              , 3
+              , 1
+              , 1
+              , 5
+              , 125
+              , 16
+              , 1
+              , 14
+              , 65
+              , 1
+              , 3
+              , 1
+              , 2
+              , 2
+              , 53
+              , 31
+              , 12
+              , 1
+              , 4
+              , 3
+              , 3
+              , 2
+              , 2
+              , 17
+              , 4
+              , 1
+              , 4
+              , 45
+              , 69
+              , 1
+              , 1
+              , 0
+              , 1
+              , 3
+              , 45
+              , 1
+              , 2
+              , 1
+              , 9
+              , 205
+              , 1
+              , 1
+              , 1
+              , 1
+              , 1
+              , 135
+              , 3
+              , 86
+              , 2
+              , 1
+              , 1
+              , 1
+              , 18
+              , 59
+              , 97
+              , 3
+              , 1
+              , 26
+              , 1
+              , 124
+              , 1
+              , 2
+              , 1
+              , 132
+              , 5
+              , 5
+              , 1
+              , 6
+              , 9
+              , 7
+              , 0
+              , 1
+              , 2
+              , 6
+              , 1
+              , 2
+              , 1
+              , 2
+              , 1
+              , 5
+              , 4
+              , 1
+              , 4
+              , 33
+              , 22
+              , 65
+              , 4
+              , 5
+              , 5
+              , 1
+              , 11
+              , 2
+              , 16
+              , 1
+              , 5
+              , 1
+              , 5
+              , 2
+              , 1
+              , 20
+              , 8
+              , 90
+              , 10
+              , 13
+              , 83
+              , 1
+              , 3
+              , 6
+              , 1
+              , 1
+              , 11
+              , 36
+              , 5
+              , 3
+  )
+  df_QC <- data.frame(SampleID, TaxaID, N_Taxa, stringsAsFactors = TRUE)
+
+
+  # test
+  testthat::expect_equivalent(df_calc, df_QC, tolerance = 0.01)
 
 })## Test ~ rarify ~ END
 

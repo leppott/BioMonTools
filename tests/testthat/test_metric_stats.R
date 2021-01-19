@@ -54,8 +54,8 @@ test_that("metric_stats & metric_stats2", {
 
 
 
-  # metricstats2
-
+  # # metricstats2
+  #
   # # Calc Stats2 (z-scores and DE)
   # data_metval <- df_metval
   # data_metstat <- df_stats
@@ -90,10 +90,11 @@ test_that("metric_stats & metric_stats2", {
   # df_numbers2 <- df_stats2[, -(1:4)]
   # # -Inf in CV column, replace with NA
   # df_numbers2[df_numbers2 == -Inf] <- NA
+  # df_numbers2 <- df_numbers2[, 1:15]
   #
   # sum2_calc <- sum(df_numbers2, na.rm = TRUE)
   #
-  # sum2_qc <- 334880.3
+  # sum2_qc <- 315376
   #
   # # test
   # testthat::expect_equal(sum2_calc, sum2_qc, tolerance = 0.02)
