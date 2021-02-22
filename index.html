@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9037</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9038</span>
       </span>
     </div>
 
@@ -87,48 +87,53 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
+
 <div id="readme-biomontools" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#readme-biomontools" class="anchor"></a>README-BioMonTools</h1></div>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#&gt; Last Update: 2020-12-25 19:33:59</span></span></code></pre></div>
-<p>Suite of functions and tools for bioassessment and biomonitoring.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#&gt; Last Update: 2021-02-22 10:57:48</span></span></code></pre></div>
+</div>
+<div id="purpose" class="section level1">
+<h1 class="hasAnchor">
+<a href="#purpose" class="anchor"></a>Purpose</h1>
+<p>Functions to aid the data analysis of bioassessment and biomonitoring data. Suite of functions and tools for metric calculation and scoring for mult-metric indices and related data manipulation.</p>
+</div>
 
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div id="installation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h1>
+<p>To install the current version use the code below to install from GitHub. The use of “force = TRUE” ensures the package is installed even if already present. If the package <code>devtools</code> is missing the code below will install it.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">devtools</span><span class="op">)</span>  <span class="co">#install if needed</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span><span class="st">"TAR"</span> <span class="op">=</span> <span class="st">"internal"</span><span class="op">)</span>  <span class="co"># needed for R v3.6.0</span>
+<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va">devtools</span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span><span class="op">}</span>  <span class="co">#install if needed</span>
+<span class="fu">install_github</span><span class="op">(</span><span class="st">"leppott/BioMonTools"</span>, force<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>Vignettes are not installed by default. If you want the additional documentat (recommended) then use this version of the code.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va">devtools</span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span><span class="op">}</span>  <span class="co">#install if needed</span>
 <span class="fu">install_github</span><span class="op">(</span><span class="st">"leppott/BioMonTools"</span>, force<span class="op">=</span><span class="cn">TRUE</span>, build_vignettes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="purpose" class="section level2">
-<h2 class="hasAnchor">
-<a href="#purpose" class="anchor"></a>Purpose</h2>
-<p>Functions to aid the data analysis of bioassessment and biomonitoring data.</p>
-</div>
-<div id="status" class="section level2">
-<h2 class="hasAnchor">
-<a href="#status" class="anchor"></a>Status</h2>
+<div id="status" class="section level1">
+<h1 class="hasAnchor">
+<a href="#status" class="anchor"></a>Status</h1>
 <p>In development.</p>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div id="usage" class="section level1">
+<h1 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h1>
 <p>By those using involved with bioassessment and bionmonitoring and the need for data manipulation.</p>
 <p>A common set of tools will standardize outputs across entities. No longer need to use the same database or spreadsheet. Only need to format data for use with these tools.</p>
 </div>
-<div id="documentation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#documentation" class="anchor"></a>Documentation</h2>
+<div id="documentation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#documentation" class="anchor"></a>Documentation</h1>
 <p>Vignette and install guide udpates are planned for the future.</p>
 </div>
-<div id="issues" class="section level2">
-<h2 class="hasAnchor">
-<a href="#issues" class="anchor"></a>Issues</h2>
+<div id="issues" class="section level1">
+<h1 class="hasAnchor">
+<a href="#issues" class="anchor"></a>Issues</h1>
 <p><a href="https://github.com/leppott/BioMonTools/issues" class="uri">https://github.com/leppott/BioMonTools/issues</a></p>
 </div>
-</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
