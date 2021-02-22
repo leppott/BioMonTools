@@ -28,6 +28,9 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9037 (2021-02-22)
+
+* docs: Update README install section
 
 ## Changes in Version 0.5.0.9037 (2021-01-19)
 

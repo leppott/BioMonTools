@@ -3,11 +3,15 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-12-25 19:33:59
+    #> Last Update: 2021-02-22 10:57:48
 
-Suite of functions and tools for bioassessment and biomonitoring.
+# Purpose
 
-## Badges
+Functions to aid the data analysis of bioassessment and biomonitoring
+data. Suite of functions and tools for metric calculation and scoring
+for mult-metric indices and related data manipulation.
+
+# Badges
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/leppott/BioMonTools/graphs/commit-activity)
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
@@ -26,24 +30,31 @@ release](https://img.shields.io/github/release/leppott/BioMonTools.svg)](https:/
 [![Github all
 releases](https://img.shields.io/github/downloads/leppott/BioMonTools/total.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
 
-## Installation
+# Installation
+
+To install the current version use the code below to install from
+GitHub. The use of “force = TRUE” ensures the package is installed even
+if already present. If the package `devtools` is missing the code below
+will install it.
 
 ``` r
-library(devtools)  #install if needed
-Sys.setenv("TAR" = "internal")  # needed for R v3.6.0
+if(!require(devtools)){install.packages("devtools")}  #install if needed
+install_github("leppott/BioMonTools", force=TRUE)
+```
+
+Vignettes are not installed by default. If you want the additional
+documentat (recommended) then use this version of the code.
+
+``` r
+if(!require(devtools)){install.packages("devtools")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
 ```
 
-## Purpose
-
-Functions to aid the data analysis of bioassessment and biomonitoring
-data.
-
-## Status
+# Status
 
 In development.
 
-## Usage
+# Usage
 
 By those using involved with bioassessment and bionmonitoring and the
 need for data manipulation.
@@ -52,10 +63,10 @@ A common set of tools will standardize outputs across entities. No
 longer need to use the same database or spreadsheet. Only need to format
 data for use with these tools.
 
-## Documentation
+# Documentation
 
 Vignette and install guide udpates are planned for the future.
 
-## Issues
+# Issues
 
 <https://github.com/leppott/BioMonTools/issues>
