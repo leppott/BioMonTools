@@ -3,7 +3,7 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-02-22 10:57:48
+    #> Last Update: 2021-02-23 15:59:33
 
 # Purpose
 
@@ -70,3 +70,14 @@ Vignette and install guide udpates are planned for the future.
 # Issues
 
 <https://github.com/leppott/BioMonTools/issues>
+
+# Planned Updates
+
+-   None at this time.
+
+# Future Possible Updates
+
+-   Periphyton metrics.
+-   Coral and Fish metrics (Puerto Rico and US Virgin Islands)
+-   TaxaList Check
+-   Map taxon observations

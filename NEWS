@@ -4,23 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-02-22 10:59:23
-
-# Planned Updates
-
--   None at this time.
-
-# Future Possible Updates
-
--   Periphyton metrics.
--   TaxaList Check
--   Map taxon observations
+    #> Last Update: 2021-02-23 16:07:44
 
 # Version History
 
-## Changes in Version 0.5.0.9037 (2021-02-22)
+## Changes in Version 0.5.0.9039 (2021-02-23)
 
--   docs: Update README install section
+-   docs: Move updates from NEWS to README
+-   refactor: Update MetricScoring.xlsx for MA
+
+## Changes in Version 0.5.0.9038 (2021-02-22)
+
+-   docs: Update README install section, Issue \#11
 
 ## Changes in Version 0.5.0.9037 (2021-01-19)
 

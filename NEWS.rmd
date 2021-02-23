@@ -16,21 +16,16 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.path = "NEWS-")
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
-# Planned Updates
-
-* None at this time.
-
-# Future Possible Updates
-
-* Periphyton metrics.
-* TaxaList Check
-* Map taxon observations
-
 # Version History
 
-## Changes in Version 0.5.0.9037 (2021-02-22)
+## Changes in Version 0.5.0.9039 (2021-02-23)
 
-* docs: Update README install section
+* docs: Move updates from NEWS to README
+* refactor: Update MetricScoring.xlsx for MA
+
+## Changes in Version 0.5.0.9038 (2021-02-22)
+
+* docs: Update README install section, Issue #11
 
 ## Changes in Version 0.5.0.9037 (2021-01-19)
 
