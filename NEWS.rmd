@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9040 (2021-02-26)
+
+* refactor: MetricScoring.xlsx
+    + GA DNR Fish, standardize 2005 index regions to all CAPS the same as 2020.
+    + Breaking change for scripts based on 2005 fish index
+
 ## Changes in Version 0.5.0.9039 (2021-02-23)
 
 * docs: Move updates from NEWS to README

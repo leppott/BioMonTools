@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-02-23 16:07:44
+    #> Last Update: 2021-02-26 13:45:50
 
 # Version History
+
+## Changes in Version 0.5.0.9040 (2021-02-26)
+
+-   refactor: MetricScoring.xlsx
+    -   GA DNR Fish, standardize 2005 index regions to all CAPS the same
+        as 2020.
+    -   Breaking change for scripts based on 2005 fish index
 
 ## Changes in Version 0.5.0.9039 (2021-02-23)
 
