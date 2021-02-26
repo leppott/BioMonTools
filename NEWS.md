@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-02-26 13:45:50
+    #> Last Update: 2021-02-26 14:06:14
 
 # Version History
+
+## Changes in Version 0.5.0.9041 (2021-02-26)
+
+-   refactor: metric.values, modify fish metrics for TROPHIC to account
+    for multiple values
 
 ## Changes in Version 0.5.0.9040 (2021-02-26)
 

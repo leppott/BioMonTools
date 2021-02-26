@@ -1537,6 +1537,8 @@ metric.values.fish <- function(myDF
   SAMPLEID <- INDEX_NAME <- INDEX_REGION <- TAXAID <- N_TAXA <- NATIVE <-
     HYBRID <- TYPE <- TROPHIC <- SILT <- TOLER <- N_ANOMALIES <- GENUS <-
     FAMILY <- SAMP_WIDTH_M <- SAMP_LENGTH_M <- NULL
+  TROPHIC_GE <- TROPHIC_HB <- TROPHIC_IS <- TROPHIC_IV <- TROPHIC_OM <-
+    TROPHIC_TC <- NULL
   ni_total <- x_Shan_e <- nt_total <- x_Evenness <- length_m <-
     ni_natnonhybridnonmf <- ni_natnonhybridnonmfnonlepomis <- NULL
 
@@ -1578,12 +1580,23 @@ metric.values.fish <- function(myDF
                   , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
   }##IF.num.col.req.missing.END
 
+  # Data Munging ---
   # Column Values to UPPER case for met.val below
   col2upper <- c("FAMILY", "GENUS", "TYPE", "TOLER", "NATIVE", "TROPHIC")
   for (i in col2upper){
     myDF[, i] <- toupper(myDF[, i])
   }##FOR~i~END
 
+  # Add extra columns for some fields
+  # (need unique values for functions in summarise)
+  # each will be TRUE or FALSE
+  # finds any match so "GE, IV" is both "GE" and "IV"
+  myDF[, "TROPHIC_GE"] <- grepl("GE", myDF[, "TROPHIC"])
+  myDF[, "TROPHIC_HB"] <- grepl("HB", myDF[, "TROPHIC"])
+  myDF[, "TROPHIC_IS"] <- grepl("IS", myDF[, "TROPHIC"])
+  myDF[, "TROPHIC_IV"] <- grepl("IV", myDF[, "TROPHIC"])
+  myDF[, "TROPHIC_OM"] <- grepl("OM", myDF[, "TROPHIC"])
+  myDF[, "TROPHIC_TC"] <- grepl("TC", myDF[, "TROPHIC"])
 
   # N_Anomalies
   # By taxon or sample total
@@ -1642,7 +1655,7 @@ metric.values.fish <- function(myDF
                        , pi_lepomis = 100*sum(N_TAXA[GENUS == "LEPOMIS"], na.rm = TRUE)/ni_total
 
                        # benthic fluvial specialist
-                       , pi_bfs = 100*sum(N_TAXA[(TYPE == "BENTHIC" & TROPHIC == "IV") |
+                       , pi_bfs = 100*sum(N_TAXA[(TYPE == "BENTHIC" & TROPHIC_IV == TRUE) |
                                                    TYPE == "RBS" | TYPE == "SMM"], na.rm = TRUE)/ni_total
                         #
                        # Number of Taxa ####
@@ -1653,23 +1666,23 @@ metric.values.fish <- function(myDF
                        , nt_native = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & N_TAXA > 0], na.rm = TRUE)
                        , nt_nativenonhybrid = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" &
                                                                          (HYBRID != TRUE | is.na(HYBRID))], na.rm = TRUE)
-                       , nt_beninvert = dplyr::n_distinct(TAXAID[TYPE == "BENTHIC" & TROPHIC == "IV"], na.rm = TRUE)
+                       , nt_beninvert = dplyr::n_distinct(TAXAID[TYPE == "BENTHIC" & TROPHIC_IV == TRUE], na.rm = TRUE)
                        , nt_natsunfish = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "SUNFISH"], na.rm = TRUE)
                        , nt_natcent = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" &
                                                                  (TYPE == "SUNFISH" | TYPE == "CENTRARCHIDAE")], na.rm = TRUE)
-                       , nt_natinsctcypr = dplyr::n_distinct(TAXAID[TROPHIC == "IS" & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
+                       , nt_natinsctcypr = dplyr::n_distinct(TAXAID[TROPHIC_IS == TRUE & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
                        , nt_natrbs = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "RBS"], na.rm = TRUE)
                        #
                        # Feeding ####
                        # % Lithophilic spawners
                        , pi_lithophil=100*sum(N_TAXA[SILT == TRUE], na.rm = TRUE)/ni_total
                        # % gen, omn, invert
-                       , pi_genomninvrt=100*sum(N_TAXA[TROPHIC == "GE" | TROPHIC == "OM" | TROPHIC == "IV"], na.rm = TRUE)/ ni_total
+                       , pi_genomninvrt=100*sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_OM == TRUE | TROPHIC_IV == TRUE], na.rm = TRUE)/ ni_total
                        # % insectivore
-                       , pi_insectivore=100*sum(N_TAXA[TROPHIC == "IS"], na.rm = TRUE)/ ni_total
-                       , pi_insctcypr = 100*sum(N_TAXA[TROPHIC == "IS" & FAMILY == "CYPRINIDAE"], na.rm = TRUE)/ ni_total
-                       , pi_genherb = 100*sum(N_TAXA[TROPHIC == "GE" | TROPHIC == "HB"], na.rm = TRUE)/ ni_total
-                       , pi_topcarn = 100*sum(N_TAXA[TROPHIC == "TC"], na.rm = TRUE)/ ni_total
+                       , pi_insectivore=100*sum(N_TAXA[TROPHIC_IS == TRUE], na.rm = TRUE)/ ni_total
+                       , pi_insctcypr = 100*sum(N_TAXA[TROPHIC_IS == TRUE & FAMILY == "CYPRINIDAE"], na.rm = TRUE)/ ni_total
+                       , pi_genherb = 100*sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_HB == TRUE], na.rm = TRUE)/ ni_total
+                       , pi_topcarn = 100*sum(N_TAXA[TROPHIC_TC == TRUE], na.rm = TRUE)/ ni_total
                        #
                        # Tolerance ####
                        , nt_tv_intol = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT"], na.rm = TRUE)
