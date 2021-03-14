@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-02-26 14:06:14
+    #> Last Update: 2021-03-14 14:09:30
 
 # Version History
+
+## Changes in Version 0.5.0.9042 (2021-03-14)
+
+-   refactor: metric.values, modify GA fish metric pi\_natinsctcypr,
+    Issue \#48
+    -   Was not checking for Native
 
 ## Changes in Version 0.5.0.9041 (2021-02-26)
 

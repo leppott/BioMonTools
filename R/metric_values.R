@@ -1600,7 +1600,11 @@ metric.values.fish <- function(myDF
 
   # N_Anomalies
   # By taxon or sample total
-  # Data set up to be by taxon.  But some report as sample total.
+  # Data set up to have anomlaies by taxon.
+  # But some report as sample total.
+  # This routine redistributes values proportionally to all taxa
+  #  *IF* all are the same value
+  #   Cases of same number of anomalies for all taxa should be rare but possible
   stats_anom <- myDF %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::summarize(n = dplyr::n()
@@ -1617,7 +1621,7 @@ metric.values.fish <- function(myDF
                                      , "SUM_ANOMALIES"
                                      , "MOD_ANOMALIES")]
              , all.x = TRUE)
-  myDF[myDF$MOD_ANOMALIES==TRUE, "N_ANOMALIES"] <- myDF[myDF$MOD_ANOMALIES==TRUE
+  myDF[myDF$MOD_ANOMALIES==TRUE, "N_ANOMALIES"] <- myDF[myDF$MOD_ANOMALIES == TRUE
                                                         , "SUM_ANOMALIES"]
 
   # Metric Calc ####
@@ -1670,7 +1674,8 @@ metric.values.fish <- function(myDF
                        , nt_natsunfish = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "SUNFISH"], na.rm = TRUE)
                        , nt_natcent = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" &
                                                                  (TYPE == "SUNFISH" | TYPE == "CENTRARCHIDAE")], na.rm = TRUE)
-                       , nt_natinsctcypr = dplyr::n_distinct(TAXAID[TROPHIC_IS == TRUE & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
+                       , nt_natinsctcypr = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" &
+                                                                      TROPHIC_IS == TRUE & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
                        , nt_natrbs = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "RBS"], na.rm = TRUE)
                        #
                        # Feeding ####
@@ -1680,13 +1685,15 @@ metric.values.fish <- function(myDF
                        , pi_genomninvrt=100*sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_OM == TRUE | TROPHIC_IV == TRUE], na.rm = TRUE)/ ni_total
                        # % insectivore
                        , pi_insectivore=100*sum(N_TAXA[TROPHIC_IS == TRUE], na.rm = TRUE)/ ni_total
-                       , pi_insctcypr = 100*sum(N_TAXA[TROPHIC_IS == TRUE & FAMILY == "CYPRINIDAE"], na.rm = TRUE)/ ni_total
+                       , pi_insctcypr = 100*sum(N_TAXA[TROPHIC_IS == TRUE &
+                                                         FAMILY == "CYPRINIDAE"], na.rm = TRUE)/ ni_total
                        , pi_genherb = 100*sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_HB == TRUE], na.rm = TRUE)/ ni_total
                        , pi_topcarn = 100*sum(N_TAXA[TROPHIC_TC == TRUE], na.rm = TRUE)/ ni_total
                        #
                        # Tolerance ####
                        , nt_tv_intol = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT"], na.rm = TRUE)
-                       , nt_tv_intolhwi = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT" | TOLER == "HWI"], na.rm = TRUE)
+                       , nt_tv_intolhwi = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT" |
+                                                                     TOLER == "HWI"], na.rm = TRUE)
                        , pi_tv_toler= 100*sum(N_TAXA[TOLER=="TOLERANT"], na.rm = TRUE)/ni_total
                        #
                        #
