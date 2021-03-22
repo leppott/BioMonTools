@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-03-14 14:09:30
+    #> Last Update: 2021-03-22 11:36:27
 
 # Version History
+
+## Changes in Version 0.5.0.9043 (2021-03-22)
+
+-   refactor: metric.values, add pi\_DiptNonIns metric
+-   style: metric.values, start to trim lines to 80 characters
 
 ## Changes in Version 0.5.0.9042 (2021-03-14)
 
