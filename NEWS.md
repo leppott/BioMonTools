@@ -4,9 +4,23 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-03-22 11:36:27
+    #> Last Update: 2021-03-31 11:52:10
 
 # Version History
+
+## Changes in Version 0.5.0.9044 (2021-03-31)
+
+-   refactor: metric.values, add 3 new FFG metrics, Issue \#3
+    -   nt, pi, pt
+    -   macrophyte herbivore (MAH)
+    -   xylophage (XYL)
+    -   piecer-herbifore (PIH)
+-   refactor: MetricNames.xlsx
+    -   Update for new metrics
+-   refactor: MetricScores.xlsx
+    -   GADNR\_fish\_2005, ensure consistent index\_region between
+        metric and index scoring
+    -   Test was failing. Passes now
 
 ## Changes in Version 0.5.0.9043 (2021-03-22)
 

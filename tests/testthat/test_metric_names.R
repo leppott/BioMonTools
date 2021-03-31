@@ -103,6 +103,7 @@ test_that("metric.scores, index, number metrics", {
   # Packages
   #library(readxl) # part of BioMonTools
   #library(dplyr)
+  `%>%` <- dplyr::`%>%`
 
   # Data File
   fn_xlScoring <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")

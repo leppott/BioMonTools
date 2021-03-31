@@ -18,6 +18,20 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9044 (2021-03-31)
+
+* refactor: metric.values, add 3 new FFG metrics, Issue #3
+    + nt, pi, pt
+    + macrophyte herbivore (MAH)
+    + xylophage (XYL)
+    + piecer-herbifore (PIH)
+* refactor: MetricNames.xlsx
+    + Update for new metrics
+* refactor: MetricScores.xlsx
+    + GADNR_fish_2005, ensure consistent index_region between metric and index
+    scoring
+    + Test was failing.  Passes now
+
 ## Changes in Version 0.5.0.9043 (2021-03-22)
 
 * refactor: metric.values, add pi_DiptNonIns metric

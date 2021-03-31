@@ -607,6 +607,9 @@ metric.values.bugs <- function(myDF
   myDF[, "FFG_PRE"]  <- grepl("PR", myDF[, "FFG"])
   myDF[, "FFG_SCR"]  <- grepl("SC", myDF[, "FFG"])
   myDF[, "FFG_SHR"]  <- grepl("SH", myDF[, "FFG"])
+  myDF[, "FFG_MAH"]  <- grepl("MH", myDF[, "FFG"])
+  myDF[, "FFG_PIH"]  <- grepl("PH", myDF[, "FFG"])
+  myDF[, "FFG_XYL"]  <- grepl("XY", myDF[, "FFG"])
   myDF[, "LC_MULTI"] <- grepl("MULTI", myDF[, "LIFE_CYCLE"])
   myDF[, "LC_SEMI"]  <- grepl("SEMI", myDF[, "LIFE_CYCLE"])
   myDF[, "LC_UNI"]   <- grepl("UNI", myDF[, "LIFE_CYCLE"])
@@ -1451,6 +1454,15 @@ metric.values.bugs <- function(myDF
              , nt_ffg_shred = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                        & FFG_SHR == TRUE]
                                                 , na.rm = TRUE)
+             , nt_ffg_mah = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & FFG_MAH == TRUE]
+                                               , na.rm = TRUE)
+             , nt_ffg_pih = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                       & FFG_PIH == TRUE]
+                                                , na.rm = TRUE)
+             , nt_ffg_xyl = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & FFG_XYL == TRUE]
+                                              , na.rm = TRUE)
              ## pi_ffg
              , pi_ffg_col = 100*sum(N_TAXA[FFG_COL == TRUE]
                                     , na.rm=TRUE)/ni_total
@@ -1462,12 +1474,21 @@ metric.values.bugs <- function(myDF
                                       , na.rm=TRUE)/ni_total
              , pi_ffg_shred = 100*sum(N_TAXA[FFG_SHR == TRUE]
                                       , na.rm=TRUE)/ni_total
+             , pi_ffg_mah = 100*sum(N_TAXA[FFG_MAH == TRUE]
+                                     , na.rm=TRUE)/ni_total
+             , pi_ffg_pih = 100*sum(N_TAXA[FFG_PIH == TRUE]
+                                    , na.rm=TRUE)/ni_total
+             , pi_ffg_xyl = 100*sum(N_TAXA[FFG_XYL == TRUE]
+                                      , na.rm=TRUE)/ni_total
              ## pt_ffg
              , pt_ffg_col = 100*nt_ffg_col/nt_total
              , pt_ffg_filt = 100*nt_ffg_filt/nt_total
              , pt_ffg_pred = 100*nt_ffg_pred/nt_total
              , pt_ffg_scrap = 100*nt_ffg_scrap/nt_total
              , pt_ffg_shred = 100*nt_ffg_shred/nt_total
+             , pt_ffg_mah = 100*nt_ffg_mah/nt_total
+             , pt_ffg_pih = 100*nt_ffg_pih/nt_total
+             , pt_ffg_xyl = 100*nt_ffg_xyl/nt_total
 
              #, pi_ffg_infc
              #, rt_ffg_infc, converborbelt, scavbrow, subsurf, watercol
