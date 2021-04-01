@@ -106,6 +106,14 @@ pkgdown::build_site()
 covr::report()
 ```
 
+# other good stuff
+```{r}
+g <- goodpractice::gp()
+
+s_check <- devtools::spell_check()
+
+```
+
 
 ### Run All Examples
 Run all examples at once rather than going to each function individually.

@@ -198,7 +198,8 @@ test_that("metric values_scores, PA Freestone IBI", {
               , "x_Shan_e", "pi_tv_intol")
   df_metval_calc <- df_metval[, col_qc]
   # Round values to 1 or 2 digits
-  df_metval_calc[, c("x_HBI", "x_Shan_e")] <- round(df_metval_calc[, c("x_HBI", "x_Shan_e")], 2)
+  df_metval_calc[, c("x_HBI", "x_Shan_e")] <- round(df_metval_calc[
+    , c("x_HBI", "x_Shan_e")], 2)
   df_metval_calc[, "pi_tv_intol"] <- round(df_metval_calc[, "pi_tv_intol"], 1)
 
   # df, QC
@@ -209,18 +210,22 @@ test_that("metric values_scores, PA Freestone IBI", {
   x_HBI <- c(2.80, 3.39)
   x_Shan_e <- c(2.88, 1.76)
   pi_tv_intol <- c(76.0, 47.3)
-  df_metval_qc <- data.frame(SAMPLEID, nt_total, nt_tv_intol4_EPT, x_Becks3, x_HBI, x_Shan_e, pi_tv_intol)
+  df_metval_qc <- data.frame(SAMPLEID, nt_total, nt_tv_intol4_EPT, x_Becks3
+                             , x_HBI, x_Shan_e, pi_tv_intol)
 
   # test
   testthat::expect_equal(df_metval_calc, df_metval_qc)
-  # Below works but the QC data is not consistent in the number of decimal places
+  # Below works but
+  #           the QC data is not consistent in the number of decimal places
   #expect_equal(df_metval_calc, df_metval_qc, tolerance = 0.01)
 
 
   # _Metric.Scores ----
 
   # Thresholds
-  fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
+  fn_thresh <- file.path(system.file(package="BioMonTools")
+                         , "extdata"
+                         , "MetricScoring.xlsx")
   df_thresh_metric <- readxl::read_excel(fn_thresh, sheet="metric.scoring")
   df_thresh_index <- readxl::read_excel(fn_thresh, sheet="index.scoring")
 
@@ -231,8 +236,12 @@ test_that("metric values_scores, PA Freestone IBI", {
   df_metval_calc[, "INDEX_NAME"] <- "PADEP_Freestone"
   df_metval_calc[, "INDEX_REGION"] <- c("LARGE", "SMALL")
 
-  df_metsc_calc <- BioMonTools::metric.scores(df_metval_calc, myMetrics.Bugs, "INDEX_NAME", "INDEX_REGION"
-                            , df_thresh_metric, df_thresh_index)
+  df_metsc_calc <- BioMonTools::metric.scores(df_metval_calc
+                                              , myMetrics.Bugs
+                                              , "INDEX_NAME"
+                                              , "INDEX_REGION"
+                                              , df_thresh_metric
+                                              , df_thresh_index)
   # For report all numbers rounded
   df_metsc_calc[, 10:17] <- round(df_metsc_calc[, 10:17], 1)
 
@@ -262,7 +271,7 @@ test_that("metric values_scores, PA Freestone IBI", {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # met sc, WV GLIMPSS MT_SP ----
 test_that("metric scores, WV GLIMPSS MT_SP", {
-  #http://dep.wv.gov/WWE/watershed/bio_fish/Documents/20110829GLIMPSSFinalWVDEP.pdf
+#http://dep.wv.gov/WWE/watershed/bio_fish/Documents/20110829GLIMPSSFinalWVDEP.pdf
 
   # Packages
   #library(readxl)
@@ -340,12 +349,16 @@ test_that("metric scores, WV GLIMPSS MT_SP", {
   df_metval[2, ] <- metval_BearFrk
   # char to col
   ## use apply as without it doesn't work
-  df_metval[, metric_nam] <- apply(df_metval[, metric_nam], 2, function(x) as.numeric(x))
+  df_metval[, metric_nam] <- apply(df_metval[, metric_nam]
+                                   , 2
+                                   , function(x) as.numeric(x))
 
 
   # calc
   ## Thresholds
-  fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
+  fn_thresh <- file.path(system.file(package="BioMonTools")
+                         , "extdata"
+                         , "MetricScoring.xlsx")
   df_thresh_metric <- readxl::read_excel(fn_thresh, sheet="metric.scoring")
   df_thresh_index <- readxl::read_excel(fn_thresh, sheet="index.scoring")
 
@@ -362,9 +375,10 @@ test_that("metric scores, WV GLIMPSS MT_SP", {
                                 , df_thresh_index
                                 , "ni_total")
   # Round to single digits for scores
-  df_metsc_calc[, c(metric_nam_sc, "sum_Index", "Index")] <- round(df_metsc_calc[,
-                                c(metric_nam_sc, "sum_Index", "Index")], 1)
-  # Change sum_Index from 299.3 to 299.2.  Only true if round all numbers before add.
+  df_metsc_calc[, c(metric_nam_sc, "sum_Index", "Index")] <- round(
+    df_metsc_calc[, c(metric_nam_sc, "sum_Index", "Index")], 1)
+  # Change sum_Index from 299.3 to 299.2.
+  #      Only true if round all numbers before add.
   df_metsc_calc[1, "sum_Index"] <- 299.2
   # BF also different sum if round first
   df_metsc_calc[2, "sum_Index"] <- 736.9
@@ -379,7 +393,9 @@ test_that("metric scores, WV GLIMPSS MT_SP", {
   df_metsc_qc <- df_metval
   # Add WestForkPondFork (Table D-1)
   df_metsc_qc[1, metric_nam_sc] <- metric_sc[-1]
-  df_metsc_qc[1, c("sum_Index", "Index", "Index_Nar")] <- c(sum(metric_sc, na.rm = TRUE), 29.9, "Degraded")
+  df_metsc_qc[1, c("sum_Index", "Index", "Index_Nar")] <- c(sum(metric_sc
+                                                                , na.rm = TRUE)
+                                                            , 29.9, "Degraded")
   # Add BearFork (Table D-2)
   # metric_sc_BF <- c(85.7, 100, 100, 92.9, 73.2, 94.7, 90.1, 100)
   # sum is 736.6
@@ -394,7 +410,9 @@ test_that("metric scores, WV GLIMPSS MT_SP", {
                                       , "pi_tv_toler6"))
   # if round first sum is 736.9
   df_metsc_qc[2, metric_nam_sc_BF] <- metsc_BF_corrected
-  df_metsc_qc[2, c("sum_Index", "Index", "Index_Nar")] <- c(736.9, 92.1, "Very good")
+  df_metsc_qc[2, c("sum_Index", "Index", "Index_Nar")] <- c(736.9
+                                                            , 92.1
+                                                            , "Very good")
   # Narrative table 16, section 8.12, p 47 (p59 of PDF)
 
   # Modify class
@@ -428,7 +446,9 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
   # _Metric.Values ----
   SAMPLEID <- c(rep("1985006", 16), rep("2011036", 19), rep("1985024", 21))
   INDEX_NAME <- "MassDEP_2020_Bugs"
-  INDEX_REGION <- c(rep("KickIBI_CH_100ct", 16), rep("LowGradientIBI", 19), rep("KickIBI_WH_100ct", 21))
+  INDEX_REGION <- c(rep("KickIBI_CH_100ct", 16)
+                    , rep("LowGradientIBI", 19)
+                    , rep("KickIBI_WH_100ct", 21))
   TAXAID <- c("Cricotopus"
               ,"Cricotopus bicinctus"
               ,"Cricotopus bicinctus group"
@@ -1215,10 +1235,14 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
 
   df_metval_calc <- df_metval[, col_qc]
   # Round values to 1 or 2 digits
-  df_metval_calc[, c("pt_EPT", "pi_EphemNoCaeBae", "pi_ffg_filt",	"pt_ffg_pred",	"pt_tv_intol", "pi_Pleco",
-                     "pi_ffg_shred",	"pi_tv_intol",	"pi_OET",	"pt_NonIns",	"pt_POET",	"pt_tv_toler","pt_volt_semi")] <- round(
-                       df_metval_calc[, c("pt_EPT", "pi_EphemNoCaeBae", "pi_ffg_filt",	"pt_ffg_pred",	"pt_tv_intol", "pi_Pleco",
-                                          "pi_ffg_shred",	"pi_tv_intol",	"pi_OET",	"pt_NonIns",	"pt_POET",	"pt_tv_toler","pt_volt_semi")], 2)
+  df_metval_calc[, c("pt_EPT", "pi_EphemNoCaeBae", "pi_ffg_filt",	"pt_ffg_pred"
+                     ,	"pt_tv_intol", "pi_Pleco","pi_ffg_shred",	"pi_tv_intol"
+                     ,	"pi_OET",	"pt_NonIns",	"pt_POET",	"pt_tv_toler"
+                     , "pt_volt_semi")] <- round(df_metval_calc[, c("pt_EPT"
+                      , "pi_EphemNoCaeBae", "pi_ffg_filt",	"pt_ffg_pred"
+                      ,	"pt_tv_intol", "pi_Pleco","pi_ffg_shred",	"pi_tv_intol"
+                      ,	"pi_OET",	"pt_NonIns",	"pt_POET",	"pt_tv_toler"
+                      , "pt_volt_semi")], 2)
 
   # df, QC
   SAMPLEID <- c("1985006"
@@ -1290,14 +1314,17 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
 
   # test
   testthat::expect_equal(df_metval_calc, df_metval_qc)
-  # Below works but the QC data is not consistent in the number of decimal places
+  # Below works but
+  #               the QC data is not consistent in the number of decimal places
   #expect_equal(df_metval_calc, df_metval_qc, tolerance = 0.01)
 
 
   # _Metric.Scores ----
 
   # Thresholds
-  fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
+  fn_thresh <- file.path(system.file(package="BioMonTools")
+                         , "extdata"
+                         , "MetricScoring.xlsx")
   df_thresh_metric <- readxl::read_excel(fn_thresh, sheet="metric.scoring")
   df_thresh_index <- readxl::read_excel(fn_thresh, sheet="index.scoring")
 
@@ -1307,17 +1334,25 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
 
 
   df_metval_calc[, "INDEX_NAME"] <- "MassDEP_2020_Bugs"
-  df_metval_calc[, "INDEX_REGION"] <- c("KickIBI_CH_100ct", "KickIBI_WH_100ct", "LowGradientIBI")
+  df_metval_calc[, "INDEX_REGION"] <- c("KickIBI_CH_100ct"
+                                        , "KickIBI_WH_100ct"
+                                        , "LowGradientIBI")
 
-  df_metsc_calc <- BioMonTools::metric.scores(df_metval_calc, myMetrics.Bugs, "INDEX_NAME", "INDEX_REGION"
-                                              , df_thresh_metric, df_thresh_index)
+  df_metsc_calc <- BioMonTools::metric.scores(df_metval_calc
+                                              , myMetrics.Bugs
+                                              , "INDEX_NAME"
+                                              , "INDEX_REGION"
+                                              , df_thresh_metric
+                                              , df_thresh_index)
   # For report all numbers rounded
   df_metsc_calc[, 19:35] <- round(df_metsc_calc[, 19:35], 1)
 
   # df_QC
   df_metsc_qc <- df_metval_qc
   df_metsc_qc$INDEX_NAME   <- "MassDEP_2020_Bugs"
-  df_metsc_qc$INDEX_REGION <- c("KICKIBI_CH_100CT", "KICKIBI_WH_100CT", "LOWGRADIENTIBI")
+  df_metsc_qc$INDEX_REGION <- c("KICKIBI_CH_100CT"
+                                , "KICKIBI_WH_100CT"
+                                , "LOWGRADIENTIBI")
   df_metsc_qc$SC_nt_total <- c(34.4
                                ,38.7
                                ,NA)

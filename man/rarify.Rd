@@ -7,7 +7,8 @@
 rarify(inbug, sample.ID, abund, subsiz, mySeed = NA)
 }
 \arguments{
-\item{inbug}{Input data frame.  Needs 3 columns (SampleID, taxonomicID, Count).}
+\item{inbug}{Input data frame.  Needs 3 columns (SampleID, taxonomicID
+, Count).}
 
 \item{sample.ID}{Column name in inbug for sample identifier.}
 
@@ -15,23 +16,27 @@ rarify(inbug, sample.ID, abund, subsiz, mySeed = NA)
 
 \item{subsiz}{Target subsample size for each sample.}
 
-\item{mySeed}{Seed for random number generator.  If provided the results with the same inbug file will produce the same results. Defaut = NA (random seed will be used.)}
+\item{mySeed}{Seed for random number generator.  If provided the results with
+the same inbug file will produce the same results. Defaut = NA (random seed
+will be used.)}
 }
 \value{
-Returns a data frame with the same three columns but the abund field has been modified so the total count for each sample is no longer above the target (subsiz).
+Returns a data frame with the same three columns but the abund field
+has been modified so the total count for each sample is no longer above the
+target (subsiz).
 }
 \description{
-Takes as an input a 3 column data frame (SampleID, TaxonID, Count)
-and returns a similar dataframe with revised Counts.
+Takes as an input a 3 column data frame (SampleID, TaxonID
+, Count) and returns a similar dataframe with revised Counts.
 
-The other inputs are subsample size (target number of organisms in each sample) and seed.
-The seed is given so the results can be reproduced from the same input file.
-If no seed is given a random seed is used.
+The other inputs are subsample size (target number of organisms in each
+sample) and seed. The seed is given so the results can be reproduced from the
+ same input file.  If no seed is given a random seed is used.
 }
 \details{
 rarify function:
- R function to rarify (subsample) a macroinvertebrate sample down to a fixed count;
- by John Van Sickle, USEPA. email: VanSickle.John@epa.gov    ;
+ R function to rarify (subsample) a macroinvertebrate sample down to a fixed
+ count; by John Van Sickle, USEPA. email: VanSickle.John@epa.gov ;
  Version 1.0, 06/10/05;
 }
 \examples{
@@ -61,14 +66,18 @@ View(bugs_mysize)
 # Compare pre- and post- subsample counts
 df_compare <- merge(df_biodata, bugs_mysize, by=c("SampleID", "TaxaID")
                     , suffixes = c("_Orig","_500"))
-df_compare <- df_compare[,c("SampleID", "TaxaID", "N_Taxa_Orig", "N_Taxa_500")]
+df_compare <- df_compare[, c("SampleID"
+                             , "TaxaID"
+                             , "N_Taxa_Orig"
+                             , "N_Taxa_500")]
 
 \dontrun{
 View(df_compare)
 }
 
 # compare totals
-tbl_totals <- aggregate(cbind(N_Taxa_Orig, N_Taxa_500) ~ SampleID, df_compare, sum)
+tbl_totals <- aggregate(cbind(N_Taxa_Orig, N_Taxa_500) ~ SampleID
+                                                     , df_compare, sum)
 
 \dontrun{
 View(tbl_totals)

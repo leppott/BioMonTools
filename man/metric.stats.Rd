@@ -24,53 +24,66 @@ metric.stats(
 
 \item{col_metrics}{Column names for metrics.}
 
-\item{col_SampID}{Column name for unique sample identifier.  Default = "SAMPLEID".}
+\item{col_SampID}{Column name for unique sample identifier.
+Default = "SAMPLEID".}
 
-\item{col_RefStatus}{Column name for Reference Status.  Default = "Ref_Status"}
+\item{col_RefStatus}{Column name for Reference Status.
+Default = "Ref_Status"}
 
-\item{RefStatus_Ref}{Reference Status name for Reference used in col_ RefStatus.  Default = “Ref”.
+\item{RefStatus_Ref}{Reference Status name for Reference used in
+col_ RefStatus.  Default = “Ref”.
 Use NULL if you don't use this value.}
 
-\item{RefStatus_Str}{Reference Status name for Stressed used in col_ RefStatus.  Default = “Str”.
+\item{RefStatus_Str}{Reference Status name for Stressed used in
+col_ RefStatus.  Default = “Str”.
 Use NULL if you don't use this value.}
 
-\item{RefStatus_Oth}{Reference Status name for Other used in col_ RefStatus.  Default = “Oth”.
+\item{RefStatus_Oth}{Reference Status name for Other used in col_ RefStatus.
+Default = “Oth”.
 Use NULL if you don't use this value.}
 
-\item{col_DataType}{Column name for Data Type – Validation vs. Calibration.  Default = "Data_Type"}
+\item{col_DataType}{Column name for Data Type – Validation vs. Calibration.
+Default = "Data_Type"}
 
-\item{DataType_Cal}{Datatype name for Calibration used in col_DataType.  Default = “Cal”.
+\item{DataType_Cal}{Datatype name for Calibration used in col_DataType.
+Default = “Cal”.
 Use NULL if you don't use this value.}
 
-\item{DataType_Ver}{Datatype name for Varification used in col_DataType.  Default = “Ver”.
+\item{DataType_Ver}{Datatype name for Verification used in col_DataType.
+Default = “Ver”.
 Use NULL if you don't use this value.}
 
-\item{col_Subset}{Column name to subset the data and run on each subset.  Default = NULL.
+\item{col_Subset}{Column name to subset the data and run on each subset.
+Default = NULL.
 If NULL then no subset will be generated.}
 
-\item{Subset_Value}{Subset name to be used for creating subset.  Default = NULL.}
+\item{Subset_Value}{Subset name to be used for creating subset.
+Default = NULL.}
 }
 \value{
 data frame of metrics (rows) and statistics (columns).
-This is in long format with columns for INDEX_REGION, RefStatus, and DataType.
+This is in long format with columns for INDEX_REGION, RefStatus, and
+DataType.
 }
 \description{
-This function calculates metric statistics for use with developing a
-multi-metric index.
+This function calculates metric statistics for use with
+developing a multi-metric index.
 
 Inputs are a data frame with
 }
 \details{
 Summary statistics for the data are calculated.
 
-The data is filtered by the column Subset for only a single value given by the user.
-If need further subsets re-run the function.  If no subset is give the entire data set is used.
+The data is filtered by the column Subset for only a single value given by
+the user.  If need further subsets re-run the function.  If no subset is
+given the entire data set is used.
 
-Statistics will be generated for up to 6 combinations for RefStatus (Ref, Oth, Str) and
-DataType (Cal, Ver).
+Statistics will be generated for up to 6 combinations for RefStatus (Ref,
+Oth, Str) and DataType (Cal, Ver).
 
-The resulting dataframe will have the statistics in columns with the first 4 columns as:
-INDEX_REGION (if col_Subset not provided), col_RefStatus, col_DataType, and Metric_Name.
+The resulting dataframe will have the statistics in columns with the first 4
+columns as:  INDEX_REGION (if col_Subset not provided), col_RefStatus,
+col_DataType, and Metric_Name.
 
 The following statistics are generated with na.rm = TRUE.
 
@@ -134,12 +147,14 @@ DataType_Ver  <- "verif"
 col_Subset    <- "INDEX_REGION"
 Subset_Value  <- "CENTRALHILLS"
 df_stats <- metric.stats(df_metval, col_metrics, col_SampID
-                         , col_RefStatus, RefStatus_Ref, RefStatus_Str, RefStatus_Oth
+                         , col_RefStatus, RefStatus_Ref, RefStatus_Str
+                         , RefStatus_Oth
                          , col_DataType, DataType_Cal, DataType_Ver
                          , col_Subset, Subset_Value)
 
 \dontrun{
 # Save Results
-write.table(df_stats, "metric.stats.tsv", col.names=TRUE, row.names=FALSE, sep="\t")
+write.table(df_stats, "metric.stats.tsv", col.names=TRUE, row.names=FALSE
+            , sep="\t")
 }
 }

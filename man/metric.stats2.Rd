@@ -62,8 +62,8 @@ A data frame of the metric.stats input is returned with new columns
 (z_score, DE25 and DE75).
 }
 \description{
-This function calculates secondary statistics (DE and z-score) on metric statistics for use with developing a
-multi-metric index.
+This function calculates secondary statistics (DE and z-score)
+on metric statistics for use with developing a multi-metric index.
 }
 \details{
 Secondary metrics statistics for the data are calculated.
@@ -73,27 +73,31 @@ Inputs are metric values and metric stats outputs.
 Metric values is a wide format with columns for each metric.
 Assumes only a single Subset.
 
-Metrics stats is a wide format with columns for each statistic with metrics in a single column.
+Metrics stats is a wide format with columns for each statistic with metrics
+in a single column.
 Assumes only a single Subset.
 
-Required fields are RefStatus, DataType, and Index_Region.  The user is allowed to enter their own
+Required fields are RefStatus, DataType, and Index_Region.  The user is
+allowed to enter their own
 values for these fields for each input file.
 
-The two statistics calculated are z-score and discrimination efficiency (DE) for each metric
-within each DataType (cal / val).
+The two statistics calculated are z-score and discrimination efficiency (DE)
+for each metric within each DataType (cal / val).
 
 Z-scores are calculated using the calibration (or development) data set
 for a given Index_Region (or Site Class).
 
 * (mean Ref - mean Str) / sd Ref
 
-DE is calculated without knowing the expected direction of response for each metric
-for a given Index_Region (or Site Class).  DE is the percentage (0-100) of **stressed**
-samples that fall **below** the **25th** quantile (for decreaser metrics, e.g., total taxa)
-or **above** the **75th** quantile (for increaser metrics, e.g., HBI) of the **reference** samples.
+DE is calculated without knowing the expected direction of response for each
+metric for a given Index_Region (or Site Class).  DE is the percentage
+(0-100) of **stressed** samples that fall **below** the **25th** quantile
+(for decreaser metrics, e.g., total taxa) or **above** the **75th** quantile
+(for increaser metrics, e.g., HBI) of the **reference** samples.
 
 A data frame of the metric.stats input is returned with new columns
-(z_score, DE25 and DE75).  The z-score is added for each Ref_Status.  DE25 and DE75 are only added
+(z_score, DE25 and DE75).  The z-score is added for each Ref_Status.  DE25
+and DE75 are only added
 where Ref_Status is labeled as Stressed.
 }
 \examples{
@@ -126,7 +130,8 @@ DataType_Ver  <- "verif"
 col_Subset    <- "INDEX_REGION"
 Subset_Value  <- "CENTRALHILLS"
 df_stats <- metric.stats(df_metval, col_metrics, col_SampID
-                         , col_RefStatus, RefStatus_Ref, RefStatus_Str, RefStatus_Oth
+                         , col_RefStatus, RefStatus_Ref, RefStatus_Str
+                         , RefStatus_Oth
                          , col_DataType, DataType_Cal, DataType_Ver
                          , col_Subset, Subset_Value)
 
@@ -162,6 +167,7 @@ df_stats2 <- metric.stats2(data_metval
 
 \dontrun{
 # Save Results
-write.table(df_stats2, "metric.stats2.tsv", col.names=TRUE, row.names=FALSE, sep="\t")
+write.table(df_stats2, "metric.stats2.tsv", col.names=TRUE, row.names=FALSE
+            , sep="\t")
 }
 }

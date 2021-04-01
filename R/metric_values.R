@@ -432,7 +432,8 @@ metric.values <- function(fun.DF
     metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep, NA
                        , boo.marine, boo.Shiny)
   } else if(fun.Community=="FISH"){
-    metric.values.fish(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep, boo.Shiny)
+    metric.values.fish(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
+                       , boo.Shiny)
   # } else if(fun.Community=="ALGAE"){
   #   metric.values.algae(fun.DF, fun.MetricNames, boo.Adjust)
   }##IF.END
@@ -514,10 +515,11 @@ metric.values.bugs <- function(myDF
   # QC ####
   # QC, Required Fields
   col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
-              , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS", "SUBCLASS"
-              , "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY", "TRIBE", "GENUS"
-              , "FFG", "HABIT", "LIFE_CYCLE", "TOLVAL", "BCG_ATTR", "THERMAL_INDICATOR"
-              , "LONGLIVED", "NOTEWORTHY", "FFG2", "TOLVAL2", "HABITAT")
+              , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
+              , "SUBCLASS", "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
+              , "TRIBE", "GENUS", "FFG", "HABIT", "LIFE_CYCLE", "TOLVAL"
+              , "BCG_ATTR", "THERMAL_INDICATOR", "LONGLIVED", "NOTEWORTHY"
+              , "FFG2", "TOLVAL2", "HABITAT")
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
   # Trigger prompt if any missing fields (and session is interactive)

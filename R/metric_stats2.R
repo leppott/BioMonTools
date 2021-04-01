@@ -1,7 +1,7 @@
 #' @title Secondary metric statistics
 #'
-#' @description This function calculates secondary statistics (DE and z-score) on metric statistics for use with developing a
-#' multi-metric index.
+#' @description This function calculates secondary statistics (DE and z-score)
+#' on metric statistics for use with developing a multi-metric index.
 #'
 #'
 #' @details Secondary metrics statistics for the data are calculated.
@@ -11,27 +11,31 @@
 #' Metric values is a wide format with columns for each metric.
 #' Assumes only a single Subset.
 #'
-#' Metrics stats is a wide format with columns for each statistic with metrics in a single column.
+#' Metrics stats is a wide format with columns for each statistic with metrics
+#' in a single column.
 #' Assumes only a single Subset.
 #'
-#' Required fields are RefStatus, DataType, and Index_Region.  The user is allowed to enter their own
+#' Required fields are RefStatus, DataType, and Index_Region.  The user is
+#' allowed to enter their own
 #' values for these fields for each input file.
 #'
-#' The two statistics calculated are z-score and discrimination efficiency (DE) for each metric
-#' within each DataType (cal / val).
+#' The two statistics calculated are z-score and discrimination efficiency (DE)
+#' for each metric within each DataType (cal / val).
 #'
 #' Z-scores are calculated using the calibration (or development) data set
 #' for a given Index_Region (or Site Class).
 #'
 #' * (mean Ref - mean Str) / sd Ref
 #'
-#' DE is calculated without knowing the expected direction of response for each metric
-#' for a given Index_Region (or Site Class).  DE is the percentage (0-100) of **stressed**
-#' samples that fall **below** the **25th** quantile (for decreaser metrics, e.g., total taxa)
-#' or **above** the **75th** quantile (for increaser metrics, e.g., HBI) of the **reference** samples.
+#' DE is calculated without knowing the expected direction of response for each
+#' metric for a given Index_Region (or Site Class).  DE is the percentage
+#' (0-100) of **stressed** samples that fall **below** the **25th** quantile
+#' (for decreaser metrics, e.g., total taxa) or **above** the **75th** quantile
+#' (for increaser metrics, e.g., HBI) of the **reference** samples.
 #'
 #' A data frame of the metric.stats input is returned with new columns
-#' (z_score, DE25 and DE75).  The z-score is added for each Ref_Status.  DE25 and DE75 are only added
+#' (z_score, DE25 and DE75).  The z-score is added for each Ref_Status.  DE25
+#' and DE75 are only added
 #' where Ref_Status is labeled as Stressed.
 #'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -90,7 +94,8 @@
 #' col_Subset    <- "INDEX_REGION"
 #' Subset_Value  <- "CENTRALHILLS"
 #' df_stats <- metric.stats(df_metval, col_metrics, col_SampID
-#'                          , col_RefStatus, RefStatus_Ref, RefStatus_Str, RefStatus_Oth
+#'                          , col_RefStatus, RefStatus_Ref, RefStatus_Str
+#'                          , RefStatus_Oth
 #'                          , col_DataType, DataType_Cal, DataType_Ver
 #'                          , col_Subset, Subset_Value)
 #'
@@ -126,7 +131,8 @@
 #'
 #' \dontrun{
 #' # Save Results
-#' write.table(df_stats2, "metric.stats2.tsv", col.names=TRUE, row.names=FALSE, sep="\t")
+#' write.table(df_stats2, "metric.stats2.tsv", col.names=TRUE, row.names=FALSE
+#'             , sep="\t")
 #' }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
@@ -168,17 +174,18 @@ metric.stats2 <- function(data_metval
     fun.DF <- df_metval
     col_metrics <- names(df_metval)[9:ncol(df_metval)]
     col_SampID  <- "SAMPLEID"
-    col_RefStatus = "REF_V1"
-    RefStatus_Ref = "Ref"
-    RefStatus_Str = "Strs"
-    RefStatus_Oth = "Other"
-    col_DataType = "CALVAL_CLASS4"
-    DataType_Cal = "cal"
-    DataType_Ver = "verif"
-    col_Subset = "INDEX_REGION"
-    Subset_Value = "CENTRALHILLS"
+    col_RefStatus <- "REF_V1"
+    RefStatus_Ref <- "Ref"
+    RefStatus_Str <- "Strs"
+    RefStatus_Oth <- "Other"
+    col_DataType <- "CALVAL_CLASS4"
+    DataType_Cal <- "cal"
+    DataType_Ver <- "verif"
+    col_Subset <- "INDEX_REGION"
+    Subset_Value <- "CENTRALHILLS"
     df_stats <- metric.stats(df_metval, col_metrics, col_SampID
-                             , col_RefStatus, RefStatus_Ref, RefStatus_Str, RefStatus_Oth
+                             , col_RefStatus, RefStatus_Ref, RefStatus_Str
+                             , RefStatus_Oth
                              , col_DataType, DataType_Cal, DataType_Ver
                              , col_Subset, Subset_Value)
 
@@ -191,12 +198,12 @@ metric.stats2 <- function(data_metval
     col_metstat_RefStatus <- "REF_V1"
     col_metstat_DataType <- "CALVAL_CLASS4"
     col_metstat_Subset <- "INDEX_REGION"
-    RefStatus_Ref = "Ref"
-    RefStatus_Str = "Strs"
-    RefStatus_Oth = "Other"
-    DataType_Cal = "cal"
-    DataType_Ver = "verif"
-    Subset_Value = "CENTRALHILLS"
+    RefStatus_Ref <- "Ref"
+    RefStatus_Str <- "Strs"
+    RefStatus_Oth <- "Other"
+    DataType_Cal <- "cal"
+    DataType_Ver <- "verif"
+    Subset_Value <- "CENTRALHILLS"
 
   }## IF ~ boo_debug ~ END
 
@@ -227,7 +234,8 @@ metric.stats2 <- function(data_metval
   # qc_col_check <- qc_col %in% names(fun.DF)
   # if(length(qc_col) != sum(qc_col_check)){
   #   cols_missing <- qc_col[!qc_col_check]
-  #   msg <- paste0("Columns missing from data; ", paste(cols_missing, collapse = ", "))
+  #   msg <- paste0("Columns missing from data; ", paste(cols_missing
+  #                                , collapse = ", "))
   #   stop(msg)
   # }##IF ~ check columns ~ END
   # #
@@ -291,19 +299,27 @@ metric.stats2 <- function(data_metval
 
   # z-score, ref mean - str mean / ref sd
 
-  df_stats_c <- data_metstat[data_metstat[, col_metval_DataType] == DataType_Cal, ]
-  df_stats_v <- data_metstat[data_metstat[, col_metval_DataType] == DataType_Ver, ]
+  df_stats_c <- data_metstat[data_metstat[, col_metval_DataType] ==
+                               DataType_Cal, ]
+  df_stats_v <- data_metstat[data_metstat[, col_metval_DataType] ==
+                               DataType_Ver, ]
 
-  df_stats_c_ref <- df_stats_c[df_stats_c[, col_metval_RefStatus] == RefStatus_Ref, ]
-  df_stats_c_str <- df_stats_c[df_stats_c[, col_metval_RefStatus] == RefStatus_Str, ]
+  df_stats_c_ref <- df_stats_c[df_stats_c[, col_metval_RefStatus] ==
+                                 RefStatus_Ref, ]
+  df_stats_c_str <- df_stats_c[df_stats_c[, col_metval_RefStatus] ==
+                                 RefStatus_Str, ]
 
-  df_stats_v_ref <- df_stats_v[df_stats_v[, col_metval_RefStatus] == RefStatus_Ref, ]
-  df_stats_v_str <- df_stats_v[df_stats_v[, col_metval_RefStatus] == RefStatus_Str, ]
+  df_stats_v_ref <- df_stats_v[df_stats_v[, col_metval_RefStatus] ==
+                                 RefStatus_Ref, ]
+  df_stats_v_str <- df_stats_v[df_stats_v[, col_metval_RefStatus] ==
+                                 RefStatus_Str, ]
 
   # z-score
   ## calc
-  z_c <- (df_stats_c_ref[, "mean"] - df_stats_c_str[, "mean"]) / df_stats_c_ref[, "sd"]
-  z_v <- (df_stats_v_ref[, "mean"] - df_stats_v_str[, "mean"]) / df_stats_v_ref[, "sd"]
+  z_c <- (df_stats_c_ref[, "mean"] - df_stats_c_str[, "mean"]) /
+    df_stats_c_ref[, "sd"]
+  z_v <- (df_stats_v_ref[, "mean"] - df_stats_v_str[, "mean"]) /
+    df_stats_v_ref[, "sd"]
   ### Add back to df_stats
   col_metnam <- df_stats_c_ref[, "Metric_Name"]
   col_z <- c(col_metval_DataType, col_metval_Subset, "Metric_Name", "z_score")
@@ -337,31 +353,44 @@ metric.stats2 <- function(data_metval
   df_de_cv <- rbind(df_de_c, df_de_v)
   names(df_de_cv) <- col_de
   # metrics
-  # df_metval_c <- data_metval[data_metval[, col_metval_DataType] == DataType_Cal, ]
-  # df_metval_v <- data_metval[data_metval[, col_metval_DataType] == DataType_Ver, ]
+  # df_metval_c <- data_metval[data_metval[, col_metval_DataType] ==
+  # DataType_Cal, ]
+  # df_metval_v <- data_metval[data_metval[, col_metval_DataType] ==
+  # DataType_Ver, ]
   #
-  # df_metval_c_str <- df_metval_c[df_metval_c[, col_metval_RefStatus] == RefStatus_Str, ]
+  # df_metval_c_str <- df_metval_c[df_metval_c[, col_metval_RefStatus] ==
+  # RefStatus_Str, ]
   #
-  # df_metval_v_str <- df_metval_v[df_metval_v[, col_metval_RefStatus] == RefStatus_Str, ]
+  # df_metval_v_str <- df_metval_v[df_metval_v[, col_metval_RefStatus] ==
+  # RefStatus_Str, ]
   #
   #
   # df_metval_cv_str_de <- rbind(df_metval_c_str, df_metval_v_str)
 
 
   # Str metric values in long format
-  data_metval_str_longer <- tidyr::pivot_longer(data_metval[data_metval[, col_RefStatus] == RefStatus_Str, ]
-                                            , cols = tidyselect::all_of(col_metnam)
-                                            , names_to = "Metric_Name"
-                                            , values_to = "Metric_Value")
+  data_metval_str_longer <- tidyr::pivot_longer(data_metval[data_metval[
+    , col_RefStatus] == RefStatus_Str, ]
+                                        , cols = tidyselect::all_of(col_metnam)
+                                        , names_to = "Metric_Name"
+                                        , values_to = "Metric_Value")
   # merge
   df_merge4de <- merge(data_metval_str_longer, df_de_cv
-              , by.x = c(col_metval_DataType, col_metval_Subset, "Metric_Name")
-              , by.y = c(col_metstat_DataType, col_metstat_Subset, "Metric_Name"))
+              , by.x = c(col_metval_DataType
+                         , col_metval_Subset
+                         , "Metric_Name")
+              , by.y = c(col_metstat_DataType
+                         , col_metstat_Subset
+                         , "Metric_Name"))
   # calc
-  df_merge4de[, "q25_lt"]  <- df_merge4de[, "Metric_Value"] < df_merge4de[, "q25_Ref"]
-  df_merge4de[, "q75_gt"]  <- df_merge4de[, "Metric_Value"] > df_merge4de[, "q75_Ref"]
-  #df_merge4de[, "q25_lte"] <- df_merge4de[, "Metric_Value"] <= df_merge4de[, "q25_Ref"]
-  #df_merge4de[, "q75_gte"] <- df_merge4de[, "Metric_Value"] >= df_merge4de[, "q75_Ref"]
+  df_merge4de[, "q25_lt"]  <- df_merge4de[, "Metric_Value"] < df_merge4de[
+    , "q25_Ref"]
+  df_merge4de[, "q75_gt"]  <- df_merge4de[, "Metric_Value"] > df_merge4de[
+    , "q75_Ref"]
+  #df_merge4de[, "q25_lte"] <- df_merge4de[, "Metric_Value"] <= df_merge4de[
+  # , "q25_Ref"]
+  #df_merge4de[, "q75_gte"] <- df_merge4de[, "Metric_Value"] >= df_merge4de[
+  # , "q75_Ref"]
 
   # summarize
   df_de <- df_merge4de %>%
@@ -373,7 +402,8 @@ metric.stats2 <- function(data_metval
                      , DE75 = 100 * sum(q75_gt / n_Str))
   df_de <- data.frame(df_de)
   # Need variables not the names
-  # use group_by_ even though deprecated.  using enquo(!!variable)  adds extra quotes
+  # use group_by_ even though deprecated.
+  # using enquo(!!variable)  adds extra quotes
 
   # add back
   #df_z and df_de

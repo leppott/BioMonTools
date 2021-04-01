@@ -25,17 +25,21 @@ Index Region (strata).}
 \item{col_IndexRegion}{Name of column with relevant bioregion or site class
 (e.g., COASTAL).}
 
-\item{DF_Thresh_Metric}{Data frame of Scoring Thresholds for metrics (INDEX_NAME, INDEX_REGION,
+\item{DF_Thresh_Metric}{Data frame of Scoring Thresholds for metrics
+(INDEX_NAME, INDEX_REGION,
 METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime
-, SingleValue_Add, NormDist_Tail_Lo, NormDist_Tail_Hi, CatGrad_xvar, CatGrad_InfPt
-, CatGrad_Lo_m,    CatGrad_Lo_b,    CatGrad_Mid_m,    CatGrad_Mid_b,    CatGrad_Hi_m,    CatGrad_Hi_b).}
+, SingleValue_Add, NormDist_Tail_Lo, NormDist_Tail_Hi, CatGrad_xvar
+, CatGrad_InfPt, CatGrad_Lo_m,    CatGrad_Lo_b,    CatGrad_Mid_m,    CatGrad_Mid_b
+,    CatGrad_Hi_m,    CatGrad_Hi_b).}
 
-\item{DF_Thresh_Index}{Data frame of Scoring Thresholds for indices (INDEX_NAME, INDEX_REGION,
-METRIC_NAME, ScoreRegime, Thresh01, Thresh02, Thresh03, Thresh04, Thresh05, Thresh06, Thresh07
+\item{DF_Thresh_Index}{Data frame of Scoring Thresholds for indices
+(INDEX_NAME, INDEX_REGION,METRIC_NAME, ScoreRegime, Thresh01, Thresh02
+, Thresh03, Thresh04, Thresh05, Thresh06, Thresh07
 , Nar01, Nar02, Nar03, Nar04, Nar05, Nar06).}
 
 \item{col_ni_total}{Name of column with total number of individuals.  Used
-for cases where sample was collected but no organisms collected.  Default = ni_total.}
+for cases where sample was collected but no organisms collected.
+Default = ni_total.}
 }
 \value{
 vector of scores
@@ -66,7 +70,8 @@ library(readxl)
 library(reshape2)
 
 # Thresholds
-fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
+fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata"
+, "MetricScoring.xlsx")
 df_thresh_metric <- read_excel(fn_thresh, sheet="metric.scoring")
 df_thresh_index <- read_excel(fn_thresh, sheet="index.scoring")
 
@@ -116,7 +121,8 @@ myIndex <- "MBSS_2005_Bugs"
 # Thresholds
 # imported above
 # get metric names for myIndex
-(myMetrics_Bugs_MBSS <- unique(df_thresh_metric[df_thresh_metric[, "INDEX_NAME"]
+(myMetrics_Bugs_MBSS <- unique(df_thresh_metric[df_thresh_metric[
+, "INDEX_NAME"]
                                == myIndex, "METRIC_NAME", TRUE]))
 # Taxa Data
 myDF_Bugs_MBSS <- data_benthos_MBSS
@@ -130,7 +136,8 @@ myDF_Bugs_MBSS$SubFamily <- NA
 myDF_Bugs_MBSS$TOLVAL <- myDF_Bugs_MBSS$FinalTolVal07
 myDF_Bugs_MBSS$TOLVAL2 <- myDF_Bugs_MBSS$FinalTolVal08
 myDF_Bugs_MBSS$EXCLUDE <- myDF_Bugs_MBSS$EXCLUDE=="Y"
-myMetric_Values_Bugs_MBSS <- metric.values(myDF_Bugs_MBSS, "bugs", myMetrics_Bugs_MBSS)
+myMetric_Values_Bugs_MBSS <- metric.values(myDF_Bugs_MBSS, "bugs"
+, myMetrics_Bugs_MBSS)
 
 \dontrun{
 View(myMetric_Values_Bugs_MBSS)

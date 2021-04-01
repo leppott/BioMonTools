@@ -5,7 +5,8 @@ test_that("markExcluded", {
   # `%>%` <- dplyr::`%>%`
   #
   # # Data
-  # df_samps_bugs <- readxl::read_excel(system.file("./extdata/Data_Benthos.xlsx"
+  # df_samps_bugs <- readxl::read_excel(system.file(
+  #                                     "./extdata/Data_Benthos.xlsx"
   #                                         , package="BioMonTools")
   #                             , guess_max=10^6)
   #
@@ -30,10 +31,12 @@ test_that("markExcluded", {
   #                 , "Species"
   #                 , "Variety")
   # # Taxa that should be treated as equivalent
-  # Exceptions <- data.frame("TaxaID"=c("Sphaeriidae"), "PhyloID"=c("Pisidiidae"))
+  # Exceptions <- data.frame("TaxaID"=c("Sphaeriidae")
+  # , "PhyloID"=c("Pisidiidae"))
   #
   # # Filter Data
-  # # df_samptax <- filter(df_samps_bugs, !!as.name(SampID) == "08BEA3478__2013-08-21_0")
+  # # df_samptax <- filter(df_samps_bugs, !!as.name(SampID) ==
+  # "08BEA3478__2013-08-21_0")
   # # df_tst_small <- markExcluded(df_samptax, SampID, TaxaID, TaxaCount
   # #                              , TaxaLevels, Exceptions, Exclude)
   #
@@ -95,7 +98,8 @@ test_that("markExcluded", {
   # ## balance of precision and recall
   # class_F1 <- 2 * (class_prec * class_sens) / (class_prec + class_sens)
   # #
-  # results_names <- c("Sensitivity (Recall)", "Precision", "Specificity", "OVerall Accuracy", "F1")
+  # results_names <- c("Sensitivity (Recall)", "Precision", "Specificity"
+  # , "OVerall Accuracy", "F1")
   # results_values <- c(class_sens, class_prec, class_spec, class_acc, class_F1)
   # #
   # tbl_class <- data.frame(results_names, results_values)

@@ -1,7 +1,8 @@
 #' @title QC checks on metric values
 #'
-#' @description Apply "QC checks" on calculated metrics and station/sample attributes to "flag" samples for the user.
-#' Examples include watershed size or total number of individuals.  Can have checks for both high and low values.
+#' @description Apply "QC checks" on calculated metrics and station/sample
+#' attributes to "flag" samples for the user. Examples include watershed size or
+#'  total number of individuals.  Can have checks for both high and low values.
 #' Checks are stored in separate file.  For structure see df.checks in example.
 #'
 #' @details used reshape2 package
@@ -29,7 +30,8 @@
 #'
 #' # Import Checks
 #' df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
-#'                                           , package="BioMonTools"), sheet="Flags")
+#'                                           , package="BioMonTools")
+#'                                           , sheet="Flags")
 #'\dontrun{
 #' # View Checks
 #' View(df.checks)
@@ -42,7 +44,8 @@
 #' table(df.flags[,"CHECKNAME"], df.flags[,"FLAG"], useNA="ifany")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
-qc.checks <- function(df.metrics, df.checks, input.shape="wide"){##FUNCTION.START
+qc.checks <- function(df.metrics, df.checks, input.shape="wide") {
+  ##FUNCTION.START
   #
   # global variable bindings ----
   df.metric.values.bugs <- NULL
@@ -79,10 +82,14 @@ qc.checks <- function(df.metrics, df.checks, input.shape="wide"){##FUNCTION.STAR
   #
   # Metrics to long
   if (input.shape=="wide") {##IF.input.shape.START
-    df.long <- reshape2::melt(df.metrics, id.vars=c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
-                             , variable.name="METRIC_NAME", value.name="METRIC_VALUE")
+    df.long <- reshape2::melt(df.metrics, id.vars=c("SAMPLEID"
+                                                    , "INDEX_NAME"
+                                                    , "INDEX_REGION")
+                             , variable.name="METRIC_NAME"
+                             , value.name="METRIC_VALUE")
     # # compare to input
-    # checks.metrics.input.col <- checks.metrics[checks.metrics %in% toupper(names(df.metrics))]
+    # checks.metrics.input.col <- checks.metrics[checks.metrics %in%
+    # toupper(names(df.metrics))]
     # # add to df.long
     # #df.metrics.long <- reshape2::melt(df.metrics)
 
@@ -113,7 +120,9 @@ qc.checks <- function(df.metrics, df.checks, input.shape="wide"){##FUNCTION.STAR
   # ==
   # !=
 
-  df.merge[,"EXPR"] <- eval(expression(paste(df.merge[,"METRIC_VALUE"], df.merge[,"SYMBOL"], df.merge[,"VALUE"])))
+  df.merge[,"EXPR"] <- eval(expression(paste(df.merge[,"METRIC_VALUE"]
+                                             , df.merge[,"SYMBOL"]
+                                             , df.merge[,"VALUE"])))
 
   # y <- apply(df.merge$Expr, 1, function(x) eval(parse(text=x)))
   #

@@ -4,9 +4,32 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-03-31 11:52:10
+    #> Last Update: 2021-04-01 13:37:15
 
 # Version History
+
+## Changes in Version 0.5.0.9045 (2021-04-01)
+
+-   style: Fix items, goodpractice::gp()
+    -   Replace ‘=’ with ‘&lt;-’
+        -   metric\_stats.R
+        -   metric\_stats2.R
+    -   Trim lines to 80 characters
+        -   test\_qc\_checks.R
+        -   test\_metric\_names.R
+        -   test\_metric\_calc.R
+        -   test\_markExcluded.R
+        -   rarify.R
+        -   qc\_checks.R
+        -   metric\_values.R (partial)
+        -   metric\_stats2.R
+        -   metric\_stats.R
+        -   metric\_scores.R (partial)
+        -   markExcluded.R
+-   style: Fix spelling, devtools::spell\_check()
+    -   ReadMe
+    -   NEWS
+    -   metric\_stats.R
 
 ## Changes in Version 0.5.0.9044 (2021-03-31)
 
@@ -14,7 +37,7 @@ NEWS
     -   nt, pi, pt
     -   macrophyte herbivore (MAH)
     -   xylophage (XYL)
-    -   piecer-herbifore (PIH)
+    -   piercer-herbivore (PIH)
 -   refactor: MetricNames.xlsx
     -   Update for new metrics
 -   refactor: MetricScores.xlsx
@@ -488,7 +511,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
         -   Habitat metrics, 8 values, nt, pi, pt.
 -   MetricNames.xlsx
     -   Add new metrics.
--   New data set to utitilize new metrics.
+-   New data set to utilize new metrics.
     -   data\_benthos\_PacNW
 
 ## Changes in Version 0.4.0.9007 (2020-04-27)

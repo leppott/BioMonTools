@@ -1,20 +1,22 @@
 #' @title Calculate metric statistics
 #'
-#' @description This function calculates metric statistics for use with developing a
-#' multi-metric index.
+#' @description This function calculates metric statistics for use with
+#' developing a multi-metric index.
 #'
 #' Inputs are a data frame with
 #'
 #' @details Summary statistics for the data are calculated.
 #'
-#' The data is filtered by the column Subset for only a single value given by the user.
-#' If need further subsets re-run the function.  If no subset is give the entire data set is used.
+#' The data is filtered by the column Subset for only a single value given by
+#' the user.  If need further subsets re-run the function.  If no subset is
+#' given the entire data set is used.
 #'
-#' Statistics will be generated for up to 6 combinations for RefStatus (Ref, Oth, Str) and
-#' DataType (Cal, Ver).
+#' Statistics will be generated for up to 6 combinations for RefStatus (Ref,
+#' Oth, Str) and DataType (Cal, Ver).
 #'
-#' The resulting dataframe will have the statistics in columns with the first 4 columns as:
-#' INDEX_REGION (if col_Subset not provided), col_RefStatus, col_DataType, and Metric_Name.
+#' The resulting dataframe will have the statistics in columns with the first 4
+#' columns as:  INDEX_REGION (if col_Subset not provided), col_RefStatus,
+#' col_DataType, and Metric_Name.
 #'
 #' The following statistics are generated with na.rm = TRUE.
 #'
@@ -52,25 +54,36 @@
 
 #' @param fun.DF Data frame.
 #' @param col_metrics Column names for metrics.
-#' @param col_SampID Column name for unique sample identifier.  Default = "SAMPLEID".
-#' @param col_RefStatus Column name for Reference Status.  Default = "Ref_Status"
-#' @param RefStatus_Ref Reference Status name for Reference used in col_ RefStatus.  Default = “Ref”.
+#' @param col_SampID Column name for unique sample identifier.
+#' Default = "SAMPLEID".
+#' @param col_RefStatus Column name for Reference Status.
+#' Default = "Ref_Status"
+#' @param RefStatus_Ref Reference Status name for Reference used in
+#' col_ RefStatus.  Default = “Ref”.
 #' Use NULL if you don't use this value.
-#' @param RefStatus_Str Reference Status name for Stressed used in col_ RefStatus.  Default = “Str”.
+#' @param RefStatus_Str Reference Status name for Stressed used in
+#' col_ RefStatus.  Default = “Str”.
 #' Use NULL if you don't use this value.
-#' @param RefStatus_Oth Reference Status name for Other used in col_ RefStatus.  Default = “Oth”.
+#' @param RefStatus_Oth Reference Status name for Other used in col_ RefStatus.
+#' Default = “Oth”.
 #' Use NULL if you don't use this value.
-#' @param col_DataType Column name for Data Type – Validation vs. Calibration.  Default = "Data_Type"
-#' @param DataType_Cal Datatype name for Calibration used in col_DataType.  Default = “Cal”.
+#' @param col_DataType Column name for Data Type – Validation vs. Calibration.
+#' Default = "Data_Type"
+#' @param DataType_Cal Datatype name for Calibration used in col_DataType.
+#' Default = “Cal”.
 #' Use NULL if you don't use this value.
-#' @param DataType_Ver Datatype name for Varification used in col_DataType.  Default = “Ver”.
+#' @param DataType_Ver Datatype name for Verification used in col_DataType.
+#' Default = “Ver”.
 #' Use NULL if you don't use this value.
-#' @param col_Subset Column name to subset the data and run on each subset.  Default = NULL.
+#' @param col_Subset Column name to subset the data and run on each subset.
+#' Default = NULL.
 #' If NULL then no subset will be generated.
-#' @param Subset_Value Subset name to be used for creating subset.  Default = NULL.
+#' @param Subset_Value Subset name to be used for creating subset.
+#' Default = NULL.
 #'
 #' @return data frame of metrics (rows) and statistics (columns).
-#' This is in long format with columns for INDEX_REGION, RefStatus, and DataType.
+#' This is in long format with columns for INDEX_REGION, RefStatus, and
+#' DataType.
 #'
 #' @examples
 #' # data, benthos
@@ -102,13 +115,15 @@
 #' col_Subset    <- "INDEX_REGION"
 #' Subset_Value  <- "CENTRALHILLS"
 #' df_stats <- metric.stats(df_metval, col_metrics, col_SampID
-#'                          , col_RefStatus, RefStatus_Ref, RefStatus_Str, RefStatus_Oth
+#'                          , col_RefStatus, RefStatus_Ref, RefStatus_Str
+#'                          , RefStatus_Oth
 #'                          , col_DataType, DataType_Cal, DataType_Ver
 #'                          , col_Subset, Subset_Value)
 #'
 #' \dontrun{
 #' # Save Results
-#' write.table(df_stats, "metric.stats.tsv", col.names=TRUE, row.names=FALSE, sep="\t")
+#' write.table(df_stats, "metric.stats.tsv", col.names=TRUE, row.names=FALSE
+#'             , sep="\t")
 #' }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
@@ -151,15 +166,15 @@ metric.stats <- function(fun.DF
     fun.DF <- df_metval
     col_metrics <- names(df_metval)[9:ncol(df_metval)]
     col_SampID  <- "SAMPLEID"
-    col_RefStatus = "REF_V1"
-    RefStatus_Ref = "Ref"
-    RefStatus_Str = "Strs"
-    RefStatus_Oth = "Other"
-    col_DataType = "CALVAL_CLASS4"
-    DataType_Cal = "cal"
-    DataType_Ver = "verif"
-    col_Subset = "INDEX_REGION"
-    Subset_Value = "CENTRALHILLS"
+    col_RefStatus <- "REF_V1"
+    RefStatus_Ref <- "Ref"
+    RefStatus_Str <- "Strs"
+    RefStatus_Oth <- "Other"
+    col_DataType <- "CALVAL_CLASS4"
+    DataType_Cal <- "cal"
+    DataType_Ver <- "verif"
+    col_Subset <- "INDEX_REGION"
+    Subset_Value <- "CENTRALHILLS"
     #
   }## IF ~ boo_debug ~ END
 
@@ -185,7 +200,8 @@ metric.stats <- function(fun.DF
   qc_col_check <- qc_col %in% names(fun.DF)
   if(length(qc_col) != sum(qc_col_check)){
     cols_missing <- qc_col[!qc_col_check]
-    msg <- paste0("Columns missing from data; ", paste(cols_missing, collapse = ", "))
+    msg <- paste0("Columns missing from data; ", paste(cols_missing
+                                                       , collapse = ", "))
     stop(msg)
   }##IF ~ check columns ~ END
   #
@@ -262,12 +278,14 @@ metric.stats <- function(fun.DF
     metrics_cv    <- metrics_sd / metrics_mean
     #
     # percentiles to run
-    p=c(5, 10, 25, 50, 75, 90, 95)/100
+    p <- c(5, 10, 25, 50, 75, 90, 95)/100
     # percentiles
-    metrics_quantiles <- sapply(df_i[, col_metrics], stats::quantile, probs=p, na.rm = TRUE)
+    metrics_quantiles <- sapply(df_i[, col_metrics], stats::quantile, probs = p
+                                , na.rm = TRUE)
     #
     metrics_all <- rbind(metrics_n, metrics_min, metrics_max, metrics_mean
-                         , metrics_range, metrics_sd, metrics_cv, metrics_quantiles)
+                         , metrics_range, metrics_sd, metrics_cv
+                         , metrics_quantiles)
     # rename
     col_StatNames <- c("n", "min", "max", "mean", "range", "sd", "cv"
                        , paste0("q", sprintf("%02d", p*100)))
@@ -288,7 +306,8 @@ metric.stats <- function(fun.DF
     df_i_stats[, "Metric_Name"] <- rownames(df_i_stats)
     rownames(df_i_stats) <- NULL # c()
     # reorder columns
-    col_ordered <- c((length(col_StatNames)+1):length(colnames(df_i_stats)), seq_len(length(col_StatNames)))
+    col_ordered <- c((length(col_StatNames)+1):length(colnames(df_i_stats))
+                     , seq_len(length(col_StatNames)))
     df_i_stats <- df_i_stats[, col_ordered]
 
     # Create DF to hold results

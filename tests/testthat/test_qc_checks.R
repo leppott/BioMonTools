@@ -1,7 +1,8 @@
 # qc_checks ####
 test_that("qc_checks", {
   # # Calculate Metrics
-  # df.samps.bugs <- readxl::read_excel(system.file("./extdata/Data_Benthos.xlsx"
+  # df.samps.bugs <- readxl::read_excel(system.file(
+  #                                            "./extdata/Data_Benthos.xlsx"
   #                                         , package="BioMonTools")
   #                             , guess_max = 10^6)
   #

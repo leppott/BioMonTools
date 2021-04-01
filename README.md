@@ -3,7 +3,7 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-02-23 15:59:33
+    #> Last Update: 2021-04-01 13:36:54
 
 # Purpose
 
@@ -56,7 +56,7 @@ In development.
 
 # Usage
 
-By those using involved with bioassessment and bionmonitoring and the
+By those using involved with bioassessment and biomonitoring and the
 need for data manipulation.
 
 A common set of tools will standardize outputs across entities. No
@@ -65,7 +65,7 @@ data for use with these tools.
 
 # Documentation
 
-Vignette and install guide udpates are planned for the future.
+Vignette and install guide updates are planned for the future.
 
 # Issues
 
