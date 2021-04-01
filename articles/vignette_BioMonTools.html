@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9044</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9045</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 class="date">2021-03-31</h4>
+            <h4 class="date">2021-04-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/master/vignettes/vignette_BioMonTools.Rmd"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -566,7 +566,7 @@
 <span class="va">tbl_diff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">$</span><span class="va">Diff</span><span class="op">)</span>
 <span class="co">#kable(tbl_diff)</span>
 <span class="co"># sort</span>
-<span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="va">df_compare</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span>
+<span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="va">df_compare</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Number with issues</span>
 <span class="co">#sum(abs(df_compare$Diff))</span>
@@ -741,7 +741,7 @@
 <span class="va">tbl_diff2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">$</span><span class="va">Diff</span><span class="op">)</span>
 <span class="co">#kable(tbl_diff2)</span>
 <span class="co"># sort</span>
-<span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="va">df_compare2</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span>
+<span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="va">df_compare2</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Number with issues</span>
 <span class="co">#sum(abs(df_compare2$Diff))</span>
@@ -1004,7 +1004,7 @@
                                    , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span>
 <span class="co">#&gt; Rarify of samples complete. </span>
 <span class="co">#&gt;  Number of samples =  12 </span>
-<span class="co">#&gt;  Execution time (sec) =  0.017000000000003</span>
+<span class="co">#&gt;  Execution time (sec) =  0.0150000000000006</span>
 
 <span class="co"># view results</span>
 <span class="co">#dim(bugs_mysize)</span>

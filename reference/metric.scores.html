@@ -75,7 +75,7 @@ or continuous (e.g., 0-100, ScoreRegime=&quot;Cont_0100&quot;)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9044</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9045</span>
       </span>
     </div>
 
@@ -174,21 +174,25 @@ Index Region (strata).</p></td>
     </tr>
     <tr>
       <th>DF_Thresh_Metric</th>
-      <td><p>Data frame of Scoring Thresholds for metrics (INDEX_NAME, INDEX_REGION,
+      <td><p>Data frame of Scoring Thresholds for metrics
+(INDEX_NAME, INDEX_REGION,
 METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime
-, SingleValue_Add, NormDist_Tail_Lo, NormDist_Tail_Hi, CatGrad_xvar, CatGrad_InfPt
-, CatGrad_Lo_m,    CatGrad_Lo_b,    CatGrad_Mid_m,    CatGrad_Mid_b,    CatGrad_Hi_m,    CatGrad_Hi_b).</p></td>
+, SingleValue_Add, NormDist_Tail_Lo, NormDist_Tail_Hi, CatGrad_xvar
+, CatGrad_InfPt, CatGrad_Lo_m,    CatGrad_Lo_b,    CatGrad_Mid_m,    CatGrad_Mid_b
+,    CatGrad_Hi_m,    CatGrad_Hi_b).</p></td>
     </tr>
     <tr>
       <th>DF_Thresh_Index</th>
-      <td><p>Data frame of Scoring Thresholds for indices (INDEX_NAME, INDEX_REGION,
-METRIC_NAME, ScoreRegime, Thresh01, Thresh02, Thresh03, Thresh04, Thresh05, Thresh06, Thresh07
+      <td><p>Data frame of Scoring Thresholds for indices
+(INDEX_NAME, INDEX_REGION,METRIC_NAME, ScoreRegime, Thresh01, Thresh02
+, Thresh03, Thresh04, Thresh05, Thresh06, Thresh07
 , Nar01, Nar02, Nar03, Nar04, Nar05, Nar06).</p></td>
     </tr>
     <tr>
       <th>col_ni_total</th>
       <td><p>Name of column with total number of individuals.  Used
-for cases where sample was collected but no organisms collected.  Default = ni_total.</p></td>
+for cases where sample was collected but no organisms collected.
+Default = ni_total.</p></td>
     </tr>
     </table>
 
@@ -212,7 +216,8 @@ The index is on the same scale as the individual metric scores.</p>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/hadley/reshape'>reshape2</a></span><span class='op'>)</span>
 
 <span class='co'># Thresholds</span>
-<span class='va'>fn_thresh</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"BioMonTools"</span><span class='op'>)</span>, <span class='st'>"extdata"</span>, <span class='st'>"MetricScoring.xlsx"</span><span class='op'>)</span>
+<span class='va'>fn_thresh</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"BioMonTools"</span><span class='op'>)</span>, <span class='st'>"extdata"</span>
+, <span class='st'>"MetricScoring.xlsx"</span><span class='op'>)</span>
 <span class='va'>df_thresh_metric</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='va'>fn_thresh</span>, sheet<span class='op'>=</span><span class='st'>"metric.scoring"</span><span class='op'>)</span>
 <span class='va'>df_thresh_index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='va'>fn_thresh</span>, sheet<span class='op'>=</span><span class='st'>"index.scoring"</span><span class='op'>)</span>
 
@@ -290,7 +295,8 @@ The index is on the same scale as the individual metric scores.</p>
 <span class='co'># Thresholds</span>
 <span class='co'># imported above</span>
 <span class='co'># get metric names for myIndex</span>
-<span class='op'>(</span><span class='va'>myMetrics_Bugs_MBSS</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df_thresh_metric</span><span class='op'>[</span><span class='va'>df_thresh_metric</span><span class='op'>[</span>, <span class='st'>"INDEX_NAME"</span><span class='op'>]</span>
+<span class='op'>(</span><span class='va'>myMetrics_Bugs_MBSS</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df_thresh_metric</span><span class='op'>[</span><span class='va'>df_thresh_metric</span><span class='op'>[</span>
+, <span class='st'>"INDEX_NAME"</span><span class='op'>]</span>
                                <span class='op'>==</span> <span class='va'>myIndex</span>, <span class='st'>"METRIC_NAME"</span>, <span class='cn'>TRUE</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  [1] "nt_total"       "nt_EPT"         "nt_Ephem"       "pi_tv2_intol"  
 #&gt;  [5] "pi_Ephem"       "nt_ffg_scrap"   "pi_habit_climb" "pi_Chiro"      
@@ -307,7 +313,8 @@ The index is on the same scale as the individual metric scores.</p>
 <span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>TOLVAL</span> <span class='op'>&lt;-</span> <span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>FinalTolVal07</span>
 <span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>TOLVAL2</span> <span class='op'>&lt;-</span> <span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>FinalTolVal08</span>
 <span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>EXCLUDE</span> <span class='op'>&lt;-</span> <span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>EXCLUDE</span><span class='op'>==</span><span class='st'>"Y"</span>
-<span class='va'>myMetric_Values_Bugs_MBSS</span> <span class='op'>&lt;-</span> <span class='fu'><a href='metric.values.html'>metric.values</a></span><span class='op'>(</span><span class='va'>myDF_Bugs_MBSS</span>, <span class='st'>"bugs"</span>, <span class='va'>myMetrics_Bugs_MBSS</span><span class='op'>)</span>
+<span class='va'>myMetric_Values_Bugs_MBSS</span> <span class='op'>&lt;-</span> <span class='fu'><a href='metric.values.html'>metric.values</a></span><span class='op'>(</span><span class='va'>myDF_Bugs_MBSS</span>, <span class='st'>"bugs"</span>
+, <span class='va'>myMetrics_Bugs_MBSS</span><span class='op'>)</span>
 
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>myMetric_Values_Bugs_MBSS</span><span class='op'>)</span>

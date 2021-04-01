@@ -40,8 +40,8 @@
 
 
 <meta property="og:title" content="Calculate metric statistics — metric.stats" />
-<meta property="og:description" content="This function calculates metric statistics for use with developing a
-multi-metric index.
+<meta property="og:description" content="This function calculates metric statistics for use with
+developing a multi-metric index.
 Inputs are a data frame with" />
 
 
@@ -74,7 +74,7 @@ Inputs are a data frame with" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9044</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9045</span>
       </span>
     </div>
 
@@ -134,8 +134,8 @@ Inputs are a data frame with" />
     </div>
 
     <div class="ref-description">
-    <p>This function calculates metric statistics for use with developing a
-multi-metric index.</p>
+    <p>This function calculates metric statistics for use with
+developing a multi-metric index.</p>
 <p>Inputs are a data frame with</p>
     </div>
 
@@ -167,65 +167,78 @@ multi-metric index.</p>
     </tr>
     <tr>
       <th>col_SampID</th>
-      <td><p>Column name for unique sample identifier.  Default = "SAMPLEID".</p></td>
+      <td><p>Column name for unique sample identifier.
+Default = "SAMPLEID".</p></td>
     </tr>
     <tr>
       <th>col_RefStatus</th>
-      <td><p>Column name for Reference Status.  Default = "Ref_Status"</p></td>
+      <td><p>Column name for Reference Status.
+Default = "Ref_Status"</p></td>
     </tr>
     <tr>
       <th>RefStatus_Ref</th>
-      <td><p>Reference Status name for Reference used in col_ RefStatus.  Default = “Ref”.
+      <td><p>Reference Status name for Reference used in
+col_ RefStatus.  Default = “Ref”.
 Use NULL if you don't use this value.</p></td>
     </tr>
     <tr>
       <th>RefStatus_Str</th>
-      <td><p>Reference Status name for Stressed used in col_ RefStatus.  Default = “Str”.
+      <td><p>Reference Status name for Stressed used in
+col_ RefStatus.  Default = “Str”.
 Use NULL if you don't use this value.</p></td>
     </tr>
     <tr>
       <th>RefStatus_Oth</th>
-      <td><p>Reference Status name for Other used in col_ RefStatus.  Default = “Oth”.
+      <td><p>Reference Status name for Other used in col_ RefStatus.
+Default = “Oth”.
 Use NULL if you don't use this value.</p></td>
     </tr>
     <tr>
       <th>col_DataType</th>
-      <td><p>Column name for Data Type – Validation vs. Calibration.  Default = "Data_Type"</p></td>
+      <td><p>Column name for Data Type – Validation vs. Calibration.
+Default = "Data_Type"</p></td>
     </tr>
     <tr>
       <th>DataType_Cal</th>
-      <td><p>Datatype name for Calibration used in col_DataType.  Default = “Cal”.
+      <td><p>Datatype name for Calibration used in col_DataType.
+Default = “Cal”.
 Use NULL if you don't use this value.</p></td>
     </tr>
     <tr>
       <th>DataType_Ver</th>
-      <td><p>Datatype name for Varification used in col_DataType.  Default = “Ver”.
+      <td><p>Datatype name for Verification used in col_DataType.
+Default = “Ver”.
 Use NULL if you don't use this value.</p></td>
     </tr>
     <tr>
       <th>col_Subset</th>
-      <td><p>Column name to subset the data and run on each subset.  Default = NULL.
+      <td><p>Column name to subset the data and run on each subset.
+Default = NULL.
 If NULL then no subset will be generated.</p></td>
     </tr>
     <tr>
       <th>Subset_Value</th>
-      <td><p>Subset name to be used for creating subset.  Default = NULL.</p></td>
+      <td><p>Subset name to be used for creating subset.
+Default = NULL.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>data frame of metrics (rows) and statistics (columns).
-This is in long format with columns for INDEX_REGION, RefStatus, and DataType.</p>
+This is in long format with columns for INDEX_REGION, RefStatus, and
+DataType.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Summary statistics for the data are calculated.</p>
-<p>The data is filtered by the column Subset for only a single value given by the user.
-If need further subsets re-run the function.  If no subset is give the entire data set is used.</p>
-<p>Statistics will be generated for up to 6 combinations for RefStatus (Ref, Oth, Str) and
-DataType (Cal, Ver).</p>
-<p>The resulting dataframe will have the statistics in columns with the first 4 columns as:
-INDEX_REGION (if col_Subset not provided), col_RefStatus, col_DataType, and Metric_Name.</p>
+<p>The data is filtered by the column Subset for only a single value given by
+the user.  If need further subsets re-run the function.  If no subset is
+given the entire data set is used.</p>
+<p>Statistics will be generated for up to 6 combinations for RefStatus (Ref,
+Oth, Str) and DataType (Cal, Ver).</p>
+<p>The resulting dataframe will have the statistics in columns with the first 4
+columns as:  INDEX_REGION (if col_Subset not provided), col_RefStatus,
+col_DataType, and Metric_Name.</p>
 <p>The following statistics are generated with na.rm = TRUE.</p>
 <p>* n = number</p>
 <p>* min = minimum</p>
@@ -273,13 +286,15 @@ INDEX_REGION (if col_Subset not provided), col_RefStatus, col_DataType, and Metr
 <span class='va'>col_Subset</span>    <span class='op'>&lt;-</span> <span class='st'>"INDEX_REGION"</span>
 <span class='va'>Subset_Value</span>  <span class='op'>&lt;-</span> <span class='st'>"CENTRALHILLS"</span>
 <span class='va'>df_stats</span> <span class='op'>&lt;-</span> <span class='fu'>metric.stats</span><span class='op'>(</span><span class='va'>df_metval</span>, <span class='va'>col_metrics</span>, <span class='va'>col_SampID</span>
-                         , <span class='va'>col_RefStatus</span>, <span class='va'>RefStatus_Ref</span>, <span class='va'>RefStatus_Str</span>, <span class='va'>RefStatus_Oth</span>
+                         , <span class='va'>col_RefStatus</span>, <span class='va'>RefStatus_Ref</span>, <span class='va'>RefStatus_Str</span>
+                         , <span class='va'>RefStatus_Oth</span>
                          , <span class='va'>col_DataType</span>, <span class='va'>DataType_Cal</span>, <span class='va'>DataType_Ver</span>
                          , <span class='va'>col_Subset</span>, <span class='va'>Subset_Value</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Working on item 1/6; Ref___cal</span></div><div class='output co'>#&gt; <span class='message'>Working on item 2/6; Ref___verif</span></div><div class='output co'>#&gt; <span class='message'>Working on item 3/6; Strs___cal</span></div><div class='output co'>#&gt; <span class='message'>Working on item 4/6; Strs___verif</span></div><div class='output co'>#&gt; <span class='message'>Working on item 5/6; Other___cal</span></div><div class='output co'>#&gt; <span class='message'>Working on item 6/6; Other___verif</span></div><div class='input'>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Save Results</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span><span class='va'>df_stats</span>, <span class='st'>"metric.stats.tsv"</span>, col.names<span class='op'>=</span><span class='cn'>TRUE</span>, row.names<span class='op'>=</span><span class='cn'>FALSE</span>, sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span><span class='va'>df_stats</span>, <span class='st'>"metric.stats.tsv"</span>, col.names<span class='op'>=</span><span class='cn'>TRUE</span>, row.names<span class='op'>=</span><span class='cn'>FALSE</span>
+            , sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>

@@ -40,8 +40,8 @@
 
 
 <meta property="og:title" content="Secondary metric statistics — metric.stats2" />
-<meta property="og:description" content="This function calculates secondary statistics (DE and z-score) on metric statistics for use with developing a
-multi-metric index." />
+<meta property="og:description" content="This function calculates secondary statistics (DE and z-score)
+on metric statistics for use with developing a multi-metric index." />
 
 
 
@@ -73,7 +73,7 @@ multi-metric index." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9044</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9045</span>
       </span>
     </div>
 
@@ -133,8 +133,8 @@ multi-metric index." />
     </div>
 
     <div class="ref-description">
-    <p>This function calculates secondary statistics (DE and z-score) on metric statistics for use with developing a
-multi-metric index.</p>
+    <p>This function calculates secondary statistics (DE and z-score)
+on metric statistics for use with developing a multi-metric index.</p>
     </div>
 
     <pre class="usage"><span class='fu'>metric.stats2</span><span class='op'>(</span>
@@ -232,21 +232,25 @@ Default = NULL</p></td>
 <p>Inputs are metric values and metric stats outputs.</p>
 <p>Metric values is a wide format with columns for each metric.
 Assumes only a single Subset.</p>
-<p>Metrics stats is a wide format with columns for each statistic with metrics in a single column.
+<p>Metrics stats is a wide format with columns for each statistic with metrics
+in a single column.
 Assumes only a single Subset.</p>
-<p>Required fields are RefStatus, DataType, and Index_Region.  The user is allowed to enter their own
+<p>Required fields are RefStatus, DataType, and Index_Region.  The user is
+allowed to enter their own
 values for these fields for each input file.</p>
-<p>The two statistics calculated are z-score and discrimination efficiency (DE) for each metric
-within each DataType (cal / val).</p>
+<p>The two statistics calculated are z-score and discrimination efficiency (DE)
+for each metric within each DataType (cal / val).</p>
 <p>Z-scores are calculated using the calibration (or development) data set
 for a given Index_Region (or Site Class).</p>
 <p>* (mean Ref - mean Str) / sd Ref</p>
-<p>DE is calculated without knowing the expected direction of response for each metric
-for a given Index_Region (or Site Class).  DE is the percentage (0-100) of **stressed**
-samples that fall **below** the **25th** quantile (for decreaser metrics, e.g., total taxa)
-or **above** the **75th** quantile (for increaser metrics, e.g., HBI) of the **reference** samples.</p>
+<p>DE is calculated without knowing the expected direction of response for each
+metric for a given Index_Region (or Site Class).  DE is the percentage
+(0-100) of **stressed** samples that fall **below** the **25th** quantile
+(for decreaser metrics, e.g., total taxa) or **above** the **75th** quantile
+(for increaser metrics, e.g., HBI) of the **reference** samples.</p>
 <p>A data frame of the metric.stats input is returned with new columns
-(z_score, DE25 and DE75).  The z-score is added for each Ref_Status.  DE25 and DE75 are only added
+(z_score, DE25 and DE75).  The z-score is added for each Ref_Status.  DE25
+and DE75 are only added
 where Ref_Status is labeled as Stressed.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -279,7 +283,8 @@ where Ref_Status is labeled as Stressed.</p>
 <span class='va'>col_Subset</span>    <span class='op'>&lt;-</span> <span class='st'>"INDEX_REGION"</span>
 <span class='va'>Subset_Value</span>  <span class='op'>&lt;-</span> <span class='st'>"CENTRALHILLS"</span>
 <span class='va'>df_stats</span> <span class='op'>&lt;-</span> <span class='fu'><a href='metric.stats.html'>metric.stats</a></span><span class='op'>(</span><span class='va'>df_metval</span>, <span class='va'>col_metrics</span>, <span class='va'>col_SampID</span>
-                         , <span class='va'>col_RefStatus</span>, <span class='va'>RefStatus_Ref</span>, <span class='va'>RefStatus_Str</span>, <span class='va'>RefStatus_Oth</span>
+                         , <span class='va'>col_RefStatus</span>, <span class='va'>RefStatus_Ref</span>, <span class='va'>RefStatus_Str</span>
+                         , <span class='va'>RefStatus_Oth</span>
                          , <span class='va'>col_DataType</span>, <span class='va'>DataType_Cal</span>, <span class='va'>DataType_Ver</span>
                          , <span class='va'>col_Subset</span>, <span class='va'>Subset_Value</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Working on item 1/6; Ref___cal</span></div><div class='output co'>#&gt; <span class='message'>Working on item 2/6; Ref___verif</span></div><div class='output co'>#&gt; <span class='message'>Working on item 3/6; Strs___cal</span></div><div class='output co'>#&gt; <span class='message'>Working on item 4/6; Strs___verif</span></div><div class='output co'>#&gt; <span class='message'>Working on item 5/6; Other___cal</span></div><div class='output co'>#&gt; <span class='message'>Working on item 6/6; Other___verif</span></div><div class='input'>
@@ -315,7 +320,8 @@ where Ref_Status is labeled as Stressed.</p>
 </div><div class='output co'>#&gt; <span class='error'>Error in metric.stats2(data_metval, data_metstat, col_metval_RefStatus,     col_metval_DataType, col_metval_Subset, col_metstat_RefStatus,     col_metstat_DataType, col_metstat_Subset, RefStatus_Ref,     RefStatus_Str, RefStatus_Oth, DataType_Cal, DataType_Ver,     Subset_Value): object 'col_Subset' not found</span></div><div class='input'>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Save Results</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span><span class='va'>df_stats2</span>, <span class='st'>"metric.stats2.tsv"</span>, col.names<span class='op'>=</span><span class='cn'>TRUE</span>, row.names<span class='op'>=</span><span class='cn'>FALSE</span>, sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span><span class='va'>df_stats2</span>, <span class='st'>"metric.stats2.tsv"</span>, col.names<span class='op'>=</span><span class='cn'>TRUE</span>, row.names<span class='op'>=</span><span class='cn'>FALSE</span>
+            , sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
