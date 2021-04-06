@@ -16,8 +16,7 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
-
-# Purpose
+# BioMonTools <img src="man/figures/logo.png" align="right" height="139" />
 Functions to aid the data analysis of bioassessment and biomonitoring data.
 Suite of functions and tools for metric calculation and scoring for mult-metric
 indices and related data manipulation.

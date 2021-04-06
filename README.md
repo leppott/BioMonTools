@@ -3,9 +3,9 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-04-01 13:36:54
+    #> Last Update: 2021-04-06 15:28:32
 
-# Purpose
+# BioMonTools <img src="man/figures/logo.png" align="right" height="139" />
 
 Functions to aid the data analysis of bioassessment and biomonitoring
 data. Suite of functions and tools for metric calculation and scoring

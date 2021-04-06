@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-04-01 13:37:15
+    #> Last Update: 2021-04-06 15:36:02
 
 # Version History
+
+## Changes in Version 0.5.0.9046 (2021-04-06)
+
+-   feature: Add logo from RBP 2nd edition
+-   docs: Update README with logo
 
 ## Changes in Version 0.5.0.9045 (2021-04-01)
 
