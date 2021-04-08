@@ -483,8 +483,8 @@ metric.values.bugs <- function(myDF
   FFG2_PRE <- TI_COLD <- TI_COLDCOOL <- TI_COOLWARM <- TI_WARM <- NULL
   PHYLUM <- SUBPHYLUM <- CLASS <- SUBCLASS <- INFRAORDER <- ORDER <-
     FAMILY <- SUBFAMILY <- TRIBE <- GENUS <- NULL
-  FFG_COL <- FFG_FIL <- FFG_PRE <- FFG_SCR <- FFG_SHR <- HABITAT_SPEC <-
-    HABITAT_UNKN <- NULL
+  FFG_COL <- FFG_FIL <- FFG_PRE <- FFG_SCR <- FFG_SHR <- FFG_MAH <- FFG_PIH <-
+    FFG_XYL <- FFG_OMN <- FFG_PAR <- HABITAT_SPEC <- HABITAT_UNKN <- NULL
   ni_total <- ni_Americo <- ni_Gnorimo <- ni_EPT <- ni_Trich <- nt_Amph <-
     nt_total <- nt_Bival <- nt_Coleo <- nt_COET <- nt_Deca <- nt_Dipt <-
     nt_Ephem <- nt_EPT <- nt_ET <- nt_Gast <- nt_Insect <- nt_Isop <- nt_Mega <-
@@ -509,6 +509,9 @@ metric.values.bugs <- function(myDF
     nt_habit_burrow <- nt_habit_climb <- nt_habit_cling <- nt_habit_sprawl <-
     nt_habit_swim <- nt_volt_multi <- nt_volt_semi <- nt_volt_uni <- x_Shan_e <-
     NULL
+  nt_ffg_mah <- nt_ffg_pih <- nt_ffg_xyl <- nt_ffg_omn <- nt_ffg_par <-
+    pi_ffg_mah <- pi_ffg_pih <- pi_ffg_xyl <- pi_ffg_omn <- pi_ffg_par <-
+    pt_ffg_mah <- pt_ffg_pih <- pt_ffg_xyl <- pt_ffg_omn <- pt_ffg_par <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -604,12 +607,14 @@ metric.values.bugs <- function(myDF
   myDF[, "HABIT_CN"] <- grepl("CN", myDF[, "HABIT"])
   myDF[, "HABIT_SP"] <- grepl("SP", myDF[, "HABIT"])
   myDF[, "HABIT_SW"] <- grepl("SW", myDF[, "HABIT"])
-  myDF[, "FFG_COL"]  <- grepl("CG", myDF[, "FFG"])
-  myDF[, "FFG_FIL"]  <- grepl("CF", myDF[, "FFG"])
+  myDF[, "FFG_COL"]  <- grepl("(CG|GC)", myDF[, "FFG"])
+  myDF[, "FFG_FIL"]  <- grepl("(CF|FC)", myDF[, "FFG"])
   myDF[, "FFG_PRE"]  <- grepl("PR", myDF[, "FFG"])
   myDF[, "FFG_SCR"]  <- grepl("SC", myDF[, "FFG"])
   myDF[, "FFG_SHR"]  <- grepl("SH", myDF[, "FFG"])
   myDF[, "FFG_MAH"]  <- grepl("MH", myDF[, "FFG"])
+  myDF[, "FFG_OMN"]  <- grepl("OM", myDF[, "FFG"])
+  myDF[, "FFG_PAR"]  <- grepl("PA", myDF[, "FFG"])
   myDF[, "FFG_PIH"]  <- grepl("PH", myDF[, "FFG"])
   myDF[, "FFG_XYL"]  <- grepl("XY", myDF[, "FFG"])
   myDF[, "LC_MULTI"] <- grepl("MULTI", myDF[, "LIFE_CYCLE"])
@@ -1459,6 +1464,12 @@ metric.values.bugs <- function(myDF
              , nt_ffg_mah = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                       & FFG_MAH == TRUE]
                                                , na.rm = TRUE)
+             , nt_ffg_omn = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & FFG_OMN == TRUE]
+                                              , na.rm = TRUE)
+             , nt_ffg_par = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & FFG_PAR == TRUE]
+                                              , na.rm = TRUE)
              , nt_ffg_pih = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                        & FFG_PIH == TRUE]
                                                 , na.rm = TRUE)
@@ -1478,6 +1489,10 @@ metric.values.bugs <- function(myDF
                                       , na.rm=TRUE)/ni_total
              , pi_ffg_mah = 100*sum(N_TAXA[FFG_MAH == TRUE]
                                      , na.rm=TRUE)/ni_total
+             , pi_ffg_omn = 100*sum(N_TAXA[FFG_OMN == TRUE]
+                                    , na.rm=TRUE)/ni_total
+             , pi_ffg_par = 100*sum(N_TAXA[FFG_PAR == TRUE]
+                                    , na.rm=TRUE)/ni_total
              , pi_ffg_pih = 100*sum(N_TAXA[FFG_PIH == TRUE]
                                     , na.rm=TRUE)/ni_total
              , pi_ffg_xyl = 100*sum(N_TAXA[FFG_XYL == TRUE]
@@ -1489,6 +1504,8 @@ metric.values.bugs <- function(myDF
              , pt_ffg_scrap = 100*nt_ffg_scrap/nt_total
              , pt_ffg_shred = 100*nt_ffg_shred/nt_total
              , pt_ffg_mah = 100*nt_ffg_mah/nt_total
+             , pt_ffg_omn = 100*nt_ffg_omn/nt_total
+             , pt_ffg_par = 100*nt_ffg_par/nt_total
              , pt_ffg_pih = 100*nt_ffg_pih/nt_total
              , pt_ffg_xyl = 100*nt_ffg_xyl/nt_total
 

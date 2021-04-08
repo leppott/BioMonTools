@@ -4,9 +4,28 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-04-06 15:36:02
+    #> Last Update: 2021-04-08 08:39:10
 
 # Version History
+
+## Changes in Version 0.5.0.9047 (2021-04-08)
+
+-   refactor: metric.values, add 3 new FFG metrics, Issue \#3
+    -   nt, pi, pt
+        -   omnivore (OM)
+        -   parasite (PA)
+-   refactor: metric.values, Add global variable binding
+    -   FFG metrics new here and from v0.5.0.9444
+-   refactor: MetricNames.xlsx
+    -   Update for new metrics
+-   refactor: Modify ffg\_filt metrics to use CF or FC
+    -   metric.values
+        -   nt, pi, pt
+    -   MetricNames.xlsx
+-   refactor: Modify ffg\_col metrics to use CG or GC
+    -   metric.values
+        -   nt, pi, pt
+    -   MetricNames.xlsx
 
 ## Changes in Version 0.5.0.9046 (2021-04-06)
 
@@ -40,9 +59,9 @@ NEWS
 
 -   refactor: metric.values, add 3 new FFG metrics, Issue \#3
     -   nt, pi, pt
-    -   macrophyte herbivore (MAH)
-    -   xylophage (XYL)
-    -   piercer-herbivore (PIH)
+        -   macrophyte herbivore (MAH)
+        -   xylophage (XYL)
+        -   piercer-herbivore (PIH)
 -   refactor: MetricNames.xlsx
     -   Update for new metrics
 -   refactor: MetricScores.xlsx
