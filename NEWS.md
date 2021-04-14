@@ -4,9 +4,25 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-04-08 08:39:10
+    #> Last Update: 2021-04-14 11:24:55
 
 # Version History
+
+## Changes in Version 0.5.0.9048 (2021-04-14)
+
+-   refactor: metric.values add new metric if IL EPA lakes, Issue \#3
+    -   nt, pi, pt
+        -   Ephemeroptera, Coleoptera, Trichoptera
+    -   Add global variable bindings
+-   refactor: MetricNames.xlsx
+    -   Update for new metrics
+-   refactor: Update MetricScoring.xlsx
+    -   MassIBI Low Gradient
+        -   Update narrative thresholds
+    -   IL EPA Lakes
+        -   Add new indices
+-   docs: markExcluded example missing a comment line
+    -   Causing examples to fail
 
 ## Changes in Version 0.5.0.9047 (2021-04-08)
 

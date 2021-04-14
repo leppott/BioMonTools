@@ -512,6 +512,7 @@ metric.values.bugs <- function(myDF
   nt_ffg_mah <- nt_ffg_pih <- nt_ffg_xyl <- nt_ffg_omn <- nt_ffg_par <-
     pi_ffg_mah <- pi_ffg_pih <- pi_ffg_xyl <- pi_ffg_omn <- pi_ffg_par <-
     pt_ffg_mah <- pt_ffg_pih <- pt_ffg_xyl <- pt_ffg_omn <- pt_ffg_par <- NULL
+  nt_ECT <- pi_ECT <- pt_ECT <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -871,6 +872,11 @@ metric.values.bugs <- function(myDF
              , nt_Dipt = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                   & ORDER == "Diptera"]
                                            , na.rm = TRUE)
+             , nt_ECT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                 & (ORDER == "Ephemeroptera"
+                                                    | ORDER == "Coleoptera"
+                                                    | ORDER == "Plecoptera")]
+                                          , na.rm = TRUE)
              , nt_Ephem = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                    & ORDER == "Ephemeroptera"]
                                             , na.rm = TRUE)
@@ -879,8 +885,8 @@ metric.values.bugs <- function(myDF
                                                    , na.rm = TRUE)
              , nt_EPT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                  & (ORDER == "Ephemeroptera"
-                                                    | ORDER == "Trichoptera"
-                                                    | ORDER == "Plecoptera")]
+                                                    | ORDER == "Plecoptera"
+                                                    | ORDER == "Trichoptera")]
                                           , na.rm = TRUE)
              , nt_ET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                  & (ORDER == "Ephemeroptera"
@@ -934,8 +940,8 @@ metric.values.bugs <- function(myDF
                                             , na.rm = TRUE)
              , nt_POET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                   & (ORDER == "Ephemeroptera"
-                                                     | ORDER == "Trichoptera"
                                                      | ORDER == "Plecoptera"
+                                                     | ORDER == "Trichoptera"
                                                      | ORDER == "Odonata")]
                                            , na.rm = TRUE)
              , nt_Poly = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -1007,12 +1013,14 @@ metric.values.bugs <- function(myDF
                                  , na.rm=TRUE)/ni_total
              , pi_Dipt = 100*sum(N_TAXA[ORDER == "Diptera"]
                                  , na.rm=TRUE)/ni_total
-
              , pi_DiptNonIns = 100*sum(N_TAXA[ORDER == "Diptera"
                                               | CLASS != "Insecta"
                                               | is.na(CLASS)]
                                        , na.rm=TRUE)/ni_total
-
+             , pi_ECT = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
+                                       | ORDER == "Coleoptera"
+                                       | ORDER == "Trichoptera"]
+                                , na.rm=TRUE)/ni_total
              , pi_Ephem = 100*sum(N_TAXA[ORDER == "Ephemeroptera"]
                                   , na.rm=TRUE)/ni_total
              , pi_EphemNoCae = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
@@ -1131,6 +1139,7 @@ metric.values.bugs <- function(myDF
              , pt_COET = 100*nt_COET/nt_total
              , pt_Deca = 100*nt_Deca/nt_total
              , pt_Dipt = 100*nt_Dipt/nt_total
+             , pt_ECT = 100*nt_ECT/nt_total
              , pt_Ephem = 100*nt_Ephem/nt_total
              , pt_EPT = 100*nt_EPT/nt_total
              , pt_ET = 100*nt_ET/nt_total

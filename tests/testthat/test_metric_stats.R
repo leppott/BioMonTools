@@ -47,7 +47,8 @@ test_that("metric_stats & metric_stats2", {
   df_numbers <- df_stats[, -(1:4)]
   sum_calc <- sum(df_numbers, na.rm = TRUE)
 
-  sum_qc <- 315244.8
+  #sum_qc <- 315244.8
+  sum_qc <- 331996.8 # new value, 2021-04-14
 
   # test
   testthat::expect_equal(sum_calc, sum_qc, tolerance = 0.02)

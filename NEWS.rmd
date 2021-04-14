@@ -18,6 +18,22 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9048 (2021-04-14)
+
+* refactor: metric.values add new metric if IL EPA lakes, Issue #3
+    + nt, pi, pt
+        - Ephemeroptera, Coleoptera, Trichoptera
+    + Add global variable bindings
+* refactor: MetricNames.xlsx
+    + Update for new metrics
+* refactor: Update MetricScoring.xlsx
+    + MassIBI Low Gradient
+        - Update narrative thresholds
+    + IL EPA Lakes
+        - Add new indices
+* docs: markExcluded example missing a comment line
+    + Causing examples to fail
+    
 ## Changes in Version 0.5.0.9047 (2021-04-08)
 
 * refactor: metric.values, add 3 new FFG metrics, Issue #3
