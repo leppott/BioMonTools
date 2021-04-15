@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-04-14 11:24:55
+    #> Last Update: 2021-04-15 13:37:07
 
 # Version History
+
+## Changes in Version 0.5.0.9049 (2021-04-15)
+
+-   refactor: metric.values, fix nt\_ECT
+    -   Had nt\_ECP
 
 ## Changes in Version 0.5.0.9048 (2021-04-14)
 

@@ -875,7 +875,7 @@ metric.values.bugs <- function(myDF
              , nt_ECT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                  & (ORDER == "Ephemeroptera"
                                                     | ORDER == "Coleoptera"
-                                                    | ORDER == "Plecoptera")]
+                                                    | ORDER == "Trichoptera")]
                                           , na.rm = TRUE)
              , nt_Ephem = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                    & ORDER == "Ephemeroptera"]
