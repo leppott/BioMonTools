@@ -1,11 +1,12 @@
 Package: BioMonTools
 Type: Package
 Title: Tools for Biomonitoring and Bioassessment
-Version: 0.5.0.9049
+Version: 0.5.0.9050
 Author: c(
 	person("Erik W.", "Leppo", email="Erik.Leppo@tetratech.com", role=c("aut","cre")), 
 	person("Jen", "Stamp", role="ctb"),
-	person("John", "van Sickles", role="ctb"))
+	person("John", "van Sickles", role="ctb")
+	person("Ben", "Block", role="ctb"))
 Maintainer: Erik W. Leppo <Erik.Leppo@tetratech.com>
 Description: Tools for manipulating data associated with biomonitoring and 
     bioassessment. Tools include metric calculation, marking of excluded taxa, 

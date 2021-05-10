@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9050 (2021-05-10)
+
+* docs: Add Ben Block as contributor.
+* refactor: metric.values, add new metric, pi_EPTNoHydro
+* refactor: Metric.Scoring.xlsx, updates for FFXCOVA_2018
+
 ## Changes in Version 0.5.0.9049 (2021-04-15)
 
 * refactor: metric.values, fix nt_ECT

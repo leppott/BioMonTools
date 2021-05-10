@@ -1042,16 +1042,21 @@ metric.values.bugs <- function(myDF
                                                      | FAMILY != "Baetidae"))
                                                  | (ORDER == "Trichoptera"
                                                     & (is.na(FAMILY)==TRUE
-                                                       | FAMILY != "Hydropsychidae"))
+                                                  | FAMILY != "Hydropsychidae"))
                                                  | ORDER == "Plecoptera"]
                                           , na.rm=TRUE)/ni_total
-
              , pi_EPTNoCheu = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
                                              | ORDER == "Trichoptera"
                                              | ORDER == "Plecoptera"
                                      & (is.na(FAMILY)==TRUE
                                         | FAMILY != "Cheumatopsyche")]
                                      , na.rm=TRUE)/ni_total
+             , pi_EPTNoHydro = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
+                                              | ORDER == "Trichoptera"
+                                              | ORDER == "Plecoptera"
+                                              & (is.na(FAMILY)==TRUE
+                                                 | FAMILY != "Hydropsychidae")]
+                                       , na.rm=TRUE)/ni_total
              , pi_ET = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
                                       | ORDER == "Trichoptera"]
                                , na.rm=TRUE)/ni_total

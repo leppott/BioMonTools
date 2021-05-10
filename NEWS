@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-04-15 13:37:07
+    #> Last Update: 2021-05-10 15:35:56
 
 # Version History
+
+## Changes in Version 0.5.0.9050 (2021-05-10)
+
+-   docs: Add Ben Block as contributor.
+-   refactor: metric.values, add new metric, pi\_EPTNoHydro
+-   refactor: Metric.Scoring.xlsx, updates for FFXCOVA\_2018
 
 ## Changes in Version 0.5.0.9049 (2021-04-15)
 
