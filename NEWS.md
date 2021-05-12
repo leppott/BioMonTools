@@ -4,9 +4,27 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-05-10 15:35:56
+    #> Last Update: 2021-05-12 10:19:39
 
 # Version History
+
+## Changes in Version 0.5.0.9053 (2021-05-10)
+
+-   refactor: Metric.Scoring.xlsx, updates for FFXCOVA\_2018 metrics
+    -   Coastal Plain, x\_HBI, Cont\_0100 to Cont\_0010
+    -   Floating point errors, n = 7
+-   refactor: Add new metric, pi\_EPTNoHydro to MetricNames.xlsx
+
+## Changes in Version 0.5.0.9052 (2021-05-10)
+
+-   refactor: Metric.Scoring.xlsx, update to remove NA from index
+    scoring
+    -   Both numeric and narrative.  
+    -   Caused an issue with scoring FFXCOVA\_2018
+
+## Changes in Version 0.5.0.9051 (2021-05-10)
+
+-   refactor: metric.values, update new metric, pi\_EPTNoHydro
 
 ## Changes in Version 0.5.0.9050 (2021-05-10)
 

@@ -18,6 +18,23 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9053 (2021-05-10)
+
+* refactor: Metric.Scoring.xlsx, updates for FFXCOVA_2018 metrics
+    + Coastal Plain, x_HBI, Cont_0100 to Cont_0010
+    + Floating point errors, n = 7
+* refactor: Add new metric, pi_EPTNoHydro to MetricNames.xlsx
+
+## Changes in Version 0.5.0.9052 (2021-05-10)
+
+* refactor: Metric.Scoring.xlsx, update to remove NA from index scoring
+    + Both numeric and narrative.  
+    + Caused an issue with scoring FFXCOVA_2018
+
+## Changes in Version 0.5.0.9051 (2021-05-10)
+
+* refactor: metric.values, update new metric, pi_EPTNoHydro
+
 ## Changes in Version 0.5.0.9050 (2021-05-10)
 
 * docs: Add Ben Block as contributor.
