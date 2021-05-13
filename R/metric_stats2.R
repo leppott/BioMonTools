@@ -393,14 +393,26 @@ metric.stats2 <- function(data_metval
   # , "q75_Ref"]
 
   # summarize
+  # df_de <- df_merge4de %>%
+  #   dplyr::group_by(col_metval_Subset
+  #                   , col_metval_DataType
+  #                   , col_metval_RefStatus
+  #                   , "Metric_Name") %>%
+  #   dplyr::summarize(DE25 = 100 * sum(q25_lt / n_Str)
+  #                    , DE75 = 100 * sum(q75_gt / n_Str))
+  # df_de <- data.frame(df_de)
+  
+  # summarize
+  # Needed to change group_by (https://stackoverflow.com/questions/34487641/dplyr-groupby-on-multiple-columns-using-variable-names)
+  cols_groupby <- c(col_metval_Subset, col_metval_DataType, col_metval_RefStatus, "Metric_Name")
+  
   df_de <- df_merge4de %>%
-    dplyr::group_by(col_metval_Subset
-                    , col_metval_DataType
-                    , col_metval_RefStatus
-                    , "Metric_Name") %>%
+    dplyr::group_by(across(all_of(cols_groupby))) %>%
     dplyr::summarize(DE25 = 100 * sum(q25_lt / n_Str)
                      , DE75 = 100 * sum(q75_gt / n_Str))
   df_de <- data.frame(df_de)
+  
+  
   # Need variables not the names
   # use group_by_ even though deprecated.
   # using enquo(!!variable)  adds extra quotes
