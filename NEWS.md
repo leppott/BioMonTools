@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-05-12 10:19:39
+    #> Last Update: 2021-05-13 14:30:07
 
 # Version History
+
+## Changes in Version 0.5.0.9054 (2021-05-13)
+
+-   refactor: Incorporate pull request \#50
+    -   metric.stats2, fix group\_by with change in dplyr
 
 ## Changes in Version 0.5.0.9053 (2021-05-10)
 

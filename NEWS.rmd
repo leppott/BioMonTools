@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9054 (2021-05-13)
+
+* refactor: Incorporate pull request #50
+    + metric.stats2, fix group_by with change in dplyr
+
 ## Changes in Version 0.5.0.9053 (2021-05-10)
 
 * refactor: Metric.Scoring.xlsx, updates for FFXCOVA_2018 metrics
