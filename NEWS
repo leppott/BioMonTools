@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-05-13 14:30:07
+    #> Last Update: 2021-05-14 10:46:58
 
 # Version History
+
+## Changes in Version 0.5.0.9055 (2021-05-14)
+
+-   refactor: Update scoring to allow for scaling from metric to index
+    scores
+    -   MetricScoring.xlsx, add ScoreScaling column
+    -   metric\_scores.R, add AVERAGESCALE\_100 as new index scoring
+        option
 
 ## Changes in Version 0.5.0.9054 (2021-05-13)
 

@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9055 (2021-05-14)
+
+* refactor: Update scoring to allow for scaling from metric to index scores
+    + MetricScoring.xlsx, add ScoreScaling column
+    + metric_scores.R, add AVERAGESCALE_100 as new index scoring option
+
 ## Changes in Version 0.5.0.9054 (2021-05-13)
 
 * refactor: Incorporate pull request #50

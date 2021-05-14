@@ -552,15 +552,16 @@ metric.scores <- function(DF_Metrics
     # thresholds
     fun.NumMetrics       <- fun.Thresh.myIndex[, "NumMetrics"]
     fun.ScoreRegime      <- fun.Thresh.myIndex[, "ScoreRegime"]
-    fun.Index.Nar.Thresh <- fun.Thresh.myIndex[, c(paste0("Thresh0", 1:7))]
-    fun.Index.Nar.Nar    <- fun.Thresh.myIndex[, c(paste0("Nar0", 1:6))]
+    fun.Scale            <- fun.Thresh.myIndex[, "ScoreScaling"]
+    fun.Index.Nar.Thresh <- fun.Thresh.myIndex[, c(paste0("Thresh0"
+                                                          , seq_len(7)))]
+    fun.Index.Nar.Nar    <- fun.Thresh.myIndex[, c(paste0("Nar0", seq_len(6)))]
 
     fun.Index.Nar.Numb <- sum(!is.na(fun.Index.Nar.Nar), na.rm = TRUE)
 
     fun.ZeroInd_Use <- fun.Thresh.myIndex[, "Use_ZeroInd"]
     fun.ZeroInd_Sc  <- fun.Thresh.myIndex[, "ZeroInd_Score"]
     fun.ZeroInd_Nar <- fun.Thresh.myIndex[, "ZeroInd_Narrative"]
-
 
     # default value
     fun.Value <- DF_Metrics[, "sum_Index"]
@@ -579,6 +580,9 @@ metric.scores <- function(DF_Metrics
     } else if (fun.ScoreRegime == "AVERAGE_100"){
       sr_mult    <- 100 / fun.NumMetrics
       fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
+    } else if (fun.ScoreRegime == "AVERAGESCALE_100") {
+      sr_mult    <- 100 / fun.NumMetrics / fun.Scale
+      fun.Result <- sr_mult * DF_Metrics[, "sum_Index"]
     } else {
       # SUM
       fun.Result <- DF_Metrics[, "sum_Index"]
