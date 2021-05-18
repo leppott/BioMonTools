@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-05-14 10:46:58
+    #> Last Update: 2021-05-18 14:24:34
 
 # Version History
+
+## Changes in Version 0.5.0.9056 (2021-05-18)
+
+-   refactor: Convert messages to warnings in markExcluded
+    -   cat() and flush.console() to message()
 
 ## Changes in Version 0.5.0.9055 (2021-05-14)
 

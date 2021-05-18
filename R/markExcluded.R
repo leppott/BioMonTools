@@ -262,6 +262,40 @@ markExcluded <- function(df_samptax
   ##FUNCTION.markExcluded.START
   #
   boo_QC <- FALSE
+  if(isTRUE(boo_QC)){
+    # Data
+    df_samps_bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
+                                            , package="BioMonTools")
+                                , guess_max=10^6)
+
+    # Variables
+    SampID     <- "SampleID"
+    TaxaID     <- "TaxaID"
+    TaxaCount  <- "N_Taxa"
+    Exclude    <- "Exclude_New"
+    TaxaLevels <- c("Kingdom"
+                    , "Phylum"
+                    , "SubPhylum"
+                    , "Class"
+                    , "SubClass"
+                    , "Order"
+                    , "SubOrder"
+                    , "SuperFamily"
+                    , "Family"
+                    , "SubFamily"
+                    , "Tribe"
+                    , "Genus"
+                    , "SubGenus"
+                    , "Species"
+                    , "Variety")
+    # Taxa that should be treated as equivalent
+    Exceptions <- data.frame("TaxaID"=c("Sphaeriidae")
+                             , "PhyloID"=c("Pisidiidae"))
+
+    # Recode to Function Variables
+    df_samptax <- df_samps_bugs
+    #
+  }## IF ~ isTRUE(boo_QC) ~ END
 
   # global variable bindings ----
   count_tl <- NULL
@@ -292,8 +326,9 @@ markExcluded <- function(df_samptax
                      , paste(tl_missing, collapse=", ", sep="")
                      , "\n")
   #warning(msg_warn, tl_missing_num>0) # (commented out)
-  cat(msg_warn)
-  utils::flush.console()
+  # cat(msg_warn)
+  # utils::flush.console()
+  message(msg_warn)
 
   # QC, remove tibble from data frame
   df_samptax <- as.data.frame(df_samptax)
@@ -335,7 +370,7 @@ markExcluded <- function(df_samptax
 
 
 
-  i <- tl_present[6]  # QC
+ # i <- tl_present[6]  # QC
 
   # Loop through TaxaLevels
   for (i in tl_present){##for.i.START
@@ -410,7 +445,9 @@ markExcluded <- function(df_samptax
     # as.name(TaxaCount) == eval(substitute(TaxaCount))
     # interp(SampID)
     # https://stackoverflow.com/questions/27949212/using-dplyr-n-distinct-in-function-with-quoted-variable?rq=1
-    i_count <- dplyr::summarise_(dplyr::group_by_(df_samptax, SampID, i)
+    i_count <- dplyr::summarise_(dplyr::group_by_(df_samptax
+                                                 , SampID
+                                                 , i)
                                  # individuals #
                                  , count_tl =
                           lazyeval::interp(~dplyr::n_distinct(var, na.rm=TRUE)
