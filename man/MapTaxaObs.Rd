@@ -11,11 +11,13 @@ MapTaxaObs(
   TaxaCount,
   Lat,
   Long,
-  output_dir,
+  output_dir = NULL,
   output_prefix = "maps.taxa",
   output_type = "pdf",
   database,
   regions,
+  map_grp = NULL,
+  leg_loc = "bottomleft",
   ...
 )
 }
@@ -43,6 +45,11 @@ SampID}
 
 \item{regions}{maps::map function regions.  Names pertinent to map_db.}
 
+\item{map_grp}{Map grouping variable from df_obs.  Will generate legend and
+color code the points on the map.  Default = NULL}
+
+\item{leg_loc}{Legend location text.  Default = "bottomleft"}
+
 \item{...}{Optional arguments to be passed to methods.}
 }
 \value{
@@ -64,6 +71,10 @@ In addition the map will include the number of samples by taxon.
 
 The example data is fish but can be used for benthic macroinvertebrates as
 well.
+
+If use grouping variable colors are from grDevices::rainbow()
+
+Jpg file names replace all non-alphanumeric characters with "_".
 
 The R package maps is required for this function.
 }
@@ -94,7 +105,9 @@ MapTaxaObs(df_obs
            , database="state"
            , regions="massachusetts"
            , xlim = myXlim
-           , ylim = myYlim)
+           , ylim = myYlim
+           , map_grp = "estuary"
+           , leg_loc = "bottomleft")
 }
 
 #Example #2

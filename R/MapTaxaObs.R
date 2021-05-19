@@ -15,6 +15,10 @@
 #' The example data is fish but can be used for benthic macroinvertebrates as
 #' well.
 #'
+#' If use grouping variable colors are from grDevices::rainbow()
+#'
+#' Jpg file names replace all non-alphanumeric characters with "_".
+#'
 #' The R package maps is required for this function.
 #'
 #' @param df_obs Observation data frame
@@ -29,6 +33,9 @@
 #' @param output_type File format for output; jpg or pdf.
 #' @param database maps::map function database; world, usa, state, county
 #' @param regions maps::map function regions.  Names pertinent to map_db.
+#' @param map_grp Map grouping variable from df_obs.  Will generate legend and
+#' color code the points on the map.  Default = NULL
+#' @param leg_loc Legend location text.  Default = "bottomleft"
 #' @param ... Optional arguments to be passed to methods.
 # @param map_xlim maps::map function xlim;
 # @param map_ylim maps::map function ylim;
@@ -63,7 +70,9 @@
 #'            , database="state"
 #'            , regions="massachusetts"
 #'            , xlim = myXlim
-#'            , ylim = myYlim)
+#'            , ylim = myYlim
+#'            , map_grp = "estuary"
+#'            , leg_loc = "bottomleft")
 #'}
 #'
 #' #Example #2
@@ -100,11 +109,14 @@ MapTaxaObs <- function(df_obs
                        , TaxaCount
                        , Lat
                        , Long
-                       , output_dir
+                       , output_dir = NULL
                        , output_prefix = "maps.taxa"
                        , output_type = "pdf"
                        , database
-                       , regions, ...)
+                       , regions
+                       , map_grp = NULL
+                       , leg_loc = "bottomleft"
+                       , ...)
 {##FUNCTION.MapTaxaObs.START
 
   # tibble to data frame
@@ -133,9 +145,16 @@ MapTaxaObs <- function(df_obs
               , sep = ""))
   utils::flush.console()
 
+  if(is.null(output_dir)){
+    dir_out <- file.path(getwd())
+  } else {
+    dir_out <- output_dir
+  }## IF ~ output_dir ~ END
+
   #Define PDF
   if (output_type=="pdf") {##IF.output_type.START
-    grDevices::pdf(file=paste(output_prefix, "pdf", sep="."))##PDF.START
+    grDevices::pdf(file = file.path(dir_out
+                                    , paste(output_prefix, "pdf", sep = ".")))
   }##IF.output_type.END
 
 
@@ -157,7 +176,9 @@ MapTaxaObs <- function(df_obs
     utils::flush.console()
 
     # # subset
-    data.TargetMapCat <- subset(df_obs, TaxaID == myTargetMapCat)
+    #data.TargetMapCat <- subset(df_obs, TaxaID == myTargetMapCat)
+    data.TargetMapCat <- df_obs[df_obs[, TaxaID] == myTargetMapCat, ]
+
     #
     # should be % occ in sample but use max as a surrogate
     #  (easier to see the dots)
@@ -165,14 +186,15 @@ MapTaxaObs <- function(df_obs
 
     # jpg
     if (output_type=="jpg") {##IF.output_type.START
-      grDevices::jpeg(filename = paste(output_prefix
-                                       , myTargetMapCat
-                                       , "jpg"
-                                       , sep=".")
-                      , width=1024
-                      , height=768
-                      , quality=100
-                      , pointsize=20)
+      grDevices::jpeg(filename = file.path(dir_out
+                                           , paste(output_prefix
+                                      , gsub("[[:punct:]]", "_", myTargetMapCat)
+                                                   , "jpg"
+                                                   , sep = "."))
+                      , width = 1024
+                      , height = 768
+                      , quality = 100
+                      , pointsize = 20)
     }##IF.output_type.END
 
     #~~~~~~~~~~~~~~~~~
@@ -202,11 +224,36 @@ MapTaxaObs <- function(df_obs
                      , pch = 1
                      , cex = 1)
     #
-    graphics::points(data.TargetMapCat[, Long]
-                     , data.TargetMapCat[, Lat]
-                     , col = "blue"
-                     , pch = 19
-                     , cex = myCEX)
+    # Points ----
+    myPCH <- 19
+
+    if(is.null(map_grp)){
+      # Legend = FALSE
+      graphics::points(data.TargetMapCat[, Long]
+                       , data.TargetMapCat[, Lat]
+                       , col = "blue"
+                       , pch = myPCH
+                       , cex = myCEX)
+    } else {
+      # Legend = TRUE
+      leg_cat <- unique(data.TargetMapCat[, map_grp])
+      n_leg_cat <- length(leg_cat)
+      leg_col <- grDevices::rainbow(n_leg_cat)
+      for(a in seq_len(n_leg_cat)){
+        pts_leg <- data.TargetMapCat[data.TargetMapCat[, map_grp] == leg_cat[a], ]
+        graphics::points(pts_leg[, Long]
+                         , pts_leg[, Lat]
+                         , col = leg_col[a]
+                         , pch = myPCH
+                         , cex = myCEX)
+      }## FOR ~ a ~ END
+      legend(leg_loc
+             , legend = leg_cat
+             , col = leg_col
+             , pch = myPCH)
+    }## IF ~ legend ~ END
+
+
     # main
     #graphics::mtext(paste(data2process[myCounter]," = ",myTargetMapCat,sep=""))
     graphics::mtext(myTargetMapCat)
@@ -219,10 +266,11 @@ MapTaxaObs <- function(df_obs
     # Pct Samps, bottom line (line=-1)
     Samps.Target <- unique(data.TargetMapCat[,SampID])
     (NumSamps.Target <- length(Samps.Target))
-    (Pct.Samps <- round(NumSamps.Target/NumSamps.ALL,2))
+    (Pct.Samps <- round(NumSamps.Target / NumSamps.ALL * 100, 1))
     graphics::mtext(paste("Pct of Total Samples (n="
                           , NumSamps.ALL,") = "
                           , Pct.Samps
+                          , "%"
                           , sep = "")
                     , side = 1
                     , outer = TRUE
@@ -232,7 +280,6 @@ MapTaxaObs <- function(df_obs
     # number of samples
     graphics::mtext(paste("n=", NumSamps.Target, sep = ""), side = 1)
     #
-
 
     if (output_type=="jpg") {##IF.output_type.START
       grDevices::dev.off() ##JPEG.END
