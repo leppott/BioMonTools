@@ -83,7 +83,7 @@ prefix &quot;map.taxa.&quot; by default." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9056</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9057</span>
       </span>
     </div>
 
@@ -156,11 +156,13 @@ prefix "map.taxa." by default.</p>
   <span class='va'>TaxaCount</span>,
   <span class='va'>Lat</span>,
   <span class='va'>Long</span>,
-  <span class='va'>output_dir</span>,
+  output_dir <span class='op'>=</span> <span class='cn'>NULL</span>,
   output_prefix <span class='op'>=</span> <span class='st'>"maps.taxa"</span>,
   output_type <span class='op'>=</span> <span class='st'>"pdf"</span>,
   <span class='va'>database</span>,
   <span class='va'>regions</span>,
+  map_grp <span class='op'>=</span> <span class='cn'>NULL</span>,
+  leg_loc <span class='op'>=</span> <span class='st'>"bottomleft"</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -213,6 +215,15 @@ SampID</p></td>
       <td><p>maps::map function regions.  Names pertinent to map_db.</p></td>
     </tr>
     <tr>
+      <th>map_grp</th>
+      <td><p>Map grouping variable from df_obs.  Will generate legend and
+color code the points on the map.  Default = NULL</p></td>
+    </tr>
+    <tr>
+      <th>leg_loc</th>
+      <td><p>Legend location text.  Default = "bottomleft"</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Optional arguments to be passed to methods.</p></td>
     </tr>
@@ -230,6 +241,8 @@ be created.</p>
 In addition the map will include the number of samples by taxon.</p>
 <p>The example data is fish but can be used for benthic macroinvertebrates as
 well.</p>
+<p>If use grouping variable colors are from grDevices::rainbow()</p>
+<p>Jpg file names replace all non-alphanumeric characters with "_".</p>
 <p>The R package maps is required for this function.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -259,7 +272,9 @@ well.</p>
            , database<span class='op'>=</span><span class='st'>"state"</span>
            , regions<span class='op'>=</span><span class='st'>"massachusetts"</span>
            , xlim <span class='op'>=</span> <span class='va'>myXlim</span>
-           , ylim <span class='op'>=</span> <span class='va'>myYlim</span><span class='op'>)</span>
+           , ylim <span class='op'>=</span> <span class='va'>myYlim</span>
+           , map_grp <span class='op'>=</span> <span class='st'>"estuary"</span>
+           , leg_loc <span class='op'>=</span> <span class='st'>"bottomleft"</span><span class='op'>)</span>
 <span class='op'>}</span>
 
 <span class='co'>#Example #2</span>
