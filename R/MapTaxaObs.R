@@ -35,7 +35,8 @@
 #' @param regions maps::map function regions.  Names pertinent to map_db.
 #' @param map_grp Map grouping variable from df_obs.  Will generate legend and
 #' color code the points on the map.  Default = NULL
-#' @param leg_loc Legend location text.  Default = "bottomleft"
+#' @param leg_loc Legend location text.  Default = "right"
+#' Other values may not work properly.
 #' @param ... Optional arguments to be passed to methods.
 # @param map_xlim maps::map function xlim;
 # @param map_ylim maps::map function ylim;
@@ -74,33 +75,6 @@
 #'            , map_grp = "estuary"
 #'            , leg_loc = "bottomleft")
 #'}
-#'
-#' #Example #2
-#' # (doesn't work right now)
-#' #df_obs <- read.delim("Fish_MD.txt")
-#' ESampID <- "SITEYR"
-#' ETaxaID <- "FishTaxa"
-#' #TaxaCount <- "Count"
-#' #Lat <- "Latitude83"
-#' #Long <- "Longitude83"
-#' #output_dir <- tempdir()
-#' #output_prefix <- "maps.taxa."
-#' #output_type <- "pdf"
-#' #'
-#' # map arguments
-#' #myDB <- "state"
-#' #myRegion <- "maryland"
-#'
-#' #df_obs[,TaxaCount] <- 1
-#'
-#' #MapTaxaObs(df_obs
-#'  #          , SampID
-#'   #         , TaxaID
-#'    #        , TaxaCount
-#'     #       , Lat
-#'      #      , Long
-#'       #     , database = myDB
-#'        #    , regions = myRegion)
 #
 #' @export
 MapTaxaObs <- function(df_obs
@@ -115,7 +89,7 @@ MapTaxaObs <- function(df_obs
                        , database
                        , regions
                        , map_grp = NULL
-                       , leg_loc = "bottomleft"
+                       , leg_loc = "right"
                        , ...)
 {##FUNCTION.MapTaxaObs.START
 
@@ -154,7 +128,9 @@ MapTaxaObs <- function(df_obs
   #Define PDF
   if (output_type=="pdf") {##IF.output_type.START
     grDevices::pdf(file = file.path(dir_out
-                                    , paste(output_prefix, "pdf", sep = ".")))
+                                    , paste(output_prefix, "pdf", sep = "."))
+                   , width = 10
+                   , height = 7)
   }##IF.output_type.END
 
 
@@ -250,7 +226,9 @@ MapTaxaObs <- function(df_obs
       legend(leg_loc
              , legend = leg_cat
              , col = leg_col
-             , pch = myPCH)
+             , pch = myPCH
+             , xpd = TRUE
+             , inset = c(-0.75, 0))
     }## IF ~ legend ~ END
 
 

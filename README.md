@@ -3,7 +3,7 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-04-06 15:28:32
+    #> Last Update: 2021-05-21 10:08:25
 
 # BioMonTools <img src="man/figures/logo.png" align="right" height="139" />
 
@@ -34,11 +34,11 @@ releases](https://img.shields.io/github/downloads/leppott/BioMonTools/total.svg)
 
 To install the current version use the code below to install from
 GitHub. The use of “force = TRUE” ensures the package is installed even
-if already present. If the package `devtools` is missing the code below
+if already present. If the package `remotes` is missing the code below
 will install it.
 
 ``` r
-if(!require(devtools)){install.packages("devtools")}  #install if needed
+if(!require(remotes)){install.packages("remotes")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE)
 ```
 
@@ -46,7 +46,7 @@ Vignettes are not installed by default. If you want the additional
 documentat (recommended) then use this version of the code.
 
 ``` r
-if(!require(devtools)){install.packages("devtools")}  #install if needed
+if(!require(remotes)){install.packages("remotes")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
 ```
 

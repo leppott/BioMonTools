@@ -17,7 +17,7 @@ MapTaxaObs(
   database,
   regions,
   map_grp = NULL,
-  leg_loc = "bottomleft",
+  leg_loc = "right",
   ...
 )
 }
@@ -48,7 +48,8 @@ SampID}
 \item{map_grp}{Map grouping variable from df_obs.  Will generate legend and
 color code the points on the map.  Default = NULL}
 
-\item{leg_loc}{Legend location text.  Default = "bottomleft"}
+\item{leg_loc}{Legend location text.  Default = "right"
+Other values may not work properly.}
 
 \item{...}{Optional arguments to be passed to methods.}
 }
@@ -109,31 +110,4 @@ MapTaxaObs(df_obs
            , map_grp = "estuary"
            , leg_loc = "bottomleft")
 }
-
-#Example #2
-# (doesn't work right now)
-#df_obs <- read.delim("Fish_MD.txt")
-ESampID <- "SITEYR"
-ETaxaID <- "FishTaxa"
-#TaxaCount <- "Count"
-#Lat <- "Latitude83"
-#Long <- "Longitude83"
-#output_dir <- tempdir()
-#output_prefix <- "maps.taxa."
-#output_type <- "pdf"
-#'
-# map arguments
-#myDB <- "state"
-#myRegion <- "maryland"
-
-#df_obs[,TaxaCount] <- 1
-
-#MapTaxaObs(df_obs
- #          , SampID
-  #         , TaxaID
-   #        , TaxaCount
-    #       , Lat
-     #      , Long
-      #     , database = myDB
-       #    , regions = myRegion)
 }

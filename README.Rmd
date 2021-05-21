@@ -38,10 +38,10 @@ indices and related data manipulation.
 # Installation
 To install the current version use the code below to install from GitHub.  The
 use of "force = TRUE" ensures the package is installed even if already present.
-If the package `devtools` is missing the code below will install it.
+If the package `remotes` is missing the code below will install it.
 
 ```{r, eval=FALSE}
-if(!require(devtools)){install.packages("devtools")}  #install if needed
+if(!require(remotes)){install.packages("remotes")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE)
 ```
 
@@ -49,7 +49,7 @@ Vignettes are not installed by default.  If you want the additional documentat
 (recommended) then use this version of the code.
 
 ```{r, eval=FALSE}
-if(!require(devtools)){install.packages("devtools")}  #install if needed
+if(!require(remotes)){install.packages("remotes")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
 ```
 

@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9058 (2021-05-21)
+
+* refactor: Move legend to the right margin, MapTaxaObs, Issue #52
+* docs: README, update install code to use remotes instead of devtools
+
 ## Changes in Version 0.5.0.9057 (2021-05-19)
 
 * refactor: Update MapTaxaObs

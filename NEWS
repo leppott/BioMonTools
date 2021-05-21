@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-05-19 16:53:47
+    #> Last Update: 2021-05-21 10:08:48
 
 # Version History
+
+## Changes in Version 0.5.0.9058 (2021-05-21)
+
+-   refactor: Move legend to the right margin, MapTaxaObs, Issue \#52
+-   docs: README, update install code to use remotes instead of devtools
 
 ## Changes in Version 0.5.0.9057 (2021-05-19)
 
@@ -14,8 +19,8 @@ NEWS
     -   subset function not working as intended
 -   refactor: MapTaxaObs, percent 0-100, Issue \#28
 -   refactor: MapTaxaObs, add output directory path, Issue \#27
--   refactor: MapTaxaObs, add grouping variable to color points,
-    Issue\#52
+-   refactor: MapTaxaObs, add grouping variable to color points, Issue
+    \#52
     -   Add colors and legend
     -   Add new parameters to function
     -   Update example
