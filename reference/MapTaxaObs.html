@@ -83,7 +83,7 @@ prefix &quot;map.taxa.&quot; by default." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9057</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9058</span>
       </span>
     </div>
 
@@ -162,7 +162,7 @@ prefix "map.taxa." by default.</p>
   <span class='va'>database</span>,
   <span class='va'>regions</span>,
   map_grp <span class='op'>=</span> <span class='cn'>NULL</span>,
-  leg_loc <span class='op'>=</span> <span class='st'>"bottomleft"</span>,
+  leg_loc <span class='op'>=</span> <span class='st'>"right"</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -221,7 +221,8 @@ color code the points on the map.  Default = NULL</p></td>
     </tr>
     <tr>
       <th>leg_loc</th>
-      <td><p>Legend location text.  Default = "bottomleft"</p></td>
+      <td><p>Legend location text.  Default = "right"
+Other values may not work properly.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -276,33 +277,6 @@ well.</p>
            , map_grp <span class='op'>=</span> <span class='st'>"estuary"</span>
            , leg_loc <span class='op'>=</span> <span class='st'>"bottomleft"</span><span class='op'>)</span>
 <span class='op'>}</span>
-
-<span class='co'>#Example #2</span>
-<span class='co'># (doesn't work right now)</span>
-<span class='co'>#df_obs &lt;- read.delim("Fish_MD.txt")</span>
-<span class='va'>ESampID</span> <span class='op'>&lt;-</span> <span class='st'>"SITEYR"</span>
-<span class='va'>ETaxaID</span> <span class='op'>&lt;-</span> <span class='st'>"FishTaxa"</span>
-<span class='co'>#TaxaCount &lt;- "Count"</span>
-<span class='co'>#Lat &lt;- "Latitude83"</span>
-<span class='co'>#Long &lt;- "Longitude83"</span>
-<span class='co'>#output_dir &lt;- tempdir()</span>
-<span class='co'>#output_prefix &lt;- "maps.taxa."</span>
-<span class='co'>#output_type &lt;- "pdf"</span>
-<span class='co'>#'</span>
-<span class='co'># map arguments</span>
-<span class='co'>#myDB &lt;- "state"</span>
-<span class='co'>#myRegion &lt;- "maryland"</span>
-
-<span class='co'>#df_obs[,TaxaCount] &lt;- 1</span>
-
-<span class='co'>#MapTaxaObs(df_obs</span>
- <span class='co'>#          , SampID</span>
-  <span class='co'>#         , TaxaID</span>
-   <span class='co'>#        , TaxaCount</span>
-    <span class='co'>#       , Lat</span>
-     <span class='co'>#      , Long</span>
-      <span class='co'>#     , database = myDB</span>
-       <span class='co'>#    , regions = myRegion)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
