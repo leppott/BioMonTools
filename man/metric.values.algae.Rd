@@ -8,7 +8,9 @@ metric.values.algae(
   myDF,
   MetricNames = NULL,
   boo.Adjust = FALSE,
-  cols2keep = NULL
+  cols2keep = NULL,
+  MetricSort = NA,
+  boo.Shiny = FALSE
 )
 }
 \arguments{
@@ -22,6 +24,12 @@ metrics.}
 
 \item{cols2keep}{Column names of fun.DF to retain in the output.  Uses
 column names.}
+
+\item{MetricSort}{How metric names should be sort; NA = as is
+, AZ = alphabetical.  Default = NULL.}
+
+\item{boo.Shiny}{Boolean value for if the function is accessed via Shiny.
+Default = FALSE.}
 }
 \value{
 Data frame

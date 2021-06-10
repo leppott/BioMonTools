@@ -434,12 +434,13 @@ metric.values <- function(fun.DF
   } else if(fun.Community=="FISH"){
     metric.values.fish(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
                        , boo.Shiny)
-  # } else if(fun.Community=="ALGAE"){
-  #   metric.values.algae(fun.DF, fun.MetricNames, boo.Adjust)
+  } else if(fun.Community=="ALGAE"){
+    metric.values.algae(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
+                        , boo.Shiny)
   }##IF.END
 }##FUNCTION.metric.values.START
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' @title Calculate metric values, Fish
+#' @title Calculate metric values, Bugs
 #'
 #' @description Subfunction of metric.values for use with Benthic
 #' Macroinvertebrates
@@ -2342,16 +2343,25 @@ metric.values.fish <- function(myDF
 #' metrics.
 #' @param cols2keep Column names of fun.DF to retain in the output.  Uses
 #' column names.
+#' @param MetricSort How metric names should be sort; NA = as is
+#' , AZ = alphabetical.  Default = NULL.
+#' @param boo.Shiny Boolean value for if the function is accessed via Shiny.
+#' Default = FALSE.
 #'
 #' @return Data frame
 #'
 #' @keywords internal
 #'
 #' @export
+
+
+
 metric.values.algae <- function(myDF
                                 , MetricNames=NULL
                                 , boo.Adjust=FALSE
-                                , cols2keep=NULL){
+                                , cols2keep=NULL
+                                , MetricSort = NA
+                                , boo.Shiny=FALSE){
   ##FUNCTION ~ metric.values.algae ~ START
 
   # global variable bindings ----
@@ -2359,22 +2369,221 @@ metric.values.algae <- function(myDF
 
   # define pipe
   `%>%` <- dplyr::`%>%`
+
+  # QC ####
+  # QC, Required Fields
+  col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
+               , "INDEX_REGION", "NONTARGET","PHYLUM", "ORDER", "FAMILY", "GENUS",
+               "BC_USGS","PT_USGS","O_USGS","SALINITY_USGS", "P_USGS", "N_USGS", "TOLVAL")
+
+  col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
+  num.col.req.missing <- length(col.req.missing)
+  # Trigger prompt if any missing fields (and session is interactive)
+  if(num.col.req.missing!=0 & interactive()==TRUE){##IF.num.col.req.missing.START
+    myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
+    myPrompt.02 <- paste(col.req.missing, collapse=", ")
+    myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
+    myPrompt.04 <- "For example, if the HABIT field is missing all habit related metrics will not be correct."
+    myPrompt.05 <- "Do you wish to continue (YES or NO)?"
+
+    myPrompt <- paste(" ", myPrompt.01, myPrompt.02, " ", myPrompt.03, myPrompt.04
+                      , myPrompt.05, sep="\n")
+    #user.input <- readline(prompt=myPrompt)
+    user.input <- NA
+    # special condition for Shiny
+    #Shiny counts as interactive()==TRUE but cannot access this prompt in Shiny.
+    if(boo.Shiny==FALSE){
+      user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
+    } else {
+      message(myPrompt)
+      message("boo.Shiny == TRUE so prompt skipped and value set to '1'.")
+      user.input <- 1
+    }## IF ~ boo.Shiny ~ END
+
+    # any answer other than "YES" will stop the function.
+    if(user.input!=1){##IF.user.input.START
+      stop(paste("The user chose *not* to continue due to missing fields: "
+                 , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
+    }##IF.user.input.END
+    # Add missing fields
+    myDF[,col.req.missing] <- NA
+    warning(paste("Metrics related to the following fields are invalid:"
+                  , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
+  }##IF.num.col.req.missing.END
+
+  # QC, Exclude as TRUE/FALSE
+  Exclude.T <- sum(myDF$EXCLUDE==TRUE, na.rm=TRUE)
+  if(Exclude.T==0){##IF.Exclude.T.START
+    warning("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
+  }##IF.Exclude.T.END
+
+  # QC, NonTarget as TRUE/FALSE
+  NonTarget.F <- sum(myDF$NONTARGET==FALSE, na.rm=TRUE)
+  if(NonTarget.F==0){##IF.Exclude.T.START
+    warning("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
+  }##IF.Exclude.T.END
+
+  # QC, TolVal
+  # need as numeric, if have "NA" as character it fails
+  TolVal_Char_NA <- myDF[, "TOLVAL"]=="NA"
+  if(sum(TolVal_Char_NA, na.rm=TRUE)>0){
+    myDF[TolVal_Char_NA, "TOLVAL"] <- NA
+    myDF[, "TOLVAL"] <- as.numeric(myDF[, "TOLVAL"])
+  }##IF ~ TOLVAL ~ END
+
+  # Data Munging ####
+  # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
+  # Function fails if all NA (e.g., column was missing) (20200724)
+  myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
+
+  # Convert values to upper case (FFG, Habit, Life_Cycle)
+  myDF[, "BC_USGS"] <- toupper(myDF[, "BC_USGS"])
+  myDF[, "PT_USGS"] <- toupper(myDF[, "PT_USGS"])
+  myDF[, "O_USGS"] <- toupper(myDF[, "O_USGS"])
+  myDF[, "SALINITY_USGS"] <- toupper(myDF[, "SALINITY_USGS"])
+  myDF[, "P_USGS"] <- toupper(myDF[, "P_USGS"])
+  myDF[, "N_USGS"] <- toupper(myDF[, "N_USGS"])
+
+  # Add extra columns for some fields
+  # (need unique values for functions in summarise)
+  # each will be TRUE or FALSE
+  # finds any match so "CN, CB" is both "CN" and "CB"
+  myDF[, "BC_1"] <- grepl("BC_1", myDF[, "BC_USGS"])
+  myDF[, "BC_2"] <- grepl("BC_2", myDF[, "BC_USGS"])
+  myDF[, "BC_3"] <- grepl("BC_3", myDF[, "BC_USGS"])
+  myDF[, "BC_4"] <- grepl("BC_4", myDF[, "BC_USGS"])
+  myDF[, "BC_5"] <- grepl("BC_5", myDF[, "BC_USGS"])
+  myDF[, "PT_1"] <- grepl("PT_1", myDF[, "PT_USGS"])
+  myDF[, "PT_2"] <- grepl("PT_2", myDF[, "PT_USGS"])
+  myDF[, "PT_3"] <- grepl("PT_3", myDF[, "PT_USGS"])
+  myDF[, "PT_4"] <- grepl("PT_4", myDF[, "PT_USGS"])
+  myDF[, "PT_5"] <- grepl("PT_5", myDF[, "PT_USGS"])
+  myDF[, "O_1"] <- grepl("O_1", myDF[, "O_USGS"])
+  myDF[, "O_2"] <- grepl("O_2", myDF[, "O_USGS"])
+  myDF[, "O_3"] <- grepl("O_3", myDF[, "O_USGS"])
+  myDF[, "O_4"] <- grepl("O_4", myDF[, "O_USGS"])
+  myDF[, "O_5"] <- grepl("O_5", myDF[, "O_USGS"])
+  myDF[, "SALINITY_1"] <- grepl("SALINITY_1", myDF[, "SALINITY_USGS"])
+  myDF[, "SALINITY_2"] <- grepl("SALINITY_2", myDF[, "SALINITY_USGS"])
+  myDF[, "SALINITY_3"] <- grepl("SALINITY_3", myDF[, "SALINITY_USGS"])
+  myDF[, "SALINITY_4"] <- grepl("SALINITY_4", myDF[, "SALINITY_USGS"])
+  myDF[, "HIGH_P"] <- grepl("HIGH_P", myDF[, "P_USGS"])
+  myDF[, "LOW_P"] <- grepl("LOW_P", myDF[, "P_USGS"])
+  myDF[, "HIGH_N"] <- grepl("HIGH_N", myDF[, "N_USGS"])
+  myDF[, "LOW_N"] <- grepl("LOW_N", myDF[, "N_USGS"])
+
+
+  # Metric Calc ####
+
   # Calculate Metrics (could have used pipe, %>%)
-    met.val <- dplyr::summarise(dplyr::group_by(myDF
-                                                , SampleID
-                                                , "Index_Name"
-                                                , "Index_Type")
+    met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME, INDEX_REGION)
                 #
-                # individuals, total
-                ,ni_total=sum(N_TAXA)
-                #
+                # Individuals ####
+                , ni_total = sum(N_TAXA, na.rm = TRUE)
+                , li_total = log(ni_total)
+
+                # Number of Taxa ####
+                , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & N_TAXA > 0], na.rm = TRUE)
+
+                # Taxonomy
+                , nt_Achnan_Navic = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                             & (GENUS == "Achnanthidium"
+                                                                | GENUS == "Navicula")]
+                                                      , na.rm = TRUE)
+                # N_USGS
+                , nt_LOW_N = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & LOW_N == TRUE]
+                                               , na.rm = TRUE)
+                # P_USGS
+                , nt_LOW_P = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & LOW_P == TRUE]
+                                               , na.rm = TRUE)
+                # BC_USGS
+                , nt_BC_12 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & (BC_1 == TRUE
+                                                         |BC_2 == TRUE)]
+                                               , na.rm = TRUE)
+
+                # PT_USGS
+                , nt_PT_12 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & (PT_1 == TRUE
+                                                         |PT_2 == TRUE)]
+                                               , na.rm = TRUE)
+                # SALINITY_USGS
+                , nt_SALINITY_34 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & (SALINITY_3 == TRUE
+                                                               |SALINITY_4 == TRUE)]
+                                                     , na.rm = TRUE)
+                # O_USGS
+                , nt_O_345 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & (O_3 == TRUE
+                                                         |O_4 == TRUE
+                                                         |O_5 == TRUE)]
+                                               , na.rm = TRUE)
+                # Percent Individuals ####
+
+                # Percent of Taxa ####
+                # Taxonomy
+                , pt_Achnan_Navic = 100*nt_Achnan_Navic/nt_total
+
+                # BC_USGS
+                , pt_BC_12 = 100*nt_BC_12/nt_total
+
+                # PT_USGS
+                , pt_PT_12 = 100*nt_PT_12/nt_total
+
+                # SALINITY_USGS
+                , pt_SALINITY_34 = 100*nt_SALINITY_34/nt_total
+
+                # O_USGS
+                , pt_O_345 = 100*nt_O_345/nt_total
+
+                # Tolerance ####
+                # Number of Individuals
+                # Number of Taxa
+                , nt_Sens_810 = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE# DOES NOT FOLLOW NORMAL TOLVAL CONVENTION
+                                                         & TOLVAL>=8 # LOWER VALUES MORE TOLERANT (Indiana)
+                                                         & TOLVAL<=10]
+                                                  , na.rm=TRUE)
+                # Percent of Individuals
+                , pi_Tol_13 = 100*sum(N_TAXA[TOLVAL>=1 # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
+                                               & TOLVAL<=3], na.rm=TRUE)/sum(
+                                                 N_TAXA[!is.na(TOLVAL)], na.rm = TRUE) # LOWER VALUES MORE TOLERANT
+                # Percent of Taxa
+                , pt_Sens_810 = 100*nt_Sens_810/nt_total # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
+
+
     )##met.val.END
+
+  # Clean Up ####
     # replace NA with 0
     met.val[is.na(met.val)] <- 0
-    # subset to only metrics specified by user
-    if (!is.null(MetricNames)){
-      met.val <- met.val[,c(SampleID, "Index_Name", "Index_Type", "ni_total", MetricNames)]
-    }
+
+  # subset to only metrics specified by user
+    if(is.null(MetricNames)){
+      met.val <- met.val
+    } else {
+      met2include <- MetricNames[!(MetricNames %in% "ni_total")]
+      # remove ni_total if included as will always include it
+      met.val <- met.val[, c("SAMPLEID", "INDEX_REGION", "INDEX_NAME",
+                             "ni_total", met2include)]
+    }##IF~MetricNames~END
+
+    # Add extra fields
+    if(is.null(cols2keep)){##IF.is.null.cols2keep.START
+      df.return <- as.data.frame(met.val)
+    } else {
+      # create df with grouped fields
+      myDF.cols2keep <- myDF %>% dplyr::group_by(.dots=c("SAMPLEID", cols2keep)) %>%
+        dplyr::summarize(col.drop=sum(N_TAXA))
+      col.drop <- ncol(myDF.cols2keep)
+      myDF.cols2keep <- myDF.cols2keep[,-col.drop]
+      # merge
+      df.return <- merge(as.data.frame(myDF.cols2keep), as.data.frame(met.val), by="SAMPLEID")
+    }##IF.is.null.cols2keep.END
+
     # df to report back
-    return(met.val)
+    return(df.return)
+
 }##FUNCTION.metric.values.algae.END

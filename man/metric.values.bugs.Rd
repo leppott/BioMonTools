@@ -2,7 +2,7 @@
 % Please edit documentation in R/metric_values.R
 \name{metric.values.bugs}
 \alias{metric.values.bugs}
-\title{Calculate metric values, Fish}
+\title{Calculate metric values, Bugs}
 \usage{
 metric.values.bugs(
   myDF,
