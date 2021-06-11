@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-06-10 17:29:54
+    #> Last Update: 2021-06-11 18:01:50
 
 # Version History
+
+## Changes in Version 0.5.0.9060 (2021-06-11)
+
+-   refactor: metric.values
+    -   Added over 150 diatom metrics
+    -   Almost all were USGS diatom metrics
+-   refactor: MetricNames.xlsx
+    -   Update for new diatom metrics
 
 ## Changes in Version 0.5.0.9059 (2021-06-10)
 
