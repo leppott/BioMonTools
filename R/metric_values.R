@@ -3012,20 +3012,20 @@ metric.values.algae <- function(myDF
                                                          & TOLVAL>=8 # LOWER VALUES MORE TOLERANT (Indiana)
                                                          & TOLVAL<=10]
                                                   , na.rm=TRUE)
-                # , nt_RefIndicators = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE # Diatom Indicator Species Analysis
-                #                                               & !is.na(DIATOM_ISA)]
-                #                                        , na.rm = TRUE)
+                , nt_RefIndicators = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE # Diatom Indicator Species Analysis
+                                                              & !is.na(DIATOM_ISA)]
+                                                       , na.rm = TRUE)
 
                 # Percent of Individuals
                 , pi_Tol_13 = 100*sum(N_TAXA[TOLVAL>=1 # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
                                                & TOLVAL<=3], na.rm=TRUE)/sum(
                                                  N_TAXA[!is.na(TOLVAL)], na.rm = TRUE) # LOWER VALUES MORE TOLERANT
-                # , pi_RefIndicators = 100*sum(N_TAXA[!is.na(DIATOM_ISA)], # Diatom Indicator Species Analysis
-                #                              na.rm = TRUE)/ni_total
+                , pi_RefIndicators = 100*sum(N_TAXA[!is.na(DIATOM_ISA)], # Diatom Indicator Species Analysis
+                                             na.rm = TRUE)/ni_total
 
                 # Percent of Taxa
                 , pt_Sens_810 = 100*nt_Sens_810/nt_total # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
-                # , pt_RefIndicators = 100*nt_RefIndicators/nt_total
+                , pt_RefIndicators = 100*nt_RefIndicators/nt_total
 
                 # Weighted Average Pollution Tolerance
 
