@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-06-22 11:59:23
+    #> Last Update: 2021-06-22 16:54:00
 
 # Version History
+
+## Changes in Version 0.5.0.9063 (2021-06-22)
+
+-   refactor: metric.values
+    -   Added 52 new diatom metrics (added from EDAS)
+-   refactor: MetricNames.xlsx
+    -   Update for new diatom metrics, but missing descriptions
+-   refactor: Added scoring formulae for IDEM Diatom IBIs
 
 ## Changes in Version 0.5.0.9060 (2021-06-11)
 

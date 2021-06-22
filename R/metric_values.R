@@ -2519,7 +2519,8 @@ metric.values.algae <- function(myDF
   # Metric Calc ####
 
   # Calculate Metrics (could have used pipe, %>%)
-    met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME, INDEX_REGION)
+    met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME
+                                                , INDEX_REGION)
                 #
                 # Individuals ####
                 , ni_total = sum(N_TAXA, na.rm = TRUE)
@@ -2527,12 +2528,13 @@ metric.values.algae <- function(myDF
 
                 # Number of Taxa ####
                 , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                      & N_TAXA > 0], na.rm = TRUE)
+                                                      & N_TAXA > 0]
+                                               , na.rm = TRUE)
 
                 # Taxonomy
                 , nt_Achnan_Navic = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                             & (GENUS == "Achnanthidium"
-                                                                | GENUS == "Navicula")]
+                                                    & (GENUS == "Achnanthidium"
+                                                        | GENUS == "Navicula")]
                                                       , na.rm = TRUE)
                 # N_USGS
                 , nt_LOW_N = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -2595,24 +2597,24 @@ metric.values.algae <- function(myDF
                                                , na.rm = TRUE)
                 # SALINITY_USGS
                 , nt_SALINITY_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                            & SALINITY_1 == TRUE]
+                                                          & SALINITY_1 == TRUE]
                                                      , na.rm = TRUE)
                 , nt_SALINITY_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                           & SALINITY_2 == TRUE]
+                                                          & SALINITY_2 == TRUE]
                                                     , na.rm = TRUE)
                 , nt_SALINITY_3 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                           & SALINITY_3 == TRUE]
+                                                          & SALINITY_3 == TRUE]
                                                     , na.rm = TRUE)
                 , nt_SALINITY_4 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                           & SALINITY_4 == TRUE]
+                                                          & SALINITY_4 == TRUE]
                                                     , na.rm = TRUE)
                 , nt_SALINITY_12 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                            & (SALINITY_1 == TRUE
-                                                               |SALINITY_2 == TRUE)]
+                                                          & (SALINITY_1 == TRUE
+                                                         |SALINITY_2 == TRUE)]
                                                      , na.rm = TRUE)
                 , nt_SALINITY_34 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                            & (SALINITY_3 == TRUE
-                                                               |SALINITY_4 == TRUE)]
+                                                        & (SALINITY_3 == TRUE
+                                                          |SALINITY_4 == TRUE)]
                                                      , na.rm = TRUE)
                 # O_USGS
                 , nt_O_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -2637,14 +2639,14 @@ metric.values.algae <- function(myDF
                                                , na.rm = TRUE)
                 # HABITAT_USGS
                 , nt_SESTONIC_HABIT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                               & SESTONIC_HABIT == TRUE]
+                                                      & SESTONIC_HABIT == TRUE]
                                                         , na.rm = TRUE)
                 , nt_BENTHIC_HABIT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                               & BENTHIC_HABIT == TRUE]
+                                                        & BENTHIC_HABIT == TRUE]
                                                         , na.rm = TRUE)
                 # BAHLS_USGS
                 , nt_BAHLS_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                               & (BAHLS_1 == TRUE)]
+                                                            & (BAHLS_1 == TRUE)]
                                                         , na.rm = TRUE)
                 , nt_BAHLS_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                         & (BAHLS_2 == TRUE)]
@@ -2704,19 +2706,19 @@ metric.values.algae <- function(myDF
                                                      , na.rm = TRUE)
                 # MOTILITY_USGS
                 , nt_HIGHLY_MOTILE = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                             & HIGHLY_MOTILE == TRUE]
+                                                        & HIGHLY_MOTILE == TRUE]
                                                       , na.rm = TRUE)
                 , nt_MODERATELY_MOTILE = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                              & MODERATELY_MOTILE == TRUE]
+                                                    & MODERATELY_MOTILE == TRUE]
                                                        , na.rm = TRUE)
                 , nt_NON_MOTILE = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                  & NON_MOTILE == TRUE]
+                                                          & NON_MOTILE == TRUE]
                                                            , na.rm = TRUE)
                 , nt_SLIGHTLY_MOTILE = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                           & SLIGHTLY_MOTILE == TRUE]
+                                                      & SLIGHTLY_MOTILE == TRUE]
                                                     , na.rm = TRUE)
                 , nt_WEAKLY_MOTILE = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                & WEAKLY_MOTILE == TRUE]
+                                                        & WEAKLY_MOTILE == TRUE]
                                                          , na.rm = TRUE)
 
                 # SIZE_USGS
@@ -2745,7 +2747,7 @@ metric.values.algae <- function(myDF
 
                 # MOTILE2_USGS
                 , nt_HIGHLY_MOTILE.1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                & HIGHLY_MOTILE.1 == TRUE]
+                                                      & HIGHLY_MOTILE.1 == TRUE]
                                                          , na.rm = TRUE)
                 , nt_ARAPHID = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                         & ARAPHID == TRUE]
@@ -2755,6 +2757,58 @@ metric.values.algae <- function(myDF
                 , nt_DIAT_CL_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                           & DIAT_CL == 1]
                                                    , na.rm = TRUE)
+                , nt_DIAT_CL_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & DIAT_CL == 2]
+                                                   , na.rm = TRUE)
+
+                # BEN_SES
+                , nt_BEN_SES_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & BEN_SES == 1]
+                                                   , na.rm = TRUE)
+                , nt_BEN_SES_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & BEN_SES == 2]
+                                                   , na.rm = TRUE)
+                # DIAT_CA
+                , nt_DIAT_CA_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & DIAT_CA == 1]
+                                                   , na.rm = TRUE)
+                , nt_DIAT_CA_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & DIAT_CA == 2]
+                                                   , na.rm = TRUE)
+                # DIAT_COND
+                , nt_DIAT_COND_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & DIAT_COND == 1]
+                                                   , na.rm = TRUE)
+                , nt_DIAT_COND_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & DIAT_COND == 2]
+                                                     , na.rm = TRUE)
+                # DIATAS
+                , nt_DIATAS_TN_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & DIATAS_TN == 1]
+                                                     , na.rm = TRUE)
+                , nt_DIATAS_TN_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & DIATAS_TN == 2]
+                                                     , na.rm = TRUE)
+                , nt_DIATAS_TP_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & DIATAS_TP == 1]
+                                                     , na.rm = TRUE)
+                , nt_DIATAS_TP_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & DIATAS_TP == 2]
+                                                     , na.rm = TRUE)
+                # MOTILITY
+                , nt_MOTILITY_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & MOTILITY == 1]
+                                                     , na.rm = TRUE)
+                , nt_MOTILITY_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & MOTILITY == 2]
+                                                    , na.rm = TRUE)
+                # NF
+                , nt_NF_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & NF == 1]
+                                                    , na.rm = TRUE)
+                , nt_NF_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & NF == 2]
+                                              , na.rm = TRUE)
 
 
 
@@ -2866,7 +2920,7 @@ metric.values.algae <- function(myDF
                 # MOTILITY_USGS
                 , pi_HIGHLY_MOTILE = 100*sum(N_TAXA[HIGHLY_MOTILE == TRUE]
                                            , na.rm = TRUE)/ni_total
-                , pi_MODERATELY_MOTILE = 100*sum(N_TAXA[MODERATELY_MOTILE == TRUE]
+                , pi_MODERATELY_MOTILE = 100*sum(N_TAXA[MODERATELY_MOTILE==TRUE]
                                              , na.rm = TRUE)/ni_total
                 , pi_NON_MOTILE = 100*sum(N_TAXA[NON_MOTILE == TRUE]
                                                  , na.rm = TRUE)/ni_total
@@ -2900,10 +2954,46 @@ metric.values.algae <- function(myDF
                                        , na.rm = TRUE)/ni_total
 
                 # DIAT_CL
-                , pi_DIAT_CL_1 = 100*sum(N_TAXA[DIAT_CL == 1], na.rm = TRUE)/ni_total
+                , pi_DIAT_CL_1 = 100*sum(N_TAXA[DIAT_CL == 1]
+                                         , na.rm = TRUE)/ni_total
                 , pi_DIAT_CL_1_ASSR = 100*(asin(sqrt(pi_DIAT_CL_1/100)))
+                , pi_DIAT_CL_2 = 100*sum(N_TAXA[DIAT_CL == 2]
+                                         , na.rm = TRUE)/ni_total
 
-
+                # BEN_SES
+                , pi_BEN_SES_1 = 100*sum(N_TAXA[BEN_SES == 1]
+                                         , na.rm = TRUE)/ni_total
+                , pi_BEN_SES_2 = 100*sum(N_TAXA[BEN_SES == 2]
+                                         , na.rm = TRUE)/ni_total
+                # DIAT_CA
+                , pi_DIAT_CA_1 = 100*sum(N_TAXA[DIAT_CA == 1]
+                                         , na.rm = TRUE)/ni_total
+                , pi_DIAT_CA_2 = 100*sum(N_TAXA[DIAT_CA == 2]
+                                         , na.rm = TRUE)/ni_total
+                # DIAT_COND
+                , pi_DIAT_COND_1 = 100*sum(N_TAXA[DIAT_COND == 1]
+                                         , na.rm = TRUE)/ni_total
+                , pi_DIAT_COND_2 = 100*sum(N_TAXA[DIAT_COND == 2]
+                                           , na.rm = TRUE)/ni_total
+                # DIATAS
+                , pi_DIATAS_TN_1 = 100*sum(N_TAXA[DIATAS_TN == 1]
+                                           , na.rm = TRUE)/ni_total
+                , pi_DIATAS_TN_2 = 100*sum(N_TAXA[DIATAS_TN == 2]
+                                           , na.rm = TRUE)/ni_total
+                , pi_DIATAS_TP_1 = 100*sum(N_TAXA[DIATAS_TP == 1]
+                                           , na.rm = TRUE)/ni_total
+                , pi_DIATAS_TP_2 = 100*sum(N_TAXA[DIATAS_TP == 2]
+                                           , na.rm = TRUE)/ni_total
+                # MOTILITY
+                , pi_MOTILITY_1 = 100*sum(N_TAXA[MOTILITY == 1]
+                                           , na.rm = TRUE)/ni_total
+                , pi_MOTILITY_2 = 100*sum(N_TAXA[MOTILITY == 2]
+                                          , na.rm = TRUE)/ni_total
+                # NF
+                , pi_NF_1 = 100*sum(N_TAXA[NF == 1]
+                                          , na.rm = TRUE)/ni_total
+                , pi_NF_2 = 100*sum(N_TAXA[NF == 2]
+                                    , na.rm = TRUE)/ni_total
 
 
 
@@ -3002,34 +3092,72 @@ metric.values.algae <- function(myDF
 
                 # DIAT_CL
                 , pt_DIAT_CL_1 = 100*nt_DIAT_CL_1/nt_total
+                , pt_DIAT_CL_2 = 100*nt_DIAT_CL_2/nt_total
+
+                # BEN_SES
+                , pt_BEN_SES_1 = 100*nt_BEN_SES_1/nt_total
+                , pt_BEN_SES_2 = 100*nt_BEN_SES_2/nt_total
+
+                # DIAT_CA
+                , pt_DIAT_CA_1 = 100*nt_DIAT_CA_1/nt_total
+                , pt_DIAT_CA_2 = 100*nt_DIAT_CA_2/nt_total
+
+                # DIAT_COND
+                , pt_DIAT_COND_1 = 100*nt_DIAT_COND_1/nt_total
+                , pt_DIAT_COND_2 = 100*nt_DIAT_COND_2/nt_total
+
+                # DIATAS
+                , pt_DIATAS_TN_1 = 100*nt_DIATAS_TN_1/nt_total
+                , pt_DIATAS_TN_2 = 100*nt_DIATAS_TN_2/nt_total
+                , pt_DIATAS_TP_1 = 100*nt_DIATAS_TP_1/nt_total
+                , pt_DIATAS_TP_2 = 100*nt_DIATAS_TP_2/nt_total
+
+                # MOTILITY
+                , pt_MOTILITY_1 = 100*nt_MOTILITY_1/nt_total
+                , pt_MOTILITY_2 = 100*nt_MOTILITY_2/nt_total
+
+                # NF
+                , pt_NF_1 = 100*nt_NF_1/nt_total
+                , pt_NF_2 = 100*nt_NF_2/nt_total
+
 
 
 
                 # Tolerance ####
-                # Number of Individuals
                 # Number of Taxa
                 , nt_Sens_810 = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE# DOES NOT FOLLOW NORMAL TOLVAL CONVENTION
                                                          & TOLVAL>=8 # LOWER VALUES MORE TOLERANT (Indiana)
                                                          & TOLVAL<=10]
                                                   , na.rm=TRUE)
                 , nt_RefIndicators = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE # Diatom Indicator Species Analysis
-                                                              & !is.na(DIATOM_ISA)]
+                                                          & !is.na(DIATOM_ISA)]
                                                        , na.rm = TRUE)
+                , nt_Tol_13 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                       & TOLVAL >=1# DOES NOT FOLLOW NORMAL TOLVAL CONVENTION
+                                                       & TOLVAL <=3]# LOWER VALUES MORE TOLERANT (Indiana)
+                                                , na.rm = TRUE)
 
                 # Percent of Individuals
-                , pi_Tol_13 = 100*sum(N_TAXA[TOLVAL>=1 # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
-                                               & TOLVAL<=3], na.rm=TRUE)/sum(
-                                                 N_TAXA[!is.na(TOLVAL)], na.rm = TRUE) # LOWER VALUES MORE TOLERANT
+                , pi_Sens_810 = 100*sum(N_TAXA[TOLVAL >=8
+                                               & TOLVAL <=10]
+                                        , na.rm = TRUE)/sum(
+                                          N_TAXA[!is.na(TOLVAL)], na.rm = TRUE)
                 , pi_RefIndicators = 100*sum(N_TAXA[!is.na(DIATOM_ISA)], # Diatom Indicator Species Analysis
                                              na.rm = TRUE)/ni_total
+                , pi_Tol_13 = 100*sum(N_TAXA[TOLVAL>=1 # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
+                                        & TOLVAL<=3], na.rm=TRUE)/sum(
+                                          N_TAXA[!is.na(TOLVAL)], na.rm = TRUE) # LOWER VALUES MORE TOLERANT
 
                 # Percent of Taxa
                 , pt_Sens_810 = 100*nt_Sens_810/nt_total # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
                 , pt_RefIndicators = 100*nt_RefIndicators/nt_total
+                , pt_Tol_13 = 100*nt_Tol_13/nt_total
 
                 # Weighted Average Pollution Tolerance
 
-                # , wa_POLL_TOL = sum(N_TAXA[!is.na(POLL_TOL)]*POLL_TOL)/sum(N_TAXA[!is.na(POLL_TOL)])
+                , wa_POLL_TOL = sum(N_TAXA[!is.na(POLL_TOL)]
+                                    *POLL_TOL[!is.na(POLL_TOL)
+                                              ])/sum(N_TAXA[!is.na(POLL_TOL)])
 
 
 
@@ -3054,12 +3182,14 @@ metric.values.algae <- function(myDF
       df.return <- as.data.frame(met.val)
     } else {
       # create df with grouped fields
-      myDF.cols2keep <- myDF %>% dplyr::group_by(.dots=c("SAMPLEID", cols2keep)) %>%
+      myDF.cols2keep <- myDF %>% dplyr::group_by(.dots=c("SAMPLEID"
+                                                         , cols2keep)) %>%
         dplyr::summarize(col.drop=sum(N_TAXA))
       col.drop <- ncol(myDF.cols2keep)
       myDF.cols2keep <- myDF.cols2keep[,-col.drop]
       # merge
-      df.return <- merge(as.data.frame(myDF.cols2keep), as.data.frame(met.val), by="SAMPLEID")
+      df.return <- merge(as.data.frame(myDF.cols2keep)
+                         , as.data.frame(met.val), by="SAMPLEID")
     }##IF.is.null.cols2keep.END
 
     # df to report back
