@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-06-23 16:03:21
+    #> Last Update: 2021-06-23 16:21:42
 
 # Version History
+
+## Changes in Version 0.5.0.9066 (2021-06-23)
+
+-   refactor: added diatom example dataset to package
+    -   Added diatom metric value dataset for internal QC
 
 ## Changes in Version 0.5.0.9063 (2021-06-22)
 

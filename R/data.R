@@ -210,6 +210,7 @@
 #'
 #' @format A data frame with 24797 observations on the following 38 variables.
 #'
+#'   \describe{
 #'   \item{\code{INDEX_NAME}}{a character vector}
 #'   \item{\code{INDEX_REGION}}{a character vector}
 #'   \item{\code{STATIONID}}{a character vector}

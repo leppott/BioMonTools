@@ -5,7 +5,48 @@
 \alias{data_diatom_mmi_dev}
 \title{Diatom taxa data; Indiana DEM}
 \format{
+A data frame with 24797 observations on the following 38 variables.
 
+  \describe{
+  \item{\code{INDEX_NAME}}{a character vector}
+  \item{\code{INDEX_REGION}}{a character vector}
+  \item{\code{STATIONID}}{a character vector}
+  \item{\code{COLLDATE}}{a Date}
+  \item{\code{SAMPLEID}}{a character vector}
+  \item{\code{TAXAID}}{a character vector}
+  \item{\code{EXCLUDE}}{a logical vector}
+  \item{\code{NONTARGET}}{a logical vector}
+  \item{\code{N_TAXA}}{a numeric vector}
+  \item{\code{ORDER}}{a character vector}
+  \item{\code{FAMILY}}{a character vector}
+  \item{\code{GENUS}}{a character vector}
+  \item{\code{BC_USGS}}{a character vector}
+  \item{\code{TROPHIC_USGS}}{a character vector}
+  \item{\code{SAP_USGS}}{a character vector}
+  \item{\code{PT_USGS}}{a character vector}
+  \item{\code{O_USGS}}{a character vector}
+  \item{\code{SALINITY_USGS}}{a character vector}
+  \item{\code{BAHLS_USGS}}{a character vector}
+  \item{\code{P_USGS}}{a character vector}
+  \item{\code{N_USGS}}{a character vector}
+  \item{\code{HABITAT_USGS}}{a character vector}
+  \item{\code{N_FIXER_USGS}}{a character vector}
+  \item{\code{MOTILITY_USGS}}{a character vector}
+  \item{\code{SIZE_USGS}}{a character vector}
+  \item{\code{HABIT_USGS}}{a character vector}
+  \item{\code{MOTILE2_USGS}}{a character vector}
+  \item{\code{TOLVAL}}{a numeric vector}
+  \item{\code{DIATOM_ISA}}{a character vector}
+  \item{\code{DIAT_CL}}{a numeric vector}
+  \item{\code{POLL_TOL}}{a numeric vector}
+  \item{\code{BEN_SES}}{a numeric vector}
+  \item{\code{DIATAS_TP}}{a numeric vector}
+  \item{\code{DIATAS_TN}}{a numeric vector}
+  \item{\code{DIAT_COND}}{a numeric vector}
+  \item{\code{DIAT_CA}}{a numeric vector}
+  \item{\code{MOTILITY}}{a numeric vector}
+  \item{\code{NF}}{a numeric vector}
+}
 }
 \source{
 example data from IDEM

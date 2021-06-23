@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9066 (2021-06-23)
+
+* refactor: added diatom example dataset to package
+    + Added diatom metric value dataset for internal QC
+
 ## Changes in Version 0.5.0.9063 (2021-06-22)
 
 * refactor: metric.values
