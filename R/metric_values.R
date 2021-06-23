@@ -2453,6 +2453,7 @@ metric.values.algae <- function(myDF
   myDF[, "SIZE_USGS"] <- toupper(myDF[, "SIZE_USGS"])
   myDF[, "HABIT_USGS"] <- toupper(myDF[, "HABIT_USGS"])
   myDF[, "MOTILE2_USGS"] <- toupper(myDF[, "MOTILE2_USGS"])
+  myDF[, "DIATOM_ISA"] <- toupper(myDF[, "DIATOM_ISA"])
 
   # Add extra columns for some fields
   # (need unique values for functions in summarise)
@@ -2514,6 +2515,7 @@ metric.values.algae <- function(myDF
   myDF[, "STALKED"] <- grepl("STALKED", myDF[, "HABIT_USGS"])
   myDF[, "HIGHLY_MOTILE.1"] <- grepl("HIGHLY_MOTILE.1", myDF[, "MOTILE2_USGS"])
   myDF[, "ARAPHID"] <- grepl("ARAPHID", myDF[, "MOTILE2_USGS"])
+  myDF[, "REF_INDICATORS"] <- grepl("^REF", myDF[, "DIATOM_ISA"])
 
 
   # Metric Calc ####
@@ -3130,7 +3132,7 @@ metric.values.algae <- function(myDF
                                                          & TOLVAL<=10]
                                                   , na.rm=TRUE)
                 , nt_RefIndicators = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE # Diatom Indicator Species Analysis
-                                                          & !is.na(DIATOM_ISA)]
+                                                          & REF_INDICATORS == TRUE]
                                                        , na.rm = TRUE)
                 , nt_Tol_13 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                        & TOLVAL >=1# DOES NOT FOLLOW NORMAL TOLVAL CONVENTION
@@ -3142,7 +3144,7 @@ metric.values.algae <- function(myDF
                                                & TOLVAL <=10]
                                         , na.rm = TRUE)/sum(
                                           N_TAXA[!is.na(TOLVAL)], na.rm = TRUE)
-                , pi_RefIndicators = 100*sum(N_TAXA[!is.na(DIATOM_ISA)], # Diatom Indicator Species Analysis
+                , pi_RefIndicators = 100*sum(N_TAXA[REF_INDICATORS == TRUE], # Diatom Indicator Species Analysis
                                              na.rm = TRUE)/ni_total
                 , pi_Tol_13 = 100*sum(N_TAXA[TOLVAL>=1 # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
                                         & TOLVAL<=3], na.rm=TRUE)/sum(

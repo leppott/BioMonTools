@@ -1435,9 +1435,6 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
   data(data_diatom_mmi_dev) #added via data.R
   df_diatoms <- data_diatom_mmi_dev
 
-  # change blanks to NA
-  library(dplyr)
-
   # metric values
   df_metval_calc <- BioMonTools::metric.values(fun.DF = df_diatoms
                                           , fun.Community = "algae"
