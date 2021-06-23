@@ -1424,3 +1424,48 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
   testthat::expect_equal(x, y)
 
 })## Test - met val_sc, MA kick/lograd IBI ~ END
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# met val_sc, IDEM Diatom IBIs ----
+test_that("metric values_scores, MA kick/lowgrad IBI", {
+  # _Metric.Values ----
+
+  data(data_diatom_mmi_dev) #added via data.R
+  df_diatoms <- data_diatom_mmi_dev
+
+  # change blanks to NA
+  library(dplyr)
+
+  # metric values
+  df_metval_calc <- BioMonTools::metric.values(fun.DF = df_diatoms
+                                          , fun.Community = "algae"
+                                          , boo.Shiny = TRUE)
+
+  # df, calc
+  data(data_diatom_mmi_qc)
+
+  df_metval_qc <- data_diatom_mmi_qc
+
+  # change integers to numeric
+  # Round values to 1 or 2 digits
+  library(dplyr)
+
+  df_metval_calc <- df_metval_calc %>%
+    mutate_if(is.integer, as.numeric) %>%
+    mutate_if(is.numeric, round, digits =2)
+
+  df_metval_qc <- df_metval_qc %>%
+    mutate_if(is.integer, as.numeric) %>%
+    mutate_if(is.numeric, round, digits =2)
+
+
+  # test
+  testthat::expect_equal(df_metval_calc, df_metval_qc)
+  # Below works but
+  #               the QC data is not consistent in the number of decimal places
+  #expect_equal(df_metval_calc, df_metval_qc, tolerance = 0.01)
+
+
+})## Test - met val_sc, IDEM Diatom IBIs ~ END

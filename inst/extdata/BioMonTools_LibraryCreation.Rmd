@@ -132,7 +132,7 @@ devtools::run_examples()
 Use promptData to get data.r listing for columns.  Short cuts creating documentation.
 
 ```{r DocData}
-promptData(data_benthos_MBSS)
+promptData(data_diatom_mmi_qc)
 ```
 
 ## Check
