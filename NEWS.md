@@ -4,9 +4,37 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-05-21 10:08:48
+    #> Last Update: 2021-06-23 16:21:42
 
 # Version History
+
+## Changes in Version 0.5.0.9066 (2021-06-23)
+
+-   refactor: added diatom example dataset to package
+    -   Added diatom metric value dataset for internal QC
+
+## Changes in Version 0.5.0.9063 (2021-06-22)
+
+-   refactor: metric.values
+    -   Added 52 new diatom metrics (added from EDAS)
+-   refactor: MetricNames.xlsx
+    -   Update for new diatom metrics, but missing descriptions
+-   refactor: Added scoring formulae for IDEM Diatom IBIs
+
+## Changes in Version 0.5.0.9060 (2021-06-11)
+
+-   refactor: metric.values
+    -   Added over 150 diatom metrics
+    -   Almost all were USGS diatom metrics
+-   refactor: MetricNames.xlsx
+    -   Update for new diatom metrics
+
+## Changes in Version 0.5.0.9059 (2021-06-10)
+
+-   refactor: metric.values added periphyton/diatom metric functionality
+    -   Added metrics for Indiana diatoms IBIs
+-   refactor: MetricNames.xlsx
+    -   Update for new diatom metrics
 
 ## Changes in Version 0.5.0.9058 (2021-05-21)
 
