@@ -2372,9 +2372,15 @@ metric.values.algae <- function(myDF
 
   # QC ####
   # QC, Required Fields
-  col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
-               , "INDEX_REGION", "NONTARGET","PHYLUM", "ORDER", "FAMILY", "GENUS",
-               "BC_USGS","PT_USGS","O_USGS","SALINITY_USGS", "P_USGS", "N_USGS", "TOLVAL")
+
+  col.req <- c("INDEX_REGION","SAMPLEID","TAXAID","EXCLUDE","NONTARGET"
+               ,"N_TAXA","PHYLUM","ORDER","FAMILY","GENUS","BC_USGS"
+               ,"TROPHIC_USGS","SAP_USGS","PT_USGS","O_USGS","SALINITY_USGS"
+               ,"BAHLS_USGS","P_USGS","N_USGS","HABITAT_USGS","N_FIXER_USGS"
+               ,"MOTILITY_USGS","SIZE_USGS","HABIT_USGS","MOTILE2_USGS"
+               ,"TOLVAL","DIATOM_ISA","DIAT_CL","POLL_TOL","BEN_SES"
+               ,"DIATAS_TP","DIATAS_TN","DIAT_COND","DIAT_CA","MOTILITY"
+               ,"NF")
 
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
