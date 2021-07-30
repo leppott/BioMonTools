@@ -215,6 +215,7 @@ MapTaxaObs <- function(df_obs
       leg_cat <- unique(data.TargetMapCat[, map_grp])
       n_leg_cat <- length(leg_cat)
       leg_col <- grDevices::rainbow(n_leg_cat)
+      #leg_col <- RColorBrewer::brewer.pal(n_leg_cat, "Set3")
       for(a in seq_len(n_leg_cat)){
         pts_leg <- data.TargetMapCat[data.TargetMapCat[, map_grp] == leg_cat[a], ]
         graphics::points(pts_leg[, Long]

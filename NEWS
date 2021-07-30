@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-05-21 10:08:48
+    #> Last Update: 2021-07-30 12:08:55
 
 # Version History
+
+## Changes in Version 0.5.0.9059 (2021-07-30)
+
+-   features: Add more fish metrics to metric.values()
+-   refactor: For fish community for metric.values() convert to upper
+    case
 
 ## Changes in Version 0.5.0.9058 (2021-05-21)
 
