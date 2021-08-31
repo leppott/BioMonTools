@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-07-30 12:08:55
+    #> Last Update: 2021-07-30 17:01:57
 
 # Version History
+
+## Changes in Version 0.5.0.9060 (2021-07-30)
+
+-   features: Add pi\_BCG\_att5extra to metric.values() for bugs
+    -   5 and 5.5
 
 ## Changes in Version 0.5.0.9059 (2021-07-30)
 

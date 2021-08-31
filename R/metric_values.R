@@ -1876,6 +1876,9 @@ metric.values.bugs <- function(myDF
                                      , na.rm=TRUE)/ni_total
             , pi_BCG_att5 = 100*sum(N_TAXA[(BCG_ATTR == "5")]
                                     , na.rm=TRUE)/ni_total
+            , pi_BCG_att5extra = 100*sum(N_TAXA[(BCG_ATTR == "5"
+                                            | BCG_ATTR == "5.5")]
+                                    , na.rm=TRUE)/ni_total
             , pi_BCG_att56 = 100*sum(N_TAXA[(BCG_ATTR == "5"
                                              | BCG_ATTR == "6")]
                                      , na.rm=TRUE)/ni_total

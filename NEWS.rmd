@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9060 (2021-07-30)
+
+* features: Add pi_BCG_att5extra to metric.values() for bugs
+    + 5 and 5.5
+
 ## Changes in Version 0.5.0.9059 (2021-07-30)
 
 * features: Add more fish metrics to metric.values()
