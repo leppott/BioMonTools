@@ -83,7 +83,7 @@ The dplyr package is used to generate the metric values." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9060</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9061</span>
       </span>
     </div>
 
@@ -240,7 +240,7 @@ are "hi" or "lo")</p>
 <p>* PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY,
 TRIBE, GENUS</p>
 <p>* FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
-LONGLIVED, NOTEWORTHY, HABITAT</p>
+LONGLIVED, NOTEWORTHY, HABITAT, UFC</p>
 <p>Valid values for FFG: CG, CF, PR, SC, SH</p>
 <p>Valid values for HABIT: BU, CB, CN, SP, SW</p>
 <p>Valid values for LIFE_CYCLE: UNI, SEMI, MULTI</p>
@@ -248,6 +248,7 @@ LONGLIVED, NOTEWORTHY, HABITAT</p>
 <p>Valid values for LONGLIVED: TRUE, FALSE</p>
 <p>Valid values for NOTEWORTHY: TRUE, FALSE</p>
 <p>Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN</p>
+<p>Valid values for UFC: integers 1:6 (taxonomic uncertainty frequency class)</p>
 <p>Columns to keep are additional fields in the input file that the user wants
 retained in the output.  Fields need to be those that are unique per sample
 and not associated with the taxa.  For example, the fields used in
@@ -296,7 +297,7 @@ boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
 <span class='va'>df_metric_values_bugs</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>df_samps_bugs</span>
                                        , <span class='st'>"bugs"</span>
                                        , fun.cols2keep<span class='op'>=</span><span class='va'>myCols</span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='warning'>Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span></div><div class='input'>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># View Results</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span><span class='op'>)</span>
