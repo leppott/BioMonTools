@@ -20,6 +20,8 @@ wd <- getwd() # assume is package directory
 myFile <- "data_benthos_PacNW.tsv"
 df <- read.delim(file.path(wd,"data-raw",myFile))
 
+df$SubClass <- NA
+
 # 1.2. Process Data
 View(df)
 # QC check

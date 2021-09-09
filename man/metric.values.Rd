@@ -97,7 +97,7 @@ are "hi" or "lo")
 TRIBE, GENUS
 
 * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
-LONGLIVED, NOTEWORTHY, HABITAT
+LONGLIVED, NOTEWORTHY, HABITAT, UFC
 
 Valid values for FFG: CG, CF, PR, SC, SH
 
@@ -112,6 +112,8 @@ Valid values for LONGLIVED: TRUE, FALSE
 Valid values for NOTEWORTHY: TRUE, FALSE
 
 Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN
+
+Valid values for UFC: integers 1:6 (taxonomic uncertainty frequency class)
 
 Columns to keep are additional fields in the input file that the user wants
 retained in the output.  Fields need to be those that are unique per sample

@@ -56,7 +56,7 @@
 #' TRIBE, GENUS
 #'
 #' * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
-#' LONGLIVED, NOTEWORTHY, HABITAT
+#' LONGLIVED, NOTEWORTHY, HABITAT, UFC
 #'
 #' Valid values for FFG: CG, CF, PR, SC, SH
 #'
@@ -71,6 +71,8 @@
 #' Valid values for NOTEWORTHY: TRUE, FALSE
 #'
 #' Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN
+#'
+#' Valid values for UFC: integers 1:6 (taxonomic uncertainty frequency class)
 #'
 #' Columns to keep are additional fields in the input file that the user wants
 #' retained in the output.  Fields need to be those that are unique per sample
@@ -479,7 +481,7 @@ metric.values.bugs <- function(myDF
   # global variable bindings ----
   INDEX_NAME <- INDEX_REGION <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
     BCG_ATTR <- NONTARGET <- LONGLIVED <- NOTEWORTHY <- TOLVAL <- TOLVAL2 <-
-    NULL
+    UFC <- NULL
   FFG2_PRE <- TI_COLD <- TI_COLDCOOL <- TI_COOLWARM <- TI_WARM <- NULL
   PHYLUM <- SUBPHYLUM <- CLASS <- SUBCLASS <- INFRAORDER <- ORDER <-
     FAMILY <- SUBFAMILY <- TRIBE <- GENUS <- NULL
@@ -523,7 +525,7 @@ metric.values.bugs <- function(myDF
               , "SUBCLASS", "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
               , "TRIBE", "GENUS", "FFG", "HABIT", "LIFE_CYCLE", "TOLVAL"
               , "BCG_ATTR", "THERMAL_INDICATOR", "LONGLIVED", "NOTEWORTHY"
-              , "FFG2", "TOLVAL2", "HABITAT")
+              , "FFG2", "TOLVAL2", "HABITAT", "UFC")
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
   # Trigger prompt if any missing fields (and session is interactive)
@@ -586,6 +588,14 @@ metric.values.bugs <- function(myDF
     myDF[TolVal2_Char_NA, "TOLVAL2"] <- NA
     myDF[, "TOLVAL2"] <- as.numeric(myDF[, "TOLVAL2"])
   }##IF ~ TOLVAL2 ~ END
+
+  # QC, UFC
+  # need as numeric, if have "NA" as character it fails
+  UFC_Char_NA <- myDF[, "UFC"] == "NA"
+  if(sum(UFC_Char_NA, na.rm=TRUE) > 0) {
+    myDF[UFC_Char_NA, "UFC"] <- NA
+    myDF[, "UFC"] <- as.numeric(myDF[, "UFC"])
+  }##IF ~ UFC ~ END
 
   # Data Munging ####
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
@@ -1920,6 +1930,12 @@ metric.values.bugs <- function(myDF
              # pi_dom01_att 4, 5, 56
              # pi_dom05_att 123, not 456
 
+            ## UFC ----
+            #Taxonomic Uncertainty Frequency Class (use HBI calculation)
+            , x_UFC = sum(N_TAXA * UFC, na.rm = TRUE) / sum(N_TAXA[!is.na(UFC)
+                                                                  & UFC >= 1
+                                                                  & UFC <= 6]
+                                                           , na.rm = TRUE)
 
              #
           )## met.val.END

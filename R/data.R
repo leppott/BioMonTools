@@ -117,7 +117,7 @@
 #' @description A data set with example benthic macroinvertebrate data.
 #' Calculate metrics then statistics.
 #'
-#' @format A data frame with 10,574 observations on the following 34 variables.
+#' @format A data frame with 10,574 observations on the following 36 variables.
 #'
 #'  \describe{
 #'    \item{\code{Class}}{a character vector}
@@ -154,6 +154,8 @@
 #'    \item{\code{FFG2}}{a character vector}
 #'    \item{\code{TOLVAL2}}{a character vector}
 #'    \item{\code{HABITAT}}{a character vector}
+#'    \item{\code{UFC}}{a numeric vector}
+#'    \item{\code{UFC_Comment}}{a character vector}
 #'  }
 #' @source example data
 "data_mmi_dev"
@@ -164,7 +166,7 @@
 #' @description A data set with example benthic macroinvertebrate data.
 #' Calculate metrics then statistics.  Data from MBSS.
 #'
-#' @format A data frame with 50,664 observations on the following 29 variables.
+#' @format A data frame with 50,664 observations on the following 31 variables.
 #'
 #'  \describe{
 #'   \item{\code{Index.Name}}{a character vector}
@@ -189,6 +191,8 @@
 #'   \item{\code{Habit}}{a character vector}
 #'   \item{\code{FinalTolVal07}}{a numeric vector}
 #'   \item{\code{FinalTolVal08}}{a numeric vector}
+#'   \item{\code{UFC}}{a numeric vector}
+#'   \item{\code{UFC_Comment}}{a character vector}
 #'   \item{\code{SUBCLASS}}{a character vector}
 #'   \item{\code{INFRAORDER}}{a character vector}
 #'   \item{\code{LIFE_CYCLE}}{a character vector}
