@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate metric values, Fish — metric.values.fish • BioMonTools</title>
+<title>Quality Control Check on User Data Against Master Taxa List — qc_taxa • BioMonTools</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Calculate metric values, Fish — metric.values.fish" />
-<meta property="og:description" content="Subfunction of metric.values for use with Fish." />
+<meta property="og:title" content="Quality Control Check on User Data Against Master Taxa List — qc_taxa" />
+<meta property="og:description" content="This function compares the user's data frame to a data frame with the
+official (or user supplied) master taxa list (benthic macroinvertebrates)." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -134,59 +135,112 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate metric values, Fish</h1>
-    <small class="dont-index">Source: <a href='https://github.com/leppott/BioMonTools/blob/master/R/metric_values.R'><code>R/metric_values.R</code></a></small>
-    <div class="hidden name"><code>metric.values.fish.Rd</code></div>
+    <h1>Quality Control Check on User Data Against Master Taxa List</h1>
+    <small class="dont-index">Source: <a href='https://github.com/leppott/BioMonTools/blob/master/R/qc_taxa.R'><code>R/qc_taxa.R</code></a></small>
+    <div class="hidden name"><code>qc_taxa.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Subfunction of metric.values for use with Fish.</p>
+    <p>This function compares the user's data frame to a data frame with the
+official (or user supplied) master taxa list (benthic macroinvertebrates).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>metric.values.fish</span><span class='op'>(</span>
-  <span class='va'>myDF</span>,
-  MetricNames <span class='op'>=</span> <span class='cn'>NULL</span>,
-  boo.Adjust <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  cols2keep <span class='op'>=</span> <span class='cn'>NULL</span>,
-  <span class='va'>boo.Shiny</span>
+    <pre class="usage"><span class='fu'>qc_taxa</span><span class='op'>(</span>
+  <span class='va'>DF_User</span>,
+  DF_Official <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fun.Community <span class='op'>=</span> <span class='cn'>NULL</span>,
+  useOfficialTaxaInfo <span class='op'>=</span> <span class='st'>"only_Official"</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>myDF</th>
-      <td><p>Data frame of taxa.</p></td>
+      <th>DF_User</th>
+      <td><p>User taxa data.</p></td>
     </tr>
     <tr>
-      <th>MetricNames</th>
-      <td><p>Optional vector of metric names to be returned.</p></td>
+      <th>DF_Official</th>
+      <td><p>Official master taxa list.  Can be a local file or
+from a URL.
+Default is NULL.  A NULL value will use the official online files.</p></td>
     </tr>
     <tr>
-      <th>boo.Adjust</th>
-      <td><p>Optional boolean value on whether to perform adjustments of
-values prior to scoring.  Default = FALSE but may be TRUE for certain
-metrics.</p></td>
+      <th>fun.Community</th>
+      <td><p>Community name for which to compare the master taxa list
+(bugs or fish).</p></td>
     </tr>
     <tr>
-      <th>cols2keep</th>
-      <td><p>Column names of fun.DF to retain in the output.  Uses
-column names.</p></td>
-    </tr>
-    <tr>
-      <th>boo.Shiny</th>
-      <td><p>Boolean value for if the function is accessed via Shiny.
-Default = FALSE.</p></td>
+      <th>useOfficialTaxaInfo</th>
+      <td><p>Select how to handle new/different taxa.
+See 'Details' for more information.
+Valid values are "only_Official", "only_user", "add_new".
+Default = "only_Official".</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data frame</p>
+    <p>input data frame with master taxa information added to it.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>For internal use only.  Called from metric.values().</p>
+    <p>Output is a data frame with matches.</p>
+<p>Messages are output to the console with the number of matches and which user
+taxa did not match the official list.</p>
+<p>The official list is stored online but the user can input their own saved
+copy.</p>
+<p>Any columns in the user input file that match the official master taxa list
+will be renamed with the "_NonOfficial" suffix.</p>
+<p>New/different taxa in the user data are handled by the 'useOfficialTaxaInfo'
+parameter.  For taxa that did not match the master taxa list the user has
+options on how to handle the differences for the phylogeny (e.g., columns for
+phylum, class, family, etc.) and autecology (e.g., columns for FFG, habit,
+tolerance value, etc.).  The options are below.</p>
+<p>* only_official = use only official master taxa information.  Any
+non-matching taxa will not have any master taxa information.</p>
+<p>* only_user = only use the information provided by the user.  Information
+from the 'Official' will not be used.  This should only be used for
+non-official calculations.</p>
+<p>* add_new = hybrid approach that uses official master taxa information, when
+present, but includes user information for non-matching taxa if the column
+names match.</p>
+<p>Default master taxa lists are saved as CSV files online at:</p>
+<p>https://github.com/leppott/MBSStools_SupportFiles</p>
+<p>The files can be downloaded with the following code.</p>
+<p>**Benthic Macroinvertebrate**</p>
+<p>url_mt_bugs &lt;- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"
+df_mt_bugs &lt;- read.csv(url_mt_bugs)</p>
+<p>The master taxa files are maintained by xxxx staff.  Update dates will be
+logged on the GitHub repository.</p>
+<p>Expected fields include:</p>
+<p>**Benthic Macroinvertebrates**</p>
+<p>+ TAXON, Phylum, Class, Order, Family, Genus, Other_Taxa, Tribe, FFG,
+      FAM_TV, Habit, FinalTolVal07, Comment</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='co'># Example 1, Master Taxa List, Bugs</span>
+<span class='va'>url_mt_bugs</span> <span class='op'>&lt;-</span> <span class='st'>"https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"</span>
+<span class='va'>df_mt_bugs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='va'>url_mt_bugs</span><span class='op'>)</span>
+
+<span class='co'># User data</span>
+<span class='va'>DF_User</span> <span class='op'>&lt;-</span> <span class='va'>data_benthos_MBSS</span>
+<span class='va'>DF_Official</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>   <span class='co'># NULL df_mt_bugs</span>
+<span class='va'>fun.Community</span> <span class='op'>&lt;-</span> <span class='st'>"bugs"</span>
+<span class='va'>useOfficialTaxaInfo</span> <span class='op'>&lt;-</span> <span class='st'>"only_Official"</span>
+
+<span class='va'>df_qc_taxa_bugs</span> <span class='op'>&lt;-</span> <span class='fu'>qc_taxa</span><span class='op'>(</span><span class='va'>DF_User</span>
+                          , <span class='va'>DF_Official</span>
+                          , <span class='va'>fun.Community</span>
+                          , <span class='va'>useOfficialTaxaInfo</span><span class='op'>)</span>
+
+<span class='co'># QC input/output</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>DF_User</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>df_qc_taxa_bugs</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>DF_User</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>df_qc_taxa_bugs</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
