@@ -18,6 +18,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9062 (2021-09-23)
+
+* feature: Add qc_taxa function from MBSStools package
+    + Update example
+* feature: Add Shiny app folders and files
+* docs: Add shiny related packages to DESCRIPTION Suggests
+* refactor: Started adding NJ fish IBI 2005 to MetricScoring.xlsx
+
 ## Changes in Version 0.5.0.9061 (2021-09-09)
 
 * feature: Add taxonomic uncertainty frequency class metric for bugs, Issue #57

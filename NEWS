@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-09-09 15:14:15
+    #> Last Update: 2021-09-23 11:16:18
 
 # Version History
+
+## Changes in Version 0.5.0.9062 (2021-09-23)
+
+-   feature: Add qc\_taxa function from MBSStools package
+    -   Update example
+-   feature: Add Shiny app folders and files
+-   docs: Add shiny related packages to DESCRIPTION Suggests
+-   refactor: Started adding NJ fish IBI 2005 to MetricScoring.xlsx
 
 ## Changes in Version 0.5.0.9061 (2021-09-09)
 
