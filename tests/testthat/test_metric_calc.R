@@ -1447,15 +1447,17 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
 
   # change integers to numeric
   # Round values to 1 or 2 digits
-  library(dplyr)
+  #library(dplyr)
+
+  `%>%` <- dplyr::`%>%`
 
   df_metval_calc <- df_metval_calc %>%
-    mutate_if(is.integer, as.numeric) %>%
-    mutate_if(is.numeric, round, digits =2)
+    dplyr::mutate_if(is.integer, as.numeric) %>%
+    dplyr::mutate_if(is.numeric, round, digits =2)
 
   df_metval_qc <- df_metval_qc %>%
-    mutate_if(is.integer, as.numeric) %>%
-    mutate_if(is.numeric, round, digits =2)
+    dplyr::mutate_if(is.integer, as.numeric) %>%
+    dplyr::mutate_if(is.numeric, round, digits =2)
 
 
   # test

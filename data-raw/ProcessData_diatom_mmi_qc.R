@@ -20,10 +20,11 @@ dim(df)
 str(df)
 
 # Change integer type to numeric type
-library(dplyr)
+#library(dplyr)
+`%>%` <- dplyr::`%>%`
 
 df <- df %>%
-  mutate_if(is.integer, as.numeric)
+  dplyr::mutate_if(is.integer, as.numeric)
 
 # structure
 str(df)
