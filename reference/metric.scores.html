@@ -113,6 +113,9 @@ or continuous (e.g., 0-100, ScoreRegime=&quot;Cont_0100&quot;)." />
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -224,9 +227,7 @@ The index is on the same scale as the individual metric scores.</p>
 <span class='r-in'><span class='va'>fn_thresh</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package<span class='op'>=</span><span class='st'>"BioMonTools"</span><span class='op'>)</span>, <span class='st'>"extdata"</span></span>
 <span class='r-in'>, <span class='st'>"MetricScoring.xlsx"</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>df_thresh_metric</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='va'>fn_thresh</span>, sheet<span class='op'>=</span><span class='st'>"metric.scoring"</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error:</span> `path` does not exist: ‘/Users/runner/work/_temp/Library/BioMonTools/extdata/MetricScoring.xlsx’</span>
 <span class='r-in'><span class='va'>df_thresh_index</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='va'>fn_thresh</span>, sheet<span class='op'>=</span><span class='st'>"index.scoring"</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error:</span> `path` does not exist: ‘/Users/runner/work/_temp/Library/BioMonTools/extdata/MetricScoring.xlsx’</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'>#~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
 <span class='r-in'><span class='co'># Pacific Northwest, BCG Level 1 Indicator Taxa Index</span></span>
@@ -239,17 +240,16 @@ The index is on the same scale as the individual metric scores.</p>
 <span class='r-in'><span class='va'>df_samps_bugs</span><span class='op'>$</span><span class='va'>Index_Region</span> <span class='op'>&lt;-</span> <span class='st'>"ALL"</span></span>
 <span class='r-in'><span class='op'>(</span><span class='va'>myMetrics.Bugs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>df_thresh_metric</span><span class='op'>)</span><span class='op'>[</span><span class='va'>df_thresh_metric</span><span class='op'>[</span></span>
 <span class='r-in'>                          , <span class='st'>"INDEX_NAME"</span><span class='op'>]</span><span class='op'>==</span><span class='va'>myIndex</span>, <span class='st'>"METRIC_NAME"</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in as.data.frame(df_thresh_metric):</span> object 'df_thresh_metric' not found</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] "nt_total"        "nt_EPT"          "nt_BCG_att1i2"   "x_Shan_e"       </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [5] "nt_longlived"    "nt_Ephemerellid" "nt_Hepta"        "nt_Nemour"      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [9] "nt_Perlid"       "nt_Rhya"         "nt_ffg_pred"     "nt_noteworthy"  </span>
 <span class='r-in'><span class='co'># Run Function</span></span>
 <span class='r-in'><span class='va'>df_metric_values_bugs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='metric.values.html'>metric.values</a></span><span class='op'>(</span><span class='va'>df_samps_bugs</span>, <span class='st'>"bugs"</span></span>
 <span class='r-in'>                                       , fun.MetricNames <span class='op'>=</span> <span class='va'>myMetrics.Bugs</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep,     NA, boo.marine, boo.Shiny):</span> object 'myMetrics.Bugs' not found</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># index to BCG.PacNW.L1</span></span>
 <span class='r-in'><span class='va'>df_metric_values_bugs</span><span class='op'>$</span><span class='va'>INDEX_NAME</span> <span class='op'>&lt;-</span> <span class='va'>myIndex</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in df_metric_values_bugs$INDEX_NAME &lt;- myIndex:</span> object 'df_metric_values_bugs' not found</span>
 <span class='r-in'><span class='va'>df_metric_values_bugs</span><span class='op'>$</span><span class='va'>INDEX_REGION</span> <span class='op'>&lt;-</span> <span class='st'>"ALL"</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in df_metric_values_bugs$INDEX_REGION &lt;- "ALL":</span> object 'df_metric_values_bugs' not found</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># SCORE Metrics</span></span>
 <span class='r-in'><span class='va'>df_metric_scores_bugs</span> <span class='op'>&lt;-</span> <span class='fu'>metric.scores</span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span></span>
@@ -258,7 +258,6 @@ The index is on the same scale as the individual metric scores.</p>
 <span class='r-in'>                                       , <span class='st'>"INDEX_REGION"</span></span>
 <span class='r-in'>                                       , <span class='va'>df_thresh_metric</span></span>
 <span class='r-in'>                                       , <span class='va'>df_thresh_index</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in as.data.frame(DF_Metrics):</span> object 'df_metric_values_bugs' not found</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
 <span class='r-in'><span class='co'># View Results</span></span>
@@ -266,15 +265,39 @@ The index is on the same scale as the individual metric scores.</p>
 <span class='r-in'><span class='op'>}</span></span>
 <span class='r-in'><span class='co'># QC, table</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>df_metric_scores_bugs</span><span class='op'>$</span><span class='va'>Index</span>, <span class='va'>df_metric_scores_bugs</span><span class='op'>$</span><span class='va'>Index_Nar</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in table(df_metric_scores_bugs$Index, df_metric_scores_bugs$Index_Nar):</span> object 'df_metric_scores_bugs' not found</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>     </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>      Low Medium</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   0  163      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1   64      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2   45      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3   44      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4   49      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   5   33      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   6   40      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   7   35      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   8   28      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   9   27      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   10  32      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   11  19      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   12  23      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   13  10      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   14  14      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   15  17      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   16  11      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   17   6      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   18   4      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   19   3      0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   20   0      4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   21   0      1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   23   0      2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   24   0      2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   27   0      2</span>
 <span class='r-in'><span class='co'># QC, plot</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>df_metric_scores_bugs</span><span class='op'>$</span><span class='va'>Index</span>, main<span class='op'>=</span><span class='st'>"PacNW BCG Example Data"</span></span>
 <span class='r-in'>     , xlab<span class='op'>=</span><span class='st'>"Level 1 Indicator Taxa Index Score"</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in hist(df_metric_scores_bugs$Index, main = "PacNW BCG Example Data",     xlab = "Level 1 Indicator Taxa Index Score"):</span> object 'df_metric_scores_bugs' not found</span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>v<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>21</span>,<span class='fl'>30</span><span class='op'>)</span>, col<span class='op'>=</span><span class='st'>"blue"</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):</span> plot.new has not been called yet</span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/text.html'>text</a></span><span class='op'>(</span><span class='fl'>21</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>2</span>,<span class='op'>+</span><span class='fl'>2</span><span class='op'>)</span>, <span class='fl'>200</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Low"</span>,<span class='st'>"Medium"</span><span class='op'>)</span>, col<span class='op'>=</span><span class='st'>"blue"</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in text.default(21 + c(-2, +2), 200, c("Low", "Medium"), col = "blue"):</span> plot.new has not been called yet</span>
+<span class='r-plt img'><img src='metric.scores-1.png' alt='' width='700' height='433' /></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'>#~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
 <span class='r-in'><span class='co'># Metrics, Index, Benthic Macroinvertebrates, genus</span></span>
@@ -286,7 +309,10 @@ The index is on the same scale as the individual metric scores.</p>
 <span class='r-in'><span class='op'>(</span><span class='va'>myMetrics_Bugs_MBSS</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df_thresh_metric</span><span class='op'>[</span><span class='va'>df_thresh_metric</span><span class='op'>[</span></span>
 <span class='r-in'>, <span class='st'>"INDEX_NAME"</span><span class='op'>]</span></span>
 <span class='r-in'>                               <span class='op'>==</span> <span class='va'>myIndex</span>, <span class='st'>"METRIC_NAME"</span>, <span class='cn'>TRUE</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in unique(df_thresh_metric[df_thresh_metric[, "INDEX_NAME"] == myIndex,     "METRIC_NAME", TRUE]):</span> object 'df_thresh_metric' not found</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] "nt_total"       "nt_EPT"         "nt_Ephem"       "pi_tv2_intol"  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [5] "pi_Ephem"       "nt_ffg_scrap"   "pi_habit_climb" "pi_Chiro"      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [9] "pi_habit_cling" "pi_Tanyt"       "pi_ffg_scrap"   "pi_habit_swim" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13] "pi_Dipt"       </span>
 <span class='r-in'><span class='co'># Taxa Data</span></span>
 <span class='r-in'><span class='va'>myDF_Bugs_MBSS</span> <span class='op'>&lt;-</span> <span class='va'>data_benthos_MBSS</span></span>
 <span class='r-in'><span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>NONTARGET</span> <span class='op'>&lt;-</span> <span class='cn'>FALSE</span></span>
@@ -301,21 +327,18 @@ The index is on the same scale as the individual metric scores.</p>
 <span class='r-in'><span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>EXCLUDE</span> <span class='op'>&lt;-</span> <span class='va'>myDF_Bugs_MBSS</span><span class='op'>$</span><span class='va'>EXCLUDE</span><span class='op'>==</span><span class='st'>"Y"</span></span>
 <span class='r-in'><span class='va'>myMetric_Values_Bugs_MBSS</span> <span class='op'>&lt;-</span> <span class='fu'><a href='metric.values.html'>metric.values</a></span><span class='op'>(</span><span class='va'>myDF_Bugs_MBSS</span>, <span class='st'>"bugs"</span></span>
 <span class='r-in'>, <span class='va'>myMetrics_Bugs_MBSS</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep,     NA, boo.marine, boo.Shiny):</span> object 'myMetrics_Bugs_MBSS' not found</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>myMetric_Values_Bugs_MBSS</span><span class='op'>)</span></span>
 <span class='r-in'><span class='op'>}</span></span>
 <span class='r-in'><span class='co'># SCORE</span></span>
 <span class='r-in'><span class='va'>myMetric_Values_Bugs_MBSS</span><span class='op'>$</span><span class='va'>INDEX_REGION</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>toupper</a></span><span class='op'>(</span><span class='va'>myMetric_Values_Bugs_MBSS</span><span class='op'>$</span><span class='va'>INDEX_REGION</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in toupper(myMetric_Values_Bugs_MBSS$INDEX_REGION):</span> object 'myMetric_Values_Bugs_MBSS' not found</span>
 <span class='r-in'><span class='va'>Metrics_Bugs_Scores_MBSS</span> <span class='op'>&lt;-</span> <span class='fu'>metric.scores</span><span class='op'>(</span><span class='va'>myMetric_Values_Bugs_MBSS</span></span>
 <span class='r-in'>                                          , <span class='va'>myMetrics_Bugs_MBSS</span></span>
 <span class='r-in'>                                          , <span class='st'>"INDEX_NAME"</span></span>
 <span class='r-in'>                                          , <span class='st'>"INDEX_REGION"</span></span>
 <span class='r-in'>                                          , <span class='va'>df_thresh_metric</span></span>
 <span class='r-in'>                                          , <span class='va'>df_thresh_index</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in as.data.frame(DF_Metrics):</span> object 'myMetric_Values_Bugs_MBSS' not found</span>
 <span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
 <span class='r-in'><span class='co'># View Results</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>)</span></span>
@@ -328,23 +351,54 @@ The index is on the same scale as the individual metric scores.</p>
 <span class='r-in'>                                            , levels<span class='op'>=</span><span class='va'>Nar_MBSS</span></span>
 <span class='r-in'>                                            , labels<span class='op'>=</span><span class='va'>Nar_MBSS</span></span>
 <span class='r-in'>                                            , ordered<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in factor(Metrics_Bugs_Scores_MBSS$Index_Nar, levels = Nar_MBSS,     labels = Nar_MBSS, ordered = TRUE):</span> object 'Metrics_Bugs_Scores_MBSS' not found</span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>$</span><span class='va'>Index</span>, <span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>$</span><span class='va'>Index_Nar</span>, useNA<span class='op'>=</span><span class='st'>"ifany"</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in table(Metrics_Bugs_Scores_MBSS$Index, Metrics_Bugs_Scores_MBSS$Index_Nar,     useNA = "ifany"):</span> object 'Metrics_Bugs_Scores_MBSS' not found</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                   </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                    Very Poor Poor Fair Good</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1                        7    0    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1.28571428571429         3    0    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1.33333333333333         8    0    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1.5                      8    0    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1.57142857142857         2    0    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1.66666666666667         9    0    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1.75                     5    0    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1.85714285714286         6    0    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2                        0   17    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2.14285714285714         0    6    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2.25                     0    4    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2.33333333333333         0   10    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2.42857142857143         0    6    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2.5                      0    3    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2.66666666666667         0   13    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2.71428571428571         0    6    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   2.75                     0    2    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3                        0    0   20    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3.25                     0    0    4    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3.28571428571429         0    0    3    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3.33333333333333         0    0   12    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3.5                      0    0    5    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3.57142857142857         0    0    1    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3.66666666666667         0    0   10    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3.75                     0    0    6    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   3.85714285714286         0    0    6    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4                        0    0    0    4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4.14285714285714         0    0    0   10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4.25                     0    0    0    4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4.33333333333333         0    0    0    6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4.42857142857143         0    0    0    4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   4.5                      0    0    0    1</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># QC bug count (manual)</span></span>
 <span class='r-in'><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span>,<span class='st'>"ni_total"</span><span class='op'>]</span><span class='op'>&gt;</span><span class='fl'>120</span>,</span>
 <span class='r-in'><span class='st'>"QC_Count"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"LARGE"</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in Metrics_Bugs_Scores_MBSS[Metrics_Bugs_Scores_MBSS[, "ni_total"] &gt;     120, "QC_Count"] &lt;- "LARGE":</span> object 'Metrics_Bugs_Scores_MBSS' not found</span>
 <span class='r-in'><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span>,<span class='st'>"ni_total"</span><span class='op'>]</span><span class='op'>&lt;</span><span class='fl'>60</span>,</span>
 <span class='r-in'><span class='st'>"QC_Count"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"SMALL"</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in Metrics_Bugs_Scores_MBSS[Metrics_Bugs_Scores_MBSS[, "ni_total"] &lt;     60, "QC_Count"] &lt;- "SMALL":</span> object 'Metrics_Bugs_Scores_MBSS' not found</span>
 <span class='r-in'><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>[</span>,<span class='st'>"QC_Count"</span><span class='op'>]</span><span class='op'>)</span>,</span>
 <span class='r-in'><span class='st'>"QC_Count"</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"OK"</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in Metrics_Bugs_Scores_MBSS[is.na(Metrics_Bugs_Scores_MBSS[, "QC_Count"]),     "QC_Count"] &lt;- "OK":</span> object 'Metrics_Bugs_Scores_MBSS' not found</span>
 <span class='r-in'><span class='co'># table of QC_Count</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>Metrics_Bugs_Scores_MBSS</span><span class='op'>$</span><span class='va'>QC_Count</span><span class='op'>)</span></span>
-<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in table(Metrics_Bugs_Scores_MBSS$QC_Count):</span> object 'Metrics_Bugs_Scores_MBSS' not found</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> LARGE    OK </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    90   121 </span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># QC bug count (with function)</span></span>
 <span class='r-in'><span class='co'># Import Checks</span></span>
