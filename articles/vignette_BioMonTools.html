@@ -68,9 +68,6 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -95,7 +92,7 @@
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 class="date">2021-09-23</h4>
+            <h4 class="date">2021-11-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/master/vignettes/vignette_BioMonTools.Rmd"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -116,7 +113,7 @@
 <p>The package is hosted on GitHub (<a href="https://github.com/leppott/BioMonTools" class="uri">https://github.com/leppott/BioMonTools</a>) and can be installed using the following lines of code. It is necessary to install the <code>devtools</code> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Installing the BioMonTools library (with the vignette) from GitHub</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">devtools</span><span class="op">)</span> 
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span> 
 <span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"leppott/BioMonTools"</span>, force<span class="op">=</span><span class="cn">TRUE</span>, build_vignettes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="help" class="section level1">
@@ -281,7 +278,7 @@
 <span class="va">df.metval</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df.data</span>, <span class="st">"bugs"</span>, fun.cols2keep<span class="op">=</span><span class="va">myCols</span><span class="op">)</span>
 <span class="co">#&gt; Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span>
 <span class="co">#&gt; This warning is displayed once every 8 hours.</span>
-<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span>
+<span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span>
 <span class="co"># Metrics of Interest</span>
 <span class="co">## thermal indicator (_ti_)</span>
 <span class="co">#names(df.metval)[grepl("_ti_", names(df.metval))]</span>
@@ -552,12 +549,12 @@
 <span class="co">#&gt; Warning: `summarise_()` was deprecated in dplyr 0.7.0.</span>
 <span class="co">#&gt; Please use `summarise()` instead.</span>
 <span class="co">#&gt; This warning is displayed once every 8 hours.</span>
-<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span>
+<span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span>
 <span class="co">#&gt; Warning: `group_by_()` was deprecated in dplyr 0.7.0.</span>
 <span class="co">#&gt; Please use `group_by()` instead.</span>
 <span class="co">#&gt; See vignette('programming') for more help</span>
 <span class="co">#&gt; This warning is displayed once every 8 hours.</span>
-<span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span>
+<span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span>
 <span class="co">#&gt; [1] "Working on item (2/12); SUBPHYLUM"</span>
 <span class="co">#&gt; [1] "Working on item (3/12); CLASS"</span>
 <span class="co">#&gt; [1] "Working on item (4/12); SUBCLASS"</span>
@@ -569,6 +566,7 @@
 <span class="co">#&gt; [1] "Working on item (10/12); GENUS"</span>
 <span class="co">#&gt; [1] "Working on item (11/12); SUBGENUS"</span>
 <span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span>
+
 <span class="co"># Compare</span>
 <span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">df_tst</span>, <span class="va">SampleID</span><span class="op">)</span>
                                , Exclude_Import<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Exclude</span><span class="op">)</span>
@@ -578,7 +576,7 @@
 <span class="va">tbl_diff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">$</span><span class="va">Diff</span><span class="op">)</span>
 <span class="co">#kable(tbl_diff)</span>
 <span class="co"># sort</span>
-<span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="va">df_compare</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span>
+<span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="va">df_compare</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Number with issues</span>
 <span class="co">#sum(abs(df_compare$Diff))</span>
@@ -614,7 +612,7 @@
 <code class="sourceCode R"><span class="co"># samples with differences</span>
 <span class="va">samp_diff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">[</span><span class="va">df_compare</span><span class="op">[</span>,<span class="st">"Diff"</span><span class="op">]</span><span class="op">!=</span><span class="fl">0</span>, <span class="st">"SampleID"</span><span class="op">]</span><span class="op">)</span>
 <span class="co"># results for only those with differences</span>
-<span class="va">df_tst_diff</span> <span class="op">&lt;-</span> <span class="va">df_tst</span><span class="op">[</span><span class="va">df_tst</span><span class="op">[</span>,<span class="st">"SampleID"</span><span class="op">]</span> <span class="op">%in%</span> <span class="va">samp_diff</span><span class="op">$</span><span class="va">SampleID</span>, <span class="op">]</span>
+<span class="va">df_tst_diff</span> <span class="op">&lt;-</span> <span class="va">df_tst</span><span class="op">[</span><span class="va">df_tst</span><span class="op">[</span>,<span class="st">"SampleID"</span><span class="op">]</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">samp_diff</span><span class="op">$</span><span class="va">SampleID</span>, <span class="op">]</span>
 <span class="co"># add diff field</span>
 <span class="va">df_tst_diff</span><span class="op">$</span><span class="va">Exclude_Diff</span> <span class="op">&lt;-</span> <span class="va">df_tst_diff</span><span class="op">$</span><span class="va">Exclude</span> <span class="op">-</span> <span class="va">df_tst_diff</span><span class="op">$</span><span class="va">Exclude_New</span>
 
@@ -743,6 +741,7 @@
 <span class="co">#&gt; [1] "Working on item (10/12); GENUS"</span>
 <span class="co">#&gt; [1] "Working on item (11/12); SUBGENUS"</span>
 <span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span>
+
 <span class="co"># Compare</span>
 <span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">df_tst2</span>, <span class="va">SampleID</span><span class="op">)</span>
                                , Exclude_Import <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Exclude</span><span class="op">)</span>
@@ -752,7 +751,7 @@
 <span class="va">tbl_diff2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">$</span><span class="va">Diff</span><span class="op">)</span>
 <span class="co">#kable(tbl_diff2)</span>
 <span class="co"># sort</span>
-<span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="va">df_compare2</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span>
+<span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="va">df_compare2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Number with issues</span>
 <span class="co">#sum(abs(df_compare2$Diff))</span>
@@ -917,7 +916,7 @@
 <span class="co">#&gt; 7       95C__2012-10-02_0</span>
 <span class="co">#&gt; 8       95T__2012-10-03_0</span>
 <span class="co"># results for only those with differences</span>
-<span class="va">df_tst_diff2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">df_tst2</span>, <span class="va">SampleID</span> <span class="op">%in%</span> <span class="va">samp_diff2</span><span class="op">$</span><span class="va">SampleID</span><span class="op">)</span>
+<span class="va">df_tst_diff2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">df_tst2</span>, <span class="va">SampleID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">samp_diff2</span><span class="op">$</span><span class="va">SampleID</span><span class="op">)</span>
 <span class="co"># add diff field</span>
 <span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude_Diff</span> <span class="op">&lt;-</span> <span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude</span> <span class="op">-</span> <span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude_New</span>
 
@@ -1015,7 +1014,8 @@
                                    , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span>
 <span class="co">#&gt; Rarify of samples complete. </span>
 <span class="co">#&gt;  Number of samples =  12 </span>
-<span class="co">#&gt;  Execution time (sec) =  0.0159999999999982</span>
+<span class="co">#&gt;  Execution time (sec) =  0.0180000000000007</span>
+
 <span class="co"># view results</span>
 <span class="co">#dim(bugs_mysize)</span>
 <span class="co">#kable(head(bugs_mysize))</span>
@@ -1075,7 +1075,8 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># compare totals</span>
+<code class="sourceCode R">
+<span class="co"># compare totals</span>
 <span class="va">tbl_totals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">N_Taxa_Orig</span>, <span class="va">N_Taxa_500</span><span class="op">)</span> <span class="op">~</span> <span class="va">SampleID</span>
                         , <span class="va">df_compare</span>
                         , <span class="va">sum</span><span class="op">)</span>
@@ -1121,7 +1122,8 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Not run: </span>
+<code class="sourceCode R">
+<span class="co">## Not run: </span>
 <span class="co"># save the data</span>
 <span class="co">#write.table(bugs_mysize, paste("bugs",mySize,"txt",sep="."),sep="\t")</span>
 <span class="co">## End(Not run)</span></code></pre></div>

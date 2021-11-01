@@ -113,9 +113,6 @@ The dplyr package is used to generate the metric values." />
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -270,75 +267,78 @@ Shiny. Normally the QC check for required fields is interactive.  Setting
 boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example data (missing SubClass)</span>
-
-<span class='va'>df_metric_values_bugs</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>data_benthos_PacNW</span>, <span class='st'>"bugs"</span><span class='op'>)</span>
-
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># View Results</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='co'>#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class='co'># Example 2, data from Excel</span>
-
-<span class='co'># Packages</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/hadley/reshape'>reshape2</a></span><span class='op'>)</span>
-
-<span class='va'>df_samps_bugs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata/Data_Benthos.xlsx"</span>
-                                       , package<span class='op'>=</span><span class='st'>"BioMonTools"</span><span class='op'>)</span>
-                            , guess_max <span class='op'>=</span> <span class='fl'>10</span><span class='op'>^</span><span class='fl'>6</span><span class='op'>)</span>
-
-<span class='co'># Columns to keep</span>
-<span class='va'>myCols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Area_mi2"</span>, <span class='st'>"SurfaceArea"</span>, <span class='st'>"Density_m2"</span>, <span class='st'>"Density_ft2"</span><span class='op'>)</span>
-
-<span class='co'># Run Function</span>
-<span class='va'>df_metric_values_bugs</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>df_samps_bugs</span>
-                                       , <span class='st'>"bugs"</span>
-                                       , fun.cols2keep<span class='op'>=</span><span class='va'>myCols</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span></div><div class='input'>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># View Results</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='co'># Get data in long format so can QC results more easily</span>
-<span class='va'>df_long</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/reshape2/man/melt.html'>melt</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span>, id.vars<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"SAMPLEID"</span>
-                                                 , <span class='st'>"INDEX_NAME"</span>
-                                                 , <span class='st'>"INDEX_REGION"</span>
-                                                 , <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>toupper</a></span><span class='op'>(</span><span class='va'>myCols</span><span class='op'>)</span><span class='op'>)</span>
-                          , variable.name<span class='op'>=</span><span class='st'>"METRIC_NAME"</span>
-                          , value.name<span class='op'>=</span><span class='st'>"METRIC_VALUE"</span><span class='op'>)</span>
-
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># Save Results</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span><span class='va'>df_long</span>, <span class='st'>"metric.values.tsv"</span>, col.names<span class='op'>=</span><span class='cn'>TRUE</span>, row.names<span class='op'>=</span><span class='cn'>FALSE</span>
-  , sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span>
-
-<span class='co'># DataExplorer Report</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://boxuancui.github.io/DataExplorer/'>DataExplorer</a></span><span class='op'>)</span>
-<span class='fu'><a href='http://boxuancui.github.io/DataExplorer/reference/create_report.html'>create_report</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span>, <span class='st'>"DataExplorer_Report_MetricValues.html"</span><span class='op'>)</span>
-<span class='fu'><a href='http://boxuancui.github.io/DataExplorer/reference/create_report.html'>create_report</a></span><span class='op'>(</span><span class='va'>df_samps_bugs</span>, <span class='st'>"DataExplorer_Report_BugSamples.html"</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='co'>#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class='co'># Example 3, specific metrics or metrics in a specific order</span>
-<span class='co'>## reuse df_samps_bugs from above</span>
-
-<span class='co'># metric names to keep (in this order)</span>
-<span class='va'>myMetrics</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ni_total"</span>, <span class='st'>"nt_EPT"</span>, <span class='st'>"nt_Ephem"</span>, <span class='st'>"pi_tv_intol"</span>, <span class='st'>"pi_Ephem"</span>
-               , <span class='st'>"nt_ffg_scrap"</span>, <span class='st'>"pi_habit_climb"</span><span class='op'>)</span>
-
-<span class='co'># Run Function</span>
-<span class='va'>df_metric_values_bugs_myMetrics</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>df_samps_bugs</span>, <span class='st'>"bugs"</span>
-                                               , fun.MetricNames <span class='op'>=</span> <span class='va'>myMetrics</span><span class='op'>)</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># View Results</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs_myMetrics</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Example data (missing SubClass)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>df_metric_values_bugs</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>data_benthos_PacNW</span>, <span class='st'>"bugs"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='co'># View Results</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span class='r-in'><span class='co'># Example 2, data from Excel</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Packages</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readxl.tidyverse.org'>readxl</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/hadley/reshape'>reshape2</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>df_samps_bugs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readxl.tidyverse.org/reference/read_excel.html'>read_excel</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata/Data_Benthos.xlsx"</span></span>
+<span class='r-in'>                                       , package<span class='op'>=</span><span class='st'>"BioMonTools"</span><span class='op'>)</span></span>
+<span class='r-in'>                            , guess_max <span class='op'>=</span> <span class='fl'>10</span><span class='op'>^</span><span class='fl'>6</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Columns to keep</span></span>
+<span class='r-in'><span class='va'>myCols</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Area_mi2"</span>, <span class='st'>"SurfaceArea"</span>, <span class='st'>"Density_m2"</span>, <span class='st'>"Density_ft2"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Run Function</span></span>
+<span class='r-in'><span class='va'>df_metric_values_bugs</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>df_samps_bugs</span></span>
+<span class='r-in'>                                       , <span class='st'>"bugs"</span></span>
+<span class='r-in'>                                       , fun.cols2keep<span class='op'>=</span><span class='va'>myCols</span><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span style='color: #555555;'>This warning is displayed once every 8 hours.</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span style='color: #555555;'>Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='co'># View Results</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Get data in long format so can QC results more easily</span></span>
+<span class='r-in'><span class='va'>df_long</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/reshape2/man/melt.html'>melt</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span>, id.vars<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"SAMPLEID"</span></span>
+<span class='r-in'>                                                 , <span class='st'>"INDEX_NAME"</span></span>
+<span class='r-in'>                                                 , <span class='st'>"INDEX_REGION"</span></span>
+<span class='r-in'>                                                 , <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>toupper</a></span><span class='op'>(</span><span class='va'>myCols</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'>                          , variable.name<span class='op'>=</span><span class='st'>"METRIC_NAME"</span></span>
+<span class='r-in'>                          , value.name<span class='op'>=</span><span class='st'>"METRIC_VALUE"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='co'># Save Results</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span><span class='va'>df_long</span>, <span class='st'>"metric.values.tsv"</span>, col.names<span class='op'>=</span><span class='cn'>TRUE</span>, row.names<span class='op'>=</span><span class='cn'>FALSE</span></span>
+<span class='r-in'>  , sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># DataExplorer Report</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://boxuancui.github.io/DataExplorer/'>DataExplorer</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='http://boxuancui.github.io/DataExplorer/reference/create_report.html'>create_report</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span>, <span class='st'>"DataExplorer_Report_MetricValues.html"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='http://boxuancui.github.io/DataExplorer/reference/create_report.html'>create_report</a></span><span class='op'>(</span><span class='va'>df_samps_bugs</span>, <span class='st'>"DataExplorer_Report_BugSamples.html"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
+<span class='r-in'><span class='co'># Example 3, specific metrics or metrics in a specific order</span></span>
+<span class='r-in'><span class='co'>## reuse df_samps_bugs from above</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># metric names to keep (in this order)</span></span>
+<span class='r-in'><span class='va'>myMetrics</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ni_total"</span>, <span class='st'>"nt_EPT"</span>, <span class='st'>"nt_Ephem"</span>, <span class='st'>"pi_tv_intol"</span>, <span class='st'>"pi_Ephem"</span></span>
+<span class='r-in'>               , <span class='st'>"nt_ffg_scrap"</span>, <span class='st'>"pi_habit_climb"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Run Function</span></span>
+<span class='r-in'><span class='va'>df_metric_values_bugs_myMetrics</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>df_samps_bugs</span>, <span class='st'>"bugs"</span></span>
+<span class='r-in'>                                               , fun.MetricNames <span class='op'>=</span> <span class='va'>myMetrics</span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='co'># View Results</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/View.html'>View</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs_myMetrics</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

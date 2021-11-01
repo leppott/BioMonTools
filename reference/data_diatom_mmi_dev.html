@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Estuary taxa data — data_Taxa_MA • BioMonTools</title>
+<title>Diatom taxa data; Indiana DEM — data_diatom_mmi_dev • BioMonTools</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Estuary taxa data — data_Taxa_MA" />
-<meta property="og:description" content="A dataset with example fish taxa data and locations for mapping." />
+<meta property="og:title" content="Diatom taxa data; Indiana DEM — data_diatom_mmi_dev" />
+<meta property="og:description" content="A data set with example diatom data.
+Calculate metrics.  Data from IDEM." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -131,72 +132,67 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Estuary taxa data</h1>
+    <h1>Diatom taxa data; Indiana DEM</h1>
     <small class="dont-index">Source: <a href='https://github.com/leppott/BioMonTools/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>data_Taxa_MA.Rd</code></div>
+    <div class="hidden name"><code>data_diatom_mmi_dev.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A dataset with example fish taxa data and locations for mapping.</p>
+    <p>A data set with example diatom data.
+Calculate metrics.  Data from IDEM.</p>
     </div>
 
-    <pre class="usage"><span class='va'>data_Taxa_MA</span></pre>
+    <pre class="usage"><span class='va'>data_diatom_mmi_dev</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 2,675 observations on the following 15 variables.</p><dl>
- <dt><code>estuary</code></dt><dd><p>a factor with levels <code>BOSTON HARBOR</code>
- <code>BUZZARDS BAY</code> <code>CAPE COD BAY</code> <code>MASSACHUSETTS BAY</code>
- <code>WAQUOIT BAY</code></p></dd>
- <dt><code>CommonName</code></dt><dd><p>a factor with levels <code>ALEWIFE</code>
- <code>AMERICAN EEL</code> <code>AMERICAN LOBSTER</code> <code>AMERICAN PLAICE</code>
- <code>AMERICAN SAND LANCE</code> <code>AMERICAN SHAD</code> <code>ATLANTIC COD</code>
- <code>ATLANTIC CROAKER</code> <code>ATLANTIC HERRING</code> <code>ATLANTIC MACKEREL</code>
- <code>ATLANTIC MENHADEN</code> <code>ATLANTIC ROCK CRAB</code> <code>ATLANTIC SALMON</code>
- <code>ATLANTIC STINGRAY</code> <code>ATLANTIC STURGEON</code> <code>ATLANTIC TOMCOD</code>
- <code>BAY ANCHOVY</code> <code>BAY SCALLOP</code> <code>BLACK DRUM</code>
- <code>BLACK SEA BASS</code> <code>BLUE CRAB</code> <code>BLUE MUSSEL</code>
- <code>BLUEBACK HERRING</code> <code>BLUEFISH</code> <code>BROWN SHRIMP</code>
- <code>BUTTERFISH</code> <code>CHANNEL CATFISH</code> <code>COWNOSE RAY</code> <code>CUNNER</code>
- <code>DAGGERBLADE GRASS SHRIMP</code> <code>EASTERN OYSTER</code>
- <code>FOURSPINE STICKLEBACK</code> <code>GOBIES</code> <code>GREEN CRAB</code>
- <code>GREEN SEA URCHIN</code> <code>GRUBBY</code> <code>HADDOCK</code> <code>HOGCHOKER</code>
- <code>JONAH CRAB</code> <code>KILLIFISHES</code> <code>LONGHORN SCULPIN</code> <code>MULLETS</code>
- <code>MUMMICHOG</code> <code>NINESPINE STICKLEBACK</code> <code>NORTHERN KINGFISH</code>
- <code>NORTHERN PIPEFISH</code> <code>NORTHERN SEAROBIN</code> <code>NORTHERN SHRIMP</code>
- <code>OCEAN POUT</code> <code>OYSTER TOADFISH</code> <code>PINFISH</code> <code>POLLOCK</code>
- <code>QUAHOG</code> <code>RAINBOW SMELT</code> <code>RED DRUM</code> <code>RED HAKE</code>
- <code>ROCK GUNNEL</code> <code>SCUP</code> <code>SEA SCALLOP</code>
- <code>SEVENSPINE BAY SHRIMP</code> <code>SHEEPSHEAD MINNOW</code>
- <code>SHORTHORN SCULPIN</code> <code>SHORTNOSE STURGEON</code> <code>SILVER HAKE</code>
- <code>SILVERSIDES</code> <code>SKATES</code> <code>SMOOTH FLOUNDER</code>
- <code>SOFTSHELL CLAM</code> <code>SPINY DOGFISH</code> <code>SPOT</code>
- <code>SPOTTED SEATROUT</code> <code>STRIPED BASS</code> <code>SUMMER FLOUNDER</code>
- <code>TAUTOG</code> <code>THREESPINE STICKLEBACK</code> <code>WEAKFISH</code>
- <code>WHITE HAKE</code> <code>WHITE PERCH</code> <code>WINDOWPANE FLOUNDER</code>
- <code>WINTER FLOUNDER</code> <code>YELLOW PERCH</code> <code>YELLOWTAIL FLOUNDER</code></p></dd>
- <dt><code>LifeStage</code></dt><dd><p>a factor with levels <code>ADULTS</code> <code>EGGS</code>
- <code>JUVENILES</code> <code>LARVAE</code> <code>MATING</code> <code>PARTURITION</code>
- <code>SPAWNING</code></p></dd>
- <dt><code>SalZone</code></dt><dd><p>a factor with levels <code>&gt;25 ppt</code> <code>0.5-25 ppt</code></p></dd>
- <dt><code>Winter</code></dt><dd><p>a numeric vector</p></dd>
- <dt><code>Spring</code></dt><dd><p>a numeric vector</p></dd>
- <dt><code>Summer</code></dt><dd><p>a numeric vector</p></dd>
- <dt><code>Fall</code></dt><dd><p>a numeric vector</p></dd>
- <dt><code>All</code></dt><dd><p>a numeric vector</p></dd>
- <dt><code>TaxaName</code></dt><dd><p>Taxa Names for mapping</p></dd>
- <dt><code>State</code></dt><dd><p>a factor with levels <code>MA</code></p></dd>
- <dt><code>Latitude</code></dt><dd><p>a numeric vector</p></dd>
- <dt><code>Longitude</code></dt><dd><p>a numeric vector</p></dd>
- <dt><code>Count</code></dt><dd><p>a numeric vector</p></dd>
- <dt><code>PctDensity</code></dt><dd><p>a numeric vector</p></dd>
+    <p>A data frame with 24797 observations on the following 38 variables.</p>
+<p></p><dl>
+  <dt><code>INDEX_NAME</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>INDEX_REGION</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>STATIONID</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>COLLDATE</code></dt><dd><p>a Date</p></dd>
+  <dt><code>SAMPLEID</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>TAXAID</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>EXCLUDE</code></dt><dd><p>a logical vector</p></dd>
+  <dt><code>NONTARGET</code></dt><dd><p>a logical vector</p></dd>
+  <dt><code>N_TAXA</code></dt><dd><p>a numeric vector</p></dd>
+  <dt><code>ORDER</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>FAMILY</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>GENUS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>BC_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>TROPHIC_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>SAP_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>PT_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>O_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>SALINITY_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>BAHLS_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>P_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>N_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>HABITAT_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>N_FIXER_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>MOTILITY_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>SIZE_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>HABIT_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>MOTILE2_USGS</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>TOLVAL</code></dt><dd><p>a numeric vector</p></dd>
+  <dt><code>DIATOM_ISA</code></dt><dd><p>a character vector</p></dd>
+  <dt><code>DIAT_CL</code></dt><dd><p>a numeric vector</p></dd>
+  <dt><code>POLL_TOL</code></dt><dd><p>a numeric vector</p></dd>
+  <dt><code>BEN_SES</code></dt><dd><p>a numeric vector</p></dd>
+  <dt><code>DIATAS_TP</code></dt><dd><p>a numeric vector</p></dd>
+  <dt><code>DIATAS_TN</code></dt><dd><p>a numeric vector</p></dd>
+  <dt><code>DIAT_COND</code></dt><dd><p>a numeric vector</p></dd>
+  <dt><code>DIAT_CA</code></dt><dd><p>a numeric vector</p></dd>
+  <dt><code>MOTILITY</code></dt><dd><p>a numeric vector</p></dd>
+  <dt><code>NF</code></dt><dd><p>a numeric vector</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>example data</p>
+    <p>example data from IDEM</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

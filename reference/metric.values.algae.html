@@ -110,9 +110,6 @@
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -147,7 +144,9 @@
   <span class='va'>myDF</span>,
   MetricNames <span class='op'>=</span> <span class='cn'>NULL</span>,
   boo.Adjust <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  cols2keep <span class='op'>=</span> <span class='cn'>NULL</span>
+  cols2keep <span class='op'>=</span> <span class='cn'>NULL</span>,
+  MetricSort <span class='op'>=</span> <span class='cn'>NA</span>,
+  boo.Shiny <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -171,6 +170,16 @@ metrics.</p></td>
       <th>cols2keep</th>
       <td><p>Column names of fun.DF to retain in the output.  Uses
 column names.</p></td>
+    </tr>
+    <tr>
+      <th>MetricSort</th>
+      <td><p>How metric names should be sort; NA = as is
+, AZ = alphabetical.  Default = NULL.</p></td>
+    </tr>
+    <tr>
+      <th>boo.Shiny</th>
+      <td><p>Boolean value for if the function is accessed via Shiny.
+Default = FALSE.</p></td>
     </tr>
     </table>
 
