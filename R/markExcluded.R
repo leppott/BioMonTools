@@ -289,8 +289,8 @@ markExcluded <- function(df_samptax
                     , "Species"
                     , "Variety")
     # Taxa that should be treated as equivalent
-    Exceptions <- data.frame("TaxaID"=c("Sphaeriidae")
-                             , "PhyloID"=c("Pisidiidae"))
+    Exceptions <- data.frame("TaxaID"="Sphaeriidae"
+                             , "PhyloID"="Pisidiidae")
 
     # Recode to Function Variables
     df_samptax <- df_samps_bugs

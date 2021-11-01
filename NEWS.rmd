@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9064 (2021-11-01)
+
+* fix: Remove unneeded concatenation, markExcluded, Issue #61
+
 ## Changes in Version 0.5.0.9063 (2021-11-01)
 
 * fix: Update NEWS after merging of pull request

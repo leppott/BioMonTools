@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-11-01 14:46:33
+    #> Last Update: 2021-11-01 15:13:51
 
 # Version History
+
+## Changes in Version 0.5.0.9064 (2021-11-01)
+
+-   fix: Remove unneeded concatenation, markExcluded, Issue \#61
 
 ## Changes in Version 0.5.0.9063 (2021-11-01)
 
