@@ -4,9 +4,48 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-09-23 11:16:18
+    #> Last Update: 2021-11-01 14:46:33
 
 # Version History
+
+## Changes in Version 0.5.0.9063 (2021-11-01)
+
+-   fix: Update NEWS after merging of pull request
+    -   Add items below from branch NEWS
+        -   Some updates missing filled in from Branch info
+-   dev\_metric\_periphyton, Version 0.5.0.9066 (2021-06-23)
+    -   refactor: added diatom example dataset to package
+        -   Added diatom metric value dataset for internal QC
+-   dev\_metric\_periphyton, Version 0.5.0.9065 (2021-06-23)
+    -   refactor: Added example taxa data and example metric value data
+        to package
+    -   refactor: Added testthat script (test\_metric\_calc.R) to test
+        metric calculation.
+-   dev\_metric\_periphyton, Version 0.5.0.9064 (2021-06-23)
+    -   refactor: Updated MetricNames.xlsx according to Ben Jessup’s
+        metric descriptions for Indiana
+-   dev\_metric\_periphyton, Version 0.5.0.9063 (2021-06-22)
+    -   refactor: metric.values
+        -   Added 52 new diatom metrics (added from EDAS)
+    -   refactor: MetricNames.xlsx
+        -   Update for new diatom metrics, but missing descriptions
+    -   refactor: Added scoring formulae for IDEM Diatom IBIs
+-   dev\_metric\_periphyton, Version 0.5.0.9062 (2021-06-22)
+    -   refactor: Added \*\_RefIndicators metrics
+-   dev\_metric\_periphyton, Version 0.5.0.9061 (2021-06-15)
+    -   Fix: grepl issues in algae metrics
+-   dev\_metric\_periphyton, Version 0.5.0.9060 (2021-06-11)
+    -   refactor: metric.values
+        -   Added over 150 diatom metrics
+        -   Almost all were USGS diatom metrics
+    -   refactor: MetricNames.xlsx
+        -   Update for new diatom metrics
+-   dev\_metric\_periphyton, Version 0.5.0.9059 (2021-06-10)
+    -   refactor: metric.values added periphyton/diatom metric
+        functionality
+        -   Added metrics for Indiana diatoms IBIs
+    -   refactor: MetricNames.xlsx
+        -   Update for new diatom metrics
 
 ## Changes in Version 0.5.0.9062 (2021-09-23)
 
