@@ -436,12 +436,13 @@ metric.values <- function(fun.DF
   } else if(fun.Community=="FISH"){
     metric.values.fish(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
                        , boo.Shiny)
-  # } else if(fun.Community=="ALGAE"){
-  #   metric.values.algae(fun.DF, fun.MetricNames, boo.Adjust)
+  } else if(fun.Community=="ALGAE"){
+    metric.values.algae(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
+                        , boo.Shiny)
   }##IF.END
 }##FUNCTION.metric.values.START
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' @title Calculate metric values, Fish
+#' @title Calculate metric values, Bugs
 #'
 #' @description Subfunction of metric.values for use with Benthic
 #' Macroinvertebrates
@@ -2449,16 +2450,25 @@ metric.values.fish <- function(myDF
 #' metrics.
 #' @param cols2keep Column names of fun.DF to retain in the output.  Uses
 #' column names.
+#' @param MetricSort How metric names should be sort; NA = as is
+#' , AZ = alphabetical.  Default = NULL.
+#' @param boo.Shiny Boolean value for if the function is accessed via Shiny.
+#' Default = FALSE.
 #'
 #' @return Data frame
 #'
 #' @keywords internal
 #'
 #' @export
+
+
+
 metric.values.algae <- function(myDF
                                 , MetricNames=NULL
                                 , boo.Adjust=FALSE
-                                , cols2keep=NULL){
+                                , cols2keep=NULL
+                                , MetricSort = NA
+                                , boo.Shiny=FALSE){
   ##FUNCTION ~ metric.values.algae ~ START
 
   # global variable bindings ----
@@ -2466,22 +2476,838 @@ metric.values.algae <- function(myDF
 
   # define pipe
   `%>%` <- dplyr::`%>%`
+
+  # QC ####
+  # QC, Required Fields
+
+  col.req <- c("INDEX_REGION","SAMPLEID","TAXAID","EXCLUDE","NONTARGET"
+               ,"N_TAXA","PHYLUM","ORDER","FAMILY","GENUS","BC_USGS"
+               ,"TROPHIC_USGS","SAP_USGS","PT_USGS","O_USGS","SALINITY_USGS"
+               ,"BAHLS_USGS","P_USGS","N_USGS","HABITAT_USGS","N_FIXER_USGS"
+               ,"MOTILITY_USGS","SIZE_USGS","HABIT_USGS","MOTILE2_USGS"
+               ,"TOLVAL","DIATOM_ISA","DIAT_CL","POLL_TOL","BEN_SES"
+               ,"DIATAS_TP","DIATAS_TN","DIAT_COND","DIAT_CA","MOTILITY"
+               ,"NF")
+
+  col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
+  num.col.req.missing <- length(col.req.missing)
+  # Trigger prompt if any missing fields (and session is interactive)
+  if(num.col.req.missing!=0 & interactive()==TRUE){##IF.num.col.req.missing.START
+    myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
+    myPrompt.02 <- paste(col.req.missing, collapse=", ")
+    myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
+    myPrompt.04 <- "For example, if the HABIT field is missing all habit related metrics will not be correct."
+    myPrompt.05 <- "Do you wish to continue (YES or NO)?"
+
+    myPrompt <- paste(" ", myPrompt.01, myPrompt.02, " ", myPrompt.03, myPrompt.04
+                      , myPrompt.05, sep="\n")
+    #user.input <- readline(prompt=myPrompt)
+    user.input <- NA
+    # special condition for Shiny
+    #Shiny counts as interactive()==TRUE but cannot access this prompt in Shiny.
+    if(boo.Shiny==FALSE){
+      user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
+    } else {
+      message(myPrompt)
+      message("boo.Shiny == TRUE so prompt skipped and value set to '1'.")
+      user.input <- 1
+    }## IF ~ boo.Shiny ~ END
+
+    # any answer other than "YES" will stop the function.
+    if(user.input!=1){##IF.user.input.START
+      stop(paste("The user chose *not* to continue due to missing fields: "
+                 , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
+    }##IF.user.input.END
+    # Add missing fields
+    myDF[,col.req.missing] <- NA
+    warning(paste("Metrics related to the following fields are invalid:"
+                  , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
+  }##IF.num.col.req.missing.END
+
+  # QC, Exclude as TRUE/FALSE
+  Exclude.T <- sum(myDF$EXCLUDE==TRUE, na.rm=TRUE)
+  if(Exclude.T==0){##IF.Exclude.T.START
+    warning("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
+  }##IF.Exclude.T.END
+
+  # QC, NonTarget as TRUE/FALSE
+  NonTarget.F <- sum(myDF$NONTARGET==FALSE, na.rm=TRUE)
+  if(NonTarget.F==0){##IF.Exclude.T.START
+    warning("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
+  }##IF.Exclude.T.END
+
+  # QC, TolVal
+  # need as numeric, if have "NA" as character it fails
+  TolVal_Char_NA <- myDF[, "TOLVAL"]=="NA"
+  if(sum(TolVal_Char_NA, na.rm=TRUE)>0){
+    myDF[TolVal_Char_NA, "TOLVAL"] <- NA
+    myDF[, "TOLVAL"] <- as.numeric(myDF[, "TOLVAL"])
+  }##IF ~ TOLVAL ~ END
+
+  # Data Munging ####
+  # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
+  # Function fails if all NA (e.g., column was missing) (20200724)
+  myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
+
+  # Convert values to upper case (FFG, Habit, Life_Cycle)
+  myDF[, "BC_USGS"] <- toupper(myDF[, "BC_USGS"])
+  myDF[, "PT_USGS"] <- toupper(myDF[, "PT_USGS"])
+  myDF[, "O_USGS"] <- toupper(myDF[, "O_USGS"])
+  myDF[, "SALINITY_USGS"] <- toupper(myDF[, "SALINITY_USGS"])
+  myDF[, "P_USGS"] <- toupper(myDF[, "P_USGS"])
+  myDF[, "N_USGS"] <- toupper(myDF[, "N_USGS"])
+  myDF[, "HABITAT_USGS"] <- toupper(myDF[, "HABITAT_USGS"])
+  myDF[, "BAHLS_USGS"] <- toupper(myDF[, "BAHLS_USGS"])
+  myDF[, "TROPHIC_USGS"] <- toupper(myDF[, "TROPHIC_USGS"])
+  myDF[, "DIATOM_ISA"] <- toupper(myDF[, "DIATOM_ISA"])
+  myDF[, "SAP_USGS"] <- toupper(myDF[, "SAP_USGS"])
+  myDF[, "N_FIXER_USGS"] <- toupper(myDF[, "N_FIXER_USGS"])
+  myDF[, "MOTILITY_USGS"] <- toupper(myDF[, "MOTILITY_USGS"])
+  myDF[, "SIZE_USGS"] <- toupper(myDF[, "SIZE_USGS"])
+  myDF[, "HABIT_USGS"] <- toupper(myDF[, "HABIT_USGS"])
+  myDF[, "MOTILE2_USGS"] <- toupper(myDF[, "MOTILE2_USGS"])
+  myDF[, "DIATOM_ISA"] <- toupper(myDF[, "DIATOM_ISA"])
+
+  # Add extra columns for some fields
+  # (need unique values for functions in summarise)
+  # each will be TRUE or FALSE
+  # finds any match so "CN, CB" is both "CN" and "CB"
+  myDF[, "BC_1"] <- grepl("BC_1", myDF[, "BC_USGS"])
+  myDF[, "BC_2"] <- grepl("BC_2", myDF[, "BC_USGS"])
+  myDF[, "BC_3"] <- grepl("BC_3", myDF[, "BC_USGS"])
+  myDF[, "BC_4"] <- grepl("BC_4", myDF[, "BC_USGS"])
+  myDF[, "BC_5"] <- grepl("BC_5", myDF[, "BC_USGS"])
+  myDF[, "PT_1"] <- grepl("PT_1", myDF[, "PT_USGS"])
+  myDF[, "PT_2"] <- grepl("PT_2", myDF[, "PT_USGS"])
+  myDF[, "PT_3"] <- grepl("PT_3", myDF[, "PT_USGS"])
+  myDF[, "PT_4"] <- grepl("PT_4", myDF[, "PT_USGS"])
+  myDF[, "PT_5"] <- grepl("PT_5", myDF[, "PT_USGS"])
+  myDF[, "O_1"] <- grepl("O_1", myDF[, "O_USGS"])
+  myDF[, "O_2"] <- grepl("O_2", myDF[, "O_USGS"])
+  myDF[, "O_3"] <- grepl("O_3", myDF[, "O_USGS"])
+  myDF[, "O_4"] <- grepl("O_4", myDF[, "O_USGS"])
+  myDF[, "O_5"] <- grepl("O_5", myDF[, "O_USGS"])
+  myDF[, "SALINITY_1"] <- grepl("SALINITY_1", myDF[, "SALINITY_USGS"])
+  myDF[, "SALINITY_2"] <- grepl("SALINITY_2", myDF[, "SALINITY_USGS"])
+  myDF[, "SALINITY_3"] <- grepl("SALINITY_3", myDF[, "SALINITY_USGS"])
+  myDF[, "SALINITY_4"] <- grepl("SALINITY_4", myDF[, "SALINITY_USGS"])
+  myDF[, "HIGH_P"] <- grepl("HIGH_P", myDF[, "P_USGS"])
+  myDF[, "LOW_P"] <- grepl("LOW_P", myDF[, "P_USGS"])
+  myDF[, "HIGH_N"] <- grepl("HIGH_N", myDF[, "N_USGS"])
+  myDF[, "LOW_N"] <- grepl("LOW_N", myDF[, "N_USGS"])
+  myDF[, "BENTHIC_HABIT"] <- grepl("BENTHIC_HABIT", myDF[, "HABITAT_USGS"])
+  myDF[, "SESTONIC_HABIT"] <- grepl("SESTONIC_HABIT", myDF[, "HABITAT_USGS"])
+  myDF[, "BAHLS_1"] <- grepl("BAHLS_1", myDF[, "BAHLS_USGS"])
+  myDF[, "BAHLS_2"] <- grepl("BAHLS_2", myDF[, "BAHLS_USGS"])
+  myDF[, "BAHLS_3"] <- grepl("BAHLS_3", myDF[, "BAHLS_USGS"])
+  myDF[, "TROPHIC_1"] <- grepl("TROPHIC_1", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_2"] <- grepl("TROPHIC_2", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_3"] <- grepl("TROPHIC_3", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_4"] <- grepl("TROPHIC_4", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_5"] <- grepl("TROPHIC_5", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_6"] <- grepl("TROPHIC_6", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_7"] <- grepl("TROPHIC_7", myDF[, "TROPHIC_USGS"])
+  myDF[, "SAP_1"] <- grepl("SAP_1", myDF[, "SAP_USGS"])
+  myDF[, "SAP_2"] <- grepl("SAP_2", myDF[, "SAP_USGS"])
+  myDF[, "SAP_3"] <- grepl("SAP_3", myDF[, "SAP_USGS"])
+  myDF[, "SAP_4"] <- grepl("SAP_4", myDF[, "SAP_USGS"])
+  myDF[, "SAP_5"] <- grepl("SAP_5", myDF[, "SAP_USGS"])
+  myDF[, "NON_N_FIXER"] <- grepl("NON_N_FIXER", myDF[, "N_FIXER_USGS"])
+  myDF[, "N_FIXER"] <- grepl("\\bN_FIXER\\b", myDF[, "N_FIXER_USGS"])
+  myDF[, "HIGHLY_MOTILE"] <- grepl("HIGHLY_MOTILE", myDF[, "MOTILITY_USGS"])
+  myDF[, "MODERATELY_MOTILE"] <- grepl("MODERATELY_MOTILE", myDF[, "MOTILITY_USGS"])
+  myDF[, "NON_MOTILE"] <- grepl("NON_MOTILE", myDF[, "MOTILITY_USGS"])
+  myDF[, "SLIGHTLY_MOTILE"] <- grepl("SLIGHTLY_MOTILE", myDF[, "MOTILITY_USGS"])
+  myDF[, "WEAKLY_MOTILE"] <- grepl("WEAKLY_MOTILE", myDF[, "MOTILITY_USGS"])
+  myDF[, "BIG"] <- grepl("\\bBIG\\b", myDF[, "SIZE_USGS"])
+  myDF[, "MEDIUM"] <- grepl("MEDIUM", myDF[, "SIZE_USGS"])
+  myDF[, "SMALL"] <- grepl("\\bSMALL\\b", myDF[, "SIZE_USGS"])
+  myDF[, "VERY_BIG"] <- grepl("VERY_BIG", myDF[, "SIZE_USGS"])
+  myDF[, "VERY_SMALL"] <- grepl("VERY_SMALL", myDF[, "SIZE_USGS"])
+  myDF[, "ADNATE"] <- grepl("ADNATE", myDF[, "HABIT_USGS"])
+  myDF[, "STALKED"] <- grepl("STALKED", myDF[, "HABIT_USGS"])
+  myDF[, "HIGHLY_MOTILE.1"] <- grepl("HIGHLY_MOTILE.1", myDF[, "MOTILE2_USGS"])
+  myDF[, "ARAPHID"] <- grepl("ARAPHID", myDF[, "MOTILE2_USGS"])
+  myDF[, "REF_INDICATORS"] <- grepl("^REF", myDF[, "DIATOM_ISA"])
+
+
+  # Metric Calc ####
+
   # Calculate Metrics (could have used pipe, %>%)
-    met.val <- dplyr::summarise(dplyr::group_by(myDF
-                                                , SampleID
-                                                , "Index_Name"
-                                                , "Index_Type")
+    met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME
+                                                , INDEX_REGION)
                 #
-                # individuals, total
-                ,ni_total=sum(N_TAXA)
-                #
+                # Individuals ####
+                , ni_total = sum(N_TAXA, na.rm = TRUE)
+                , li_total = log(ni_total)
+
+                # Number of Taxa ####
+                , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & N_TAXA > 0]
+                                               , na.rm = TRUE)
+
+                # Taxonomy
+                , nt_Achnan_Navic = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & (GENUS == "Achnanthidium"
+                                                        | GENUS == "Navicula")]
+                                                      , na.rm = TRUE)
+                # N_USGS
+                , nt_LOW_N = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & LOW_N == TRUE]
+                                               , na.rm = TRUE)
+                , nt_HIGH_N = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & HIGH_N == TRUE]
+                                               , na.rm = TRUE)
+                # P_USGS
+                , nt_LOW_P = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & LOW_P == TRUE]
+                                               , na.rm = TRUE)
+                , nt_HIGH_P = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                       & HIGH_P == TRUE]
+                                                , na.rm = TRUE)
+                # BC_USGS
+                , nt_BC_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & BC_1 == TRUE]
+                                               , na.rm = TRUE)
+                , nt_BC_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & BC_2 == TRUE]
+                                              , na.rm = TRUE)
+                , nt_BC_3 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & BC_3 == TRUE]
+                                              , na.rm = TRUE)
+                , nt_BC_4 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & BC_4 == TRUE]
+                                              , na.rm = TRUE)
+                , nt_BC_5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & BC_5 == TRUE]
+                                              , na.rm = TRUE)
+                , nt_BC_12 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & (BC_1 == TRUE
+                                                         |BC_2 == TRUE)]
+                                               , na.rm = TRUE)
+                , nt_BC_45 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & (BC_4 == TRUE
+                                                         |BC_5 == TRUE)]
+                                               , na.rm = TRUE)
+
+                # PT_USGS
+                , nt_PT_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & PT_1 == TRUE]
+                                               , na.rm = TRUE)
+                , nt_PT_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & PT_2 == TRUE]
+                                              , na.rm = TRUE)
+                , nt_PT_3 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & PT_3 == TRUE]
+                                              , na.rm = TRUE)
+                , nt_PT_4 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & PT_4 == TRUE]
+                                              , na.rm = TRUE)
+                , nt_PT_5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & PT_5 == TRUE]
+                                              , na.rm = TRUE)
+                , nt_PT_12 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & (PT_1 == TRUE
+                                                         |PT_2 == TRUE)]
+                                               , na.rm = TRUE)
+                # SALINITY_USGS
+                , nt_SALINITY_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & SALINITY_1 == TRUE]
+                                                     , na.rm = TRUE)
+                , nt_SALINITY_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & SALINITY_2 == TRUE]
+                                                    , na.rm = TRUE)
+                , nt_SALINITY_3 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & SALINITY_3 == TRUE]
+                                                    , na.rm = TRUE)
+                , nt_SALINITY_4 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & SALINITY_4 == TRUE]
+                                                    , na.rm = TRUE)
+                , nt_SALINITY_12 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & (SALINITY_1 == TRUE
+                                                         |SALINITY_2 == TRUE)]
+                                                     , na.rm = TRUE)
+                , nt_SALINITY_34 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & (SALINITY_3 == TRUE
+                                                          |SALINITY_4 == TRUE)]
+                                                     , na.rm = TRUE)
+                # O_USGS
+                , nt_O_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & O_1 == TRUE]
+                                               , na.rm = TRUE)
+                , nt_O_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & O_2 == TRUE]
+                                             , na.rm = TRUE)
+                , nt_O_3 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & O_3 == TRUE]
+                                             , na.rm = TRUE)
+                , nt_O_4 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & O_4 == TRUE]
+                                             , na.rm = TRUE)
+                , nt_O_5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & O_5 == TRUE]
+                                             , na.rm = TRUE)
+                , nt_O_345 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & (O_3 == TRUE
+                                                         |O_4 == TRUE
+                                                         |O_5 == TRUE)]
+                                               , na.rm = TRUE)
+                # HABITAT_USGS
+                , nt_SESTONIC_HABIT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & SESTONIC_HABIT == TRUE]
+                                                        , na.rm = TRUE)
+                , nt_BENTHIC_HABIT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & BENTHIC_HABIT == TRUE]
+                                                        , na.rm = TRUE)
+                # BAHLS_USGS
+                , nt_BAHLS_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & (BAHLS_1 == TRUE)]
+                                                        , na.rm = TRUE)
+                , nt_BAHLS_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & (BAHLS_2 == TRUE)]
+                                                 , na.rm = TRUE)
+                , nt_BAHLS_3 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & (BAHLS_3 == TRUE)]
+                                                 , na.rm = TRUE)
+                # TROPHIC_USGS
+                , nt_TROPHIC_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & TROPHIC_1 == TRUE]
+                                                     , na.rm = TRUE)
+                , nt_TROPHIC_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & TROPHIC_2 == TRUE]
+                                                   , na.rm = TRUE)
+                , nt_TROPHIC_3 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & TROPHIC_3 == TRUE]
+                                                   , na.rm = TRUE)
+                , nt_TROPHIC_4 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & TROPHIC_4 == TRUE]
+                                                   , na.rm = TRUE)
+                , nt_TROPHIC_5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & TROPHIC_5 == TRUE]
+                                                   , na.rm = TRUE)
+                , nt_TROPHIC_6 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & TROPHIC_6 == TRUE]
+                                                   , na.rm = TRUE)
+                , nt_TROPHIC_7 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & TROPHIC_7 == TRUE]
+                                                   , na.rm = TRUE)
+                , nt_TROPHIC_456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & (TROPHIC_4 == TRUE
+                                                         |TROPHIC_5 == TRUE
+                                                         |TROPHIC_6 == TRUE)]
+                                               , na.rm = TRUE)
+                # SAP_USGS
+                , nt_SAP_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & SAP_1 == TRUE]
+                                                   , na.rm = TRUE)
+                , nt_SAP_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & SAP_2 == TRUE]
+                                               , na.rm = TRUE)
+                , nt_SAP_3 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & SAP_3 == TRUE]
+                                               , na.rm = TRUE)
+                , nt_SAP_4 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & SAP_4 == TRUE]
+                                               , na.rm = TRUE)
+                , nt_SAP_5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & SAP_5 == TRUE]
+                                               , na.rm = TRUE)
+                # N_FIXER_USGS
+                , nt_NON_N_FIXER = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & NON_N_FIXER == TRUE]
+                                               , na.rm = TRUE)
+                , nt_N_FIXER = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & N_FIXER == TRUE]
+                                                     , na.rm = TRUE)
+                # MOTILITY_USGS
+                , nt_HIGHLY_MOTILE = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & HIGHLY_MOTILE == TRUE]
+                                                      , na.rm = TRUE)
+                , nt_MODERATELY_MOTILE = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & MODERATELY_MOTILE == TRUE]
+                                                       , na.rm = TRUE)
+                , nt_NON_MOTILE = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & NON_MOTILE == TRUE]
+                                                           , na.rm = TRUE)
+                , nt_SLIGHTLY_MOTILE = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & SLIGHTLY_MOTILE == TRUE]
+                                                    , na.rm = TRUE)
+                , nt_WEAKLY_MOTILE = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & WEAKLY_MOTILE == TRUE]
+                                                         , na.rm = TRUE)
+
+                # SIZE_USGS
+                , nt_BIG = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & BIG == TRUE]
+                                              , na.rm = TRUE)
+                , nt_SMALL = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & SMALL == TRUE]
+                                              , na.rm = TRUE)
+                , nt_MEDIUM = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & MEDIUM == TRUE]
+                                              , na.rm = TRUE)
+                , nt_VERY_BIG = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & VERY_BIG == TRUE]
+                                             , na.rm = TRUE)
+                , nt_VERY_SMALL = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & VERY_SMALL == TRUE]
+                                               , na.rm = TRUE)
+                # HABIT_USGS
+                , nt_ADNATE = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                       & ADNATE == TRUE]
+                                                , na.rm = TRUE)
+                , nt_STALKED = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & STALKED == TRUE]
+                                                 , na.rm = TRUE)
+
+                # MOTILE2_USGS
+                , nt_HIGHLY_MOTILE.1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & HIGHLY_MOTILE.1 == TRUE]
+                                                         , na.rm = TRUE)
+                , nt_ARAPHID = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & ARAPHID == TRUE]
+                                                 , na.rm = TRUE)
+
+                # DIAT_CL
+                , nt_DIAT_CL_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & DIAT_CL == 1]
+                                                   , na.rm = TRUE)
+                , nt_DIAT_CL_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & DIAT_CL == 2]
+                                                   , na.rm = TRUE)
+
+                # BEN_SES
+                , nt_BEN_SES_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & BEN_SES == 1]
+                                                   , na.rm = TRUE)
+                , nt_BEN_SES_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & BEN_SES == 2]
+                                                   , na.rm = TRUE)
+                # DIAT_CA
+                , nt_DIAT_CA_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & DIAT_CA == 1]
+                                                   , na.rm = TRUE)
+                , nt_DIAT_CA_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & DIAT_CA == 2]
+                                                   , na.rm = TRUE)
+                # DIAT_COND
+                , nt_DIAT_COND_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & DIAT_COND == 1]
+                                                   , na.rm = TRUE)
+                , nt_DIAT_COND_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & DIAT_COND == 2]
+                                                     , na.rm = TRUE)
+                # DIATAS
+                , nt_DIATAS_TN_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & DIATAS_TN == 1]
+                                                     , na.rm = TRUE)
+                , nt_DIATAS_TN_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & DIATAS_TN == 2]
+                                                     , na.rm = TRUE)
+                , nt_DIATAS_TP_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & DIATAS_TP == 1]
+                                                     , na.rm = TRUE)
+                , nt_DIATAS_TP_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & DIATAS_TP == 2]
+                                                     , na.rm = TRUE)
+                # MOTILITY
+                , nt_MOTILITY_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & MOTILITY == 1]
+                                                     , na.rm = TRUE)
+                , nt_MOTILITY_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & MOTILITY == 2]
+                                                    , na.rm = TRUE)
+                # NF
+                , nt_NF_1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & NF == 1]
+                                                    , na.rm = TRUE)
+                , nt_NF_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & NF == 2]
+                                              , na.rm = TRUE)
+
+
+
+
+                # Percent Individuals ####
+                # Taxonomy
+                , pi_Achnan_Navic = 100*sum(N_TAXA[GENUS == "Achnanthidium"
+                                                   | GENUS == "Navicula"]
+                                            , na.rm = TRUE)/ni_total
+                # N_USGS
+                , pi_HIGH_N = 100*sum(N_TAXA[HIGH_N == TRUE]
+                                      , na.rm = TRUE)/ni_total
+                , pi_LOW_N = 100*sum(N_TAXA[LOW_N == TRUE]
+                                      , na.rm = TRUE)/ni_total
+                # P_USGS
+                , pi_HIGH_P = 100*sum(N_TAXA[HIGH_P == TRUE]
+                                      , na.rm = TRUE)/ni_total
+                , pi_LOW_P = 100*sum(N_TAXA[LOW_P == TRUE]
+                                      , na.rm = TRUE)/ni_total
+                # BC_USGS
+                , pi_BC_1 = 100*sum(N_TAXA[BC_1 == TRUE]
+                                    , na.rm = TRUE)/ni_total
+                , pi_BC_2 = 100*sum(N_TAXA[BC_2 == TRUE]
+                                    , na.rm = TRUE)/ni_total
+                , pi_BC_3 = 100*sum(N_TAXA[BC_3 == TRUE]
+                                    , na.rm = TRUE)/ni_total
+                , pi_BC_4 = 100*sum(N_TAXA[BC_4 == TRUE]
+                                    , na.rm = TRUE)/ni_total
+                , pi_BC_5 = 100*sum(N_TAXA[BC_5 == TRUE]
+                                    , na.rm = TRUE)/ni_total
+                # PT_USGS
+                , pi_PT_1 = 100*sum(N_TAXA[PT_1 == TRUE]
+                                     , na.rm = TRUE)/ni_total
+                , pi_PT_2 = 100*sum(N_TAXA[PT_2 == TRUE]
+                                    , na.rm = TRUE)/ni_total
+                , pi_PT_3 = 100*sum(N_TAXA[PT_3 == TRUE]
+                                    , na.rm = TRUE)/ni_total
+                , pi_PT_4 = 100*sum(N_TAXA[PT_4 == TRUE]
+                                    , na.rm = TRUE)/ni_total
+                , pi_PT_5 = 100*sum(N_TAXA[PT_5 == TRUE]
+                                    , na.rm = TRUE)/ni_total
+                , pi_PT_45 = 100*sum(N_TAXA[PT_4 == TRUE
+                                            | PT_5 == TRUE]
+                                     , na.rm = TRUE)/ni_total
+                # SALINITY_USGS
+                , pi_SALINITY_1 = 100*sum(N_TAXA[SALINITY_1 == TRUE]
+                                          , na.rm = TRUE)/ni_total
+                , pi_SALINITY_2 = 100*sum(N_TAXA[SALINITY_2 == TRUE]
+                                          , na.rm = TRUE)/ni_total
+                , pi_SALINITY_3 = 100*sum(N_TAXA[SALINITY_3 == TRUE]
+                                          , na.rm = TRUE)/ni_total
+                , pi_SALINITY_4 = 100*sum(N_TAXA[SALINITY_4 == TRUE]
+                                     , na.rm = TRUE)/ni_total
+                # O_USGS
+                , pi_O_1 = 100*sum(N_TAXA[O_1 == TRUE]
+                                          , na.rm = TRUE)/ni_total
+                , pi_O_2 = 100*sum(N_TAXA[O_2 == TRUE]
+                                   , na.rm = TRUE)/ni_total
+                , pi_O_3 = 100*sum(N_TAXA[O_3 == TRUE]
+                                   , na.rm = TRUE)/ni_total
+                , pi_O_4 = 100*sum(N_TAXA[O_4 == TRUE]
+                                   , na.rm = TRUE)/ni_total
+                , pi_O_5 = 100*sum(N_TAXA[O_5 == TRUE]
+                                   , na.rm = TRUE)/ni_total
+                # HABITAT_USGS
+                , pi_SESTONIC_HABIT = 100*sum(N_TAXA[SESTONIC_HABIT == TRUE]
+                                              , na.rm = TRUE)/ni_total
+                , pi_BENTHIC_HABIT = 100*sum(N_TAXA[BENTHIC_HABIT == TRUE]
+                                             , na.rm = TRUE)/ni_total
+                # BAHLS_USGS
+                , pi_BAHLS_1 = 100*sum(N_TAXA[BAHLS_1 == TRUE]
+                                   , na.rm = TRUE)/ni_total
+                , pi_BAHLS_2 = 100*sum(N_TAXA[BAHLS_2 == TRUE]
+                                       , na.rm = TRUE)/ni_total
+                , pi_BAHLS_3 = 100*sum(N_TAXA[BAHLS_3 == TRUE]
+                                       , na.rm = TRUE)/ni_total
+                # TROPHIC_USGS
+                , pi_TROPHIC_1 = 100*sum(N_TAXA[TROPHIC_1 == TRUE]
+                                       , na.rm = TRUE)/ni_total
+                , pi_TROPHIC_2 = 100*sum(N_TAXA[TROPHIC_2 == TRUE]
+                                         , na.rm = TRUE)/ni_total
+                , pi_TROPHIC_3 = 100*sum(N_TAXA[TROPHIC_3 == TRUE]
+                                         , na.rm = TRUE)/ni_total
+                , pi_TROPHIC_4 = 100*sum(N_TAXA[TROPHIC_4 == TRUE]
+                                         , na.rm = TRUE)/ni_total
+                , pi_TROPHIC_5 = 100*sum(N_TAXA[TROPHIC_5 == TRUE]
+                                         , na.rm = TRUE)/ni_total
+                , pi_TROPHIC_6 = 100*sum(N_TAXA[TROPHIC_6 == TRUE]
+                                         , na.rm = TRUE)/ni_total
+                , pi_TROPHIC_7 = 100*sum(N_TAXA[TROPHIC_7 == TRUE]
+                                         , na.rm = TRUE)/ni_total
+                # SAP_USGS
+                , pi_SAP_1 = 100*sum(N_TAXA[SAP_1 == TRUE]
+                                         , na.rm = TRUE)/ni_total
+                , pi_SAP_2 = 100*sum(N_TAXA[SAP_2 == TRUE]
+                                     , na.rm = TRUE)/ni_total
+                , pi_SAP_3 = 100*sum(N_TAXA[SAP_3 == TRUE]
+                                     , na.rm = TRUE)/ni_total
+                , pi_SAP_4 = 100*sum(N_TAXA[SAP_4 == TRUE]
+                                     , na.rm = TRUE)/ni_total
+                , pi_SAP_5 = 100*sum(N_TAXA[SAP_5 == TRUE]
+                                     , na.rm = TRUE)/ni_total
+                # N_FIXER_USGS
+                , pi_NON_N_FIXER = 100*sum(N_TAXA[NON_N_FIXER == TRUE]
+                                     , na.rm = TRUE)/ni_total
+                , pi_N_FIXER = 100*sum(N_TAXA[N_FIXER == TRUE]
+                                           , na.rm = TRUE)/ni_total
+
+                # MOTILITY_USGS
+                , pi_HIGHLY_MOTILE = 100*sum(N_TAXA[HIGHLY_MOTILE == TRUE]
+                                           , na.rm = TRUE)/ni_total
+                , pi_MODERATELY_MOTILE = 100*sum(N_TAXA[MODERATELY_MOTILE==TRUE]
+                                             , na.rm = TRUE)/ni_total
+                , pi_NON_MOTILE = 100*sum(N_TAXA[NON_MOTILE == TRUE]
+                                                 , na.rm = TRUE)/ni_total
+                , pi_SLIGHTLY_MOTILE = 100*sum(N_TAXA[SLIGHTLY_MOTILE == TRUE]
+                                          , na.rm = TRUE)/ni_total
+                , pi_WEAKLY_MOTILE = 100*sum(N_TAXA[WEAKLY_MOTILE == TRUE]
+                                               , na.rm = TRUE)/ni_total
+
+                # SIZE_USGS
+                , pi_BIG = 100*sum(N_TAXA[BIG == TRUE]
+                                             , na.rm = TRUE)/ni_total
+                , pi_SMALL = 100*sum(N_TAXA[SMALL == TRUE]
+                                   , na.rm = TRUE)/ni_total
+                , pi_MEDIUM = 100*sum(N_TAXA[MEDIUM == TRUE]
+                                     , na.rm = TRUE)/ni_total
+                , pi_VERY_BIG = 100*sum(N_TAXA[VERY_BIG == TRUE]
+                                   , na.rm = TRUE)/ni_total
+                , pi_VERY_SMALL = 100*sum(N_TAXA[VERY_SMALL == TRUE]
+                                     , na.rm = TRUE)/ni_total
+
+                # HABIT_USGS
+                , pi_ADNATE = 100*sum(N_TAXA[ADNATE == TRUE]
+                                          , na.rm = TRUE)/ni_total
+                , pi_STALKED = 100*sum(N_TAXA[STALKED == TRUE]
+                                      , na.rm = TRUE)/ni_total
+
+                # MOTILE2_USGS
+                , pi_HIGHLY_MOTILE.1 = 100*sum(N_TAXA[HIGHLY_MOTILE.1 == TRUE]
+                                       , na.rm = TRUE)/ni_total
+                , pi_ARAPHID = 100*sum(N_TAXA[ARAPHID == TRUE]
+                                       , na.rm = TRUE)/ni_total
+
+                # DIAT_CL
+                , pi_DIAT_CL_1 = 100*sum(N_TAXA[DIAT_CL == 1]
+                                         , na.rm = TRUE)/ni_total
+                , pi_DIAT_CL_1_ASSR = 100*(asin(sqrt(pi_DIAT_CL_1/100)))
+                , pi_DIAT_CL_2 = 100*sum(N_TAXA[DIAT_CL == 2]
+                                         , na.rm = TRUE)/ni_total
+
+                # BEN_SES
+                , pi_BEN_SES_1 = 100*sum(N_TAXA[BEN_SES == 1]
+                                         , na.rm = TRUE)/ni_total
+                , pi_BEN_SES_2 = 100*sum(N_TAXA[BEN_SES == 2]
+                                         , na.rm = TRUE)/ni_total
+                # DIAT_CA
+                , pi_DIAT_CA_1 = 100*sum(N_TAXA[DIAT_CA == 1]
+                                         , na.rm = TRUE)/ni_total
+                , pi_DIAT_CA_2 = 100*sum(N_TAXA[DIAT_CA == 2]
+                                         , na.rm = TRUE)/ni_total
+                # DIAT_COND
+                , pi_DIAT_COND_1 = 100*sum(N_TAXA[DIAT_COND == 1]
+                                         , na.rm = TRUE)/ni_total
+                , pi_DIAT_COND_2 = 100*sum(N_TAXA[DIAT_COND == 2]
+                                           , na.rm = TRUE)/ni_total
+                # DIATAS
+                , pi_DIATAS_TN_1 = 100*sum(N_TAXA[DIATAS_TN == 1]
+                                           , na.rm = TRUE)/ni_total
+                , pi_DIATAS_TN_2 = 100*sum(N_TAXA[DIATAS_TN == 2]
+                                           , na.rm = TRUE)/ni_total
+                , pi_DIATAS_TP_1 = 100*sum(N_TAXA[DIATAS_TP == 1]
+                                           , na.rm = TRUE)/ni_total
+                , pi_DIATAS_TP_2 = 100*sum(N_TAXA[DIATAS_TP == 2]
+                                           , na.rm = TRUE)/ni_total
+                # MOTILITY
+                , pi_MOTILITY_1 = 100*sum(N_TAXA[MOTILITY == 1]
+                                           , na.rm = TRUE)/ni_total
+                , pi_MOTILITY_2 = 100*sum(N_TAXA[MOTILITY == 2]
+                                          , na.rm = TRUE)/ni_total
+                # NF
+                , pi_NF_1 = 100*sum(N_TAXA[NF == 1]
+                                          , na.rm = TRUE)/ni_total
+                , pi_NF_2 = 100*sum(N_TAXA[NF == 2]
+                                    , na.rm = TRUE)/ni_total
+
+
+
+                # Percent of Taxa ####
+                # Taxonomy
+                , pt_Achnan_Navic = 100*nt_Achnan_Navic/nt_total
+                # N_USGS
+                , pt_HIGH_N = 100*nt_HIGH_N/nt_total
+                , pt_LOW_N = 100*nt_LOW_N/nt_total
+                # P_USGS
+                , pt_HIGH_P = 100*nt_HIGH_P/nt_total
+                , pt_LOW_P = 100*nt_LOW_P/nt_total
+                # BC_USGS
+                , pt_BC_1 = 100*nt_BC_1/nt_total
+                , pt_BC_2 = 100*nt_BC_2/nt_total
+                , pt_BC_3 = 100*nt_BC_3/nt_total
+                , pt_BC_4 = 100*nt_BC_4/nt_total
+                , pt_BC_5 = 100*nt_BC_5/nt_total
+                , pt_BC_12 = 100*nt_BC_12/nt_total
+                , pt_BC_45 = 100*nt_BC_45/nt_total
+
+                # PT_USGS
+                , pt_PT_1 = 100*nt_PT_1/nt_total
+                , pt_PT_2 = 100*nt_PT_2/nt_total
+                , pt_PT_3 = 100*nt_PT_3/nt_total
+                , pt_PT_4 = 100*nt_PT_4/nt_total
+                , pt_PT_5 = 100*nt_PT_5/nt_total
+                , pt_PT_12 = 100*nt_PT_12/nt_total
+
+                # SALINITY_USGS
+                , pt_SALINITY_1 = 100*nt_SALINITY_1/nt_total
+                , pt_SALINITY_2 = 100*nt_SALINITY_2/nt_total
+                , pt_SALINITY_3 = 100*nt_SALINITY_3/nt_total
+                , pt_SALINITY_4 = 100*nt_SALINITY_4/nt_total
+                , pt_SALINITY_34 = 100*nt_SALINITY_34/nt_total
+
+                # O_USGS
+                , pt_O_1 = 100*nt_O_1/nt_total
+                , pt_O_2 = 100*nt_O_2/nt_total
+                , pt_O_3 = 100*nt_O_3/nt_total
+                , pt_O_4 = 100*nt_O_4/nt_total
+                , pt_O_5 = 100*nt_O_5/nt_total
+                , pt_O_345 = 100*nt_O_345/nt_total
+
+                # HABITAT_USGS
+                , pt_SESTONIC_HABIT = 100*nt_SESTONIC_HABIT/nt_total
+                , pt_BENTHIC_HABIT = 100*nt_BENTHIC_HABIT/nt_total
+
+                # BAHLS_USGS
+                , pt_BAHLS_1 = 100*nt_BAHLS_1/nt_total
+                , pt_BAHLS_2 = 100*nt_BAHLS_2/nt_total
+                , pt_BAHLS_3 = 100*nt_BAHLS_3/nt_total
+
+                # TROPHIC_USGS
+                , pt_TROPHIC_1 = 100*nt_TROPHIC_1/nt_total
+                , pt_TROPHIC_2 = 100*nt_TROPHIC_2/nt_total
+                , pt_TROPHIC_3 = 100*nt_TROPHIC_3/nt_total
+                , pt_TROPHIC_4 = 100*nt_TROPHIC_4/nt_total
+                , pt_TROPHIC_5 = 100*nt_TROPHIC_5/nt_total
+                , pt_TROPHIC_6 = 100*nt_TROPHIC_6/nt_total
+                , pt_TROPHIC_7 = 100*nt_TROPHIC_7/nt_total
+                , pt_TROPHIC_456 = 100*nt_TROPHIC_456/nt_total
+
+                # SAP_USGS
+                , pt_SAP_1 = 100*nt_SAP_1/nt_total
+                , pt_SAP_2 = 100*nt_SAP_2/nt_total
+                , pt_SAP_3 = 100*nt_SAP_3/nt_total
+                , pt_SAP_4 = 100*nt_SAP_4/nt_total
+                , pt_SAP_5 = 100*nt_SAP_5/nt_total
+
+                # N_FIXER_USGS
+                , pt_NON_N_FIXER = 100*nt_NON_N_FIXER/nt_total
+                , pt_N_FIXER = 100*nt_N_FIXER/nt_total
+
+                # MOTILITY_USGS
+                , pt_HIGHLY_MOTILE = 100*nt_HIGHLY_MOTILE/nt_total
+                , pt_MODERATELY_MOTILE = 100*nt_MODERATELY_MOTILE/nt_total
+                , pt_NON_MOTILE = 100*nt_NON_MOTILE/nt_total
+                , pt_SLIGHTLY_MOTILE = 100*nt_SLIGHTLY_MOTILE/nt_total
+                , pt_WEAKLY_MOTILE = 100*nt_WEAKLY_MOTILE/nt_total
+
+                # SIZE_USGS
+                , pt_BIG = 100*nt_BIG/nt_total
+                , pt_SMALL = 100*nt_SMALL/nt_total
+                , pt_MEDIUM = 100*nt_MEDIUM/nt_total
+                , pt_VERY_BIG = 100*nt_VERY_BIG/nt_total
+                , pt_VERY_SMALL = 100*nt_VERY_SMALL/nt_total
+
+                # HABIT_USGS
+                , pt_ADNATE = 100*nt_ADNATE/nt_total
+                , pt_STALKED = 100*nt_STALKED/nt_total
+
+                # MOTILE2_USGS
+                , pt_HIGHLY_MOTILE.1 = 100*nt_HIGHLY_MOTILE.1/nt_total
+                , pt_ARAPHID = 100*nt_ARAPHID/nt_total
+
+                # DIAT_CL
+                , pt_DIAT_CL_1 = 100*nt_DIAT_CL_1/nt_total
+                , pt_DIAT_CL_2 = 100*nt_DIAT_CL_2/nt_total
+
+                # BEN_SES
+                , pt_BEN_SES_1 = 100*nt_BEN_SES_1/nt_total
+                , pt_BEN_SES_2 = 100*nt_BEN_SES_2/nt_total
+
+                # DIAT_CA
+                , pt_DIAT_CA_1 = 100*nt_DIAT_CA_1/nt_total
+                , pt_DIAT_CA_2 = 100*nt_DIAT_CA_2/nt_total
+
+                # DIAT_COND
+                , pt_DIAT_COND_1 = 100*nt_DIAT_COND_1/nt_total
+                , pt_DIAT_COND_2 = 100*nt_DIAT_COND_2/nt_total
+
+                # DIATAS
+                , pt_DIATAS_TN_1 = 100*nt_DIATAS_TN_1/nt_total
+                , pt_DIATAS_TN_2 = 100*nt_DIATAS_TN_2/nt_total
+                , pt_DIATAS_TP_1 = 100*nt_DIATAS_TP_1/nt_total
+                , pt_DIATAS_TP_2 = 100*nt_DIATAS_TP_2/nt_total
+
+                # MOTILITY
+                , pt_MOTILITY_1 = 100*nt_MOTILITY_1/nt_total
+                , pt_MOTILITY_2 = 100*nt_MOTILITY_2/nt_total
+
+                # NF
+                , pt_NF_1 = 100*nt_NF_1/nt_total
+                , pt_NF_2 = 100*nt_NF_2/nt_total
+
+
+
+
+                # Tolerance ####
+                # Number of Taxa
+                , nt_Sens_810 = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE# DOES NOT FOLLOW NORMAL TOLVAL CONVENTION
+                                                         & TOLVAL>=8 # LOWER VALUES MORE TOLERANT (Indiana)
+                                                         & TOLVAL<=10]
+                                                  , na.rm=TRUE)
+                , nt_RefIndicators = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE # Diatom Indicator Species Analysis
+                                                          & REF_INDICATORS == TRUE]
+                                                       , na.rm = TRUE)
+                , nt_Tol_13 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                       & TOLVAL >=1# DOES NOT FOLLOW NORMAL TOLVAL CONVENTION
+                                                       & TOLVAL <=3]# LOWER VALUES MORE TOLERANT (Indiana)
+                                                , na.rm = TRUE)
+
+                # Percent of Individuals
+                , pi_Sens_810 = 100*sum(N_TAXA[TOLVAL >=8
+                                               & TOLVAL <=10]
+                                        , na.rm = TRUE)/sum(
+                                          N_TAXA[!is.na(TOLVAL)], na.rm = TRUE)
+                , pi_RefIndicators = 100*sum(N_TAXA[REF_INDICATORS == TRUE], # Diatom Indicator Species Analysis
+                                             na.rm = TRUE)/ni_total
+                , pi_Tol_13 = 100*sum(N_TAXA[TOLVAL>=1 # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
+                                        & TOLVAL<=3], na.rm=TRUE)/sum(
+                                          N_TAXA[!is.na(TOLVAL)], na.rm = TRUE) # LOWER VALUES MORE TOLERANT
+
+                # Percent of Taxa
+                , pt_Sens_810 = 100*nt_Sens_810/nt_total # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
+                , pt_RefIndicators = 100*nt_RefIndicators/nt_total
+                , pt_Tol_13 = 100*nt_Tol_13/nt_total
+
+                # Weighted Average Pollution Tolerance
+
+                , wa_POLL_TOL = sum(N_TAXA[!is.na(POLL_TOL)]
+                                    *POLL_TOL[!is.na(POLL_TOL)
+                                              ])/sum(N_TAXA[!is.na(POLL_TOL)])
+
+
+
     )##met.val.END
+
+  # Clean Up ####
     # replace NA with 0
     met.val[is.na(met.val)] <- 0
-    # subset to only metrics specified by user
-    if (!is.null(MetricNames)){
-      met.val <- met.val[,c(SampleID, "Index_Name", "Index_Type", "ni_total", MetricNames)]
-    }
+
+  # subset to only metrics specified by user
+    if(is.null(MetricNames)){
+      met.val <- met.val
+    } else {
+      met2include <- MetricNames[!(MetricNames %in% "ni_total")]
+      # remove ni_total if included as will always include it
+      met.val <- met.val[, c("SAMPLEID", "INDEX_REGION", "INDEX_NAME",
+                             "ni_total", met2include)]
+    }##IF~MetricNames~END
+
+    # Add extra fields
+    if(is.null(cols2keep)){##IF.is.null.cols2keep.START
+      df.return <- as.data.frame(met.val)
+    } else {
+      # create df with grouped fields
+      myDF.cols2keep <- myDF %>% dplyr::group_by(.dots=c("SAMPLEID"
+                                                         , cols2keep)) %>%
+        dplyr::summarize(col.drop=sum(N_TAXA))
+      col.drop <- ncol(myDF.cols2keep)
+      myDF.cols2keep <- myDF.cols2keep[,-col.drop]
+      # merge
+      df.return <- merge(as.data.frame(myDF.cols2keep)
+                         , as.data.frame(met.val), by="SAMPLEID")
+    }##IF.is.null.cols2keep.END
+
     # df to report back
-    return(met.val)
+    return(df.return)
+
 }##FUNCTION.metric.values.algae.END
