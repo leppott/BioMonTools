@@ -18,6 +18,23 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9066 (2021-11-02)
+
+* tests: Update tests for benthos for UFC column
+* refactor: Update diatom mmi dev data for tests, add Phylum
+    + ProcessData
+    + data description
+* refactor: Update MetricNames to match MetricScores
+    + Failed test after addition of algal metrics
+    + Add metrics "pi_BCG_att5extra" and "x_UFC"  
+    + Add notes
+* tests: Update metric name tests
+* tests: Update metric stats test
+
+## Changes in Version 0.5.0.9065 (2021-11-01)
+
+* refactor: Update MetricScoring.xlsx from dev_periphyton merge
+
 ## Changes in Version 0.5.0.9064 (2021-11-01)
 
 * fix: Remove unneeded concatenation, markExcluded, Issue #61

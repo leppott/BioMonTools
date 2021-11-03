@@ -252,7 +252,8 @@
 #'   \item{\code{DIAT_COND}}{a numeric vector}
 #'   \item{\code{DIAT_CA}}{a numeric vector}
 #'   \item{\code{MOTILITY}}{a numeric vector}
-#'   \item{\code{NF}}{a numeric vector}
+#'   \item{\code{NF}}{a numeric vector}#'
+#'   \item{\code{PHYLUM}}{a character vector}
 #' }
 #' @source example data from IDEM
 "data_diatom_mmi_dev"

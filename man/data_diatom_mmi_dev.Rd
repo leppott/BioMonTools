@@ -45,7 +45,8 @@ A data frame with 24797 observations on the following 38 variables.
   \item{\code{DIAT_COND}}{a numeric vector}
   \item{\code{DIAT_CA}}{a numeric vector}
   \item{\code{MOTILITY}}{a numeric vector}
-  \item{\code{NF}}{a numeric vector}
+  \item{\code{NF}}{a numeric vector}#'
+  \item{\code{PHYLUM}}{a character vector}
 }
 }
 \source{

@@ -32,6 +32,10 @@ df$COLLDATE <-  as.Date(df$COLLDATE, format =  "%m/%d/%Y")
 # structure
 str(df)
 
+# Add Phylum
+## For test, 2021-11-02, Erik.Leppo@tetratech.com
+df$PHYLUM <- NA_character_
+
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 2. Save as RDA for use in package####
 #

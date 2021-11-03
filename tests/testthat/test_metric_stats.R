@@ -4,6 +4,9 @@ test_that("metric_stats & metric_stats2", {
   #' # data, benthos
   df_bugs <- BioMonTools::data_mmi_dev
 
+  # Add UFC, 2021-11-02
+  df_bugs$UFC <- NA_integer_
+
   # Munge Names
   names(df_bugs)[names(df_bugs) %in% "BenSampID"] <- "SAMPLEID"
   names(df_bugs)[names(df_bugs) %in% "TaxaID"] <- "TAXAID"

@@ -184,6 +184,9 @@ test_that("metric values_scores, PA Freestone IBI", {
   df_bugs[nrow(df_bugs), "N_TAXA"] <- 999
   df_bugs[nrow(df_bugs), "EXCLUDE"] <- TRUE
 
+  # extra column for a required field
+  df_bugs[, "UFC"] <- NA_integer_
+
   # metric values
   df_metval <- BioMonTools::metric.values(df_bugs, "bugs", boo.Shiny = TRUE)
   # get warnings and test fail if don't put in dummy data to fool test
@@ -1200,17 +1203,18 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
                         , TOLVAL
                         , FFG
                         , LIFE_CYCLE
-                        , SUBPHYLUM = NA
-                        , SUBCLASS = NA
-                        , INFRAORDER = NA
-                        , HABIT = NA
-                        , BCG_ATTR = NA
-                        , THERMAL_INDICATOR = NA
-                        , LONGLIVED = NA
+                        , SUBPHYLUM = NA_character_
+                        , SUBCLASS = NA_character_
+                        , INFRAORDER = NA_character_
+                        , HABIT = NA_character_
+                        , BCG_ATTR = NA_integer_
+                        , THERMAL_INDICATOR = NA_integer_
+                        , LONGLIVED = NA_character_
                         , NOTEWORTHY = NA
-                        , FFG2 = NA
-                        , TOLVAL2 = NA
-                        , HABITAT = NA)
+                        , FFG2 = NA_character_
+                        , TOLVAL2 = NA_integer_
+                        , HABITAT = NA_character_
+                        , UFC = NA_integer_)
   # metric values
   df_metval <- BioMonTools::metric.values(df_bugs, "bugs", boo.Shiny = TRUE)
   #1

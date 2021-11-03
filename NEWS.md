@@ -4,9 +4,26 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-11-01 15:13:51
+    #> Last Update: 2021-11-03 10:56:26
 
 # Version History
+
+## Changes in Version 0.5.0.9066 (2021-11-02)
+
+-   tests: Update tests for benthos for UFC column
+-   refactor: Update diatom mmi dev data for tests, add Phylum
+    -   ProcessData
+    -   data description
+-   refactor: Update MetricNames to match MetricScores
+    -   Failed test after addition of algal metrics
+    -   Add metrics “pi\_BCG\_att5extra” and “x\_UFC”  
+    -   Add notes
+-   tests: Update metric name tests
+-   tests: Update metric stats test
+
+## Changes in Version 0.5.0.9065 (2021-11-01)
+
+-   refactor: Update MetricScoring.xlsx from dev\_periphyton merge
 
 ## Changes in Version 0.5.0.9064 (2021-11-01)
 
