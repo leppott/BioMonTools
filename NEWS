@@ -4,11 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-11-18 08:38:18
+    #> Last Update: 2021-11-18 13:48:07
 
 # Version History
 
-## Changes in Version 0.5.0.9067 (2021-11-17)
+## Changes in Version 0.5.0.9068 (2021-11-18)
+
+-   refactor: Update MetricScoring.xlsx for IEPA, Issue \#63
+-   tests: Update test\_threshold\_numdigits to show rows with issues
+
+## Changes in Version 0.5.0.9067 (2021-11-18)
 
 -   feature: Add more benthic metrics, Issue \#62
     -   Adds new required fields

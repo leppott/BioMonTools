@@ -18,7 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
-## Changes in Version 0.5.0.9067 (2021-11-17)
+## Changes in Version 0.5.0.9068 (2021-11-18)
+
+* refactor: Update MetricScoring.xlsx for IEPA, Issue #63
+* tests: Update test_threshold_numdigits to show rows with issues
+
+## Changes in Version 0.5.0.9067 (2021-11-18)
 
 * feature: Add more benthic metrics, Issue #62
     + Adds new required fields

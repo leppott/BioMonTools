@@ -25,18 +25,24 @@ test_that("thresholds, num digits, index", {
 
   # Number of "bad" entries
   # Max is 11 (MBSS)
+  digmax <- 11
   # after that is most likely a floating point error that needs correction
-  index_thresh01_nbad <- sum(index_thresh01 > 11, na.rm = TRUE)
-  index_thresh02_nbad <- sum(index_thresh02 > 11, na.rm = TRUE)
-  index_thresh03_nbad <- sum(index_thresh03 > 11, na.rm = TRUE)
-  index_thresh04_nbad <- sum(index_thresh04 > 11, na.rm = TRUE)
-  index_thresh05_nbad <- sum(index_thresh05 > 11, na.rm = TRUE)
-  index_thresh06_nbad <- sum(index_thresh06 > 11, na.rm = TRUE)
-  index_thresh07_nbad <- sum(index_thresh07 > 11, na.rm = TRUE)
+  index_thresh01_nbad <- sum(index_thresh01 > digmax, na.rm = TRUE)
+  index_thresh02_nbad <- sum(index_thresh02 > digmax, na.rm = TRUE)
+  index_thresh03_nbad <- sum(index_thresh03 > digmax, na.rm = TRUE)
+  index_thresh04_nbad <- sum(index_thresh04 > digmax, na.rm = TRUE)
+  index_thresh05_nbad <- sum(index_thresh05 > digmax, na.rm = TRUE)
+  index_thresh06_nbad <- sum(index_thresh06 > digmax, na.rm = TRUE)
+  index_thresh07_nbad <- sum(index_thresh07 > digmax, na.rm = TRUE)
 
-  metric_thresh_lo_nbad  <- sum(metric_thresh_lo > 11, na.rm = TRUE)
-  metric_thresh_mid_nbad <- sum(metric_thresh_mid > 11, na.rm = TRUE)
-  metric_thresh_hi_nbad  <- sum(metric_thresh_hi > 11, na.rm = TRUE)
+  metric_thresh_lo_nbad  <- sum(metric_thresh_lo > digmax, na.rm = TRUE)
+  metric_thresh_mid_nbad <- sum(metric_thresh_mid > digmax, na.rm = TRUE)
+  metric_thresh_hi_nbad  <- sum(metric_thresh_hi > digmax, na.rm = TRUE)
+
+  # Find those rows in Excel with errors
+  which(metric_thresh_lo  %in% metric_thresh_lo[metric_thresh_lo > digmax])
+  which(metric_thresh_mid %in% metric_thresh_mid[metric_thresh_mid > digmax])
+  which(metric_thresh_hi  %in% metric_thresh_hi[metric_thresh_hi > digmax])
 
   # test
   testthat::expect_true(index_thresh01_nbad == 0)
