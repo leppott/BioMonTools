@@ -4,9 +4,25 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-11-03 10:56:26
+    #> Last Update: 2021-11-18 08:38:18
 
 # Version History
+
+## Changes in Version 0.5.0.9067 (2021-11-17)
+
+-   feature: Add more benthic metrics, Issue \#62
+    -   Adds new required fields
+        -   GRADIENT
+        -   ELEVATION
+        -   WSAREA
+    -   Update data with new columns
+        -   data\_benthos\_PacNW
+        -   Data\_Benthos.xlsx
+    -   Update data.R with changes to data\_benthos\_PacNW
+-   refactor: Update Vignettes for changes in metrics
+-   refactor: Update tests for changes in metrics
+-   break: Rename thermal benthic metrics, Issue \#62
+-   tests: Update metric test names
 
 ## Changes in Version 0.5.0.9066 (2021-11-02)
 

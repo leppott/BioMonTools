@@ -171,7 +171,11 @@ test_that("metric values_scores, PA Freestone IBI", {
                  , "NOTEWORTHY"
                  , "FFG2"
                  , "TOLVAL2"
-                 , "HABITAT")
+                 , "HABITAT"
+                 , "UFC"
+                 , "ELEVATION_ATTR"
+                 , "GRADIENT_ATTR"
+                 , "WSAREA_ATTR")
   df_bugs[, col_extra] <- NA
   df_bugs[, "NONTARGET"] <- FALSE
 
@@ -1214,7 +1218,10 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
                         , FFG2 = NA_character_
                         , TOLVAL2 = NA_integer_
                         , HABITAT = NA_character_
-                        , UFC = NA_integer_)
+                        , UFC = NA_integer_
+                        , ELEVATION_ATTR = NA_character_
+                        , GRADIENT_ATTR = NA_character_
+                        , WSAREA_ATTR = NA_character_)
   # metric values
   df_metval <- BioMonTools::metric.values(df_bugs, "bugs", boo.Shiny = TRUE)
   #1

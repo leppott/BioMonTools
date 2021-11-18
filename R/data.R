@@ -76,7 +76,7 @@
 #' @description A dataset with example taxa data and attributes for calculating
 #' metric values.
 #'
-#' @format A data frame with 598 observations on the following 29 variables.
+#' @format A data frame with 598 observations on the following 35 variables.
 #' \describe{
 #' \item{\code{INDEX_NAME}}{a character vector}
 #' \item{\code{Index_Region}}{a character vector}
@@ -100,13 +100,19 @@
 #' \item{\code{LongLived}}{a logical vector}
 #' \item{\code{Noteworthy}}{a logical vector}
 #' \item{\code{Habitat}}{a character vector}
-#' \item{\code{SubPhylum}}{a logical vector}
-#' \item{\code{InfraOrder}}{a logical vector}
+#' \item{\code{SubPhylum}}{a character vector}
+#' \item{\code{InfraOrder}}{a character vector}
 #' \item{\code{Habit}}{a logical vector}
 #' \item{\code{Life_Cycle}}{a logical vector}
 #' \item{\code{TolVal}}{a logical vector}
 #' \item{\code{FFG2}}{a logical vector}
 #' \item{\code{TolVal2}}{a logical vector}
+#' \item{\code{UFC}}{a character vector}
+#' \item{\code{UFC_Comment}}{a character vector}
+#' \item{\code{SubClass}}{a character vector}
+#' \item{\code{Elevation_Attr}}{a character vector}
+#' \item{\code{Gradient_Attr}}{a character vector}
+#' \item{\code{WSArea_Attr}}{a character vector}
 #'}
 #' @source example data
 "data_benthos_PacNW"

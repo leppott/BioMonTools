@@ -1,5 +1,5 @@
 ---
-title: "Vignette, Taxa Maps"
+title: "Taxa Maps"
 author: "Erik.Leppo@tetratech.com"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette

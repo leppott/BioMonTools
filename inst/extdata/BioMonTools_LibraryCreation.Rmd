@@ -89,6 +89,7 @@ After creating the package reload it after restarting R within RStudio (Ctrl + S
 myPkg <- "BioMonTools"
 library(myPkg, character.only = TRUE)
 help(package=(myPkg))
+library(testthat)
 #
 citation(myPkg)
 ```

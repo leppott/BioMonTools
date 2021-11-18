@@ -20,7 +20,10 @@ wd <- getwd() # assume is package directory
 myFile <- "data_benthos_PacNW.tsv"
 df <- read.delim(file.path(wd,"data-raw",myFile))
 
-df$SubClass <- NA
+df$SubClass <- NA_character_
+df$Elevation_Attr <- NA_character_
+df$Gradient_Attr <- NA_character_
+df$WSArea_Attr <- NA_character_
 
 # 1.2. Process Data
 View(df)

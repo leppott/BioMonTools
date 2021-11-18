@@ -1,5 +1,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# metval, Names, bugs, Function, xlNames ####
+# Bugs----
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## metval, Names, bugs, Function, xlNames ####
 test_that("metric.values, names, bugs, Function, xlNames", {
   # Packages
   #library(readxl) # part of BioMonTools
@@ -31,17 +33,30 @@ test_that("metric.values, names, bugs, Function, xlNames", {
   # Check
   metnam_len <- length(metnam_fun)
   metnam_match <- sum(metnam_fun %in% metnam_xlNames)
-
+#
+#   # Show non-matches
+#   metnam_fun[!(metnam_fun %in% metnam_xlNames)]
+#
+#   # test
+#   testthat::expect_equal(metnam_len, metnam_match)
+#
+#
   # Show non-matches
+  ## A to B
   metnam_fun[!(metnam_fun %in% metnam_xlNames)]
+  ## B to A
+  metnam_xlNames[!(metnam_xlNames %in% metnam_fun)]
 
-  # test
+  # test A to B
   testthat::expect_equal(metnam_len, metnam_match)
+
+  # test B to A
+  testthat::expect_equal(metnam_match, metnam_len)
 
 })## Test ~ metric names, bugs, Function, Names ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# metval, names, bugs, xlNames, xlScoring ####
+## metval, names, bugs, xlScoring, xlNames ####
 test_that("metric.values, names, bugs, xlNames, xlScoring", {
   # Packages
   #library(readxl) # part of BioMonTools
@@ -81,8 +96,8 @@ test_that("metric.values, names, bugs, xlNames, xlScoring", {
 })## Test - metric.values, names, Excel, Scoring ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# metval, names, bugs, Function, Names ####
-test_that("metric.values, names, bugs, Function, Names", {
+## metval, names, bugs, xlScoring, Function  ####
+test_that("metric.values, names, bugs, Function, xlScoring", {
   # Packages
   #library(readxl) # part of BioMonTools
 
@@ -122,7 +137,7 @@ test_that("metric.values, names, bugs, Function, Names", {
 })## Test ~ metric.values, names, bugs, Function, Names ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# metsc, num metrics ####
+## metsc, num metrics ####
 test_that("metric.scores, index, number metrics", {
   # Packages
   #library(readxl) # part of BioMonTools
@@ -180,8 +195,9 @@ test_that("metric.scores, index, number metrics", {
 })## Test ~ metric.scores, index, number metrics ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# metval, Names, fish, Function, xlNames ####
+# Fish ----
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## metval, Names, fish, Function, xlNames ####
 # Need fish data
 test_that("metric.values, names, algae, Function, xlNames", {
   # Packages
@@ -223,8 +239,9 @@ test_that("metric.values, names, algae, Function, xlNames", {
 })## Test ~ metric names, fish, Function, Names ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# metval, Names, algae, Function, xlNames ####
+# Algae ----
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## metval, Names, algae, Function, xlNames ####
 test_that("metric.values, names, algae, Function, xlNames", {
   # Packages
   #library(readxl) # part of BioMonTools
@@ -271,8 +288,8 @@ test_that("metric.values, names, algae, Function, xlNames", {
 })## Test ~ metric names, algae, Function, Names ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# metval, names, algae, xlNames, xlScoring ####
-test_that("metric.values, names, algae, xlNames, xlScoring", {
+## metval, names, algae, xlScoring, xlNames ####
+test_that("metric.values, names, algae, xlScoring, xlNames", {
   # Packages
   #library(readxl) # part of BioMonTools
 
@@ -311,8 +328,8 @@ test_that("metric.values, names, algae, xlNames, xlScoring", {
 })## Test - metric.values, names, Excel, Scoring ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# metval, names, algae, Function, Names ####
-test_that("metric.values, names, algae, Function, Names", {
+## metval, names, algae, xlScoring, Function ####
+test_that("metric.values, names, algae, xlScoring, Function", {
   # Packages
   #library(readxl) # part of BioMonTools
 
@@ -343,6 +360,8 @@ test_that("metric.values, names, algae, Function, Names", {
   metnam_match <- sum(metnam_xlScoring %in% metnam_fun)
 
   # Show non-matches
+  metnam_xlScoring[!(metnam_xlScoring %in% metnam_fun)]
+
   metnam_xlScoring[!(metnam_xlScoring %in% metnam_fun)]
 
   # test

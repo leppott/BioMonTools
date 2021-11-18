@@ -127,7 +127,8 @@ Required Fields:
     +	Valid entries: 1i, 1m, 2, 3, 4, 5, 6; if not available, leave blank or 
     enter ‘NA’.
 
-*	FFG, HABIT, LIFE_CYCLE, TOLVAL, THERMAL_INDICATOR
+*	FFG, HABIT, LIFE_CYCLE, TOLVAL, THERMAL_INDICATOR, UFC, ELEVATION_ATTR, 
+GRADIENT_ATTR, WSAREA_ATTR
 
     +	FFG
     
@@ -164,6 +165,24 @@ Required Fields:
         - Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, 
         UNKN
         
+    + UFC
+
+        - Valid values are numeric 1, 2, 3, 4, 5, 6
+        
+        - Taxonomic Uncertainty Frequency Class
+        
+    + ELEVATION_ATTR
+    
+        - Valid values for ELEVATION_ATTR: LOW, HIGH
+        
+    + GRADIENT_ATTR
+        
+        - Valid values for GRADIENT_ATTR: LOW, MOD, HIGH
+        
+    + WSAREA_ATTR
+
+        - Valid values for WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE
+        
 Fields that are optional can be in the output (see examples below). 
 
 ```{r MetricValues_Keep2}
@@ -185,9 +204,8 @@ df.metval <- BioMonTools::metric.values(df.data, "bugs", fun.cols2keep=myCols)
 # Metrics of Interest
 ## thermal indicator (_ti_)
 #names(df.metval)[grepl("_ti_", names(df.metval))]
-col.met2keep <- c("ni_total", "nt_total", "nt_ti_c", "nt_ti_cc", "nt_ti_cw"
-                , "nt_ti_w", "pi_ti_c", "pi_ti_cc", "pi_ti_cw", "pi_ti_w"
-                , "pt_ti_c", "pt_ti_cc", "pt_ti_cw", "pt_ti_w")
+col.met2keep <- c("ni_total", "nt_total", "nt_ti_corecold", "nt_ti_cold"
+                  , "nt_ti_cool", "pi_ti_corecold", "pi_ti_cold", "pi_ti_cool")
 col.ID <- c("SAMPLEID", toupper(myCols), "INDEX_NAME", "INDEX_REGION")
 # Ouput
 df.metval.ci <- df.metval[, c(col.ID, col.met2keep)]

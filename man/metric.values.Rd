@@ -42,7 +42,7 @@ data frame of SampleID and metric values
 \description{
 This function calculates metric values for bugs and fish.
 Inputs are a data frame with SampleID and taxa with phylogenetic and
-autecological information #' (see below for required fields by community).
+autecological information (see below for required fields by community).
 The dplyr package is used to generate the metric values.
 }
 \details{
@@ -54,7 +54,9 @@ operational taxonomic unit (OTU).
 
 Any non-count taxa should be identified in the "Exclude" field as "TRUE".
 These taxa will be excluded from taxa richness metrics (but will count for
-all others).  #' Any non-target taxa should be identified in the "NonTarget"
+all others).
+
+Any non-target taxa should be identified in the "NonTarget"
 field as "TRUE".  Non-target taxa are those that are not part of your
 intended #' capture list; e.g., fish,  herps, water column taxa, or water
 surface taxa in a benthic sample.  The target list will vary by program.  The
@@ -97,7 +99,8 @@ are "hi" or "lo")
 TRIBE, GENUS
 
 * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
-LONGLIVED, NOTEWORTHY, HABITAT, UFC
+LONGLIVED, NOTEWORTHY, HABITAT, UFC, ELEVATION_ATTR, GRADIENT_ATTR,
+WSAREA_ATTR
 
 Valid values for FFG: CG, CF, PR, SC, SH
 
@@ -114,6 +117,12 @@ Valid values for NOTEWORTHY: TRUE, FALSE
 Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN
 
 Valid values for UFC: integers 1:6 (taxonomic uncertainty frequency class)
+
+Valid values for ELEVATION_ATTR: LOW, HIGH
+
+Valid values for GRADIENT_ATTR: LOW, MOD, HIGH
+
+Valid values for WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE
 
 Columns to keep are additional fields in the input file that the user wants
 retained in the output.  Fields need to be those that are unique per sample
@@ -141,7 +150,7 @@ Shiny. Normally the QC check for required fields is interactive.  Setting
 boo.Shiny to TRUE will always continue.  The default is FALSE.
 }
 \examples{
-# Example data (missing SubClass)
+# Example data
 
 df_metric_values_bugs <- metric.values(data_benthos_PacNW, "bugs")
 
@@ -184,13 +193,17 @@ df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID"
 
 \dontrun{
 # Save Results
-write.table(df_long, "metric.values.tsv", col.names=TRUE, row.names=FALSE
-  , sep="\t")
+write.table(df_long, file.path(tempdir, "metric.values.tsv")
+            , col.names=TRUE, row.names=FALSE, sep="\t")
 
 # DataExplorer Report
 library(DataExplorer)
-create_report(df_metric_values_bugs, "DataExplorer_Report_MetricValues.html")
-create_report(df_samps_bugs, "DataExplorer_Report_BugSamples.html")
+create_report(df_metric_values_bugs
+              , output_file = file.path(tempdir()
+                                 , "DataExplorer_Report_MetricValues.html"))
+create_report(df_samps_bugs
+              , output_file = file.path(tempdir()
+                                   , "DataExplorer_Report_BugSamples.html"))
 }
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
