@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9066</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9067</span>
       </span>
     </div>
 
@@ -64,7 +64,7 @@
       <a href="../articles/vignette_BioMonTools.html">Vignette, BioMonTools</a>
     </li>
     <li>
-      <a href="../articles/vignette_MapTaxaObs.html">Vignette, Taxa Maps</a>
+      <a href="../articles/vignette_MapTaxaObs.html">Taxa Maps</a>
     </li>
   </ul>
 </li>
@@ -95,7 +95,7 @@
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 class="date">2021-11-03</h4>
+            <h4 class="date">2021-11-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/master/vignettes/vignette_BioMonTools.Rmd"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -212,7 +212,7 @@
 </ul>
 </li>
 <li>
-<p>FFG, HABIT, LIFE_CYCLE, TOLVAL, THERMAL_INDICATOR</p>
+<p>FFG, HABIT, LIFE_CYCLE, TOLVAL, THERMAL_INDICATOR, UFC, ELEVATION_ATTR, GRADIENT_ATTR, WSAREA_ATTR</p>
 <ul>
 <li>
 <p>FFG</p>
@@ -259,6 +259,31 @@
 <li>Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN</li>
 </ul>
 </li>
+<li>
+<p>UFC</p>
+<ul>
+<li><p>Valid values are numeric 1, 2, 3, 4, 5, 6</p></li>
+<li><p>Taxonomic Uncertainty Frequency Class</p></li>
+</ul>
+</li>
+<li>
+<p>ELEVATION_ATTR</p>
+<ul>
+<li>Valid values for ELEVATION_ATTR: LOW, HIGH</li>
+</ul>
+</li>
+<li>
+<p>GRADIENT_ATTR</p>
+<ul>
+<li>Valid values for GRADIENT_ATTR: LOW, MOD, HIGH</li>
+</ul>
+</li>
+<li>
+<p>WSAREA_ATTR</p>
+<ul>
+<li>Valid values for WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -285,9 +310,8 @@
 <span class="co"># Metrics of Interest</span>
 <span class="co">## thermal indicator (_ti_)</span>
 <span class="co">#names(df.metval)[grepl("_ti_", names(df.metval))]</span>
-<span class="va">col.met2keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ni_total"</span>, <span class="st">"nt_total"</span>, <span class="st">"nt_ti_c"</span>, <span class="st">"nt_ti_cc"</span>, <span class="st">"nt_ti_cw"</span>
-                , <span class="st">"nt_ti_w"</span>, <span class="st">"pi_ti_c"</span>, <span class="st">"pi_ti_cc"</span>, <span class="st">"pi_ti_cw"</span>, <span class="st">"pi_ti_w"</span>
-                , <span class="st">"pt_ti_c"</span>, <span class="st">"pt_ti_cc"</span>, <span class="st">"pt_ti_cw"</span>, <span class="st">"pt_ti_w"</span><span class="op">)</span>
+<span class="va">col.met2keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ni_total"</span>, <span class="st">"nt_total"</span>, <span class="st">"nt_ti_corecold"</span>, <span class="st">"nt_ti_cold"</span>
+                  , <span class="st">"nt_ti_cool"</span>, <span class="st">"pi_ti_corecold"</span>, <span class="st">"pi_ti_cold"</span>, <span class="st">"pi_ti_cool"</span><span class="op">)</span>
 <span class="va">col.ID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"SAMPLEID"</span>, <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">myCols</span><span class="op">)</span>, <span class="st">"INDEX_NAME"</span>, <span class="st">"INDEX_REGION"</span><span class="op">)</span>
 <span class="co"># Ouput</span>
 <span class="va">df.metval.ci</span> <span class="op">&lt;-</span> <span class="va">df.metval</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">col.ID</span>, <span class="va">col.met2keep</span><span class="op">)</span><span class="op">]</span>
@@ -296,27 +320,21 @@
 <table class="table">
 <caption>Metric Calculation, select metrics</caption>
 <colgroup>
-<col width="11%">
-<col width="4%">
+<col width="13%">
 <col width="5%">
-<col width="4%">
+<col width="6%">
 <col width="5%">
-<col width="8%">
+<col width="6%">
+<col width="9%">
+<col width="6%">
+<col width="4%">
+<col width="4%">
+<col width="7%">
 <col width="5%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="4%">
-<col width="4%">
-<col width="4%">
-<col width="4%">
-<col width="3%">
-<col width="4%">
-<col width="4%">
-<col width="4%">
+<col width="5%">
+<col width="7%">
+<col width="5%">
+<col width="5%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">SAMPLEID</th>
@@ -328,18 +346,12 @@
 <th align="left">INDEX_REGION</th>
 <th align="right">ni_total</th>
 <th align="right">nt_total</th>
-<th align="right">nt_ti_c</th>
-<th align="right">nt_ti_cc</th>
-<th align="right">nt_ti_cw</th>
-<th align="right">nt_ti_w</th>
-<th align="right">pi_ti_c</th>
-<th align="right">pi_ti_cc</th>
-<th align="right">pi_ti_cw</th>
-<th align="right">pi_ti_w</th>
-<th align="right">pt_ti_c</th>
-<th align="right">pt_ti_cc</th>
-<th align="right">pt_ti_cw</th>
-<th align="right">pt_ti_w</th>
+<th align="right">nt_ti_corecold</th>
+<th align="right">nt_ti_cold</th>
+<th align="right">nt_ti_cool</th>
+<th align="right">pi_ti_corecold</th>
+<th align="right">pi_ti_cold</th>
+<th align="right">pi_ti_cool</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -354,16 +366,10 @@
 <td align="right">27</td>
 <td align="right">0</td>
 <td align="right">1</td>
-<td align="right">9</td>
-<td align="right">7</td>
-<td align="right">0.0000000</td>
+<td align="right">10</td>
+<td align="right">0</td>
 <td align="right">40.237691</td>
-<td align="right">20.713073</td>
-<td align="right">11.884550</td>
-<td align="right">0.000000</td>
-<td align="right">3.703704</td>
-<td align="right">33.333333</td>
-<td align="right">25.925926</td>
+<td align="right">60.95076</td>
 </tr>
 <tr class="even">
 <td align="left">02087REF_Bug_2002-08-22_0</td>
@@ -375,18 +381,12 @@
 <td align="left">HI</td>
 <td align="right">542</td>
 <td align="right">38</td>
-<td align="right">2</td>
-<td align="right">21</td>
-<td align="right">7</td>
-<td align="right">1</td>
-<td align="right">3.1365314</td>
-<td align="right">15.129151</td>
-<td align="right">5.535055</td>
-<td align="right">64.022140</td>
-<td align="right">5.263158</td>
-<td align="right">55.263158</td>
-<td align="right">18.421053</td>
-<td align="right">2.631579</td>
+<td align="right">0</td>
+<td align="right">23</td>
+<td align="right">28</td>
+<td align="right">0</td>
+<td align="right">18.265683</td>
+<td align="right">20.66421</td>
 </tr>
 <tr class="odd">
 <td align="left">03013CSR_Bug_2003-07-01_0</td>
@@ -400,16 +400,10 @@
 <td align="right">16</td>
 <td align="right">0</td>
 <td align="right">3</td>
-<td align="right">2</td>
-<td align="right">4</td>
-<td align="right">0.0000000</td>
+<td align="right">5</td>
+<td align="right">0</td>
 <td align="right">2.958580</td>
-<td align="right">10.256410</td>
-<td align="right">60.157791</td>
-<td align="right">0.000000</td>
-<td align="right">18.750000</td>
-<td align="right">12.500000</td>
-<td align="right">25.000000</td>
+<td align="right">13.21499</td>
 </tr>
 <tr class="even">
 <td align="left">03053CSR_Bug_2003-08-14_0</td>
@@ -421,18 +415,12 @@
 <td align="left">HI</td>
 <td align="right">573</td>
 <td align="right">36</td>
-<td align="right">1</td>
-<td align="right">18</td>
-<td align="right">6</td>
-<td align="right">3</td>
-<td align="right">3.3158813</td>
-<td align="right">42.757417</td>
-<td align="right">15.706806</td>
-<td align="right">9.075044</td>
-<td align="right">2.777778</td>
-<td align="right">50.000000</td>
-<td align="right">16.666667</td>
-<td align="right">8.333333</td>
+<td align="right">0</td>
+<td align="right">19</td>
+<td align="right">24</td>
+<td align="right">0</td>
+<td align="right">46.073298</td>
+<td align="right">58.46422</td>
 </tr>
 <tr class="odd">
 <td align="left">03054CSR_Bug_2003-08-18_0</td>
@@ -444,18 +432,12 @@
 <td align="left">LO</td>
 <td align="right">558</td>
 <td align="right">13</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">0.5376344</td>
-<td align="right">6.451613</td>
-<td align="right">5.376344</td>
-<td align="right">74.910394</td>
-<td align="right">7.692308</td>
-<td align="right">23.076923</td>
-<td align="right">7.692308</td>
-<td align="right">23.076923</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">6.989247</td>
+<td align="right">11.82796</td>
 </tr>
 <tr class="even">
 <td align="left">06012CSR_Bug_2006-09-05_0</td>
@@ -467,18 +449,12 @@
 <td align="left">HI</td>
 <td align="right">545</td>
 <td align="right">40</td>
-<td align="right">1</td>
-<td align="right">17</td>
-<td align="right">11</td>
-<td align="right">4</td>
-<td align="right">1.1009174</td>
-<td align="right">32.844037</td>
-<td align="right">43.119266</td>
-<td align="right">18.532110</td>
-<td align="right">2.500000</td>
-<td align="right">42.500000</td>
-<td align="right">27.500000</td>
-<td align="right">10.000000</td>
+<td align="right">0</td>
+<td align="right">18</td>
+<td align="right">28</td>
+<td align="right">0</td>
+<td align="right">33.944954</td>
+<td align="right">75.96330</td>
 </tr>
 </tbody>
 </table>
@@ -1017,7 +993,7 @@
                                    , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span>
 <span class="co">#&gt; Rarify of samples complete. </span>
 <span class="co">#&gt;  Number of samples =  12 </span>
-<span class="co">#&gt;  Execution time (sec) =  0.0150000000000006</span>
+<span class="co">#&gt;  Execution time (sec) =  0.0169999999999995</span>
 
 <span class="co"># view results</span>
 <span class="co">#dim(bugs_mysize)</span>

@@ -49,7 +49,7 @@
 <meta property="og:title" content="Calculate metric values — metric.values" />
 <meta property="og:description" content="This function calculates metric values for bugs and fish.
 Inputs are a data frame with SampleID and taxa with phylogenetic and
-autecological information #' (see below for required fields by community).
+autecological information (see below for required fields by community).
 The dplyr package is used to generate the metric values." />
 <meta property="og:image" content="/logo.png" />
 
@@ -83,7 +83,7 @@ The dplyr package is used to generate the metric values." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9066</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9067</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@ The dplyr package is used to generate the metric values." />
       <a href="../articles/vignette_BioMonTools.html">Vignette, BioMonTools</a>
     </li>
     <li>
-      <a href="../articles/vignette_MapTaxaObs.html">Vignette, Taxa Maps</a>
+      <a href="../articles/vignette_MapTaxaObs.html">Taxa Maps</a>
     </li>
   </ul>
 </li>
@@ -145,7 +145,7 @@ The dplyr package is used to generate the metric values." />
     <div class="ref-description">
     <p>This function calculates metric values for bugs and fish.
 Inputs are a data frame with SampleID and taxa with phylogenetic and
-autecological information #' (see below for required fields by community).
+autecological information (see below for required fields by community).
 The dplyr package is used to generate the metric values.</p>
     </div>
 
@@ -210,7 +210,8 @@ All benthic macroinvertebrate taxa should be identified to the appropriate
 operational taxonomic unit (OTU).</p>
 <p>Any non-count taxa should be identified in the "Exclude" field as "TRUE".
 These taxa will be excluded from taxa richness metrics (but will count for
-all others).  #' Any non-target taxa should be identified in the "NonTarget"
+all others).</p>
+<p>Any non-target taxa should be identified in the "NonTarget"
 field as "TRUE".  Non-target taxa are those that are not part of your
 intended #' capture list; e.g., fish,  herps, water column taxa, or water
 surface taxa in a benthic sample.  The target list will vary by program.  The
@@ -240,7 +241,8 @@ are "hi" or "lo")</p>
 <p>* PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY,
 TRIBE, GENUS</p>
 <p>* FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
-LONGLIVED, NOTEWORTHY, HABITAT, UFC</p>
+LONGLIVED, NOTEWORTHY, HABITAT, UFC, ELEVATION_ATTR, GRADIENT_ATTR,
+WSAREA_ATTR</p>
 <p>Valid values for FFG: CG, CF, PR, SC, SH</p>
 <p>Valid values for HABIT: BU, CB, CN, SP, SW</p>
 <p>Valid values for LIFE_CYCLE: UNI, SEMI, MULTI</p>
@@ -249,6 +251,9 @@ LONGLIVED, NOTEWORTHY, HABITAT, UFC</p>
 <p>Valid values for NOTEWORTHY: TRUE, FALSE</p>
 <p>Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN</p>
 <p>Valid values for UFC: integers 1:6 (taxonomic uncertainty frequency class)</p>
+<p>Valid values for ELEVATION_ATTR: LOW, HIGH</p>
+<p>Valid values for GRADIENT_ATTR: LOW, MOD, HIGH</p>
+<p>Valid values for WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE</p>
 <p>Columns to keep are additional fields in the input file that the user wants
 retained in the output.  Fields need to be those that are unique per sample
 and not associated with the taxa.  For example, the fields used in
@@ -270,7 +275,7 @@ Shiny. Normally the QC check for required fields is interactive.  Setting
 boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='co'># Example data (missing SubClass)</span></span>
+    <pre class="examples"><span class='r-in'><span class='co'># Example data</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='va'>df_metric_values_bugs</span> <span class='op'>&lt;-</span> <span class='fu'>metric.values</span><span class='op'>(</span><span class='va'>data_benthos_PacNW</span>, <span class='st'>"bugs"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
@@ -316,13 +321,17 @@ boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
 <span class='r-in'></span>
 <span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
 <span class='r-in'><span class='co'># Save Results</span></span>
-<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span><span class='va'>df_long</span>, <span class='st'>"metric.values.tsv"</span>, col.names<span class='op'>=</span><span class='cn'>TRUE</span>, row.names<span class='op'>=</span><span class='cn'>FALSE</span></span>
-<span class='r-in'>  , sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span><span class='op'>(</span><span class='va'>df_long</span>, <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>tempdir</span>, <span class='st'>"metric.values.tsv"</span><span class='op'>)</span></span>
+<span class='r-in'>            , col.names<span class='op'>=</span><span class='cn'>TRUE</span>, row.names<span class='op'>=</span><span class='cn'>FALSE</span>, sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'># DataExplorer Report</span></span>
 <span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://boxuancui.github.io/DataExplorer/'>DataExplorer</a></span><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'><a href='http://boxuancui.github.io/DataExplorer/reference/create_report.html'>create_report</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span>, <span class='st'>"DataExplorer_Report_MetricValues.html"</span><span class='op'>)</span></span>
-<span class='r-in'><span class='fu'><a href='http://boxuancui.github.io/DataExplorer/reference/create_report.html'>create_report</a></span><span class='op'>(</span><span class='va'>df_samps_bugs</span>, <span class='st'>"DataExplorer_Report_BugSamples.html"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='http://boxuancui.github.io/DataExplorer/reference/create_report.html'>create_report</a></span><span class='op'>(</span><span class='va'>df_metric_values_bugs</span></span>
+<span class='r-in'>              , output_file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'>                                 , <span class='st'>"DataExplorer_Report_MetricValues.html"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='http://boxuancui.github.io/DataExplorer/reference/create_report.html'>create_report</a></span><span class='op'>(</span><span class='va'>df_samps_bugs</span></span>
+<span class='r-in'>              , output_file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'>                                   , <span class='st'>"DataExplorer_Report_BugSamples.html"</span><span class='op'>)</span><span class='op'>)</span></span>
 <span class='r-in'><span class='op'>}</span></span>
 <span class='r-in'></span>
 <span class='r-in'><span class='co'>#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
