@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-11-18 13:48:07
+    #> Last Update: 2021-11-19 10:01:07
 
 # Version History
+
+## Changes in Version 0.5.0.9069 (2021-11-19)
+
+-   fix: metric.values() not working for new metrics
+    -   Elevation, Gradient, and WSArea
 
 ## Changes in Version 0.5.0.9068 (2021-11-18)
 

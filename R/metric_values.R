@@ -2089,35 +2089,35 @@ metric.values.bugs <- function(myDF
                                                            , na.rm = TRUE)
             # Elevation ----
             , nt_elev_low = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                     & isTRUE(ELEVATION_LOW)]
+                                                     & ELEVATION_LOW == TRUE]
                                               , na.rm = TRUE)
             , nt_elev_high = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                     & isTRUE(ELEVATION_HIGH)]
+                                                     & ELEVATION_HIGH == TRUE]
                                               , na.rm = TRUE)
 
             # Gradient ----
             , nt_grad_low = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                     & isTRUE(GRADIENT_LOW)]
+                                                     & GRADIENT_LOW == TRUE]
                                               , na.rm = TRUE)
             , nt_grad_mod = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                      & isTRUE(GRADIENT_MOD)]
+                                                      & GRADIENT_MOD == TRUE]
                                                , na.rm = TRUE)
             , nt_grad_high = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                      & isTRUE(GRADIENT_HIGH)]
+                                                      & GRADIENT_HIGH == TRUE]
                                                , na.rm = TRUE)
 
             # WS_Area ----
             , nt_wsarea_small = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                     & isTRUE(WSAREA_S)]
+                                                     & WSAREA_S == TRUE]
                                               , na.rm = TRUE)
             , nt_wsarea_medium = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                     & isTRUE(WSAREA_M)]
+                                                     & WSAREA_M == TRUE]
                                               , na.rm = TRUE)
             , nt_wsarea_large = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                      & isTRUE(WSAREA_L)]
+                                                      & WSAREA_L == TRUE]
                                                , na.rm = TRUE)
             , nt_wsarea_xlarge = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                       & isTRUE(WSAREA_XL)]
+                                                       & WSAREA_XL == TRUE]
                                                 , na.rm = TRUE)
 
 
