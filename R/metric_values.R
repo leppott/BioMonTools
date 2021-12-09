@@ -658,7 +658,7 @@ metric.values.bugs <- function(myDF
   myDF[, "TI_WARM"]     <- grepl("WARM", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_EURY"]     <- grepl("EURYTHERMAL", myDF[,"THERMAL_INDICATOR"])
   # exact matches only
-  myDF[, "TI_NA"]          <- is.na(myDF[, "HABITAT"])
+  myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])
   myDF[, "HABITAT_BRAC"]   <- "BRAC" == myDF[, "HABITAT"]
   myDF[, "HABITAT_DEPO"]   <- "DEPO" == myDF[, "HABITAT"]
   myDF[, "HABITAT_GENE"]   <- "GENE" == myDF[, "HABITAT"]

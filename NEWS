@@ -4,13 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-11-19 10:01:07
+    #> Last Update: 2021-12-09 09:11:04
 
 # Version History
 
+## Changes in Version 0.5.0.9070 (2021-12-09)
+
+-   fix: metric.values() thermal indicator NA metric not correct
+    -   Using wrong column (Habitat) to find NA
+
 ## Changes in Version 0.5.0.9069 (2021-11-19)
 
--   fix: metric.values() not working for new metrics
+-   fix: metric.values() not working for new metrics, Issue \#62
     -   Elevation, Gradient, and WSArea
 
 ## Changes in Version 0.5.0.9068 (2021-11-18)
