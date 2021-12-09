@@ -1465,8 +1465,8 @@ metric.values.bugs <- function(myDF
                                                      & TI_NA == TRUE]
                                               , na.rm = TRUE)
              , nt_ti_corecold_cold = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                         & (TI_COLD == TRUE |
-                                                              TI_COOL == TRUE)]
+                                                         & (TI_CORECOLD == TRUE |
+                                                              TI_COLD == TRUE)]
                                                   , na.rm = TRUE)
              , nt_ti_cool_warm = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                               & (TI_COOL == TRUE |

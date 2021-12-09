@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-09 09:11:04
+    #> Last Update: 2021-12-09 09:32:45
 
 # Version History
+
+## Changes in Version 0.5.0.9071 (2021-12-09)
+
+-   fix: metric.values() thermal indicator metric not correct
+    -   nt\_ti\_corecold\_cold
+    -   pt\_ti\_corecold\_cold
 
 ## Changes in Version 0.5.0.9070 (2021-12-09)
 

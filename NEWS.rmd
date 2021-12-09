@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9071 (2021-12-09)
+
+* fix: metric.values() thermal indicator metric not correct
+    + nt_ti_corecold_cold
+    + pt_ti_corecold_cold
+
 ## Changes in Version 0.5.0.9070 (2021-12-09)
 
 * fix: metric.values() thermal indicator NA metric not correct
