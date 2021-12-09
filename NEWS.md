@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-09 09:32:45
+    #> Last Update: 2021-12-09 12:15:23
 
 # Version History
+
+## Changes in Version 0.5.0.9072 (2021-12-09)
+
+-   refactor: Update thermal metric default values, Core-Cold to CoreC
+    -   metric.values()
+    -   data\_benthos\_PacNW
 
 ## Changes in Version 0.5.0.9071 (2021-12-09)
 

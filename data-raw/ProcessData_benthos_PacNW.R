@@ -25,6 +25,14 @@ df$Elevation_Attr <- NA_character_
 df$Gradient_Attr <- NA_character_
 df$WSArea_Attr <- NA_character_
 
+# 20211209, change thermal
+table(df$Thermal_Indicator)
+df$Thermal_Indicator[df$Thermal_Indicator == "cold"] <- "CoreC"
+df$Thermal_Indicator[df$Thermal_Indicator == "cold_cool"] <- "Cold"
+df$Thermal_Indicator[df$Thermal_Indicator == "cool_warm"] <- "Cool"
+df$Thermal_Indicator[df$Thermal_Indicator == "warm"] <- "Warm"
+table(df$Thermal_Indicator)
+
 # 1.2. Process Data
 View(df)
 # QC check

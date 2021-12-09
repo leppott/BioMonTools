@@ -67,7 +67,8 @@
 #'
 #' Valid values for LIFE_CYCLE: UNI, SEMI, MULTI
 #'
-#' Valid values for THERMAL_INDICATOR: COLD, COLD_COOL, COOL_WARM, WARM
+#' Valid values for THERMAL_INDICATOR: COREC, COLD, COOL, WARM, EURYTHERMAL
+#' , and NA
 #'
 #' Valid values for LONGLIVED: TRUE, FALSE
 #'
@@ -652,7 +653,7 @@ metric.values.bugs <- function(myDF
   myDF[, "LC_SEMI"]     <- grepl("SEMI", myDF[, "LIFE_CYCLE"])
   myDF[, "LC_UNI"]      <- grepl("UNI", myDF[, "LIFE_CYCLE"])
   myDF[, "FFG2_PRE"]    <- grepl("PR", myDF[, "FFG2"])
-  myDF[, "TI_CORECOLD"] <- grepl("CORE-COLD", myDF[,"THERMAL_INDICATOR"])
+  myDF[, "TI_CORECOLD"] <- grepl("COREC", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_COLD"]     <- grepl("COLD", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_COOL"]     <- grepl("COOL", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_WARM"]     <- grepl("WARM", myDF[,"THERMAL_INDICATOR"])

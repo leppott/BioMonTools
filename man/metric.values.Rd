@@ -108,7 +108,8 @@ Valid values for HABIT: BU, CB, CN, SP, SW
 
 Valid values for LIFE_CYCLE: UNI, SEMI, MULTI
 
-Valid values for THERMAL_INDICATOR: COLD, COLD_COOL, COOL_WARM, WARM
+Valid values for THERMAL_INDICATOR: COREC, COLD, COOL, WARM, EURYTHERMAL
+, and NA
 
 Valid values for LONGLIVED: TRUE, FALSE
 
