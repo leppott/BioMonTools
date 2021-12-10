@@ -100,7 +100,7 @@ TRIBE, GENUS
 
 * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
 LONGLIVED, NOTEWORTHY, HABITAT, UFC, ELEVATION_ATTR, GRADIENT_ATTR,
-WSAREA_ATTR
+WSAREA_ATTR, REPRODUCTION, CONNECTIVITY, SCC
 
 Valid values for FFG: CG, CF, PR, SC, SH
 
@@ -124,6 +124,13 @@ Valid values for ELEVATION_ATTR: LOW, HIGH
 Valid values for GRADIENT_ATTR: LOW, MOD, HIGH
 
 Valid values for WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE
+
+Valid values for REPRODUCTION: BROADCASTER, SIMPLE NEST, COMPLEX NEST,
+BEARER, and MIGRATORY
+
+Valid values for CONNECTIVITY: TRUE, FALSE
+
+Valid values for SCC (Species of Conservation Concern): TRUE, FALSE
 
 Columns to keep are additional fields in the input file that the user wants
 retained in the output.  Fields need to be those that are unique per sample
@@ -223,4 +230,13 @@ df_metric_values_bugs_myMetrics <- metric.values(df_samps_bugs, "bugs"
 View(df_metric_values_bugs_myMetrics)
 }
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Example 4, fish metrics
+
+df_metric_values_fish <- metric.values(data_fish_MBSS, "fish")
+
+\dontrun{
+# View Results
+View(df_metric_values_bugs_myMetrics)
+}
 }

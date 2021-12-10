@@ -4,9 +4,22 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-09 12:15:23
+    #> Last Update: 2021-12-10 14:13:29
 
 # Version History
+
+## Changes in Version 0.5.0.9073 (2021-12-10)
+
+-   feature: New fish metrics, Issue \#64
+-   feature: Add fish example data
+-   refactor: Add .groups = “drop\_last” to each subfunction in
+    metric\_values(), Issue \#20
+-   refactor: Fish metric names
+    -   nt\_natcent to nt\_natCent\_sunfish
+        -   GADNR\_Fish\_2020
+        -   Includes sunfish and had to add a Centrarchidae only metric
+        -   Fixed in metric.values() and MetricScoring.xlsx
+    -   lepomis to Lepomis
 
 ## Changes in Version 0.5.0.9072 (2021-12-09)
 

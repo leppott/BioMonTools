@@ -18,6 +18,18 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9073 (2021-12-10)
+
+* feature: New fish metrics, Issue #64
+* feature: Add fish example data
+* refactor: Add .groups = "drop_last" to each subfunction in metric_values(), Issue #20
+* refactor: Fish metric names
+    + nt_natcent to nt_natCent_sunfish
+        - GADNR_Fish_2020
+        - Includes sunfish and had to add a Centrarchidae only metric
+        - Fixed in metric.values() and MetricScoring.xlsx
+    + lepomis to Lepomis
+
 ## Changes in Version 0.5.0.9072 (2021-12-09)
 
 * refactor: Update thermal metric default values, Core-Cold to CoreC
