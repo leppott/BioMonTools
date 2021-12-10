@@ -2567,7 +2567,7 @@ metric.values.fish <- function(myDF
                        , pi_nonnative = 100 * sum(N_TAXA[is.na(NATIVE) | NATIVE != "NATIVE"], na.rm = TRUE) / ni_total
                        , pi_Notur = 100 * sum(N_TAXA[GENUS == "NOTURUS"], na.rm = TRUE) / ni_total
                        , pi_sculpin=100 * sum(N_TAXA[TYPE == "SCULPIN"], na.rm = TRUE) / ni_total
-                       , pi_lepomis = 100 * sum(N_TAXA[GENUS == "LEPOMIS"], na.rm = TRUE) / ni_total
+                       , pi_Lepomis = 100 * sum(N_TAXA[GENUS == "LEPOMIS"], na.rm = TRUE) / ni_total
                        , pi_Salm = 100 * sum(N_TAXA[FAMILY == "SALMONIDAE"], na.rm = TRUE) / ni_total
                        , pi_connect = 100 * sum(N_TAXA[CONNECTIVITY == TRUE], na.rm = TRUE) / ni_total
                        , pi_scc = 100 * sum(N_TAXA[SCC == TRUE], na.rm = TRUE) / ni_total
@@ -2648,6 +2648,7 @@ metric.values.fish <- function(myDF
                        , pi_insectivore = 100*sum(N_TAXA[TROPHIC_IS == TRUE], na.rm = TRUE)/ ni_total
                        , pi_insctCypr = 100*sum(N_TAXA[TROPHIC_IS == TRUE &
                                                          FAMILY == "CYPRINIDAE"], na.rm = TRUE)/ ni_total
+                       , pi_gen = 100*sum(N_TAXA[TROPHIC_GE == TRUE], na.rm = TRUE)/ ni_total
                        , pi_genherb = 100*sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_HB == TRUE], na.rm = TRUE)/ ni_total
                        , pi_omnivore = 100 * sum(N_TAXA[TROPHIC_OM == TRUE], na.rm = TRUE) / ni_total
                        , pi_planktivore = 100 * sum(N_TAXA[TROPHIC_PL == TRUE], na.rm = TRUE) / ni_total
@@ -2683,10 +2684,10 @@ metric.values.fish <- function(myDF
                        , x_Evenness100_ni99gt = ifelse(ni_total < 100, 1, x_Evenness * 100)
                        #
                        ## Other ####
-                       #, area_m = max(SAMP_WIDTH_M, na.rm = TRUE)*max(SAMP_LENGTH_M, na.rm = TRUE)
-                       , length_m = max(SAMP_LENGTH_M, na.rm = TRUE)
+                       , area_m2 = max(SAMP_WIDTH_M, na.rm = TRUE) * max(SAMP_LENGTH_M, na.rm = TRUE)
+                       #, length_m = max(SAMP_LENGTH_M, na.rm = TRUE)
                        # Abund / sq meter
-                       #, ni_m2=ni_total/area_m #/(StWidAvg*StLength)
+                       , ni_m2 = ni_total / area_m2 #/(StWidAvg*StLength)
                        , ni_200m = 200 * ni_total / length_m
                        , ni_natnonhybridnonmf_200m = 200 * ni_natnonhybridnonmf / length_m
                        , ni_natnonhybridnonmfnonLepomis_200m = 200 * ni_natnonhybridnonmfnonLepomis / length_m

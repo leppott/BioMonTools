@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-10 14:13:29
+    #> Last Update: 2021-12-10 15:31:04
 
 # Version History
+
+## Changes in Version 0.5.0.9074 (2021-12-10)
+
+-   docs: Create documentation for data\_fish\_MBSS dataset
+-   docs: Update MetricNames.xlsx and MetricScoring.xlsx for any new
+    metrics, Issue \#64
 
 ## Changes in Version 0.5.0.9073 (2021-12-10)
 
