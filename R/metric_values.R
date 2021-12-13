@@ -54,6 +54,9 @@
 #'
 #' * NONTARGET (valid values are TRUE and FALSE)
 #'
+#' * SAMP_BIOMASS (biomass total for sample, funciton uses max in case entered
+#' for all taxa in sample)
+#'
 #' * PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY,
 #' TRIBE, GENUS
 #'
@@ -2535,6 +2538,7 @@ metric.values.fish <- function(myDF
                        ## Individuals ####
                        # individuals, total
                        , ni_total = sum(N_TAXA, na.rm = TRUE)
+                       , ni_total_notoler = sum(N_TAXA[TOLER != "TOLERANT" | is.na(TOLER)], na.rm = TRUE)
                        , ni_natnonhybridnonmf = sum(N_TAXA[NATIVE == "NATIVE" &
                                                              (HYBRID != TRUE | is.na(HYBRID)) &
                                                              (TYPE != "MOSQUITOFISH" | is.na(TYPE))], na.rm = TRUE)
@@ -2543,7 +2547,7 @@ metric.values.fish <- function(myDF
                                                                        (TYPE != "MOSQUITOFISH" | is.na(TYPE)) &
                                                                        (GENUS != "LEPOMIS" | is.na(GENUS))], na.rm = TRUE)
                        #
-                       ## Percent Individuals ####
+                       # ## Percent Individuals ####
                        , pi_AmmEthPerc = 100 * sum(N_TAXA[GENUS == "AMMOCRYPTA"
                                                           | GENUS == "ETHEOSTOMA"
                                                           | GENUS == "PERCINA"], na.rm = TRUE) / ni_total
@@ -2552,7 +2556,7 @@ metric.values.fish <- function(myDF
                                                                      | GENUS == "PERCINA"
                                                                      | GENUS == "NOTURUS")
                                                                     | FAMILY == "COTTIDAE"]
-                                                               , na.rm = TRUE) / ni_total
+                                                                , na.rm = TRUE) / ni_total
                        # % Round-Bodied Suckers
                        , pi_rbs = 100 * sum(N_TAXA[TYPE == "RBS"], na.rm = TRUE) / ni_total
                        , pi_brooktrout = 100*sum(N_TAXA[TYPE == "BROOK TROUT"], na.rm = TRUE) / ni_total
@@ -2569,6 +2573,7 @@ metric.values.fish <- function(myDF
                        , pi_sculpin=100 * sum(N_TAXA[TYPE == "SCULPIN"], na.rm = TRUE) / ni_total
                        , pi_Lepomis = 100 * sum(N_TAXA[GENUS == "LEPOMIS"], na.rm = TRUE) / ni_total
                        , pi_Salm = 100 * sum(N_TAXA[FAMILY == "SALMONIDAE"], na.rm = TRUE) / ni_total
+                       , pi_trout = 100 * sum(N_TAXA["TROUT" %in% TYPE], na.rm = TRUE) / ni_total
                        , pi_connect = 100 * sum(N_TAXA[CONNECTIVITY == TRUE], na.rm = TRUE) / ni_total
                        , pi_scc = 100 * sum(N_TAXA[SCC == TRUE], na.rm = TRUE) / ni_total
 
@@ -2613,6 +2618,20 @@ metric.values.fish <- function(myDF
                        , nt_Salm = dplyr::n_distinct(TAXAID[FAMILY == "SALMONIDAE"], na.rm = TRUE)
                        , nt_connect = dplyr::n_distinct(TAXAID[CONNECTIVITY == TRUE], na.rm = TRUE)
                        , nt_scc = dplyr::n_distinct(TAXAID[SCC == TRUE], na.rm = TRUE)
+                       , nt_beninsct_nows_nobg = dplyr::n_distinct(TAXAID[TROPHIC_IS == TRUE
+                                                                          & (TAXAID != "CATOSTOMUS COMMERSONII"
+                                                                             | TAXAID != "LEPOMIS MACROCHIRUS"
+                                                                             | is.na(TAXAID))
+                                                                          ], na.rm = TRUE)
+                       , nt_trout_sunfish_notoler = dplyr::n_distinct(TAXAID["TROUT" %in% TYPE
+                                                                              | TYPE == "SUNFISH"
+                                                                              & (TOLER != "TOLERANT"
+                                                                                 | is.na(TOLER))
+                                                                              ], na.rm = TRUE)
+                       # , nt_beninsct_nows_nobg = NA
+                       # , nt_trout_sunfish_notoler = NA
+                       # , pi_pisc_noae = NA
+
 
                        ## Percent of Taxa ----
                        , pt_AmmEthPerc = 100 * nt_AmmEthPerc / nt_total
@@ -2653,6 +2672,9 @@ metric.values.fish <- function(myDF
                        , pi_omnivore = 100 * sum(N_TAXA[TROPHIC_OM == TRUE], na.rm = TRUE) / ni_total
                        , pi_planktivore = 100 * sum(N_TAXA[TROPHIC_PL == TRUE], na.rm = TRUE) / ni_total
                        , pi_topcarn = 100*sum(N_TAXA[TROPHIC_TC == TRUE], na.rm = TRUE)/ ni_total
+                       , pi_pisc_noae = 100 * sum(N_TAXA[TYPE == "PISCIVORE"
+                                                         & (TAXAID != "ANGUILLA ROSTRATA"
+                                                            | is.na(TAXAID))], na.rm = TRUE) / ni_total
                        #
                        ### Trophic, pt ----
                        , pt_detritivore = 100 * nt_detritivore / nt_total
@@ -2691,11 +2713,12 @@ metric.values.fish <- function(myDF
                        , ni_200m = 200 * ni_total / length_m
                        , ni_natnonhybridnonmf_200m = 200 * ni_natnonhybridnonmf / length_m
                        , ni_natnonhybridnonmfnonLepomis_200m = 200 * ni_natnonhybridnonmfnonLepomis / length_m
-                       # biomass per square meter
-                  #     , biomass_total=max(SAMP_BIOMASS, na.rm = TRUE)
-                  #     , biomass_m2=biomass_total/area_m #/(StWidAvg*StLength)
-                       # Anomalies
-                       , pi_anomalies = 100 * sum(N_ANOMALIES, na.rm = TRUE)/ni_total
+                       # biomass per square meter (assumes sample not individual biomass)
+                      , biomass_m2 = max(SAMP_BIOMASS, na.rm = TRUE) / area_m2 #/(StWidAvg*StLength)
+                      #Anomalies
+                      , pi_anomalies = 100 * sum(N_ANOMALIES, na.rm = TRUE) / ni_total
+                      , pi_delt = 100 * sum(N_ANOMALIES, na.rm = TRUE) / ni_total
+
                        # #
 
                   ## Dominant N ####

@@ -447,3 +447,37 @@ test_that("metric.values, names, algae, xlScoring, Function", {
   testthat::expect_equal(metnam_len, metnam_match)  # fails due to structure
 })## Test ~ metric.values, names, algae, Function, Names ~ END
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Excel ----
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## metval, xlNames, NA ####
+test_that("metric.values, xlNames, description", {
+  # Packages
+  #library(readxl) # part of BioMonTools
+
+  # Data
+  fn_metnam_xlNames   <- file.path(system.file(package="BioMonTools")
+                                   , "extdata"
+                                   , "MetricNames.xlsx")
+  # Import
+  df_metnam_xlNames   <- readxl::read_excel(fn_metnam_xlNames
+                                            , sheet="MetricMetadata"
+                                            , skip = 4)
+  df_metnam_xlNames <- as.data.frame(df_metnam_xlNames)
+
+  # Num Metrics, Name
+  met_name_len <- length(df_metnam_xlNames$METRIC_NAME)
+
+  # Description, NA
+  num_NA_desc <- sum(is.na(df_metnam_xlNames$Description))
+
+  ### test, NA, DESCRITPION ----
+  testthat::expect_equal(num_NA_desc, 0)
+
+  # Description, NA
+  num_NA_comm <- sum(is.na(df_metnam_xlNames$Community))
+
+  ### test, NA, DESCRITPION ----
+  testthat::expect_equal(num_NA_comm, 0)
+
+})## Test ~ metval, xlNames, NA ~ END
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

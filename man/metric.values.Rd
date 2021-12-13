@@ -95,6 +95,9 @@ are "hi" or "lo")
 
 * NONTARGET (valid values are TRUE and FALSE)
 
+* SAMP_BIOMASS (biomass total for sample, funciton uses max in case entered
+for all taxa in sample)
+
 * PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY,
 TRIBE, GENUS
 

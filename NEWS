@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-10 15:31:04
+    #> Last Update: 2021-12-13 12:29:51
 
 # Version History
+
+## Changes in Version 0.5.0.9075 (2021-12-13)
+
+-   tests: Update tests to ensure MetricNames.xlsx is complete
 
 ## Changes in Version 0.5.0.9074 (2021-12-10)
 

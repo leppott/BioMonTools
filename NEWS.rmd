@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9075 (2021-12-13)
+
+* tests: Update tests to ensure MetricNames.xlsx is complete
+* refactor: Update metric.valus() with metrics used in MetricScoring.xlsx
+
 ## Changes in Version 0.5.0.9074 (2021-12-10)
 
 * docs: Create documentation for data_fish_MBSS dataset
