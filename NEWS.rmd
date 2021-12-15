@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9076 (2021-12-15)
+
+* fix: Update metric.values(), was returning 0 records
+    + length_m was commented out and caused error in met.val
+
 ## Changes in Version 0.5.0.9075 (2021-12-13)
 
 * tests: Update tests to ensure MetricNames.xlsx is complete

@@ -2694,8 +2694,6 @@ metric.values.fish <- function(myDF
 
 
                        ## Indices ####
-                       #,pi_dom01/2/3/5 #last? or nth
-                       , pi_dom01=100*max(N_TAXA, na.rm = TRUE)/ni_total
                        # Shannon-Weiner
                        #, x_Shan_Num= -sum(log(N_TAXA/ni_total)), na.rm=TRUE)
                        #, x_Shan_e=x_Shan_Num/log(exp(1))
@@ -2705,34 +2703,35 @@ metric.values.fish <- function(myDF
                        , x_Evenness = x_Shan_e/log(nt_total)
                        , x_Evenness100_ni99gt = ifelse(ni_total < 100, 1, x_Evenness * 100)
                        #
-                       ## Other ####
-                       , area_m2 = max(SAMP_WIDTH_M, na.rm = TRUE) * max(SAMP_LENGTH_M, na.rm = TRUE)
-                       #, length_m = max(SAMP_LENGTH_M, na.rm = TRUE)
-                       # Abund / sq meter
-                       , ni_m2 = ni_total / area_m2 #/(StWidAvg*StLength)
-                       , ni_200m = 200 * ni_total / length_m
-                       , ni_natnonhybridnonmf_200m = 200 * ni_natnonhybridnonmf / length_m
-                       , ni_natnonhybridnonmfnonLepomis_200m = 200 * ni_natnonhybridnonmfnonLepomis / length_m
-                       # biomass per square meter (assumes sample not individual biomass)
-                      , biomass_m2 = max(SAMP_BIOMASS, na.rm = TRUE) / area_m2 #/(StWidAvg*StLength)
+                      #  ## Other ####
+                        , length_m = max(SAMP_LENGTH_M, na.rm = TRUE)
+                        , area_m2 = max(SAMP_WIDTH_M, na.rm = TRUE) * length_m
+
+                        # Abund / sq meter
+                        , ni_m2 = ni_total / area_m2 #/(StWidAvg*StLength)
+                        , ni_200m = 200 * ni_total / length_m
+                        , ni_natnonhybridnonmf_200m = 200 * ni_natnonhybridnonmf / length_m
+                        , ni_natnonhybridnonmfnonLepomis_200m = 200 * ni_natnonhybridnonmfnonLepomis / length_m
+                        # biomass per square meter (assumes sample not individual biomass)
+                       , biomass_m2 = max(SAMP_BIOMASS, na.rm = TRUE) / area_m2 #/(StWidAvg*StLength)
                       #Anomalies
-                      , pi_anomalies = 100 * sum(N_ANOMALIES, na.rm = TRUE) / ni_total
-                      , pi_delt = 100 * sum(N_ANOMALIES, na.rm = TRUE) / ni_total
+                     , pi_anomalies = 100 * sum(N_ANOMALIES, na.rm = TRUE) / ni_total
+                     , pi_delt = 100 * sum(N_ANOMALIES, na.rm = TRUE) / ni_total
 
-                       # #
 
-                  ## Dominant N ####
-                  ## uses previously defined values added to myDF
-                  , pi_dom01 = 100 * max(N_TAXA, na.rm = TRUE) / ni_total
-                  , pi_dom02 = 100 * max(ni_dom02, na.rm = TRUE) / ni_total
-                  , pi_dom03 = 100 * max(ni_dom03, na.rm = TRUE) / ni_total
-                  , pi_dom04 = 100 * max(ni_dom04, na.rm = TRUE) / ni_total
-                  , pi_dom05 = 100 * max(ni_dom05, na.rm = TRUE) / ni_total
-                  , pi_dom06 = 100 * max(ni_dom06, na.rm = TRUE) / ni_total
-                  , pi_dom07 = 100 * max(ni_dom07, na.rm = TRUE) / ni_total
-                  , pi_dom08 = 100 * max(ni_dom08, na.rm = TRUE) / ni_total
-                  , pi_dom09 = 100 * max(ni_dom09, na.rm = TRUE) / ni_total
-                  , pi_dom10 = 100 * max(ni_dom10, na.rm = TRUE) / ni_total
+                 ## Dominant N ####
+                 ## uses previously defined values added to myDF
+                 , pi_dom01 = 100 * max(N_TAXA, na.rm = TRUE) / ni_total
+                 , pi_dom02 = 100 * max(ni_dom02, na.rm = TRUE) / ni_total
+                 , pi_dom03 = 100 * max(ni_dom03, na.rm = TRUE) / ni_total
+                 , pi_dom04 = 100 * max(ni_dom04, na.rm = TRUE) / ni_total
+                 , pi_dom05 = 100 * max(ni_dom05, na.rm = TRUE) / ni_total
+                 , pi_dom06 = 100 * max(ni_dom06, na.rm = TRUE) / ni_total
+                 , pi_dom07 = 100 * max(ni_dom07, na.rm = TRUE) / ni_total
+                 , pi_dom08 = 100 * max(ni_dom08, na.rm = TRUE) / ni_total
+                 , pi_dom09 = 100 * max(ni_dom09, na.rm = TRUE) / ni_total
+                 , pi_dom10 = 100 * max(ni_dom10, na.rm = TRUE) / ni_total
+
                        ## BCG ####
 
                   ### BCG, nt ----
@@ -2888,7 +2887,6 @@ metric.values.fish <- function(myDF
                   , pt_ti_cool_warm = 100 * nt_ti_cool_warm / nt_total
 
 
-
                   ## Elevation ----
                   , nt_elev_low = dplyr::n_distinct(TAXAID[ELEVATION_LOW == TRUE]
                                                     , na.rm = TRUE)
@@ -2931,7 +2929,7 @@ metric.values.fish <- function(myDF
                   # W = water column
                   # B = benthic
                   #
-                  ## nt_habitat
+                  # nt_habitat
                   , nt_habitat_b = dplyr::n_distinct(TAXAID[HABITAT_B == TRUE]
                                                         , na.rm = TRUE)
                   , nt_habitat_w = dplyr::n_distinct(TAXAID[HABITAT_W == TRUE]

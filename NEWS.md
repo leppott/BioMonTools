@@ -4,13 +4,20 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-13 12:29:51
+    #> Last Update: 2021-12-15 14:23:03
 
 # Version History
+
+## Changes in Version 0.5.0.9076 (2021-12-15)
+
+-   fix: Update metric.values(), was returning 0 records
+    -   length\_m was commented out and caused error in met.val
 
 ## Changes in Version 0.5.0.9075 (2021-12-13)
 
 -   tests: Update tests to ensure MetricNames.xlsx is complete
+-   refactor: Update metric.valus() with metrics used in
+    MetricScoring.xlsx
 
 ## Changes in Version 0.5.0.9074 (2021-12-10)
 
