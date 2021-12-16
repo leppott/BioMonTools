@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-15 14:23:03
+    #> Last Update: 2021-12-16 10:04:42
 
 # Version History
+
+## Changes in Version 0.5.0.9077 (2021-12-16)
+
+-   refactor: Allow for mixed case in bug metric phylo metrics, Issue
+    \#65
 
 ## Changes in Version 0.5.0.9076 (2021-12-15)
 

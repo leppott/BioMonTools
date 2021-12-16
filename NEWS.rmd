@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9077 (2021-12-16)
+
+* refactor: Allow for mixed case in bug metric phylo metrics, Issue #65
+
 ## Changes in Version 0.5.0.9076 (2021-12-15)
 
 * fix: Update metric.values(), was returning 0 records

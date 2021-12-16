@@ -308,8 +308,8 @@
 #                                     | BCG_ATTR == "6"))
 # # 22 taxa (good)
 # x <- dplyr::filter(myDF, SAMPLEID==mySamp
-#                    , (is.na(CLASS)==TRUE | (CLASS != "Insecta" & CLASS != "Arachnida"))
-#                    , (is.na(ORDER) == TRUE | (ORDER != "Decapoda" & ORDER!="Rissooidea"))
+#                    , (is.na(CLASS)==TRUE | (CLASS != "Insecta" & CLASS != "ARACHNIDA"))
+#                    , (is.na(ORDER) == TRUE | (ORDER != "DECAPODA" & ORDER!="RISSOOIDEA"))
 #                    , (is.na(GENUS) == TRUE | GENUS!="Juga")
 #                    , (BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6")
 #                    )
@@ -321,15 +321,15 @@
 #                  , ni_total=sum(N_TAXA)
 #                  #
 #                  , nt_NonInsArachDecaClump_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-#                                & (is.na(CLASS)==TRUE | (CLASS != "Insecta" & CLASS != "Arachnida"))
-#                                & (is.na(ORDER) == TRUE | (ORDER != "Decapoda" & ORDER!="Rissooidea"))
+#                                & (is.na(CLASS)==TRUE | (CLASS != "Insecta" & CLASS != "ARACHNIDA"))
+#                                & (is.na(ORDER) == TRUE | (ORDER != "DECAPODA" & ORDER!="RISSOOIDEA"))
 #                                & (is.na(GENUS) == TRUE | GENUS!="Juga")
 #                                & (BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6")]
 #                         , na.rm = TRUE)
 #                  #
 #                  , pi_NonInsArachDecaClump_BCG_att456 = sum(N_TAXA[
-#                               (is.na(CLASS)==TRUE | (CLASS != "Insecta" & CLASS != "Arachnida"))
-#                              & (is.na(ORDER) == TRUE | (ORDER != "Decapoda" & ORDER!="Rissooidea"))
+#                               (is.na(CLASS)==TRUE | (CLASS != "Insecta" & CLASS != "ARACHNIDA"))
+#                              & (is.na(ORDER) == TRUE | (ORDER != "DECAPODA" & ORDER!="RISSOOIDEA"))
 #                              & (is.na(GENUS) == TRUE | GENUS!="Juga")
 #                              & (BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6")]
 #                       , na.rm=TRUE)
@@ -638,16 +638,17 @@ metric.values.bugs <- function(myDF
   # Function fails if all NA (e.g., column was missing) (20200724)
   myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
 
-  # Convert values to upper case (FFG, Habit, Life_Cycle)
-  myDF[, "HABIT"]             <- toupper(myDF[, "HABIT"])
-  myDF[, "FFG"]               <- toupper(myDF[, "FFG"])
-  myDF[, "LIFE_CYCLE"]        <- toupper(myDF[, "LIFE_CYCLE"])
-  myDF[, "THERMAL_INDICATOR"] <- toupper(myDF[, "THERMAL_INDICATOR"])
-  myDF[, "FFG2"]              <- toupper(myDF[, "FFG2"])
-  myDF[, "HABITAT"]           <- toupper(myDF[, "HABITAT"])
-  myDF[, "ELEVATION_ATTR"]    <- toupper(myDF[, "ELEVATION_ATTR"])
-  myDF[, "GRADIENT_ATTR"]     <- toupper(myDF[, "GRADIENT_ATTR"])
-  myDF[, "WSAREA_ATTR"]       <- toupper(myDF[, "WSAREA_ATTR"])
+  # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
+  col2upper <- c("TAXAID", "PHYLUM", "SUBPHYLUM", "CLASS", "SUBCLASS"
+                 , "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
+                 , "TRIBE", "GENUS"
+                 , "HABIT", "FFG", "LIFE_CYCLE", "THERMAL_INDICATOR"
+                 , "FFG2", "HABITAT"
+                 , "ELEVATION_ATTR", "GRADIENT_ATTR", "WSAREA_ATTR")
+  #myDF <- apply(myDF[, col2upper], 2, toupper)
+  for(i in col2upper){
+    myDF[, i] <- toupper(myDF[, i])
+  }## FOR ~ i ~ END
 
   # Add extra columns for some fields
   # (need unique values for functions in summarise)
@@ -779,8 +780,8 @@ metric.values.bugs <- function(myDF
   df.dom02_NoJugaRiss_BCG_att456 <-  dplyr::arrange(myDF, SAMPLEID
                                                     , dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter((is.na(GENUS) == TRUE | GENUS!="Juga")
-                  & (is.na(ORDER)==TRUE | ORDER!="Rissooidea")
+    dplyr::filter((is.na(GENUS) == TRUE | GENUS!="JUGA")
+                  & (is.na(ORDER)==TRUE | ORDER!="RISSOOIDEA")
                   & (BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6")) %>%
     dplyr::filter(dplyr::row_number()<=2)
 
@@ -896,329 +897,329 @@ metric.values.bugs <- function(myDF
              ## Individuals ####
              , ni_total = sum(N_TAXA, na.rm = TRUE)
              , li_total = log(ni_total)
-             , ni_Chiro = sum(N_TAXA[FAMILY == "Chironomidae"], na.rm=TRUE)
-             , ni_EPT = sum(N_TAXA[ORDER == "Ephemeroptera" |
-                                     ORDER == "Trichoptera" |
-                                     ORDER == "Plecoptera"], na.rm=TRUE)
-             , ni_Trich = sum(N_TAXA[ORDER == "Trichoptera"], na.rm=TRUE)
-             , ni_Americo = sum(N_TAXA[GENUS == "Americorophium"], na.rm=TRUE)
-             , ni_Gnorimo = sum(N_TAXA[GENUS == "Gnorimosphaeroma"], na.rm=TRUE)
+             , ni_Chiro = sum(N_TAXA[FAMILY == "CHIRONOMIDAE"], na.rm=TRUE)
+             , ni_EPT = sum(N_TAXA[ORDER == "EPHEMEROPTERA" |
+                                     ORDER == "TRICHOPTERA" |
+                                     ORDER == "PLECOPTERA"], na.rm=TRUE)
+             , ni_Trich = sum(N_TAXA[ORDER == "TRICHOPTERA"], na.rm=TRUE)
+             , ni_Americo = sum(N_TAXA[GENUS == "AMERICOROPHIUM"], na.rm=TRUE)
+             , ni_Gnorimo = sum(N_TAXA[GENUS == "GNORIMOSPHAEROMA"], na.rm=TRUE)
              , ni_brackish= ni_Americo + ni_Gnorimo
-             , ni_Ramello = sum(N_TAXA[GENUS == "Ramellogammarus"], na.rm=TRUE)
+             , ni_Ramello = sum(N_TAXA[GENUS == "RAMELLOGAMMARUS"], na.rm=TRUE)
 
              ## Number of Taxa ####
              # account for "NONE" in nt_total, should be the only 0 N_TAXA
              , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                    & N_TAXA > 0], na.rm = TRUE)
              , nt_Amph = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & ORDER == "Amphipoda"]
+                                                  & ORDER == "AMPHIPODA"]
                                            , na.rm = TRUE)
              , nt_Bival = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & CLASS == "Bivalvia"]
+                                                   & CLASS == "BIVALVIA"]
                                             , na.rm = TRUE)
              , nt_Capit = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & FAMILY == "Capitellidae"]
+                                                   & FAMILY == "CAPITELLIDAE"]
                                             , na.rm = TRUE)
              , nt_Caridea= dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                    & INFRAORDER == "Caridea"]
+                                                    & INFRAORDER == "CARIDEA"]
                                              , na.rm = TRUE)
              #, nt_Chiro ## in special Chironomidae section
              , nt_Coleo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & ORDER == "Coleoptera"]
+                                                   & ORDER == "COLEOPTERA"]
                                             , na.rm = TRUE)
              , nt_COET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & (ORDER == "Ephemeroptera"
-                                                     | ORDER == "Trichoptera"
-                                                     | ORDER == "Coleoptera"
-                                                     | ORDER == "Odonata")]
+                                                  & (ORDER == "EPHEMEROPTERA"
+                                                     | ORDER == "TRICHOPTERA"
+                                                     | ORDER == "COLEOPTERA"
+                                                     | ORDER == "ODONATA")]
                                            , na.rm = TRUE)
              , nt_CruMol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                    & PHYLUM == "Mollusca"]
+                                                    & PHYLUM == "MOLLUSCA"]
                                              , na.rm = TRUE) +
                dplyr::n_distinct(TAXAID[EXCLUDE != TRUE &
-                                          SUBPHYLUM == "Crustacea"]
+                                          SUBPHYLUM == "CRUSTACEA"]
                                  , na.rm = TRUE)
              , nt_Deca = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & ORDER == "Decapoda"]
+                                                  & ORDER == "DECAPODA"]
                                            , na.rm = TRUE)
              , nt_Dipt = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & ORDER == "Diptera"]
+                                                  & ORDER == "DIPTERA"]
                                            , na.rm = TRUE)
              , nt_ECT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                 & (ORDER == "Ephemeroptera"
-                                                    | ORDER == "Coleoptera"
-                                                    | ORDER == "Trichoptera")]
+                                                 & (ORDER == "EPHEMEROPTERA"
+                                                    | ORDER == "COLEOPTERA"
+                                                    | ORDER == "TRICHOPTERA")]
                                           , na.rm = TRUE)
              , nt_Ephem = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & ORDER == "Ephemeroptera"]
+                                                   & ORDER == "EPHEMEROPTERA"]
                                             , na.rm = TRUE)
              , nt_Ephemerellid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                          & FAMILY == "Ephemerellidae"]
+                                                          & FAMILY == "EPHEMERELLIDAE"]
                                                    , na.rm = TRUE)
              , nt_EPT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                 & (ORDER == "Ephemeroptera"
-                                                    | ORDER == "Plecoptera"
-                                                    | ORDER == "Trichoptera")]
+                                                 & (ORDER == "EPHEMEROPTERA"
+                                                    | ORDER == "PLECOPTERA"
+                                                    | ORDER == "TRICHOPTERA")]
                                           , na.rm = TRUE)
              , nt_ET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                 & (ORDER == "Ephemeroptera"
-                                                    | ORDER == "Trichoptera")]
+                                                 & (ORDER == "EPHEMEROPTERA"
+                                                    | ORDER == "TRICHOPTERA")]
                                          , na.rm = TRUE)
              , nt_Gast = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & CLASS == "Gastropoda"]
+                                                  & CLASS == "GASTROPODA"]
                                            , na.rm = TRUE)
              , nt_Hepta = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & FAMILY == "Heptageniidae"]
+                                                   & FAMILY == "HEPTAGENIIDAE"]
                                             , na.rm = TRUE)
              , nt_Insect = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                    & CLASS == "Insecta"]
+                                                    & CLASS == "INSECTA"]
                                              , na.rm = TRUE)
              , nt_Isop = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & ORDER == "Isopoda"]
+                                                  & ORDER == "ISOPODA"]
                                            , na.rm = TRUE)
              , nt_Mega = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & ORDER == "Megaloptera"]
+                                                  & ORDER == "MEGALOPTERA"]
                                            , na.rm = TRUE)
              , nt_Nereid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                    & FAMILY == "Nereididae"]
+                                                    & FAMILY == "NEREIDIDAE"]
                                              , na.rm = TRUE)
              , nt_Nemour = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                    & FAMILY == "Nemouridae"]
+                                                    & FAMILY == "NEMOURIDAE"]
                                              , na.rm = TRUE)
              , nt_NonIns = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                    & (CLASS != "Insecta"
+                                                    & (CLASS != "INSECTA"
                                                        | is.na(CLASS))]
                                              , na.rm = TRUE)
              , nt_Nudib = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & ORDER == "Nudibranchia"]
+                                                   & ORDER == "NUDIBRANCHIA"]
                                             , na.rm = TRUE)
              , nt_Odon = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & ORDER == "Odonata"]
+                                                  & ORDER == "ODONATA"]
                                            , na.rm = TRUE)
              , nt_OET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & (ORDER == "Ephemeroptera"
-                                                     | ORDER == "Trichoptera"
-                                                     | ORDER == "Odonata")]
+                                                  & (ORDER == "EPHEMEROPTERA"
+                                                     | ORDER == "TRICHOPTERA"
+                                                     | ORDER == "ODONATA")]
                                           , na.rm = TRUE)
              , nt_Oligo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & (CLASS == "Oligochaeta"
-                                                      | SUBCLASS == "Oligochaeta")]
+                                                   & (CLASS == "OLIGOCHAETA"
+                                                      | SUBCLASS == "OLIGOCHAETA")]
                                             , na.rm = TRUE)
              , nt_Perlid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                    & FAMILY == "Perlidae"]
+                                                    & FAMILY == "PERLIDAE"]
                                              , na.rm = TRUE)
              , nt_Pleco = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & ORDER == "Plecoptera"]
+                                                   & ORDER == "PLECOPTERA"]
                                             , na.rm = TRUE)
              , nt_POET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & (ORDER == "Ephemeroptera"
-                                                     | ORDER == "Plecoptera"
-                                                     | ORDER == "Trichoptera"
-                                                     | ORDER == "Odonata")]
+                                                  & (ORDER == "EPHEMEROPTERA"
+                                                     | ORDER == "PLECOPTERA"
+                                                     | ORDER == "TRICHOPTERA"
+                                                     | ORDER == "ODONATA")]
                                            , na.rm = TRUE)
              , nt_Poly = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & CLASS == "Polychaeta"]
+                                                  & CLASS == "POLYCHAETA"]
                                            , na.rm = TRUE)
-             , nt_PolyNoSpion = 100*sum(N_TAXA[CLASS == "Polychaeta"
+             , nt_PolyNoSpion = 100*sum(N_TAXA[CLASS == "POLYCHAETA"
                                                 & (is.na(FAMILY)==TRUE
-                                                   | FAMILY != "Spionidae")]
+                                                   | FAMILY != "SPIONIDAE")]
                                         , na.rm=TRUE)
              , nt_Ptero = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & GENUS == "Pteronarcys"]
+                                                   & GENUS == "PTERONARCYS"]
                                             , na.rm = TRUE)
              , nt_Rhya = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & GENUS == "Rhyacophila"]
+                                                  & GENUS == "RHYACOPHILA"]
                                            , na.rm = TRUE)
              , nt_Spion = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & FAMILY == "Spionidae"]
+                                                   & FAMILY == "SPIONIDAE"]
                                             , na.rm = TRUE)
              , nt_Tipulid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                     & FAMILY == "Tipulidae"]
+                                                     & FAMILY == "TIPULIDAE"]
                                               , na.rm = TRUE)
              , nt_Trich = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & ORDER == "Trichoptera"]
+                                                   & ORDER == "TRICHOPTERA"]
                                             , na.rm = TRUE)
              , nt_Tromb = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & ORDER == "Trombidiformes"]
+                                                   & ORDER == "TROMBIDIFORMES"]
                                             , na.rm = TRUE)
              , nt_Tubif = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & FAMILY == "Tubificidae"]
+                                                   & FAMILY == "TUBIFICIDAE"]
                                             , na.rm = TRUE)
              # ,intolMol, ,
 
              ## Percent Individuals####
              , pi_Ampe = NA #pi_Ampeliscidae
              , pi_AmpeHaust = NA
-             , pi_Amph = 100*sum(N_TAXA[ORDER == "Amphipoda"]
+             , pi_Amph = 100*sum(N_TAXA[ORDER == "AMPHIPODA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_AmphIsop = 100*sum(N_TAXA[ORDER == "Amphipoda"
-                                            | ORDER == "Isopoda"]
+             , pi_AmphIsop = 100*sum(N_TAXA[ORDER == "AMPHIPODA"
+                                            | ORDER == "ISOPODA"]
                                      , na.rm=TRUE)/ni_total
-             , pi_Baet = 100*sum(N_TAXA[FAMILY == "Baetidae"]
+             , pi_Baet = 100*sum(N_TAXA[FAMILY == "BAETIDAE"]
                                  , na.rm=TRUE)/ni_total
              #, pi_Baet2Ephem
-             , pi_Bival = 100*sum(N_TAXA[CLASS == "Bivalvia"]
+             , pi_Bival = 100*sum(N_TAXA[CLASS == "BIVALVIA"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Caen = 100*sum(N_TAXA[FAMILY == "Caenidae"]
+             , pi_Caen = 100*sum(N_TAXA[FAMILY == "CAENIDAE"]
                                  , na.rm=TRUE)/ni_total
-             , pi_Capit = 100*sum(N_TAXA[FAMILY == "Capitellidae"]
+             , pi_Capit = 100*sum(N_TAXA[FAMILY == "CAPITELLIDAE"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Cirra = 100*sum(N_TAXA[FAMILY == "Cirratulidae"]
+             , pi_Cirra = 100*sum(N_TAXA[FAMILY == "CIRRATULIDAE"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Clite = 100*sum(N_TAXA[CLASS == "Clitellata"]
+             , pi_Clite = 100*sum(N_TAXA[CLASS == "CLITELLATA"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Coleo = 100*sum(N_TAXA[ORDER == "Coleoptera"]
+             , pi_Coleo = 100*sum(N_TAXA[ORDER == "COLEOPTERA"]
                                   , na.rm=TRUE)/ni_total
-             , pi_COET = 100*sum(N_TAXA[ORDER == "Coleoptera"
-                                        | ORDER == "Odonata"
-                                        | ORDER == "Ephemeroptera"
-                                        | ORDER == "Trichoptera"]
+             , pi_COET = 100*sum(N_TAXA[ORDER == "COLEOPTERA"
+                                        | ORDER == "ODONATA"
+                                        | ORDER == "EPHEMEROPTERA"
+                                        | ORDER == "TRICHOPTERA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_Corb = 100*sum(N_TAXA[GENUS == "Corbicula"]
+             , pi_Corb = 100*sum(N_TAXA[GENUS == "CORBICULA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_CraCaeGam = 100*sum(N_TAXA[GENUS == "Crangonyx"
-                                             | GENUS == "Caecidotea"
-                                             | GENUS == "Gammarus"]
+             , pi_CraCaeGam = 100*sum(N_TAXA[GENUS == "CRANGONYX"
+                                             | GENUS == "CAECIDOTEA"
+                                             | GENUS == "GAMMARUS"]
                                    , na.rm=TRUE)/ni_total
-             , pi_Cru = 100*sum(N_TAXA[SUBPHYLUM == "Crustacea"]
+             , pi_Cru = 100*sum(N_TAXA[SUBPHYLUM == "CRUSTACEA"]
                                 , na.rm=TRUE)/ni_total
-             , pi_CruMol = 100*sum(N_TAXA[PHYLUM == "Mollusca"
-                                          | SUBPHYLUM == "Crustacea"]
+             , pi_CruMol = 100*sum(N_TAXA[PHYLUM == "MOLLUSCA"
+                                          | SUBPHYLUM == "CRUSTACEA"]
                                    , na.rm=TRUE)/ni_total
-             , pi_Deca = 100*sum(N_TAXA[ORDER == "Decapoda"]
+             , pi_Deca = 100*sum(N_TAXA[ORDER == "DECAPODA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_Dipt = 100*sum(N_TAXA[ORDER == "Diptera"]
+             , pi_Dipt = 100*sum(N_TAXA[ORDER == "DIPTERA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_DiptNonIns = 100*sum(N_TAXA[ORDER == "Diptera"
-                                              | CLASS != "Insecta"
+             , pi_DiptNonIns = 100*sum(N_TAXA[ORDER == "DIPTERA"
+                                              | CLASS != "INSECTA"
                                               | is.na(CLASS)]
                                        , na.rm=TRUE)/ni_total
-             , pi_ECT = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
-                                       | ORDER == "Coleoptera"
-                                       | ORDER == "Trichoptera"]
+             , pi_ECT = 100*sum(N_TAXA[ORDER == "EPHEMEROPTERA"
+                                       | ORDER == "COLEOPTERA"
+                                       | ORDER == "TRICHOPTERA"]
                                 , na.rm=TRUE)/ni_total
-             , pi_Ephem = 100*sum(N_TAXA[ORDER == "Ephemeroptera"]
+             , pi_Ephem = 100*sum(N_TAXA[ORDER == "EPHEMEROPTERA"]
                                   , na.rm=TRUE)/ni_total
-             , pi_EphemNoCae = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
+             , pi_EphemNoCae = 100*sum(N_TAXA[ORDER == "EPHEMEROPTERA"
                                           & (is.na(FAMILY)==TRUE
-                                             | FAMILY != "Caenidae")]
+                                             | FAMILY != "CAENIDAE")]
                                        , na.rm=TRUE)/ni_total
-             , pi_EphemNoCaeBae = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
+             , pi_EphemNoCaeBae = 100*sum(N_TAXA[ORDER == "EPHEMEROPTERA"
                                              & (is.na(FAMILY)==TRUE
-                                                | FAMILY != "Caenidae")
+                                                | FAMILY != "CAENIDAE")
                                              & (is.na(FAMILY)==TRUE
-                                                | FAMILY != "Baetidae")]
+                                                | FAMILY != "BAETIDAE")]
                                       , na.rm=TRUE)/ni_total
-             , pi_EPT = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
-                                       | ORDER == "Trichoptera"
-                                       | ORDER == "Plecoptera"]
+             , pi_EPT = 100*sum(N_TAXA[ORDER == "EPHEMEROPTERA"
+                                       | ORDER == "TRICHOPTERA"
+                                       | ORDER == "PLECOPTERA"]
                                 , na.rm=TRUE)/ni_total
-             , pi_EPTNoBaeHydro = 100*sum(N_TAXA[(ORDER == "Ephemeroptera"
+             , pi_EPTNoBaeHydro = 100*sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
                                                   & (is.na(FAMILY)==TRUE
-                                                     | FAMILY != "Baetidae"))
-                                                 | (ORDER == "Trichoptera"
+                                                     | FAMILY != "BAETIDAE"))
+                                                 | (ORDER == "TRICHOPTERA"
                                                     & (is.na(FAMILY)==TRUE
-                                                  | FAMILY != "Hydropsychidae"))
-                                                 | ORDER == "Plecoptera"]
+                                                  | FAMILY != "HYDROPSYCHIDAE"))
+                                                 | ORDER == "PLECOPTERA"]
                                           , na.rm=TRUE)/ni_total
-             , pi_EPTNoCheu = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
-                                             | ORDER == "Trichoptera"
-                                             | ORDER == "Plecoptera"
+             , pi_EPTNoCheu = 100*sum(N_TAXA[ORDER == "EPHEMEROPTERA"
+                                             | ORDER == "TRICHOPTERA"
+                                             | ORDER == "PLECOPTERA"
                                      & (is.na(FAMILY)==TRUE
                                         | FAMILY != "Cheumatopsyche")]
                                      , na.rm=TRUE)/ni_total
-             , pi_EPTNoHydro = 100*sum(N_TAXA[(ORDER == "Ephemeroptera")
-                                              | (ORDER == "Trichoptera"
+             , pi_EPTNoHydro = 100*sum(N_TAXA[(ORDER == "EPHEMEROPTERA")
+                                              | (ORDER == "TRICHOPTERA"
                                                  & (is.na(FAMILY)==TRUE
-                                                    | FAMILY != "Hydropsychidae"))
-                                              | ORDER == "Plecoptera"]
+                                                    | FAMILY != "HYDROPSYCHIDAE"))
+                                              | ORDER == "PLECOPTERA"]
                                        , na.rm=TRUE)/ni_total
-             , pi_ET = 100*sum(N_TAXA[ORDER == "Ephemeroptera"
-                                      | ORDER == "Trichoptera"]
+             , pi_ET = 100*sum(N_TAXA[ORDER == "EPHEMEROPTERA"
+                                      | ORDER == "TRICHOPTERA"]
                                , na.rm=TRUE)/ni_total
-             , pi_Gast = 100*sum(N_TAXA[CLASS == "Gastropoda"]
+             , pi_Gast = 100*sum(N_TAXA[CLASS == "GASTROPODA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_Haust = 100*sum(N_TAXA[FAMILY == "Haustoriidae"]
+             , pi_Haust = 100*sum(N_TAXA[FAMILY == "HAUSTORIIDAE"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Hesion = 100*sum(N_TAXA[FAMILY == "Hesionidae"]
+             , pi_Hesion = 100*sum(N_TAXA[FAMILY == "HESIONIDAE"]
                                    , na.rm=TRUE)/ni_total
-             , pi_Hydro = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"]
+             , pi_Hydro = 100*sum(N_TAXA[FAMILY == "HYDROPSYCHIDAE"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Hydro2EPT = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"]
+             , pi_Hydro2EPT = 100*sum(N_TAXA[FAMILY == "HYDROPSYCHIDAE"]
                                       , na.rm=TRUE)/ni_EPT
-             , pi_Hydro2Trich = 100*sum(N_TAXA[FAMILY == "Hydropsychidae"]
+             , pi_Hydro2Trich = 100*sum(N_TAXA[FAMILY == "HYDROPSYCHIDAE"]
                                         , na.rm=TRUE)/ni_Trich
-             , pi_Insect = 100*sum(N_TAXA[CLASS == "Insecta"]
+             , pi_Insect = 100*sum(N_TAXA[CLASS == "INSECTA"]
                                    , na.rm=TRUE)/ni_total
-             , pi_Isop = 100*sum(N_TAXA[ORDER == "Isopoda"]
+             , pi_Isop = 100*sum(N_TAXA[ORDER == "ISOPODA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_IsopGastHiru = 100*sum(N_TAXA[ORDER == "Isopoda"
-                                                | CLASS == "Gastropoda"
-                                                | SUBCLASS == "Hirudinea"]
+             , pi_IsopGastHiru = 100*sum(N_TAXA[ORDER == "ISOPODA"
+                                                | CLASS == "GASTROPODA"
+                                                | SUBCLASS == "HIRUDINEA"]
                                          , na.rm=TRUE)/ni_total
-             , pi_Juga = 100*sum(N_TAXA[GENUS == "Juga"]
+             , pi_Juga = 100*sum(N_TAXA[GENUS == "JUGA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_JugaFlumi = 100*sum(N_TAXA[GENUS == "Juga"
-                                             | GENUS == "Fluminicola"]
+             , pi_JugaFlumi = 100*sum(N_TAXA[GENUS == "JUGA"
+                                             | GENUS == "FLUMINICOLA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_Lucin = 100*sum(N_TAXA[FAMILY == "Lucinidae"]
+             , pi_Lucin = 100*sum(N_TAXA[FAMILY == "LUCINIDAE"]
                                   , na.rm=TRUE)/ni_total
-             , pi_LucinTellin = 100*sum(N_TAXA[FAMILY == "Lucinidae"
-                                               | FAMILY == "Tellinidae"]
+             , pi_LucinTellin = 100*sum(N_TAXA[FAMILY == "LUCINIDAE"
+                                               | FAMILY == "TELLINIDAE"]
                                         , na.rm=TRUE)/ni_total
-             , pi_Mega = 100*sum(N_TAXA[ORDER == "Megaloptera"]
+             , pi_Mega = 100*sum(N_TAXA[ORDER == "MEGALOPTERA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_Mol = 100*sum(N_TAXA[PHYLUM == "Mollusca"]
+             , pi_Mol = 100*sum(N_TAXA[PHYLUM == "MOLLUSCA"]
                                 , na.rm=TRUE)/ni_total
-             , pi_Nemata = 100*sum(N_TAXA[PHYLUM == "Nemata"]
+             , pi_Nemata = 100*sum(N_TAXA[PHYLUM == "NEMATA"]
                                    , na.rm=TRUE)/ni_total
-             , pi_Nereid = 100*sum(N_TAXA[FAMILY == "Nereididae"]
+             , pi_Nereid = 100*sum(N_TAXA[FAMILY == "NEREIDIDAE"]
                                    , na.rm=TRUE)/ni_total
-             , pi_Nudib = 100*sum(N_TAXA[ORDER == "Nudibranchia"]
+             , pi_Nudib = 100*sum(N_TAXA[ORDER == "NUDIBRANCHIA"]
                                   , na.rm=TRUE)/ni_total
-             , pi_NonIns = 100*sum(N_TAXA[CLASS != "Insecta"
+             , pi_NonIns = 100*sum(N_TAXA[CLASS != "INSECTA"
                                           | is.na(CLASS)]
                                    , na.rm=TRUE)/ni_total
-             , pi_Odon = 100*sum(N_TAXA[ORDER == "Odonata"]
+             , pi_Odon = 100*sum(N_TAXA[ORDER == "ODONATA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_OET = 100*sum(N_TAXA[ORDER == "Odonata"
-                                       | ORDER == "Ephemeroptera"
-                                       | ORDER == "Trichoptera"]
+             , pi_OET = 100*sum(N_TAXA[ORDER == "ODONATA"
+                                       | ORDER == "EPHEMEROPTERA"
+                                       | ORDER == "TRICHOPTERA"]
                                 , na.rm=TRUE)/ni_total
-             , pi_Oligo = 100*sum(N_TAXA[CLASS == "Oligochaeta"
-                                         | SUBCLASS == "Oligochaeta"]
+             , pi_Oligo = 100*sum(N_TAXA[CLASS == "OLIGOCHAETA"
+                                         | SUBCLASS == "OLIGOCHAETA"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Orbin = 100*sum(N_TAXA[FAMILY == "Orbiniidae"]
+             , pi_Orbin = 100*sum(N_TAXA[FAMILY == "ORBINIIDAE"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Pleco = 100*sum(N_TAXA[ORDER == "Plecoptera"]
+             , pi_Pleco = 100*sum(N_TAXA[ORDER == "PLECOPTERA"]
                                   , na.rm=TRUE)/ni_total
-             , pi_POET = 100*sum(N_TAXA[ORDER == "Plecoptera"
-                                        | ORDER == "Odonata"
-                                        | ORDER == "Ephemeroptera"
-                                        | ORDER == "Trichoptera"]
+             , pi_POET = 100*sum(N_TAXA[ORDER == "PLECOPTERA"
+                                        | ORDER == "ODONATA"
+                                        | ORDER == "EPHEMEROPTERA"
+                                        | ORDER == "TRICHOPTERA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_Poly = 100*sum(N_TAXA[CLASS == "Polychaeta"]
+             , pi_Poly = 100*sum(N_TAXA[CLASS == "POLYCHAETA"]
                                  , na.rm=TRUE)/ni_total
-             , pi_Spion = 100*sum(N_TAXA[FAMILY == "Spionidae"]
+             , pi_Spion = 100*sum(N_TAXA[FAMILY == "SPIONIDAE"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Spion2Poly = 100*sum(N_TAXA[CLASS == "Polychaeta" |
-                                                FAMILY == "Spionidae"]
+             , pi_Spion2Poly = 100*sum(N_TAXA[CLASS == "POLYCHAETA" |
+                                                FAMILY == "SPIONIDAE"]
                                        , na.rm=TRUE)/ni_total
-             , pi_Sphaer = 100*sum(N_TAXA[FAMILY == "Sphaeriidae"]
+             , pi_Sphaer = 100*sum(N_TAXA[FAMILY == "SPHAERIIDAE"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Tellin = 100*sum(N_TAXA[FAMILY == "Tellinidae"]
+             , pi_Tellin = 100*sum(N_TAXA[FAMILY == "TELLINIDAE"]
                                    , na.rm=TRUE)/ni_total
-             , pi_Trich = 100*sum(N_TAXA[ORDER == "Trichoptera"]
+             , pi_Trich = 100*sum(N_TAXA[ORDER == "TRICHOPTERA"]
                                   , na.rm=TRUE)/ni_total
-             , pi_TrichNoHydro = 100*sum(N_TAXA[ORDER == "Trichoptera"
+             , pi_TrichNoHydro = 100*sum(N_TAXA[ORDER == "TRICHOPTERA"
                                            & (is.na(FAMILY)==TRUE |
-                                                FAMILY != "Hydropsychidae")]
+                                                FAMILY != "HYDROPSYCHIDAE")]
                                     , na.rm=TRUE)/ni_total
-             , pi_Tromb = 100*sum(N_TAXA[ORDER == "Trombidiformes"]
+             , pi_Tromb = 100*sum(N_TAXA[ORDER == "TROMBIDIFORMES"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Tubif = 100*sum(N_TAXA[FAMILY == "Tubificidae"]
+             , pi_Tubif = 100*sum(N_TAXA[FAMILY == "TUBIFICIDAE"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Xanth = 100*sum(N_TAXA[FAMILY == "Xanthidae"]
+             , pi_Xanth = 100*sum(N_TAXA[FAMILY == "XANTHIDAE"]
                                   , na.rm=TRUE)/ni_total
              # Cole2Odon,
              #EPTsenstive in tolerance group
@@ -1287,67 +1288,67 @@ metric.values.bugs <- function(myDF
              # subfamily = Tanypodinae
              # Tribe     = Tanytarsini
              , nt_Chiro = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & FAMILY == "Chironomidae"]
+                                                   & FAMILY == "CHIRONOMIDAE"]
                                             , na.rm = TRUE)
              , pi_Chiro = 100*ni_Chiro/ni_total
              , pt_Chiro = 100*nt_Chiro/nt_total
-             , pi_Ortho = 100*sum(N_TAXA[SUBFAMILY == "Orthocladiinae"]
+             , pi_Ortho = 100*sum(N_TAXA[SUBFAMILY == "ORTHOCLADIINAE"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Tanyt = 100*sum(N_TAXA[TRIBE == "Tanytarsini"]
+             , pi_Tanyt = 100*sum(N_TAXA[TRIBE == "TANYTARSINI"]
                                   , na.rm=TRUE)/ni_total
-             , pi_Tanyp = 100*sum(N_TAXA[SUBFAMILY == "Tanypodinae"]
+             , pi_Tanyp = 100*sum(N_TAXA[SUBFAMILY == "TANYPODINAE"]
                                   , na.rm=TRUE)/ni_total
-             , pi_COC2Chi = 100*sum(N_TAXA[GENUS == "Chironomus"
-                                       | GENUS=="Cricotopus"
-                                       | GENUS=="Cricotopus/Orthocladius"
-                                       | GENUS=="Orthocladius/Cricotopus"
-                                       | GENUS=="Orthocladius"]
+             , pi_COC2Chi = 100*sum(N_TAXA[GENUS == "CHIRONOMUS"
+                                       | GENUS=="CRICOTOPUS"
+                                       | GENUS=="CRICOTOPUS/ORTHOCLADIUS"
+                                       | GENUS=="ORTHOCLADIUS/CRICOTOPUS"
+                                       | GENUS=="ORTHOCLADIUS"]
                                     , na.rm=TRUE)/ni_Chiro
 
-             , pi_ChCr2Chi = 100*sum(N_TAXA[GENUS == "Chironomus"
-                                            | GENUS=="Cricotopus"]
+             , pi_ChCr2Chi = 100*sum(N_TAXA[GENUS == "CHIRONOMUS"
+                                            | GENUS=="CRICOTOPUS"]
                                      , na.rm=TRUE)/ni_Chiro
-             , pi_Orth2Chi = 100*sum(N_TAXA[SUBFAMILY == "Orthocladiinae"]
+             , pi_Orth2Chi = 100*sum(N_TAXA[SUBFAMILY == "ORTHOCLADIINAE"]
                                      , na.rm=TRUE)/ni_Chiro
-             , pi_Tanyp2Chi = 100*sum(N_TAXA[SUBFAMILY == "Tanypodinae"]
+             , pi_Tanyp2Chi = 100*sum(N_TAXA[SUBFAMILY == "TANYPODINAE"]
                                       , na.rm=TRUE)/ni_Chiro
              #,nt_Ortho (Marine)
              #MB_pi_OrthocladiinaeCricotopusChironomus2Chironomidae
              # rt_Chiro, Ortho, Tanyt
-             , pi_ChiroAnne = 100*sum(N_TAXA[PHYLUM == "Annelida"
-                                             | FAMILY == "Chironomidae"]
+             , pi_ChiroAnne = 100*sum(N_TAXA[PHYLUM == "ANNELIDA"
+                                             | FAMILY == "CHIRONOMIDAE"]
                                       , na.rm=TRUE)/ni_total
 
 
 
              ## SPECIAL ####
              # oddball or specialized metrics
-             # , ni_NonIns = sum(N_TAXA[CLASS==NA | CLASS!="Insecta"], na.rm=TRUE)
-             # , ni_NonArach = sum(N_TAXA[CLASS==NA | CLASS!="Arachnida"], na.rm=TRUE)
-             # , ni_NonDeca = sum(N_TAXA[ORDER==NA | ORDER!="Decapoda"], na.rm=TRUE)
+             # , ni_NonIns = sum(N_TAXA[CLASS==NA | CLASS!="INSECTA"], na.rm=TRUE)
+             # , ni_NonArach = sum(N_TAXA[CLASS==NA | CLASS!="ARACHNIDA"], na.rm=TRUE)
+             # , ni_NonDeca = sum(N_TAXA[ORDER==NA | ORDER!="DECAPODA"], na.rm=TRUE)
              #
-             # , ni_clumpy = sum(N_TAXA[GENUS=="Juga" & GENUS=="Rissoidea"], na.rm=TRUE)
-             # , ni_Nonclumpy = sum(N_TAXA[GENUS!="Juga" & GENUS!="Rissoidea"], na.rm=TRUE)
+             # , ni_clumpy = sum(N_TAXA[GENUS=="JUGA" & GENUS=="Rissoidea"], na.rm=TRUE)
+             # , ni_Nonclumpy = sum(N_TAXA[GENUS!="JUGA" & GENUS!="Rissoidea"], na.rm=TRUE)
              #
              # PacNW, NonIns_select
-             #This metric excludes Class Insecta, Class Arachnida and Order Decapoda;
+             #This metric excludes Class INSECTA, Class ARACHNIDA and Order DECAPODA;
              # and only includes Attribute IV, V, VI taxa.
              , nt_NonInsArachDeca_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                       & (is.na(CLASS)==TRUE
-                                         | (CLASS != "Insecta"
-                                            & CLASS != "Arachnida"))
+                                         | (CLASS != "INSECTA"
+                                            & CLASS != "ARACHNIDA"))
                                       & (is.na(ORDER) == TRUE
-                                         | ORDER != "Decapoda")
+                                         | ORDER != "DECAPODA")
                                       & (BCG_ATTR == "4"
                                          | BCG_ATTR == "5"
                                          | BCG_ATTR == "6")]
                                      , na.rm = TRUE)
              , pi_NonInsArachDeca_BCG_att456 = 100*sum(N_TAXA[
                                     (is.na(CLASS)==TRUE
-                                     | (CLASS != "Insecta"
-                                        & CLASS != "Arachnida"))
+                                     | (CLASS != "INSECTA"
+                                        & CLASS != "ARACHNIDA"))
                                     & (is.na(ORDER) == TRUE
-                                       | ORDER != "Decapoda")
+                                       | ORDER != "DECAPODA")
                                     & (BCG_ATTR == "4"
                                        | BCG_ATTR == "5"
                                        | BCG_ATTR == "6")]
@@ -1355,30 +1356,30 @@ metric.values.bugs <- function(myDF
              , pt_NonInsArachDeca_BCG_att456 = 100*nt_NonInsArachDeca_BCG_att456/nt_total
              # PacNW, NonIns_select_NonClump
              # above but also non-clumpy
-             #clumpy' taxa (Juga [genus] and Rissooidea [superfamily as Order] in PacNW);
+             #clumpy' taxa (Juga [genus] and RISSOOIDEA [superfamily as Order] in PacNW);
              #and it only includes Attribute IV, V, VI taxa.
              , nt_NonInsArachDecaJugaRiss_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                       & (is.na(CLASS)==TRUE
-                                         | (CLASS != "Insecta"
-                                            & CLASS != "Arachnida"))
+                                         | (CLASS != "INSECTA"
+                                            & CLASS != "ARACHNIDA"))
                                       & (is.na(ORDER) == TRUE
-                                         | (ORDER != "Decapoda"
-                                            & ORDER!="Rissooidea"))
+                                         | (ORDER != "DECAPODA"
+                                            & ORDER!="RISSOOIDEA"))
                                       & (is.na(GENUS) == TRUE
-                                         | GENUS!="Juga")
+                                         | GENUS!="JUGA")
                                       & (BCG_ATTR == "4"
                                          | BCG_ATTR == "5"
                                          | BCG_ATTR == "6")]
                                       , na.rm = TRUE)
              , pi_NonInsArachDecaJugaRiss_BCG_att456 = 100*sum(N_TAXA[
                                      (is.na(CLASS)==TRUE
-                                      | (CLASS != "Insecta"
-                                         & CLASS != "Arachnida"))
+                                      | (CLASS != "INSECTA"
+                                         & CLASS != "ARACHNIDA"))
                                      & (is.na(ORDER) == TRUE
-                                        | (ORDER != "Decapoda"
-                                           & ORDER != "Rissooidea"))
+                                        | (ORDER != "DECAPODA"
+                                           & ORDER != "RISSOOIDEA"))
                                      & (is.na(GENUS) == TRUE
-                                        | GENUS != "Juga")
+                                        | GENUS != "JUGA")
                                      & (BCG_ATTR == "4"
                                         | BCG_ATTR == "5"
                                         | BCG_ATTR == "6")]
@@ -1387,22 +1388,22 @@ metric.values.bugs <- function(myDF
 
            , nt_NonInsTrombJuga_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                        & (is.na(CLASS)==TRUE
-                                                                          | CLASS != "Insecta")
+                                                                          | CLASS != "INSECTA")
                                                                        & (is.na(ORDER) == TRUE
-                                                                          | ORDER != "Trombidiformes")
+                                                                          | ORDER != "TROMBIDIFORMES")
                                                                        & (is.na(GENUS) == TRUE
-                                                                          | GENUS != "Juga")
+                                                                          | GENUS != "JUGA")
                                                                        & (BCG_ATTR == "4"
                                                                           | BCG_ATTR == "5"
                                                                           | BCG_ATTR == "6")]
                                                                 , na.rm = TRUE)
            , pi_NonInsTrombJuga_BCG_att456 = 100*sum(N_TAXA[
                                                        (is.na(CLASS)==TRUE
-                                                        | CLASS != "Insecta")
+                                                        | CLASS != "INSECTA")
                                                        & (is.na(ORDER) == TRUE
-                                                          | ORDER != "Trombidiformes")
+                                                          | ORDER != "TROMBIDIFORMES")
                                                        & (is.na(GENUS) == TRUE
-                                                          | GENUS != "Juga")
+                                                          | GENUS != "JUGA")
                                                        & (BCG_ATTR == "4"
                                                           | BCG_ATTR == "5"
                                                           | BCG_ATTR == "6")]
@@ -1414,17 +1415,17 @@ metric.values.bugs <- function(myDF
              , pi_dom02_BCG_att456_NoJugaRiss = 100*max(ni_dom02_NoJugaRiss_BCG_att456)/ni_total
              #
              # 20180608, rework PacNW
-             # NonInsecta, Attribute 456
+             # NonINSECTA, Attribute 456
              , nt_NonIns_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                      & (is.na(CLASS)==TRUE
-                                        | CLASS != "Insecta")
+                                        | CLASS != "INSECTA")
                                      & (BCG_ATTR == "4"
                                         | BCG_ATTR == "5"
                                         | BCG_ATTR == "6")]
                                      , na.rm = TRUE)
              , pi_NonIns_BCG_att456 = 100*sum(N_TAXA[
                                      (is.na(CLASS)==TRUE
-                                      | CLASS != "Insecta")
+                                      | CLASS != "INSECTA")
                                      & (BCG_ATTR == "4"
                                         | BCG_ATTR == "5"
                                         | BCG_ATTR == "6")]
@@ -1433,34 +1434,34 @@ metric.values.bugs <- function(myDF
              # NonInsectaJugaRiss, Attribute 456
              , nt_NonInsJugaRiss_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                      & (is.na(CLASS)==TRUE
-                                        | CLASS != "Insecta")
+                                        | CLASS != "INSECTA")
                                      & (is.na(ORDER) == TRUE
-                                        | ORDER!="Rissooidea")
+                                        | ORDER!="RISSOOIDEA")
                                      & (is.na(GENUS) == TRUE
-                                        | GENUS!="Juga")
+                                        | GENUS!="JUGA")
                                      & (BCG_ATTR == "4"
                                         | BCG_ATTR == "5"
                                         | BCG_ATTR == "6")]
                                      , na.rm = TRUE)
              , pi_NonInsJugaRiss_BCG_att456 = 100*sum(N_TAXA[
                                      (is.na(CLASS)==TRUE
-                                      | CLASS != "Insecta")
+                                      | CLASS != "INSECTA")
                                      & (is.na(ORDER) == TRUE
-                                        | ORDER!="Rissooidea")
+                                        | ORDER!="RISSOOIDEA")
                                      & (is.na(GENUS) == TRUE
-                                        | GENUS!="Juga")
+                                        | GENUS!="JUGA")
                                      & (BCG_ATTR == "4"
                                         | BCG_ATTR == "5"
                                         | BCG_ATTR == "6")]
                                      , na.rm=TRUE)/ni_total
              , pt_NonInsJugaRiss_BCG_att456 = 100*nt_NonInsJugaRiss_BCG_att456/nt_total
-             # 20180815, Percent Baetis tricaudatus complex + Simuliidae individual
-             , pi_SimBtri = 100*(sum(N_TAXA[FAMILY == "Simuliidae"], na.rm=TRUE)
-                            + sum(N_TAXA[TAXAID == "Baetis tricaudatus complex"]
+             # 20180815, Percent BAETIS TRICAUDATUS COMPLEX + SIMULIIDAE individual
+             , pi_SimBtri = 100*(sum(N_TAXA[FAMILY == "SIMULIIDAE"], na.rm=TRUE)
+                            + sum(N_TAXA[TAXAID == "BAETIS TRICAUDATUS COMPLEX"]
                               , na.rm=TRUE))/ni_total
-             # 20181018, MS, sensitive Coleoptera & (Family is Null or not Hydrophyilidae)
-             , pi_Colesens = 100*sum(N_TAXA[ORDER == "Coleoptera"
-                             & (FAMILY!="Hydrophilidae"
+             # 20181018, MS, sensitive COLEOPTERA & (Family is Null or not Hydrophyilidae)
+             , pi_Colesens = 100*sum(N_TAXA[ORDER == "COLEOPTERA"
+                             & (FAMILY!="HYDROPHILIDAE"
                                 | is.na(FAMILY)==TRUE)]
                              , na.rm=TRUE)/ni_total
              # 20181207, BCG PacNW, Level 1 Signal metrics
@@ -1568,9 +1569,9 @@ metric.values.bugs <- function(myDF
              , nt_tv_intol4_EPT = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
                                                         & TOLVAL>=0
                                                         & TOLVAL<=4
-                                                        & (ORDER == "Ephemeroptera"
-                                                           | ORDER == "Trichoptera"
-                                                           | ORDER == "Plecoptera")]
+                                                        & (ORDER == "EPHEMEROPTERA"
+                                                           | ORDER == "TRICHOPTERA"
+                                                           | ORDER == "PLECOPTERA")]
                                                     , na.rm=TRUE)
              # USEPA, WSA and NRSA
              ## ntol is not tolerant
@@ -1730,7 +1731,7 @@ metric.values.bugs <- function(myDF
              ## Oddball
              # might not need habit != cling for Pleco
              , pi_habit_cling_PlecoNoCling = 100*sum(N_TAXA[HABIT_CN == TRUE
-                                                    | (ORDER == "Plecoptera"
+                                                    | (ORDER == "PLECOPTERA"
                                                        & HABIT_CN == FALSE)]
                                                  , na.rm=TRUE)/ni_total
 
@@ -1982,33 +1983,33 @@ metric.values.bugs <- function(myDF
 
             ## BCG_nt_Phylo
             , nt_Ephem_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                            & ORDER == "Ephemeroptera"
+                                                            & ORDER == "EPHEMEROPTERA"
                                                             & (BCG_ATTR == "1i"
                                                                | BCG_ATTR == "2")]
                                                      , na.rm = TRUE)
             , nt_EPT_BCG_att123 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                           & (ORDER == "Ephemeroptera"
-                                                              | ORDER == "Trichoptera"
-                                                              | ORDER == "Plecoptera")
+                                                           & (ORDER == "EPHEMEROPTERA"
+                                                              | ORDER == "TRICHOPTERA"
+                                                              | ORDER == "PLECOPTERA")
                                                            & (BCG_ATTR == "1"
                                                               | BCG_ATTR == "2"
                                                               | BCG_ATTR == "3")]
                                                     , na.rm = TRUE)
             , nt_EPT_BCG_att1i23 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                            & (ORDER == "Ephemeroptera"
-                                                               | ORDER == "Trichoptera"
-                                                               | ORDER == "Plecoptera")
+                                                            & (ORDER == "EPHEMEROPTERA"
+                                                               | ORDER == "TRICHOPTERA"
+                                                               | ORDER == "PLECOPTERA")
                                                            & (BCG_ATTR == "1i"
                                                               | BCG_ATTR == "2"
                                                               | BCG_ATTR == "3")]
                                                      , na.rm = TRUE)
             , nt_Pleco_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                             & ORDER == "Plecoptera"
+                                                             & ORDER == "PLECOPTERA"
                                                              & (BCG_ATTR == "1i"
                                                                 | BCG_ATTR == "2")]
                                                       , na.rm = TRUE)
             , nt_Trich_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                             & ORDER == "Trichoptera"
+                                                             & ORDER == "TRICHOPTERA"
                                                              & (BCG_ATTR == "1i"
                                                                 | BCG_ATTR == "2")]
                                                       , na.rm = TRUE)
@@ -2068,16 +2069,16 @@ metric.values.bugs <- function(myDF
                                      , na.rm=TRUE)/ni_total
 
             ## BCG_pi_Phylo
-            , pi_EPT_BCG_att123 = 100*sum(N_TAXA[(ORDER == "Ephemeroptera"
-                                                  | ORDER == "Trichoptera"
-                                                  | ORDER == "Plecoptera")
+            , pi_EPT_BCG_att123 = 100*sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
+                                                  | ORDER == "TRICHOPTERA"
+                                                  | ORDER == "PLECOPTERA")
                                              & (BCG_ATTR == "1"
                                                 | BCG_ATTR == "2"
                                                 | BCG_ATTR == "3")]
                                           , na.rm=TRUE)/ni_total
-            , pi_EPT_BCG_att1i23 = 100*sum(N_TAXA[(ORDER == "Ephemeroptera"
-                                                  | ORDER == "Trichoptera"
-                                                  | ORDER == "Plecoptera")
+            , pi_EPT_BCG_att1i23 = 100*sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
+                                                  | ORDER == "TRICHOPTERA"
+                                                  | ORDER == "PLECOPTERA")
                                                  & (BCG_ATTR == "1i"
                                                     | BCG_ATTR == "2"
                                                     | BCG_ATTR == "3")]
