@@ -1,6 +1,6 @@
 # Help Panel
 
-function(){
+function() {
   tabPanel("Help"
            , fluidPage(h2("LakeMonitoR Shiny App Help"
                           #, style  = "text-align:center"

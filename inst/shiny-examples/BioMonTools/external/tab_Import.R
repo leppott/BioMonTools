@@ -7,7 +7,7 @@ function(){
         sidebarPanel(
           # 0. Progress
           #, tags$hr()
-          h4("1.A. Load File, Measured Values")
+          h4("1. Load File")
           , h5("Select file parameters")
           #, checkboxInput('header', 'Header', TRUE)
           , radioButtons('sep', 'Separator',
@@ -26,55 +26,19 @@ function(){
                         '.txt'
                       )
           )##fileInput~END
-          #, tags$hr()
-          , h4("1.B. Load File, Lake Areas")
-          , radioButtons('sep2', 'Separator',
-                         c(Comma=',',
-                         #  Semicolon=';',
-                           Tab='\t'),
-                         ',')
-          , fileInput('fn_input2', 'Choose file to upload',
-                      accept = c(
-                        'text/csv',
-                        'text/comma-separated-values',
-                        'text/tab-separated-values',
-                        'text/plain',
-                        '.csv',
-                        '.tsv',
-                        '.txt'
-                      )
-          )##fileInput~END
-
-          , h4("1.C. Load File, Measure, No Depth")
-          , radioButtons('sep3', 'Separator',
-                         c(Comma=',',
-                         #  Semicolon=';',
-                           Tab='\t'),
-                         ',')
-          , fileInput('fn_input3', 'Choose file to upload',
-                      accept = c(
-                        'text/csv',
-                        'text/comma-separated-values',
-                        'text/tab-separated-values',
-                        'text/plain',
-                        '.csv',
-                        '.tsv',
-                        '.txt'
-                      )
-          )##fileInput~END
+          , tags$hr()
+          , p("The 'separator' allows the user to upload different file formats
+            (e.g., csv, tsv, or txt).")
+          , p("Files for all operations will be uploaded through this interface.")
+          , p(paste0("File uploads are limited to a maximum of "
+                     ,mb_limit
+                     , " MB in size."))
 
         )##sidebarPanel~END
       # Main Panel ####
       , mainPanel(
-          p("The 'separator' allows the user to upload different file formats
-            (csv, tsv, or txt).")
-          , p("A measured values file is required.")
-          , p("If an area file is not uploaded then only stratification will be
-              calculated.")
-          , p("Imported data files are displayed in step 2.")
-          , p(paste0("File uploads (separately) are limited to a maximum of "
-                     ,mb_limit
-                     , " MB in size."))
+           p("A table is shown below after data is loaded.")
+          , DT::dataTableOutput("df_data_DT")
       )##mainPanel~END
 
     )##sidebarLayout~END

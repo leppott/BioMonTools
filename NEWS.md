@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-16 10:04:42
+    #> Last Update: 2021-12-21 17:24:08
 
 # Version History
+
+## Changes in Version 0.5.0.9078 (2021-12-21)
+
+-   feature: Add Shiny app, basic outline only, Issue \#67
 
 ## Changes in Version 0.5.0.9077 (2021-12-16)
 

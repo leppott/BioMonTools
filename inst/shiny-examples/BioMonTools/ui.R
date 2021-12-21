@@ -7,12 +7,6 @@
 #    http://shiny.rstudio.com/
 #
 
-# Sources Pages ####
-tab_Help    <- source("external/tab_Help.R", local = TRUE)$value
-# tab_Combine <- source("external/tab_Combine.R", local = TRUE)$value
- tab_Import  <- source("external/tab_Import.R", local = TRUE)$value
-# tab_Calc    <- source("external/tab_Calc.R", local = TRUE)$value
-# tab_Plot    <- source("external/tab_Plot.R", local = TRUE)$value
 
 # Define UI
 # shinyUI(
@@ -26,9 +20,10 @@ tab_Help    <- source("external/tab_Help.R", local = TRUE)$value
 # )##shinyUI~END
 
 dashboardPage(
-  dashboardHeader(title = "BioMonTools")
-  , dashboardSidebar()
-  , dashboardBody()
+  header = dashboardHeader(title = "BioMonTools")
+  #, sidebar = dashboardSidebar(sb_main("leftsidebarmenu"))
+  , sidebar = dashboardSidebar(sb_main("leftsidebarmenu"))
+  , body = dashboardBody(db_main("dbBody"))
 ) ## dashboardPage ~ END
 
 # https://rstudio.github.io/shinydashboard/get_started.html
