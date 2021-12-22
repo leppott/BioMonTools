@@ -18,6 +18,15 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9081 (2021-12-22)
+
+* feature: Add new fish metrics to metric.values()
+    + pi_Lepomis
+    + pt_Lepomis
+    + nt_BCG_attNA
+    + pi_BCG_attNA
+    + pt_BCG_attNA
+
 ## Changes in Version 0.5.0.9080 (2021-12-22)
 
 * refactor: Modify shiny mark excluded default new column name

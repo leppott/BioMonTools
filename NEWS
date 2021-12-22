@@ -4,9 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-22 16:59:00
+    #> Last Update: 2021-12-22 18:54:09
 
 # Version History
+
+## Changes in Version 0.5.0.9081 (2021-12-22)
+
+-   feature: Add new fish metrics to metric.values()
+    -   pi\_Lepomis
+    -   pt\_Lepomis
+    -   nt\_BCG\_attNA
+    -   pi\_BCG\_attNA
+    -   pt\_BCG\_attNA
 
 ## Changes in Version 0.5.0.9080 (2021-12-22)
 
