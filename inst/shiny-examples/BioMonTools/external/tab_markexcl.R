@@ -9,19 +9,27 @@ function() {
 
                        , br()
                        , p("1. Upload a file.")
-
+                       , p("Use 'Load Data' option in left sidebar.")
                        , p("2. Define columns (Sample ID, Taxa ID, Count).")
                        , uiOutput("UI_col_markexcl_SampID")
                        , uiOutput("UI_col_markexcl_TaxaID")
                        , uiOutput("UI_col_markexcl_Count")
-                       , p("Check boxes for each phylo level.")
-                       , p("default names to all upper case")
-
-                       , p("3. Define Map Extent")
-                       , p("Defined by data")
-                       , p("4. Run")
-                     #  , bsButton(but_markexcl_run, label = "Mark Redundant Taxa")
-                       , "download"
+                       , textInput("markexcl_Exclude"
+                                   , label = "Exclude Column"
+                                   , value = "EXCLUDED")
+                       , p("3. TaxaLevels")
+                       , p("TaxaLevels are used in the order below.")
+                       , p("Kingdom, Phylum, SubPhylum, Class, SubClass
+                           , Order, SubOrder, InfraOrder, SuperFamily, Family
+                           , SubFamily, Tribe, Genus, SubGenus, Species, Variety")
+                       , uiOutput("UI_col_markexcl_Phylo")
+                       #, p("Current version uses all phylogenetic names present in file.")
+                       , p("4. Run Function")
+                       , bsButton("b_markexcl_run", label = "Run Function")
+                       , p("5. Download Results")
+                       , useShinyjs()
+                       , shinyjs::disabled(downloadButton("b_markexcl_download"
+                                                          , "Download Results"))
                         )## fluidPage ~ END
            # , includeHTML(file.path("external", "Help.html"))
            )##tabPanel ~ END

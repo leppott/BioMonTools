@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-21 17:24:08
+    #> Last Update: 2021-12-22 14:00:48
 
 # Version History
+
+## Changes in Version 0.5.0.9079 (2021-12-22)
+
+-   feature: Update Shiny app, all functions working, Issue \#67
 
 ## Changes in Version 0.5.0.9078 (2021-12-21)
 
