@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-22 14:00:48
+    #> Last Update: 2021-12-22 16:59:00
 
 # Version History
+
+## Changes in Version 0.5.0.9080 (2021-12-22)
+
+-   refactor: Modify shiny mark excluded default new column name
+    -   EXCLUDED to Exclude to match required column for metric calc
+-   refactor: Add package version number to shiny About page
+-   docs: Add DT package to DESCRIPTION
 
 ## Changes in Version 0.5.0.9079 (2021-12-22)
 

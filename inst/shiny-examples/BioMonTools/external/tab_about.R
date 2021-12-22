@@ -7,6 +7,8 @@ function() {
                           )
                        , p("Background info")
 
+                       , p("Version 0.5.0.9080")
+
 
                         )## fluidPage ~ END
            # , includeHTML(file.path("external", "Help.html"))

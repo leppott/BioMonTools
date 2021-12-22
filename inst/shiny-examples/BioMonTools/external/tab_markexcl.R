@@ -16,7 +16,7 @@ function() {
                        , uiOutput("UI_col_markexcl_Count")
                        , textInput("markexcl_Exclude"
                                    , label = "Exclude Column"
-                                   , value = "EXCLUDED")
+                                   , value = "Exclude")
                        , p("3. TaxaLevels")
                        , p("TaxaLevels are used in the order below.")
                        , p("Kingdom, Phylum, SubPhylum, Class, SubClass
