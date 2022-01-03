@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+# Changes in Version 0.5.0.9082 (2022-01-03)
+
+* feature: Add new fish metrics to metric.values()
+    + pi_BCG_att23_SCC
+    + nt_BCG_att23_SCC
+    + pt_BCG_att23_SCC
+
 ## Changes in Version 0.5.0.9081 (2021-12-22)
 
 * feature: Add new fish metrics to metric.values()

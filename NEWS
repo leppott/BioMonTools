@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-12-22 18:54:09
+    #> Last Update: 2022-01-03 14:08:46
 
 # Version History
+
+# Changes in Version 0.5.0.9082 (2022-01-03)
+
+-   feature: Add new fish metrics to metric.values()
+    -   pi\_BCG\_att23\_SCC
+    -   nt\_BCG\_att23\_SCC
+    -   pt\_BCG\_att23\_SCC
 
 ## Changes in Version 0.5.0.9081 (2021-12-22)
 
