@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9081</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9082</span>
       </span>
     </div>
 
@@ -60,6 +60,1563 @@
       <small>Source: <a href="https://github.com/leppott/BioMonTools/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.5.0.9082" id="changes-in-version-0509082-2022-01-03">Changes in Version 0.5.0.9082 (2022-01-03)<a class="anchor" aria-label="anchor" href="#changes-in-version-0509082-2022-01-03"></a></h2>
+<ul><li>feature: Add new fish metrics to metric.values()
+<ul><li>pi_BCG_att23_SCC</li>
+<li>nt_BCG_att23_SCC</li>
+<li>pt_BCG_att23_SCC</li>
+</ul></li>
+</ul><div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082">Changes in Version 0.5.0.9081 (2021-12-22)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082"></a></h3>
+<ul><li>feature: Add new fish metrics to metric.values()
+<ul><li>pi_Lepomis</li>
+<li>pt_Lepomis</li>
+<li>nt_BCG_attNA</li>
+<li>pi_BCG_attNA</li>
+<li>pt_BCG_attNA</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-1">Changes in Version 0.5.0.9080 (2021-12-22)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-1"></a></h3>
+<ul><li>refactor: Modify shiny mark excluded default new column name
+<ul><li>EXCLUDED to Exclude to match required column for metric calc</li>
+</ul></li>
+<li>refactor: Add package version number to shiny About page</li>
+<li>docs: Add DT package to DESCRIPTION</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-2">Changes in Version 0.5.0.9079 (2021-12-22)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-2"></a></h3>
+<ul><li>feature: Update Shiny app, all functions working, Issue <a href="https://github.com/leppott/BioMonTools/issues/67" class="external-link">#67</a></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-3">Changes in Version 0.5.0.9078 (2021-12-21)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-3"></a></h3>
+<ul><li>feature: Add Shiny app, basic outline only, Issue <a href="https://github.com/leppott/BioMonTools/issues/67" class="external-link">#67</a></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-4">Changes in Version 0.5.0.9077 (2021-12-16)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-4"></a></h3>
+<ul><li>refactor: Allow for mixed case in bug metric phylo metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/65" class="external-link">#65</a></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-5">Changes in Version 0.5.0.9076 (2021-12-15)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-5"></a></h3>
+<ul><li>fix: Update metric.values(), was returning 0 records
+<ul><li>length_m was commented out and caused error in met.val</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-6">Changes in Version 0.5.0.9075 (2021-12-13)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-6"></a></h3>
+<ul><li>tests: Update tests to ensure MetricNames.xlsx is complete</li>
+<li>refactor: Update metric.valus() with metrics used in MetricScoring.xlsx</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-7">Changes in Version 0.5.0.9074 (2021-12-10)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-7"></a></h3>
+<ul><li>docs: Create documentation for data_fish_MBSS dataset</li>
+<li>docs: Update MetricNames.xlsx and MetricScoring.xlsx for any new metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/64" class="external-link">#64</a></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-8">Changes in Version 0.5.0.9073 (2021-12-10)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-8"></a></h3>
+<ul><li>feature: New fish metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/64" class="external-link">#64</a></li>
+<li>feature: Add fish example data</li>
+<li>refactor: Add .groups = “drop_last” to each subfunction in metric_values(), Issue <a href="https://github.com/leppott/BioMonTools/issues/20" class="external-link">#20</a></li>
+<li>refactor: Fish metric names
+<ul><li>nt_natcent to nt_natCent_sunfish
+<ul><li>GADNR_Fish_2020</li>
+<li>Includes sunfish and had to add a Centrarchidae only metric</li>
+<li>Fixed in metric.values() and MetricScoring.xlsx</li>
+</ul></li>
+<li>lepomis to Lepomis</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-9">Changes in Version 0.5.0.9072 (2021-12-09)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-9"></a></h3>
+<ul><li>refactor: Update thermal metric default values, Core-Cold to CoreC
+<ul><li>metric.values()</li>
+<li>data_benthos_PacNW</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-10">Changes in Version 0.5.0.9071 (2021-12-09)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-10"></a></h3>
+<ul><li>fix: metric.values() thermal indicator metric not correct
+<ul><li>nt_ti_corecold_cold</li>
+<li>pt_ti_corecold_cold</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-11">Changes in Version 0.5.0.9070 (2021-12-09)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-11"></a></h3>
+<ul><li>fix: metric.values() thermal indicator NA metric not correct
+<ul><li>Using wrong column (Habitat) to find NA</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-12">Changes in Version 0.5.0.9069 (2021-11-19)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-12"></a></h3>
+<ul><li>fix: metric.values() not working for new metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/62" class="external-link">#62</a>
+<ul><li>Elevation, Gradient, and WSArea</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-13">Changes in Version 0.5.0.9068 (2021-11-18)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-13"></a></h3>
+<ul><li>refactor: Update MetricScoring.xlsx for IEPA, Issue <a href="https://github.com/leppott/BioMonTools/issues/63" class="external-link">#63</a></li>
+<li>tests: Update test_threshold_numdigits to show rows with issues</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-14">Changes in Version 0.5.0.9067 (2021-11-18)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-14"></a></h3>
+<ul><li>feature: Add more benthic metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/62" class="external-link">#62</a>
+<ul><li>Adds new required fields
+<ul><li>GRADIENT</li>
+<li>ELEVATION</li>
+<li>WSAREA</li>
+</ul></li>
+<li>Update data with new columns
+<ul><li>data_benthos_PacNW</li>
+<li>Data_Benthos.xlsx</li>
+</ul></li>
+<li>Update data.R with changes to data_benthos_PacNW</li>
+</ul></li>
+<li>refactor: Update Vignettes for changes in metrics</li>
+<li>refactor: Update tests for changes in metrics</li>
+<li>break: Rename thermal benthic metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/62" class="external-link">#62</a></li>
+<li>tests: Update metric test names</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-15">Changes in Version 0.5.0.9066 (2021-11-02)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-15"></a></h3>
+<ul><li>tests: Update tests for benthos for UFC column</li>
+<li>refactor: Update diatom mmi dev data for tests, add Phylum
+<ul><li>ProcessData</li>
+<li>data description</li>
+</ul></li>
+<li>refactor: Update MetricNames to match MetricScores
+<ul><li>Failed test after addition of algal metrics</li>
+<li>Add metrics “pi_BCG_att5extra” and “x_UFC”<br></li>
+<li>Add notes</li>
+</ul></li>
+<li>tests: Update metric name tests</li>
+<li>tests: Update metric stats test</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-16">Changes in Version 0.5.0.9065 (2021-11-01)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-16"></a></h3>
+<ul><li>refactor: Update MetricScoring.xlsx from dev_periphyton merge</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-17">Changes in Version 0.5.0.9064 (2021-11-01)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-17"></a></h3>
+<ul><li>fix: Remove unneeded concatenation, markExcluded, Issue <a href="https://github.com/leppott/BioMonTools/issues/61" class="external-link">#61</a></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-18">Changes in Version 0.5.0.9063 (2021-11-01)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-18"></a></h3>
+<ul><li>fix: Update NEWS after merging of pull request
+<ul><li>Add items below from branch NEWS
+<ul><li>Some updates missing filled in from Branch info</li>
+</ul></li>
+</ul></li>
+<li>dev_metric_periphyton, Version 0.5.0.9066 (2021-06-23)
+<ul><li>refactor: added diatom example dataset to package
+<ul><li>Added diatom metric value dataset for internal QC</li>
+</ul></li>
+</ul></li>
+<li>dev_metric_periphyton, Version 0.5.0.9065 (2021-06-23)
+<ul><li>refactor: Added example taxa data and example metric value data to package</li>
+<li>refactor: Added testthat script (test_metric_calc.R) to test metric calculation.</li>
+</ul></li>
+<li>dev_metric_periphyton, Version 0.5.0.9064 (2021-06-23)
+<ul><li>refactor: Updated MetricNames.xlsx according to Ben Jessup’s metric descriptions for Indiana</li>
+</ul></li>
+<li>dev_metric_periphyton, Version 0.5.0.9063 (2021-06-22)
+<ul><li>refactor: metric.values
+<ul><li>Added 52 new diatom metrics (added from EDAS)</li>
+</ul></li>
+<li>refactor: MetricNames.xlsx
+<ul><li>Update for new diatom metrics, but missing descriptions</li>
+</ul></li>
+<li>refactor: Added scoring formulae for IDEM Diatom IBIs</li>
+</ul></li>
+<li>dev_metric_periphyton, Version 0.5.0.9062 (2021-06-22)
+<ul><li>refactor: Added *_RefIndicators metrics</li>
+</ul></li>
+<li>dev_metric_periphyton, Version 0.5.0.9061 (2021-06-15)
+<ul><li>Fix: grepl issues in algae metrics</li>
+</ul></li>
+<li>dev_metric_periphyton, Version 0.5.0.9060 (2021-06-11)
+<ul><li>refactor: metric.values
+<ul><li>Added over 150 diatom metrics</li>
+<li>Almost all were USGS diatom metrics</li>
+</ul></li>
+<li>refactor: MetricNames.xlsx
+<ul><li>Update for new diatom metrics</li>
+</ul></li>
+</ul></li>
+<li>dev_metric_periphyton, Version 0.5.0.9059 (2021-06-10)
+<ul><li>refactor: metric.values added periphyton/diatom metric functionality
+<ul><li>Added metrics for Indiana diatoms IBIs</li>
+</ul></li>
+<li>refactor: MetricNames.xlsx
+<ul><li>Update for new diatom metrics</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-19">Changes in Version 0.5.0.9062 (2021-09-23)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-19"></a></h3>
+<ul><li>feature: Add qc_taxa function from MBSStools package
+<ul><li>Update example</li>
+</ul></li>
+<li>feature: Add Shiny app folders and files</li>
+<li>docs: Add shiny related packages to DESCRIPTION Suggests</li>
+<li>refactor: Started adding NJ fish IBI 2005 to MetricScoring.xlsx</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-20">Changes in Version 0.5.0.9061 (2021-09-09)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-20"></a></h3>
+<ul><li>feature: Add taxonomic uncertainty frequency class metric for bugs, Issue <a href="https://github.com/leppott/BioMonTools/issues/57" class="external-link">#57</a></li>
+<li>refactor: Update example data with UFC field, Issue <a href="https://github.com/leppott/BioMonTools/issues/57" class="external-link">#57</a>
+<ul><li>extdata_Benthos.xlsx</li>
+<li>data_benthos_PacNW</li>
+<li>Update data.R</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-21">Changes in Version 0.5.0.9060 (2021-07-30)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-21"></a></h3>
+<ul><li>feature: Add pi_BCG_att5extra to metric.values() for bugs
+<ul><li>5 and 5.5</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-22">Changes in Version 0.5.0.9059 (2021-07-30)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-22"></a></h3>
+<ul><li>feature: Add more fish metrics to metric.values()</li>
+<li>refactor: For fish community for metric.values() convert to upper case</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-23">Changes in Version 0.5.0.9058 (2021-05-21)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-23"></a></h3>
+<ul><li>refactor: Move legend to the right margin, MapTaxaObs, Issue <a href="https://github.com/leppott/BioMonTools/issues/52" class="external-link">#52</a></li>
+<li>docs: README, update install code to use remotes instead of devtools</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-24">Changes in Version 0.5.0.9057 (2021-05-19)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-24"></a></h3>
+<ul><li>refactor: Update MapTaxaObs
+<ul><li>subset function not working as intended</li>
+</ul></li>
+<li>refactor: MapTaxaObs, percent 0-100, Issue <a href="https://github.com/leppott/BioMonTools/issues/28" class="external-link">#28</a></li>
+<li>refactor: MapTaxaObs, add output directory path, Issue <a href="https://github.com/leppott/BioMonTools/issues/27" class="external-link">#27</a></li>
+<li>refactor: MapTaxaObs, add grouping variable to color points, Issue <a href="https://github.com/leppott/BioMonTools/issues/52" class="external-link">#52</a>
+<ul><li>Add colors and legend</li>
+<li>Add new parameters to function</li>
+<li>Update example</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-25">Changes in Version 0.5.0.9056 (2021-05-18)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-25"></a></h3>
+<ul><li>refactor: Convert messages to warnings in markExcluded
+<ul><li>cat() and flush.console() to message()</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-26">Changes in Version 0.5.0.9055 (2021-05-14)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-26"></a></h3>
+<ul><li>refactor: Update scoring to allow for scaling from metric to index scores
+<ul><li>MetricScoring.xlsx, add ScoreScaling column</li>
+<li>metric_scores.R, add AVERAGESCALE_100 as new index scoring option</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-27">Changes in Version 0.5.0.9054 (2021-05-13)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-27"></a></h3>
+<ul><li>refactor: Incorporate pull request <a href="https://github.com/leppott/BioMonTools/issues/50" class="external-link">#50</a>
+<ul><li>metric.stats2, fix group_by with change in dplyr</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-28">Changes in Version 0.5.0.9053 (2021-05-10)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-28"></a></h3>
+<ul><li>refactor: Metric.Scoring.xlsx, updates for FFXCOVA_2018 metrics
+<ul><li>Coastal Plain, x_HBI, Cont_0100 to Cont_0010</li>
+<li>Floating point errors, n = 7</li>
+</ul></li>
+<li>refactor: Add new metric, pi_EPTNoHydro to MetricNames.xlsx</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-29">Changes in Version 0.5.0.9052 (2021-05-10)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-29"></a></h3>
+<ul><li>refactor: Metric.Scoring.xlsx, update to remove NA from index scoring
+<ul><li>Both numeric and narrative.<br></li>
+<li>Caused an issue with scoring FFXCOVA_2018</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-30">Changes in Version 0.5.0.9051 (2021-05-10)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-30"></a></h3>
+<ul><li>refactor: metric.values, update new metric, pi_EPTNoHydro</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-31">Changes in Version 0.5.0.9050 (2021-05-10)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-31"></a></h3>
+<ul><li>docs: Add Ben Block as contributor.</li>
+<li>refactor: metric.values, add new metric, pi_EPTNoHydro</li>
+<li>refactor: Metric.Scoring.xlsx, updates for FFXCOVA_2018</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-32">Changes in Version 0.5.0.9049 (2021-04-15)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-32"></a></h3>
+<ul><li>refactor: metric.values, fix nt_ECT
+<ul><li>Had nt_ECP</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-33">Changes in Version 0.5.0.9048 (2021-04-14)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-33"></a></h3>
+<ul><li>refactor: metric.values add new metric if IL EPA lakes, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>nt, pi, pt
+<ul><li>Ephemeroptera, Coleoptera, Trichoptera</li>
+</ul></li>
+<li>Add global variable bindings</li>
+</ul></li>
+<li>refactor: MetricNames.xlsx
+<ul><li>Update for new metrics</li>
+</ul></li>
+<li>refactor: Update MetricScoring.xlsx
+<ul><li>MassIBI Low Gradient
+<ul><li>Update narrative thresholds</li>
+</ul></li>
+<li>IL EPA Lakes
+<ul><li>Add new indices</li>
+</ul></li>
+</ul></li>
+<li>docs: markExcluded example missing a comment line
+<ul><li>Causing examples to fail</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-34">Changes in Version 0.5.0.9047 (2021-04-08)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-34"></a></h3>
+<ul><li>refactor: metric.values, add 3 new FFG metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>nt, pi, pt
+<ul><li>omnivore (OM)</li>
+<li>parasite (PA)</li>
+</ul></li>
+</ul></li>
+<li>refactor: metric.values, Add global variable binding
+<ul><li>FFG metrics new here and from v0.5.0.9444</li>
+</ul></li>
+<li>refactor: MetricNames.xlsx
+<ul><li>Update for new metrics</li>
+</ul></li>
+<li>refactor: Modify ffg_filt metrics to use CF or FC
+<ul><li>metric.values
+<ul><li>nt, pi, pt</li>
+</ul></li>
+<li>MetricNames.xlsx</li>
+</ul></li>
+<li>refactor: Modify ffg_col metrics to use CG or GC
+<ul><li>metric.values
+<ul><li>nt, pi, pt</li>
+</ul></li>
+<li>MetricNames.xlsx</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-35">Changes in Version 0.5.0.9046 (2021-04-06)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-35"></a></h3>
+<ul><li>feature: Add logo from RBP 2nd edition</li>
+<li>docs: Update README with logo</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-36">Changes in Version 0.5.0.9045 (2021-04-01)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-36"></a></h3>
+<ul><li>style: Fix items, goodpractice::gp()
+<ul><li>Replace ‘=’ with ‘&lt;-’
+<ul><li>metric_stats.R</li>
+<li>metric_stats2.R</li>
+</ul></li>
+<li>Trim lines to 80 characters
+<ul><li>test_qc_checks.R</li>
+<li>test_metric_names.R</li>
+<li>test_metric_calc.R</li>
+<li>test_markExcluded.R</li>
+<li>rarify.R</li>
+<li>qc_checks.R</li>
+<li>metric_values.R (partial)</li>
+<li>metric_stats2.R</li>
+<li>metric_stats.R</li>
+<li>metric_scores.R (partial)</li>
+<li>markExcluded.R</li>
+</ul></li>
+</ul></li>
+<li>style: Fix spelling, devtools::spell_check()
+<ul><li>ReadMe</li>
+<li>NEWS</li>
+<li>metric_stats.R</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-37">Changes in Version 0.5.0.9044 (2021-03-31)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-37"></a></h3>
+<ul><li>refactor: metric.values, add 3 new FFG metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>nt, pi, pt
+<ul><li>macrophyte herbivore (MAH)</li>
+<li>xylophage (XYL)</li>
+<li>piercer-herbivore (PIH)</li>
+</ul></li>
+</ul></li>
+<li>refactor: MetricNames.xlsx
+<ul><li>Update for new metrics</li>
+</ul></li>
+<li>refactor: MetricScores.xlsx
+<ul><li>GADNR_fish_2005, ensure consistent index_region between metric and index scoring</li>
+<li>Test was failing. Passes now</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-38">Changes in Version 0.5.0.9043 (2021-03-22)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-38"></a></h3>
+<ul><li>refactor: metric.values, add pi_DiptNonIns metric</li>
+<li>style: metric.values, start to trim lines to 80 characters</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-39">Changes in Version 0.5.0.9042 (2021-03-14)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-39"></a></h3>
+<ul><li>refactor: metric.values, modify GA fish metric pi_natinsctcypr, Issue <a href="https://github.com/leppott/BioMonTools/issues/48" class="external-link">#48</a>
+<ul><li>Was not checking for Native</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-40">Changes in Version 0.5.0.9041 (2021-02-26)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-40"></a></h3>
+<ul><li>refactor: metric.values, modify fish metrics for TROPHIC to account for multiple values</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-41">Changes in Version 0.5.0.9040 (2021-02-26)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-41"></a></h3>
+<ul><li>refactor: MetricScoring.xlsx
+<ul><li>GA DNR Fish, standardize 2005 index regions to all CAPS the same as 2020.</li>
+<li>Breaking change for scripts based on 2005 fish index</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-42">Changes in Version 0.5.0.9039 (2021-02-23)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-42"></a></h3>
+<ul><li>docs: Move updates from NEWS to README</li>
+<li>refactor: Update MetricScoring.xlsx for MA</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-43">Changes in Version 0.5.0.9038 (2021-02-22)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-43"></a></h3>
+<ul><li>docs: Update README install section, Issue <a href="https://github.com/leppott/BioMonTools/issues/11" class="external-link">#11</a></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-44">Changes in Version 0.5.0.9037 (2021-01-19)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-44"></a></h3>
+<ul><li>tests: Activate tests
+<ul><li>rarify</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-45">Changes in Version 0.5.0.9036 (2021-01-13)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-45"></a></h3>
+<ul><li>test: Add blank testing file for any function without a test
+<ul><li>MapTaxaObs</li>
+</ul></li>
+<li>refactor: Update MapTaxaObs example
+<ul><li>Direct to tempdir() instead of getwd()</li>
+<li>Comment out 2nd non-working example</li>
+</ul></li>
+<li>style: Update MapTaxaObs for readability</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-46">Changes in Version 0.5.0.9035 (2021-01-12)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-46"></a></h3>
+<ul><li>fix: Replace instances of deprecated functions
+<ul><li>Change dplyr::group_by_ to dplyr::group_by
+<ul><li>metric.stats2</li>
+</ul></li>
+</ul></li>
+<li>test: Add tests
+<ul><li>metric.stats2</li>
+</ul></li>
+<li>test: Comment out failing tests so package builds
+<ul><li>Tests ok in console but not passing after build</li>
+<li>markExcluded</li>
+<li>qc_checks</li>
+<li>metric.stats2</li>
+<li>rarify</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-47">Changes in Version 0.5.0.9034 (2021-01-12)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-47"></a></h3>
+<ul><li>fix: Replace instances of deprecated functions
+<ul><li>Change dplyr::group_by_ to dplyr::group_by
+<ul><li>metric.values</li>
+</ul></li>
+</ul></li>
+<li>test: Add tests
+<ul><li>qc_checks</li>
+<li>markExcluded</li>
+<li>metric.stats</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-48">Changes in Version 0.5.0.9033 (2021-01-06)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-48"></a></h3>
+<ul><li>test: Add metric.values and metrics.scores for MA kick/logradient IBI</li>
+<li>docs: Update data.R for missing columns
+<ul><li>data_benthos_MBSS</li>
+<li>data_mmi_dev</li>
+</ul></li>
+<li>refactor: document internal functions of metric.values()</li>
+<li>fix: Remove non-ASCII character from data_mmi_dev</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-49">Changes in Version 0.5.0.9032 (2021-01-03)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-49"></a></h3>
+<ul><li>refactor: Add global variable binding
+<ul><li>metric.stats</li>
+<li>metric.scores</li>
+</ul></li>
+<li>test: qc.check test not working, comment out</li>
+<li>docs: Document undocumented argument
+<ul><li>metric.stats2</li>
+</ul></li>
+<li>fix: Rebuild data_benthos_MBSS with missing columns so no warnings in example</li>
+<li>chore: Add to .Rbuildignore
+<ul><li>NEWS.rmd</li>
+<li>README.rmd</li>
+<li>data-raw folder</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-50">Changes in Version 0.5.0.9031 (2021-01-03)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-50"></a></h3>
+<ul><li>docs: DESCRIPTION, move packages from Imports to Suggests
+<ul><li>knitr</li>
+<li>rmarkdown</li>
+</ul></li>
+<li>docs: DESCRIPTION, set license</li>
+<li>refactor: Add foo:: to missing functions
+<ul><li>metric.stats</li>
+<li>metric.stats2</li>
+</ul></li>
+<li>refactor: Add global variable binding
+<ul><li>markExcluded</li>
+<li>metric.scores</li>
+<li>metric.stats</li>
+<li>metric.stats2</li>
+<li>metric.values</li>
+<li>qc.checks</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-51">Changes in Version 0.5.0.9030 (2021-01-03)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-51"></a></h3>
+<ul><li>doc: Delete docso will rebuild.</li>
+<li>style: Remove undesireable function, replace library(foo) with foo::bar()
+<ul><li>vignette_MapTaxaObs</li>
+</ul></li>
+<li>style: Trim to 80 character lines
+<ul><li>vignette_MapTaxaObs</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-52">Changes in Version 0.5.0.9029 (2021-01-02)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-52"></a></h3>
+<p>test: Add tests + rarify + qc_checks (gives warning but passes)</p>
+</div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-53">Changes in Version 0.5.0.9028 (2021-01-02)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-53"></a></h3>
+<ul><li>refactor: Remove unneeded concatenations
+<ul><li>metric_stats</li>
+<li>vignette_BioMonTools</li>
+</ul></li>
+<li>refactor: Remove undesireable function, replace library(foo) with foo::bar()
+<ul><li>vignette_BioMonTools</li>
+</ul></li>
+<li>style: Trim to 80 character lines
+<ul><li>vignette_BioMonTools</li>
+<li>NEWS</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-54">Changes in Version 0.5.0.9027 (2020-12-29)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-54"></a></h3>
+<ul><li>refactor: Add foo:: to missing functions
+<ul><li>ProcessData_TaxaMater_Ben_BCG_PacNW.R</li>
+<li>test_metric_calc.R</li>
+</ul></li>
+<li>refactor: Trim lines to 80 characters</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-55">Changes in Version 0.5.0.9026 (2020-12-27)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-55"></a></h3>
+<ul><li>refactor: Add foo:: to missing functions</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-56">Changes in Version 0.5.0.9025 (2020-12-25)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-56"></a></h3>
+<ul><li>ci: Add code coverage GitHub Action</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-57">Changes in Version 0.5.0.9024 (2020-12-25)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-57"></a></h3>
+<ul><li>refactor: change 1:foo() to seq_len(foo())
+<ul><li>test_metric_calc</li>
+<li>metric_stats</li>
+<li>qc_checks</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-58">Changes in Version 0.5.0.9023 (2020-12-25)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-58"></a></h3>
+<ul><li>style: rarify, remove trailing ;</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-59">Changes in Version 0.5.0.9022 (2020-12-25)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-59"></a></h3>
+<ul><li>docs: Change to pkgdown from manual (docs in main branch) to GitHub Action (gh-pages branch)</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-60">Changes in Version 0.5.0.9021 (2020-12-25)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-60"></a></h3>
+<ul><li>docs: ReadMe, add badges for codefactor and codecov</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-61">Changes in Version 0.5.0.9020 (2020-12-25)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-61"></a></h3>
+<ul><li>docs: ReadMe, knit with updates from previous commit</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-62">Changes in Version 0.5.0.9019 (2020-12-25)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-62"></a></h3>
+<ul><li>ci: Change from TravisCI to GitHub Actions</li>
+<li>docs: ReadMe, Add CI badge</li>
+<li>docs: ReadMe, add lifecycle badge</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-63">Changes in Version 0.5.0.9018 (2020-12-07)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-63"></a></h3>
+<ul><li>MetricScoring.xlsx
+<ul><li>Fix two index threshold values with floating point errors; GBI_MS_2013</li>
+</ul></li>
+<li>Update Test
+<ul><li>test_thresholds_numdigits</li>
+<li>Test for any values with more than 11 digits.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-64">Changes in Version 0.5.0.9017 (2020-12-07)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-64"></a></h3>
+<ul><li>MetricScoring.xlsx
+<ul><li>Modify MassDEP metrics and index scoring.</li>
+</ul></li>
+<li>Update Test
+<ul><li>test_metric_names</li>
+<li>Update test for AVERAGE_10 and AVERAGE_20 to AVERAGE_100.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-65">Changes in Version 0.5.0.9016 (2020-11-30)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-65"></a></h3>
+<ul><li>Change index scoring regimes.
+<ul><li>Replace AVERAGE_10 and AVERAGE_20 with AVERAGE_100
+<ul><li>Use number of metrics for the scaling to 100.</li>
+<li>metric_scores.R</li>
+<li>MetricScoring.xlsx, FFXCOVA indices.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-66">Changes in Version 0.5.0.9015 (2020-11-24)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-66"></a></h3>
+<ul><li>Check
+<ul><li>Shorten lines longer than 100 characters.
+<ul><li>markExcluded.R</li>
+<li>metric_scores.R</li>
+</ul></li>
+<li>Add stats to DESCRIPTION, IMPORTS</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-67">Changes in Version 0.5.0.9014 (2020-11-24)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-67"></a></h3>
+<ul><li>metric_scores.R
+<ul><li>Add CONT_0010 scoring regime.</li>
+<li>Modify CONT_0100 to match CONT_0010 with score_max variable.</li>
+<li>Add index scoring regimes.
+<ul><li>AVERAGE_10</li>
+<li>AVERAGE_20</li>
+</ul></li>
+</ul></li>
+<li>MetricScoring.xlsx
+<ul><li>FFXCOVA_2018, INDEX_REGION
+<ul><li>Triassic to Triassic Basin</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-68">Changes in Version 0.5.0.9013 (2020-11-24)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-68"></a></h3>
+<ul><li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Add Fairfax County, VA</li>
+</ul></li>
+<li>MetricNames.xlsx
+<ul><li>Add 2 new metrics for Fairfax Co.</li>
+<li>Rename pi_TricNoHydro to pi_TrichNoHydro</li>
+</ul></li>
+<li>metric_values.R
+<ul><li>Add x_HBI2</li>
+<li>Add pi_habit_cling_PlecoNoCling</li>
+<li>Rename pi_TricNoHydro to pi_TrichNoHydro</li>
+</ul></li>
+<li>Update Test for number metric names for scoring index.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-69">Changes in Version 0.5.0.9012 (2020-10-28)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-69"></a></h3>
+<ul><li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Update MassDEP and SNEP index scoring</li>
+<li>Replace “.” with “_”; MBSS_2005_Bugs, MSW_1999_Bugs, MBSS_2005_Fish , BCG_PacNW_L1</li>
+<li>Remove NMSCI_2006 as had index scoring but not metric scroing.</li>
+</ul></li>
+<li>Update tests.
+<ul><li>Rename “test” files.</li>
+<li>Update tests to pass.</li>
+</ul></li>
+<li>Rename R function files with “_” rather than “.”.</li>
+<li>metric_scores.R
+<ul><li>Update examples from “.” to “_”.</li>
+<li>Change MBSStools::taxa_bugs_genus to internal data taxa_benthos_MBSS.</li>
+</ul></li>
+<li>Add new data taxa_benthos_MBSS from MBSStools::taxa_bugs_genus, Issue <a href="https://github.com/leppott/BioMonTools/issues/32" class="external-link">#32</a>
+<ul><li>Add ProcessData_benthos_MBSS.R to data-raw.</li>
+<li>Add to data.R</li>
+</ul></li>
+<li>MetricFlags.xlsx
+<ul><li>MBSS.2005.Bugs to MBSS_2005_Bugs</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-70">Changes in Version 0.5.0.9011 (2020-10-26)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-70"></a></h3>
+<ul><li>MetricScoring.xlsx
+<ul><li>Add MA indices, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>.</li>
+</ul></li>
+<li>test-metric_calc.R
+<ul><li>Update for MA indices.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-71">Changes in Version 0.5.0.9010 (2020-10-06)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-71"></a></h3>
+<ul><li>MetricScoring.xlsx
+<ul><li>Update GADNR_Fish_2020, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-72">Changes in Version 0.5.0.9009 (2020-10-06)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-72"></a></h3>
+<ul><li>MetricScoring.xlsx
+<ul><li>Update GADNR_Fish_2020, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-73">Changes in Version 0.5.0.9008 (2020-10-05)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-73"></a></h3>
+<ul><li>MetricScoring.xlsx
+<ul><li>Update GADNR_Fish_2020, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-74">Changes in Version 0.5.0.9007 (2020-09-04)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-74"></a></h3>
+<ul><li>MetricScoring.xlsx
+<ul><li>Update MassDEP_2019_Bugs, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-75">Changes in Version 0.5.0.9006 (2020-09-04)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-75"></a></h3>
+<ul><li>MetricScoring.xlsx
+<ul><li>Update MassDEP_2019_Bugs, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-76">Changes in Version 0.5.0.9005 (2020-08-11)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-76"></a></h3>
+<ul><li>Tweaks to tests.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-77">Changes in Version 0.5.0.9004 (2020-08-11)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-77"></a></h3>
+<ul><li>Update NEWS for pull request.</li>
+<li>Update notes in MetricScoring.xlsx</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-78">Changes in Version 0.5.0.9003 (2020-08-11)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-78"></a></h3>
+<ul><li>Merged Pull Request <a href="https://github.com/leppott/BioMonTools/issues/44" class="external-link">#44</a> (0.5.0.9001 and 9002)</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-79">Changes in Version 0.5.0.9002 (2020-08-10)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-79"></a></h3>
+<ul><li>MetricScoring.xlsx
+<ul><li>Updated MI narratives.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-80">Changes in Version 0.5.0.9001 (2020-08-03)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-80"></a></h3>
+<ul><li>MetricScoring.xlsx
+<ul><li>Changed MI narratives and fixed NumMetrics error for MI - East.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-81">Changes in Version 0.5.0 (2020-07-24)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-81"></a></h3>
+<ul><li>Update to new version number.</li>
+<li>Rebuild package down website.</li>
+<li>Create new release on GitHub.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-82">Changes in Version 0.4.0.9025 (2020-07-24)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-82"></a></h3>
+<ul><li>Remove extra file (metric.values.tsv) from root folder of package.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-83">Changes in Version 0.4.0.9024 (2020-07-24)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-83"></a></h3>
+<ul><li>Updates for MI index; Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>metric.values.R
+<ul><li>Add pi_IsopGastHiru</li>
+<li>Add pi_EPTNoBaeHydro</li>
+<li>Add pi_tv_toler6</li>
+<li>Modified intol4 metrics from &lt;= to &lt;.</li>
+<li>Modified toler6 metrics from &gt;= to &gt;.</li>
+</ul></li>
+<li>MetricNames.xlsx
+<ul><li>Add missing metrics.</li>
+<li>Community name bmi to bugs.</li>
+<li>Modified text on intol4 and toler6 metrics.</li>
+</ul></li>
+<li>MetricScoring.xlsx
+<ul><li>Community names to bugs and fish on both tabs.</li>
+</ul></li>
+</ul></li>
+<li>Add test to for metric names, Community = bugs.
+<ul><li>metric.values and MetricNames.xlsx.</li>
+<li>MetricScoring.xlsx and MetricNames.xlsx</li>
+<li>MetricScroing.xlsx and metric.values()</li>
+<li>Resolved issues.</li>
+</ul></li>
+<li>Update dataset “data_benthos_PacNW”.
+<ul><li>Index_Name had a number and was different on each line (Excel autofill error).</li>
+<li>Last updated 0.4.0.9008 (2020-04-28).</li>
+</ul></li>
+<li>Update tests for metric.values calc.</li>
+<li>metric.values.R
+<ul><li>Modify NonTarget check for is.na() in cases where the column is missing; Issue <a href="https://github.com/leppott/BioMonTools/issues/39" class="external-link">#39</a></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-84">Changes in Version 0.4.0.9022 (2020-07-23)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-84"></a></h3>
+<ul><li>metric.values; Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>, Issue <a href="https://github.com/leppott/BioMonTools/issues/41" class="external-link">#41</a>
+<ul><li>Fix pi_EPT and pi_EPTNoCheu
+<ul><li>swamped when created in v0.4.0.9019 (2020-07-06).</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-85">Changes in Version 0.4.0.9021 (2020-07-06)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-85"></a></h3>
+<ul><li>metric.values, Skip column QC check in Shiny; Issue <a href="https://github.com/leppott/BioMonTools/issues/40" class="external-link">#40</a></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-86">Changes in Version 0.4.0.9020 (2020-07-06)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-86"></a></h3>
+<ul><li>metric.values, NonTarget still counted; Issue <a href="https://github.com/leppott/BioMonTools/issues/39" class="external-link">#39</a>
+<ul><li>Inadvertently removed in v0.3.3.9017 (2020-02-24)</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-87">Changes in Version 0.4.0.9019 (2020-07-06)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-87"></a></h3>
+<ul><li>WV GLIMPSS, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Narrative categories are: Very good, Good, Degraded, Severely degraded
+<ul><li>Pond et al. 2012</li>
+<li>MetricScoring.xlsx</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-88">Changes in Version 0.4.0.9018 (2020-07-06)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-88"></a></h3>
+<ul><li>WV GLIMPSS, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>MetricScoring.xlsx</li>
+<li>MetricNames.xlsx</li>
+<li>metric.values.R</li>
+<li>testthat</li>
+</ul></li>
+<li>Update pkgdown website.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-89">Changes in Version 0.4.0.9017 (2020-06-25)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-89"></a></h3>
+<ul><li>metric.values.R
+<ul><li>Correct nt_intol4_EPT to nt_tv_intol4_EPT</li>
+<li>Add x_Becks3</li>
+</ul></li>
+<li>MetricScoring.xlsx
+<ul><li>Add PADEP Freestone IBI (metrics and scoring).</li>
+</ul></li>
+<li>MetricNames.xlsx
+<ul><li>Add new metrics.</li>
+</ul></li>
+<li>Use testthat
+<ul><li>Set up tests for PA Freestone IBI (values and scores).</li>
+<li>Passes both but test incomplete.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-90">Changes in Version 0.4.0.9016 (2020-06-19)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-90"></a></h3>
+<ul><li>Referenced wrong issue in last update.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-91">Changes in Version 0.4.0.9015 (2020-06-19)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-91"></a></h3>
+<ul><li>metric.values.R, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Add new metrics for PA and WV BIBIs.
+<ul><li>nt_tv_intol4</li>
+<li>nt_tv_intol4_EPT</li>
+<li>pi_Ortho</li>
+<li>pi_Chiro_Anne</li>
+</ul></li>
+<li>Need to document.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-92">Changes in Version 0.4.0.9014 (2020-06-18)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-92"></a></h3>
+<ul><li>DESCRIPTION
+<ul><li>Add package tidyr to support metric.stats2(); Issue # 37</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-93">Changes in Version 0.4.0.9013 (2020-06-03)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-93"></a></h3>
+<ul><li>metric.stats2.R, Issue <a href="https://github.com/leppott/BioMonTools/issues/36" class="external-link">#36</a>
+<ul><li>Add DE and z-scores based on metric.stats and metric.values.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-94">Changes in Version 0.4.0.9012 (2020-06-01)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-94"></a></h3>
+<ul><li>Update pkgdown website documentation.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-95">Changes in Version 0.4.0.9011 (2020-06-01)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-95"></a></h3>
+<ul><li>metric.stats.R, Issue <a href="https://github.com/leppott/BioMonTools/issues/36" class="external-link">#36</a>
+<ul><li>Add new function to calculate statistics for developing multi-metric index</li>
+</ul></li>
+<li>data_mmi_dev
+<ul><li>Example data for metric.stats()</li>
+</ul></li>
+<li>data.R
+<ul><li>Update for new data.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-96">Changes in Version 0.4.0.9010 (2020-05-11)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-96"></a></h3>
+<ul><li>metric.values.R, Issue <a href="https://github.com/leppott/BioMonTools/issues/35" class="external-link">#35</a>
+<ul><li>Modify Oligochaete metrics to use Class or Subclass.</li>
+<li>Add Subclass as a required field.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-97">Changes in Version 0.4.0.9009 (2020-05-07)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-97"></a></h3>
+<ul><li>metric.values.R
+<ul><li>More new metrics.
+<ul><li>nt, pt, pi - ET (Trichoptera, and Ephemeroptera)</li>
+<li>nt, pt, pi - EOT (Odonata, Trichoptera, and Ephemeroptera)</li>
+<li>nt, pt, pi - COTE (Coleoptera, Odonata, Trichoptera, and Ephemeroptera)</li>
+<li>% Individs Amphipoda + Isopoda</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-98">Changes in Version 0.4.0.9008 (2020-04-28)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-98"></a></h3>
+<ul><li>Start using R v4.0.0.</li>
+<li>metric.values.R
+<ul><li>Additional metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>.
+<ul><li>nt_BCG_attNA</li>
+<li>pi_BCG_attNA</li>
+<li>pt_BCG_attNA</li>
+<li>Habitat metrics, 8 values, nt, pi, pt.</li>
+</ul></li>
+</ul></li>
+<li>MetricNames.xlsx
+<ul><li>Add new metrics.</li>
+</ul></li>
+<li>New data set to utilize new metrics.
+<ul><li>data_benthos_PacNW</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-99">Changes in Version 0.4.0.9007 (2020-04-27)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-99"></a></h3>
+<ul><li>metric.values.R
+<ul><li>Additional metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>.
+<ul><li>nt_BCG_att1</li>
+<li>pi_BCG_att1</li>
+<li>pt_BCG_att1</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-100">Changes in Version 0.4.0.9006 (2020-04-24)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-100"></a></h3>
+<ul><li>metric.values.R
+<ul><li>QC on line 371 did not declare package. Issue <a href="https://github.com/leppott/BioMonTools/issues/33" class="external-link">#33</a>.</li>
+<li>Define pipe in subfunctions.</li>
+</ul></li>
+<li>metric.scores.R
+<ul><li>Modify example. Issue <a href="https://github.com/leppott/BioMonTools/issues/34" class="external-link">#34</a>.
+<ul><li>Only one occurence of Index_Name and Index_Region in the data.frame.</li>
+<li>Purge tibble error by converting to drop = TRUE.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-101">Changes in Version 0.4.0.9005 (2020-02-28)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-101"></a></h3>
+<ul><li>Tweak for SelMet.
+<ul><li>metric.scores.R</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-102">Changes in Version 0.4.0.9005 (2020-02-28)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-102"></a></h3>
+<ul><li>Change DepMet to SelMet.
+<ul><li>Better terminology as selecting a metric to use.</li>
+<li>metric.scores.R</li>
+<li>MetricScoring.xlsx</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-103">Changes in Version 0.4.0.9003 (2020-02-27)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-103"></a></h3>
+<ul><li>Add ability to score index when have zero individuals.
+<ul><li>metric.scores.R</li>
+<li>MetricScoring.xlsx</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-104">Changes in Version 0.4.0.9002 (2020-02-27)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-104"></a></h3>
+<ul><li>metric.score.R
+<ul><li>Account for “no organisms collected”.
+<ul><li>TAXAID needs to be “NONE”.</li>
+<li>N_TAXA needs to be zero.</li>
+<li>Both bugs and fish will exclude all other N_TAXA = 0 but keep if TAXAID == “NONE”.</li>
+<li>nt_total metric has condition for N_TAXA &gt; 0.</li>
+<li>All other metrics will calculate but receive values of 0, NA, or NaN as appropriate.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-105">Changes in Version 0.4.0.9001 (2020-02-27)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-105"></a></h3>
+<ul><li>Tweak for GA Fish IBI, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Modify ni_natnonhybrid and ni_natnonhybridnonlepomis to also exclude mosquitofish.
+<ul><li>MetricScoring.xlsx</li>
+<li>metric.score.R</li>
+</ul></li>
+<li>Add nt_nativenonhybrid
+<ul><li>MetricScoring.xlsx</li>
+<li>metric.score.R</li>
+</ul></li>
+</ul></li>
+<li>metric.score.R
+<ul><li>Update ni_natnonhybridnonlepomis.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-106">Changes in Version 0.4.0 (2020-02-24)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-106"></a></h3>
+<ul><li>Changes to fish metric significant enough for a minor version update.
+<ul><li>Some previous calculations may not work. Function made more generic.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-107">Changes in Version 0.3.3.9017 (2020-02-24)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-107"></a></h3>
+<ul><li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Tweak scoring for GA Fish IBI</li>
+<li>Add metric value calculation for GA Fish IBI metrics.</li>
+<li>New Scoring Regimes and associated columns.</li>
+</ul></li>
+<li>Remove MBSStools from Suggests in DESCRIPTION.</li>
+<li>metric.values
+<ul><li>Modifications for GA Fish IBI.
+<ul><li>All columns to upper case.</li>
+</ul></li>
+<li>Default values to NA rather than zero.</li>
+<li>Use toupper rater than tolower.</li>
+</ul></li>
+<li>metric.scores
+<ul><li>Modifications for GA Fish IBI.
+<ul><li>Additional Scoring Regimes.</li>
+<li>Additional fish metrics.</li>
+</ul></li>
+<li>All columns to upper case using toupper.</li>
+<li>Default values to NA rather than zero.</li>
+</ul></li>
+<li>vignette_BioMonTools.Rmd
+<ul><li>Added library(dplyr) to one of the examples.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-108">Changes in Version 0.3.3.9016 (2020-01-31)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-108"></a></h3>
+<ul><li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Tweak values for GA Fish IBI.
+<ul><li>ACF, 6b, inflection point is 2 not 1.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-109">Changes in Version 0.3.3.9015 (2020-01-08)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-109"></a></h3>
+<ul><li>metric.values.R
+<ul><li>Minor edits.</li>
+</ul></li>
+<li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Tweak values for GA Fish IBI.
+<ul><li>Convert some values to text.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-110">Changes in Version 0.3.3.9014 (2020-01-07)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-110"></a></h3>
+<ul><li>metric.values.R
+<ul><li>Tweak index NormDist_135.</li>
+</ul></li>
+<li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Tweak values for GA Fish IBI.
+<ul><li>Convert some values to text.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-111">Changes in Version 0.3.3.9013 (2020-01-07)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-111"></a></h3>
+<ul><li>metric.values.R
+<ul><li>Tweak index sum to account for NA.</li>
+</ul></li>
+<li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Tweak values for GA Fish IBI.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-112">Changes in Version 0.3.3.9012 (2020-01-02)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-112"></a></h3>
+<ul><li>metric.values.R
+<ul><li>Error in excluding marine metrics when no metric list given (i.e., want all metrics).
+<ul><li>Misplaced “)”. Issue # 31.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-113">Changes in Version 0.3.3.9011 (2019-12-18)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-113"></a></h3>
+<ul><li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>, Issue <a href="https://github.com/leppott/BioMonTools/issues/30" class="external-link">#30</a>
+<ul><li>Added more columns for new scoring regimes for GA Fish IBI.</li>
+</ul></li>
+<li>MetricNames.xlsx
+<ul><li>Added new fish metric names.</li>
+</ul></li>
+<li>metric.scores.R
+<ul><li>Added more scoring regimes (GA Fish IBI).</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-114">Changes in Version 0.3.3.9010 (2019-10-17)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-114"></a></h3>
+<ul><li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Numeric to text.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-115">Changes in Version 0.3.3.9009 (2019-10-17)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-115"></a></h3>
+<ul><li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Updates for GBI_MS_2013</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-116">Changes in Version 0.3.3.9008 (2019-10-16)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-116"></a></h3>
+<ul><li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Updates for GBI_MS_2013</li>
+<li>Numeric to text.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-117">Changes in Version 0.3.3.9007 (2019-10-16)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-117"></a></h3>
+<ul><li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Updates for GBI_MS_2013</li>
+<li>Numeric to text.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-118">Changes in Version 0.3.3.9006 (2019-10-15)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-118"></a></h3>
+<ul><li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Updates for GBI_MS_2013</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-119">Changes in Version 0.3.3.9005 (2019-10-15)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-119"></a></h3>
+<ul><li>MetricScoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Updates for GBI_MS_2013</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-120">Changes in Version 0.3.3.9004 (2019-10-15)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-120"></a></h3>
+<ul><li>Additional scoring and index. Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Gulf Biotic Index, 2011</li>
+<li>Mississippi Gulf Biotic Index, 2013</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-121">Changes in Version 0.3.3.9003 (2019-09-15)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-121"></a></h3>
+<ul><li>metric.values, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Additional estuary/marine metrics
+<ul><li>Gulf Biotic Index, 2011</li>
+<li>Mississippi Gulf Biotic Index, 2013</li>
+</ul></li>
+<li>Additional input parameter, boo.Marine</li>
+<li>Data_Benthos.xlsx
+<ul><li>Add “InfraOrder” column.</li>
+<li>Require in metric.values</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-122">Changes in Version 0.3.3.9002 (2019-07-03)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-122"></a></h3>
+<ul><li>metric.values, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Add placeholders for marine/estuarine metrics
+<ul><li>Not yet in MetricScoring.xlsx or MetricNames.xlsx</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-123">Changes in Version 0.3.3.9001 (2019-07-02)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-123"></a></h3>
+<ul><li>metric.values
+<ul><li>Update Beck’s Biotic Index cutoff signs.
+<ul><li>&lt; 1.5 and &gt;= 1.5 to &lt;= 1.5 and &gt; 1.5.</li>
+<li>Only affects tolerance values of exactly 1.5.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-124">Changes in Version 0.3.3 (2019-07-02)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-124"></a></h3>
+<ul><li>New release version.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-125">Changes in Version 0.3.2.9001 (2019-07-02)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-125"></a></h3>
+<ul><li>metric.scoring.xlsx
+<ul><li>Update “scoring formula” column for 2 MA WestHighlands metrics.</li>
+<li>Actual thresholds not affected.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-126">Changes in Version 0.3.2 (2019-06-28)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-126"></a></h3>
+<ul><li>New release version.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-127">Changes in Version 0.3.1.9001 (2019-06-27)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-127"></a></h3>
+<ul><li>MetricScoring.xlsx, issue <a href="https://github.com/leppott/BioMonTools/issues/22" class="external-link">#22</a>
+<ul><li>New metric misspelled.</li>
+</ul></li>
+<li>Add capability for 6 narrative categories.
+<ul><li>MetricScoring.xlsx</li>
+<li>metric.scores.R
+<ul><li>Minor edit for number of columns.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-128">Changes in Version 0.3.1 (2019-06-27)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-128"></a></h3>
+<ul><li>New release version.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-129">Changes in Version 0.3.0.9024 (2019-06-27)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-129"></a></h3>
+<ul><li>MetricScoring.xlsx, issue <a href="https://github.com/leppott/BioMonTools/issues/22" class="external-link">#22</a>
+<ul><li>Some numbers to character with ’ prefix.</li>
+<li>These numbers not importing correctly from Excel.
+<ul><li>Floating point errors in rounding.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-130">Changes in Version 0.3.0.9023 (2019-06-27)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-130"></a></h3>
+<ul><li>MetricNames.xlsx
+<ul><li>Add fish metric names, Issue <a href="https://github.com/leppott/BioMonTools/issues/21" class="external-link">#21</a></li>
+<li>Demonstration only. Not final format in function.</li>
+</ul></li>
+<li>MetricScoring.xlsx
+<ul><li>Update date on Notes worksheet.</li>
+</ul></li>
+<li>metric.values.R
+<ul><li>Update demonstration fish metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/21" class="external-link">#21</a>.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-131">Changes in Version 0.3.0.9022 (2019-06-27)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-131"></a></h3>
+<ul><li>Check
+<ul><li>DESCRIPTION
+<ul><li>rmarkdown listed under imports and suggests. Remove from suggests.</li>
+<li>Add to suggests; ggplot2 and reshape2.</li>
+<li>Add MBSStools to suggests. May import the data later and remove.</li>
+</ul></li>
+<li>Example, move “View” to dontrun.
+<ul><li>metric.scores.R</li>
+<li>metric.values.R</li>
+<li>qc.checks.R</li>
+<li>rarify.R</li>
+</ul></li>
+<li>Fix line widths greater than 100 characters:
+<ul><li>markExcluded.R</li>
+<li>metric.scores.R</li>
+</ul></li>
+<li>Properly declare functions from other packages:
+<ul><li>“grDevices”, “dev.off”, “jpeg”, “pdf”</li>
+<li>“graphics”, “mtext”, “points”</li>
+<li>“stats”, “median”, “runif”</li>
+<li>“utils”, “flush.console”</li>
+</ul></li>
+<li>MapTaxaObs.R
+<ul><li>Document the “…” argument.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-132">Changes in Version 0.3.0.9021 (2019-06-27)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-132"></a></h3>
+<ul><li>Updated metric names for MA index, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>MetricScoring.xlsx</li>
+</ul></li>
+<li>Added “to do” and “references” to metricscoring.xlsx, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-133">Changes in Version 0.3.0.9020 (2019-05-24)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-133"></a></h3>
+<ul><li>Updated metric names for MBISQ index, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>MetricScoring.xlsx</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-134">Changes in Version 0.3.0.9019 (2019-05-24)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-134"></a></h3>
+<ul><li>Added metrics, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>metric.values
+<ul><li>x_NCBI, x_D_Mg, x_D_G</li>
+<li>Additional QC for TolVal2 as numeric (same as TolVal).</li>
+</ul></li>
+<li>MetricNames.xlsx</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-135">Changes in Version 0.3.0.9018 (2019-05-17)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-135"></a></h3>
+<ul><li>Fixes for R v3.6.0, Issue <a href="https://github.com/leppott/BioMonTools/issues/18" class="external-link">#18</a>
+<ul><li>DESCRIPTION
+<ul><li>Remove StagedInstall: no</li>
+</ul></li>
+<li>README
+<ul><li>Add directions for fix for devtools.</li>
+</ul></li>
+</ul></li>
+<li>README
+<ul><li>Update badges.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-136">Changes in Version 0.3.0.9017 (2019-05-08)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-136"></a></h3>
+<ul><li>Metric names, fix those added in previous update, Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>
+<ul><li>Files
+<ul><li>metric.values.R</li>
+<li>MetricNames.xlsx</li>
+<li>MetricScoring.xlsx</li>
+</ul></li>
+</ul></li>
+<li>metric.scores, Issue <a href="https://github.com/leppott/BioMonTools/issues/19" class="external-link">#19</a>
+<ul><li>Continuous 0-100 scoring only reporting 1 value per column.</li>
+<li>Fixed so reports all values.
+<ul><li>Was taking median of column not per row.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-137">Changes in Version 0.3.0.9016 (2019-05-07)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-137"></a></h3>
+<ul><li>Temp fix for staged install with R v3.6.0, Issue <a href="https://github.com/leppott/BioMonTools/issues/18" class="external-link">#18</a>
+<ul><li>DESCRIPTION, StagedInstall: no</li>
+</ul></li>
+<li>Add additional metrics (GA DNR). Issue <a href="https://github.com/leppott/BioMonTools/issues/3" class="external-link">#3</a>.
+<ul><li>Files
+<ul><li>metric.values.R</li>
+<li>MetricNames.xlsx</li>
+<li>MetricScoring.xlsx</li>
+</ul></li>
+<li>Metrics
+<ul><li>pi_Hydro2EPT</li>
+<li>pi_Hydro2Trich</li>
+<li>pi_Ortho2Chi</li>
+<li>pi_Tanyp2Chi</li>
+<li>pi_ChCr2Chi</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-138">Changes in Version 0.3.0.9015 (2019-04-11)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-138"></a></h3>
+<ul><li>inst/extdata/MetricFlags.xlsx
+<ul><li>Update ni_total for Hi to match Lo (both 450), Issue <a href="https://github.com/leppott/BioMonTools/issues/16" class="external-link">#16</a></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-139">Changes in Version 0.3.0.9014 (2019-04-02)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-139"></a></h3>
+<ul><li>metric.values, Issue <a href="https://github.com/leppott/BioMonTools/issues/15" class="external-link">#15</a>
+<ul><li>Fix metric pi_EphemNoCaeBae
+<ul><li>Was calculating the same as pi_Ephem.</li>
+</ul></li>
+<li>Checked all other “No” metrics.
+<ul><li>All ok.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-140">Changes in Version 0.3.0.9013 (2019-01-25)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-140"></a></h3>
+<ul><li>metric.values
+<ul><li>Fix Trombidiformes metric.
+<ul><li>Mispelled search term so wasn’t working.</li>
+</ul></li>
+<li>Added Megaloptera metrics (nt, pi, and pt).</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-141">Changes in Version 0.3.0.9012 (2019-01-17)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-141"></a></h3>
+<ul><li>metric.values
+<ul><li>Remove metric sorting. Rely on fun.MetricNames to request and sort metrics.</li>
+<li>Modify TolVal character check for NA.</li>
+<li>Add example keeping only some metrics.</li>
+</ul></li>
+<li>extdata/MetricScoring.xlsx
+<ul><li>Modify percent metric thresholds (from 0-1 to 0-100).</li>
+</ul></li>
+<li>extdata/MetricFlags.xlsx
+<ul><li>Modify percent metric thresholds (from 0-1 to 0-100).</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-142">Changes in Version 0.3.0.9011 (2019-01-17)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-142"></a></h3>
+<ul><li>docs/ExcludedTaxaDecisionCrit.pdf
+<ul><li>Recreate. Wasn’t opening.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-143">Changes in Version 0.3.0.9010 (2019-01-17)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-143"></a></h3>
+<ul><li>extdata/MetricNames.xlsx
+<ul><li>move “0-100” from notes to description.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-144">Changes in Version 0.3.0.9009 (2019-01-17)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-144"></a></h3>
+<ul><li>metric.values
+<ul><li>Mistyped “FAMILY” as “Family” when added pi_Baet.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-145">Changes in Version 0.3.0.9008 (2019-01-17)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-145"></a></h3>
+<ul><li>docs
+<ul><li>Added ExcludedTaxaDecisionCrit.docx</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-146">Changes in Version 0.3.0.9007 (2019-01-17)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-146"></a></h3>
+<ul><li>Remove metric names PDF</li>
+<li>metric.scores
+<ul><li>Add pi_Baet</li>
+<li>Percent metrics to 0-100 from 0-1.</li>
+<li>Add pi_Baet to extdata/MetricNames.xlsx</li>
+<li>input TolVal “NA” (character) to NA.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-147">Changes in Version 0.3.0.9006 (2019-01-17)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-147"></a></h3>
+<ul><li>metric.scores
+<ul><li>Additional metrics.</li>
+<li>Metric name sort variable. Issue <a href="https://github.com/leppott/BioMonTools/issues/13" class="external-link">#13</a></li>
+<li>Organize metrics ni, nt, pi, pt for each section.</li>
+<li>Update extdata/MetricNames.xlsx</li>
+</ul></li>
+<li>MapTaxaObs
+<ul><li>Set up for ability to sort taxa but not active.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-148">Changes in Version 0.3.0.9005 (2019-01-14)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-148"></a></h3>
+<ul><li>DESCRIPTION
+<ul><li>maps package missing from Imports.
+<ul><li>Used in MapTaxaObs function.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-149">Changes in Version 0.3.0.9004 (2019-01-14)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-149"></a></h3>
+<ul><li>README
+<ul><li>Update install example to force vignettes.</li>
+</ul></li>
+<li>metric.scores
+<ul><li>pt_habit metrics (n=5) used ni_total instead of nt_total in denominator.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-150">Changes in Version 0.3.0.9003 (2019-01-14)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-150"></a></h3>
+<ul><li>MapTaxaObs
+<ul><li>Account for tibbles as input.
+<ul><li>Convert to a data frame inside the function. Otherwise fails.</li>
+</ul></li>
+<li>Subset function not working in every case. Update line 128.</li>
+<li>Add map inputs database and regions and funcion inputs.</li>
+</ul></li>
+<li>extdata/Data_Benthos.xlsx
+<ul><li>Update with TolVal2 for example in Vignette to avoid warning.</li>
+</ul></li>
+<li>Vignette
+<ul><li>SITE_TYPE to INDEX_REGION</li>
+<li>qc.checks
+<ul><li>Update example chunk to match example in function; package BCGcalc to BioMonTools.</li>
+</ul></li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-151">Changes in Version 0.3.0.9002 (2019-01-14)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-151"></a></h3>
+<ul><li>Vignette
+<ul><li>kable used without library(knitr) in rarify chunk.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-152">Changes in Version 0.3.0.9001 (2018-12-21)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-152"></a></h3>
+<ul><li>Update QC flags input.</li>
+<li>Add metric names to Excel file.</li>
+<li>MetricName to METRIC_NAME in input files.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-153">Changes in Version 0.3 (2018-12-20)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-153"></a></h3>
+<ul><li>New release version.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-154">Changes in Version 0.2.0.9007 (2018-12-20)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-154"></a></h3>
+<ul><li>Metric scoring function, Issue <a href="https://github.com/leppott/BioMonTools/issues/12" class="external-link">#12</a>.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-155">Changes in Version 0.2.0.9006 (2018-12-03)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-155"></a></h3>
+<ul><li>README.rmd, Issue <a href="https://github.com/leppott/BioMonTools/issues/11" class="external-link">#11</a>.
+<ul><li>install_github command comes out as smart quotes if copy and paste from GitHub website.</li>
+<li>Looks ok in RStudio but fixed to test if that is the issue.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-156">Changes in Version 0.2.0.9005 (2018-11-26)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-156"></a></h3>
+<ul><li>Added MapTaxaObs.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-157">Changes in Version 0.2.0.9004 (2018-11-26)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-157"></a></h3>
+<ul><li>Percent metrics as 0-1. Issue <a href="https://github.com/leppott/BioMonTools/issues/9" class="external-link">#9</a>.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-158">Changes in Version 0.2.0.9003 (2018-11-26)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-158"></a></h3>
+<ul><li>Add qc.checks function from BCGcalc package. Issue <a href="https://github.com/leppott/BioMonTools/issues/9" class="external-link">#9</a>
+<ul><li>qc.checks.R</li>
+<li>Vignette</li>
+<li>extdata.xlsx</li>
+</ul></li>
+<li>Update read_excel with guess_max=10^6 for bio data file.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-159">Changes in Version 0.2.0.9002 (2018-11-20)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-159"></a></h3>
+<ul><li>Update SuperFamily Tipuloidea.
+<ul><li>Update data and examples in function and vignette</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-160">Changes in Version 0.2.0.9001 (2018-11-20)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-160"></a></h3>
+<ul><li>Add Travis CI.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-161">Changes in Version 0.2.0 (2018-11-20)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-161"></a></h3>
+<ul><li>Initial release version.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-162">Changes in Version 0.1.0.9004 (2018-11-20)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-162"></a></h3>
+<ul><li>Add SuperFamily
+<ul><li>function</li>
+<li>vignette</li>
+<li>example data file</li>
+</ul></li>
+<li>Add metric names files to extdata and doc</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-163">Changes in Version 0.1.0.9003 (2018-11-20)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-163"></a></h3>
+<ul><li>markExcluded
+<ul><li>Add function with examples</li>
+</ul></li>
+<li>extdata_Benthos.xlsx
+<ul><li>Updated bad Excluded entries.
+<ul><li>FALSE to TRUE, n=6</li>
+<li>TRUE to FALSE, n=1</li>
+</ul></li>
+</ul></li>
+<li>DESCRIPTION
+<ul><li>Update Imports and Suggests</li>
+</ul></li>
+<li>NEWS
+<ul><li>Update Planned and Future Updates</li>
+</ul></li>
+<li>README
+<ul><li>Tweak language in Usage section.</li>
+<li>Update icons.</li>
+<li>Add Travis CI.</li>
+</ul></li>
+<li>Vignette</li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-164">Changes in Version 0.1.0.9002 (2018-11-16)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-164"></a></h3>
+<ul><li>extdata_Benthos.xlsx
+<ul><li>OneDrive messed up version included in package.</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-165">Changes in Version 0.1.0.9001 (2018-11-16)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-165"></a></h3>
+<ul><li>Added basic package structure.
+<ul><li>Folders (data, data-raw, inst/doc, inst/extdata, man, R, vignettes)</li>
+<li>NEWS, README, LICENSE</li>
+</ul></li>
+<li>Update DESCRIPTION, NEWS, and README</li>
+<li>Add functions and data
+<ul><li>rarify</li>
+<li>metric.values</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-version-0-5-0-9082-166">Changes in Version 0.1.0 (2018-11-16)<a class="anchor" aria-label="anchor" href="#changes-in-version-0-5-0-9082-166"></a></h3>
+<ul><li>Initial commit on GitHub.</li>
+</ul></div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
