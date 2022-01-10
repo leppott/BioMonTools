@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9084 (2022-01-10)
+
+* docs: Update metric.values() with Example #5 for periphyton
+
 ## Changes in Version 0.5.0.9083 (2022-01-10)
 
 * refactor: Added global variable bindings to fish metrics metric.values() 

@@ -242,4 +242,15 @@ df_metric_values_fish <- metric.values(data_fish_MBSS, "fish")
 # View Results
 View(df_metric_values_fish)
 }
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Example 5, periphyton (algae) metrics
+
+df_metric_values_periphyton <- metric.values(data_diatom_mmi_dev, "algae")
+
+\dontrun{
+# View Results
+View(df_metric_values_periphyton)
+}
+
 }

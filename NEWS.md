@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-01-10 11:52:50
+    #> Last Update: 2022-01-10 14:58:49
 
 # Version History
+
+## Changes in Version 0.5.0.9084 (2022-01-10)
+
+-   docs: Update metric.values() with Example #5 for periphyton
 
 ## Changes in Version 0.5.0.9083 (2022-01-10)
 
