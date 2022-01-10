@@ -218,7 +218,7 @@
 #'
 #'\dontrun{
 #' # View Results
-#' View(df_metric_values_bugs_myMetrics)
+#' View(df_metric_values_fish)
 #' }
 # #~~~~~~~~~~~~~~~~~~~~~~~
 # # INDIANA BCG
@@ -2278,6 +2278,7 @@ metric.values.fish <- function(myDF
     TROPHIC_TC <- NULL
   ni_total <- x_Shan_e <- nt_total <- x_Evenness <- length_m <-
     ni_natnonhybridnonmf <- ni_natnonhybridnonmfnonlepomis <- NULL
+  BCG_ATTR <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`

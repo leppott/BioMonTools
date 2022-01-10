@@ -240,6 +240,6 @@ df_metric_values_fish <- metric.values(data_fish_MBSS, "fish")
 
 \dontrun{
 # View Results
-View(df_metric_values_bugs_myMetrics)
+View(df_metric_values_fish)
 }
 }

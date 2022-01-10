@@ -18,7 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
-# Changes in Version 0.5.0.9082 (2022-01-03)
+## Changes in Version 0.5.0.9083 (2022-01-10)
+
+* refactor: Added global variable bindings to fish metrics metric.values() 
+    + Only BCG_Attr
+* fix: metric.values() example 4 (fish) view statement incorrect
+
+## Changes in Version 0.5.0.9082 (2022-01-03)
 
 * feature: Add new fish metrics to metric.values()
     + pi_BCG_att23_SCC

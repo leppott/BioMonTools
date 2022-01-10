@@ -4,25 +4,32 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-01-03 14:08:46
+    #> Last Update: 2022-01-10 11:52:50
 
 # Version History
 
-# Changes in Version 0.5.0.9082 (2022-01-03)
+## Changes in Version 0.5.0.9083 (2022-01-10)
+
+-   refactor: Added global variable bindings to fish metrics
+    metric.values()
+    -   Only BCG_Attr
+-   fix: metric.values() example 4 (fish) view statement incorrect
+
+## Changes in Version 0.5.0.9082 (2022-01-03)
 
 -   feature: Add new fish metrics to metric.values()
-    -   pi\_BCG\_att23\_SCC
-    -   nt\_BCG\_att23\_SCC
-    -   pt\_BCG\_att23\_SCC
+    -   pi_BCG_att23_SCC
+    -   nt_BCG_att23_SCC
+    -   pt_BCG_att23_SCC
 
 ## Changes in Version 0.5.0.9081 (2021-12-22)
 
 -   feature: Add new fish metrics to metric.values()
-    -   pi\_Lepomis
-    -   pt\_Lepomis
-    -   nt\_BCG\_attNA
-    -   pi\_BCG\_attNA
-    -   pt\_BCG\_attNA
+    -   pi_Lepomis
+    -   pt_Lepomis
+    -   nt_BCG_attNA
+    -   pi_BCG_attNA
+    -   pt_BCG_attNA
 
 ## Changes in Version 0.5.0.9080 (2021-12-22)
 
@@ -33,21 +40,21 @@ NEWS
 
 ## Changes in Version 0.5.0.9079 (2021-12-22)
 
--   feature: Update Shiny app, all functions working, Issue \#67
+-   feature: Update Shiny app, all functions working, Issue #67
 
 ## Changes in Version 0.5.0.9078 (2021-12-21)
 
--   feature: Add Shiny app, basic outline only, Issue \#67
+-   feature: Add Shiny app, basic outline only, Issue #67
 
 ## Changes in Version 0.5.0.9077 (2021-12-16)
 
 -   refactor: Allow for mixed case in bug metric phylo metrics, Issue
-    \#65
+    #65
 
 ## Changes in Version 0.5.0.9076 (2021-12-15)
 
 -   fix: Update metric.values(), was returning 0 records
-    -   length\_m was commented out and caused error in met.val
+    -   length_m was commented out and caused error in met.val
 
 ## Changes in Version 0.5.0.9075 (2021-12-13)
 
@@ -57,19 +64,19 @@ NEWS
 
 ## Changes in Version 0.5.0.9074 (2021-12-10)
 
--   docs: Create documentation for data\_fish\_MBSS dataset
+-   docs: Create documentation for data_fish_MBSS dataset
 -   docs: Update MetricNames.xlsx and MetricScoring.xlsx for any new
-    metrics, Issue \#64
+    metrics, Issue #64
 
 ## Changes in Version 0.5.0.9073 (2021-12-10)
 
--   feature: New fish metrics, Issue \#64
+-   feature: New fish metrics, Issue #64
 -   feature: Add fish example data
--   refactor: Add .groups = “drop\_last” to each subfunction in
-    metric\_values(), Issue \#20
+-   refactor: Add .groups = “drop_last” to each subfunction in
+    metric_values(), Issue #20
 -   refactor: Fish metric names
-    -   nt\_natcent to nt\_natCent\_sunfish
-        -   GADNR\_Fish\_2020
+    -   nt_natcent to nt_natCent_sunfish
+        -   GADNR_Fish_2020
         -   Includes sunfish and had to add a Centrarchidae only metric
         -   Fixed in metric.values() and MetricScoring.xlsx
     -   lepomis to Lepomis
@@ -78,13 +85,13 @@ NEWS
 
 -   refactor: Update thermal metric default values, Core-Cold to CoreC
     -   metric.values()
-    -   data\_benthos\_PacNW
+    -   data_benthos_PacNW
 
 ## Changes in Version 0.5.0.9071 (2021-12-09)
 
 -   fix: metric.values() thermal indicator metric not correct
-    -   nt\_ti\_corecold\_cold
-    -   pt\_ti\_corecold\_cold
+    -   nt_ti_corecold_cold
+    -   pt_ti_corecold_cold
 
 ## Changes in Version 0.5.0.9070 (2021-12-09)
 
@@ -93,28 +100,28 @@ NEWS
 
 ## Changes in Version 0.5.0.9069 (2021-11-19)
 
--   fix: metric.values() not working for new metrics, Issue \#62
+-   fix: metric.values() not working for new metrics, Issue #62
     -   Elevation, Gradient, and WSArea
 
 ## Changes in Version 0.5.0.9068 (2021-11-18)
 
--   refactor: Update MetricScoring.xlsx for IEPA, Issue \#63
--   tests: Update test\_threshold\_numdigits to show rows with issues
+-   refactor: Update MetricScoring.xlsx for IEPA, Issue #63
+-   tests: Update test_threshold_numdigits to show rows with issues
 
 ## Changes in Version 0.5.0.9067 (2021-11-18)
 
--   feature: Add more benthic metrics, Issue \#62
+-   feature: Add more benthic metrics, Issue #62
     -   Adds new required fields
         -   GRADIENT
         -   ELEVATION
         -   WSAREA
     -   Update data with new columns
-        -   data\_benthos\_PacNW
-        -   Data\_Benthos.xlsx
-    -   Update data.R with changes to data\_benthos\_PacNW
+        -   data_benthos_PacNW
+        -   Data_Benthos.xlsx
+    -   Update data.R with changes to data_benthos_PacNW
 -   refactor: Update Vignettes for changes in metrics
 -   refactor: Update tests for changes in metrics
--   break: Rename thermal benthic metrics, Issue \#62
+-   break: Rename thermal benthic metrics, Issue #62
 -   tests: Update metric test names
 
 ## Changes in Version 0.5.0.9066 (2021-11-02)
@@ -125,52 +132,52 @@ NEWS
     -   data description
 -   refactor: Update MetricNames to match MetricScores
     -   Failed test after addition of algal metrics
-    -   Add metrics “pi\_BCG\_att5extra” and “x\_UFC”  
+    -   Add metrics “pi_BCG_att5extra” and “x_UFC”  
     -   Add notes
 -   tests: Update metric name tests
 -   tests: Update metric stats test
 
 ## Changes in Version 0.5.0.9065 (2021-11-01)
 
--   refactor: Update MetricScoring.xlsx from dev\_periphyton merge
+-   refactor: Update MetricScoring.xlsx from dev_periphyton merge
 
 ## Changes in Version 0.5.0.9064 (2021-11-01)
 
--   fix: Remove unneeded concatenation, markExcluded, Issue \#61
+-   fix: Remove unneeded concatenation, markExcluded, Issue #61
 
 ## Changes in Version 0.5.0.9063 (2021-11-01)
 
 -   fix: Update NEWS after merging of pull request
     -   Add items below from branch NEWS
         -   Some updates missing filled in from Branch info
--   dev\_metric\_periphyton, Version 0.5.0.9066 (2021-06-23)
+-   dev_metric_periphyton, Version 0.5.0.9066 (2021-06-23)
     -   refactor: added diatom example dataset to package
         -   Added diatom metric value dataset for internal QC
--   dev\_metric\_periphyton, Version 0.5.0.9065 (2021-06-23)
+-   dev_metric_periphyton, Version 0.5.0.9065 (2021-06-23)
     -   refactor: Added example taxa data and example metric value data
         to package
-    -   refactor: Added testthat script (test\_metric\_calc.R) to test
+    -   refactor: Added testthat script (test_metric_calc.R) to test
         metric calculation.
--   dev\_metric\_periphyton, Version 0.5.0.9064 (2021-06-23)
+-   dev_metric_periphyton, Version 0.5.0.9064 (2021-06-23)
     -   refactor: Updated MetricNames.xlsx according to Ben Jessup’s
         metric descriptions for Indiana
--   dev\_metric\_periphyton, Version 0.5.0.9063 (2021-06-22)
+-   dev_metric_periphyton, Version 0.5.0.9063 (2021-06-22)
     -   refactor: metric.values
         -   Added 52 new diatom metrics (added from EDAS)
     -   refactor: MetricNames.xlsx
         -   Update for new diatom metrics, but missing descriptions
     -   refactor: Added scoring formulae for IDEM Diatom IBIs
--   dev\_metric\_periphyton, Version 0.5.0.9062 (2021-06-22)
+-   dev_metric_periphyton, Version 0.5.0.9062 (2021-06-22)
     -   refactor: Added \*\_RefIndicators metrics
--   dev\_metric\_periphyton, Version 0.5.0.9061 (2021-06-15)
+-   dev_metric_periphyton, Version 0.5.0.9061 (2021-06-15)
     -   Fix: grepl issues in algae metrics
--   dev\_metric\_periphyton, Version 0.5.0.9060 (2021-06-11)
+-   dev_metric_periphyton, Version 0.5.0.9060 (2021-06-11)
     -   refactor: metric.values
         -   Added over 150 diatom metrics
         -   Almost all were USGS diatom metrics
     -   refactor: MetricNames.xlsx
         -   Update for new diatom metrics
--   dev\_metric\_periphyton, Version 0.5.0.9059 (2021-06-10)
+-   dev_metric_periphyton, Version 0.5.0.9059 (2021-06-10)
     -   refactor: metric.values added periphyton/diatom metric
         functionality
         -   Added metrics for Indiana diatoms IBIs
@@ -179,7 +186,7 @@ NEWS
 
 ## Changes in Version 0.5.0.9062 (2021-09-23)
 
--   feature: Add qc\_taxa function from MBSStools package
+-   feature: Add qc_taxa function from MBSStools package
     -   Update example
 -   feature: Add Shiny app folders and files
 -   docs: Add shiny related packages to DESCRIPTION Suggests
@@ -188,15 +195,15 @@ NEWS
 ## Changes in Version 0.5.0.9061 (2021-09-09)
 
 -   feature: Add taxonomic uncertainty frequency class metric for bugs,
-    Issue \#57
--   refactor: Update example data with UFC field, Issue \#57
+    Issue #57
+-   refactor: Update example data with UFC field, Issue #57
     -   extdata\_Benthos.xlsx
-    -   data\_benthos\_PacNW
+    -   data_benthos_PacNW
     -   Update data.R
 
 ## Changes in Version 0.5.0.9060 (2021-07-30)
 
--   feature: Add pi\_BCG\_att5extra to metric.values() for bugs
+-   feature: Add pi_BCG_att5extra to metric.values() for bugs
     -   5 and 5.5
 
 ## Changes in Version 0.5.0.9059 (2021-07-30)
@@ -207,17 +214,17 @@ NEWS
 
 ## Changes in Version 0.5.0.9058 (2021-05-21)
 
--   refactor: Move legend to the right margin, MapTaxaObs, Issue \#52
+-   refactor: Move legend to the right margin, MapTaxaObs, Issue #52
 -   docs: README, update install code to use remotes instead of devtools
 
 ## Changes in Version 0.5.0.9057 (2021-05-19)
 
 -   refactor: Update MapTaxaObs
     -   subset function not working as intended
--   refactor: MapTaxaObs, percent 0-100, Issue \#28
--   refactor: MapTaxaObs, add output directory path, Issue \#27
+-   refactor: MapTaxaObs, percent 0-100, Issue #28
+-   refactor: MapTaxaObs, add output directory path, Issue #27
 -   refactor: MapTaxaObs, add grouping variable to color points, Issue
-    \#52
+    #52
     -   Add colors and legend
     -   Add new parameters to function
     -   Update example
@@ -232,46 +239,46 @@ NEWS
 -   refactor: Update scoring to allow for scaling from metric to index
     scores
     -   MetricScoring.xlsx, add ScoreScaling column
-    -   metric\_scores.R, add AVERAGESCALE\_100 as new index scoring
+    -   metric_scores.R, add AVERAGESCALE_100 as new index scoring
         option
 
 ## Changes in Version 0.5.0.9054 (2021-05-13)
 
--   refactor: Incorporate pull request \#50
-    -   metric.stats2, fix group\_by with change in dplyr
+-   refactor: Incorporate pull request #50
+    -   metric.stats2, fix group_by with change in dplyr
 
 ## Changes in Version 0.5.0.9053 (2021-05-10)
 
--   refactor: Metric.Scoring.xlsx, updates for FFXCOVA\_2018 metrics
-    -   Coastal Plain, x\_HBI, Cont\_0100 to Cont\_0010
+-   refactor: Metric.Scoring.xlsx, updates for FFXCOVA_2018 metrics
+    -   Coastal Plain, x_HBI, Cont_0100 to Cont_0010
     -   Floating point errors, n = 7
--   refactor: Add new metric, pi\_EPTNoHydro to MetricNames.xlsx
+-   refactor: Add new metric, pi_EPTNoHydro to MetricNames.xlsx
 
 ## Changes in Version 0.5.0.9052 (2021-05-10)
 
 -   refactor: Metric.Scoring.xlsx, update to remove NA from index
     scoring
     -   Both numeric and narrative.  
-    -   Caused an issue with scoring FFXCOVA\_2018
+    -   Caused an issue with scoring FFXCOVA_2018
 
 ## Changes in Version 0.5.0.9051 (2021-05-10)
 
--   refactor: metric.values, update new metric, pi\_EPTNoHydro
+-   refactor: metric.values, update new metric, pi_EPTNoHydro
 
 ## Changes in Version 0.5.0.9050 (2021-05-10)
 
 -   docs: Add Ben Block as contributor.
--   refactor: metric.values, add new metric, pi\_EPTNoHydro
--   refactor: Metric.Scoring.xlsx, updates for FFXCOVA\_2018
+-   refactor: metric.values, add new metric, pi_EPTNoHydro
+-   refactor: Metric.Scoring.xlsx, updates for FFXCOVA_2018
 
 ## Changes in Version 0.5.0.9049 (2021-04-15)
 
--   refactor: metric.values, fix nt\_ECT
-    -   Had nt\_ECP
+-   refactor: metric.values, fix nt_ECT
+    -   Had nt_ECP
 
 ## Changes in Version 0.5.0.9048 (2021-04-14)
 
--   refactor: metric.values add new metric if IL EPA lakes, Issue \#3
+-   refactor: metric.values add new metric if IL EPA lakes, Issue #3
     -   nt, pi, pt
         -   Ephemeroptera, Coleoptera, Trichoptera
     -   Add global variable bindings
@@ -287,7 +294,7 @@ NEWS
 
 ## Changes in Version 0.5.0.9047 (2021-04-08)
 
--   refactor: metric.values, add 3 new FFG metrics, Issue \#3
+-   refactor: metric.values, add 3 new FFG metrics, Issue #3
     -   nt, pi, pt
         -   omnivore (OM)
         -   parasite (PA)
@@ -295,11 +302,11 @@ NEWS
     -   FFG metrics new here and from v0.5.0.9444
 -   refactor: MetricNames.xlsx
     -   Update for new metrics
--   refactor: Modify ffg\_filt metrics to use CF or FC
+-   refactor: Modify ffg_filt metrics to use CF or FC
     -   metric.values
         -   nt, pi, pt
     -   MetricNames.xlsx
--   refactor: Modify ffg\_col metrics to use CG or GC
+-   refactor: Modify ffg_col metrics to use CG or GC
     -   metric.values
         -   nt, pi, pt
     -   MetricNames.xlsx
@@ -312,29 +319,29 @@ NEWS
 ## Changes in Version 0.5.0.9045 (2021-04-01)
 
 -   style: Fix items, goodpractice::gp()
-    -   Replace ‘=’ with ‘&lt;-’
-        -   metric\_stats.R
-        -   metric\_stats2.R
+    -   Replace ‘=’ with ‘\<-’
+        -   metric_stats.R
+        -   metric_stats2.R
     -   Trim lines to 80 characters
-        -   test\_qc\_checks.R
-        -   test\_metric\_names.R
-        -   test\_metric\_calc.R
-        -   test\_markExcluded.R
+        -   test_qc_checks.R
+        -   test_metric_names.R
+        -   test_metric_calc.R
+        -   test_markExcluded.R
         -   rarify.R
-        -   qc\_checks.R
-        -   metric\_values.R (partial)
-        -   metric\_stats2.R
-        -   metric\_stats.R
-        -   metric\_scores.R (partial)
+        -   qc_checks.R
+        -   metric_values.R (partial)
+        -   metric_stats2.R
+        -   metric_stats.R
+        -   metric_scores.R (partial)
         -   markExcluded.R
--   style: Fix spelling, devtools::spell\_check()
+-   style: Fix spelling, devtools::spell_check()
     -   ReadMe
     -   NEWS
-    -   metric\_stats.R
+    -   metric_stats.R
 
 ## Changes in Version 0.5.0.9044 (2021-03-31)
 
--   refactor: metric.values, add 3 new FFG metrics, Issue \#3
+-   refactor: metric.values, add 3 new FFG metrics, Issue #3
     -   nt, pi, pt
         -   macrophyte herbivore (MAH)
         -   xylophage (XYL)
@@ -342,19 +349,19 @@ NEWS
 -   refactor: MetricNames.xlsx
     -   Update for new metrics
 -   refactor: MetricScores.xlsx
-    -   GADNR\_fish\_2005, ensure consistent index\_region between
-        metric and index scoring
+    -   GADNR_fish_2005, ensure consistent index_region between metric
+        and index scoring
     -   Test was failing. Passes now
 
 ## Changes in Version 0.5.0.9043 (2021-03-22)
 
--   refactor: metric.values, add pi\_DiptNonIns metric
+-   refactor: metric.values, add pi_DiptNonIns metric
 -   style: metric.values, start to trim lines to 80 characters
 
 ## Changes in Version 0.5.0.9042 (2021-03-14)
 
--   refactor: metric.values, modify GA fish metric pi\_natinsctcypr,
-    Issue \#48
+-   refactor: metric.values, modify GA fish metric pi_natinsctcypr,
+    Issue #48
     -   Was not checking for Native
 
 ## Changes in Version 0.5.0.9041 (2021-02-26)
@@ -376,7 +383,7 @@ NEWS
 
 ## Changes in Version 0.5.0.9038 (2021-02-22)
 
--   docs: Update README install section, Issue \#11
+-   docs: Update README install section, Issue #11
 
 ## Changes in Version 0.5.0.9037 (2021-01-19)
 
@@ -395,24 +402,24 @@ NEWS
 ## Changes in Version 0.5.0.9035 (2021-01-12)
 
 -   fix: Replace instances of deprecated functions
-    -   Change dplyr::group\_by\_ to dplyr::group\_by
+    -   Change dplyr::group_by\_ to dplyr::group_by
         -   metric.stats2
 -   test: Add tests
     -   metric.stats2
 -   test: Comment out failing tests so package builds
     -   Tests ok in console but not passing after build
     -   markExcluded
-    -   qc\_checks
+    -   qc_checks
     -   metric.stats2
     -   rarify
 
 ## Changes in Version 0.5.0.9034 (2021-01-12)
 
 -   fix: Replace instances of deprecated functions
-    -   Change dplyr::group\_by\_ to dplyr::group\_by
+    -   Change dplyr::group_by\_ to dplyr::group_by
         -   metric.values
 -   test: Add tests
-    -   qc\_checks
+    -   qc_checks
     -   markExcluded
     -   metric.stats
 
@@ -421,10 +428,10 @@ NEWS
 -   test: Add metric.values and metrics.scores for MA kick/logradient
     IBI
 -   docs: Update data.R for missing columns
-    -   data\_benthos\_MBSS
-    -   data\_mmi\_dev
+    -   data_benthos_MBSS
+    -   data_mmi_dev
 -   refactor: document internal functions of metric.values()
--   fix: Remove non-ASCII character from data\_mmi\_dev
+-   fix: Remove non-ASCII character from data_mmi_dev
 
 ## Changes in Version 0.5.0.9032 (2021-01-03)
 
@@ -434,7 +441,7 @@ NEWS
 -   test: qc.check test not working, comment out
 -   docs: Document undocumented argument
     -   metric.stats2
--   fix: Rebuild data\_benthos\_MBSS with missing columns so no warnings
+-   fix: Rebuild data_benthos_MBSS with missing columns so no warnings
     in example
 -   chore: Add to .Rbuildignore
     -   NEWS.rmd
@@ -463,31 +470,31 @@ NEWS
 -   doc: Delete docso will rebuild.
 -   style: Remove undesireable function, replace library(foo) with
     foo::bar()
-    -   vignette\_MapTaxaObs
+    -   vignette_MapTaxaObs
 -   style: Trim to 80 character lines
-    -   vignette\_MapTaxaObs
+    -   vignette_MapTaxaObs
 
 ## Changes in Version 0.5.0.9029 (2021-01-02)
 
-test: Add tests + rarify + qc\_checks (gives warning but passes)
+test: Add tests + rarify + qc_checks (gives warning but passes)
 
 ## Changes in Version 0.5.0.9028 (2021-01-02)
 
 -   refactor: Remove unneeded concatenations
-    -   metric\_stats
-    -   vignette\_BioMonTools
+    -   metric_stats
+    -   vignette_BioMonTools
 -   refactor: Remove undesireable function, replace library(foo) with
     foo::bar()
-    -   vignette\_BioMonTools
+    -   vignette_BioMonTools
 -   style: Trim to 80 character lines
-    -   vignette\_BioMonTools
+    -   vignette_BioMonTools
     -   NEWS
 
 ## Changes in Version 0.5.0.9027 (2020-12-29)
 
 -   refactor: Add foo:: to missing functions
-    -   ProcessData\_TaxaMater\_Ben\_BCG\_PacNW.R
-    -   test\_metric\_calc.R
+    -   ProcessData_TaxaMater_Ben_BCG_PacNW.R
+    -   test_metric_calc.R
 -   refactor: Trim lines to 80 characters
 
 ## Changes in Version 0.5.0.9026 (2020-12-27)
@@ -500,10 +507,10 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.5.0.9024 (2020-12-25)
 
--   refactor: change 1:foo() to seq\_len(foo())
-    -   test\_metric\_calc
-    -   metric\_stats
-    -   qc\_checks
+-   refactor: change 1:foo() to seq_len(foo())
+    -   test_metric_calc
+    -   metric_stats
+    -   qc_checks
 
 ## Changes in Version 0.5.0.9023 (2020-12-25)
 
@@ -532,9 +539,9 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 -   MetricScoring.xlsx
     -   Fix two index threshold values with floating point errors;
-        GBI\_MS\_2013
+        GBI_MS_2013
 -   Update Test
-    -   test\_thresholds\_numdigits
+    -   test_thresholds_numdigits
     -   Test for any values with more than 11 digits.
 
 ## Changes in Version 0.5.0.9017 (2020-12-07)
@@ -542,15 +549,15 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 -   MetricScoring.xlsx
     -   Modify MassDEP metrics and index scoring.
 -   Update Test
-    -   test\_metric\_names
-    -   Update test for AVERAGE\_10 and AVERAGE\_20 to AVERAGE\_100.
+    -   test_metric_names
+    -   Update test for AVERAGE_10 and AVERAGE_20 to AVERAGE_100.
 
 ## Changes in Version 0.5.0.9016 (2020-11-30)
 
 -   Change index scoring regimes.
-    -   Replace AVERAGE\_10 and AVERAGE\_20 with AVERAGE\_100
+    -   Replace AVERAGE_10 and AVERAGE_20 with AVERAGE_100
         -   Use number of metrics for the scaling to 100.
-        -   metric\_scores.R
+        -   metric_scores.R
         -   MetricScoring.xlsx, FFXCOVA indices.
 
 ## Changes in Version 0.5.0.9015 (2020-11-24)
@@ -558,87 +565,87 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 -   Check
     -   Shorten lines longer than 100 characters.
         -   markExcluded.R
-        -   metric\_scores.R
+        -   metric_scores.R
     -   Add stats to DESCRIPTION, IMPORTS
 
 ## Changes in Version 0.5.0.9014 (2020-11-24)
 
--   metric\_scores.R
-    -   Add CONT\_0010 scoring regime.
-    -   Modify CONT\_0100 to match CONT\_0010 with score\_max variable.
+-   metric_scores.R
+    -   Add CONT_0010 scoring regime.
+    -   Modify CONT_0100 to match CONT_0010 with score_max variable.
     -   Add index scoring regimes.
-        -   AVERAGE\_10
-        -   AVERAGE\_20
+        -   AVERAGE_10
+        -   AVERAGE_20
 -   MetricScoring.xlsx
-    -   FFXCOVA\_2018, INDEX\_REGION
+    -   FFXCOVA_2018, INDEX_REGION
         -   Triassic to Triassic Basin
 
 ## Changes in Version 0.5.0.9013 (2020-11-24)
 
--   MetricScoring.xlsx, Issue \#3
+-   MetricScoring.xlsx, Issue #3
     -   Add Fairfax County, VA
 -   MetricNames.xlsx
     -   Add 2 new metrics for Fairfax Co.
-    -   Rename pi\_TricNoHydro to pi\_TrichNoHydro
--   metric\_values.R
-    -   Add x\_HBI2
-    -   Add pi\_habit\_cling\_PlecoNoCling
-    -   Rename pi\_TricNoHydro to pi\_TrichNoHydro
+    -   Rename pi_TricNoHydro to pi_TrichNoHydro
+-   metric_values.R
+    -   Add x_HBI2
+    -   Add pi_habit_cling_PlecoNoCling
+    -   Rename pi_TricNoHydro to pi_TrichNoHydro
 -   Update Test for number metric names for scoring index.
 
 ## Changes in Version 0.5.0.9012 (2020-10-28)
 
--   MetricScoring.xlsx, Issue \#3
+-   MetricScoring.xlsx, Issue #3
     -   Update MassDEP and SNEP index scoring
-    -   Replace “.” with "\_"; MBSS\_2005\_Bugs, MSW\_1999\_Bugs,
-        MBSS\_2005\_Fish , BCG\_PacNW\_L1
-    -   Remove NMSCI\_2006 as had index scoring but not metric scroing.
+    -   Replace “.” with “\_“; MBSS_2005_Bugs, MSW_1999_Bugs,
+        MBSS_2005_Fish , BCG_PacNW_L1
+    -   Remove NMSCI_2006 as had index scoring but not metric scroing.
 -   Update tests.
     -   Rename “test” files.
     -   Update tests to pass.
--   Rename R function files with "\_" rather than “.”.
--   metric\_scores.R
-    -   Update examples from “.” to "\_".
-    -   Change MBSStools::taxa\_bugs\_genus to internal data
-        taxa\_benthos\_MBSS.
--   Add new data taxa\_benthos\_MBSS from MBSStools::taxa\_bugs\_genus,
-    Issue \#32
-    -   Add ProcessData\_benthos\_MBSS.R to data-raw.
+-   Rename R function files with “\_” rather than “.”.
+-   metric_scores.R
+    -   Update examples from “.” to “\_“.
+    -   Change MBSStools::taxa_bugs_genus to internal data
+        taxa_benthos_MBSS.
+-   Add new data taxa_benthos_MBSS from MBSStools::taxa_bugs_genus,
+    Issue #32
+    -   Add ProcessData_benthos_MBSS.R to data-raw.
     -   Add to data.R
 -   MetricFlags.xlsx
-    -   MBSS.2005.Bugs to MBSS\_2005\_Bugs
+    -   MBSS.2005.Bugs to MBSS_2005_Bugs
 
 ## Changes in Version 0.5.0.9011 (2020-10-26)
 
 -   MetricScoring.xlsx
-    -   Add MA indices, Issue \#3.
--   test-metric\_calc.R
+    -   Add MA indices, Issue #3.
+-   test-metric_calc.R
     -   Update for MA indices.
 
 ## Changes in Version 0.5.0.9010 (2020-10-06)
 
 -   MetricScoring.xlsx
-    -   Update GADNR\_Fish\_2020, Issue \#3.
+    -   Update GADNR_Fish_2020, Issue #3.
 
 ## Changes in Version 0.5.0.9009 (2020-10-06)
 
 -   MetricScoring.xlsx
-    -   Update GADNR\_Fish\_2020, Issue \#3.
+    -   Update GADNR_Fish_2020, Issue #3.
 
 ## Changes in Version 0.5.0.9008 (2020-10-05)
 
 -   MetricScoring.xlsx
-    -   Update GADNR\_Fish\_2020, Issue \#3.
+    -   Update GADNR_Fish_2020, Issue #3.
 
 ## Changes in Version 0.5.0.9007 (2020-09-04)
 
 -   MetricScoring.xlsx
-    -   Update MassDEP\_2019\_Bugs, Issue \#3.
+    -   Update MassDEP_2019_Bugs, Issue #3.
 
 ## Changes in Version 0.5.0.9006 (2020-09-04)
 
 -   MetricScoring.xlsx
-    -   Update MassDEP\_2019\_Bugs, Issue \#3.
+    -   Update MassDEP_2019_Bugs, Issue #3.
 
 ## Changes in Version 0.5.0.9005 (2020-08-11)
 
@@ -651,7 +658,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.5.0.9003 (2020-08-11)
 
--   Merged Pull Request \#44 (0.5.0.9001 and 9002)
+-   Merged Pull Request #44 (0.5.0.9001 and 9002)
 
 ## Changes in Version 0.5.0.9002 (2020-08-10)
 
@@ -675,13 +682,13 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.4.0.9024 (2020-07-24)
 
--   Updates for MI index; Issue \#3
+-   Updates for MI index; Issue #3
     -   metric.values.R
-        -   Add pi\_IsopGastHiru
-        -   Add pi\_EPTNoBaeHydro
-        -   Add pi\_tv\_toler6
-        -   Modified intol4 metrics from &lt;= to &lt;.
-        -   Modified toler6 metrics from &gt;= to &gt;.
+        -   Add pi_IsopGastHiru
+        -   Add pi_EPTNoBaeHydro
+        -   Add pi_tv_toler6
+        -   Modified intol4 metrics from \<= to \<.
+        -   Modified toler6 metrics from >= to >.
     -   MetricNames.xlsx
         -   Add missing metrics.
         -   Community name bmi to bugs.
@@ -693,33 +700,33 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
     -   MetricScoring.xlsx and MetricNames.xlsx
     -   MetricScroing.xlsx and metric.values()
     -   Resolved issues.
--   Update dataset “data\_benthos\_PacNW”.
-    -   Index\_Name had a number and was different on each line (Excel
+-   Update dataset “data_benthos_PacNW”.
+    -   Index_Name had a number and was different on each line (Excel
         autofill error).
     -   Last updated 0.4.0.9008 (2020-04-28).
 -   Update tests for metric.values calc.
 -   metric.values.R
     -   Modify NonTarget check for is.na() in cases where the column is
-        missing; Issue \#39
+        missing; Issue #39
 
 ## Changes in Version 0.4.0.9022 (2020-07-23)
 
--   metric.values; Issue \#3, Issue \#41
-    -   Fix pi\_EPT and pi\_EPTNoCheu
+-   metric.values; Issue #3, Issue #41
+    -   Fix pi_EPT and pi_EPTNoCheu
         -   swamped when created in v0.4.0.9019 (2020-07-06).
 
 ## Changes in Version 0.4.0.9021 (2020-07-06)
 
--   metric.values, Skip column QC check in Shiny; Issue \#40
+-   metric.values, Skip column QC check in Shiny; Issue #40
 
 ## Changes in Version 0.4.0.9020 (2020-07-06)
 
--   metric.values, NonTarget still counted; Issue \#39
+-   metric.values, NonTarget still counted; Issue #39
     -   Inadvertently removed in v0.3.3.9017 (2020-02-24)
 
 ## Changes in Version 0.4.0.9019 (2020-07-06)
 
--   WV GLIMPSS, Issue \#3
+-   WV GLIMPSS, Issue #3
     -   Narrative categories are: Very good, Good, Degraded, Severely
         degraded
         -   Pond et al. 2012
@@ -727,7 +734,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.4.0.9018 (2020-07-06)
 
--   WV GLIMPSS, Issue \#3
+-   WV GLIMPSS, Issue #3
     -   MetricScoring.xlsx
     -   MetricNames.xlsx
     -   metric.values.R
@@ -737,8 +744,8 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 ## Changes in Version 0.4.0.9017 (2020-06-25)
 
 -   metric.values.R
-    -   Correct nt\_intol4\_EPT to nt\_tv\_intol4\_EPT
-    -   Add x\_Becks3
+    -   Correct nt_intol4_EPT to nt_tv_intol4_EPT
+    -   Add x_Becks3
 -   MetricScoring.xlsx
     -   Add PADEP Freestone IBI (metrics and scoring).
 -   MetricNames.xlsx
@@ -753,22 +760,22 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.4.0.9015 (2020-06-19)
 
--   metric.values.R, Issue \#3
+-   metric.values.R, Issue #3
     -   Add new metrics for PA and WV BIBIs.
-        -   nt\_tv\_intol4
-        -   nt\_tv\_intol4\_EPT
-        -   pi\_Ortho
-        -   pi\_Chiro\_Anne
+        -   nt_tv_intol4
+        -   nt_tv_intol4_EPT
+        -   pi_Ortho
+        -   pi_Chiro_Anne
     -   Need to document.
 
 ## Changes in Version 0.4.0.9014 (2020-06-18)
 
 -   DESCRIPTION
-    -   Add package tidyr to support metric.stats2(); Issue \# 37
+    -   Add package tidyr to support metric.stats2(); Issue # 37
 
 ## Changes in Version 0.4.0.9013 (2020-06-03)
 
--   metric.stats2.R, Issue \#36
+-   metric.stats2.R, Issue #36
     -   Add DE and z-scores based on metric.stats and metric.values.
 
 ## Changes in Version 0.4.0.9012 (2020-06-01)
@@ -777,17 +784,17 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.4.0.9011 (2020-06-01)
 
--   metric.stats.R, Issue \#36
+-   metric.stats.R, Issue #36
     -   Add new function to calculate statistics for developing
         multi-metric index
--   data\_mmi\_dev
+-   data_mmi_dev
     -   Example data for metric.stats()
 -   data.R
     -   Update for new data.
 
 ## Changes in Version 0.4.0.9010 (2020-05-11)
 
--   metric.values.R, Issue \#35
+-   metric.values.R, Issue #35
     -   Modify Oligochaete metrics to use Class or Subclass.
     -   Add Subclass as a required field.
 
@@ -805,32 +812,32 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 -   Start using R v4.0.0.
 -   metric.values.R
-    -   Additional metrics, Issue \#3.
-        -   nt\_BCG\_attNA
-        -   pi\_BCG\_attNA
-        -   pt\_BCG\_attNA
+    -   Additional metrics, Issue #3.
+        -   nt_BCG_attNA
+        -   pi_BCG_attNA
+        -   pt_BCG_attNA
         -   Habitat metrics, 8 values, nt, pi, pt.
 -   MetricNames.xlsx
     -   Add new metrics.
 -   New data set to utilize new metrics.
-    -   data\_benthos\_PacNW
+    -   data_benthos_PacNW
 
 ## Changes in Version 0.4.0.9007 (2020-04-27)
 
 -   metric.values.R
-    -   Additional metrics, Issue \#3.
-        -   nt\_BCG\_att1
-        -   pi\_BCG\_att1
-        -   pt\_BCG\_att1
+    -   Additional metrics, Issue #3.
+        -   nt_BCG_att1
+        -   pi_BCG_att1
+        -   pt_BCG_att1
 
 ## Changes in Version 0.4.0.9006 (2020-04-24)
 
 -   metric.values.R
-    -   QC on line 371 did not declare package. Issue \#33.
+    -   QC on line 371 did not declare package. Issue #33.
     -   Define pipe in subfunctions.
 -   metric.scores.R
-    -   Modify example. Issue \#34.
-        -   Only one occurence of Index\_Name and Index\_Region in the
+    -   Modify example. Issue #34.
+        -   Only one occurence of Index_Name and Index_Region in the
             data.frame.
         -   Purge tibble error by converting to drop = TRUE.
 
@@ -857,25 +864,25 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 -   metric.score.R
     -   Account for “no organisms collected”.
         -   TAXAID needs to be “NONE”.
-        -   N\_TAXA needs to be zero.
-        -   Both bugs and fish will exclude all other N\_TAXA = 0 but
+        -   N_TAXA needs to be zero.
+        -   Both bugs and fish will exclude all other N_TAXA = 0 but
             keep if TAXAID == “NONE”.
-        -   nt\_total metric has condition for N\_TAXA &gt; 0.
+        -   nt_total metric has condition for N_TAXA > 0.
         -   All other metrics will calculate but receive values of 0,
             NA, or NaN as appropriate.
 
 ## Changes in Version 0.4.0.9001 (2020-02-27)
 
--   Tweak for GA Fish IBI, Issue \#3
-    -   Modify ni\_natnonhybrid and ni\_natnonhybridnonlepomis to also
+-   Tweak for GA Fish IBI, Issue #3
+    -   Modify ni_natnonhybrid and ni_natnonhybridnonlepomis to also
         exclude mosquitofish.
         -   MetricScoring.xlsx
         -   metric.score.R
-    -   Add nt\_nativenonhybrid
+    -   Add nt_nativenonhybrid
         -   MetricScoring.xlsx
         -   metric.score.R
 -   metric.score.R
-    -   Update ni\_natnonhybridnonlepomis.
+    -   Update ni_natnonhybridnonlepomis.
 
 ## Changes in Version 0.4.0 (2020-02-24)
 
@@ -886,7 +893,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.3.3.9017 (2020-02-24)
 
--   MetricScoring.xlsx, Issue \#3
+-   MetricScoring.xlsx, Issue #3
     -   Tweak scoring for GA Fish IBI
     -   Add metric value calculation for GA Fish IBI metrics.
     -   New Scoring Regimes and associated columns.
@@ -902,12 +909,12 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
         -   Additional fish metrics.
     -   All columns to upper case using toupper.
     -   Default values to NA rather than zero.
--   vignette\_BioMonTools.Rmd
+-   vignette_BioMonTools.Rmd
     -   Added library(dplyr) to one of the examples.
 
 ## Changes in Version 0.3.3.9016 (2020-01-31)
 
--   MetricScoring.xlsx, Issue \#3
+-   MetricScoring.xlsx, Issue #3
     -   Tweak values for GA Fish IBI.
         -   ACF, 6b, inflection point is 2 not 1.
 
@@ -915,15 +922,15 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 -   metric.values.R
     -   Minor edits.
--   MetricScoring.xlsx, Issue \#3
+-   MetricScoring.xlsx, Issue #3
     -   Tweak values for GA Fish IBI.
         -   Convert some values to text.
 
 ## Changes in Version 0.3.3.9014 (2020-01-07)
 
 -   metric.values.R
-    -   Tweak index NormDist\_135.
--   MetricScoring.xlsx, Issue \#3
+    -   Tweak index NormDist_135.
+-   MetricScoring.xlsx, Issue #3
     -   Tweak values for GA Fish IBI.
         -   Convert some values to text.
 
@@ -931,7 +938,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 -   metric.values.R
     -   Tweak index sum to account for NA.
--   MetricScoring.xlsx, Issue \#3
+-   MetricScoring.xlsx, Issue #3
     -   Tweak values for GA Fish IBI.
 
 ## Changes in Version 0.3.3.9012 (2020-01-02)
@@ -939,11 +946,11 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 -   metric.values.R
     -   Error in excluding marine metrics when no metric list given
         (i.e., want all metrics).
-        -   Misplaced “)”. Issue \# 31.
+        -   Misplaced “)”. Issue # 31.
 
 ## Changes in Version 0.3.3.9011 (2019-12-18)
 
--   MetricScoring.xlsx, Issue \#3, Issue \#30
+-   MetricScoring.xlsx, Issue #3, Issue #30
     -   Added more columns for new scoring regimes for GA Fish IBI.
 -   MetricNames.xlsx
     -   Added new fish metric names.
@@ -952,56 +959,56 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.3.3.9010 (2019-10-17)
 
--   MetricScoring.xlsx, Issue \#3
+-   MetricScoring.xlsx, Issue #3
     -   Numeric to text.
 
 ## Changes in Version 0.3.3.9009 (2019-10-17)
 
--   MetricScoring.xlsx, Issue \#3
-    -   Updates for GBI\_MS\_2013
+-   MetricScoring.xlsx, Issue #3
+    -   Updates for GBI_MS_2013
 
 ## Changes in Version 0.3.3.9008 (2019-10-16)
 
--   MetricScoring.xlsx, Issue \#3
-    -   Updates for GBI\_MS\_2013
+-   MetricScoring.xlsx, Issue #3
+    -   Updates for GBI_MS_2013
     -   Numeric to text.
 
 ## Changes in Version 0.3.3.9007 (2019-10-16)
 
--   MetricScoring.xlsx, Issue \#3
-    -   Updates for GBI\_MS\_2013
+-   MetricScoring.xlsx, Issue #3
+    -   Updates for GBI_MS_2013
     -   Numeric to text.
 
 ## Changes in Version 0.3.3.9006 (2019-10-15)
 
--   MetricScoring.xlsx, Issue \#3
-    -   Updates for GBI\_MS\_2013
+-   MetricScoring.xlsx, Issue #3
+    -   Updates for GBI_MS_2013
 
 ## Changes in Version 0.3.3.9005 (2019-10-15)
 
--   MetricScoring.xlsx, Issue \#3
-    -   Updates for GBI\_MS\_2013
+-   MetricScoring.xlsx, Issue #3
+    -   Updates for GBI_MS_2013
 
 ## Changes in Version 0.3.3.9004 (2019-10-15)
 
--   Additional scoring and index. Issue \#3
+-   Additional scoring and index. Issue #3
     -   Gulf Biotic Index, 2011
     -   Mississippi Gulf Biotic Index, 2013
 
 ## Changes in Version 0.3.3.9003 (2019-09-15)
 
--   metric.values, Issue \#3
+-   metric.values, Issue #3
     -   Additional estuary/marine metrics
         -   Gulf Biotic Index, 2011
         -   Mississippi Gulf Biotic Index, 2013
     -   Additional input parameter, boo.Marine
-    -   Data\_Benthos.xlsx
+    -   Data_Benthos.xlsx
         -   Add “InfraOrder” column.
         -   Require in metric.values
 
 ## Changes in Version 0.3.3.9002 (2019-07-03)
 
--   metric.values, Issue \#3
+-   metric.values, Issue #3
     -   Add placeholders for marine/estuarine metrics
         -   Not yet in MetricScoring.xlsx or MetricNames.xlsx
 
@@ -1009,7 +1016,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 -   metric.values
     -   Update Beck’s Biotic Index cutoff signs.
-        -   &lt; 1.5 and &gt;= 1.5 to &lt;= 1.5 and &gt; 1.5.
+        -   \< 1.5 and >= 1.5 to \<= 1.5 and > 1.5.
         -   Only affects tolerance values of exactly 1.5.
 
 ## Changes in Version 0.3.3 (2019-07-02)
@@ -1028,7 +1035,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.3.1.9001 (2019-06-27)
 
--   MetricScoring.xlsx, issue \#22
+-   MetricScoring.xlsx, issue #22
     -   New metric misspelled.
 -   Add capability for 6 narrative categories.
     -   MetricScoring.xlsx
@@ -1041,7 +1048,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.3.0.9024 (2019-06-27)
 
--   MetricScoring.xlsx, issue \#22
+-   MetricScoring.xlsx, issue #22
     -   Some numbers to character with ’ prefix.
     -   These numbers not importing correctly from Excel.
         -   Floating point errors in rounding.
@@ -1049,12 +1056,12 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 ## Changes in Version 0.3.0.9023 (2019-06-27)
 
 -   MetricNames.xlsx
-    -   Add fish metric names, Issue \#21
+    -   Add fish metric names, Issue #21
     -   Demonstration only. Not final format in function.
 -   MetricScoring.xlsx
     -   Update date on Notes worksheet.
 -   metric.values.R
-    -   Update demonstration fish metrics, Issue \#21.
+    -   Update demonstration fish metrics, Issue #21.
 
 ## Changes in Version 0.3.0.9022 (2019-06-27)
 
@@ -1083,26 +1090,26 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.3.0.9021 (2019-06-27)
 
--   Updated metric names for MA index, Issue \#3
+-   Updated metric names for MA index, Issue #3
     -   MetricScoring.xlsx
--   Added “to do” and “references” to metricscoring.xlsx, Issue \#3
+-   Added “to do” and “references” to metricscoring.xlsx, Issue #3
 
 ## Changes in Version 0.3.0.9020 (2019-05-24)
 
--   Updated metric names for MBISQ index, Issue \#3
+-   Updated metric names for MBISQ index, Issue #3
     -   MetricScoring.xlsx
 
 ## Changes in Version 0.3.0.9019 (2019-05-24)
 
--   Added metrics, Issue \#3
+-   Added metrics, Issue #3
     -   metric.values
-        -   x\_NCBI, x\_D\_Mg, x\_D\_G
+        -   x_NCBI, x_D\_Mg, x_D\_G
         -   Additional QC for TolVal2 as numeric (same as TolVal).
     -   MetricNames.xlsx
 
 ## Changes in Version 0.3.0.9018 (2019-05-17)
 
--   Fixes for R v3.6.0, Issue \#18
+-   Fixes for R v3.6.0, Issue #18
     -   DESCRIPTION
         -   Remove StagedInstall: no
     -   README
@@ -1112,42 +1119,42 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.3.0.9017 (2019-05-08)
 
--   Metric names, fix those added in previous update, Issue \#3
+-   Metric names, fix those added in previous update, Issue #3
     -   Files
         -   metric.values.R
         -   MetricNames.xlsx
         -   MetricScoring.xlsx
--   metric.scores, Issue \#19
+-   metric.scores, Issue #19
     -   Continuous 0-100 scoring only reporting 1 value per column.
     -   Fixed so reports all values.
         -   Was taking median of column not per row.
 
 ## Changes in Version 0.3.0.9016 (2019-05-07)
 
--   Temp fix for staged install with R v3.6.0, Issue \#18
+-   Temp fix for staged install with R v3.6.0, Issue #18
     -   DESCRIPTION, StagedInstall: no
--   Add additional metrics (GA DNR). Issue \#3.
+-   Add additional metrics (GA DNR). Issue #3.
     -   Files
         -   metric.values.R
         -   MetricNames.xlsx
         -   MetricScoring.xlsx
     -   Metrics
-        -   pi\_Hydro2EPT
-        -   pi\_Hydro2Trich
-        -   pi\_Ortho2Chi
-        -   pi\_Tanyp2Chi
-        -   pi\_ChCr2Chi
+        -   pi_Hydro2EPT
+        -   pi_Hydro2Trich
+        -   pi_Ortho2Chi
+        -   pi_Tanyp2Chi
+        -   pi_ChCr2Chi
 
 ## Changes in Version 0.3.0.9015 (2019-04-11)
 
 -   inst/extdata/MetricFlags.xlsx
-    -   Update ni\_total for Hi to match Lo (both 450), Issue \#16
+    -   Update ni_total for Hi to match Lo (both 450), Issue #16
 
 ## Changes in Version 0.3.0.9014 (2019-04-02)
 
--   metric.values, Issue \#15
-    -   Fix metric pi\_EphemNoCaeBae
-        -   Was calculating the same as pi\_Ephem.
+-   metric.values, Issue #15
+    -   Fix metric pi_EphemNoCaeBae
+        -   Was calculating the same as pi_Ephem.
     -   Checked all other “No” metrics.
         -   All ok.
 
@@ -1183,7 +1190,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 ## Changes in Version 0.3.0.9009 (2019-01-17)
 
 -   metric.values
-    -   Mistyped “FAMILY” as “Family” when added pi\_Baet.
+    -   Mistyped “FAMILY” as “Family” when added pi_Baet.
 
 ## Changes in Version 0.3.0.9008 (2019-01-17)
 
@@ -1194,16 +1201,16 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 -   Remove metric names PDF
 -   metric.scores
-    -   Add pi\_Baet
+    -   Add pi_Baet
     -   Percent metrics to 0-100 from 0-1.
-    -   Add pi\_Baet to extdata/MetricNames.xlsx
+    -   Add pi_Baet to extdata/MetricNames.xlsx
     -   input TolVal “NA” (character) to NA.
 
 ## Changes in Version 0.3.0.9006 (2019-01-17)
 
 -   metric.scores
     -   Additional metrics.
-    -   Metric name sort variable. Issue \#13
+    -   Metric name sort variable. Issue #13
     -   Organize metrics ni, nt, pi, pt for each section.
     -   Update extdata/MetricNames.xlsx
 -   MapTaxaObs
@@ -1220,7 +1227,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 -   README
     -   Update install example to force vignettes.
 -   metric.scores
-    -   pt\_habit metrics (n=5) used ni\_total instead of nt\_total in
+    -   pt_habit metrics (n=5) used ni_total instead of nt_total in
         denominator.
 
 ## Changes in Version 0.3.0.9003 (2019-01-14)
@@ -1231,10 +1238,10 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
             fails.
     -   Subset function not working in every case. Update line 128.
     -   Add map inputs database and regions and funcion inputs.
--   extdata/Data\_Benthos.xlsx
+-   extdata/Data_Benthos.xlsx
     -   Update with TolVal2 for example in Vignette to avoid warning.
 -   Vignette
-    -   SITE\_TYPE to INDEX\_REGION
+    -   SITE_TYPE to INDEX_REGION
     -   qc.checks
         -   Update example chunk to match example in function; package
             BCGcalc to BioMonTools.
@@ -1248,7 +1255,7 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 -   Update QC flags input.
 -   Add metric names to Excel file.
--   MetricName to METRIC\_NAME in input files.
+-   MetricName to METRIC_NAME in input files.
 
 ## Changes in Version 0.3 (2018-12-20)
 
@@ -1256,12 +1263,12 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.2.0.9007 (2018-12-20)
 
--   Metric scoring function, Issue \#12.
+-   Metric scoring function, Issue #12.
 
 ## Changes in Version 0.2.0.9006 (2018-12-03)
 
--   README.rmd, Issue \#11.
-    -   install\_github command comes out as smart quotes if copy and
+-   README.rmd, Issue #11.
+    -   install_github command comes out as smart quotes if copy and
         paste from GitHub website.
     -   Looks ok in RStudio but fixed to test if that is the issue.
 
@@ -1271,15 +1278,15 @@ test: Add tests + rarify + qc\_checks (gives warning but passes)
 
 ## Changes in Version 0.2.0.9004 (2018-11-26)
 
--   Percent metrics as 0-1. Issue \#9.
+-   Percent metrics as 0-1. Issue #9.
 
 ## Changes in Version 0.2.0.9003 (2018-11-26)
 
--   Add qc.checks function from BCGcalc package. Issue \#9
+-   Add qc.checks function from BCGcalc package. Issue #9
     -   qc.checks.R
     -   Vignette
     -   extdata.xlsx
--   Update read\_excel with guess\_max=10^6 for bio data file.
+-   Update read_excel with guess_max=10^6 for bio data file.
 
 ## Changes in Version 0.2.0.9002 (2018-11-20)
 
