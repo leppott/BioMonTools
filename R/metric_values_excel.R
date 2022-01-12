@@ -136,12 +136,9 @@ write_xlsx(result,path = file.path(tempdir()),col_names = TRUE,format_headers = 
 
 
 }
-
-  ## sort the metrics if sort_order provided
-  ## use writexl
-  ## Include df_metnames in output as MetricNames
-  ## If time create a "NOTES" worksheet (input file, date, username, etc).
-
+############################# to do
+ #### hopefully I'm not missing something but do we actually need df.metval?
+### need to add col QC check
 
 
 
