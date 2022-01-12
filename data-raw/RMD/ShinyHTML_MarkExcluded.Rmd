@@ -1,0 +1,93 @@
+---
+title: "Mark Redundant Taxa"
+date: "2021-09-29"
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### Purpose
+
+When calculating metrics, there are occasions when certain taxa are not included
+in taxa richness metrics but the individuals are included for all other metrics.
+This is done to avoid double counting taxa that may have been identified to a 
+coarser level when taxa of a finer level are present in the same sample. These 
+taxa have been referred to by many names – e.g., non-distinct, redundant or 
+ambiguous taxa.  Here we will use the term ‘redundant’. 
+
+The table below shows examples of two taxa that are potentially redundant in a 
+sample. Perlodidae and Glossosomatidae (family-level) are excluded from the 
+richness metrics in this sample. The organisms identified as Perlodidae could be 
+the same as those identified as Perlinodes aurea (species-level) or Skwala 
+(genus-level), and those identified as Glossosomatidae could be the same as 
+those identified as Glossosoma (genus-level). A detailed description of the 
+process that the R tool uses for marking redundant taxa can be found here.
+
+![Example Redundant Taxa List](Shiny_MarkExcluded.png)
+
+### Instructions
+
+* Upload a file under "Load Data".  The status bar will tell you when the upload
+is complete.  Then return to this screen.
+
+    +	Required fields: SampleID, TaxaID, Count, Taxonomic Levels (see below)
+
+*	Possible entries for taxonomic levels include those listed below.  Only 
+include names that have a corresponding column name in your data.  The names
+will be evaluated in the order specified.
+
+    +	Kingdom 
+    
+    + Phylum
+
+    +	Subphylum
+
+    +	Class
+    
+    + Subclass
+
+    +	Order
+    
+    + Suborder
+
+    +	Infraorder
+    
+    + Superfamily
+
+    +	Family
+
+    +	Subfamily
+
+    +	Tribe
+
+    +	Genus
+    
+    + Species
+    
+    + Variety
+
+*	You will receive a prompt asking if you would like to consider all of the 
+taxonomic levels that appear in your input file. You will have the opportunity 
+to deselect levels if desired.
+
+*	Click the ‘Run Function’ button; a status bar will appear in the lower right 
+corner.
+
+*	After the function is done running, the ‘Download Results’ button will be 
+active. Click this button to retrieve your results.
+
+*	Save the file in the desired folder. The output file will include all the 
+columns in the input file plus a new column titled ‘Exclude’, which is a 
+TRUE/FALSE field in which redundant taxa are marked as ‘TRUE’.
+
+### Additional Notes
+
+*	Ensure that the taxonomic levels in your input file are complete and correct.
+
+*	All ‘Exclude’ decisions are sample-specific. If sample contents change and/or
+if the level of effort or operational taxonomic units change, the Excluded taxa
+designations should be recalculated.
+
+*Last updated 2022-01-12*

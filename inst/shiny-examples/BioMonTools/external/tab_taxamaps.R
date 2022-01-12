@@ -1,14 +1,9 @@
 # TaxaMaps Panel
 
 function() {
-  tabPanel("tabpan_taxamaps"
-           , fluidPage(h2("Taxa Distribution Maps"
-                          #, style  = "text-align:center"
-                          )
-                       , p("This function allows the user to create maps of taxa
-                           distributions.")
-
-                       , br()
+  sidebarLayout(
+           sidebarPanel(
+                       h2("Taxa Distribution Maps")
                        , p("1. Upload a file.")
                        , p("Use 'Load Data' option in left sidebar.")
                        , p("2. Define columns.")
@@ -41,7 +36,9 @@ function() {
                      , shinyjs::disabled(downloadButton("b_taxamaps_download"
                                                         , "Download Results"))
                      ,
-                        )## fluidPage ~ END
-           # , includeHTML(file.path("external", "Help.html"))
-           )##tabPanel ~ END
+                )## sidebarPanel ~ END
+           , mainPanel(
+             includeHTML(file.path("www", "ShinyHTML_TaxaMaps.html"))
+           )## mainPanel ~ END
+   )##sidebarLayout ~ END
 }##FUNCTION ~ END

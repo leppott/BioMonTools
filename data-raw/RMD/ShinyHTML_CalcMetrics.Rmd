@@ -1,0 +1,88 @@
+---
+title: "Calculate Metrics"
+date: "2021-09-29"
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### Purpose
+
+This function calculates an assortment of biological metrics based on the 
+traits/attributes in the input file. Column headings and attribute entries need 
+to follow the naming convention specified below. For RMN analyses, attribute 
+assignments should match with those in the appropriate regional traits table. 
+Regional traits tables are currently available for macroinvertebrates in low and
+high gradient streams in the Northeast and can be downloaded here.
+
+Currently, the Shiny app is set up to calculate the following groups of benthic 
+macroinvertebrate metrics:
+
+* Standard bioassessment
+
+* Major taxonomic groups
+
+* Thermal and hydrologic indicators
+
+* Functional feeding group (FFG)
+
+* Habit
+
+* Tolerance
+
+* Life cycle/voltinism
+
+* Biological Condition Gradient (BCG) attributes
+
+Click here to see the list of available metrics.
+
+More metrics (including some for fish) are available in the BioMonTools R 
+package. You can request the addition of new metrics to the R package or Shiny 
+app by emailing Erik (Erik.Leppo@tetratech.com) or posting your request on the 
+BioMonTools GitHub page (https://github.com/leppott/BioMonTools/discussions).
+
+### Instructions
+
+* Upload a file under "Load Data".  The status bar will tell you when the upload
+is complete.  Then return to this screen.
+
+    +	Required fields: see table below
+
+    + Important note: column names and entries must match the spelling and 
+    symbology exactly as shown below (some column headings have underscores).
+
+*	Click the ‘Run Function’ button; a status bar will appear in the lower right 
+corner.
+
+*	After the function is done running, the ‘Download Results’ button will be 
+active. Click this button to retrieve your results.
+
+*	Save the file in the desired folder. In the output (Excel) file, metrics will 
+be grouped into worksheets based on the categories listed above.
+
+### Additional Notes
+
+*	If taxa are missing attribute assignments, either leave the entry blank or 
+populate with ‘NA.’
+
+*	Input file checklist for the RMNs –
+
+    +	Remove any rows that have 0 individuals (e.g., Large/Rare taxa entries)
+
+    +	For each taxon, there should only be one entry per sample. For example, if
+    entries are broken out by life stage (e.g., larvae, pupae), they should be 
+    ‘collapsed’ into one row per taxon/sample (by summing the individuals and 
+    deleting the life stage field)
+
+    +	Check the total number of individuals. Perform random subsampling if 
+    needed. For example, if you want to apply a 100-count kick IBI but have a 
+    300-count sample, first reduce the total count of individuals to 100. 
+
+*	The R code that is used to calculate the metrics can be found here:
+
+    + https://github.com/leppott/BioMonTools/blob/master/R/metric_values.R
+
+
+*Last updated 2022-01-12*

@@ -1,0 +1,55 @@
+---
+title: "Taxa Maps"
+date: "2021-09-29"
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### Purpose
+
+Create maps like the example shown below. 
+
+* The title is the name of taxa being mapped
+
+* Outlines of states in region being mapped
+
+* Colored points correspond to legend for grouping variable
+
+* The number of samples with the current taxa is displayed at the bottom
+
+### Instructions
+
+* Upload a file under "Load Data".  The status bar will tell you when the upload
+is complete.  Then return to this screen.
+
+    +	Required fields: SampleID, TaxaID, Count, Latitude, Longitude
+
+    +	Optional field: grouping variable (for color-coding data points)
+
+    +	Important note: Maps appear in the order in which the taxa occur in the 
+    input file so be sure to sort as desired.
+
+*	Define the map extent
+
+    +	Type in the desired extent 
+
+*	Click the ‘Run Function’ button; a status bar will appear in the lower right 
+corner.
+
+*	After the function is done running, the ‘Download Results’ button will be 
+active. Click this button to retrieve your results.
+
+*	Save the file in the desired folder. The maps will be in a PDF format.
+
+### Warning!
+
+The output files can be very large (the PDFs treat every data point as 
+an individual graphic element). Consider limiting the number of taxa in your 
+input files.
+
+![Example TaxaMap](Shiny_TaxaMap.png)
+
+*Last updated 2022-01-12*

@@ -4,13 +4,27 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-01-10 14:58:49
+    #> Last Update: 2022-01-12 10:53:29
 
 # Version History
 
-## Changes in Version 0.5.0.9084 (2022-01-10)
+## Changes in Version 0.5.0.9086 (2022-01-11\*\*\*\*)
 
--   docs: Update metric.values() with Example #5 for periphyton
+-   refactor: Reorganize -raw folder with subfolders
+    -   Keep only the scripts to be run at the root
+    -   Will have to update scripts at later date to use the new
+        structure
+-   feature: Added HTML creation scripts for text in shiny app to -raw  
+-   feature: Updates to Shiny app to include help text for each function
+-   feature: Add runShiny() to launch shiny app from console
+-   docs: Removed XLConnect from DESCRIPTION Suggests package list
+    -   Not used
+-   docs: Added writexl package to DESCRIPTIOn Suggest for upcoming
+    change , Issue # 68
+
+## Changes in Version 0.5.0.9085 (2022-01-10)
+
+-   docs: Update GitHub default branch from “master” to “main”
 
 ## Changes in Version 0.5.0.9083 (2022-01-10)
 
