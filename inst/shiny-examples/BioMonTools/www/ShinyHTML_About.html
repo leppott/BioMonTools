@@ -4,68 +4,13 @@
 <p>The BioMonTools Shiny app is a free R-based tool to help prepare and analyze biological data in a standardized way without having to download any software programs to your computer. This Shiny app is linked to the BioMonTools R package, which was developed by Erik W. Leppo from Tetra Tech and is available on GitHub (<a href="https://github.com/leppott/BioMonTools" class="uri">https://github.com/leppott/BioMonTools</a>). The table below provides an overview of how the website is structured.</p>
 <p>Development of the BioMonTools R tools has been funded by the United States Environmental Protection Agency (EPA) Office of Research and Development (ORD) as part of a larger project to establish Regional Monitoring Networks (RMNs) for freshwater streams and inland lakes (USEPA 2016, USEPA 2021; lead EPA scientist: Britta Bierwagen). The RMNs are a volunteer, collaborative effort in which entities collect long-term data at targeted sites to detect changes over time.</p>
 <p>If you encounter problems with the Shiny app and/or have suggestions on ways to further improve it, please email Erik (<a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a>) or post your comments on the BioMonTools GitHub page (<a href="https://github.com/leppott/BioMonTools/discussions" class="uri">https://github.com/leppott/BioMonTools/discussions</a>). This is an open-source, collaborative effort and we welcome your feedback.</p>
-<table>
-<caption>
-BioMonTools shiny application functions.
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-Group
-</th>
-<th style="text-align:left;">
-Function
-</th>
-<th style="text-align:left;">
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Data Preparation
-</td>
-<td style="text-align:left;">
-Subsample
-</td>
-<td style="text-align:left;">
-Subsample your abundance data to a fixed count per sample. For example, if 300-organisms is your target, and any of your samples have more than 300 organisms, you can use this function to randomly subsample your data so that the total number of individuals is 300. This is done to make richness metrics comparable (since higher numbers of taxa generally occur in samples in which more individuals are counted). The function code is from USEPA Corvallis John Van Sickle’s R code for RIVPACS (v1.0, 2005-06-10).
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Data Preparation
-</td>
-<td style="text-align:left;">
-Mark Redundant Taxa
-</td>
-<td style="text-align:left;">
-Avoid double-counting taxa that may be redundant (or non-distinct, depending on your preferred terminology). For example, if organisms identified as Dytiscidae (family-level) and Oreodytes (genus-level) are both present in a sample, organisms identified as Dytiscidae could be the same taxon as Oreodytes. The R tool identifies and marks redundant taxa on a sample-by-sample basis so that they can be excluded from richness metric calculations.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Analysis
-</td>
-<td style="text-align:left;">
-Taxa Maps
-</td>
-<td style="text-align:left;">
-Examine the spatial distribution of each taxon with presence/absence maps. These maps can be useful for reconciling differences in taxonomy and tracking shifts in spatial distributions of indicator taxa at the regional scale. Users can color-code data points by a grouping variable (e.g., data source).
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Analysis
-</td>
-<td style="text-align:left;">
-Calculate Metrics
-</td>
-<td style="text-align:left;">
-Calculate metrics based on the traits/attributes in the input file. Column headings and attribute entries need to follow the specific naming convention described here. For RMN analyses, attribute assignments should come from the appropriate regional traits table. Currently, the Shiny app is set up to calculate the following groups of benthic macroinvertebrate metrics: standard bioassessment, major taxonomic groups, thermal and hydrologic indicators, functional feeding group (FFG), habit, tolerance, life cycle/voltinism, and Biological Condition Gradient (BCG). More metrics (including some for fish) are available on the BioMonTools R package. You can request the addition of new metrics by emailing Erik (<a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a>) or posting your request on the BioMonTools GitHub page (<a href="https://github.com/leppott/BioMonTools/discussions" class="uri">https://github.com/leppott/BioMonTools/discussions</a>).
-</td>
-</tr>
-</tbody>
-</table>
-<p><em>Last updated 2021-09-29</em></p>
+<p>If you prefer you run this function using R console instead of the Shiny app.</p>
+<p>The R package is available for download on GitHub. Use the green “Code” button.</p>
+<p><a href="https://github.com/leppott/BioMonTools" class="uri">https://github.com/leppott/BioMonTools</a></p>
+<p>To install from within R use the code below.</p>
+<pre class="r"><code>if(!require(remotes)){install.packages(&quot;remotes&quot;)}  #install if needed
+install_github(&quot;leppott/BioMonTools&quot;, force=TRUE, build_vignettes=TRUE)</code></pre>
+<p>link to github br() <a href="https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv">click here</a></p>
+<p><a href="https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv" download>Click to download</a></p>
+<p>tags$a(“MeticNamesFile”, href = “MetricNames.xlsx”)</p>
+<p><a href="https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv">test</a></p>

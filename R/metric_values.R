@@ -561,6 +561,13 @@ metric.values.bugs <- function(myDF
     pi_ffg_mah <- pi_ffg_pih <- pi_ffg_xyl <- pi_ffg_omn <- pi_ffg_par <-
     pt_ffg_mah <- pt_ffg_pih <- pt_ffg_xyl <- pt_ffg_omn <- pt_ffg_par <- NULL
   nt_ECT <- pi_ECT <- pt_ECT <- NULL
+  WSAREA_S <- WSAREA_M <- WSAREA_L <- WSAREA_XL <- NULL
+  ELEVATION_HIGH <- ELEVATION_LOW <- GRADIENT_HIGH <- GRADIENT_LOW <-
+    GRADIENT_MOD <- TI_EURY <- nt_BCG_att456 <- nt_EPT_BCG_att1i23 <-
+    nt_NonInsTrombJuga_BCG_att456 <- nt_Tromb <- nt_ti_cold <- nt_ti_cool <-
+    nt_ti_cool_warm <- nt_ti_corecold <- nt_ti_corecold_cold <- nt_ti_eury <-
+    nt_ti_na <- nt_ti_warm <- NULL
+
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -2290,6 +2297,24 @@ metric.values.fish <- function(myDF
   ni_total <- x_Shan_e <- nt_total <- x_Evenness <- length_m <-
     ni_natnonhybridnonmf <- ni_natnonhybridnonmfnonlepomis <- NULL
   BCG_ATTR <- NULL
+  CONNECTIVITY <- SCC <- nt_AmmEthPerc <- nt_AmmEthPerc_Cott_Notur <-
+    nt_Cato <- nt_Cent <- nt_natCent <- nt_Cott <- nt_Cyprin <- nt_Ictal <-
+    nt_Lepomis <- nt_native <- nt_nonnative <- nt_Notur <- nt_Salm <-
+    nt_connect <- nt_scc <- TROPHIC_DE <- TROPHIC_PL <- nt_detritivore <-
+    nt_herbivore <- nt_omnivore <- nt_planktivore <- nt_topcarn <- area_m2 <-
+    ni_natnonhybridnonmfnonLepomis <- SAMP_BIOMASS <- ni_dom02 <- ni_dom03 <-
+    ni_dom04 <- ni_dom05 <- ni_dom06 <- ni_dom07 <- ni_dom08 <- ni_dom09 <-
+    ni_dom10 <- nt_BCG_att12 <- nt_BCG_att123 <- nt_BCG_att12346b <-
+    nt_BCG_att1236b <- nt_BCG_att2 <- nt_BCG_att2native <- nt_BCG_att23_scc <-
+    nt_BCG_att3 <- nt_BCG_att3native <- nt_BCG_att4 <- nt_BCG_att4native <-
+    nt_BCG_att5 <- nt_BCG_att5native <- nt_BCG_attNA <- TI_CORECOLD <-
+    TI_COLD <- TI_COOL <- TI_WARM <- TI_EURY <- TI_NA <- nt_ti_corecold <-
+    nt_ti_cold <- nt_ti_cool <- nt_ti_warm <- nt_ti_eury <- nt_ti_na <-
+    nt_ti_corecold_cold <- nt_ti_cool_warm <- ELEVATION_LOW <- ELEVATION_HIGH <-
+    GRADIENT_LOW <- GRADIENT_MOD <- GRADIENT_HIGH <- WSAREA_S <- WSAREA_M <-
+    WSAREA_L <- WSAREA_XL <- REPRO_BCAST <- REPRO_NS <- REPRO_NC <-
+    REPRO_BEAR <- REPRO_MIG <- HABITAT_B <- HABITAT_W <- nt_habitat_b <-
+    nt_habitat_w <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -3101,6 +3126,39 @@ metric.values.algae <- function(myDF
 
   # global variable bindings ----
   SampleID <- N_TAXA <- NULL
+
+  NONTARGET <- SAMPLEID <- INDEX_NAME <- INDEX_REGION <- ni_total <- TAXAID <-
+    EXCLUDE <- GENUS <- LOW_N <- HIGH_N <- LOW_P <- HIGH_P <- BC_1 <- BC_2 <-
+    BC_3 <- BC_4 <- BC_5 <- PT_1 <- PT_2 <- PT_3 <- PT_4 <- PT_5 <-
+    SALINITY_1 <- SALINITY_2 <- SALINITY_3 <- SALINITY_4 <- O_1 <- O_2 <- O_3 <-
+    O_4 <- O_5 <- SESTONIC_HABIT <- BENTHIC_HABIT <- BAHLS_1 <- BAHLS_2 <-
+    BAHLS_3 <- TROPHIC_1 <- TROPHIC_2 <- TROPHIC_3 <- TROPHIC_4 <- TROPHIC_5 <-
+    TROPHIC_6 <- TROPHIC_7 <- SAP_1 <- SAP_2 <- SAP_3 <- SAP_4 <- SAP_5 <-
+    NON_N_FIXER <- N_FIXER <- HIGHLY_MOTILE <- MODERATELY_MOTILE <-
+    NON_MOTILE <- SLIGHTLY_MOTILE <- WEAKLY_MOTILE <- BIG <- SMALL <- MEDIUM <-
+    VERY_BIG <- VERY_SMALL <- ADNATE <- STALKED <- HIGHLY_MOTILE.1 <- ARAPHID <-
+    DIAT_CL <- BEN_SES <- DIAT_CA <- DIAT_COND <- DIATAS_TN <- DIATAS_TP <-
+    MOTILITY <- NF <- pi_DIAT_CL_1 <- nt_Achnan_Navic <- nt_total <-
+    nt_HIGH_N <- nt_LOW_N <- nt_HIGH_P <- nt_LOW_P <- nt_BC_1 <- nt_BC_2 <-
+    nt_BC_3 <- nt_BC_4 <- nt_BC_5 <- nt_BC_12 <- nt_BC_45 <- nt_PT_1 <-
+    nt_PT_2 <- nt_PT_3 <- nt_PT_4 <- nt_PT_5 <- nt_PT_12 <- nt_SALINITY_1 <-
+    nt_SALINITY_2 <- nt_SALINITY_3 <- nt_SALINITY_4 <- nt_SALINITY_34 <-
+    nt_O_1 <- nt_O_2 <- nt_O_3 <- nt_O_4 <- nt_O_5 <- nt_O_345 <-
+    nt_SESTONIC_HABIT <- nt_BENTHIC_HABIT <- nt_BAHLS_1 <- nt_BAHLS_2 <-
+    nt_BAHLS_3 <- nt_TROPHIC_1 <- nt_TROPHIC_2 <- nt_TROPHIC_3 <-
+    nt_TROPHIC_4 <- nt_TROPHIC_5 <- nt_TROPHIC_6 <- nt_TROPHIC_7 <-
+    nt_TROPHIC_456 <- nt_SAP_1 <- nt_SAP_2 <- nt_SAP_3 <- nt_SAP_4 <-
+    nt_SAP_5 <- nt_NON_N_FIXER <- nt_N_FIXER <- nt_HIGHLY_MOTILE <-
+    nt_MODERATELY_MOTILE <- nt_NON_MOTILE <- nt_SLIGHTLY_MOTILE <-
+    nt_WEAKLY_MOTILE <-nt_BIG <- nt_SMALL <- nt_MEDIUM <- nt_VERY_BIG <-
+    nt_VERY_SMALL <- nt_ADNATE <- nt_STALKED <- nt_HIGHLY_MOTILE.1 <-
+    nt_ARAPHID <- nt_DIAT_CL_1 <- nt_DIAT_CL_2 <- nt_BEN_SES_1 <-
+    nt_BEN_SES_2 <- nt_DIAT_CA_1 <- nt_DIAT_CA_2 <- nt_DIAT_COND_1 <-
+    nt_DIAT_COND_2 <- nt_DIATAS_TN_1 <- nt_DIATAS_TN_2 <- nt_DIATAS_TP_1 <-
+    nt_DIATAS_TP_2 <-nt_MOTILITY_1 <- nt_MOTILITY_2 <-nt_NF_1 <- nt_NF_2 <-
+    TOLVAL <- REF_INDICATORS <- nt_Sens_810 <- nt_RefIndicators <- nt_Tol_13 <-
+    POLL_TOL <- NULL
+
 
   # define pipe
   `%>%` <- dplyr::`%>%`

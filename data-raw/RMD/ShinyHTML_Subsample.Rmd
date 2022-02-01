@@ -1,6 +1,5 @@
 ---
 title: "Subsample"
-date: "2021-09-29"
 output: html_fragment
 ---
 
@@ -18,43 +17,30 @@ comparable (since higher numbers of taxa generally occur in samples in which
 more individuals are counted). The function is based on code from USEPA 
 Corvallis John Van Sickle’s R code for RIVPACS (v1.0, 2005-06-10).
 
-### Instructions
+### Notes
 
-* Upload a file under "Load Data".  The status bar will tell you when the upload
-is complete.  Then return to this screen.
+There are three required fields: SampleID, TaxaID, Count. These are defined by 
+the user using the pull down lists.  Any additional columns in your file and 
+will be carried through into the output file.
 
-    +	Required fields: Sample ID, Taxa ID, Count
+Any samples with a total number of organisms above the 'target' (e.g., 300) will
+be subsampled to the target number.
 
-*	Enter the desired subsample size (e.g., 300 organisms)
+Using a 'numeric seed' (suggested to be at least 8-digits) allows you to 
+generate the same results with the same file at a later time.
 
-* If desire results to be repeatable enter a 'seed' value.  Preferably 8 digits 
-or more (e.g., the numbers from a date in the format of yyyymmdd).
-
-*	Click the ‘Run Function’ button; a status bar will appear in the lower right 
-corner.
-
-*	After the function is done running, the ‘Download Results’ button will be 
-active. Click this button to retrieve your results.
-
-*	Save the file in the desired folder. There will be two output files (in 
-comma-delimited format):
-
-    +	A file with subsample results only (three columns: Sample ID and updated 
-    TaxaID and Count fields, subsampled to the desired number of organisms)
-
-    +	A file showing original vs. subsampled results (four columns: SampleID, 
-    TaxaID, original counts, subsampled counts) – see example below.
+After you unzip the output file, you’ll see a ‘results’ folder and then a 
+'subsample' folder with two csv files (see screenshot below). It’s fine to 
+delete the zipped file after you extract the files. 
 
 ![Example Subsample](Shiny_Subsample.png)
 
-### Additional Notes
+The Shiny app is set up to subsample to the exact number of organisms (in our 
+default example, 300). If you are skilled with R, you could download the 
+BioMonTools R package (https://github.com/leppott/BioMonTools), install it, and 
+adjust the upper limit on the number of organisms that trigger subsampling. As 
+an example, you could set it up so that the R code only subsamples when samples 
+have over 20% of the target number of total individuals (in the default example,
+this would be 360 total individuals). For more information, contact Erik ([Erik.Leppo\@tetratech.com](mailto:Erik.Leppo@tetratech.com){.email}).
 
-Right now the function is set up to provide random but repeatable results 
-(meaning if you run the same input file through more than once, you will get the
-same result each time). If you are skilled with R, you could download the R 
-package from GitHub (https://github.com/leppott/BioMonTools) and customize the 
-code. You could also adjust the upper limit on the number of organisms that
-trigger subsampling (for example, set it up so that the R code only subsamples 
-when samples have over 20% of the target number of total individuals).
-
-*Last updated 2022-01-12*
+*Last updated 2022-01-31*

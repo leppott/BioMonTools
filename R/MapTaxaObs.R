@@ -224,7 +224,7 @@ MapTaxaObs <- function(df_obs
                          , pch = myPCH
                          , cex = myCEX)
       }## FOR ~ a ~ END
-      legend(leg_loc
+      graphics::legend(leg_loc
              , legend = leg_cat
              , col = leg_col
              , pch = myPCH

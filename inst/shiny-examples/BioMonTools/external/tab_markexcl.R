@@ -11,18 +11,19 @@ function() {
       , uiOutput("UI_col_markexcl_TaxaID")
       , uiOutput("UI_col_markexcl_Count")
       , textInput("markexcl_Exclude"
-                  , label = "Exclude Column"
-                  , value = "Exclude")
+                  , label = "Output Column Name"
+                  , value = "Exclude_New")
       , p("3. TaxaLevels")
-      , p("TaxaLevels are used in the order below.")
+      , p("TaxaLevels (if present) are used in the order below.")
       , p("Kingdom, Phylum, SubPhylum, Class, SubClass
                            , Order, SubOrder, InfraOrder, SuperFamily, Family
                            , SubFamily, Tribe, Genus, SubGenus, Species, Variety")
       , uiOutput("UI_col_markexcl_Phylo")
       #, p("Current version uses all phylogenetic names present in file.")
-      , p("4. Run Function")
+      #, p("4. Run Function")
+      , hr()
       , bsButton("b_markexcl_run", label = "Run Function")
-      , p("5. Download Results")
+      #, p("5. Download Results")
       , useShinyjs()
       , shinyjs::disabled(downloadButton("b_markexcl_download"
                                          , "Download Results"))

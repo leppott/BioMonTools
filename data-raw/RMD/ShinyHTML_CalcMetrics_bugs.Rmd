@@ -1,6 +1,5 @@
 ---
-title: "Calculate Metrics"
-date: "2021-09-29"
+title: "Calculate Metrics, bugs"
 output: html_fragment
 ---
 
@@ -43,7 +42,7 @@ package. You can request the addition of new metrics to the R package or Shiny
 app by emailing Erik (Erik.Leppo@tetratech.com) or posting your request on the 
 BioMonTools GitHub page (https://github.com/leppott/BioMonTools/discussions).
 
-### Instructions
+### Notes
 
 * Upload a file under "Load Data".  The status bar will tell you when the upload
 is complete.  Then return to this screen.
@@ -85,4 +84,4 @@ populate with ‘NA.’
     + https://github.com/leppott/BioMonTools/blob/master/R/metric_values.R
 
 
-*Last updated 2022-01-12*
+*Last updated 2022-01-31*

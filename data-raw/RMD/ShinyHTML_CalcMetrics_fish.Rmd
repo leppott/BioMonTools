@@ -1,0 +1,28 @@
+---
+title: "Calculate Metrics, fish"
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### Purpose
+
+This function calculates an assortment of biological metrics based on the 
+traits/attributes in the input file. 
+
+Click here to see the list of available metrics for fish.
+
+You can request the addition of new metrics to the R package or Shiny 
+app by emailing Erik (Erik.Leppo@tetratech.com) or posting your request on the 
+BioMonTools GitHub page (https://github.com/leppott/BioMonTools/discussions).
+
+### Additional Notes
+
+*	The R code that is used to calculate the metrics can be found here:
+
+    + https://github.com/leppott/BioMonTools/blob/master/R/metric_values.R
+
+
+*Last updated 2022-01-28*

@@ -27,67 +27,48 @@ process that the R tool uses for marking redundant taxa can be found here.
 
 ![Example Redundant Taxa List](Shiny_MarkExcluded.png)
 
-### Instructions
+### Notes
 
-* Upload a file under "Load Data".  The status bar will tell you when the upload
-is complete.  Then return to this screen.
+Ensure that the taxonomic levels in your input file are complete and correct.
 
-    +	Required fields: SampleID, TaxaID, Count, Taxonomic Levels (see below)
+After you upload a file, you will receive a prompt asking if you would like to
+consider all of the taxa levels that appear in your input file. You will have 
+the opportunity to deselect levels if desired (just click on the taxa level in 
+the box which will then become highlighted and hit delete).
 
-*	Possible entries for taxonomic levels include those listed below.  Only 
-include names that have a corresponding column name in your data.  The names
-will be evaluated in the order specified.
+The output file will include all the columns in the input file plus a new column
+titled whatever you entered into the 'Output Column Name' field (default =
+'Exclude_New'). It is a TRUE/FALSE field in which redundant taxa are marked as 
+'TRUE'.
 
-    +	Kingdom 
-    
-    + Phylum
+All 'Redundant' decisions are sample-specific. If sample contents change and/or 
+if the level of effort or operational taxonomic units change, the input file 
+should be rerun through the function.
 
-    +	Subphylum
+A detailed description of the process that the R tool uses for marking redundant
+taxa can be found here.
 
-    +	Class
-    
-    + Subclass
+The metric calculation function requires the name 'Exclude'
 
-    +	Order
-    
-    + Suborder
-
-    +	Infraorder
-    
-    + Superfamily
-
-    +	Family
-
-    +	Subfamily
-
-    +	Tribe
-
-    +	Genus
-    
-    + Species
-    
-    + Variety
-
-*	You will receive a prompt asking if you would like to consider all of the 
-taxonomic levels that appear in your input file. You will have the opportunity 
-to deselect levels if desired.
-
-*	Click the ‘Run Function’ button; a status bar will appear in the lower right 
-corner.
-
-*	After the function is done running, the ‘Download Results’ button will be 
-active. Click this button to retrieve your results.
-
-*	Save the file in the desired folder. The output file will include all the 
-columns in the input file plus a new column titled ‘Exclude’, which is a 
-TRUE/FALSE field in which redundant taxa are marked as ‘TRUE’.
 
 ### Additional Notes
 
-*	Ensure that the taxonomic levels in your input file are complete and correct.
+WANT TO TRY RUNNING IT WITH TEST DATA?
+Click here to download an example input and output file.
 
-*	All ‘Exclude’ decisions are sample-specific. If sample contents change and/or
-if the level of effort or operational taxonomic units change, the Excluded taxa
-designations should be recalculated.
 
-*Last updated 2022-01-12*
+
+If you prefer you run this function using R console instead of the Shiny app.
+
+The R package is available for download on GitHub.  Use the green "Code" button.
+
+ <https://github.com/leppott/BioMonTools> 
+
+To install from within R use the code below.
+```{r install, eval=FALSE, echo=TRUE}
+if(!require(remotes)){install.packages("remotes")}  #install if needed
+install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+```
+
+
+*Last updated 2022-01-27*

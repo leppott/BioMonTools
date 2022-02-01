@@ -45,8 +45,8 @@ if(!require(remotes)){install.packages("remotes")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE)
 ```
 
-Vignettes are not installed by default.  If you want the additional documentat
-(recommended) then use this version of the code.
+Vignettes are not installed by default.  If you want the additional 
+documentation (recommended) then use this version of the code.
 
 ```{r, eval=FALSE}
 if(!require(remotes)){install.packages("remotes")}  #install if needed

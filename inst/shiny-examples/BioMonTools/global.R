@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_version <- "0.5.0.9086"
+pkg_version <- "0.5.0.9088"
 
 # Packages----
 library(BioMonTools)
@@ -16,8 +16,8 @@ library(DT)
 # masks shinyjs::alert
 
 # Source ----
-sb_main            <- source("external/sb_main.R", local = TRUE)$value
-db_main            <- source("external/db_main.R", local = TRUE)$value
+main_db_sb         <- source("external/main_db_sb.R", local = TRUE)$value
+main_db_body       <- source("external/main_db_body.R", local = TRUE)$value
 tab_code_about     <- source("external/tab_about.R", local = TRUE)$value
 tab_code_import    <- source("external/tab_import.R", local = TRUE)$value
 tab_code_subsample <- source("external/tab_subsample.R", local = TRUE)$value
@@ -50,4 +50,25 @@ sel_community <- c("bugs", "fish", "algae")
 
 # taxamaps ----
 maps_database <- c("world", "usa", "state", "county")
+
+# Copy MetricNames
+# fn_metrics <- "MetricNames.xlsx"
+# path_metrics <- paste0("https://github.com/leppott/BioMonTools/raw/main/inst/extdata/"
+#                        , fn_metrics)
+# file.copy(path_metrics, file.path("www", fn_metrics), overwrite = TRUE)
+
+# Copy Metrics File to Shiny www for download
+# fn_metrics <- "MetricNames.xlsx"
+# pn_metrics <- file.path(system.file(package="BioMonTools")
+#                         , "extdata"
+#                         , fn_metrics)
+#
+# dn_shiny <- file.path("www")
+# pn_shiny <- file.path(dn_shiny, fn_metrics)
+#
+# file.copy(pn_metrics, pn_shiny, overwrite = TRUE)
+
+
+
+
 

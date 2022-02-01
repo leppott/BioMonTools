@@ -264,7 +264,7 @@ markExcluded <- function(df_samptax
   boo_QC <- FALSE
   if(isTRUE(boo_QC)){
     # Data
-    df_samps_bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
+    df_samps_bugs <- readxl::read_excel(system.file("./extdata/Data_Benthos.xlsx"
                                             , package="BioMonTools")
                                 , guess_max=10^6)
 

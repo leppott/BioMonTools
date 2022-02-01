@@ -3,7 +3,7 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2021-05-21 10:08:25
+    #> Last Update: 2022-01-21 15:00:16
 
 # BioMonTools <img src="man/figures/logo.png" align="right" height="139" />
 
@@ -43,7 +43,7 @@ install_github("leppott/BioMonTools", force=TRUE)
 ```
 
 Vignettes are not installed by default. If you want the additional
-documentat (recommended) then use this version of the code.
+documentation (recommended) then use this version of the code.
 
 ``` r
 if(!require(remotes)){install.packages("remotes")}  #install if needed

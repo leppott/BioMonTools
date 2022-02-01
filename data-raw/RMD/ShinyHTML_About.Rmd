@@ -1,13 +1,12 @@
 ---
 title: "About"
-date: "2021-09-29"
 output: html_fragment
-editor_options: 
-  markdown: 
-    wrap: 72
 ---
-
 ```{r setup, include=FALSE}
+# ---
+# title: "About"
+# date: '2022-01-27'
+# ---
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -34,7 +33,35 @@ or post your comments on the BioMonTools GitHub page
 (<https://github.com/leppott/BioMonTools/discussions>). This is an
 open-source, collaborative effort and we welcome your feedback.
 
-```{r table}
+If you prefer you run this function using R console instead of the Shiny app.
+
+The R package is available for download on GitHub.  Use the green "Code" button.
+
+ <https://github.com/leppott/BioMonTools> 
+
+To install from within R use the code below.
+```{r install, eval=FALSE, echo=TRUE}
+if(!require(remotes)){install.packages("remotes")}  #install if needed
+install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+```
+
+link to github
+br()
+[click here](https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv)
+
+<a href = "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv" download>Click to download</a>
+
+tags$a("MeticNamesFile", href = "MetricNames.xlsx")
+
+
+```{r}
+htmltools::a(href = "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv", "test")
+```
+
+
+
+
+```{r table, eval=FALSE}
 # Packages
 #library(knitr)
 
@@ -62,13 +89,24 @@ names(myTable) <- t_names
 
 # Display
 ## Knitr
-knitr::kable(myTable, caption = t_cap, format = "html")
+knitr::kable(myTable
+             , caption = t_cap
+            # , format = "html"
+             )
 ## DT
-#list_tables <- list()
-#list_tables[[1]] <- DT::datatable(myTable, caption = t_cap, rownames = FALSE)
-#htmltools::tagList(lapply(list_tables, print))
-#DT::datatable(myTable, caption = t_cap, rownames = FALSE)
+# list_tables <- list()
+# list_tables[[1]] <- DT::datatable(myTable, caption = t_cap, rownames = FALSE)
+# htmltools::tagList(lapply(list_tables, print))
+# DT::datatable(myTable, caption = t_cap, rownames = FALSE)
 
+# knitr::kable(head(mtcars))
+# 
+# kableExtra::kable_classic(kableExtra::kbl(head(mtcars)))
+
+# lines disappear in html fragment
+
+
+# <!-- *Last updated: 2022-01-26* -->
 ```
 
-*Last updated 2021-09-29*
+

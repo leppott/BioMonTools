@@ -13,11 +13,15 @@ function() {
            #
            #
            #              )## fluidPage ~ END
-            , includeHTML(file.path("www", "ShinyHTML_About.html"))
+           # html_fragment
+           , includeHTML(file.path("www", "ShinyHTML_About.html"))
          #  , htmlOutput("html_about") # use with iframe
+
+
+          , tableOutput("tbl_about")
+
+          , em("Last updated: 2022-01-27")
+
+
            )##tabPanel ~ END
 }##FUNCTION ~ END
-
-# output$UI_about = renderUI({
-#   p("About stuff here.")
-# })

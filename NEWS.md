@@ -4,11 +4,32 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-01-12 10:53:29
+    #> Last Update: 2022-02-01 14:31:57
 
 # Version History
 
-## Changes in Version 0.5.0.9086 (2022-01-11\*\*\*\*)
+## Changes in Version 0.5.0.9088 (2022-02-01)
+
+-   refactor: Shiny app updates
+    -   Calculate Metrics
+    -   Update help/notes for each function
+        -   RMD in data-raw
+    -   Add download files to www folder
+-   refactor: Define global variables in functions
+    -   metric.values
+-   refactor: Define imported function
+    -   MapTaxaObs
+    -   markExcluded
+    -   metric.stats2
+-   feature: Update MetricNames.xlsx with Sort_Group
+-   feature: Add new function, metvalgrpxl(), Issue #68
+
+## Changes in Version 0.5.0.9087 (2022-01-12)
+
+-   fix: Correct spelling of file name in global.R
+    -   ShinyApps.io is Linux and is case-sensitive
+
+## Changes in Version 0.5.0.9086 (2022-01-12)
 
 -   refactor: Reorganize -raw folder with subfolders
     -   Keep only the scripts to be run at the root

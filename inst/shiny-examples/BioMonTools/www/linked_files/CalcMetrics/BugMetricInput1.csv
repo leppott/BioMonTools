@@ -1,0 +1,838 @@
+INDEX_REGION,SourceEntity,StationID,SampleID_Tt,SampleID,RepNum,CollDate,TaxaID,N_TAXA,NonTarget,Phylum,Class,Subclass,Order,Family,Subfamily,Tribe,Genus,BCG_Attr,FFG,Habit,Life_Cycle,Habitat,Noteworthy,Thermal_Indicator,Exclude
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Baetis tricaudatus complex,82,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Caecidotea,1,FALSE,Arthropoda,Malacostraca,NA,Isopoda,Asellidae,NA,NA,Caecidotea,5,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Crangonyx,42,FALSE,Arthropoda,Malacostraca,NA,Amphipoda,Crangonyctidae,NA,NA,Crangonyx,5,CG,SW,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Dicranota,5,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,CN,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Diplocladius cultriger,6,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Diplocladius,5,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Elmidae,2,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,NA,NA,NA,NA,CG,CN,semi,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Eukiefferiella,11,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Malenka,8,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,Malenka,4,SH,SP,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Micropsectra,85,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Nemouridae,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,NA,4,SH,SP,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Oligochaeta,23,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Optioservus,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Parametriocnemus,17,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Polypedilum,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Prodiamesa,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Prodiamesinae,NA,Prodiamesa,5,CG,BU,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Rheotanytarsus,61,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Simulium,160,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Thienemanniella,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Thienemanniella,3,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Thienemannimyia group,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Thienemannimyia group,4,PR,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Trepaxonemata,1,FALSE,Platyhelminthes,Trepaxonemata,NA,NA,NA,NA,NA,NA,4,PR,CN,multi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Trombidiformes,5,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Tvetenia bavarica group,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Zapada cinctipes,8,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Baetis tricaudatus complex,59,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Brillia,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Dicosmoecus gilvipes,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Limnephilidae,Dicosmoecinae,NA,Dicosmoecus,3,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Dicranota,5,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,CN,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Diphetor hageni,14,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Dixa,1,FALSE,Arthropoda,Insecta,NA,Diptera,Dixidae,NA,NA,Dixa,4,CG,SW,multi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Empididae Genus B,2,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,NA,NA,Empididae Genus B,3,PR,SP,uni,RHEO,TRUE,NA,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Eukiefferiella,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Glossosoma,12,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Glossosomatidae,8,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Heterlimnius corpulentus,37,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Hydropsyche,212,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Leptophlebiidae,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,NA,3,CG,SP,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Malenka,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,Malenka,4,SH,SP,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Micropsectra,12,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Microtendipes,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Microtendipes,4,CF,CN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Narpus concolor,4,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Neaviperla/Suwallia,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,NA,Suwalliini,Neaviperla/Suwallia,3,NA,NA,NA,NA,NA,NA,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Neoplasta,1,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Neoplasta,4,PR,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Oligochaeta,2,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Optioservus,2,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Pagastia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Diamesinae,Diamesini,Pagastia,3,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Paracladopelma,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Paracladopelma,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Parametriocnemus,6,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Polypedilum,6,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Rheotanytarsus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Rhyacophila,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Rhyacophila betteni group,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Rhyacophila brunnea/vemna groups,11,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Simulium,28,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Skwala,16,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Sweltsa,10,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Tanytarsini,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,NA,4,CF,UN,multi,GENE,NA,NA,TRUE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Thienemannimyia group,30,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Thienemannimyia group,4,PR,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Trombidiformes,11,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Tvetenia bavarica group,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Zaitzevia,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,136,Tt_98,9263_14266,14266,2017-08-15,Zapada cinctipes,6,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Baetis tricaudatus complex,24,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Brillia,154,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Ceratopogoninae,7,FALSE,Arthropoda,Insecta,NA,Diptera,Ceratopogonidae,Ceratopogoninae,NA,NA,4,PR,SP,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Cinygma,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Cinygma,4,SC,CN,uni,DEPO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Cinygmula,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Cinygmula,3,SC,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Corynoneura,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Corynoneura,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Dicranota,5,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,CN,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Diphetor hageni,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Dixa,23,FALSE,Arthropoda,Insecta,NA,Diptera,Dixidae,NA,NA,Dixa,4,CG,SW,multi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Eloeophila,1,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limnophilinae,NA,Eloeophila,3,PR,BU,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Eukiefferiella,11,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Hydrophilidae,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Hydrophilidae,NA,NA,NA,4,PR,CN,uni,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Ironodes,18,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Ironodes,3,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Lara,26,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Larainae,NA,Lara,4,XY,CN,semi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Leuctridae,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Leuctridae,NA,NA,NA,3,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Meringodixa,2,FALSE,Arthropoda,Insecta,NA,Diptera,Dixidae,NA,NA,Meringodixa,3,CG,SW,multi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Micropsectra,8,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Neoplasta,7,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Neoplasta,4,PR,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Oligochaeta,7,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Parametriocnemus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Paraphaenocladius,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Paraphaenocladius,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Parapsyche,10,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Arctopsychinae,NA,Parapsyche,NA,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Polypedilum,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Psilometriocnemus triannulatus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Psilometriocnemus,4,CG,SP,multi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Pteronarcys princeps,12,FALSE,Arthropoda,Insecta,NA,Plecoptera,Pteronarcyidae,Pteronarcyinae,Pteronarcyini,Pteronarcys,3,OM,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Rhabdomastix (Lurdia),1,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Chioneinae,NA,Rhabdomastix,NA,SH,BU,semi,SPEC,TRUE,NA,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Rheocricotopus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Rheocricotopus,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Rhyacophila grandis group,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,HEAD,TRUE,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Simulium,88,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Sphaeriidae,2,FALSE,Mollusca,Bivalvia,NA,Veneroida,Sphaeriidae,NA,NA,NA,4,CF,BU,semi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Sweltsa,30,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Thienemanniella,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Thienemanniella,3,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Trombidiformes,1,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Tvetenia bavarica group,27,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Zapada cinctipes,36,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,142,Tt_129,5471_8231,8231,2013-08-22,Zapada columbiana,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,2,SH,SP,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Antocha monticola,1,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Antocha,4,CG,CN,multi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Apatania,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Apataniidae,Apataniinae,Apataniini,Apatania,2,SC,CN,uni,RHEO,TRUE,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Attenella delantala,14,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Attenella,3,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Baetis tricaudatus complex,4,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Ceratopogoninae,2,FALSE,Arthropoda,Insecta,NA,Diptera,Ceratopogonidae,Ceratopogoninae,NA,NA,4,PR,SP,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Chelifera/Metachela,4,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Chelifera/Metachela,4,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Cinygmula,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Cinygmula,3,SC,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Cleptelmis addenda,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Cleptelmis,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Cultus,5,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Diploperlini,Cultus,3,PR,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Drunella doddsii,5,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Drunella grandis/spinifera,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Ephemerella excrucians group,5,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,4,CG,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Glossosoma,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Glossosomatidae,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Glutops,4,FALSE,Arthropoda,Insecta,NA,Diptera,Pelecorhynchidae,NA,NA,Glutops,3,PR,SP,semi,DEPO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Hemerodromia,8,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Hemerodromia,5,PR,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Hesperoperla pacifica,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Hesperoperla,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Heterlimnius corpulentus,128,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Hexatoma,2,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Hexatoma,3,PR,BU,uni,DEPO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Hydropsyche,30,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Hydroptila,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydroptilidae,Hydroptilinae,Hydroptilini,Hydroptila,4,PH,CN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Limnophyes,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Limnophyes,5,CG,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Monodiamesa,26,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Prodiamesinae,NA,Monodiamesa,3,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Narpus concolor,4,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Nemata,1,FALSE,Nemata,NA,NA,NA,NA,NA,NA,NA,4,PA,BU,uni,SPEC,NA,NA,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Oligochaeta,8,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Optioservus,2,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Oreodytes,2,FALSE,Arthropoda,Insecta,NA,Coleoptera,Dytiscidae,Hydroporinae,NA,Oreodytes,NA,PR,SW,uni,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Paraperla,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Paraperlinae,NA,Paraperla,3,PR,BU,semi,SPEC,NA,cold,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Polypedilum,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Psychodidae,2,FALSE,Arthropoda,Insecta,NA,Diptera,Psychodidae,NA,NA,NA,3,CG,BU,UN,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Pteronarcella,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Pteronarcyidae,Pteronarcyinae,Pteronarcellini,Pteronarcella,3,OM,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Ptychoptera,82,FALSE,Arthropoda,Insecta,NA,Diptera,Ptychopteridae,Ptychopterinae,NA,Ptychoptera,3,CG,BU,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Rhithrogena,115,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Rhyacophila betteni group,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Rhyacophila brunnea/vemna groups,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Rhyacophila narvae,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Simulium,5,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Skwala,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Sphaeriidae,7,FALSE,Mollusca,Bivalvia,NA,Veneroida,Sphaeriidae,NA,NA,NA,4,CF,BU,semi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Stygobromus,1,FALSE,Arthropoda,Malacostraca,NA,Amphipoda,Crangonyctidae,NA,NA,Stygobromus,1i,CG,BU,multi,SPEC,TRUE,NA,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Sweltsa,23,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Tabanidae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Tabanidae,NA,NA,NA,4,PR,SP,uni,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Trombidiformes,2,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Wormaldia,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Philopotamidae,Philopotaminae,NA,Wormaldia,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,156,Tt_182,9264_14267,14267,2017-10-26,Zapada cinctipes,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Baetis tricaudatus complex,14,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Brillia,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Chelifera/Metachela,21,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Chelifera/Metachela,4,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Cinygma,10,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Cinygma,4,SC,CN,uni,DEPO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Cleptelmis addenda,23,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Cleptelmis,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Crangonyx,11,FALSE,Arthropoda,Malacostraca,NA,Amphipoda,Crangonyctidae,NA,NA,Crangonyx,5,CG,SW,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Dicranota,1,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,CN,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Hydropsyche,208,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Kogotus/Rickera,31,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Diploperlini,Kogotus/Rickera,4,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Lara,8,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Larainae,NA,Lara,4,XY,CN,semi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Leptophlebiidae,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,NA,3,CG,SP,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Malenka,11,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,Malenka,4,SH,SP,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Narpus concolor,4,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Nemata,1,FALSE,Nemata,NA,NA,NA,NA,NA,NA,NA,4,PA,BU,uni,SPEC,NA,NA,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Oligochaeta,12,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Oribatida,2,FALSE,Arthropoda,Arachnida,NA,Sarcoptiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Orthocladius (Symposiocladius),1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Orthocladius,3,UN,UN,multi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Parametriocnemus,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Parapsyche,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Arctopsychinae,NA,Parapsyche,NA,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Polypedilum,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Rhyacophila brunnea/vemna groups,34,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Simulium,90,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Sphaeriidae,1,FALSE,Mollusca,Bivalvia,NA,Veneroida,Sphaeriidae,NA,NA,NA,4,CF,BU,semi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Trombidiformes,26,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Tvetenia bavarica group,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,1600,Tt_207,9270_14273,14273,2017-09-13,Zapada cinctipes,27,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Baetis tricaudatus complex,44,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Brillia,40,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Ceratopogoninae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Ceratopogonidae,Ceratopogoninae,NA,NA,4,PR,SP,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Chelifera/Metachela,4,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Chelifera/Metachela,4,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Corynoneura,6,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Corynoneura,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Crangonyx,5,FALSE,Arthropoda,Malacostraca,NA,Amphipoda,Crangonyctidae,NA,NA,Crangonyx,5,CG,SW,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Dicosmoecus gilvipes,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Limnephilidae,Dicosmoecinae,NA,Dicosmoecus,3,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Dicranota,1,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,CN,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Diplocladius cultriger,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Diplocladius,5,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Dixa,5,FALSE,Arthropoda,Insecta,NA,Diptera,Dixidae,NA,NA,Dixa,4,CG,SW,multi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Elmidae,9,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,NA,NA,NA,NA,CG,CN,semi,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Eukiefferiella,18,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Glossosoma,37,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Heptageniidae,4,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,NA,3,SC,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Heterlimnius corpulentus,26,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Heterotanytarsus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Heterotanytarsus,3,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Heterotrissocladius marcidus group,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Heterotrissocladius,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Kogotus/Rickera,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Diploperlini,Kogotus/Rickera,4,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Leptophlebiidae,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,NA,3,CG,SP,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Leuctridae,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Leuctridae,NA,NA,NA,3,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Limnephilidae,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Limnephilidae,NA,NA,NA,3,UN,UN,UN,UNKN,NA,NA,TRUE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Micropsectra,53,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Narpus concolor,6,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Nemouridae,34,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,NA,4,SH,SP,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Neoplasta,3,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Neoplasta,4,PR,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Oligochaeta,25,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Parorthocladius,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parorthocladius,3,CG,SP,multi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Pedicia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Pedicia,3,PR,BU,uni,SPEC,TRUE,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Polypedilum,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Pseudodiamesa,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Diamesinae,Diamesini,Pseudodiamesa,3,CG,SP,multi,GENE,NA,cold,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Reomyia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Reomyia,NA,PR,UN,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Rhyacophila betteni group,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Rhyacophila blarina,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Rhyacophila grandis group,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,HEAD,TRUE,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Rhyacophila narvae,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Simulium,29,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Skwala,9,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Sphaeriidae,1,FALSE,Mollusca,Bivalvia,NA,Veneroida,Sphaeriidae,NA,NA,NA,4,CF,BU,semi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Stempellinella,15,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Stempellinella,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Sweltsa,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Thienemannimyia group,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Thienemannimyia group,4,PR,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Trombidiformes,3,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Tvetenia bavarica group,18,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Wormaldia,7,FALSE,Arthropoda,Insecta,NA,Trichoptera,Philopotamidae,Philopotaminae,NA,Wormaldia,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Zaitzevia,2,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Zapada cinctipes,82,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Zapada frigida,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,2,SH,SP,uni,RHEO,TRUE,cold_cool,FALSE
+MARIPACNW,King County - DNRP,173,Tt_261,4589_7079,7079,2012-08-22,Zapada oregonensis group,11,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,3,SH,SP,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Antocha monticola,1,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Antocha,4,CG,CN,multi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Baetis tricaudatus complex,31,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Chloroperlidae,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,NA,NA,NA,4,PR,BU,uni,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Corynoneura,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Corynoneura,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Crangonyx,1,FALSE,Arthropoda,Malacostraca,NA,Amphipoda,Crangonyctidae,NA,NA,Crangonyx,5,CG,SW,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Dicosmoecus gilvipes,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Limnephilidae,Dicosmoecinae,NA,Dicosmoecus,3,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Diphetor hageni,8,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Elmidae,12,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,NA,NA,NA,NA,CG,CN,semi,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Ephemerella tibialis,3,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,4,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Eukiefferiella,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Glossosoma,23,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Glossosomatidae,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Heptageniidae,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,NA,3,SC,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Hesperoperla pacifica,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Hesperoperla,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Heterlimnius corpulentus,27,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Hydropsyche,32,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Hydroptila,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydroptilidae,Hydroptilinae,Hydroptilini,Hydroptila,4,PH,CN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Micropsectra,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Narpus concolor,10,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Neaviperla/Suwallia,9,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,NA,Suwalliini,Neaviperla/Suwallia,3,NA,NA,NA,NA,NA,NA,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Neoleptophlebia/Paraleptophlebia,3,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,Neoleptophlebia/Paraleptophlebia,3,CG,SP,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Oligochaeta,37,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Optioservus,48,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Oribatida,1,FALSE,Arthropoda,Arachnida,NA,Sarcoptiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Parametriocnemus,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Perlodidae,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,NA,NA,NA,3,PR,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Polypedilum,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Rhithrogena,42,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Rhyacophila,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Rhyacophila betteni group,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Rhyacophila brunnea/vemna groups,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Simuliidae,4,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,NA,NA,NA,4,CF,CN,uni,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Simulium,186,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Skwala,6,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Stempellinella,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Stempellinella,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Sweltsa,13,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Tanytarsini,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,NA,4,CF,UN,multi,GENE,NA,NA,TRUE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Timpanoga hecuba,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Timpanoga,3,CG,SP,uni,DEPO,TRUE,cool_warm,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Trombidiformes,4,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Tvetenia bavarica group,8,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Zaitzevia,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,177,Tt_285,4590_7080,7080,2012-08-22,Zapada cinctipes,23,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Baetis tricaudatus complex,14,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Brillia,26,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Chironomidae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,NA,NA,NA,4,CG,UN,multi,GENE,NA,NA,TRUE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Cleptelmis addenda,5,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Cleptelmis,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Corynoneura,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Corynoneura,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Crangonyx,96,FALSE,Arthropoda,Malacostraca,NA,Amphipoda,Crangonyctidae,NA,NA,Crangonyx,5,CG,SW,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Dicranomyia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Dicranomyia,4,SH,BU,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Dicranota,10,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,CN,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Dixa,1,FALSE,Arthropoda,Insecta,NA,Diptera,Dixidae,NA,NA,Dixa,4,CG,SW,multi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Ephemerella tibialis,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,4,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Glossosoma,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Glossosomatidae,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Hydropsyche,194,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Hydropsychidae,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,NA,NA,NA,4,UN,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Kogotus/Rickera,25,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Diploperlini,Kogotus/Rickera,4,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Lara,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Larainae,NA,Lara,4,XY,CN,semi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Micropsectra,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Narpus concolor,18,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Nemata,2,FALSE,Nemata,NA,NA,NA,NA,NA,NA,NA,4,PA,BU,uni,SPEC,NA,NA,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Neoleptophlebia/Paraleptophlebia,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,Neoleptophlebia/Paraleptophlebia,3,CG,SP,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Oligochaeta,13,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Optioservus,4,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Parametriocnemus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Parapsyche,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Arctopsychinae,NA,Parapsyche,NA,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Pisidium,3,FALSE,Mollusca,Bivalvia,NA,Veneroida,Sphaeriidae,NA,NA,Pisidium,4,CF,BU,semi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Rheotanytarsus,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Rhithrogena,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Rhyacophila,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Rhyacophila brunnea/vemna groups,10,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Simulium,1,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Skwala,27,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Sweltsa,22,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Trepaxonemata,9,FALSE,Platyhelminthes,Trepaxonemata,NA,NA,NA,NA,NA,NA,4,PR,CN,multi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Trombidiformes,8,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Tvetenia bavarica group,12,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,201,Tt_357,5465_8226,8226,2013-08-21,Zapada cinctipes,21,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Baetis tricaudatus complex,51,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Brillia,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Chaetocladius,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Chaetocladius,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Chelifera/Metachela,29,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Chelifera/Metachela,4,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Cleptelmis addenda,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Cleptelmis,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Elmidae,8,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,NA,NA,NA,NA,CG,CN,semi,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Glossosoma,7,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Glossosomatidae,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Hesperoperla pacifica,46,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Hesperoperla,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Heterlimnius corpulentus,150,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Hydropsyche,17,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Isoperla,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Isoperlinae,NA,Isoperla,3,PR,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Kogotus/Rickera,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Diploperlini,Kogotus/Rickera,4,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Lara,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Larainae,NA,Lara,4,XY,CN,semi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Leuctridae,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Leuctridae,NA,NA,NA,3,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Narpus concolor,18,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Nemata,3,FALSE,Nemata,NA,NA,NA,NA,NA,NA,NA,4,PA,BU,uni,SPEC,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Oligochaeta,12,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Optioservus,111,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Oribatida,2,FALSE,Arthropoda,Arachnida,NA,Sarcoptiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Plecoptera,15,FALSE,Arthropoda,Insecta,NA,Plecoptera,NA,NA,NA,NA,NA,UN,UN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Polypedilum,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Rhyacophila brunnea/vemna groups,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Simulium,19,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Sweltsa,5,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Tipula,1,FALSE,Arthropoda,Insecta,NA,Diptera,Tipulidae,Tipulinae,NA,Tipula,4,SH,BU,semi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Trombidiformes,2,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Zaitzevia,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Zapada cinctipes,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2229,Tt_463,9952_15005,15005,2018-08-30,Zapada oregonensis group,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,3,SH,SP,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Attenella delantala,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Attenella,3,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Baetis tricaudatus complex,17,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Brillia,9,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Chelifera/Metachela,5,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Chelifera/Metachela,4,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Cinygmula,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Cinygmula,3,SC,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Cleptelmis addenda,35,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Cleptelmis,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Dicranota,1,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,CN,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Diphetor hageni,3,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Dixa,1,FALSE,Arthropoda,Insecta,NA,Diptera,Dixidae,NA,NA,Dixa,4,CG,SW,multi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Ephemerella excrucians group,3,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,4,CG,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Ephemerella tibialis,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,4,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Eukiefferiella,6,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Glossosoma,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Glossosomatidae,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Glutops,4,FALSE,Arthropoda,Insecta,NA,Diptera,Pelecorhynchidae,NA,NA,Glutops,3,PR,SP,semi,DEPO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Hesperoperla pacifica,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Hesperoperla,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Heterlimnius corpulentus,27,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Hydropsyche,87,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Isoperla,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Isoperlinae,NA,Isoperla,3,PR,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Kogotus/Rickera,3,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Diploperlini,Kogotus/Rickera,4,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Malenka,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,Malenka,4,SH,SP,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Micrasema,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,Micrasema,3,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Micropsectra,12,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Microtendipes,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Microtendipes,4,CF,CN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Narpus concolor,8,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Nemata,1,FALSE,Nemata,NA,NA,NA,NA,NA,NA,NA,4,PA,BU,uni,SPEC,NA,NA,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Oligochaeta,4,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Optioservus,18,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Oreodytes,2,FALSE,Arthropoda,Insecta,NA,Coleoptera,Dytiscidae,Hydroporinae,NA,Oreodytes,NA,PR,SW,uni,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Parametriocnemus,16,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Paraperlinae,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Paraperlinae,NA,NA,3,PR,BU,semi,SPEC,NA,NA,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Pericomaini,3,FALSE,Arthropoda,Insecta,NA,Diptera,Psychodidae,Psychodinae,Pericomaini,NA,3,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Polypedilum,8,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Rheocricotopus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Rheocricotopus,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Rheotanytarsus,8,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Rhithrogena,18,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Rhyacophila,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Rhyacophila arnaudi,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Rhyacophila blarina,7,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Rhyacophila brunnea/vemna groups,7,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Rhyacophila narvae,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Simulium,66,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Skwala,6,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Sweltsa,66,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Tanypodinae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,NA,NA,4,PR,SP,multi,GENE,NA,NA,TRUE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Thienemannimyia group,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Thienemannimyia group,4,PR,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Trepaxonemata,3,FALSE,Platyhelminthes,Trepaxonemata,NA,NA,NA,NA,NA,NA,4,PR,CN,multi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Trombidiformes,24,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Tvetenia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Tvetenia bavarica group,11,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Wormaldia,6,FALSE,Arthropoda,Insecta,NA,Trichoptera,Philopotamidae,Philopotaminae,NA,Wormaldia,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,226,Tt_495,5460_8221,8221,2013-08-19,Zapada oregonensis group,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,3,SH,SP,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Agapetus,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Agapetinae,NA,Agapetus,3,SC,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Amiocentrus aspilus,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,Amiocentrus,3,CG,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Antocha monticola,6,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Antocha,4,CG,CN,multi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Arctopsyche,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Arctopsychinae,NA,Arctopsyche,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Baetis tricaudatus complex,77,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Brillia,39,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Ceratopogoninae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Ceratopogonidae,Ceratopogoninae,NA,NA,4,PR,SP,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Cinygmula,13,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Cinygmula,3,SC,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Dicranota,4,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,CN,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Diphetor hageni,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Dixa,1,FALSE,Arthropoda,Insecta,NA,Diptera,Dixidae,NA,NA,Dixa,4,CG,SW,multi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Doroneuria,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Doroneuria,2,PR,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Drunella,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,UN,CN,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Drunella coloradensis/flavilinea,3,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Drunella doddsii,14,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Dytiscidae,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Dytiscidae,NA,NA,NA,3,PR,SW,uni,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Epeorus,8,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Epeorus,3,SC,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Ephemerella tibialis,7,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,4,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Eukiefferiella,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Glossosoma,43,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Glossosomatidae,6,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Heterlimnius corpulentus,19,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Hexatoma,4,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Hexatoma,3,PR,BU,uni,DEPO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Hydropsyche,18,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Lepidostoma,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Lepidostomatidae,Lepidostomatinae,NA,Lepidostoma,3,SH,CN,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Limnephilidae,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Limnephilidae,NA,NA,NA,3,UN,UN,UN,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Malenka,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,Malenka,4,SH,SP,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Micrasema,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,Micrasema,3,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Micropsectra,37,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Microtendipes,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Microtendipes,4,CF,CN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Nanocladius,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Nanocladius,5,CG,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Nemata,2,FALSE,Nemata,NA,NA,NA,NA,NA,NA,NA,4,PA,BU,uni,SPEC,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Neoleptophlebia/Paraleptophlebia,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,Neoleptophlebia/Paraleptophlebia,3,CG,SP,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Neophylax splendens,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Thremmatidae,NA,NA,Neophylax,3,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Oligochaeta,10,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Oligophlebodes,7,FALSE,Arthropoda,Insecta,NA,Trichoptera,Thremmatidae,NA,NA,Oligophlebodes,2,SC,CN,uni,RHEO,TRUE,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Paraperla,3,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Paraperlinae,NA,Paraperla,3,PR,BU,semi,SPEC,NA,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Parapsyche,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Arctopsychinae,NA,Parapsyche,NA,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Parorthocladius,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parorthocladius,3,CG,SP,multi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Pericomaini,7,FALSE,Arthropoda,Insecta,NA,Diptera,Psychodidae,Psychodinae,Pericomaini,NA,3,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Perlidae,19,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,NA,NA,NA,3,PR,CN,semi,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Polycelis,11,FALSE,Platyhelminthes,Turbellaria,NA,Tricladida,Planariidae,NA,NA,Polycelis,3,PR,CN,multi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Polypedilum,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Pteronarcys princeps,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Pteronarcyidae,Pteronarcyinae,Pteronarcyini,Pteronarcys,3,OM,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Rheocricotopus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Rheocricotopus,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Rheotanytarsus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Rhithrogena,18,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Rhyacophila,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Rhyacophila atrata complex,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Rhyacophila betteni group,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Rhyacophila brunnea/vemna groups,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Rhyacophila hyalinata group,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,2,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Rhyacophila narvae,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Rhyacophila vofixa group,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,2,PR,CN,semi,RHEO,TRUE,cold,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Simulium,25,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Skwala,33,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Stempellinella,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Stempellinella,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Sweltsa,22,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Trombidiformes,21,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Tvetenia bavarica group,7,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,228,Tt_502,5468_8229,8229,2013-08-21,Zapada cinctipes,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Acentrella turbida,9,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Acentrella,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Afghanurus,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Afghanurus,3,SC,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Antocha monticola,5,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Antocha,4,CG,CN,multi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Arctopsyche,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Arctopsychinae,NA,Arctopsyche,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Atherix,1,FALSE,Arthropoda,Insecta,NA,Diptera,Athericidae,NA,NA,Atherix,3,PR,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Attenella delantala,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Attenella,3,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Baetis tricaudatus complex,24,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Brachycentrus occidentalis,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,Brachycentrus,3,OM,CN,uni,RIVE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Brillia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Calineuria californica,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Calineuria,3,PR,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Capniidae,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Capniidae,NA,NA,NA,3,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Cardiocladius,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Cardiocladius,3,PR,BU,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Ceratopogoninae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Ceratopogonidae,Ceratopogoninae,NA,NA,4,PR,SP,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Cladotanytarsus,8,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Cladotanytarsus,3,CG,UN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Cricotopus bicinctus group,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Cricotopus,5,MH,CN,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Diamesinae,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Diamesinae,NA,NA,3,CG,UN,multi,GENE,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Drunella doddsii,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Ephemerella,12,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,3,CG,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Ephemerellidae,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,NA,3,CG,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Ephydridae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Ephydridae,NA,NA,NA,4,CG,BU,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Eukiefferiella,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Glossosoma,11,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Glossosomatidae,11,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Heterlimnius corpulentus,3,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Hydropsyche,109,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Lepidostoma,82,FALSE,Arthropoda,Insecta,NA,Trichoptera,Lepidostomatidae,Lepidostomatinae,NA,Lepidostoma,3,SH,CN,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Micropsectra,11,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Oligochaeta,1,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Optioservus,2,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Orthocladiinae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,NA,4,CG,SP,multi,GENE,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Orthocladius,25,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Orthocladius,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Pagastia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Diamesinae,Diamesini,Pagastia,3,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Perlodidae,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,NA,NA,NA,3,PR,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Polypedilum,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Potthastia gaedii group,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Diamesinae,Diamesini,Potthastia,3,CG,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Psychodidae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Psychodidae,NA,NA,NA,3,CG,BU,UN,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Rheotanytarsus,6,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Rhithrogena,22,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Rhyacophila,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Rhyacophila brunnea/vemna groups,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Rhyacophila coloradensis group,10,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,2,PR,CN,uni,RHEO,TRUE,NA,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Simulium,50,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Skwala,9,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Sublettea,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Sublettea,3,UN,UN,multi,DEPO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Sweltsa,9,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Thienemanniella,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Thienemanniella,3,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Thienemannimyia group,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Thienemannimyia group,4,PR,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Trombidiformes,35,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Tvetenia bavarica group,6,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Zaitzevia,26,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2383,Tt_565,9267_14270,14270,2017-09-11,Zapada cinctipes,3,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Acentrella turbida,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Acentrella,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Baetis,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Baetis tricaudatus complex,71,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Brillia,7,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Calineuria californica,7,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Calineuria,3,PR,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Chelifera/Metachela,1,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Chelifera/Metachela,4,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Cricotopus,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Cricotopus,4,MH,CN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Diphetor hageni,14,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Drunella doddsii,28,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Elmidae,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,NA,NA,NA,NA,CG,CN,semi,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Empididae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,NA,NA,NA,4,PR,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Epeorus,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Epeorus,3,SC,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Ephemerella,6,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,3,CG,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Eukiefferiella,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Glossosoma,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Hemerodromia,3,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Hemerodromia,5,PR,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Hesperoperla pacifica,10,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Hesperoperla,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Heterlimnius corpulentus,8,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Hydropsyche,72,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Ironodes,4,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Ironodes,3,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Narpus concolor,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Neoleptophlebia/Paraleptophlebia,6,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,Neoleptophlebia/Paraleptophlebia,3,CG,SP,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Oligochaeta,3,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Optioservus,5,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Orthocladiinae,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,NA,4,CG,SP,multi,GENE,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Pacifastacus leniusculus,1,FALSE,Arthropoda,Malacostraca,NA,Decapoda,Astacidae,NA,NA,Pacifastacus,4,OM,SP,semi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Parametriocnemus,9,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Perlodidae,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,NA,NA,NA,3,PR,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Polycelis,2,FALSE,Platyhelminthes,Turbellaria,NA,Tricladida,Planariidae,NA,NA,Polycelis,3,PR,CN,multi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Polypedilum,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Psychodidae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Psychodidae,NA,NA,NA,3,CG,BU,UN,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Rheocricotopus,12,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Rheocricotopus,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Rheotanytarsus,7,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Rhithrogena,88,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Rhyacophila,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Rhyacophila betteni group,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Rhyacophila blarina,17,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Rhyacophila brunnea/vemna groups,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Simulium,4,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Skwala,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Sweltsa,19,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Thienemanniella,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Thienemanniella,3,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Thremmatidae,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Thremmatidae,NA,NA,NA,3,SC,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Trombidiformes,31,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Tvetenia bavarica group,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Wormaldia,9,FALSE,Arthropoda,Insecta,NA,Trichoptera,Philopotamidae,Philopotaminae,NA,Wormaldia,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Zaitzevia,30,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2592,Tt_628,9266_14269,14269,2017-09-11,Zapada cinctipes,63,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Antocha monticola,1,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Antocha,4,CG,CN,multi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Attenella delantala,5,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Attenella,3,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Baetis tricaudatus complex,27,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Brillia,20,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Cinygmula,7,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Cinygmula,3,SC,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Cleptelmis addenda,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Cleptelmis,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Diphetor hageni,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Dixa,3,FALSE,Arthropoda,Insecta,NA,Diptera,Dixidae,NA,NA,Dixa,4,CG,SW,multi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Doroneuria,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Doroneuria,2,PR,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Drunella doddsii,99,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Empididae Genus B,3,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,NA,NA,Empididae Genus B,3,PR,SP,uni,RHEO,TRUE,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Epeorus,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Epeorus,3,SC,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Ephemerella tibialis,9,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,4,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Glossosoma,33,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Glossosomatidae,9,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Glutops,3,FALSE,Arthropoda,Insecta,NA,Diptera,Pelecorhynchidae,NA,NA,Glutops,3,PR,SP,semi,DEPO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Hesperoperla pacifica,15,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Hesperoperla,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Heterlimnius corpulentus,65,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Hydropsyche,53,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Leuctridae,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Leuctridae,NA,NA,NA,3,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Malenka,3,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,Malenka,4,SH,SP,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Micropsectra,13,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Narpus concolor,5,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Nemata,2,FALSE,Nemata,NA,NA,NA,NA,NA,NA,NA,4,PA,BU,uni,SPEC,NA,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Neoleptophlebia/Paraleptophlebia,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,Neoleptophlebia/Paraleptophlebia,3,CG,SP,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Neophylax rickeri,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Thremmatidae,NA,NA,Neophylax,3,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Neophylax splendens,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Thremmatidae,NA,NA,Neophylax,3,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Oligochaeta,7,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Oribatida,1,FALSE,Arthropoda,Arachnida,NA,Sarcoptiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Orthocladiinae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,NA,4,CG,SP,multi,GENE,NA,NA,TRUE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Parametriocnemus,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Parapsyche,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Arctopsychinae,NA,Parapsyche,NA,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Pericomaini,13,FALSE,Arthropoda,Insecta,NA,Diptera,Psychodidae,Psychodinae,Pericomaini,NA,3,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Rheotanytarsus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Rhithrogena,18,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Rhyacophila,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Rhyacophila betteni group,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Rhyacophila blarina,6,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Rhyacophila brunnea/vemna groups,22,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Simulium,10,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Skwala,29,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Sphaeriidae,1,FALSE,Mollusca,Bivalvia,NA,Veneroida,Sphaeriidae,NA,NA,NA,4,CF,BU,semi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Stempellinella,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Stempellinella,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Sweltsa,19,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Trombidiformes,27,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Tvetenia bavarica group,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Zaitzevia,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,260,Tt_641,5461_8222,8222,2013-08-19,Zapada cinctipes,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Arctopsyche grandis,11,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Arctopsychinae,NA,Arctopsyche,3,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Attenella delantala,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Attenella,3,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Baetis tricaudatus complex,36,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Brillia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Calineuria californica,12,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Calineuria,3,PR,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Cleptelmis addenda,3,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Cleptelmis,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Despaxia augusta,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Leuctridae,Leuctrinae,NA,Despaxia,3,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Drunella doddsii,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Elmidae,11,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,NA,NA,NA,NA,CG,CN,semi,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Empididae,2,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,NA,NA,NA,4,PR,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Epeorus,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Epeorus,3,SC,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Eukiefferiella,12,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Glossosoma,68,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Glossosomatidae,6,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Heterlimnius corpulentus,5,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Hydropsyche,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Juga,57,FALSE,Mollusca,Gastropoda,NA,Neotaenioglossa,Pleuroceridae,NA,NA,Juga,4,OM,CN,semi,RHEO,NA,warm,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Lara,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Larainae,NA,Lara,4,XY,CN,semi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Lepidostoma,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Lepidostomatidae,Lepidostomatinae,NA,Lepidostoma,3,SH,CN,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Micropsectra,24,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Narpus concolor,2,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Nemata,2,FALSE,Nemata,NA,NA,NA,NA,NA,NA,NA,4,PA,BU,uni,SPEC,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Neoleptophlebia/Paraleptophlebia,3,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,Neoleptophlebia/Paraleptophlebia,3,CG,SP,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Neophylax rickeri,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Thremmatidae,NA,NA,Neophylax,3,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Oligochaeta,43,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Optioservus,41,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Pacifastacus leniusculus,1,FALSE,Arthropoda,Malacostraca,NA,Decapoda,Astacidae,NA,NA,Pacifastacus,4,OM,SP,semi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Pericomaini,1,FALSE,Arthropoda,Insecta,NA,Diptera,Psychodidae,Psychodinae,Pericomaini,NA,3,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Plecoptera,5,FALSE,Arthropoda,Insecta,NA,Plecoptera,NA,NA,NA,NA,NA,UN,UN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Polypedilum,35,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Rhithrogena,48,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Rhyacophila betteni group,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Rhyacophila brunnea/vemna groups,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Rhyacophila narvae,11,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Simulium,13,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Stempellina,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Stempellina,3,CG,CB,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Sweltsa,17,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Tanytarsus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Tanytarsus,4,CF,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Trepaxonemata,2,FALSE,Platyhelminthes,Trepaxonemata,NA,NA,NA,NA,NA,NA,4,PR,CN,multi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Trombidiformes,9,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Tvetenia bavarica group,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Yoraperla,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Peltoperlidae,Peltoperlinae,NA,Yoraperla,2,SH,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Zaitzevia,6,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Zapada cinctipes,26,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,268,Tt_686,4568_7060,7060,2012-08-21,Zapada oregonensis group,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,3,SH,SP,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Baetis tricaudatus complex,15,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Brillia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Cleptelmis addenda,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Cleptelmis,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Corynoneura,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Corynoneura,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Crangonyx,5,FALSE,Arthropoda,Malacostraca,NA,Amphipoda,Crangonyctidae,NA,NA,Crangonyx,5,CG,SW,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Diphetor hageni,9,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Dixa,2,FALSE,Arthropoda,Insecta,NA,Diptera,Dixidae,NA,NA,Dixa,4,CG,SW,multi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Elmidae,12,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,NA,NA,NA,NA,CG,CN,semi,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Epeorus,10,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Epeorus,3,SC,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Glossosoma,21,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Heptageniidae,3,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,NA,3,SC,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Hesperoperla pacifica,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Hesperoperla,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Hydropsyche,42,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Hydropsychidae,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,NA,NA,NA,4,UN,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Ironodes,4,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Ironodes,3,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Juga,2,FALSE,Mollusca,Gastropoda,NA,Neotaenioglossa,Pleuroceridae,NA,NA,Juga,4,OM,CN,semi,RHEO,NA,warm,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Kogotus/Rickera,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Diploperlini,Kogotus/Rickera,4,PR,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Lara,5,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Larainae,NA,Lara,4,XY,CN,semi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Malenka,5,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,Malenka,4,SH,SP,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Micropsectra,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Neoleptophlebia/Paraleptophlebia,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,Neoleptophlebia/Paraleptophlebia,3,CG,SP,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Oligochaeta,19,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Optioservus,75,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Pacifastacus leniusculus,1,FALSE,Arthropoda,Malacostraca,NA,Decapoda,Astacidae,NA,NA,Pacifastacus,4,OM,SP,semi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Pentaneura,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Pentaneura,4,PR,SP,multi,GENE,NA,warm,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Perlodidae,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,NA,NA,NA,3,PR,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Plecoptera,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,NA,NA,NA,NA,NA,UN,UN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Polypedilum,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Rhithrogena,65,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Rhyacophila betteni group,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Rhyacophila brunnea/vemna groups,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Simulium,70,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Skwala,9,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Sweltsa,62,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Trombidiformes,6,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Tvetenia bavarica group,10,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Wormaldia,43,FALSE,Arthropoda,Insecta,NA,Trichoptera,Philopotamidae,Philopotaminae,NA,Wormaldia,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Zapada cinctipes,33,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,270,Tt_692,4582_7074,7074,2012-08-21,Zapada oregonensis group,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,3,SH,SP,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Baetis tricaudatus complex,41,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Brillia,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Calineuria californica,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Calineuria,3,PR,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Ceratopogoninae,12,FALSE,Arthropoda,Insecta,NA,Diptera,Ceratopogonidae,Ceratopogoninae,NA,NA,4,PR,SP,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Chloroperlidae,9,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,NA,NA,NA,4,PR,BU,uni,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Cinygmula,6,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Cinygmula,3,SC,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Despaxia augusta,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Leuctridae,Leuctrinae,NA,Despaxia,3,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Dicranota,1,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,CN,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Diphetor hageni,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Dolophilodes,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Philopotamidae,Philopotaminae,NA,Dolophilodes,2,CF,CN,uni,RHEO,TRUE,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Doroneuria,9,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Doroneuria,2,PR,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Drunella doddsii,8,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,CN,semi,RHEO,NA,cold,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Empididae,2,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,NA,NA,NA,4,PR,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Empididae Genus B,1,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,NA,NA,Empididae Genus B,3,PR,SP,uni,RHEO,TRUE,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Epeorus,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Epeorus,3,SC,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Ephemerella,8,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,3,CG,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Eukiefferiella,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Glossosoma,27,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Glossosomatidae,6,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Heleniella,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Heleniella,3,CG,SP,multi,GENE,NA,cold,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Hesperoperla pacifica,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Hesperoperla,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Heterlimnius corpulentus,72,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Hexatoma,1,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Hexatoma,3,PR,BU,uni,DEPO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Hydropsyche,56,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Ironodes,15,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Ironodes,3,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Isoperla,5,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Isoperlinae,NA,Isoperla,3,PR,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Kathroperla,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Paraperlinae,NA,Kathroperla,2,PR,BU,semi,SPEC,TRUE,cold,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Lara,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Larainae,NA,Lara,4,XY,CN,semi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Lepidostoma,9,FALSE,Arthropoda,Insecta,NA,Trichoptera,Lepidostomatidae,Lepidostomatinae,NA,Lepidostoma,3,SH,CN,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Leptophlebiidae,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,NA,3,CG,SP,uni,DEPO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Malenka,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,Malenka,4,SH,SP,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Maruina,1,FALSE,Arthropoda,Insecta,NA,Diptera,Psychodidae,Psychodinae,NA,Maruina,3,SC,CN,uni,SPEC,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Micrasema,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,Micrasema,3,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Micropsectra,17,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Oligochaeta,26,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,BU,uni,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Oribatida,1,FALSE,Arthropoda,Arachnida,NA,Sarcoptiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Ostracoda,1,FALSE,Arthropoda,Ostracoda,NA,NA,NA,NA,NA,NA,4,CG,SW,multi,GENE,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Parametriocnemus,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Paraperla,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Paraperlinae,NA,Paraperla,3,PR,BU,semi,SPEC,NA,cold,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Paratendipes,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Paratendipes,4,CG,BU,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Perlidae,42,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,NA,NA,NA,3,PR,CN,semi,RHEO,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Polypedilum,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Rheotanytarsus,6,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Rhithrogena,21,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Rhyacophila betteni group,20,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Rhyacophila blarina,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Rhyacophila brunnea/vemna groups,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Rhyacophila hyalinata group,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,2,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Stempellinella,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Stempellinella,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Sweltsa,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Tanypodinae,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,NA,NA,4,PR,SP,multi,GENE,NA,NA,TRUE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Tanytarsus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Tanytarsus,4,CF,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Thienemanniella,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Thienemanniella,3,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Thienemannimyia group,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Thienemannimyia group,4,PR,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Trombidiformes,5,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Tvetenia bavarica group,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Zaitzevia,24,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,King County - DNRP,2815,Tt_723,9918_14976,14976,2018-09-19,Zapada cinctipes,23,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Antocha monticola,8,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Antocha,4,CG,CN,multi,RHEO,NA,NA,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Baetis tricaudatus complex,30,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Chelifera/Metachela,9,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Chelifera/Metachela,4,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Chironomini,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,NA,4,CG,BU,multi,GENE,NA,warm,TRUE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Cleptelmis addenda,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Cleptelmis,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Crangonyx,2,FALSE,Arthropoda,Malacostraca,NA,Amphipoda,Crangonyctidae,NA,NA,Crangonyx,5,CG,SW,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Dicranota,1,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,CN,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Diphetor hageni,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Empididae,5,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,NA,NA,NA,4,PR,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Ephemerella,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,3,CG,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Ephemerella tibialis,11,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,4,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Eukiefferiella brehmi group,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Glossosoma,12,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Glossosomatidae,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Hesperoperla pacifica,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Hesperoperla,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Heterlimnius corpulentus,35,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Hydropsyche,149,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Hydroptila,36,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydroptilidae,Hydroptilinae,Hydroptilini,Hydroptila,4,PH,CN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Hydroptilidae,15,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydroptilidae,NA,NA,NA,4,UN,CN,multi,RHEO,NA,cool_warm,TRUE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Micrasema,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,Micrasema,3,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Narpus concolor,4,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Neaviperla/Suwallia,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,NA,Suwalliini,Neaviperla/Suwallia,3,NA,NA,NA,NA,NA,NA,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Optioservus,29,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Pagastia,10,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Diamesinae,Diamesini,Pagastia,3,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Polypedilum,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Potthastia gaedii group,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Diamesinae,Diamesini,Potthastia,3,CG,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Rheotanytarsus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Rhyacophila,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,UN,RHEO,NA,cold_cool,TRUE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Rhyacophila betteni group,14,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Rhyacophila blarina,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Rhyacophila brunnea/vemna groups,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Simulium,22,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Skwala,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Sweltsa,16,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Thienemannimyia group,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Thienemannimyia group,4,PR,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Trombidiformes,35,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Tvetenia bavarica group,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2849,Tt_1440,10070_15133,15133,2018-08-08,Zapada cinctipes,67,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Agapetus,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Agapetinae,NA,Agapetus,3,SC,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Anafroptilum/Procloeon,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Anafroptilum/Procloeon,3,CG,SP,multi,DEPO,NA,NA,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Antocha monticola,1,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Antocha,4,CG,CN,multi,RHEO,NA,NA,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Attenella delantala,6,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Attenella,3,CG,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Baetidae,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,NA,4,CG,CN,multi,UNKN,NA,NA,TRUE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Baetis tricaudatus complex,21,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Brachycentridae,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,NA,3,UN,CN,UN,RHEO,NA,NA,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Brillia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,BU,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Capniidae,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Capniidae,NA,NA,NA,3,SH,SP,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Cinygmula,4,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Cinygmula,3,SC,CN,uni,RHEO,NA,cold,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Cladotanytarsus,19,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Cladotanytarsus,3,CG,UN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Cleptelmis addenda,3,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Cleptelmis,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Corynoneura,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Corynoneura,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Cricotopus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Cricotopus,4,MH,CN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Dicranota,3,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,CN,uni,GENE,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Diphetor hageni,9,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Dixa,1,FALSE,Arthropoda,Insecta,NA,Diptera,Dixidae,NA,NA,Dixa,4,CG,SW,multi,SPEC,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Dytiscidae,2,FALSE,Arthropoda,Insecta,NA,Coleoptera,Dytiscidae,NA,NA,NA,3,PR,SW,uni,GENE,NA,cool_warm,TRUE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Elmidae,34,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,NA,NA,NA,NA,CG,CN,semi,RHEO,NA,NA,TRUE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Eukiefferiella,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,GENE,NA,NA,TRUE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Eukiefferiella brehmi group,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,SP,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Glossosoma,21,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Hemerodromia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Hemerodromia,5,PR,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Heptageniidae,6,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,NA,3,SC,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Heterlimnius corpulentus,49,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Hydropsyche,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Hydropsychidae,9,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,NA,NA,NA,4,UN,CN,UN,RHEO,NA,NA,TRUE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Hydroptila,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydroptilidae,Hydroptilinae,Hydroptilini,Hydroptila,4,PH,CN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Isoperla,5,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Isoperlinae,NA,Isoperla,3,PR,CN,uni,RHEO,NA,NA,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Micropsectra,26,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Microtendipes,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Microtendipes,4,CF,CN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Narpus concolor,3,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Narpus,4,CG,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Neaviperla/Suwallia,21,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,NA,Suwalliini,Neaviperla/Suwallia,3,NA,NA,NA,NA,NA,NA,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Neoplasta,6,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Hemerodromiinae,Hemerodromiini,Neoplasta,4,PR,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Optioservus,2,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Oreodytes,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Dytiscidae,Hydroporinae,NA,Oreodytes,NA,PR,SW,uni,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Orthocladiinae,9,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,NA,4,CG,SP,multi,GENE,NA,NA,TRUE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Pagastia,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Diamesinae,Diamesini,Pagastia,3,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Parakiefferiella,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parakiefferiella,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Paraleptophlebia bicornuta group,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,Paraleptophlebia,3,CG,SP,uni,DEPO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Parametriocnemus,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Paraperlinae,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Paraperlinae,NA,NA,3,PR,BU,semi,SPEC,NA,NA,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Parapsyche,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Arctopsychinae,NA,Parapsyche,NA,PR,CN,semi,RHEO,NA,NA,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Paratanytarsus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Paratanytarsus,5,CG,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Perlodidae,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,NA,NA,NA,3,PR,CN,uni,RHEO,NA,NA,TRUE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Phaenopsectra,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Phaenopsectra,4,SC,CN,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Polypedilum,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Polypedilum,4,OM,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Potthastia gaedii group,9,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Diamesinae,Diamesini,Potthastia,3,CG,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Psectrocladius,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Psectrocladius,3,CG,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Pteronarcys,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Pteronarcyidae,Pteronarcyinae,Pteronarcyini,Pteronarcys,3,OM,CN,semi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Rheocricotopus,7,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Rheocricotopus,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Rheotanytarsus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,CN,multi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Rhithrogena,3,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Rhyacophila blarina,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Rhyacophila malkini,9,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Serratella micheneri,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Serratella,4,CG,CN,uni,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Simulium,5,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Skwala,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,CN,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Sphaeriidae,2,FALSE,Mollusca,Bivalvia,NA,Veneroida,Sphaeriidae,NA,NA,NA,4,CF,BU,semi,GENE,NA,NA,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Stempellinella,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Stempellinella,4,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Sweltsa,9,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,BU,uni,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Tanytarsini,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,NA,4,CF,UN,multi,GENE,NA,NA,TRUE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Tanytarsus,46,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Tanytarsus,4,CF,CB,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Thienemanniella,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Thienemanniella,3,CG,SP,multi,GENE,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Thienemannimyia group,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Thienemannimyia group,4,PR,SP,multi,GENE,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Timpanoga hecuba,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Timpanoga,3,CG,SP,uni,DEPO,TRUE,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Trombidiformes,13,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,SW,multi,UNKN,NA,NA,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Tvetenia,6,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,TRUE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Tvetenia bavarica group,20,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,SP,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Wormaldia,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Philopotamidae,Philopotaminae,NA,Wormaldia,4,CF,CN,multi,RHEO,NA,cold_cool,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Zaitzevia,58,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,CN,semi,RHEO,NA,cool_warm,FALSE
+MARIPACNW,Snohomish County,2863,Tt_1441,10069_15134,15134,2018-08-01,Zapada cinctipes,4,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,SP,uni,RHEO,NA,cold_cool,FALSE

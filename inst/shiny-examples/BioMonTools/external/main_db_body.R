@@ -1,7 +1,6 @@
 # Main
 
 function(id) {
-  dashboardBody(
     tabItems(
       tabItem(tabName = "tab_about", tab_code_about())
       , tabItem(tabName = "tab_import", tab_code_import())
@@ -10,7 +9,6 @@ function(id) {
       , tabItem(tabName = "tab_taxamaps", tab_code_taxamaps())
       , tabItem(tabName = "tab_calcmet", tab_code_calcmet())
     )## tabItems
-  )## dashboardBody ~ END
 }## FUNCTION ~ END
 
 

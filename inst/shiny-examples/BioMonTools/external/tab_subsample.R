@@ -12,11 +12,13 @@ function() {
          , uiOutput("UI_col_subsamp_TaxaID")
          , uiOutput("UI_col_subsamp_Count")
          , p("3. Targets")
-         , numericInput("subsamp_target", label = "Target Size", value = 300)
-         , numericInput("subsamp_seed", label = "Numeric Seed", value = NA)
-         , p("4. Run Function")
+         , numericInput("subsamp_target", label = "Target Number of Organisms", value = 300)
+         , numericInput("subsamp_seed", label = "(OPTIONAL) Numeric Seed", value = NA)
+        , p("See text to right for more explanation.")
+         #, p("4. Run Function")
+        , hr()
          , bsButton("b_subsample_run", label = "Run Function")
-         , p("5. Download Results")
+         #, p("5. Download Results")
          , useShinyjs()
          , shinyjs::disabled(downloadButton("b_subsample_download"
                                          , "Download Results"))
@@ -38,7 +40,7 @@ function() {
 
     )## sidebarPanel ~ END
     , mainPanel(
-       includeHTML(file.path("www", "ShinyHTML_Subsample.html"))
+      includeHTML(file.path("www", "ShinyHTML_Subsample.html"))
 
     )## mainPanel ~ END
 

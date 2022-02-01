@@ -1,6 +1,6 @@
 ---
 title: "Taxa Maps"
-date: "2021-09-29"
+date: "2022-01-27"
 output: html_fragment
 ---
 
@@ -12,44 +12,29 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Create maps like the example shown below. 
 
-* The title is the name of taxa being mapped
+![Example TaxaMap](Shiny_TaxaMap.png)
 
-* Outlines of states in region being mapped
+The grouping variable is optional but is used to create the legend.
 
-* Colored points correspond to legend for grouping variable
-
-* The number of samples with the current taxa is displayed at the bottom
-
-### Instructions
-
-* Upload a file under "Load Data".  The status bar will tell you when the upload
-is complete.  Then return to this screen.
-
-    +	Required fields: SampleID, TaxaID, Count, Latitude, Longitude
-
-    +	Optional field: grouping variable (for color-coding data points)
-
-    +	Important note: Maps appear in the order in which the taxa occur in the 
-    input file so be sure to sort as desired.
-
-*	Define the map extent
-
-    +	Type in the desired extent 
-
-*	Click the ‘Run Function’ button; a status bar will appear in the lower right 
-corner.
-
-*	After the function is done running, the ‘Download Results’ button will be 
-active. Click this button to retrieve your results.
-
-*	Save the file in the desired folder. The maps will be in a PDF format.
-
-### Warning!
-
-The output files can be very large (the PDFs treat every data point as 
+**Warning!** The output files can be very large (the PDFs treat every data point as 
 an individual graphic element). Consider limiting the number of taxa in your 
 input files.
 
-![Example TaxaMap](Shiny_TaxaMap.png)
+WANT TO TRY RUNNING IT WITH TEST DATA?
+Click here to download an example input and output file.
 
-*Last updated 2022-01-12*
+
+
+If you prefer you run this function using R console instead of the Shiny app.
+
+The R package is available for download on GitHub.  Use the green "Code" button.
+
+ <https://github.com/leppott/BioMonTools> 
+
+To install from within R use the code below.
+```{r install, eval=FALSE, echo=TRUE}
+if(!require(remotes)){install.packages("remotes")}  #install if needed
+install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+```
+
+*Last updated 2022-01-27*

@@ -15,11 +15,11 @@ function() {
                        , uiOutput("UI_col_taxamaps_Group")
                        , p("3. Define Map")
                        , selectInput("taxamaps_database"
-                                     , label = "Map Database"
+                                     , label = "Map Extent"
                                      , choices = maps_database
                                      , selected = "state")
-                       , p("Character vector that names the polygons to draw.")
-                       , p("e.g., new york,new jersey,pennsylvania (only comma between entries) OR michigan::north")
+                       , p("Text string of states or counties to draw.")
+                       , p("e.g., new york,new jersey,pennsylvania (only comma between entries)")
                        , textInput("taxamaps_regions"
                                     , label = "Map Region"
                                     , value = "")
@@ -29,9 +29,10 @@ function() {
                        #               , choices = c("left", "right", "bottom"
                        #                             , "bottomleft", "bottomright")
                        #               , selected = "bottomleft")
-                       , p("4. Run Function")
+                       #, p("4. Run Function")
+                       , hr()
                        , bsButton("b_taxamaps_run", label = "Run Function")
-                       , p("5. Download Results")
+                       #, p("5. Download Results")
                        , useShinyjs()
                      , shinyjs::disabled(downloadButton("b_taxamaps_download"
                                                         , "Download Results"))

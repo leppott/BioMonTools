@@ -9,6 +9,46 @@
 
 shinyServer(function(input, output) {
 
+  # ABOUT ----
+  output$tbl_about <- renderTable({
+    # Table Contents
+    t_names <- c("Group", "Function", "Description")
+    t_col1 <- c("Data Preparation", "Data Preparation", "Analysis", "Analysis")
+    t_col2 <- c("Subsample"              #1
+                , "Mark Redundant Taxa"  #2
+                , "Taxa Maps"            #3
+                , "Calculate Metrics"    #4
+    )
+    t_col3 <- c("Subsample your abundance data to a fixed count per sample. For example, if 300-organisms is your target, and any of your samples have more than 300 organisms, you can use this function to randomly subsample your data so that the total number of individuals is 300. This is done to make richness metrics comparable (since higher numbers of taxa generally occur in samples in which more individuals are counted). The function code is from USEPA Corvallis John Van Sickle’s R code for RIVPACS (v1.0, 2005-06-10)."
+                # 2
+                , "Avoid double-counting taxa that may be redundant (or non-distinct, depending on your preferred terminology). For example, if organisms identified as Dytiscidae (family-level) and Oreodytes (genus-level) are both present in a sample, organisms identified as Dytiscidae could be the same taxon as Oreodytes. The R tool identifies and marks redundant taxa on a sample-by-sample basis so that they can be excluded from richness metric calculations."
+                # 3
+                , "Examine the spatial distribution of each taxon with presence/absence maps. These maps can be useful for reconciling differences in taxonomy and tracking shifts in spatial distributions of indicator taxa at the regional scale. Users can color-code data points by a grouping variable (e.g., data source)."
+                # 4
+                , "Calculate metrics based on the traits/attributes in the input file. Column headings and attribute entries need to follow the specific naming convention described here. For RMN analyses, attribute assignments should come from the appropriate regional traits table. Currently, the Shiny app is set up to calculate the following groups of benthic macroinvertebrate metrics: standard bioassessment, major taxonomic groups, thermal and hydrologic indicators, functional feeding group (FFG), habit, tolerance, life cycle/voltinism, and Biological Condition Gradient (BCG). More metrics (including some for fish) are available on the BioMonTools R package. You can request the addition of new metrics by emailing Erik (Erik.Leppo@tetratech.com) or posting your request on the BioMonTools GitHub page (https://github.com/leppott/BioMonTools/discussions).")
+
+    t_cap <- "BioMonTools shiny application functions."
+
+    # Table
+    myTable <- data.frame(t_col1, t_col2, t_col3)
+    names(myTable) <- t_names
+
+    # Display
+    ## Knitr
+    # knitr::kable(myTable
+    #              , caption = t_cap
+    #              # , format = "html"
+    #             )
+
+    myTable
+
+    }
+    , striped = TRUE
+    , bordered = TRUE
+    , caption = "BioMonTools shiny application functions."
+    , caption.placement = "top"
+    )## tbl_about
+
   # IMPORT ----
 
   ## Import, DF ----
@@ -428,7 +468,7 @@ shinyServer(function(input, output) {
   output$UI_col_taxamaps_Lat <- renderUI({
     str_col <- "Lat"
     selectInput("taxamaps_col_Lat"
-                , label = str_col
+                , label = "Latitude" #str_col
                 , choices = names(df_import())
                 , multiple = FALSE)
   })## UI_colnames
@@ -444,7 +484,7 @@ shinyServer(function(input, output) {
   output$UI_col_taxamaps_Group <- renderUI({
     str_col <- "Group"
     selectInput("taxamaps_col_Group"
-                , label = str_col
+                , label = "(OPTIONAL) Grouping Variable" #str_col
                 , choices = names(df_import())
                 , multiple = FALSE)
   })## UI_colnames
