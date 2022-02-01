@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9086</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9088</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
       <h1 data-toc-skip>Taxa Maps</h1>
                         <h4 data-toc-skip class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 data-toc-skip class="date">2022-01-12</h4>
+            <h4 data-toc-skip class="date">2022-02-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/HEAD/vignettes/vignette_MapTaxaObs.Rmd" class="external-link"><code>vignettes/vignette_MapTaxaObs.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_MapTaxaObs.Rmd</code></div>
@@ -101,21 +101,21 @@
     
     
 <!-- Data is in vignettes\data folder  -->
-<div class="section level1">
-<h1 id="purpose">Purpose<a class="anchor" aria-label="anchor" href="#purpose"></a>
-</h1>
+<div class="section level2">
+<h2 id="purpose">Purpose<a class="anchor" aria-label="anchor" href="#purpose"></a>
+</h2>
 <p>To create taxa distribution maps.</p>
 </div>
-<div class="section level1">
-<h1 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
-</h1>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>Map taxonomic observations from a data frame. Input a dataframe with SampID , TaxaID, TaxaCount, Latitude, and Longitude. Other arguments are format (jpg vs. pdf), file name prefix, and output directory. Files are saved with the prefix “map.taxa.” by default.</p>
 <p>Uses the <code>maps</code> package map function.</p>
 <p>For maps package map function need database (usa, state, county) and regions (e.g., maryland). Additional map function arguments can be passed through the MapTaxaObs function.</p>
 </div>
-<div class="section level1">
-<h1 id="example-data">Example, Data<a class="anchor" aria-label="anchor" href="#example-data"></a>
-</h1>
+<div class="section level2">
+<h2 id="example-data">Example, Data<a class="anchor" aria-label="anchor" href="#example-data"></a>
+</h2>
 <p>Data used should have Sample Identifier, Taxa Identifier, Taxa Count (can be 1 for all), Latitude/Longitude (decimal degrees).</p>
 <table style="width:100%;" class="table">
 <colgroup>
@@ -258,9 +258,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level1">
-<h1 id="example-ggplot">Example, ggplot<a class="anchor" aria-label="anchor" href="#example-ggplot"></a>
-</h1>
+<div class="section level2">
+<h2 id="example-ggplot">Example, ggplot<a class="anchor" aria-label="anchor" href="#example-ggplot"></a>
+</h2>
 <p>The <code>ggplot2</code> package can be used to create single maps that are returned to the console for further editing.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Packages</span>
@@ -461,9 +461,9 @@
 <code class="sourceCode R"><span class="va">m1</span></code></pre></div>
 <p><img src="vignette_MapTaxaObs_files/figure-html/Ex_gg-1.png" width="576"></p>
 </div>
-<div class="section level1">
-<h1 id="example-pdf">Example, PDF<a class="anchor" aria-label="anchor" href="#example-pdf"></a>
-</h1>
+<div class="section level2">
+<h2 id="example-pdf">Example, PDF<a class="anchor" aria-label="anchor" href="#example-pdf"></a>
+</h2>
 <p>The example below will create a PDF with one map per page.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df_obs</span> <span class="op">&lt;-</span> <span class="va">data_Taxa_MA</span>
@@ -506,7 +506,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

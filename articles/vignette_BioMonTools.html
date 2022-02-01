@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9086</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9088</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 data-toc-skip class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 data-toc-skip class="date">2022-01-12</h4>
+            <h4 data-toc-skip class="date">2022-02-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/HEAD/vignettes/vignette_BioMonTools.Rmd" class="external-link"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -101,43 +101,43 @@
     
     
 <!-- Data is in vignettes\data folder  -->
-<div class="section level1">
-<h1 id="purpose">Purpose<a class="anchor" aria-label="anchor" href="#purpose"></a>
-</h1>
+<div class="section level2">
+<h2 id="purpose">Purpose<a class="anchor" aria-label="anchor" href="#purpose"></a>
+</h2>
 <p>The <code>BioMonTools</code> package was created to enable users to have a common set of tools for bioassessment and biomonitoring data.</p>
 </div>
-<div class="section level1">
-<h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h1>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>The package is hosted on GitHub (<a href="https://github.com/leppott/BioMonTools" class="external-link uri">https://github.com/leppott/BioMonTools</a>) and can be installed using the following lines of code. It is necessary to install the <code>devtools</code> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Installing the BioMonTools library (with the vignette) from GitHub</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span> 
 <span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"leppott/BioMonTools"</span>, force<span class="op">=</span><span class="cn">TRUE</span>, build_vignettes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level1">
-<h1 id="help">Help<a class="anchor" aria-label="anchor" href="#help"></a>
-</h1>
+<div class="section level2">
+<h2 id="help">Help<a class="anchor" aria-label="anchor" href="#help"></a>
+</h2>
 <p>After the <code>BioMonTools</code> package has been installed running the following line of code will open the help file with links to all functions.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/help.html" class="external-link">help</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level1">
-<h1 id="package-functions">Package Functions<a class="anchor" aria-label="anchor" href="#package-functions"></a>
-</h1>
+<div class="section level2">
+<h2 id="package-functions">Package Functions<a class="anchor" aria-label="anchor" href="#package-functions"></a>
+</h2>
 <p>The suite of functions in the <code>BioMonTools</code> package are presented below.</p>
 <ul>
 <li>metric.values</li>
 <li>markExcluded</li>
 <li>rarify</li>
 </ul>
-<div class="section level2">
-<h2 id="metric-values">metric.values<a class="anchor" aria-label="anchor" href="#metric-values"></a>
-</h2>
-<p>Calculate metric values from a data frame with taxa by sample with fully qualified master taxa information. All percent metric results are 0-1.</p>
 <div class="section level3">
-<h3 id="data-preparation">Data Preparation<a class="anchor" aria-label="anchor" href="#data-preparation"></a>
+<h3 id="metric-values">metric.values<a class="anchor" aria-label="anchor" href="#metric-values"></a>
 </h3>
+<p>Calculate metric values from a data frame with taxa by sample with fully qualified master taxa information. All percent metric results are 0-1.</p>
+<div class="section level4">
+<h4 id="data-preparation">Data Preparation<a class="anchor" aria-label="anchor" href="#data-preparation"></a>
+</h4>
 <p>There are a number of required fields for the input file. If any fields are missing the user will be prompted as to which are missing and the user can decide whether to continue or quit. If the user continues, the missing fields will be added but will be filled with zero or NA (as appropriate). Any metrics based on the missing fields will not be valid.</p>
 <p>Required Fields:</p>
 <ul>
@@ -456,9 +456,9 @@
 </table>
 </div>
 </div>
-<div class="section level2">
-<h2 id="markexcluded">markExcluded<a class="anchor" aria-label="anchor" href="#markexcluded"></a>
-</h2>
+<div class="section level3">
+<h3 id="markexcluded">markExcluded<a class="anchor" aria-label="anchor" href="#markexcluded"></a>
+</h3>
 <p>Takes as an input data frame with Sample ID, Taxa ID, and phlogenetic name fields and returns a similar dataframe with a column for “excluded” taxa (TRUE or FALSE).</p>
 <p>Excluded taxa are refered to by multiple names; ambiguous, non-distinct, and non-unique. The “excluded” name was chosen so as to be consistent with “non-target” taxa. That is, taxa marked as “TRUE” are treated as undesireables. Excluded taxa are those that are present in a sample when taxa of the same group are present in the same sample are identified finer level. That is, the parent is marked as excluded when child taxa are present in the same sample.</p>
 <p>The excluded taxa are referenced in the metric values function. These taxa are removed from the taxa richness metrics. This is because these are coarser level taxa.</p>
@@ -959,9 +959,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level2">
-<h2 id="rarify">rarify<a class="anchor" aria-label="anchor" href="#rarify"></a>
-</h2>
+<div class="section level3">
+<h3 id="rarify">rarify<a class="anchor" aria-label="anchor" href="#rarify"></a>
+</h3>
 <p>The rarify function subsamples count data to a fixed count per sample. It takes as an input a 3 column data frame (SampleID, TaxonID, Count) and returns a similar dataframe with revised Counts. The names of the columns does not matter as they are specified in the code. Any non-count taxa (e.g., fish in a bug sample) should be removed prior to using the <code>rarify</code> function. The function code is from USEPA Corvallis John Van Sickle’s R code for RIVPACS (v1.0, 2005-06-10) and was tweaked for the addition of a user provided seed so repeatable results can be obtained.</p>
 <p>The other function inputs are subsample size (target number of organisms in each sample) and seed. The seed is given so the results can be reproduced from the same input file. If no seed is given a random seed is used. An example seed is the date of admission to the Union for each state where the data is collected (e.g., Washington is 18891111). These values can be found on Wikipedia on the right sidebar for each State.</p>
 <p>If you are running the 500-count BCG model and any of your samples have more than 600 organisms (the upper limit for the model), you should randomly subsample your data to 600 (600 is +20% of the 500-count target). This is done to make richness metrics comparable across the 500-count samples. You can do this with the Rarify routine.</p>
@@ -989,7 +989,7 @@
                                    , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span>
 <span class="co">#&gt; Rarify of samples complete. </span>
 <span class="co">#&gt;  Number of samples =  12 </span>
-<span class="co">#&gt;  Execution time (sec) =  0.0150000000000006</span>
+<span class="co">#&gt;  Execution time (sec) =  0.0169999999999959</span>
 
 <span class="co"># view results</span>
 <span class="co">#dim(bugs_mysize)</span>
@@ -1102,9 +1102,9 @@
 <span class="co"># save the data</span>
 <span class="co">#write.table(bugs_mysize, paste("bugs",mySize,"txt",sep="."),sep="\t")</span>
 <span class="co">## End(Not run)</span></code></pre></div>
-<div class="section level3">
-<h3 id="flags">Flags<a class="anchor" aria-label="anchor" href="#flags"></a>
-</h3>
+<div class="section level4">
+<h4 id="flags">Flags<a class="anchor" aria-label="anchor" href="#flags"></a>
+</h4>
 <p>Results should be interpreted with caution if they are flagged for any of the criteria listed below. It is up to the user’s discretion as to how to handled flagged samples.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Packages</span>
@@ -1229,7 +1229,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
