@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-01 14:31:57
+    #> Last Update: 2022-02-01 14:59:26
 
 # Version History
 

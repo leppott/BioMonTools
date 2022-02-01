@@ -162,10 +162,25 @@ B10))+1,LEN(@CELL(\"filename\",B10))-FIND(\"]\",@CELL(\"filename\",B10)))"
   # Add worksheets
   Notes[16, 1] <- "Notes"
   Notes[16, 2] <- "File metadata"
+  Notes[16, 3] <- paste0("=HYPERLINK($B$5&$A"
+                        , 16 + 1
+                        , "&\"!A1\",$A"
+                        , 16 + 1
+                        , ")")
   Notes[17, 1] <- "MetricNames"
   Notes[17, 2] <- "Metric Name metadata"
+  Notes[17, 3] <- paste0("=HYPERLINK($B$5&$A"
+                         , 17 + 1
+                         , "&\"!A1\",$A"
+                         , 17 + 1
+                         , ")")
   Notes[18, 1] <- "MetricValues"
   Notes[18, 2] <- "Metric Values, Group = ALL"
+  Notes[18, 3] <- paste0("=HYPERLINK($B$5&$A"
+                         , 18 + 1
+                         , "&\"!A1\",$A"
+                         , 18 + 1
+                         , ")")
 
   # Future update add in links to each worksheet
 

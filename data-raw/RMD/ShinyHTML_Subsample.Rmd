@@ -43,4 +43,19 @@ an example, you could set it up so that the R code only subsamples when samples
 have over 20% of the target number of total individuals (in the default example,
 this would be 360 total individuals). For more information, contact Erik ([Erik.Leppo\@tetratech.com](mailto:Erik.Leppo@tetratech.com){.email}).
 
-*Last updated 2022-01-31*
+```{r, echo=FALSE, eval=TRUE}
+shiny::a("Example test files"
+         , href = file.path("linked_files"
+                            , "Subsample"
+                            , "Subsample_ExampleFiles.zip"))
+```
+
+```{r, echo=FALSE, eval=TRUE}
+shiny::a("Example script"
+         , href = file.path("linked_files"
+                            , "Subsample"
+                            , "BMT_subsample300.R"))
+```
+
+
+*Last updated 2022-02-01*

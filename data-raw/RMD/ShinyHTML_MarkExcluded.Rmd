@@ -48,14 +48,36 @@ should be rerun through the function.
 A detailed description of the process that the R tool uses for marking redundant
 taxa can be found here.
 
+
+```{r, echo=FALSE, eval=TRUE}
+shiny::a("Mark Redundant Decision Criteria"
+         , href = file.path("linked_files"
+                            , "MarkExcluded"
+                            , "MarkRedundant_DecisionCriteria.docx"))
+```
+
+
 The metric calculation function requires the name 'Exclude'
 
 
 ### Additional Notes
 
 WANT TO TRY RUNNING IT WITH TEST DATA?
-Click here to download an example input and output file.
+Click below to download an example input and output file.
 
+```{r, echo=FALSE, eval=TRUE}
+shiny::a("Example test files"
+         , href = file.path("linked_files"
+                            , "MarkExcluded"
+                            , "MarkRedundant_ExampleFiles.zip"))
+```
+
+```{r, echo=FALSE, eval=TRUE}
+shiny::a("Example script"
+         , href = file.path("linked_files"
+                            , "MarkExcluded"
+                            , "BMT_MarkExcluded_Example1.R"))
+```
 
 
 If you prefer you run this function using R console instead of the Shiny app.
@@ -70,5 +92,4 @@ if(!require(remotes)){install.packages("remotes")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
 ```
 
-
-*Last updated 2022-01-27*
+*Last updated 2022-02-01*

@@ -43,6 +43,12 @@ function() {
         tabsetPanel(
           tabPanel("bugs"
                    , includeHTML(file.path("www", "ShinyHTML_CalcMetrics_bugs.html"))
+
+                   , tableOutput("tbl_calcmet_bugs")
+
+                   , em("Last updated: 2022-02-01")
+
+
                    )
           , tabPanel("fish"
                      , includeHTML(file.path("www", "ShinyHTML_CalcMetrics_fish.html"))

@@ -20,7 +20,7 @@ function() {
 
           , tableOutput("tbl_about")
 
-          , em("Last updated: 2022-01-27")
+          , em("Last updated: 2022-02-01")
 
 
            )##tabPanel ~ END

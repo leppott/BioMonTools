@@ -9,7 +9,8 @@
 
 shinyServer(function(input, output) {
 
-  # ABOUT ----
+  # TABLES ----
+  ## Table, About ----
   output$tbl_about <- renderTable({
     # Table Contents
     t_names <- c("Group", "Function", "Description")
@@ -48,6 +49,20 @@ shinyServer(function(input, output) {
     , caption = "BioMonTools shiny application functions."
     , caption.placement = "top"
     )## tbl_about
+
+  ## Table, CalcMet_Bugs ----
+  output$tbl_calcmet_bugs <- renderTable({
+    # Import
+    df_tbl <- read.csv(file.path("www", "linked_files", "CalcMetrics"
+                        , "BioMonTools_BugMetricInputFileReqs_v2_20220124.csv"))
+
+    df_tbl
+  }
+  , striped = TRUE
+  , bordered = TRUE
+  , caption = "Metric Calculation Input Requirements, bugs."
+  , caption.placement = "top"
+  )## tbl_calcmet_bugs
 
   # IMPORT ----
 
@@ -665,12 +680,41 @@ shinyServer(function(input, output) {
       # Function, Save
       #
       # Increment the progress bar, and update the detail text.
-      incProgress(1/n_inc, detail = "Save Results")
+      incProgress(1/n_inc, detail = "Save Results, csv")
       Sys.sleep(0.25)
       #
       fn_results <- file.path("results", "calcmet", "results_calcmet.csv")
       write.csv(df_fun, fn_results, row.names = FALSE)
       #
+      # Increment the progress bar, and update the detail text.
+      incProgress(1/n_inc, detail = "Save Results, Excel")
+      Sys.sleep(0.25)
+      #
+      # Save as Excel
+      df_metnames <- readxl::read_excel(system.file("extdata/MetricNames.xlsx"
+                                                    , package="BioMonTools")
+                                        , guess_max = 10^6
+                                        , sheet = "MetricMetadata"
+                                        , skip = 4)
+      fn_metvalxl <- file.path("results"
+                               , "calcmet"
+                               , paste0("results_calcmet.xlsx"))
+      BioMonTools::metvalgrpxl(fun.DF.MetVal = df_fun
+                               , fun.DF.xlMetNames = df_metnames
+                               , fun.Community = fun_fun.Community
+                               , fun.MetVal.Col2Keep = c("SAMPLEID"
+                                                         , "INDEX_NAME"
+                                                         , "INDEX_REGION")
+                               , file.out = fn_metvalxl)
+
+      # Increment the progress bar, and update the detail text.
+      incProgress(1/n_inc, detail = "Save Results, zip")
+      Sys.sleep(0.25)
+
+      # Create zip file
+      fn_4zip <- list.files(path = file.path("results", "calcmet")
+                            , full.names = TRUE)
+      zip(file.path("results", "calcmet.zip"), fn_4zip)
 
       # enable download button
       shinyjs::enable("b_calcmet_download")
@@ -690,7 +734,7 @@ shinyServer(function(input, output) {
     filename = function() {
       paste0("BioMonTools_CalcMet_"
              , format(Sys.time(), "%Y%m%d_%H%M%S")
-             , ".csv")
+             , ".zip")
     },
     content = function(fname) {##content~START
       # tmpdir <- tempdir()
@@ -709,7 +753,7 @@ shinyServer(function(input, output) {
       #if(file.exists(paste0(fname, ".zip"))) {file.rename(paste0(fname, ".zip")
       # , fname)}
 
-      file.copy(file.path("results", "calcmet", "results_calcmet.csv"), fname)
+      file.copy(file.path("results", "calcmet.zip"), fname)
 
       #
     }##content~END

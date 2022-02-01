@@ -4,6 +4,7 @@ output: html_fragment
 ---
 
 ```{r setup, include=FALSE}
+# 2022-02-01
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -35,7 +36,11 @@ macroinvertebrate metrics:
 
 * Biological Condition Gradient (BCG) attributes
 
-Click here to see the list of available metrics.
+Click below to see the list of available metrics.
+
+```{r, echo=FALSE, eval=TRUE}
+shiny::a("Metric Names", href = "MetricNames.xlsx")
+```
 
 More metrics (including some for fish) are available in the BioMonTools R 
 package. You can request the addition of new metrics to the R package or Shiny 
@@ -61,6 +66,14 @@ active. Click this button to retrieve your results.
 *	Save the file in the desired folder. In the output (Excel) file, metrics will 
 be grouped into worksheets based on the categories listed above.
 
+```{r, echo=FALSE, eval=TRUE}
+shiny::a("Example benthic macroinvertebrates Input File"
+         , href = file.path("linked_files"
+                            , "CalcMetrics"
+                            , "BugMetricInput1.csv"))
+```
+
+
 ### Additional Notes
 
 *	If taxa are missing attribute assignments, either leave the entry blank or 
@@ -83,5 +96,3 @@ populate with ‘NA.’
 
     + https://github.com/leppott/BioMonTools/blob/master/R/metric_values.R
 
-
-*Last updated 2022-01-31*

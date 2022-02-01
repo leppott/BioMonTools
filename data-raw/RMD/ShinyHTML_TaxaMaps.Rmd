@@ -21,8 +21,21 @@ an individual graphic element). Consider limiting the number of taxa in your
 input files.
 
 WANT TO TRY RUNNING IT WITH TEST DATA?
-Click here to download an example input and output file.
+Click below to download an example input and output file.
 
+```{r, echo=FALSE, eval=TRUE}
+shiny::a("Example test files"
+         , href = file.path("linked_files"
+                            , "MarkExcluded"
+                            , "TaxaMaps_ExampleFiles.zip"))
+```
+
+```{r, echo=FALSE, eval=TRUE}
+shiny::a("Example script"
+         , href = file.path("linked_files"
+                            , "MarkExcluded"
+                            , "BMT_MapTaxaObs_Example1.R"))
+```
 
 
 If you prefer you run this function using R console instead of the Shiny app.
@@ -37,4 +50,4 @@ if(!require(remotes)){install.packages("remotes")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
 ```
 
-*Last updated 2022-01-27*
+*Last updated 2022-02-01*

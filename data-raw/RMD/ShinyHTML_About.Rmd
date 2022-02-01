@@ -5,7 +5,7 @@ output: html_fragment
 ```{r setup, include=FALSE}
 # ---
 # title: "About"
-# date: '2022-01-27'
+# date: '2022-02-01'
 # ---
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -45,21 +45,12 @@ if(!require(remotes)){install.packages("remotes")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
 ```
 
-link to github
-br()
-[click here](https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv)
-
-<a href = "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv" download>Click to download</a>
-
-tags$a("MeticNamesFile", href = "MetricNames.xlsx")
-
-
-```{r}
-htmltools::a(href = "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv", "test")
+```{r, echo=FALSE, eval=TRUE}
+shiny::a("Example test files"
+         , href = file.path("linked_files"
+                            , "About"
+                            , "BMT_ExampleRScripts.zip"))
 ```
-
-
-
 
 ```{r table, eval=FALSE}
 # Packages
