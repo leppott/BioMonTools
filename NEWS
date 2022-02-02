@@ -4,9 +4,21 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-01 14:59:26
+    #> Last Update: 2022-02-02 09:54:17
 
 # Version History
+
+## Changes in Version 0.5.0.9090 (2022-02-02)
+
+-   refactor: Small edits to Shiny app
+    -   Text edits to help pages
+    -   Update links for TaxaMaps
+-   refactor: Update mtvalgrpxl() to use formulas in output
+
+## Changes in Version 0.5.0.9089 (2022-02-01)
+
+-   refactor: Edits to help pages in Shiny app
+    -   Update links to download files
 
 ## Changes in Version 0.5.0.9088 (2022-02-01)
 

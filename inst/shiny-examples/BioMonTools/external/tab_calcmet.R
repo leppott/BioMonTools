@@ -46,7 +46,7 @@ function() {
 
                    , tableOutput("tbl_calcmet_bugs")
 
-                   , em("Last updated: 2022-02-01")
+                   , em("Last updated: 2022-02-02")
 
 
                    )

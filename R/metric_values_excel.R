@@ -132,12 +132,17 @@ metvalgrpxl <- function(fun.DF.MetVal
   # Filter for community
   df_metnames <- df_metnames[df_metnames[, "COMMUNITY"] == fun.Community, ]
 
+  # writexl can only create hyperlinks or formulas on entire columns
+  # can see with str()
+  # To include formulas set entire column to '=""'
+  # then have to use formulas to insert text
 
   ## Create Notes
-  nrow_Notes <- 15
+  nrow_Notes   <- 15
   Notes        <- data.frame(matrix(ncol = 3, nrow = nrow_Notes))
+  Notes[, 2] <- writexl::xl_formula('=""') # set column as formula
+  Notes[, 3] <- writexl::xl_formula('=""') # set column as formula
   Notes[1, 1]  <- "BioMonTools, Metric Values Groups"
-  Notes[2, 1]  <- ""
   Notes[3, 1]  <- "Path and FileName"
   Notes[3, 2]  <- "=LEFT(@CELL(\"filename\",A1),FIND(\"]\",@CELL(\"filename\",A1)))"
   Notes[4, 1]  <- "FileName"
@@ -150,32 +155,35 @@ B10))+1,LEN(@CELL(\"filename\",B10))-FIND(\"]\",@CELL(\"filename\",B10)))"
   Notes[8, 1]  <- "Metric value calculations from the R package BioMonTools."
   Notes[9, 1] <- "Metrics are sorted by common groups. Groupings defined in MetricNames"
   Notes[11, 1] <- "Input File Name"
-  Notes[11, 2] <- deparse(substitute(fun.DF.MetricNames))
+  Notes[11, 2] <- paste0('="', deparse(substitute(fun.DF.MetricNames)), '"')
   Notes[12, 1] <- "Community"
-  Notes[12, 2] <- fun.Community
+  Notes[12, 2] <- paste0('="', fun.Community, '"')
   Notes[13, 1] <- "Date"
-  Notes[13, 2] <- as.character(Sys.Date())
+  Notes[13, 2] <- paste0('="', as.character(Sys.Date()), '"')
   Notes[15, 1] <- "Worksheet"
-  Notes[15, 2] <- "Description"
-  Notes[15, 3] <- "Link"
+  Notes[15, 2] <- '="Description"'
+  Notes[15, 3] <- '="Link"'
+
+  # Remove Formula
+  Notes[1, 2:3] <- NA
 
   # Add worksheets
   Notes[16, 1] <- "Notes"
-  Notes[16, 2] <- "File metadata"
+  Notes[16, 2] <- '="File metadata"'
   Notes[16, 3] <- paste0("=HYPERLINK($B$5&$A"
                         , 16 + 1
                         , "&\"!A1\",$A"
                         , 16 + 1
                         , ")")
   Notes[17, 1] <- "MetricNames"
-  Notes[17, 2] <- "Metric Name metadata"
+  Notes[17, 2] <- '="Metric Name metadata"'
   Notes[17, 3] <- paste0("=HYPERLINK($B$5&$A"
                          , 17 + 1
                          , "&\"!A1\",$A"
                          , 17 + 1
                          , ")")
   Notes[18, 1] <- "MetricValues"
-  Notes[18, 2] <- "Metric Values, Group = ALL"
+  Notes[18, 2] <- '="Metric Values, Group = ALL"'
   Notes[18, 3] <- paste0("=HYPERLINK($B$5&$A"
                          , 18 + 1
                          , "&\"!A1\",$A"
@@ -220,7 +228,7 @@ B10))+1,LEN(@CELL(\"filename\",B10))-FIND(\"]\",@CELL(\"filename\",B10)))"
     i_num <- match(i, sort_grps)
     i_num_Notes <- i_num + nrow_Notes + 3
     Notes[i_num_Notes, 1] <- i
-    Notes[i_num_Notes, 2] <- paste0("Metric Values, Group = ", i)
+    Notes[i_num_Notes, 2] <- paste0('="Metric Values, Group = ', i, '"')
     Notes[i_num_Notes, 3] <- paste0("=HYPERLINK($B$5&$A"
                                     , i_num_Notes + 1
                                     , "&\"!A1\",$A"

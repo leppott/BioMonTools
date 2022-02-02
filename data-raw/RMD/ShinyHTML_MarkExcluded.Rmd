@@ -38,8 +38,9 @@ the box which will then become highlighted and hit delete).
 
 The output file will include all the columns in the input file plus a new column
 titled whatever you entered into the 'Output Column Name' field (default =
-'Exclude_New'). It is a TRUE/FALSE field in which redundant taxa are marked as 
-'TRUE'.
+'Exclude'). It is a TRUE/FALSE field in which redundant taxa are marked as 
+'TRUE'.  If you are planning to run the output file through the Metric 
+Calculator, the column will need to be named 'Exclude'.
 
 All 'Redundant' decisions are sample-specific. If sample contents change and/or 
 if the level of effort or operational taxonomic units change, the input file 
@@ -55,10 +56,6 @@ shiny::a("Mark Redundant Decision Criteria"
                             , "MarkExcluded"
                             , "MarkRedundant_DecisionCriteria.docx"))
 ```
-
-
-The metric calculation function requires the name 'Exclude'
-
 
 ### Additional Notes
 

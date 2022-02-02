@@ -4,7 +4,7 @@ output: html_fragment
 ---
 
 ```{r setup, include=FALSE}
-# 2022-02-01
+# 2022-02-02
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -14,8 +14,6 @@ This function calculates an assortment of biological metrics based on the
 traits/attributes in the input file. Column headings and attribute entries need 
 to follow the naming convention specified below. For RMN analyses, attribute 
 assignments should match with those in the appropriate regional traits table. 
-Regional traits tables are currently available for macroinvertebrates in low and
-high gradient streams in the Northeast and can be downloaded here.
 
 Currently, the Shiny app is set up to calculate the following groups of benthic 
 macroinvertebrate metrics:
@@ -42,10 +40,9 @@ Click below to see the list of available metrics.
 shiny::a("Metric Names", href = "MetricNames.xlsx")
 ```
 
-More metrics (including some for fish) are available in the BioMonTools R 
-package. You can request the addition of new metrics to the R package or Shiny 
-app by emailing Erik (Erik.Leppo@tetratech.com) or posting your request on the 
-BioMonTools GitHub page (https://github.com/leppott/BioMonTools/discussions).
+More metrics are available in the BioMonTools R package. You can request the 
+addition of new metrics to the R package or Shiny app by emailing Erik (Erik.Leppo@tetratech.com) or posting your request on the BioMonTools GitHub 
+page (https://github.com/leppott/BioMonTools/discussions).
 
 ### Notes
 

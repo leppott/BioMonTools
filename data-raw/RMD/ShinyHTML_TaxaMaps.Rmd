@@ -26,14 +26,14 @@ Click below to download an example input and output file.
 ```{r, echo=FALSE, eval=TRUE}
 shiny::a("Example test files"
          , href = file.path("linked_files"
-                            , "MarkExcluded"
-                            , "TaxaMaps_ExampleFiles.zip"))
+                            , "TaxaMaps"
+                            , "TaxaMaps_ExampleFiles_v2.zip"))
 ```
 
 ```{r, echo=FALSE, eval=TRUE}
 shiny::a("Example script"
          , href = file.path("linked_files"
-                            , "MarkExcluded"
+                            , "TaxaMaps"
                             , "BMT_MapTaxaObs_Example1.R"))
 ```
 
@@ -50,4 +50,4 @@ if(!require(remotes)){install.packages("remotes")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
 ```
 
-*Last updated 2022-02-01*
+*Last updated 2022-02-02*
