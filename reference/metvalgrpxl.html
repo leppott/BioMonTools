@@ -18,7 +18,7 @@ groups of metrics on different worksheets."><meta property="og:image" content="/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9090</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9091</span>
       </span>
     </div>
 
@@ -73,6 +73,7 @@ groups of metrics on different worksheets.</p>
   fun.DF.xlMetNames <span class="op">=</span> <span class="cn">NULL</span>,
   <span class="va">fun.Community</span>,
   fun.MetVal.Col2Keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAMPLEID"</span>, <span class="st">"INDEX_NAME"</span>, <span class="st">"INDEX_REGION"</span><span class="op">)</span>,
+  fun.xlGrpCol <span class="op">=</span> <span class="st">"Sort_Group"</span>,
   file.out <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -91,6 +92,9 @@ BioMonTools package.</p></dd>
 <dt>fun.MetVal.Col2Keep</dt>
 <dd><p>Column names in metric values to keep.
 Default = c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")</p></dd>
+<dt>fun.xlGrpCol</dt>
+<dd><p>Column name from Excel metric names to use for Groupings.
+Default = Sort_Group</p></dd>
 <dt>file.out</dt>
 <dd><p>Output file name.  Default (NULL) will generate a file name
 based on the data and time (e.g., MetricValuesGroups_bugs_20220201.xlsx)</p></dd>
@@ -112,8 +116,7 @@ output from metric.values() (i.e., in fun.DF).</p>
 <p>The MetricNames data frame must include the following fields:</p>
 <p>* Metric_Name</p>
 <p>* Community</p>
-<p>* Sort_Group</p>
-<p>* Sort_Order</p>
+<p>* Sort_Group (user defined)</p>
     </div>
 
     <div id="ref-examples">
@@ -131,10 +134,12 @@ output from metric.values() (i.e., in fun.DF).</p>
 <span class="r-in">                                      , skip <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span class="r-in"><span class="co">## Columns to Keep</span></span>
 <span class="r-in"><span class="va">col2keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAMPLEID"</span>, <span class="st">"INDEX_NAME"</span>, <span class="st">"INDEX_REGION"</span><span class="op">)</span></span>
+<span class="r-in"><span class="co">## Grouping Column</span></span>
+<span class="r-in"><span class="va">col_Grp</span> <span class="op">&lt;-</span> <span class="st">"Sort_Group"</span></span>
 <span class="r-in"><span class="co">## File Name</span></span>
-<span class="r-in"><span class="va">file.out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"MetValGrps_"</span>, <span class="va">comm</span>, <span class="st">".xlsx"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">file_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"MetValGrps_"</span>, <span class="va">comm</span>, <span class="st">".xlsx"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="co">## Run Function</span></span>
-<span class="r-in"><span class="fu">metvalgrpxl</span><span class="op">(</span><span class="va">df_metval</span>, <span class="va">df_metnames</span>, <span class="va">comm</span>, <span class="va">col2keep</span>, <span class="va">file.out</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">metvalgrpxl</span><span class="op">(</span><span class="va">df_metval</span>, <span class="va">df_metnames</span>, <span class="va">comm</span>, <span class="va">col2keep</span>, <span class="va">col_Grp</span>, <span class="va">file_out</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
 <span class="r-in"><span class="co"># Example 2, fish</span></span>
