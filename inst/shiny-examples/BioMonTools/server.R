@@ -647,7 +647,7 @@ shinyServer(function(input, output) {
       #
       # Number of increments
       n_inc <- 6
-      sleep_num <- 1 #0.33
+      sleep_num <- 0.33 #0.33
 
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Initialize")

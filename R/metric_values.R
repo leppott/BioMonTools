@@ -656,17 +656,19 @@ metric.values.bugs <- function(myDF
   # Function fails if all NA (e.g., column was missing) (20200724)
   myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
 
-  # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
-  col2upper <- c("TAXAID", "PHYLUM", "SUBPHYLUM", "CLASS", "SUBCLASS"
-                 , "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
-                 , "TRIBE", "GENUS"
-                 , "HABIT", "FFG", "LIFE_CYCLE", "THERMAL_INDICATOR"
-                 , "FFG2", "HABITAT"
-                 , "ELEVATION_ATTR", "GRADIENT_ATTR", "WSAREA_ATTR")
-  #myDF <- apply(myDF[, col2upper], 2, toupper)
-  for(i in col2upper){
-    myDF[, i] <- toupper(myDF[, i])
-  }## FOR ~ i ~ END
+  # # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
+  # col2upper <- c("TAXAID", "PHYLUM", "SUBPHYLUM", "CLASS", "SUBCLASS"
+  #                , "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
+  #                , "TRIBE", "GENUS"
+  #                , "HABIT", "FFG", "LIFE_CYCLE", "THERMAL_INDICATOR"
+  #                , "FFG2", "HABITAT"
+  #                , "ELEVATION_ATTR", "GRADIENT_ATTR", "WSAREA_ATTR")
+  # #myDF <- apply(myDF[, col2upper], 2, toupper)
+  # for(i in col2upper){
+  #   myDF[, i] <- toupper(myDF[, i])
+  # }## FOR ~ i ~ END
+  # use toupper() earlier, don't need
+  # removed as causing issues wiht shiny.io with some missing fields
 
   # Add extra columns for some fields
   # (need unique values for functions in summarise)
