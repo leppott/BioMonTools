@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-03 09:56:50
+    #> Last Update: 2022-02-03 11:42:41
 
 # Version History
+
+## Changes in Version 0.5.0.9092 (2022-02-03)
+
+-   fix: Remove redundant code in metric.values()
+    -   Causing failures on Shiny.io with missing required columns
 
 ## Changes in Version 0.5.0.9091 (2022-02-03)
 

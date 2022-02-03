@@ -669,17 +669,7 @@ shinyServer(function(input, output) {
       incProgress(1/n_inc, detail = "Run Function")
       Sys.sleep(sleep_num)
       #
-      # df_fun <- BioMonTools::metric.values(fun.DF = fun_fun.DF
-      #                                      , fun.Community = fun_fun.Community
-      #                                      , fun.MetricNames = NULL
-      #                                      , boo.Adjust = FALSE
-      #                                      , fun.cols2keep = fun_fun.cols2keep
-      #                                      , boo.marine = FALSE
-      #                                      , boo.Shiny = TRUE)
-print("metrics source")
-source("metric_values.R")
-print("metrics calc")
-      df_fun <- metric.values(fun.DF = fun_fun.DF
+      df_fun <- BioMonTools::metric.values(fun.DF = fun_fun.DF
                                            , fun.Community = fun_fun.Community
                                            , fun.MetricNames = NULL
                                            , boo.Adjust = FALSE
@@ -687,7 +677,6 @@ print("metrics calc")
                                            , boo.marine = FALSE
                                            , boo.Shiny = TRUE)
 
-print("metrics done")
       # Function, Save
       #
       # Increment the progress bar, and update the detail text.
