@@ -146,7 +146,8 @@ metvalgrpxl <- function(fun.DF.MetVal
 
   ## Create NOTES
   nrow_NOTES   <- 15
-  NOTES        <- data.frame(matrix(ncol = 3, nrow = nrow_NOTES))
+  #NOTES        <- data.frame(matrix(ncol = 3, nrow = nrow_NOTES))
+  NOTES        <- data.frame(matrix(ncol = 3))
   NOTES[, 2] <- writexl::xl_formula('=""') # set column as formula
   NOTES[, 3] <- writexl::xl_formula('=""') # set column as formula
   NOTES[1, 1]  <- "BioMonTools, Metric Values Groups"

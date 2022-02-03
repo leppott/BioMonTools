@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-03 12:25:04
+    #> Last Update: 2022-02-03 12:40:08
 
 # Version History
+
+## Changes in Version 0.5.0.9094 (2022-02-03)
+
+-   refactor: Update metvalgrpxl() for blank cells hiding text to left
 
 ## Changes in Version 0.5.0.9093 (2022-02-03)
 
