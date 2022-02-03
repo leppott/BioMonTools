@@ -19,9 +19,7 @@
 #'
 #' * Community
 #'
-#' * Sort_Group
-#'
-#' * Sort_Order
+#' * Sort_Group (user defined)
 #'
 #' @param fun.DF.MetVal Data frame of metric values.
 #' @param fun.DF.xlMetNames Data frame of metric names and groups.
@@ -31,6 +29,8 @@
 #' (bugs, fish, or algae)
 #' @param fun.MetVal.Col2Keep Column names in metric values to keep.
 #' Default = c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
+#' @param fun.xlGrpCol Column name from Excel metric names to use for Groupings.
+#' Default = Sort_Group
 #' @param file.out Output file name.  Default (NULL) will generate a file name
 #' based on the data and time (e.g., MetricValuesGroups_bugs_20220201.xlsx)
 
@@ -51,10 +51,12 @@
 #'                                       , skip = 4)
 #' ## Columns to Keep
 #' col2keep <- c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
+#' ## Grouping Column
+#' col_Grp <- "Sort_Group"
 #' ## File Name
-#' file.out <- file.path(tempdir(), paste0("MetValGrps_", comm, ".xlsx"))
+#' file_out <- file.path(tempdir(), paste0("MetValGrps_", comm, ".xlsx"))
 #' ## Run Function
-#' metvalgrpxl(df_metval, df_metnames, comm, col2keep, file.out)
+#' metvalgrpxl(df_metval, df_metnames, comm, col2keep, col_Grp, file_out)
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' # Example 2, fish
@@ -67,6 +69,7 @@ metvalgrpxl <- function(fun.DF.MetVal
             , fun.DF.xlMetNames = NULL
             , fun.Community
             , fun.MetVal.Col2Keep = c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
+            , fun.xlGrpCol = "Sort_Group"
             , file.out = NULL) {
 
   # DEBUG
@@ -81,6 +84,7 @@ metvalgrpxl <- function(fun.DF.MetVal
                                           , skip = 4)
     fun.Community <- "bugs"
     fun.MetVal.Col2Keep = c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
+    fun.xlGrpCol = "Sort_Group"
     file.out <- file.path(tempdir(), paste0("MetValGrps_"
                                             , fun.Community
                                             , ".xlsx"))
@@ -99,9 +103,12 @@ metvalgrpxl <- function(fun.DF.MetVal
     datetime <- format(Sys.time(), "_%Y%m%d_%H%M%S")
     file.out <- paste0("MetricValuesGroups_"
                        , fun.Community
-                       , date.time
+                       , datetime
                        , ".xlsx")
   }## IF ~ is.null(file.out)
+
+
+  SortGroup <- toupper(fun.xlGrpCol)
 
   # QC stop if community blank
 
@@ -119,7 +126,7 @@ metvalgrpxl <- function(fun.DF.MetVal
   ## Quit with message if missing columns
   ## See metric.values() code line 568
   # QC, Required Fields
-  col.req <- c("METRIC_NAME", "Community", "Sort_Group")
+  col.req <- c("METRIC_NAME", "Community", SortGroup)
   col.req.missing <- col.req[!(toupper(col.req) %in% toupper(names(df_metnames)))]
   num.col.req.missing <- length(col.req.missing)
   if(num.col.req.missing > 0) {
@@ -137,54 +144,54 @@ metvalgrpxl <- function(fun.DF.MetVal
   # To include formulas set entire column to '=""'
   # then have to use formulas to insert text
 
-  ## Create Notes
-  nrow_Notes   <- 15
-  Notes        <- data.frame(matrix(ncol = 3, nrow = nrow_Notes))
-  Notes[, 2] <- writexl::xl_formula('=""') # set column as formula
-  Notes[, 3] <- writexl::xl_formula('=""') # set column as formula
-  Notes[1, 1]  <- "BioMonTools, Metric Values Groups"
-  Notes[3, 1]  <- "Path and FileName"
-  Notes[3, 2]  <- "=LEFT(@CELL(\"filename\",A1),FIND(\"]\",@CELL(\"filename\",A1)))"
-  Notes[4, 1]  <- "FileName"
-  Notes[4, 2]  <- "=MID(@CELL(\"filename\",B8),FIND(\"[\",@CELL(\"filename\",B8)),
+  ## Create NOTES
+  nrow_NOTES   <- 15
+  NOTES        <- data.frame(matrix(ncol = 3, nrow = nrow_NOTES))
+  NOTES[, 2] <- writexl::xl_formula('=""') # set column as formula
+  NOTES[, 3] <- writexl::xl_formula('=""') # set column as formula
+  NOTES[1, 1]  <- "BioMonTools, Metric Values Groups"
+  NOTES[3, 1]  <- "Path and FileName"
+  NOTES[3, 2]  <- "=LEFT(@CELL(\"filename\",A1),FIND(\"]\",@CELL(\"filename\",A1)))"
+  NOTES[4, 1]  <- "FileName"
+  NOTES[4, 2]  <- "=MID(@CELL(\"filename\",B8),FIND(\"[\",@CELL(\"filename\",B8)),
             (FIND(\"]\",@CELL(\"filename\",B8))-FIND(\"[\",@CELL(\"filename\",B8)))+1)"
-  Notes[5, 1]  <- "Worksheet"
-  Notes[5, 2]  <- "=MID(@CELL(\"filename\",B10),FIND(\"]\",@CELL(\"filename\",
+  NOTES[5, 1]  <- "Worksheet"
+  NOTES[5, 2]  <- "=MID(@CELL(\"filename\",B10),FIND(\"]\",@CELL(\"filename\",
 B10))+1,LEN(@CELL(\"filename\",B10))-FIND(\"]\",@CELL(\"filename\",B10)))"
-  Notes[7, 1]  <- "Description of Work"
-  Notes[8, 1]  <- "Metric value calculations from the R package BioMonTools."
-  Notes[9, 1] <- "Metrics are sorted by common groups. Groupings defined in MetricNames"
-  Notes[11, 1] <- "Input File Name"
-  Notes[11, 2] <- paste0('="', deparse(substitute(fun.DF.MetricNames)), '"')
-  Notes[12, 1] <- "Community"
-  Notes[12, 2] <- paste0('="', fun.Community, '"')
-  Notes[13, 1] <- "Date"
-  Notes[13, 2] <- paste0('="', as.character(Sys.Date()), '"')
-  Notes[15, 1] <- "Worksheet"
-  Notes[15, 2] <- '="Description"'
-  Notes[15, 3] <- '="Link"'
+  NOTES[7, 1]  <- "Description of Work"
+  NOTES[8, 1]  <- "Metric value calculations from the R package BioMonTools."
+  NOTES[9, 1] <- "Metrics are sorted by common groups. Groupings defined in MetricNames"
+  NOTES[11, 1] <- "Input File Name"
+  NOTES[11, 2] <- paste0('="', deparse(substitute(fun.DF.MetricNames)), '"')
+  NOTES[12, 1] <- "Community"
+  NOTES[12, 2] <- paste0('="', fun.Community, '"')
+  NOTES[13, 1] <- "Date"
+  NOTES[13, 2] <- paste0('="', as.character(Sys.Date()), '"')
+  NOTES[15, 1] <- "Worksheet"
+  NOTES[15, 2] <- '="Description"'
+  NOTES[15, 3] <- '="Link"'
 
   # Remove Formula
-  Notes[1, 2:3] <- NA
+  NOTES[1, 2:3] <- NA
 
   # Add worksheets
-  Notes[16, 1] <- "Notes"
-  Notes[16, 2] <- '="File metadata"'
-  Notes[16, 3] <- paste0("=HYPERLINK($B$5&$A"
+  NOTES[16, 1] <- "NOTES"
+  NOTES[16, 2] <- '="File metadata"'
+  NOTES[16, 3] <- paste0("=HYPERLINK($B$5&$A"
                         , 16 + 1
                         , "&\"!A1\",$A"
                         , 16 + 1
                         , ")")
-  Notes[17, 1] <- "MetricNames"
-  Notes[17, 2] <- '="Metric Name metadata"'
-  Notes[17, 3] <- paste0("=HYPERLINK($B$5&$A"
+  NOTES[17, 1] <- "MetricNames"
+  NOTES[17, 2] <- '="Metric Name metadata"'
+  NOTES[17, 3] <- paste0("=HYPERLINK($B$5&$A"
                          , 17 + 1
                          , "&\"!A1\",$A"
                          , 17 + 1
                          , ")")
-  Notes[18, 1] <- "MetricValues"
-  Notes[18, 2] <- '="Metric Values, Group = ALL"'
-  Notes[18, 3] <- paste0("=HYPERLINK($B$5&$A"
+  NOTES[18, 1] <- "MetricValues"
+  NOTES[18, 2] <- '="Metric Values, Group = ALL"'
+  NOTES[18, 3] <- paste0("=HYPERLINK($B$5&$A"
                          , 18 + 1
                          , "&\"!A1\",$A"
                          , 18 + 1
@@ -192,7 +199,7 @@ B10))+1,LEN(@CELL(\"filename\",B10))-FIND(\"]\",@CELL(\"filename\",B10)))"
 
   # Future update add in links to each worksheet
 
-  # Notes, MetricNames, MetricValues, Groups
+  # NOTES, MetricNames, MetricValues, Groups
 
 
   # Set up Lists
@@ -200,47 +207,37 @@ B10))+1,LEN(@CELL(\"filename\",B10))-FIND(\"]\",@CELL(\"filename\",B10)))"
   sheet <- list()
   result <- list()
 
-  #
-  # notesheet <- data.frame(Reduce(rbind, sheet))
-  # names(notesheet) <- "V1"
-  # Notes <- rbind(Notes,notesheet)
-
-  #### need to make these 2 work, outside loop preferably
-
-  #### very unsure if this works or just prints fun.DF.MetricNames
- # Notes[11,2]<- deparse(substitute(fun.DF.MetricNames))
-
-  result[["Notes"]] <- Notes
+  result[["NOTES"]] <- NOTES
   result[["MetricNames"]] <- df_metnames
   result[["MetricValues"]] <- df_metval
 
 
   # Create List objects for each metric group
   ## Save each set of metrics to Excel on a worksheet named by sort_group
-  sort_grps <- unique(df_metnames[, "SORT_GROUP"])
+  sort_grps <- unique(df_metnames[, SortGroup])
   for (i in sort_grps) {
-    i_metrics <- df_metnames[df_metnames[, "SORT_GROUP"] == i, "METRIC_NAME"]
+    i_metrics <- df_metnames[df_metnames[, SortGroup] == i, "METRIC_NAME"]
     col_base <- c(fun.MetVal.Col2Keep, i_metrics)
     col_keep <- col_base[col_base %in% names(df_metval)]
     df_i <- df_metval[, col_keep]
     result[[i]] <- df_i
     # update NOTES with hyperlink
     i_num <- match(i, sort_grps)
-    i_num_Notes <- i_num + nrow_Notes + 3
-    Notes[i_num_Notes, 1] <- i
-    Notes[i_num_Notes, 2] <- paste0('="Metric Values, Group = ', i, '"')
-    Notes[i_num_Notes, 3] <- paste0("=HYPERLINK($B$5&$A"
-                                    , i_num_Notes + 1
+    i_num_NOTES <- i_num + nrow_NOTES + 3
+    NOTES[i_num_NOTES, 1] <- i
+    NOTES[i_num_NOTES, 2] <- paste0('="Metric Values, Group = ', i, '"')
+    NOTES[i_num_NOTES, 3] <- paste0("=HYPERLINK($B$5&$A"
+                                    , i_num_NOTES + 1
                                     , "&\"!A1\",$A"
-                                    , i_num_Notes + 1
+                                    , i_num_NOTES + 1
                                     , ")")
     # B4 = path and file name
     # + 1 for header row added by write_xlsx
 
   }## FOR ~ i
 
-  # Update Notes
-  result[["Notes"]] <- Notes
+  # Update NOTES
+  result[["NOTES"]] <- NOTES
 
   # Save to Excel
   writexl::write_xlsx(result

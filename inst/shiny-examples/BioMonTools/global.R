@@ -12,6 +12,7 @@ library(shinyjs)
 library(shinyWidgets)
 library(shinyBS)
 library(DT)
+library(writexl)
 # masks shinydashboardPlus::progressBar
 # masks shinyjs::alert
 

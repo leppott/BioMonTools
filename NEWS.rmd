@@ -18,6 +18,17 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9091 (2022-02-03)
+
+* refactor: Update metvalgrpxl() to use input parameter for groupings
+
+## Changes in Version 0.5.0.9090 (2022-02-02)
+
+* refactor: Small edits to Shiny app
+    + Text edits to help pages
+    + Update links for TaxaMaps
+* refactor: Update metvalgrpxl() to use formulas in output
+
 ## Changes in Version 0.5.0.9089 (2022-02-01)
 
 * refactor: Edits to help pages in Shiny app

@@ -1,0 +1,13 @@
+name: BioMonTools_test
+title: BioMonTools_test
+username:
+account: tetratech-wtr-wne
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5574001
+bundleId: 5539247
+url: https://tetratech-wtr-wne.shinyapps.io/BioMonTools_test/
+when: 1643903189.53066
+lastSyncTime: 1643903189.53066
+asMultiple: FALSE
+asStatic: FALSE

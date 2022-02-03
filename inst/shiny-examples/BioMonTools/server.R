@@ -647,10 +647,11 @@ shinyServer(function(input, output) {
       #
       # Number of increments
       n_inc <- 6
+      sleep_num <- 1 #0.33
 
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Initialize")
-      Sys.sleep(0.25)
+      Sys.sleep(sleep_num)
 
       # enable download button
       shinyjs::disable("b_calcmet_download")
@@ -666,9 +667,19 @@ shinyServer(function(input, output) {
       #
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Run Function")
-      Sys.sleep(0.25)
+      Sys.sleep(sleep_num)
       #
-      df_fun <- BioMonTools::metric.values(fun.DF = fun_fun.DF
+      # df_fun <- BioMonTools::metric.values(fun.DF = fun_fun.DF
+      #                                      , fun.Community = fun_fun.Community
+      #                                      , fun.MetricNames = NULL
+      #                                      , boo.Adjust = FALSE
+      #                                      , fun.cols2keep = fun_fun.cols2keep
+      #                                      , boo.marine = FALSE
+      #                                      , boo.Shiny = TRUE)
+print("metrics source")
+source("metric_values.R")
+print("metrics calc")
+      df_fun <- metric.values(fun.DF = fun_fun.DF
                                            , fun.Community = fun_fun.Community
                                            , fun.MetricNames = NULL
                                            , boo.Adjust = FALSE
@@ -676,19 +687,19 @@ shinyServer(function(input, output) {
                                            , boo.marine = FALSE
                                            , boo.Shiny = TRUE)
 
-
+print("metrics done")
       # Function, Save
       #
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Save Results, csv")
-      Sys.sleep(0.25)
+      Sys.sleep(sleep_num)
       #
       fn_results <- file.path("results", "calcmet", "results_calcmet.csv")
       write.csv(df_fun, fn_results, row.names = FALSE)
       #
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Save Results, Excel")
-      Sys.sleep(0.25)
+      Sys.sleep(sleep_num)
       #
       # Save as Excel
       df_metnames <- readxl::read_excel(system.file("extdata/MetricNames.xlsx"
@@ -705,11 +716,12 @@ shinyServer(function(input, output) {
                                , fun.MetVal.Col2Keep = c("SAMPLEID"
                                                          , "INDEX_NAME"
                                                          , "INDEX_REGION")
+                               , fun.xlGrpCol = "Sort_Group2"
                                , file.out = fn_metvalxl)
 
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Save Results, zip")
-      Sys.sleep(0.25)
+      Sys.sleep(sleep_num)
 
       # Create zip file
       fn_4zip <- list.files(path = file.path("results", "calcmet")
