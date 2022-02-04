@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9095 (2022-02-04)
+
+* fix: Update metric.values() with more error checking for missing columns
+    + At start for minimal required fields before community specific sections
+    + After metric values calculated in bug section for NA to 0
+
 ## Changes in Version 0.5.0.9094 (2022-02-03)
 
 * refactor: Update metvalgrpxl() for blank cells hiding text to left

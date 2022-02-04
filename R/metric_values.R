@@ -455,7 +455,7 @@ metric.values <- function(fun.DF
   `%>%` <- dplyr::`%>%`
   # Munge ####
   # Data Munging (common to all data types)
-  # Convert to data.frame.  Code breaks if myDF is a tibble.
+  # Convert to data.frame.  Code breaks if fun.DF is a tibble.
   fun.DF <- as.data.frame(fun.DF)
   # convert Field Names to UPPER CASE
   names(fun.DF) <- toupper(names(fun.DF))
@@ -464,13 +464,53 @@ metric.values <- function(fun.DF
     #names(fun.cols2keep) <- toupper(fun.cols2keep)
     fun.cols2keep <- toupper(fun.cols2keep)
   }##IF~!is.null(fun.cols2keep)~END
+
+  # QC, missing cols ----
+  #QC, Add required fields for this part of the code
+  col.req <- c("N_TAXA", "TAXAID", "INDEX_REGION")
+  col.req.missing <- col.req[!(col.req %in% toupper(names(fun.DF)))]
+  num.col.req.missing <- length(col.req.missing)
+
+  # Trigger prompt if any missing fields (and session is interactive)
+  if(num.col.req.missing!=0 & interactive()==TRUE){##IF.num.col.req.missing.START
+    myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
+    myPrompt.02 <- paste(col.req.missing, collapse=", ")
+    myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
+    myPrompt.04 <- "For example, if the HABIT field is missing all habit related metrics will not be correct."
+    myPrompt.05 <- "Do you wish to continue (YES or NO)?"
+
+    myPrompt <- paste(" ", myPrompt.01, myPrompt.02, " ", myPrompt.03, myPrompt.04
+                      , myPrompt.05, sep="\n")
+    #user.input <- readline(prompt=myPrompt)
+    user.input <- NA
+    # special condition for Shiny
+    # Shiny counts as interactive()==TRUE but cannot access this prompt in Shiny.
+    if(boo.Shiny==FALSE){
+      user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
+    } else {
+      message(myPrompt)
+      message("boo.Shiny == TRUE so prompt skipped and value set to '1'.")
+      user.input <- 1
+    }## IF ~ boo.Shiny ~ END
+
+    # any answer other than "YES" will stop the function.
+    if(user.input!=1){##IF.user.input.START
+      stop(paste("The user chose *not* to continue due to missing fields: "
+                 , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
+    }##IF.user.input.END
+    # Add missing fields
+    fun.DF[,col.req.missing] <- NA_character_
+    warning(paste("Metrics related to the following fields are invalid:"
+                  , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
+  }##IF.num.col.req.missing.END
+
   # Remove Count = 0 taxa unless TaxaID = NONE
   #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
   fun.DF <- fun.DF %>% dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
   # non-target taxa removed in community function, if appropriate
   #
   # SiteType to upper case
-  fun.DF[,"INDEX_REGION"] <- toupper(fun.DF[,"INDEX_REGION"])
+ # fun.DF[,"INDEX_REGION"] <- toupper(fun.DF[,"INDEX_REGION"])
   # convert community to upper case
   fun.Community <- toupper(fun.Community)
   # run the proper sub function
@@ -572,6 +612,7 @@ metric.values.bugs <- function(myDF
   # define pipe
   `%>%` <- dplyr::`%>%`
   # QC ####
+  ## QC, missing cols ----
   # QC, Required Fields
   col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
               , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
@@ -2177,7 +2218,13 @@ metric.values.bugs <- function(myDF
   #
   # Clean Up ####
   # replace NA with 0
-  met.val[is.na(met.val)] <- 0
+  #met.val[is.na(met.val)] <- 0
+  # but exclude SAMPLEID,  INDEX_NAME  INDEX_REGION
+  # met.val <- met.val %>% dplyr::mutate(dplyr::across(where(is.numeric)
+  #                                            , tidyr::replace_na
+  #                                            , 0))
+  met.val <- met.val %>% dplyr::mutate_if(is.numeric, tidyr::replace_na, 0)
+ # met.val <- replace(is.na(met.val), 0)
 
   # Marine Metrics
   MetricNames_Marine <- c("nt_Capit"
@@ -2323,6 +2370,7 @@ metric.values.fish <- function(myDF
   # QC ####
   # Remove Non-Target Taxa
   #myDF <- myDF[myDF[,"NonTarget"]==0,] # not relevant for fish
+  ## QC, missing cols ----
   # QC, Required Fields
   col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "N_ANOMALIES", "SAMP_BIOMASS"
                , "INDEX_NAME", "INDEX_REGION"
@@ -3167,7 +3215,7 @@ metric.values.algae <- function(myDF
 
   # QC ####
   # QC, Required Fields
-
+  ## QC, missing cols ----
   col.req <- c("INDEX_REGION","SAMPLEID","TAXAID","EXCLUDE","NONTARGET"
                ,"N_TAXA","PHYLUM","ORDER","FAMILY","GENUS","BC_USGS"
                ,"TROPHIC_USGS","SAP_USGS","PT_USGS","O_USGS","SALINITY_USGS"

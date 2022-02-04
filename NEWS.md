@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-03 12:40:08
+    #> Last Update: 2022-02-04 15:45:48
 
 # Version History
+
+## Changes in Version 0.5.0.9095 (2022-02-04)
+
+-   fix: Update metric.values() with more error checking for missing
+    columns
+    -   At start for minimal required fields before community specific
+        sections
+    -   After metric values calculated in bug section for NA to 0
 
 ## Changes in Version 0.5.0.9094 (2022-02-03)
 
