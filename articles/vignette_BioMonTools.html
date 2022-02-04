@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9094</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9095</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 data-toc-skip class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 data-toc-skip class="date">2022-02-03</h4>
+            <h4 data-toc-skip class="date">2022-02-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/HEAD/vignettes/vignette_BioMonTools.Rmd" class="external-link"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -300,6 +300,8 @@
 
 <span class="co"># Run Function</span>
 <span class="va">df.metval</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df.data</span>, <span class="st">"bugs"</span>, fun.cols2keep<span class="op">=</span><span class="va">myCols</span><span class="op">)</span>
+<span class="co">#&gt; `mutate_if()` ignored the following grouping variables:</span>
+<span class="co">#&gt; Columns `SAMPLEID`, `INDEX_NAME`</span>
 <span class="co">#&gt; Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span>
 <span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span>
 <span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
@@ -357,7 +359,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
-<td align="left">LO</td>
+<td align="left">Lo</td>
 <td align="right">589</td>
 <td align="right">27</td>
 <td align="right">0</td>
@@ -374,7 +376,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
-<td align="left">HI</td>
+<td align="left">Hi</td>
 <td align="right">542</td>
 <td align="right">38</td>
 <td align="right">0</td>
@@ -391,7 +393,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
-<td align="left">HI</td>
+<td align="left">Hi</td>
 <td align="right">507</td>
 <td align="right">16</td>
 <td align="right">0</td>
@@ -408,7 +410,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
-<td align="left">HI</td>
+<td align="left">Hi</td>
 <td align="right">573</td>
 <td align="right">36</td>
 <td align="right">0</td>
@@ -425,7 +427,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
-<td align="left">LO</td>
+<td align="left">Lo</td>
 <td align="right">558</td>
 <td align="right">13</td>
 <td align="right">0</td>
@@ -442,7 +444,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
-<td align="left">HI</td>
+<td align="left">Hi</td>
 <td align="right">545</td>
 <td align="right">40</td>
 <td align="right">0</td>
@@ -989,7 +991,7 @@
                                    , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span>
 <span class="co">#&gt; Rarify of samples complete. </span>
 <span class="co">#&gt;  Number of samples =  12 </span>
-<span class="co">#&gt;  Execution time (sec) =  0.0159999999999982</span>
+<span class="co">#&gt;  Execution time (sec) =  0.0139999999999958</span>
 
 <span class="co"># view results</span>
 <span class="co">#dim(bugs_mysize)</span>
@@ -1125,6 +1127,8 @@
 <span class="va">df.metrics</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df.samps.bugs</span>
                                          , <span class="st">"bugs"</span>
                                          , fun.cols2keep <span class="op">=</span> <span class="va">keep.cols</span><span class="op">)</span>
+<span class="co">#&gt; `mutate_if()` ignored the following grouping variables:</span>
+<span class="co">#&gt; Columns `SAMPLEID`, `INDEX_NAME`</span>
 
 <span class="co"># Flags</span>
 <span class="co"># Import QC Checks</span>
