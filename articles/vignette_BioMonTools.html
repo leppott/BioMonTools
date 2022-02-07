@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9096</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9097</span>
       </span>
     </div>
 
@@ -300,11 +300,25 @@
 
 <span class="co"># Run Function</span>
 <span class="va">df.metval</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df.data</span>, <span class="st">"bugs"</span>, fun.cols2keep<span class="op">=</span><span class="va">myCols</span><span class="op">)</span>
+<span class="co">#&gt; debug_metval_main, munge</span>
+<span class="co">#&gt; debug_metval_main, QC missing cols</span>
+<span class="co">#&gt; debug_metval_main, remove count 0</span>
+<span class="co">#&gt; debug_metval_main, sitetype toupper</span>
+<span class="co">#&gt; debug_metval_main, start subfunctions</span>
+<span class="co">#&gt; debug_metval_bugs, QC, missing cols</span>
+<span class="co">#&gt; debug_metval_bugs, QC, set col class</span>
+<span class="co">#&gt; debug_metval_bugs, Munging</span>
+<span class="co">#&gt; debug_metval_bugs,metric calc</span>
+<span class="co">#&gt; debug_metval_bugs, clean up</span>
 <span class="co">#&gt; `mutate_if()` ignored the following grouping variables:</span>
 <span class="co">#&gt; Columns `SAMPLEID`, `INDEX_NAME`</span>
+<span class="co">#&gt; debug_metval_bugs, subset</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; debug_metval_bugs, extra fields</span>
 <span class="co">#&gt; Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span>
 <span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span>
 <span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
+<span class="co">#&gt; debug_metval_bugs, return</span>
 <span class="co"># Metrics of Interest</span>
 <span class="co">## thermal indicator (_ti_)</span>
 <span class="co">#names(df.metval)[grepl("_ti_", names(df.metval))]</span>
@@ -991,7 +1005,7 @@
                                    , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span>
 <span class="co">#&gt; Rarify of samples complete. </span>
 <span class="co">#&gt;  Number of samples =  12 </span>
-<span class="co">#&gt;  Execution time (sec) =  0.0150000000000006</span>
+<span class="co">#&gt;  Execution time (sec) =  0.0140000000000029</span>
 
 <span class="co"># view results</span>
 <span class="co">#dim(bugs_mysize)</span>
@@ -1127,8 +1141,23 @@
 <span class="va">df.metrics</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df.samps.bugs</span>
                                          , <span class="st">"bugs"</span>
                                          , fun.cols2keep <span class="op">=</span> <span class="va">keep.cols</span><span class="op">)</span>
+<span class="co">#&gt; debug_metval_main, munge</span>
+<span class="co">#&gt; debug_metval_main, QC missing cols</span>
+<span class="co">#&gt; debug_metval_main, remove count 0</span>
+<span class="co">#&gt; debug_metval_main, sitetype toupper</span>
+<span class="co">#&gt; debug_metval_main, start subfunctions</span>
+<span class="co">#&gt; debug_metval_bugs, QC, missing cols</span>
+<span class="co">#&gt; debug_metval_bugs, QC, set col class</span>
+<span class="co">#&gt; debug_metval_bugs, Munging</span>
+<span class="co">#&gt; debug_metval_bugs,metric calc</span>
+<span class="co">#&gt; debug_metval_bugs, clean up</span>
 <span class="co">#&gt; `mutate_if()` ignored the following grouping variables:</span>
 <span class="co">#&gt; Columns `SAMPLEID`, `INDEX_NAME`</span>
+<span class="co">#&gt; debug_metval_bugs, subset</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; debug_metval_bugs, extra fields</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; debug_metval_bugs, return</span>
 
 <span class="co"># Flags</span>
 <span class="co"># Import QC Checks</span>
