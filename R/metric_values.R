@@ -447,6 +447,7 @@ metric.values <- function(fun.DF
                           , fun.cols2keep = NULL
                           , boo.marine = FALSE
                           , boo.Shiny = FALSE){##FUNCTION.metric.values.START
+  boo_debug_main <- TRUE
 
   # global variable bindings
   N_TAXA <- TAXAID <- NULL
@@ -454,6 +455,10 @@ metric.values <- function(fun.DF
   # define pipe
   `%>%` <- dplyr::`%>%`
   # Munge ####
+  if(boo_debug_main == TRUE) {
+    msg <- ("debug_metval_main, munge")
+    message(msg)
+  }## IF ~ boo_debug_main
   # Data Munging (common to all data types)
   # Convert to data.frame.  Code breaks if fun.DF is a tibble.
   fun.DF <- as.data.frame(fun.DF)
@@ -466,13 +471,17 @@ metric.values <- function(fun.DF
   }##IF~!is.null(fun.cols2keep)~END
 
   # QC, missing cols ----
+  if(boo_debug_main == TRUE) {
+    msg <- ("debug_metval_main, QC missing cols")
+    message(msg)
+  }## IF ~ boo_debug_main
   #QC, Add required fields for this part of the code
-  col.req <- c("N_TAXA", "TAXAID", "INDEX_REGION")
+  col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "INDEX_NAME", "INDEX_REGION")
   col.req.missing <- col.req[!(col.req %in% toupper(names(fun.DF)))]
   num.col.req.missing <- length(col.req.missing)
 
   # Trigger prompt if any missing fields (and session is interactive)
-  if(num.col.req.missing!=0 & interactive()==TRUE){##IF.num.col.req.missing.START
+  if(num.col.req.missing!=0 & interactive()==TRUE){
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
     myPrompt.02 <- paste(col.req.missing, collapse=", ")
     myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
@@ -498,13 +507,29 @@ metric.values <- function(fun.DF
       stop(paste("The user chose *not* to continue due to missing fields: "
                  , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
     }##IF.user.input.END
+
     # Add missing fields
+    if(boo_debug_main == TRUE) {
+      msg <- ("debug_metval_main, add missing fields")
+      message(msg)
+    }## IF ~ boo_debug_main
     ## Add missing, Index_Name
-    fun.DF[,col.req.missing] <- "BioMonTools"
+    req.name <- "INDEX_NAME"
+    if(req.name %in% col.req.missing) {
+      fun.DF[, req.name] <- "BioMonTools"
+    }## IF ~ req.name
     ## Add missing, Index_Region
-    fun.DF[,col.req.missing] <- fun.Community
+    req.name <- "INDEX_REGION"
+    if(req.name %in% col.req.missing) {
+      fun.DF[, req.name] <- fun.Community
+    }## IF ~ req.name
     ## Add missing, N_Taxa
-    fun.DF[,col.req.missing] <- NA_integer_
+    req.name <- c("SAMPLEID", "TAXAID", "N_TAXA")
+    if(sum(req.name %in% col.req.missing) == length(req.name)) {
+      req.name.missing <- req.name[req.name %in% col.req.missing]
+      stop(paste("Required columns missing: "
+                 , paste(paste0("   ",req.name.missing), collapse="\n"),sep="\n"))
+    }## IF ~ req.name
     ## old
     #fun.DF[,col.req.missing] <- NA_character_
     warning(paste("Metrics related to the following fields are invalid:"
@@ -512,15 +537,27 @@ metric.values <- function(fun.DF
   }##IF.num.col.req.missing.END
 
   # Remove Count = 0 taxa unless TaxaID = NONE
+  if(boo_debug_main == TRUE) {
+    msg <- ("debug_metval_main, remove count 0")
+    message(msg)
+  }## IF ~ boo_debug_main
   #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
   fun.DF <- fun.DF %>% dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
   # non-target taxa removed in community function, if appropriate
   #
   # SiteType to upper case
+  if(boo_debug_main == TRUE) {
+    msg <- ("debug_metval_main, sitetype toupper")
+    message(msg)
+  }## IF ~ boo_debug_main
  # fun.DF[,"INDEX_REGION"] <- toupper(fun.DF[,"INDEX_REGION"])
   # convert community to upper case
   fun.Community <- toupper(fun.Community)
   # run the proper sub function
+  if(boo_debug_main == TRUE) {
+    msg <- ("debug_metval_main, start subfunctions")
+    message(msg)
+  }## IF ~ boo_debug_main
   if (fun.Community=="BUGS") {##IF.START
     metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep, NA
                        , boo.marine, boo.Shiny)
@@ -569,6 +606,8 @@ metric.values.bugs <- function(myDF
   #
   #names(myDF) <- toupper(names(myDF))
   # not carrying over from previous?!
+
+  boo_debug_bugs <- TRUE
 
   # global variable bindings ----
   INDEX_NAME <- INDEX_REGION <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
@@ -620,6 +659,10 @@ metric.values.bugs <- function(myDF
   `%>%` <- dplyr::`%>%`
   # QC ####
   ## QC, missing cols ----
+  if(boo_debug_bugs == TRUE) {
+    msg <- ("debug_metval_bugs, QC, missing cols")
+    message(msg)
+  }## IF ~ boo_debug_bugs
   # QC, Required Fields
   col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
               , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
@@ -663,6 +706,10 @@ metric.values.bugs <- function(myDF
                   , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
   }##IF.num.col.req.missing.END
 
+  if(boo_debug_bugs == TRUE) {
+    msg <- ("debug_metval_bugs, QC, set col class")
+    message(msg)
+  }## IF ~ boo_debug_bugs
   # QC, Exclude as TRUE/FALSE
   Exclude.T <- sum(myDF$EXCLUDE==TRUE, na.rm=TRUE)
   if(Exclude.T==0){##IF.Exclude.T.START
@@ -700,6 +747,10 @@ metric.values.bugs <- function(myDF
   }##IF ~ UFC ~ END
 
   # Data Munging ####
+  if(boo_debug_bugs == TRUE) {
+    msg <- ("debug_metval_bugs, Munging")
+    message(msg)
+  }## IF ~ boo_debug_bugs
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
   myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
@@ -958,6 +1009,10 @@ metric.values.bugs <- function(myDF
   rm(df.dom02_NoJugaRiss_BCG_att456.sum)
 
   # Metric Calc ####
+  if(boo_debug_bugs == TRUE) {
+    msg <- ("debug_metval_bugs,metric calc")
+    message(msg)
+  }## IF ~ boo_debug_bugs
   met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME, INDEX_REGION)
              #
              # one metric per line
@@ -2224,6 +2279,10 @@ metric.values.bugs <- function(myDF
         , .groups = "drop_last")## met.val.END
   #
   # Clean Up ####
+  if(boo_debug_bugs == TRUE) {
+    msg <- ("debug_metval_bugs, clean up")
+    message(msg)
+  }## IF ~ boo_debug_bugs
   # replace NA with 0
   #met.val[is.na(met.val)] <- 0
   # but exclude SAMPLEID,  INDEX_NAME  INDEX_REGION
@@ -2288,6 +2347,10 @@ metric.values.bugs <- function(myDF
 
 
   # # subset to only metrics specified by user
+  if(boo_debug_bugs == TRUE) {
+    msg <- ("debug_metval_bugs, subset")
+    message(msg)
+  }## IF ~ boo_debug_bugs
   if (is.null(MetricNames)) {
     # remove marine if MetrcNames not provided and boo.marine = false (default)
     if(boo.marine == FALSE){
@@ -2301,6 +2364,10 @@ metric.values.bugs <- function(myDF
   }##IF~MetricNames~END
 
   # Add extra fields
+  if(boo_debug_bugs == TRUE) {
+    msg <- ("debug_metval_bugs, extra fields")
+    message(msg)
+  }## IF ~ boo_debug_bugs
   if(is.null(cols2keep)){##IF.is.null.cols2keep.START
     df.return <- as.data.frame(met.val)
   } else {
@@ -2314,6 +2381,10 @@ metric.values.bugs <- function(myDF
   }##IF.is.null.cols2keep.END
 
   # df to report back
+  if(boo_debug_bugs == TRUE) {
+    msg <- ("debug_metval_bugs, return")
+    message(msg)
+  }## IF ~ boo_debug_bugs
   return(df.return)
 }##FUNCTION.metric.values.bugs.END
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
