@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-07 08:21:37
+    #> Last Update: 2022-02-07 11:04:50
 
 # Version History
+
+## Changes in Version 0.5.0.9098 (2022-02-07)
+
+-   refactor: Modify debugging messages to metric.values() for Shiny log
 
 ## Changes in Version 0.5.0.9097 (2022-02-07)
 
