@@ -499,7 +499,14 @@ metric.values <- function(fun.DF
                  , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
     }##IF.user.input.END
     # Add missing fields
-    fun.DF[,col.req.missing] <- NA_character_
+    ## Add missing, Index_Name
+    fun.DF[,col.req.missing] <- "BioMonTools"
+    ## Add missing, Index_Region
+    fun.DF[,col.req.missing] <- fun.Community
+    ## Add missing, N_Taxa
+    fun.DF[,col.req.missing] <- NA_integer_
+    ## old
+    #fun.DF[,col.req.missing] <- NA_character_
     warning(paste("Metrics related to the following fields are invalid:"
                   , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
   }##IF.num.col.req.missing.END

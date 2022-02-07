@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-04 15:45:48
+    #> Last Update: 2022-02-07 07:04:30
 
 # Version History
+
+## Changes in Version 0.5.0.9096 (2022-02-07)
+
+-   fix: Update metric.values() for input data missing Index_Name and
+    Index_Region
 
 ## Changes in Version 0.5.0.9095 (2022-02-04)
 

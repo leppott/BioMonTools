@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9096 (2022-02-07)
+
+* fix: Update metric.values() for input data missing Index_Name and Index_Region
+
 ## Changes in Version 0.5.0.9095 (2022-02-04)
 
 * fix: Update metric.values() with more error checking for missing columns
