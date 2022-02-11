@@ -1450,6 +1450,9 @@ metric.values.bugs <- function(myDF
                                        , na.rm=TRUE)/ni_total
              , pi_Sphaer = 100*sum(N_TAXA[FAMILY == "SPHAERIIDAE"]
                                   , na.rm=TRUE)/ni_total
+             , pi_SphaerCorb = 100*sum(N_TAXA[FAMILY == "SPHAERIIDAE" |
+                                                GENUS == "CORBICULA"]
+                                   , na.rm=TRUE)/ni_total
              , pi_Tellin = 100*sum(N_TAXA[FAMILY == "TELLINIDAE"]
                                    , na.rm=TRUE)/ni_total
              , pi_Trich = 100*sum(N_TAXA[ORDER == "TRICHOPTERA"]

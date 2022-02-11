@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-07 11:04:50
+    #> Last Update: 2022-02-11 11:03:04
 
 # Version History
+
+## Changes in Version 0.5.0.9099 (2022-02-11)
+
+-   refactor: Shiny add ‘tab’ as acceptable text file upload format.
+-   refactor: Add new bug metric to metric.values()
+    -   pi_SphaerCorb
 
 ## Changes in Version 0.5.0.9098 (2022-02-07)
 

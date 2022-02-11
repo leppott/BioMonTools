@@ -22,6 +22,7 @@ function(){
                         'text/tab-separated-values',
                         'text/plain',
                         '.csv',
+                        '.tab',
                         '.tsv',
                         '.txt'
                       )

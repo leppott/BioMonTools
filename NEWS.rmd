@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9099 (2022-02-11)
+
+* refactor: Shiny add 'tab' as acceptable text file upload format.
+* refactor: Add new bug metric to metric.values()
+    + pi_SphaerCorb
+
 ## Changes in Version 0.5.0.9098 (2022-02-07)
 
 * refactor: Modify debugging messages to metric.values() for Shiny log
