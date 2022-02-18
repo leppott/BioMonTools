@@ -674,7 +674,7 @@ metric.values.bugs <- function(myDF
                                , boo.Shiny
                                , verbose){##FUNCTION.metric.values.bugs.START
   #
-  #names(myDF) <- toupper(names(myDF))
+  names(myDF) <- toupper(names(myDF))
   # not carrying over from previous?!
 
   boo_debug_bugs <- FALSE
@@ -742,15 +742,33 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
   # QC, Required Fields
-  col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
-              , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
-              , "SUBCLASS", "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
-              , "TRIBE", "GENUS", "FFG", "HABIT", "LIFE_CYCLE", "TOLVAL"
-              , "BCG_ATTR", "THERMAL_INDICATOR", "LONGLIVED", "NOTEWORTHY"
-              , "FFG2", "TOLVAL2", "HABITAT", "UFC", "ELEVATION_ATTR"
-              , "GRADIENT_ATTR", "WSAREA_ATTR")
+  col.req_character <- c("SAMPLEID", "TAXAID", "N_TAXA", "INDEX_NAME"
+                    , "INDEX_REGION", "PHYLUM", "SUBPHYLUM", "CLASS"
+                    , "SUBCLASS", "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
+                    , "TRIBE", "GENUS", "FFG", "HABIT", "LIFE_CYCLE"
+                    , "BCG_ATTR", "THERMAL_INDICATOR"
+                    , "FFG2", "HABITAT", "ELEVATION_ATTR"
+                    , "GRADIENT_ATTR", "WSAREA_ATTR")
+  col.req_logical <- c("EXCLUDE", "NONTARGET", "LONGLIVED", "NOTEWORTHY")
+  col.req_numeric <- c("TOLVAL", "TOLVAL2", "UFC")
+  col.req <- c(col.req_character, col.req_logical, col.req_numeric)
+  # col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
+  #             , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
+  #             , "SUBCLASS", "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
+  #             , "TRIBE", "GENUS", "FFG", "HABIT", "LIFE_CYCLE", "TOLVAL"
+  #             , "BCG_ATTR", "THERMAL_INDICATOR", "LONGLIVED", "NOTEWORTHY"
+  #             , "FFG2", "TOLVAL2", "HABITAT", "UFC", "ELEVATION_ATTR"
+  #             , "GRADIENT_ATTR", "WSAREA_ATTR")
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
+  col.req.missing_char <- col.req_character[!(col.req_character %in% toupper(names(myDF)))]
+  col.req.missing_log <- col.req_logical[!(col.req_logical %in% toupper(names(myDF)))]
+  col.req.missing_num <- col.req_numeric[!(col.req_numeric %in% toupper(names(myDF)))]
+
   num.col.req.missing <- length(col.req.missing)
+  num.col.req.missing_char <- length(col.req.missing_char)
+  num.col.req.missing_log <- length(col.req.missing_log)
+  num.col.req.missing_num <- length(col.req.missing_num)
+
   # Trigger prompt if any missing fields (and session is interactive)
   if(num.col.req.missing!=0 & interactive()==TRUE) {
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
@@ -785,7 +803,16 @@ metric.values.bugs <- function(myDF
                   , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
     }##IF.user.input.END
     # Add missing fields
-    myDF[,col.req.missing] <- NA
+    #myDF[, col.req.missing] <- NA
+    if(num.col.req.missing_char >0) {
+      myDF[, col.req.missing_char] <- NA_character_
+    }
+    if(num.col.req.missing_log >0) {
+      myDF[, col.req.missing_log] <- NA
+    }
+    if(num.col.req.missing_num >0) {
+      myDF[, col.req.missing_num] <- NA_real_
+    }
     warning(paste("Metrics related to the following fields are invalid:"
                   , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
   }##IF.num.col.req.missing.END
