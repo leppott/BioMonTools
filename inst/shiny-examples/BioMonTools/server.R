@@ -675,7 +675,8 @@ shinyServer(function(input, output) {
                                            , boo.Adjust = FALSE
                                            , fun.cols2keep = fun_fun.cols2keep
                                            , boo.marine = FALSE
-                                           , boo.Shiny = TRUE)
+                                           , boo.Shiny = TRUE
+                                           , verbose = TRUE)
 
       # Function, Save
       #

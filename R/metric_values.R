@@ -499,7 +499,7 @@ metric.values <- function(fun.DF
   num.col.req.missing <- length(col.req.missing)
 
   # Trigger prompt if any missing fields (and session is interactive)
-  if(num.col.req.missing!=0 & interactive()==TRUE){
+  if(num.col.req.missing!=0 & interactive() == TRUE) {
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
     myPrompt.02 <- paste(col.req.missing, collapse=", ")
     myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
@@ -527,7 +527,7 @@ metric.values <- function(fun.DF
     }## IF ~ boo.Shiny ~ END
 
     # any answer other than "YES" will stop the function.
-    if(user.input!=1){##IF.user.input.START
+    if(user.input != 1){##IF.user.input.START
       stop(paste("The user chose *not* to continue due to missing fields: "
                  , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
     }##IF.user.input.END
@@ -679,7 +679,7 @@ metric.values.bugs <- function(myDF
 
   boo_debug_bugs <- FALSE
   boo_debug_bugs_num <- 0
-  boo_debug_bugs_num_total <- 9
+  boo_debug_bugs_num_total <- 13
 
   # global variable bindings ----
   INDEX_NAME <- INDEX_REGION <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
@@ -752,7 +752,7 @@ metric.values.bugs <- function(myDF
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
   # Trigger prompt if any missing fields (and session is interactive)
-  if(num.col.req.missing!=0 & interactive()==TRUE){##IF.num.col.req.missing.START
+  if(num.col.req.missing!=0 & interactive()==TRUE) {
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
     myPrompt.02 <- paste(col.req.missing, collapse=", ")
     myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
@@ -785,7 +785,7 @@ metric.values.bugs <- function(myDF
                   , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
     }##IF.user.input.END
     # Add missing fields
-    myDF[,col.req.missing] <- NA
+    myDF[,col.req.missing] <- NA_character_
     warning(paste("Metrics related to the following fields are invalid:"
                   , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
   }##IF.num.col.req.missing.END
@@ -820,7 +820,7 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
   Exclude.T <- sum(myDF$EXCLUDE==TRUE, na.rm=TRUE)
-  if(Exclude.T==0){##IF.Exclude.T.START
+  if(Exclude.T==0) {
     warning("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
   }##IF.Exclude.T.END
 
@@ -837,7 +837,7 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
   NonTarget.F <- sum(myDF$NONTARGET==FALSE, na.rm=TRUE)
-  if(NonTarget.F==0){##IF.Exclude.T.START
+  if(NonTarget.F==0) {
     warning("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
   }##IF.Exclude.T.END
 
@@ -855,7 +855,7 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
   TolVal_Char_NA <- myDF[, "TOLVAL"]=="NA"
-  if(sum(TolVal_Char_NA, na.rm=TRUE)>0){
+  if(sum(TolVal_Char_NA, na.rm=TRUE)>0) {
     myDF[TolVal_Char_NA, "TOLVAL"] <- NA
     myDF[, "TOLVAL"] <- as.numeric(myDF[, "TOLVAL"])
   }##IF ~ TOLVAL ~ END
@@ -874,7 +874,7 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
   TolVal2_Char_NA <- myDF[, "TOLVAL2"]=="NA"
-  if(sum(TolVal2_Char_NA, na.rm=TRUE)>0){
+  if(sum(TolVal2_Char_NA, na.rm=TRUE)>0) {
     myDF[TolVal2_Char_NA, "TOLVAL2"] <- NA
     myDF[, "TOLVAL2"] <- as.numeric(myDF[, "TOLVAL2"])
   }##IF ~ TOLVAL2 ~ END

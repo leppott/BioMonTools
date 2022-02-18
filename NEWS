@@ -4,13 +4,22 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-18 12:51:15
+    #> Last Update: 2022-02-18 13:44:11
 
 # Version History
+
+## Changes in Version 0.5.0.9102 (2022-02-18)
+
+-   refactor: Update shiny app to use metric.values(…, verbose = TRUE)
+-   refactor: Update number of steps in verbose for metric.values()
+-   refactor: Update fill missing columns metric.values()
+    -   NA to NA_character\_
 
 ## Changes in Version 0.5.0.9101 (2022-02-18)
 
 -   refactor: Refine message output of metric.values() for use in Shiny
+-   refactor: Add verbose paramters to metric.values()
+-   refactor: Tweak Notes worksheet for metric Excel output
 
 ## Changes in Version 0.5.0.9100 (2022-02-11)
 
