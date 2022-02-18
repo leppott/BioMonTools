@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-18 13:44:11
+    #> Last Update: 2022-02-18 15:31:34
 
 # Version History
+
+## Changes in Version 0.5.0.9103 (2022-02-18)
+
+-   refactor: Tweak error checking for bugs in metric.values()
 
 ## Changes in Version 0.5.0.9102 (2022-02-18)
 

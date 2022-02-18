@@ -207,7 +207,7 @@ df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID"
 
 \dontrun{
 # Save Results
-write.table(df_long, file.path(tempdir, "metric.values.tsv")
+write.table(df_long, file.path(tempdir(), "metric.values.tsv")
             , col.names=TRUE, row.names=FALSE, sep="\t")
 
 # DataExplorer Report

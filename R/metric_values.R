@@ -183,7 +183,7 @@
 #'
 #'\dontrun{
 #' # Save Results
-#' write.table(df_long, file.path(tempdir, "metric.values.tsv")
+#' write.table(df_long, file.path(tempdir(), "metric.values.tsv")
 #'             , col.names=TRUE, row.names=FALSE, sep="\t")
 #'
 #' # DataExplorer Report
@@ -854,10 +854,15 @@ metric.values.bugs <- function(myDF
                   , boo_debug_topic)
     message(msg)
   }## IF ~ verbose
-  TolVal_Char_NA <- myDF[, "TOLVAL"]=="NA"
-  if(sum(TolVal_Char_NA, na.rm=TRUE)>0) {
-    myDF[TolVal_Char_NA, "TOLVAL"] <- NA
+  TolVal_Char_NA <- myDF[, "TOLVAL"] == "NA"
+  # Fails with mix of NA and "NA", rework
+  TolVal_Char_NA <- TolVal_Char_NA == TRUE & !is.na(TolVal_Char_NA)
+  if(sum(TolVal_Char_NA, na.rm=TRUE) > 0) {
+    #myDF[TolVal_Char_NA, "TOLVAL"] <- NA
     myDF[, "TOLVAL"] <- as.numeric(myDF[, "TOLVAL"])
+    # will give a warning - NAs introduced by coercion
+    msg <- "Updated col class; TOLVAL to numeric"
+    message(msg)
   }##IF ~ TOLVAL ~ END
 
   # QC, TolVal2
@@ -877,6 +882,8 @@ metric.values.bugs <- function(myDF
   if(sum(TolVal2_Char_NA, na.rm=TRUE)>0) {
     myDF[TolVal2_Char_NA, "TOLVAL2"] <- NA
     myDF[, "TOLVAL2"] <- as.numeric(myDF[, "TOLVAL2"])
+    msg <- "Updated col class; TOLVAL2 to numeric"
+    message(msg)
   }##IF ~ TOLVAL2 ~ END
 
   # QC, UFC
@@ -896,6 +903,8 @@ metric.values.bugs <- function(myDF
   if(sum(UFC_Char_NA, na.rm=TRUE) > 0) {
     myDF[UFC_Char_NA, "UFC"] <- NA
     myDF[, "UFC"] <- as.numeric(myDF[, "UFC"])
+    msg <- "Updated col class; UFC to numeric"
+    message(msg)
   }##IF ~ UFC ~ END
 
   # Data Munging ####
