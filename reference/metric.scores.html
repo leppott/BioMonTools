@@ -20,7 +20,7 @@ or continuous (e.g., 0-100, ScoreRegime="Cont_0100").'><meta property="og:image"
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9100</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9101</span>
       </span>
     </div>
 
@@ -157,131 +157,8 @@ The index is on the same scale as the individual metric scores.</p>
 <span class="r-in"><span class="co"># Run Function</span></span>
 <span class="r-in"><span class="va">df_metric_values_bugs</span> <span class="op">&lt;-</span> <span class="fu"><a href="metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df_samps_bugs</span>, <span class="st">"bugs"</span></span>
 <span class="r-in">                                       , fun.MetricNames <span class="op">=</span> <span class="va">myMetrics.Bugs</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 1/7, munge</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 2/7, QC missing cols</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 3/7, colnames:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INDEX_NAME</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SAMPLEID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INDEX_REGION</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      AREA_MI2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SURFACEAREA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TAXAID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      N_TAXA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      EXCLUDE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      NONTARGET</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      BCG_ATTR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      PHYLUM</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBPHYLUM</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      CLASS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBCLASS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INFRAORDER</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      ORDER</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUPERFAMILY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FAMILY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBFAMILY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TRIBE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      GENUS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBGENUS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SPECIES</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      THERMAL_INDICATOR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FFG</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      HABIT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LIFE_CYCLE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TOLVAL</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FFG2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      NOTEWORTHY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LONGLIVED</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TOLVAL2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      HABITAT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SAMPID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TYPE_PSLOPE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      CLINGER</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      YEAR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      MONTH</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      COLLDATE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      COLLMETH</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      REPNUM</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      EXERCISEID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      STATIONID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      NHD_PSLOPE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      DENSITY_M2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      DENSITY_FT2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LATITUDE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LONGITUDE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      COMID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      UFC</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      UFC_COMMENT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      ELEVATION_ATTR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      GRADIENT_ATTR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      WSAREA_ATTR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 4/7, remove count 0</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 5/7, sitetype toupper</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 6/7, start subfunctions</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 1/9, QC, missing cols</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 2/9, colnames</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INDEX_NAME</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SAMPLEID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INDEX_REGION</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      AREA_MI2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SURFACEAREA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TAXAID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      N_TAXA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      EXCLUDE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      NONTARGET</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      BCG_ATTR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      PHYLUM</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBPHYLUM</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      CLASS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBCLASS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INFRAORDER</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      ORDER</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUPERFAMILY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FAMILY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBFAMILY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TRIBE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      GENUS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBGENUS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SPECIES</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      THERMAL_INDICATOR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FFG</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      HABIT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LIFE_CYCLE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TOLVAL</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FFG2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      NOTEWORTHY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LONGLIVED</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TOLVAL2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      HABITAT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SAMPID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TYPE_PSLOPE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      CLINGER</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      YEAR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      MONTH</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      COLLDATE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      COLLMETH</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      REPNUM</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      EXERCISEID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      STATIONID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      NHD_PSLOPE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      DENSITY_M2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      DENSITY_FT2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LATITUDE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LONGITUDE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      COMID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      UFC</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      UFC_COMMENT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      ELEVATION_ATTR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      GRADIENT_ATTR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      WSAREA_ATTR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 3/9, QC, set col class</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 4/9, Munging</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 5/9, metric calc</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 6/9, clean up</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `mutate_if()` ignored the following grouping variables:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Columns `SAMPLEID`, `INDEX_NAME`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 7/9, subset</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 8/9, extra fields</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 9/9, return result</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># index to BCG.PacNW.L1</span></span>
 <span class="r-in"><span class="va">df_metric_values_bugs</span><span class="op">$</span><span class="va">INDEX_NAME</span> <span class="op">&lt;-</span> <span class="va">myIndex</span></span>
@@ -355,96 +232,6 @@ The index is on the same scale as the individual metric scores.</p>
 <span class="r-in"><span class="va">myDF_Bugs_MBSS</span><span class="op">$</span><span class="va">EXCLUDE</span> <span class="op">&lt;-</span> <span class="va">myDF_Bugs_MBSS</span><span class="op">$</span><span class="va">EXCLUDE</span><span class="op">==</span><span class="st">"Y"</span></span>
 <span class="r-in"><span class="va">myMetric_Values_Bugs_MBSS</span> <span class="op">&lt;-</span> <span class="fu"><a href="metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">myDF_Bugs_MBSS</span>, <span class="st">"bugs"</span></span>
 <span class="r-in">, <span class="va">myMetrics_Bugs_MBSS</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 1/7, munge</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 2/7, QC missing cols</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 3/7, colnames:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INDEX.NAME</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SITE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      DATE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TAXON</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      N_TAXA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      N_GRIDS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      EXCLUDE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      STRATA_R</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      PHYLUM</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      CLASS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      ORDER</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FAMILY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      GENUS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      OTHER_TAXA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TRIBE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FFG</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FAM_TV</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      HABIT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FINALTOLVAL07</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FINALTOLVAL08</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      UFC</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      UFC_COMMENT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBCLASS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INFRAORDER</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LIFE_CYCLE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      BCG_ATTR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      THERMAL_INDICATOR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LONGLIVED</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      NOTEWORTHY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FFG2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      HABITAT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      NONTARGET</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INDEX_REGION</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SAMPLEID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INDEX_NAME</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TAXAID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBPHYLUM</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBFAMILY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TOLVAL</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TOLVAL2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 4/7, remove count 0</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 5/7, sitetype toupper</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_main, 6/7, start subfunctions</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 1/9, QC, missing cols</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 2/9, colnames</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INDEX.NAME</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SITE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      DATE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TAXON</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      N_TAXA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      N_GRIDS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      EXCLUDE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      STRATA_R</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      PHYLUM</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      CLASS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      ORDER</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FAMILY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      GENUS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      OTHER_TAXA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TRIBE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FFG</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FAM_TV</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      HABIT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FINALTOLVAL07</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FINALTOLVAL08</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      UFC</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      UFC_COMMENT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBCLASS</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INFRAORDER</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LIFE_CYCLE</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      BCG_ATTR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      THERMAL_INDICATOR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      LONGLIVED</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      NOTEWORTHY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      FFG2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      HABITAT</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      NONTARGET</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INDEX_REGION</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SAMPLEID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      INDEX_NAME</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TAXAID</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBPHYLUM</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      SUBFAMILY</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TOLVAL</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>      TOLVAL2</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 3/9, QC, set col class</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> debug_metval_bugs, 4/9, Munging</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `[.data.frame`(myDF, , "ELEVATION_ATTR"):</span> undefined columns selected</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
