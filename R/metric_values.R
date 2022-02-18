@@ -135,6 +135,7 @@
 #' Ignored if fun.MetricNames is not null. Default = FALSE.
 #' @param boo.Shiny Boolean value for if the function is accessed via Shiny.
 #' Default = FALSE.
+#' @param verbose Include messages to track progress.  Default = FALSE
 #'
 #' @return data frame of SampleID and metric values
 #'
@@ -446,8 +447,9 @@ metric.values <- function(fun.DF
                           , boo.Adjust = FALSE
                           , fun.cols2keep = NULL
                           , boo.marine = FALSE
-                          , boo.Shiny = FALSE){##FUNCTION.metric.values.START
-  boo_debug_main <- TRUE
+                          , boo.Shiny = FALSE
+                          , verbose = FALSE){##FUNCTION.metric.values.START
+  boo_debug_main <- FALSE
   boo_debug_main_num <- 0
   boo_debug_main_num_total <- 7
 
@@ -457,7 +459,7 @@ metric.values <- function(fun.DF
   # define pipe
   `%>%` <- dplyr::`%>%`
   # Munge ####
-  if(boo_debug_main == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "munge"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -467,7 +469,7 @@ metric.values <- function(fun.DF
                   , ", "
                   , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_main
+  }## IF ~ verbose
   # Data Munging (common to all data types)
   # Convert to data.frame.  Code breaks if fun.DF is a tibble.
   fun.DF <- as.data.frame(fun.DF)
@@ -480,7 +482,7 @@ metric.values <- function(fun.DF
   }##IF~!is.null(fun.cols2keep)~END
 
   # QC, missing cols ----
-  if(boo_debug_main == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "QC missing cols"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -531,7 +533,7 @@ metric.values <- function(fun.DF
     }##IF.user.input.END
 
     # Add missing fields
-    if(boo_debug_main == TRUE) {
+    if(verbose == TRUE) {
       boo_debug_topic <- "add missing fields"
       boo_debug_main_num <- boo_debug_main_num + 1
       msg <- paste0("debug_metval_main, "
@@ -541,7 +543,7 @@ metric.values <- function(fun.DF
                     , ", "
                     , boo_debug_topic)
       message(msg)
-    }## IF ~ boo_debug_main
+    }## IF ~ verbose
     ## Add missing, Index_Name
     req.name <- "INDEX_NAME"
     if(req.name %in% col.req.missing) {
@@ -566,7 +568,7 @@ metric.values <- function(fun.DF
   }##IF.num.col.req.missing.END
 
   # message col names
-  if(boo_debug_main == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "colnames:"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -579,10 +581,10 @@ metric.values <- function(fun.DF
                  , paste("    ", names(fun.DF), collapse = "\n")
                  , sep = "\n")
     message(msg)
-  }## IF ~ boo_debug_main
+  }## IF ~ verbose
 
   # Remove Count = 0 taxa unless TaxaID = NONE
-  if(boo_debug_main == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "remove count 0"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -592,13 +594,13 @@ metric.values <- function(fun.DF
                   , ", "
                   , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_main
+  }## IF ~ verbose
   #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
   fun.DF <- fun.DF %>% dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
   # non-target taxa removed in community function, if appropriate
   #
   # SiteType to upper case
-  if(boo_debug_main == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "sitetype toupper"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -608,12 +610,12 @@ metric.values <- function(fun.DF
                   , ", "
                   , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_main
+  }## IF ~ verbose
  # fun.DF[,"INDEX_REGION"] <- toupper(fun.DF[,"INDEX_REGION"])
   # convert community to upper case
   fun.Community <- toupper(fun.Community)
   # run the proper sub function
-  if(boo_debug_main == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "start subfunctions"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -623,16 +625,16 @@ metric.values <- function(fun.DF
                   , ", "
                   , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_main
+  }## IF ~ verbose
   if (fun.Community=="BUGS") {##IF.START
     metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep, NA
-                       , boo.marine, boo.Shiny)
+                       , boo.marine, boo.Shiny, verbose)
   } else if(fun.Community=="FISH"){
     metric.values.fish(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
-                       , boo.Shiny)
+                       , boo.Shiny, verbose)
   } else if(fun.Community=="ALGAE"){
     metric.values.algae(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
-                        , boo.Shiny)
+                        , boo.Shiny, verbose)
   }##IF.END
 }##FUNCTION.metric.values.START
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -656,6 +658,7 @@ metric.values <- function(fun.DF
 #' Ignored if fun.MetricNames is not null. Default = FALSE.
 #' @param boo.Shiny Boolean value for if the function is accessed via Shiny.
 #' Default = FALSE.
+#' @param verbose Include messages to track progress.  Default = FALSE
 #'
 #' @return Data frame
 #'
@@ -668,12 +671,13 @@ metric.values.bugs <- function(myDF
                                , cols2keep = NULL
                                , MetricSort = NA
                                , boo.marine = FALSE
-                               , boo.Shiny){##FUNCTION.metric.values.bugs.START
+                               , boo.Shiny
+                               , verbose){##FUNCTION.metric.values.bugs.START
   #
   #names(myDF) <- toupper(names(myDF))
   # not carrying over from previous?!
 
-  boo_debug_bugs <- TRUE
+  boo_debug_bugs <- FALSE
   boo_debug_bugs_num <- 0
   boo_debug_bugs_num_total <- 9
 
@@ -726,7 +730,7 @@ metric.values.bugs <- function(myDF
   `%>%` <- dplyr::`%>%`
   # QC ####
   ## QC, missing cols ----
-  if(boo_debug_bugs == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "QC, missing cols"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -736,7 +740,7 @@ metric.values.bugs <- function(myDF
                 , ", "
                 , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_bugs
+  }## IF ~ verbose
   # QC, Required Fields
   col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
               , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
@@ -788,7 +792,7 @@ metric.values.bugs <- function(myDF
 
 
   # message col names
-  if(boo_debug_bugs == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "colnames"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -801,11 +805,11 @@ metric.values.bugs <- function(myDF
                  , paste("    ", names(myDF), collapse = "\n")
                  , sep = "\n")
     message(msg)
-  }## IF ~ boo_debug_bugs
+  }## IF ~ verbose
 
-  # Set Col Clases for specific columns
-  if(boo_debug_bugs == TRUE) {
-    boo_debug_topic <- "QC, set col class"
+  # QC, Exclude as TRUE/FALSE
+  if(verbose == TRUE) {
+    boo_debug_topic <- "QC, cols, Exclude"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
                   , boo_debug_bugs_num
@@ -814,15 +818,24 @@ metric.values.bugs <- function(myDF
                   , ", "
                   , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_bugs
-
-  # QC, Exclude as TRUE/FALSE
+  }## IF ~ verbose
   Exclude.T <- sum(myDF$EXCLUDE==TRUE, na.rm=TRUE)
   if(Exclude.T==0){##IF.Exclude.T.START
     warning("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
   }##IF.Exclude.T.END
 
   # QC, NonTarget as TRUE/FALSE
+  if(verbose == TRUE) {
+    boo_debug_topic <- "QC, cols, NonTarget"
+    boo_debug_bugs_num <- boo_debug_bugs_num + 1
+    msg <- paste0("debug_metval_bugs, "
+                  , boo_debug_bugs_num
+                  , "/"
+                  , boo_debug_bugs_num_total
+                  , ", "
+                  , boo_debug_topic)
+    message(msg)
+  }## IF ~ verbose
   NonTarget.F <- sum(myDF$NONTARGET==FALSE, na.rm=TRUE)
   if(NonTarget.F==0){##IF.Exclude.T.START
     warning("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
@@ -830,6 +843,17 @@ metric.values.bugs <- function(myDF
 
   # QC, TolVal
   # need as numeric, if have "NA" as character it fails
+  if(verbose == TRUE) {
+    boo_debug_topic <- "QC, cols, TolVal"
+    boo_debug_bugs_num <- boo_debug_bugs_num + 1
+    msg <- paste0("debug_metval_bugs, "
+                  , boo_debug_bugs_num
+                  , "/"
+                  , boo_debug_bugs_num_total
+                  , ", "
+                  , boo_debug_topic)
+    message(msg)
+  }## IF ~ verbose
   TolVal_Char_NA <- myDF[, "TOLVAL"]=="NA"
   if(sum(TolVal_Char_NA, na.rm=TRUE)>0){
     myDF[TolVal_Char_NA, "TOLVAL"] <- NA
@@ -838,6 +862,17 @@ metric.values.bugs <- function(myDF
 
   # QC, TolVal2
   # need as numeric, if have "NA" as character it fails
+  if(verbose == TRUE) {
+    boo_debug_topic <- "QC, cols, TolVal2"
+    boo_debug_bugs_num <- boo_debug_bugs_num + 1
+    msg <- paste0("debug_metval_bugs, "
+                  , boo_debug_bugs_num
+                  , "/"
+                  , boo_debug_bugs_num_total
+                  , ", "
+                  , boo_debug_topic)
+    message(msg)
+  }## IF ~ verbose
   TolVal2_Char_NA <- myDF[, "TOLVAL2"]=="NA"
   if(sum(TolVal2_Char_NA, na.rm=TRUE)>0){
     myDF[TolVal2_Char_NA, "TOLVAL2"] <- NA
@@ -846,6 +881,17 @@ metric.values.bugs <- function(myDF
 
   # QC, UFC
   # need as numeric, if have "NA" as character it fails
+  if(verbose == TRUE) {
+    boo_debug_topic <- "QC, cols, UFC"
+    boo_debug_bugs_num <- boo_debug_bugs_num + 1
+    msg <- paste0("debug_metval_bugs, "
+                  , boo_debug_bugs_num
+                  , "/"
+                  , boo_debug_bugs_num_total
+                  , ", "
+                  , boo_debug_topic)
+    message(msg)
+  }## IF ~ verbose
   UFC_Char_NA <- myDF[, "UFC"] == "NA"
   if(sum(UFC_Char_NA, na.rm=TRUE) > 0) {
     myDF[UFC_Char_NA, "UFC"] <- NA
@@ -853,7 +899,7 @@ metric.values.bugs <- function(myDF
   }##IF ~ UFC ~ END
 
   # Data Munging ####
-  if(boo_debug_bugs == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "Munging"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -863,7 +909,7 @@ metric.values.bugs <- function(myDF
                   , ", "
                   , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_bugs
+  }## IF ~ verbose
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
   myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
@@ -1122,7 +1168,7 @@ metric.values.bugs <- function(myDF
   rm(df.dom02_NoJugaRiss_BCG_att456.sum)
 
   # Metric Calc ####
-  if(boo_debug_bugs == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "metric calc"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -1132,7 +1178,7 @@ metric.values.bugs <- function(myDF
                   , ", "
                   , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_bugs
+  }## IF ~ verbose
   met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME, INDEX_REGION)
              #
              # one metric per line
@@ -2402,7 +2448,7 @@ metric.values.bugs <- function(myDF
         , .groups = "drop_last")## met.val.END
   #
   # Clean Up ####
-  if(boo_debug_bugs == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "clean up"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -2412,7 +2458,7 @@ metric.values.bugs <- function(myDF
                   , ", "
                   , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_bugs
+  }## IF ~ verbose
   # replace NA with 0
   #met.val[is.na(met.val)] <- 0
   # but exclude SAMPLEID,  INDEX_NAME  INDEX_REGION
@@ -2477,7 +2523,7 @@ metric.values.bugs <- function(myDF
 
   ## Subset ----
   # # subset to only metrics specified by user
-  if(boo_debug_bugs == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "subset"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -2487,7 +2533,7 @@ metric.values.bugs <- function(myDF
                   , ", "
                   , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_bugs
+  }## IF ~ verbose
   if (is.null(MetricNames)) {
     # remove marine if MetrcNames not provided and boo.marine = false (default)
     if(boo.marine == FALSE){
@@ -2501,7 +2547,7 @@ metric.values.bugs <- function(myDF
   }##IF~MetricNames~END
 
   # Add extra fields
-  if(boo_debug_bugs == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "extra fields"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -2511,7 +2557,7 @@ metric.values.bugs <- function(myDF
                   , ", "
                   , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_bugs
+  }## IF ~ verbose
   if(is.null(cols2keep)){##IF.is.null.cols2keep.START
     df.return <- as.data.frame(met.val)
   } else {
@@ -2525,7 +2571,7 @@ metric.values.bugs <- function(myDF
   }##IF.is.null.cols2keep.END
 
   # df to report back
-  if(boo_debug_bugs == TRUE) {
+  if(verbose == TRUE) {
     boo_debug_topic <- "return result"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -2535,7 +2581,7 @@ metric.values.bugs <- function(myDF
                   , ", "
                   , boo_debug_topic)
     message(msg)
-  }## IF ~ boo_debug_bugs
+  }## IF ~ verbose
   return(df.return)
 }##FUNCTION.metric.values.bugs.END
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2554,6 +2600,7 @@ metric.values.bugs <- function(myDF
 #' column names.
 #' @param boo.Shiny Boolean value for if the function is accessed via Shiny.
 #' Default = FALSE.
+#' @param verbose Include messages to track progress.  Default = FALSE
 #'
 #' @return Data frame
 #'
@@ -2564,7 +2611,8 @@ metric.values.fish <- function(myDF
                                , MetricNames=NULL
                                , boo.Adjust=FALSE
                                , cols2keep=NULL
-                               , boo.Shiny){##FUNCTION.metric.values.fish.START
+                               , boo.Shiny
+                               , verbose) {
 
   # global variable bindings ----
   SAMPLEID <- INDEX_NAME <- INDEX_REGION <- TAXAID <- N_TAXA <- NATIVE <-
@@ -3386,21 +3434,20 @@ metric.values.fish <- function(myDF
 #' , AZ = alphabetical.  Default = NULL.
 #' @param boo.Shiny Boolean value for if the function is accessed via Shiny.
 #' Default = FALSE.
+#' @param verbose Include messages to track progress.  Default = FALSE
 #'
 #' @return Data frame
 #'
 #' @keywords internal
 #'
 #' @export
-
-
-
 metric.values.algae <- function(myDF
                                 , MetricNames=NULL
                                 , boo.Adjust=FALSE
                                 , cols2keep=NULL
                                 , MetricSort = NA
-                                , boo.Shiny=FALSE){
+                                , boo.Shiny=FALSE
+                                , verbose) {
   ##FUNCTION ~ metric.values.algae ~ START
 
   # global variable bindings ----

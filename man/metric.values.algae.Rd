@@ -10,7 +10,8 @@ metric.values.algae(
   boo.Adjust = FALSE,
   cols2keep = NULL,
   MetricSort = NA,
-  boo.Shiny = FALSE
+  boo.Shiny = FALSE,
+  verbose
 )
 }
 \arguments{
@@ -30,6 +31,8 @@ column names.}
 
 \item{boo.Shiny}{Boolean value for if the function is accessed via Shiny.
 Default = FALSE.}
+
+\item{verbose}{Include messages to track progress.  Default = FALSE}
 }
 \value{
 Data frame

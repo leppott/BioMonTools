@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-11 11:12:44
+    #> Last Update: 2022-02-18 12:51:15
 
 # Version History
+
+## Changes in Version 0.5.0.9101 (2022-02-18)
+
+-   refactor: Refine message output of metric.values() for use in Shiny
 
 ## Changes in Version 0.5.0.9100 (2022-02-11)
 

@@ -11,7 +11,8 @@ metric.values.bugs(
   cols2keep = NULL,
   MetricSort = NA,
   boo.marine = FALSE,
-  boo.Shiny
+  boo.Shiny,
+  verbose
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ Ignored if fun.MetricNames is not null. Default = FALSE.}
 
 \item{boo.Shiny}{Boolean value for if the function is accessed via Shiny.
 Default = FALSE.}
+
+\item{verbose}{Include messages to track progress.  Default = FALSE}
 }
 \value{
 Data frame

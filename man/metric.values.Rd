@@ -11,7 +11,8 @@ metric.values(
   boo.Adjust = FALSE,
   fun.cols2keep = NULL,
   boo.marine = FALSE,
-  boo.Shiny = FALSE
+  boo.Shiny = FALSE,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -35,6 +36,8 @@ Ignored if fun.MetricNames is not null. Default = FALSE.}
 
 \item{boo.Shiny}{Boolean value for if the function is accessed via Shiny.
 Default = FALSE.}
+
+\item{verbose}{Include messages to track progress.  Default = FALSE}
 }
 \value{
 data frame of SampleID and metric values

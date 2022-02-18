@@ -9,7 +9,8 @@ metric.values.fish(
   MetricNames = NULL,
   boo.Adjust = FALSE,
   cols2keep = NULL,
-  boo.Shiny
+  boo.Shiny,
+  verbose
 )
 }
 \arguments{
@@ -26,6 +27,8 @@ column names.}
 
 \item{boo.Shiny}{Boolean value for if the function is accessed via Shiny.
 Default = FALSE.}
+
+\item{verbose}{Include messages to track progress.  Default = FALSE}
 }
 \value{
 Data frame
