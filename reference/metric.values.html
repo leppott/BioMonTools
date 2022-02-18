@@ -20,7 +20,7 @@ The dplyr package is used to generate the metric values."><meta property="og:ima
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9102</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9103</span>
       </span>
     </div>
 
@@ -225,6 +225,7 @@ boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
 <span class="r-in"><span class="va">df_metric_values_bugs</span> <span class="op">&lt;-</span> <span class="fu">metric.values</span><span class="op">(</span><span class="va">df_samps_bugs</span></span>
 <span class="r-in">                                       , <span class="st">"bugs"</span></span>
 <span class="r-in">                                       , fun.cols2keep<span class="op">=</span><span class="va">myCols</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Updated col class; TOLVAL2 to numeric</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `mutate_if()` ignored the following grouping variables:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Columns `SAMPLEID`, `INDEX_NAME`</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span>
@@ -246,7 +247,7 @@ boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
 <span class="r-in"></span>
 <span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in"><span class="co"># Save Results</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">df_long</span>, <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tempdir</span>, <span class="st">"metric.values.tsv"</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">df_long</span>, <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"metric.values.tsv"</span><span class="op">)</span></span>
 <span class="r-in">            , col.names<span class="op">=</span><span class="cn">TRUE</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, sep<span class="op">=</span><span class="st">"\t"</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># DataExplorer Report</span></span>
@@ -270,6 +271,7 @@ boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
 <span class="r-in"><span class="co"># Run Function</span></span>
 <span class="r-in"><span class="va">df_metric_values_bugs_myMetrics</span> <span class="op">&lt;-</span> <span class="fu">metric.values</span><span class="op">(</span><span class="va">df_samps_bugs</span>, <span class="st">"bugs"</span></span>
 <span class="r-in">                                               , fun.MetricNames <span class="op">=</span> <span class="va">myMetrics</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Updated col class; TOLVAL2 to numeric</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `mutate_if()` ignored the following grouping variables:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Columns `SAMPLEID`, `INDEX_NAME`</span>
 <span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
