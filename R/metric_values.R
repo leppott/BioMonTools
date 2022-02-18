@@ -785,7 +785,7 @@ metric.values.bugs <- function(myDF
                   , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
     }##IF.user.input.END
     # Add missing fields
-    myDF[,col.req.missing] <- NA_character_
+    myDF[,col.req.missing] <- NA
     warning(paste("Metrics related to the following fields are invalid:"
                   , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
   }##IF.num.col.req.missing.END
