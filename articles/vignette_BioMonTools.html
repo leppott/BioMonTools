@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9105</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9107</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 data-toc-skip class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 data-toc-skip class="date">2022-02-18</h4>
+            <h4 data-toc-skip class="date">2022-02-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/HEAD/vignettes/vignette_BioMonTools.Rmd" class="external-link"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -364,11 +364,11 @@
 <td align="right">589</td>
 <td align="right">27</td>
 <td align="right">0</td>
+<td align="right">1</td>
+<td align="right">10</td>
 <td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">40.237691</td>
+<td align="right">60.95076</td>
 </tr>
 <tr class="even">
 <td align="left">02087REF_Bug_2002-08-22_0</td>
@@ -381,11 +381,11 @@
 <td align="right">542</td>
 <td align="right">38</td>
 <td align="right">0</td>
+<td align="right">23</td>
+<td align="right">28</td>
 <td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">18.265683</td>
+<td align="right">20.66421</td>
 </tr>
 <tr class="odd">
 <td align="left">03013CSR_Bug_2003-07-01_0</td>
@@ -398,11 +398,11 @@
 <td align="right">507</td>
 <td align="right">16</td>
 <td align="right">0</td>
+<td align="right">3</td>
+<td align="right">5</td>
 <td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">2.958580</td>
+<td align="right">13.21499</td>
 </tr>
 <tr class="even">
 <td align="left">03053CSR_Bug_2003-08-14_0</td>
@@ -415,11 +415,11 @@
 <td align="right">573</td>
 <td align="right">36</td>
 <td align="right">0</td>
+<td align="right">19</td>
+<td align="right">24</td>
 <td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">46.073298</td>
+<td align="right">58.46422</td>
 </tr>
 <tr class="odd">
 <td align="left">03054CSR_Bug_2003-08-18_0</td>
@@ -432,11 +432,11 @@
 <td align="right">558</td>
 <td align="right">13</td>
 <td align="right">0</td>
+<td align="right">4</td>
+<td align="right">4</td>
 <td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">6.989247</td>
+<td align="right">11.82796</td>
 </tr>
 <tr class="even">
 <td align="left">06012CSR_Bug_2006-09-05_0</td>
@@ -449,11 +449,11 @@
 <td align="right">545</td>
 <td align="right">40</td>
 <td align="right">0</td>
+<td align="right">18</td>
+<td align="right">28</td>
 <td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">0</td>
+<td align="right">33.944954</td>
+<td align="right">75.96330</td>
 </tr>
 </tbody>
 </table>
@@ -992,7 +992,7 @@
                                    , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span>
 <span class="co">#&gt; Rarify of samples complete. </span>
 <span class="co">#&gt;  Number of samples =  12 </span>
-<span class="co">#&gt;  Execution time (sec) =  0.0150000000000006</span>
+<span class="co">#&gt;  Execution time (sec) =  0.0159999999999982</span>
 
 <span class="co"># view results</span>
 <span class="co">#dim(bugs_mysize)</span>
@@ -1117,7 +1117,7 @@
 <span class="co">#library(BioMonTools)</span>
 
 <span class="co"># Import</span>
-<span class="va">df.samps.bugs</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"./extdata/Data_Benthos.xlsx"</span>
+<span class="va">df.samps.bugs</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/Data_Benthos.xlsx"</span>
                                                 , package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span>
                            , guess_max <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span>
 
@@ -1134,7 +1134,7 @@
 
 <span class="co"># Flags</span>
 <span class="co"># Import QC Checks</span>
-<span class="va">df.checks</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"./extdata/MetricFlags.xlsx"</span>
+<span class="va">df.checks</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/MetricFlags.xlsx"</span>
                                           , package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span>
                                 , sheet<span class="op">=</span><span class="st">"Flags"</span><span class="op">)</span> 
 <span class="co"># Run Function</span>
@@ -1163,8 +1163,8 @@
 <tbody>
 <tr class="odd">
 <td align="left">brackish organisms present</td>
-<td align="right">0</td>
-<td align="right">678</td>
+<td align="right">7</td>
+<td align="right">671</td>
 </tr>
 <tr class="even">
 <td align="left">catchment, Large</td>
@@ -1203,8 +1203,8 @@
 </tr>
 <tr class="odd">
 <td align="left">Ramellogammarus</td>
-<td align="right">0</td>
-<td align="right">678</td>
+<td align="right">8</td>
+<td align="right">670</td>
 </tr>
 <tr class="even">
 <td align="left">surface area, small</td>

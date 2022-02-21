@@ -20,7 +20,7 @@ or continuous (e.g., 0-100, ScoreRegime="Cont_0100").'><meta property="og:image"
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9105</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9107</span>
       </span>
     </div>
 
@@ -180,24 +180,32 @@ The index is on the same scale as the individual metric scores.</p>
 <span class="r-in"><span class="co"># QC, table</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_metric_scores_bugs</span><span class="op">$</span><span class="va">Index</span>, <span class="va">df_metric_scores_bugs</span><span class="op">$</span><span class="va">Index_Nar</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Low</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0  179</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1   86</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2   60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3   57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4   63</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   5   40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   6   41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   7   41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   8   36</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   9   21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   10  15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   11  13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   12  10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   13   9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   14   1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   15   4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   16   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Low Medium</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0  163      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1   64      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   2   45      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   3   45      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   4   48      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   5   33      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   6   40      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   7   36      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   8   27      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   9   27      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   10  32      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   11  19      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   12  23      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   13  10      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   14  14      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   15  18      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   16  10      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   17   7      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   18   3      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   19   4      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   20   0      3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   21   0      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   23   0      2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   24   0      2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   27   0      2</span>
 <span class="r-in"><span class="co"># QC, plot</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">df_metric_scores_bugs</span><span class="op">$</span><span class="va">Index</span>, main<span class="op">=</span><span class="st">"PacNW BCG Example Data"</span></span>
 <span class="r-in">     , xlab<span class="op">=</span><span class="st">"Level 1 Indicator Taxa Index Score"</span><span class="op">)</span></span>
@@ -233,7 +241,7 @@ The index is on the same scale as the individual metric scores.</p>
 <span class="r-in"><span class="va">myDF_Bugs_MBSS</span><span class="op">$</span><span class="va">EXCLUDE</span> <span class="op">&lt;-</span> <span class="va">myDF_Bugs_MBSS</span><span class="op">$</span><span class="va">EXCLUDE</span><span class="op">==</span><span class="st">"Y"</span></span>
 <span class="r-in"><span class="va">myMetric_Values_Bugs_MBSS</span> <span class="op">&lt;-</span> <span class="fu"><a href="metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">myDF_Bugs_MBSS</span>, <span class="st">"bugs"</span></span>
 <span class="r-in">, <span class="va">myMetrics_Bugs_MBSS</span><span class="op">)</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `[.data.frame`(myDF, , "ELEVATION_ATTR"):</span> undefined columns selected</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `[.data.frame`(myDF, , i):</span> undefined columns selected</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">myMetric_Values_Bugs_MBSS</span><span class="op">)</span></span>
