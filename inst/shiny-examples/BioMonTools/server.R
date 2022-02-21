@@ -87,11 +87,22 @@ shinyServer(function(input, output) {
     fn_inFile <- inFile$datapath
 
     # Read user imported file
+    # df_input <- read.table(fn_inFile
+    #                      , header = TRUE
+    #                      , sep = input$sep
+    #                      , quote = "\""
+    #                      , stringsAsFactors = FALSE)
+    # Add extra colClasses parameter for BCG_Attr
+    # the "i" values default to complex numbers
+    # Will get a 'warning'
     df_input <- read.table(fn_inFile
                          , header = TRUE
                          , sep = input$sep
                          , quote = "\""
-                         , stringsAsFactors = FALSE)
+                         , stringsAsFactors = FALSE
+                         , colClasses = c("BCG_Attr" = "character"
+                                          , "BCG_ATTR" = "character"
+                                          , "bcg_attr" = "character"))
 
 
     # # Write to "Results" folder - Import as TSV

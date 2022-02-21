@@ -979,7 +979,8 @@ metric.values.bugs <- function(myDF
   #                , "HABIT", "FFG", "LIFE_CYCLE", "THERMAL_INDICATOR"
   #                , "FFG2", "HABITAT"
   #                , "ELEVATION_ATTR", "GRADIENT_ATTR", "WSAREA_ATTR")
-  col2upper <- col.req_character
+  col2upper <- col.req_character[!(col.req_character %in%
+                                  c("SAMPLEID", "INDEX_NAME", "INDEX_REGION"))]
   # #myDF <- apply(myDF[, col2upper], 2, toupper)
   for(i in col2upper){
     myDF[, i] <- toupper(myDF[, i])

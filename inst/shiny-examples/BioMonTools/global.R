@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_version <- "0.5.0.9106"
+pkg_version <- "0.5.0.9107"
 
 # Packages----
 library(BioMonTools)

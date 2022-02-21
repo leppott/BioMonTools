@@ -4,9 +4,23 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-21 13:12:32
+    #> Last Update: 2022-02-21 15:32:05
 
 # Version History
+
+## Changes in Version 0.5.0.9107 (2022-02-21)
+
+-   fix: metric.values() remove some fields from conversion to upper
+    case, Issue #69
+    -   SAMPLEID, INDEX_NAME, INDEX_REGION
+    -   fixes issue with vignettes flag example, Issue #70
+-   fix: Update metvalgrpxl() NOTES, Issue #69
+    -   Input File Name to Input Data Frame
+    -   Convert text to formula for Description of Work
+        -   Moved from column 1 (text) to column 2 (formulas) in
+            v0.5.0.9101
+-   fix: Shiny, BCG_Attr importing as complex, Issue #71
+    -   Specify colClasses as character
 
 ## Changes in Version 0.5.0.9106 (2022-02-21)
 

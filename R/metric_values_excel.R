@@ -160,9 +160,9 @@ metvalgrpxl <- function(fun.DF.MetVal
   NOTES[5, 2]  <- "=MID(@CELL(\"filename\",B10),FIND(\"]\",@CELL(\"filename\",
 B10))+1,LEN(@CELL(\"filename\",B10))-FIND(\"]\",@CELL(\"filename\",B10)))"
   NOTES[7, 1]  <- "Description of Work"
-  NOTES[7, 2]  <- "Metric value calculations from the R package BioMonTools."
-  NOTES[8, 2] <- "Metrics are sorted by common groups. Groupings defined in MetricNames"
-  NOTES[11, 1] <- "Input File Name"
+  NOTES[7, 2]  <- "=\"Metric value calculations from the R package BioMonTools.\""
+  NOTES[8, 2] <- "=\"Metrics are sorted by common groups. Groupings defined in MetricNames.\""
+  NOTES[11, 1] <- "Input Data Frame"
   NOTES[11, 2] <- paste0('="', deparse(substitute(fun.DF.MetricNames)), '"')
   NOTES[12, 1] <- "Community"
   NOTES[12, 2] <- paste0('="', fun.Community, '"')
