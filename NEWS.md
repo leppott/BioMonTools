@@ -4,9 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-18 16:40:06
+    #> Last Update: 2022-02-21 13:12:32
 
 # Version History
+
+## Changes in Version 0.5.0.9106 (2022-02-21)
+
+-   refactor: Tweak error checking for bugs in metric.values()
+-   fix: metric.values() columns to upper case for calculation
+    -   Error introduced in v0.5.0.9093 (2022-02-03)
+-   refactor: Change reference to some files in BioMonTools vignette
+    -   flag section
+    -   rebuild without vignettes
 
 ## Changes in Version 0.5.0.9105 (2022-02-18)
 

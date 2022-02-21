@@ -679,7 +679,7 @@ metric.values.bugs <- function(myDF
 
   boo_debug_bugs <- FALSE
   boo_debug_bugs_num <- 0
-  boo_debug_bugs_num_total <- 13
+  boo_debug_bugs_num_total <- 16
 
   # global variable bindings ----
   INDEX_NAME <- INDEX_REGION <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
@@ -742,7 +742,7 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
   # QC, Required Fields
-  col.req_character <- c("SAMPLEID", "TAXAID", "N_TAXA", "INDEX_NAME"
+  col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME"
                     , "INDEX_REGION", "PHYLUM", "SUBPHYLUM", "CLASS"
                     , "SUBCLASS", "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
                     , "TRIBE", "GENUS", "FFG", "HABIT", "LIFE_CYCLE"
@@ -750,7 +750,7 @@ metric.values.bugs <- function(myDF
                     , "FFG2", "HABITAT", "ELEVATION_ATTR"
                     , "GRADIENT_ATTR", "WSAREA_ATTR")
   col.req_logical <- c("EXCLUDE", "NONTARGET", "LONGLIVED", "NOTEWORTHY")
-  col.req_numeric <- c("TOLVAL", "TOLVAL2", "UFC")
+  col.req_numeric <- c("N_TAXA", "TOLVAL", "TOLVAL2", "UFC")
   col.req <- c(col.req_character, col.req_logical, col.req_numeric)
   # col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
   #             , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
@@ -836,7 +836,7 @@ metric.values.bugs <- function(myDF
 
   # QC, Exclude as TRUE/FALSE
   if(verbose == TRUE) {
-    boo_debug_topic <- "QC, cols, Exclude"
+    boo_debug_topic <- "QC, cols, values, Exclude"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
                   , boo_debug_bugs_num
@@ -853,7 +853,7 @@ metric.values.bugs <- function(myDF
 
   # QC, NonTarget as TRUE/FALSE
   if(verbose == TRUE) {
-    boo_debug_topic <- "QC, cols, NonTarget"
+    boo_debug_topic <- "QC, cols, values, NonTarget"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
                   , boo_debug_bugs_num
@@ -871,7 +871,7 @@ metric.values.bugs <- function(myDF
   # QC, TolVal
   # need as numeric, if have "NA" as character it fails
   if(verbose == TRUE) {
-    boo_debug_topic <- "QC, cols, TolVal"
+    boo_debug_topic <- "QC, cols, numeric, TolVal"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
                   , boo_debug_bugs_num
@@ -895,7 +895,7 @@ metric.values.bugs <- function(myDF
   # QC, TolVal2
   # need as numeric, if have "NA" as character it fails
   if(verbose == TRUE) {
-    boo_debug_topic <- "QC, cols, TolVal2"
+    boo_debug_topic <- "QC, cols, numeric, TolVal2"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
                   , boo_debug_bugs_num
@@ -916,7 +916,7 @@ metric.values.bugs <- function(myDF
   # QC, UFC
   # need as numeric, if have "NA" as character it fails
   if(verbose == TRUE) {
-    boo_debug_topic <- "QC, cols, UFC"
+    boo_debug_topic <- "QC, cols, numeric, UFC"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
                   , boo_debug_bugs_num
@@ -948,26 +948,61 @@ metric.values.bugs <- function(myDF
   }## IF ~ verbose
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
+  if(verbose == TRUE) {
+    boo_debug_topic <- "Munging, NonTarget"
+    boo_debug_bugs_num <- boo_debug_bugs_num + 1
+    msg <- paste0("debug_metval_bugs, "
+                  , boo_debug_bugs_num
+                  , "/"
+                  , boo_debug_bugs_num_total
+                  , ", "
+                  , boo_debug_topic)
+    message(msg)
+  }## IF ~ verbose
   myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
 
   # # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
+  if(verbose == TRUE) {
+    boo_debug_topic <- "Munging, text cols, toupper"
+    boo_debug_bugs_num <- boo_debug_bugs_num + 1
+    msg <- paste0("debug_metval_bugs, "
+                  , boo_debug_bugs_num
+                  , "/"
+                  , boo_debug_bugs_num_total
+                  , ", "
+                  , boo_debug_topic)
+    message(msg)
+  }## IF ~ verbose
   # col2upper <- c("TAXAID", "PHYLUM", "SUBPHYLUM", "CLASS", "SUBCLASS"
   #                , "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
   #                , "TRIBE", "GENUS"
   #                , "HABIT", "FFG", "LIFE_CYCLE", "THERMAL_INDICATOR"
   #                , "FFG2", "HABITAT"
   #                , "ELEVATION_ATTR", "GRADIENT_ATTR", "WSAREA_ATTR")
+  col2upper <- col.req_character
   # #myDF <- apply(myDF[, col2upper], 2, toupper)
-  # for(i in col2upper){
-  #   myDF[, i] <- toupper(myDF[, i])
-  # }## FOR ~ i ~ END
+  for(i in col2upper){
+    myDF[, i] <- toupper(myDF[, i])
+  }## FOR ~ i ~ END
   # use toupper() earlier, don't need
-  # removed as causing issues wiht shiny.io with some missing fields
+  # removed as causing issues with shiny.io with some missing fields
+  # 2022-02-21, previous no longer present, redo here (all fields now present)
 
   # Add extra columns for some fields
   # (need unique values for functions in summarise)
   # each will be TRUE or FALSE
   # finds any match so "CN, CB" is both "CN" and "CB"
+  if(verbose == TRUE) {
+    boo_debug_topic <- "Munging, TF"
+    boo_debug_bugs_num <- boo_debug_bugs_num + 1
+    msg <- paste0("debug_metval_bugs, "
+                  , boo_debug_bugs_num
+                  , "/"
+                  , boo_debug_bugs_num_total
+                  , ", "
+                  , boo_debug_topic)
+    message(msg)
+  }## IF ~ verbose
   myDF[, "HABIT_BU"]    <- grepl("BU", myDF[, "HABIT"])
   myDF[, "HABIT_CB"]    <- grepl("CB", myDF[, "HABIT"])
   myDF[, "HABIT_CN"]    <- grepl("CN", myDF[, "HABIT"])
@@ -1060,7 +1095,17 @@ metric.values.bugs <- function(myDF
 
   # Create Dominant N ####
   # Create df for Top N (without ties)
-  #
+  if(verbose == TRUE) {
+    boo_debug_topic <- "Munging, Dom"
+    boo_debug_bugs_num <- boo_debug_bugs_num + 1
+    msg <- paste0("debug_metval_bugs, "
+                  , boo_debug_bugs_num
+                  , "/"
+                  , boo_debug_bugs_num_total
+                  , ", "
+                  , boo_debug_topic)
+    message(msg)
+  }## IF ~ verbose
   df.dom01 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
                             dplyr::group_by(SAMPLEID)  %>%
                                 dplyr::filter(dplyr::row_number()<=1)

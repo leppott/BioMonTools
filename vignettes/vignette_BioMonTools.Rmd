@@ -562,7 +562,7 @@ flagged samples.
 #library(BioMonTools)
 
 # Import
-df.samps.bugs <- readxl::read_excel(system.file("./extdata/Data_Benthos.xlsx"
+df.samps.bugs <- readxl::read_excel(system.file("extdata/Data_Benthos.xlsx"
                                                 , package="BioMonTools")
                            , guess_max = 10^6)
 
@@ -576,7 +576,7 @@ df.metrics <- BioMonTools::metric.values(df.samps.bugs
 
 # Flags
 # Import QC Checks
-df.checks <- readxl::read_excel(system.file("./extdata/MetricFlags.xlsx"
+df.checks <- readxl::read_excel(system.file("extdata/MetricFlags.xlsx"
                                           , package="BioMonTools")
                                 , sheet="Flags") 
 # Run Function
