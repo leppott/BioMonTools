@@ -6,6 +6,9 @@ test_that("metric_stats & metric_stats2", {
 
   # Add UFC, 2021-11-02
   df_bugs$UFC <- NA_integer_
+  df_bugs$ELEVATION_ATTR <- NA_character_
+  df_bugs$GRADIENT_ATTR <- NA_character_
+  df_bugs$WSAREA_ATTR <- NA_character_
 
   # Munge Names
   names(df_bugs)[names(df_bugs) %in% "BenSampID"] <- "SAMPLEID"
@@ -33,7 +36,7 @@ test_that("metric_stats & metric_stats2", {
   DataType_Cal  <- "cal"
   DataType_Ver  <- "verif"
   col_Subset    <- "INDEX_REGION"
-  Subset_Value  <- "CENTRALHILLS"
+  Subset_Value  <- "CentralHills"
   df_stats <- BioMonTools::metric.stats(df_metval
                                        , col_metrics
                                        , col_SampID
@@ -48,10 +51,15 @@ test_that("metric_stats & metric_stats2", {
                                        , Subset_Value)
 
   df_numbers <- df_stats[, -(1:4)]
+  # 2022-02-22, replace Inf and -Inf with NA
+  df_num_inf <- sapply(df_numbers, is.infinite)
+  df_numbers[df_num_inf] <- NA
+  #
   sum_calc <- sum(df_numbers, na.rm = TRUE)
 
   #sum_qc <- 315244.8
-  sum_qc <- 331996.8 # new value, 2021-04-14
+  #sum_qc <- 331996.8 # new value, 2021-04-14
+  sum_qc <- 367118.8 # new value, 2022-02-22, new metrics
 
   # test
   testthat::expect_equal(sum_calc, sum_qc, tolerance = 0.02)

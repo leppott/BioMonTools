@@ -679,7 +679,7 @@ metric.values.bugs <- function(myDF
 
   boo_debug_bugs <- FALSE
   boo_debug_bugs_num <- 0
-  boo_debug_bugs_num_total <- 16
+  boo_debug_bugs_num_total <- 17
 
   # global variable bindings ----
   INDEX_NAME <- INDEX_REGION <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
@@ -933,6 +933,28 @@ metric.values.bugs <- function(myDF
     msg <- "Updated col class; UFC to numeric"
     message(msg)
   }##IF ~ UFC ~ END
+
+  # QC, BCG_Attr
+  # need as character, if complex all values fail
+  if(verbose == TRUE) {
+    boo_debug_topic <- "QC, cols, complex, BCG_Attr"
+    boo_debug_bugs_num <- boo_debug_bugs_num + 1
+    msg <- paste0("debug_metval_bugs, "
+                  , boo_debug_bugs_num
+                  , "/"
+                  , boo_debug_bugs_num_total
+                  , ", "
+                  , boo_debug_topic)
+    message(msg)
+  }## IF ~ verbose
+  BCG_Complex <- is.complex(myDF[, "BCG_ATTR"])
+  if(BCG_Complex == TRUE) {
+    msg <- "**BCG_ATTR is complex!**"
+    msg2 <- "BCG metrics will not calculate properly."
+    msg3 <- "Reimport data with colClass(c('BCG_Attr'='character')"
+    message(paste(msg, msg2, msg3, sep = "\n"))
+    # too late for stop message
+  }##IF ~ BCG_Attr ~ END
 
   # Data Munging ####
   if(verbose == TRUE) {
@@ -2285,22 +2307,23 @@ metric.values.bugs <- function(myDF
              # Xi, Xm, Xt
              # 5i, 5m, 5t
              # 6i, 6m, 6t
+           # toupper(), 2022-02-22
             ### BCG_nt----
             , nt_BCG_att1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                      & BCG_ATTR == "1"]
                                               , na.rm = TRUE)
             , nt_BCG_att1i = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                      & BCG_ATTR == "1i"]
+                                                      & BCG_ATTR == "1I"]
                                                , na.rm = TRUE)
             , nt_BCG_att1m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                      & BCG_ATTR == "1m"]
+                                                      & BCG_ATTR == "1M"]
                                                , na.rm = TRUE)
             , nt_BCG_att12 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                       & (BCG_ATTR == "1"
                                                          | BCG_ATTR == "2")]
                                                , na.rm = TRUE)
             , nt_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                       & (BCG_ATTR == "1i"
+                                                       & (BCG_ATTR == "1I"
                                                           | BCG_ATTR == "2")]
                                                 , na.rm = TRUE)
             , nt_BCG_att123 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -2310,7 +2333,7 @@ metric.values.bugs <- function(myDF
                                                         | BCG_ATTR == "3")]
                                                 , na.rm = TRUE)
             , nt_BCG_att1i23 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                        & (BCG_ATTR == "1i"
+                                                        & (BCG_ATTR == "1I"
                                                           | BCG_ATTR == "2"
                                                           | BCG_ATTR == "3")]
                                                  , na.rm = TRUE)
@@ -2358,7 +2381,7 @@ metric.values.bugs <- function(myDF
             ## BCG_nt_Phylo
             , nt_Ephem_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                             & ORDER == "EPHEMEROPTERA"
-                                                            & (BCG_ATTR == "1i"
+                                                            & (BCG_ATTR == "1I"
                                                                | BCG_ATTR == "2")]
                                                      , na.rm = TRUE)
             , nt_EPT_BCG_att123 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -2373,39 +2396,39 @@ metric.values.bugs <- function(myDF
                                                             & (ORDER == "EPHEMEROPTERA"
                                                                | ORDER == "TRICHOPTERA"
                                                                | ORDER == "PLECOPTERA")
-                                                           & (BCG_ATTR == "1i"
+                                                           & (BCG_ATTR == "1I"
                                                               | BCG_ATTR == "2"
                                                               | BCG_ATTR == "3")]
                                                      , na.rm = TRUE)
             , nt_Pleco_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                              & ORDER == "PLECOPTERA"
-                                                             & (BCG_ATTR == "1i"
+                                                             & (BCG_ATTR == "1I"
                                                                 | BCG_ATTR == "2")]
                                                       , na.rm = TRUE)
             , nt_Trich_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                              & ORDER == "TRICHOPTERA"
-                                                             & (BCG_ATTR == "1i"
+                                                             & (BCG_ATTR == "1I"
                                                                 | BCG_ATTR == "2")]
                                                       , na.rm = TRUE)
 
             ### BCG_pi----
             , pi_BCG_att1 = 100*sum(N_TAXA[(BCG_ATTR == "1")]
                                     , na.rm=TRUE)/ni_total
-            , pi_BCG_att1i = 100*sum(N_TAXA[(BCG_ATTR == "1i")]
+            , pi_BCG_att1i = 100*sum(N_TAXA[(BCG_ATTR == "1I")]
                                      , na.rm=TRUE)/ni_total
-            , pi_BCG_att1m = 100*sum(N_TAXA[(BCG_ATTR == "1m")]
+            , pi_BCG_att1m = 100*sum(N_TAXA[(BCG_ATTR == "1M")]
                                      , na.rm=TRUE)/ni_total
             , pi_BCG_att12 = 100*sum(N_TAXA[(BCG_ATTR == "1"
                                              | BCG_ATTR == "2")]
                                      , na.rm=TRUE)/ni_total
-            , pi_BCG_att1i2 = 100*sum(N_TAXA[(BCG_ATTR == "1i"
+            , pi_BCG_att1i2 = 100*sum(N_TAXA[(BCG_ATTR == "1I"
                                               | BCG_ATTR == "2")]
                                       , na.rm=TRUE)/ni_total
             , pi_BCG_att123 = 100*sum(N_TAXA[(BCG_ATTR == "1"
                                               | BCG_ATTR == "2"
                                               | BCG_ATTR == "3")]
                                       , na.rm=TRUE)/ni_total
-            , pi_BCG_att1i23 = 100*sum(N_TAXA[(BCG_ATTR == "1i"
+            , pi_BCG_att1i23 = 100*sum(N_TAXA[(BCG_ATTR == "1I"
                                                | BCG_ATTR == "2"
                                                | BCG_ATTR == "3")]
                                        , na.rm=TRUE)/ni_total
@@ -2453,7 +2476,7 @@ metric.values.bugs <- function(myDF
             , pi_EPT_BCG_att1i23 = 100*sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
                                                   | ORDER == "TRICHOPTERA"
                                                   | ORDER == "PLECOPTERA")
-                                                 & (BCG_ATTR == "1i"
+                                                 & (BCG_ATTR == "1I"
                                                     | BCG_ATTR == "2"
                                                     | BCG_ATTR == "3")]
                                           , na.rm=TRUE)/ni_total

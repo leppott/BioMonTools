@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-21 15:32:05
+    #> Last Update: 2022-02-22 14:43:39
 
 # Version History
+
+## Changes in Version 0.5.0.9108 (2022-02-22)
+
+-   tests: Update metric_stats test for new metrics
+-   fix: Update metric.values() for 1i and 1m metrics, use upper case
+    -   Recent change to have all columns to upper case make 1i into 1I
 
 ## Changes in Version 0.5.0.9107 (2022-02-21)
 
