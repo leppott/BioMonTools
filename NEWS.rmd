@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9109 (2022-02-22)
+
+* refactor: Additional output messages to screen in metric.values()
+
 ## Changes in Version 0.5.0.9108 (2022-02-22)
 
 * tests: Update metric_stats test for new metrics

@@ -679,7 +679,7 @@ metric.values.bugs <- function(myDF
 
   boo_debug_bugs <- FALSE
   boo_debug_bugs_num <- 0
-  boo_debug_bugs_num_total <- 17
+  boo_debug_bugs_num_total <- 18
 
   # global variable bindings ----
   INDEX_NAME <- INDEX_REGION <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
@@ -845,6 +845,10 @@ metric.values.bugs <- function(myDF
                   , ", "
                   , boo_debug_topic)
     message(msg)
+    myCol <- "EXCLUDE"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
+    message(msg)
   }## IF ~ verbose
   Exclude.T <- sum(myDF$EXCLUDE==TRUE, na.rm=TRUE)
   if(Exclude.T==0) {
@@ -861,6 +865,10 @@ metric.values.bugs <- function(myDF
                   , boo_debug_bugs_num_total
                   , ", "
                   , boo_debug_topic)
+    message(msg)
+    myCol <- "NONTARGET"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
     message(msg)
   }## IF ~ verbose
   NonTarget.F <- sum(myDF$NONTARGET==FALSE, na.rm=TRUE)
@@ -879,6 +887,10 @@ metric.values.bugs <- function(myDF
                   , boo_debug_bugs_num_total
                   , ", "
                   , boo_debug_topic)
+    message(msg)
+    myCol <- "TOLVAL"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
     message(msg)
   }## IF ~ verbose
   TolVal_Char_NA <- myDF[, "TOLVAL"] == "NA"
@@ -904,6 +916,10 @@ metric.values.bugs <- function(myDF
                   , ", "
                   , boo_debug_topic)
     message(msg)
+    myCol <- "TOLVAL2"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
+    message(msg)
   }## IF ~ verbose
   TolVal2_Char_NA <- myDF[, "TOLVAL2"]=="NA"
   if(sum(TolVal2_Char_NA, na.rm=TRUE)>0) {
@@ -925,6 +941,10 @@ metric.values.bugs <- function(myDF
                   , ", "
                   , boo_debug_topic)
     message(msg)
+    myCol <- "UFC"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
+    message(msg)
   }## IF ~ verbose
   UFC_Char_NA <- myDF[, "UFC"] == "NA"
   if(sum(UFC_Char_NA, na.rm=TRUE) > 0) {
@@ -945,6 +965,10 @@ metric.values.bugs <- function(myDF
                   , boo_debug_bugs_num_total
                   , ", "
                   , boo_debug_topic)
+    message(msg)
+    myCol <- "BCG_ATTR"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
     message(msg)
   }## IF ~ verbose
   BCG_Complex <- is.complex(myDF[, "BCG_ATTR"])
@@ -979,6 +1003,10 @@ metric.values.bugs <- function(myDF
                   , boo_debug_bugs_num_total
                   , ", "
                   , boo_debug_topic)
+    message(msg)
+    myCol <- "NONTARGET"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
     message(msg)
   }## IF ~ verbose
   myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
