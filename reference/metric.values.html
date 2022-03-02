@@ -20,7 +20,7 @@ The dplyr package is used to generate the metric values."><meta property="og:ima
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9109</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9110</span>
       </span>
     </div>
 
@@ -141,39 +141,52 @@ Any metrics based on the missing fields will not be valid.</p>
 <p>A future update may turn these fields into function parameters.  This would
 allow the user to tweak the function inputs to match their data rather than
 having to update their data to match the function.</p>
-<p>Required Fields:</p>
+<p>Required fields, all communities:</p>
 <p>* SAMPLEID (character or number, must be unique)</p>
 <p>* TAXAID (character or number, must be unique)</p>
 <p>* N_TAXA</p>
-<p>* EXCLUDE (valid values are TRUE and FALSE)</p>
 <p>* INDEX_NAME</p>
 <p>* INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values
-are "hi" or "lo")</p>
+are "hi" or "lo")#'</p>
+<p>Additional Required fields, bugs:</p>
+<p>* EXCLUDE (valid values are TRUE and FALSE)</p>
 <p>* NONTARGET (valid values are TRUE and FALSE)</p>
-<p>* SAMP_BIOMASS (biomass total for sample, funciton uses max in case entered
-for all taxa in sample)</p>
 <p>* PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY,
 TRIBE, GENUS</p>
 <p>* FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
 LONGLIVED, NOTEWORTHY, HABITAT, UFC, ELEVATION_ATTR, GRADIENT_ATTR,
-WSAREA_ATTR, REPRODUCTION, CONNECTIVITY, SCC</p>
-<p>Valid values for FFG: CG, CF, PR, SC, SH</p>
-<p>Valid values for HABIT: BU, CB, CN, SP, SW</p>
-<p>Valid values for LIFE_CYCLE: UNI, SEMI, MULTI</p>
-<p>Valid values for THERMAL_INDICATOR: COREC, COLD, COOL, WARM, EURYTHERMAL
+WSAREA_ATTR</p>
+<p>Additional Required fields, fish:</p>
+<p>* N_ANOMALIES</p>
+<p>* SAMP_BIOMASS (biomass total for sample, funciton uses max in case entered
+for all taxa in sample)</p>
+<p>* DA_MI2, SAMP_WIDTH_M, SAMP_LENGTH_M, , TYPE, TOLER, NATIVE, TROPHIC, SILT,
+FAMILY, GENUS, HYBRID, BCG_ATTR, THERMAL_INDICATOR, ELEVATION_ATTR,
+GRADIENT_ATTR, WSAREA_ATTR, REPRODUCTION, HABITAT, CONNECTIVITY, SCC</p>
+<p>Additional Required fields, algae:</p>
+<p>* EXCLUDE, NONTARGET, PHYLUM, ORDER, FAMILY, GENUS, BC_USGS, TROPHIC_USGS,
+SAP_USGS, PT_USGS, O_USGS, SALINITY_USGS, BAHLS_USGS, P_USGS, N_USGS,
+HABITAT_USGS, N_FIXER_USGS, MOTILITY_USGS, SIZE_USGS, HABIT_USGS,
+MOTILE2_USGS, TOLVAL, DIATOM_ISA, DIAT_CL, POLL_TOL, BEN_SES, DIATAS_TP,
+DIATAS_TN, DIAT_COND, DIAT_CA, MOTILITY, NF</p>
+<p>Valid values for fields:</p>
+<p>* FFG: CG, CF, PR, SC, SH</p>
+<p>* HABIT: BU, CB, CN, SP, SW</p>
+<p>* LIFE_CYCLE: UNI, SEMI, MULTI</p>
+<p>* THERMAL_INDICATOR: COREC, COLD, COOL, WARM, EURYTHERMAL
 , and NA</p>
-<p>Valid values for LONGLIVED: TRUE, FALSE</p>
-<p>Valid values for NOTEWORTHY: TRUE, FALSE</p>
-<p>Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN</p>
-<p>Valid values for UFC: integers 1:6 (taxonomic uncertainty frequency class)</p>
-<p>Valid values for ELEVATION_ATTR: LOW, HIGH</p>
-<p>Valid values for GRADIENT_ATTR: LOW, MOD, HIGH</p>
-<p>Valid values for WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE</p>
-<p>Valid values for REPRODUCTION: BROADCASTER, SIMPLE NEST, COMPLEX NEST,
+<p>* LONGLIVED: TRUE, FALSE</p>
+<p>* NOTEWORTHY: TRUE, FALSE</p>
+<p>* HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN</p>
+<p>* UFC: integers 1:6 (taxonomic uncertainty frequency class)</p>
+<p>* ELEVATION_ATTR: LOW, HIGH</p>
+<p>* GRADIENT_ATTR: LOW, MOD, HIGH</p>
+<p>* WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE</p>
+<p>* REPRODUCTION: BROADCASTER, SIMPLE NEST, COMPLEX NEST,
 BEARER, and MIGRATORY</p>
-<p>Valid values for CONNECTIVITY: TRUE, FALSE</p>
-<p>Valid values for SCC (Species of Conservation Concern): TRUE, FALSE</p>
-<p>Columns to keep are additional fields in the input file that the user wants
+<p>* CONNECTIVITY: TRUE, FALSE</p>
+<p>* SCC (Species of Conservation Concern): TRUE, FALSE</p>
+<p>'Columns to keep' are additional fields in the input file that the user wants
 retained in the output.  Fields need to be those that are unique per sample
 and not associated with the taxa.  For example, the fields used in
 qc.check(); Area_mi2, SurfaceArea, Density_m2, and Density_ft2.</p>
@@ -182,9 +195,9 @@ provided order. This variable can be used to sort the metrics per the user's
 preferences. By default the metric names will be returned in the groupings
 that were used for calculation.</p>
 <p>The fields TOLVAL2 and FFG2 are provided to allow the user to calculate
-metrics based on alternative scenarios.  For example, HBI and NCBI where the
-NCBI uses a different set of tolerance values (TOLVAL2).</p>
-<p>If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated
+metrics based on alternative scenarios.  For example, including both HBI and
+NCBI where the NCBI uses a different set of tolerance values (TOLVAL2).</p>
+<p>If TAXAID is 'NONE' and N_TAXA is '0' then metrics **will** be calculated
 with that record. Other values for TAXAID with N_TAXA = 0 will be removed
 before calculations.</p>
 <p>For 'Oligochete' metrics either Class or Subclass is required for
