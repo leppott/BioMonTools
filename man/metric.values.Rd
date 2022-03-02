@@ -81,7 +81,7 @@ A future update may turn these fields into function parameters.  This would
 allow the user to tweak the function inputs to match their data rather than
 having to update their data to match the function.
 
-Required Fields:
+Required fields, all communities:
 
 * SAMPLEID (character or number, must be unique)
 
@@ -89,56 +89,76 @@ Required Fields:
 
 * N_TAXA
 
-* EXCLUDE (valid values are TRUE and FALSE)
-
 * INDEX_NAME
 
 * INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values
-are "hi" or "lo")
+are "hi" or "lo")#'
+
+Additional Required fields, bugs:
+
+* EXCLUDE (valid values are TRUE and FALSE)
 
 * NONTARGET (valid values are TRUE and FALSE)
-
-* SAMP_BIOMASS (biomass total for sample, funciton uses max in case entered
-for all taxa in sample)
 
 * PHYLUM, SUBPHYLUM, CLASS, SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY,
 TRIBE, GENUS
 
 * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
 LONGLIVED, NOTEWORTHY, HABITAT, UFC, ELEVATION_ATTR, GRADIENT_ATTR,
-WSAREA_ATTR, REPRODUCTION, CONNECTIVITY, SCC
+WSAREA_ATTR
 
-Valid values for FFG: CG, CF, PR, SC, SH
+Additional Required fields, fish:
 
-Valid values for HABIT: BU, CB, CN, SP, SW
+* N_ANOMALIES
 
-Valid values for LIFE_CYCLE: UNI, SEMI, MULTI
+* SAMP_BIOMASS (biomass total for sample, funciton uses max in case entered
+for all taxa in sample)
 
-Valid values for THERMAL_INDICATOR: COREC, COLD, COOL, WARM, EURYTHERMAL
+* DA_MI2, SAMP_WIDTH_M, SAMP_LENGTH_M, , TYPE, TOLER, NATIVE, TROPHIC, SILT,
+FAMILY, GENUS, HYBRID, BCG_ATTR, THERMAL_INDICATOR, ELEVATION_ATTR,
+GRADIENT_ATTR, WSAREA_ATTR, REPRODUCTION, HABITAT, CONNECTIVITY, SCC
+
+Additional Required fields, algae:
+
+* EXCLUDE, NONTARGET, PHYLUM, ORDER, FAMILY, GENUS, BC_USGS, TROPHIC_USGS,
+SAP_USGS, PT_USGS, O_USGS, SALINITY_USGS, BAHLS_USGS, P_USGS, N_USGS,
+HABITAT_USGS, N_FIXER_USGS, MOTILITY_USGS, SIZE_USGS, HABIT_USGS,
+MOTILE2_USGS, TOLVAL, DIATOM_ISA, DIAT_CL, POLL_TOL, BEN_SES, DIATAS_TP,
+DIATAS_TN, DIAT_COND, DIAT_CA, MOTILITY, NF
+
+Valid values for fields:
+
+* FFG: CG, CF, PR, SC, SH
+
+* HABIT: BU, CB, CN, SP, SW
+
+* LIFE_CYCLE: UNI, SEMI, MULTI
+
+* THERMAL_INDICATOR: COREC, COLD, COOL, WARM, EURYTHERMAL
 , and NA
 
-Valid values for LONGLIVED: TRUE, FALSE
+* LONGLIVED: TRUE, FALSE
 
-Valid values for NOTEWORTHY: TRUE, FALSE
+* NOTEWORTHY: TRUE, FALSE
 
-Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN
+* HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN
 
-Valid values for UFC: integers 1:6 (taxonomic uncertainty frequency class)
+* UFC: integers 1:6 (taxonomic uncertainty frequency class)
 
-Valid values for ELEVATION_ATTR: LOW, HIGH
+* ELEVATION_ATTR: LOW, HIGH
 
-Valid values for GRADIENT_ATTR: LOW, MOD, HIGH
+* GRADIENT_ATTR: LOW, MOD, HIGH
 
-Valid values for WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE
+* WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE
 
-Valid values for REPRODUCTION: BROADCASTER, SIMPLE NEST, COMPLEX NEST,
+* REPRODUCTION: BROADCASTER, SIMPLE NEST, COMPLEX NEST,
 BEARER, and MIGRATORY
 
-Valid values for CONNECTIVITY: TRUE, FALSE
+* CONNECTIVITY: TRUE, FALSE
 
-Valid values for SCC (Species of Conservation Concern): TRUE, FALSE
+* SCC (Species of Conservation Concern): TRUE, FALSE
 
-Columns to keep are additional fields in the input file that the user wants
+'Columns to keep' are additional fields in the input file that the user wants
 retained in the output.  Fields need to be those that are unique per sample
 and not associated with the taxa.  For example, the fields used in
 qc.check(); Area_mi2, SurfaceArea, Density_m2, and Density_ft2.
@@ -149,10 +169,10 @@ preferences. By default the metric names will be returned in the groupings
 that were used for calculation.
 
 The fields TOLVAL2 and FFG2 are provided to allow the user to calculate
-metrics based on alternative scenarios.  For example, HBI and NCBI where the
-NCBI uses a different set of tolerance values (TOLVAL2).
+metrics based on alternative scenarios.  For example, including both HBI and
+NCBI where the NCBI uses a different set of tolerance values (TOLVAL2).
 
-If TAXAID is 'NONE' and N_TAXA is "0" then metrics **will** be calculated
+If TAXAID is 'NONE' and N_TAXA is '0' then metrics **will** be calculated
 with that record. Other values for TAXAID with N_TAXA = 0 will be removed
 before calculations.
 

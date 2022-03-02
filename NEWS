@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-02-22 20:32:34
+    #> Last Update: 2022-03-02 09:53:40
 
 # Version History
+
+## Changes in Version 0.5.0.9110 (2022-03-02)
+
+-   docs: Update required fields text in metric.values()
+-   refactor: Copy (as comments) required fields code from bugs to other
+    communities in metric.values()
 
 ## Changes in Version 0.5.0.9109 (2022-02-22)
 
