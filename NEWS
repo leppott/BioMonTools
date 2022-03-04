@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-03-02 09:53:40
+    #> Last Update: 2022-03-04 11:59:04
 
 # Version History
+
+## Changes in Version 0.5.0.9111 (2022-03-04)
+
+-   fix: Restore extdata.xlsx
+    -   Deleted in v0.5.0.9109, last mod was v0.5.0.9100
 
 ## Changes in Version 0.5.0.9110 (2022-03-02)
 
