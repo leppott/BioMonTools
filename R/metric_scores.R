@@ -169,7 +169,7 @@ metric.scores <- function(DF_Metrics
                           , DF_Thresh_Metric
                           , DF_Thresh_Index
                           , col_ni_total = "ni_total") {##FUNCTION.metric.score.START
-  #
+ #
   boo.QC <- FALSE
   if(boo.QC==TRUE){
     # DF_Metrics <- df_metric_values_bugs
@@ -510,7 +510,19 @@ metric.scores <- function(DF_Metrics
             fun.Result <- "ERROR"
           }##IF~SelMetMaster~END
 
-
+        } else if(fun.ScoreRegime == "Cat_101") {
+          # Cat_101 ----
+          fun.Result <- ifelse(fun.Value > fun.Hi, 1
+                               ,ifelse(fun.Value < fun.Lo, 1, 0))
+          if(boo.QC == TRUE){
+            message(paste0("\nMetric="
+                           , c
+                           , ", Value="
+                           , fun.Value
+                           , ", Result="
+                           , fun.Result))
+            #utils::flush.console()
+          }##IF.boo.QC.END
         } else if(is.na(fun.ScoreRegime)) {
           # No Score Regime ####
           fun.Result <- NA

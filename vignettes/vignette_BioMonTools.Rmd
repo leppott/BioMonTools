@@ -62,19 +62,19 @@ Required Fields:
 
     +	Unique sample identifier
 
-    +	Valid entries: character or number, must be unique
+    +	Valid values: character or number, must be unique
 
 *	TAXAID
 
     +	Unique taxa identifier
 
-    + Valid entries: character or number, must be unique
+    + Valid values: character or number, must be unique
 
 *	N_TAXA
 
     + Number of individuals
 
-    + Valid entries: number
+    + Valid values: number
 
 *	EXCLUDE
 
@@ -83,7 +83,7 @@ Required Fields:
     ‘BCGcalc_README_20180919’ Word document describes the Excluded Taxa Decision
     Criteria that was used during BCG model calibration. 
 
-    + Valid entries: TRUE or FALSE 
+    + Valid values: TRUE or FALSE 
 
     +	Non-unique/non-distinct taxa should be entered as "TRUE"
 
@@ -92,7 +92,7 @@ Required Fields:
     +	Non-target taxa are not part of the intended capture list; e.g., fish, 
     herps, water column taxa.  They are excluded from all metric calculations.
 
-    +	Valid entries: TRUE or FALSE.
+    +	Valid values: TRUE or FALSE.
     
     + NonTarget taxa should be entered as "TRUE"
 
@@ -101,7 +101,7 @@ Required Fields:
     +	Name of the BCG rules worksheet in the ‘Rules’ file (in the ‘extdata’ 
     folder) that the R code is referencing.
 
-    +	Valid entries for the Puget Lowlands/Willamette Valley model: 
+    +	Valid values for the Puget Lowlands/Willamette Valley model: 
     BCG_PacNW_v1_500ct or BCG_PacNW_v1_300ct.
 
 *	SITE_TYPE
@@ -109,7 +109,7 @@ Required Fields:
     +	Select which BCG model to apply: Low (lo) gradient (<1% NHD+ v2 flowline 
     slope) or high (hi) gradient (≥ 1% NHD+ v2 flowline slope).
 
-    +	Valid entries: “hi” or “lo”.
+    +	Valid values: “hi” or “lo”.
 
 *	PHYLUM, SUBPHYLUM, CLASS, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS
 
@@ -118,70 +118,79 @@ Required Fields:
     + Other phylogenetic rankings (e.g., SubOrder or SuperFamily) can be 
     included but are not used in the current metric calculations.
 
-    +	Valid entries: text
+    +	Valid values: text
 
 *	BCG_Attr
 
     +	BCG attribute assignments (for example, Stamp and Gerritsen 2018).
 
-    +	Valid entries: 1i, 1m, 2, 3, 4, 5, 6; if not available, leave blank or 
+    +	Valid values: 1i, 1m, 2, 3, 4, 5, 6; if not available, leave blank or 
     enter ‘NA’.
 
 *	FFG, HABIT, LIFE_CYCLE, TOLVAL, THERMAL_INDICATOR, UFC, ELEVATION_ATTR, 
-GRADIENT_ATTR, WSAREA_ATTR
+GRADIENT_ATTR, WSAREA_ATTR, REPRODUCTION, CONNECTIVITY
 
     +	FFG
     
-        - Valid values for FFG: CG, CF, PR, SC, SH
+        - Valid values: CG, CF, PR, SC, SH
     
         - Function feeding group  entries.
 
     +	HABIT
     
-        - Valid values for HABIT: BU, CB, CN, SP, SW
+        - Valid values: BU, CB, CN, SP, SW
     
         - Habit designations.
 
     +	LIFE_CYLCE
     
-        - Valid values for LIFE_CYCLE: UNI, SEMI, MULTI
+        - Valid values: UNI, SEMI, MULTI
 
         - Life cycle designations.
     
     + THERMAL_INDICATOR
     
-        - Valid values for THERMAL_INDICATOR: COLD, COLD_COOL, COOL_WARM, WARM
+        - Valid values: STENOC, COLD, COOL, WARM, STENOW
+        , EURYTHERMAL, INCONCLUSIVE, NA
         
     + LONGLIVED
     
-        - Valid values for LONGLIVED: TRUE, FALSE
+        - Valid values: TRUE, FALSE
         
     + NOTEWORTHY
     
-        - Valid values for NOTEWORTHY: TRUE, FALSE
+        - Valid values: TRUE, FALSE
         
     + HABITAT
     
-        - Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, 
+        - Valid values: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, 
         UNKN
         
     + UFC
 
-        - Valid values are numeric 1, 2, 3, 4, 5, 6
+        - Valid values: numeric; 1, 2, 3, 4, 5, 6
         
         - Taxonomic Uncertainty Frequency Class
         
     + ELEVATION_ATTR
     
-        - Valid values for ELEVATION_ATTR: LOW, HIGH
+        - Valid values: LOW, HIGH
         
     + GRADIENT_ATTR
         
-        - Valid values for GRADIENT_ATTR: LOW, MOD, HIGH
+        - Valid values: LOW, MOD, HIGH
         
     + WSAREA_ATTR
 
-        - Valid values for WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE
+        - Valid values: SMALL, MEDIUM, LARGE, XLARGE
+        
+    + REPRODUCTION
+    
+        - Valid values: BROADCASTER, SIMPLE NEST, COMPLEX NEST, BEARER, MIGRATORY
+
+    + CONNECTIVITY
+    
+        - Valid values: TRUE, FALSE
         
 Fields that are optional can be in the output (see examples below). 
 

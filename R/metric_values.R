@@ -90,8 +90,8 @@
 #'
 #' * LIFE_CYCLE: UNI, SEMI, MULTI
 #'
-#' * THERMAL_INDICATOR: COREC, COLD, COOL, WARM, EURYTHERMAL
-#' , and NA
+#' * THERMAL_INDICATOR: STENOC, COLD, COOL, WARM, STENOW, EURYTHERMAL
+#' , INCONCLUSIVE, NA
 #'
 #' * LONGLIVED: TRUE, FALSE
 #'
@@ -107,8 +107,7 @@
 #'
 #' * WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE
 #'
-#' * REPRODUCTION: BROADCASTER, SIMPLE NEST, COMPLEX NEST,
-#' BEARER, and MIGRATORY
+#' * REPRODUCTION: BROADCASTER, SIMPLE NEST, COMPLEX NEST, BEARER, MIGRATORY
 #'
 #' * CONNECTIVITY: TRUE, FALSE
 #'
@@ -1093,11 +1092,13 @@ metric.values.bugs <- function(myDF
   myDF[, "LC_SEMI"]     <- grepl("SEMI", myDF[, "LIFE_CYCLE"])
   myDF[, "LC_UNI"]      <- grepl("UNI", myDF[, "LIFE_CYCLE"])
   myDF[, "FFG2_PRE"]    <- grepl("PR", myDF[, "FFG2"])
-  myDF[, "TI_CORECOLD"] <- grepl("COREC", myDF[,"THERMAL_INDICATOR"])
+  myDF[, "TI_STENOCOLD"] <- grepl("STENOC", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_COLD"]     <- grepl("COLD", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_COOL"]     <- grepl("COOL", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_WARM"]     <- grepl("WARM", myDF[,"THERMAL_INDICATOR"])
+  myDF[, "TI_STENOWARM"] <- grepl("STENOW", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_EURY"]     <- grepl("EURYTHERMAL", myDF[,"THERMAL_INDICATOR"])
+  myDF[, "TI_INCONCLUSIVE"] <- grepl("INCONCLUSIVE", myDF[,"THERMAL_INDICATOR"])
   # exact matches only
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])
   myDF[, "HABITAT_BRAC"]   <- "BRAC" == myDF[, "HABITAT"]
@@ -1117,7 +1118,6 @@ metric.values.bugs <- function(myDF
   myDF[, "WSAREA_M"]       <- "MEDIUM" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_L"]       <- "LARGE" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_XL"]      <- "XLARGE" == myDF[, "WSAREA_ATTR"]
-
 
   #
   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1909,79 +1909,112 @@ metric.values.bugs <- function(myDF
                                 | is.na(FAMILY)==TRUE)]
                              , na.rm=TRUE)/ni_total
              # 20181207, BCG PacNW, Level 1 Signal metrics
-             , nt_longlived=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
+             , nt_longlived =  dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
                                                      & LONGLIVED==TRUE]
                                               , na.rm=TRUE)
-             , nt_noteworthy=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
+             , nt_noteworthy = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
                                                       & NOTEWORTHY==TRUE]
                                                , na.rm=TRUE)
-             , nt_ffg2_pred=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
+             , nt_ffg2_pred =  dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
                                                      & FFG2_PRE==TRUE]
                                               , na.rm=TRUE)
 
 
-             ## Thermal Indicators ####
-             ## nt_ti
-             , nt_ti_corecold = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                  & TI_CORECOLD == TRUE]
+             ## Thermal Indicators ----
+             ### nt_ti
+             , nt_ti_stenocold =      dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                  & TI_STENOCOLD == TRUE]
                                            , na.rm = TRUE)
-             , nt_ti_cold = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+             , nt_ti_cold =           dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                    & TI_COLD == TRUE]
                                             , na.rm = TRUE)
-             , nt_ti_cool = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+             , nt_ti_cool =           dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                    & TI_COOL == TRUE]
                                             , na.rm = TRUE)
-             , nt_ti_warm = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+             , nt_ti_warm =           dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                   & TI_WARM == TRUE]
                                            , na.rm = TRUE)
-             , nt_ti_eury = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+             , nt_ti_stenowarm =      dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                   & TI_STENOWARM == TRUE]
+                                            , na.rm = TRUE)
+             , nt_ti_eury =           dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                      & TI_EURY == TRUE]
                                               , na.rm = TRUE)
-             , nt_ti_na = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+             , nt_ti_inconclusive =   dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                   & TI_INCONCLUSIVE == TRUE]
+                                            , na.rm = TRUE)
+             , nt_ti_na =             dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                      & TI_NA == TRUE]
                                               , na.rm = TRUE)
-             , nt_ti_corecold_cold = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                         & (TI_CORECOLD == TRUE |
-                                                              TI_COLD == TRUE)]
+             , nt_ti_stenocold_cold = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                       & (TI_STENOCOLD == TRUE |
+                                                               TI_COLD == TRUE)]
                                                   , na.rm = TRUE)
-             , nt_ti_cool_warm = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                              & (TI_COOL == TRUE |
-                                                                   TI_WARM == TRUE)]
+          , nt_ti_stenocold_cold_cool = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & (TI_STENOCOLD == TRUE |
+                                                           TI_COLD == TRUE |
+                                                           TI_COOL == TRUE)]
+                                                      , na.rm = TRUE)
+             , nt_ti_cool_warm =       dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & (TI_COOL == TRUE |
+                                                               TI_WARM == TRUE)]
                                                        , na.rm = TRUE)
+             , nt_ti_warm_stenowarm = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & (TI_WARM == TRUE |
+                                                          TI_STENOWARM == TRUE)]
+                                                     , na.rm = TRUE)
 
-              ## pi_ti
-             , pi_ti_corecold = 100*sum(N_TAXA[TI_CORECOLD == TRUE]
-                                 , na.rm = TRUE)/ni_total
-             , pi_ti_cold = 100*sum(N_TAXA[TI_COLD == TRUE]
-                                  , na.rm = TRUE)/ni_total
-             , pi_ti_cool = 100*sum(N_TAXA[TI_COOL == TRUE]
-                                  , na.rm = TRUE)/ni_total
-             , pi_ti_warm = 100*sum(N_TAXA[TI_WARM == TRUE]
-                                 , na.rm = TRUE)/ni_total
-             , pi_ti_eury = 100*sum(N_TAXA[TI_EURY == TRUE]
-                                    , na.rm = TRUE)/ni_total
-             , pi_ti_na = 100*sum(N_TAXA[TI_NA == TRUE]
-                                    , na.rm = TRUE)/ni_total
-             , pi_ti_corecold_cold = 100*sum(N_TAXA[TI_CORECOLD == TRUE |
+              ### pi_ti
+             , pi_ti_stenocold =      100 * sum(N_TAXA[TI_STENOCOLD == TRUE]
+                                                , na.rm = TRUE) / ni_total
+             , pi_ti_cold =           100 * sum(N_TAXA[TI_COLD == TRUE]
+                                                , na.rm = TRUE) / ni_total
+             , pi_ti_cool =           100 * sum(N_TAXA[TI_COOL == TRUE]
+                                                , na.rm = TRUE) / ni_total
+             , pi_ti_warm =           100 * sum(N_TAXA[TI_WARM == TRUE]
+                                                , na.rm = TRUE) / ni_total
+             , pi_ti_stenowarm =      100 * sum(N_TAXA[TI_STENOWARM == TRUE]
+                                                , na.rm = TRUE) / ni_total
+             , pi_ti_eury =           100 * sum(N_TAXA[TI_EURY == TRUE]
+                                                , na.rm = TRUE) / ni_total
+             , pi_ti_inconclusive =   100 * sum(N_TAXA[TI_INCONCLUSIVE == TRUE]
+                                                , na.rm = TRUE) / ni_total
+             , pi_ti_na =             100 * sum(N_TAXA[TI_NA == TRUE]
+                                                , na.rm = TRUE) / ni_total
+             , pi_ti_stenocold_cold = 100 * sum(N_TAXA[TI_STENOCOLD == TRUE |
                                                       TI_COLD == TRUE]
-                                        , na.rm = TRUE)/ni_total
-             , pi_ti_cool_warm = 100*sum(N_TAXA[TI_COOL == TRUE |
+                                                , na.rm = TRUE) / ni_total
+          , pi_ti_stenocold_cold_cool = 100 * sum(N_TAXA[TI_STENOCOLD == TRUE |
+                                                      TI_COLD == TRUE |
+                                                      TI_COOL == TRUE]
+                                             , na.rm = TRUE) / ni_total
+             , pi_ti_cool_warm =      100 * sum(N_TAXA[TI_COOL == TRUE |
                                                       TI_WARM == TRUE]
-                                             , na.rm = TRUE)/ni_total
+                                                , na.rm = TRUE) / ni_total
+             , pi_ti_warm_stenowarm = 100 * sum(N_TAXA[TI_WARM == TRUE |
+                                                      TI_STENOWARM == TRUE]
+                                             , na.rm = TRUE) / ni_total
 
 
-             ## pt_ti
-             , pt_ti_corecold = 100 * nt_ti_corecold / nt_total
-             , pt_ti_cold = 100 * nt_ti_cold / nt_total
-             , pt_ti_cool = 100 * nt_ti_cool / nt_total
-             , pt_ti_warm = 100 * nt_ti_warm / nt_total
-             , pt_ti_eury = 100 * nt_ti_eury / nt_total
-             , pt_ti_na = 100 * nt_ti_na / nt_total
-             , pt_ti_corecold_cold = 100 * nt_ti_corecold_cold / nt_total
-             , pt_ti_cool_warm = 100 * nt_ti_cool_warm / nt_total
+             ### pt_ti
+             , pt_ti_stenocold =           100 * nt_ti_stenocold / nt_total
+             , pt_ti_cold =                100 * nt_ti_cold / nt_total
+             , pt_ti_cool =                100 * nt_ti_cool / nt_total
+             , pt_ti_warm =                100 * nt_ti_warm / nt_total
+             , pt_ti_stenowarm =           100 * nt_ti_stenowarm / nt_total
+             , pt_ti_eury =                100 * nt_ti_eury / nt_total
+             , pt_ti_inconclusive =        100 * nt_ti_inconclusive / nt_total
+             , pt_ti_na =                  100 * nt_ti_na / nt_total
+             , pt_ti_stenocold_cold =      100 * nt_ti_stenocold_cold / nt_total
+             , pt_ti_stenocold_cold_cool = 100 * nt_ti_stenocold_cold / nt_total
+             , pt_ti_cool_warm =           100 * nt_ti_cool_warm / nt_total
+             , pt_ti_cool_warm_stenowarm = 100 * nt_ti_warm_stenowarm / nt_total
+
+            ### ratio
+          , ri_ti_sccc_wsw = pi_ti_stenocold_cold_cool / pi_ti_warm_stenowarm
 
 
-             ## Tolerance ####
+             ## Tolerance ----
              # 4 and 6 are WV GLIMPSS (no equal)
              , nt_tv_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
                                                       & TOLVAL>=0

@@ -1479,3 +1479,65 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
 
 
 })## Test - met val_sc, IDEM Diatom IBIs ~ END
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# # met val_sc, SCMB_IBI ----
+# test_that("metric values_scores, SCMB IBI", {
+#   # _Metric.Values ----
+#
+#   data(data_metval_scmb_ibi) #added via data.R
+#   df_metval <- data_metval_scmb_ibi
+#
+#   # metric values
+#   # df_metval_calc <- BioMonTools::metric.values(fun.DF = df_diatoms
+#   #                                              , fun.Community = "algae"
+#   #                                              , boo.Shiny = TRUE)
+#   #
+#   # # df, calc
+#   # data(data_diatom_mmi_qc)
+#
+#   # Thresholds
+#   fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata"
+#                          , "MetricScoring.xlsx")
+#   df_thresh_metric <- readxl::read_excel(fn_thresh, sheet="metric.scoring")
+#   df_thresh_index <- readxl::read_excel(fn_thresh, sheet="index.scoring")
+#   myIndex <- "SCMB_IBI"
+#   myMetrics <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
+#     , "INDEX_NAME"]==myIndex, "METRIC_NAME"])
+#
+#   # Calculate
+#   df_metsc_calc <- metric.scores(df_metval[, 1:7]
+#                                  , myMetrics
+#                                  , "INDEX_NAME"
+#                                  , "INDEX_REGION"
+#                                  , df_thresh_metric
+#                                  , df_thresh_index)
+#
+#   df_metsc_qc <- df_metval[, 8:11]
+#   names(df_metsc_qc) <- myMetrics
+#
+#   # change integers to numeric
+#   # Round values to 1 or 2 digits
+#   #library(dplyr)
+#
+#   # `%>%` <- dplyr::`%>%`
+#   #
+#   # df_metval_calc <- df_metval_calc %>%
+#   #   dplyr::mutate_if(is.integer, as.numeric) %>%
+#   #   dplyr::mutate_if(is.numeric, round, digits =2)
+#   #
+#   # df_metval_qc <- df_metval_qc %>%
+#   #   dplyr::mutate_if(is.integer, as.numeric) %>%
+#   #   dplyr::mutate_if(is.numeric, round, digits =2)
+#
+#
+#   # test
+#   testthat::expect_equal(df_metval_calc[, 4:7], df_metval_qc[, 1:4])
+#   # Below works but
+#   #               the QC data is not consistent in the number of decimal places
+#   #expect_equal(df_metval_calc, df_metval_qc, tolerance = 0.01)
+#
+#
+# })## Test - met val_sc, SCMB_IBI
+

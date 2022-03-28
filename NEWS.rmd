@@ -18,6 +18,21 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9113 (2022-03-28)
+
+* refactor: Add and modify bug thermal metrics, Issue #72
+    + metric_values()
+    + extdata\MetricNames.xlsx
+* style: Add extra spaces to some lines in metric_values()
+
+## Changes in Version 0.5.0.9112 (2022-03-22)
+
+* refactor: Add metrics and scoring for So Cal Marine Bays
+    + extdata\MetricNames.xlsx
+    + extdata\MetricScoring.xlsx
+* tests: Add tests for So Cal Marine Bays
+    + Incomplete
+
 ## Changes in Version 0.5.0.9111 (2022-03-04)
 
 * fix: Restore extdata\MetricNames.xlsx

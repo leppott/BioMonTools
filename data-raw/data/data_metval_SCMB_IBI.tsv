@@ -1,0 +1,21 @@
+INDEX_NAME	INDEX_REGION	SampID	nt_total	nt_Mol	ni_Noto	pi_intol	qc_nt_total	qc_nt_Mol	qc_ni_Noto	qc_pi_intol	qc_sum	qc_nar
+SCMB_IBI	C	Test01	0	0	0	0	1	1	0	1	3	High Disturbance
+SCMB_IBI	C	Test02	7	1	0.1	18	1	1	0	1	3	High Disturbance
+SCMB_IBI	C	Test03	12	2	1	18.9	1	0	0	1	2	Moderate Disturbance
+SCMB_IBI	C	Test04	13	3	6	19	0	0	0	0	0	Reference
+SCMB_IBI	C	Test05	14	5	11	19.1	0	0	0	0	0	Reference
+SCMB_IBI	C	Test06	21	7	16	23	0	0	0	0	0	Reference
+SCMB_IBI	C	Test07	28	9	21	25	0	0	0	0	0	Reference
+SCMB_IBI	C	Test08	35	11	26	27	0	0	0	0	0	Reference
+SCMB_IBI	C	Test09	42	13	31	29	0	0	0	0	0	Reference
+SCMB_IBI	C	Test10	49	15	36	31	0	0	0	0	0	Reference
+SCMB_IBI	C	Test11	56	17	41	33	0	0	0	0	0	Reference
+SCMB_IBI	C	Test12	63	18	46	35	0	0	0	0	0	Reference
+SCMB_IBI	C	Test13	70	19	51	37	0	0	0	0	0	Reference
+SCMB_IBI	C	Test14	77	20	56	39	0	0	0	0	0	Reference
+SCMB_IBI	C	Test15	84	21	58	47	0	0	0	0	0	Reference
+SCMB_IBI	C	Test16	91	23	58.9	47.1	0	0	0	0	0	Reference
+SCMB_IBI	C	Test17	98	24	59	47.2	0	0	0	1	1	Low Disturbance
+SCMB_IBI	C	Test18	99	25	59.1	48	0	0	1	1	2	Moderate Disturbance
+SCMB_IBI	C	Test19	100	26	60	75	1	1	1	1	4	High Disturbance
+SCMB_IBI	C	Test20	120	30	99	99	1	1	1	1	4	High Disturbance
