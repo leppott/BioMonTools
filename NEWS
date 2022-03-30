@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-03-28 15:13:40
+    #> Last Update: 2022-03-30 18:21:02
 
 # Version History
+
+## Changes in Version 0.5.0.9114 (2022-03-30)
+
+-   refactor: Rename one misspelled bug thermal metrics, Issue \#72
+    -   ‘pt_ti_cool_warm_stenowarm’ should be ‘pt_ti_warm_stenowarm’
 
 ## Changes in Version 0.5.0.9113 (2022-03-28)
 

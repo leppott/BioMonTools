@@ -1421,6 +1421,9 @@ metric.values.bugs <- function(myDF
              , nt_Mega = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                   & ORDER == "MEGALOPTERA"]
                                            , na.rm = TRUE)
+             , nt_Mol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                  & PHYLUM == "MOLLUSCA"]
+                                           , na.rm = TRUE)
              , nt_Nereid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                     & FAMILY == "NEREIDIDAE"]
                                              , na.rm = TRUE)
@@ -1918,6 +1921,7 @@ metric.values.bugs <- function(myDF
              , nt_ffg2_pred =  dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
                                                      & FFG2_PRE==TRUE]
                                               , na.rm=TRUE)
+             , ni_Noto = sum(N_TAXA[GENUS == "NOTOMASTUS"], na.rm = TRUE)
 
 
              ## Thermal Indicators ----
@@ -1965,33 +1969,33 @@ metric.values.bugs <- function(myDF
                                                      , na.rm = TRUE)
 
               ### pi_ti
-             , pi_ti_stenocold =      100 * sum(N_TAXA[TI_STENOCOLD == TRUE]
+             , pi_ti_stenocold =        100 * sum(N_TAXA[TI_STENOCOLD == TRUE]
                                                 , na.rm = TRUE) / ni_total
-             , pi_ti_cold =           100 * sum(N_TAXA[TI_COLD == TRUE]
+             , pi_ti_cold =             100 * sum(N_TAXA[TI_COLD == TRUE]
                                                 , na.rm = TRUE) / ni_total
-             , pi_ti_cool =           100 * sum(N_TAXA[TI_COOL == TRUE]
+             , pi_ti_cool =             100 * sum(N_TAXA[TI_COOL == TRUE]
                                                 , na.rm = TRUE) / ni_total
-             , pi_ti_warm =           100 * sum(N_TAXA[TI_WARM == TRUE]
+             , pi_ti_warm =             100 * sum(N_TAXA[TI_WARM == TRUE]
                                                 , na.rm = TRUE) / ni_total
-             , pi_ti_stenowarm =      100 * sum(N_TAXA[TI_STENOWARM == TRUE]
+             , pi_ti_stenowarm =        100 * sum(N_TAXA[TI_STENOWARM == TRUE]
                                                 , na.rm = TRUE) / ni_total
-             , pi_ti_eury =           100 * sum(N_TAXA[TI_EURY == TRUE]
+             , pi_ti_eury =             100 * sum(N_TAXA[TI_EURY == TRUE]
                                                 , na.rm = TRUE) / ni_total
-             , pi_ti_inconclusive =   100 * sum(N_TAXA[TI_INCONCLUSIVE == TRUE]
+             , pi_ti_inconclusive =    100 * sum(N_TAXA[TI_INCONCLUSIVE == TRUE]
                                                 , na.rm = TRUE) / ni_total
-             , pi_ti_na =             100 * sum(N_TAXA[TI_NA == TRUE]
+             , pi_ti_na =               100 * sum(N_TAXA[TI_NA == TRUE]
                                                 , na.rm = TRUE) / ni_total
-             , pi_ti_stenocold_cold = 100 * sum(N_TAXA[TI_STENOCOLD == TRUE |
+             , pi_ti_stenocold_cold =   100 * sum(N_TAXA[TI_STENOCOLD == TRUE |
                                                       TI_COLD == TRUE]
                                                 , na.rm = TRUE) / ni_total
           , pi_ti_stenocold_cold_cool = 100 * sum(N_TAXA[TI_STENOCOLD == TRUE |
                                                       TI_COLD == TRUE |
                                                       TI_COOL == TRUE]
                                              , na.rm = TRUE) / ni_total
-             , pi_ti_cool_warm =      100 * sum(N_TAXA[TI_COOL == TRUE |
+             , pi_ti_cool_warm =        100 * sum(N_TAXA[TI_COOL == TRUE |
                                                       TI_WARM == TRUE]
                                                 , na.rm = TRUE) / ni_total
-             , pi_ti_warm_stenowarm = 100 * sum(N_TAXA[TI_WARM == TRUE |
+             , pi_ti_warm_stenowarm =   100 * sum(N_TAXA[TI_WARM == TRUE |
                                                       TI_STENOWARM == TRUE]
                                              , na.rm = TRUE) / ni_total
 
@@ -2008,7 +2012,7 @@ metric.values.bugs <- function(myDF
              , pt_ti_stenocold_cold =      100 * nt_ti_stenocold_cold / nt_total
              , pt_ti_stenocold_cold_cool = 100 * nt_ti_stenocold_cold / nt_total
              , pt_ti_cool_warm =           100 * nt_ti_cool_warm / nt_total
-             , pt_ti_cool_warm_stenowarm = 100 * nt_ti_warm_stenowarm / nt_total
+             , pt_ti_warm_stenowarm =      100 * nt_ti_warm_stenowarm / nt_total
 
             ### ratio
           , ri_ti_sccc_wsw = pi_ti_stenocold_cold_cool / pi_ti_warm_stenowarm

@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9114 (2022-03-30)
+
+* refactor: Rename one misspelled bug thermal metrics, Issue #72
+    + ‘pt_ti_cool_warm_stenowarm’ should be ‘pt_ti_warm_stenowarm’
+
 ## Changes in Version 0.5.0.9113 (2022-03-28)
 
 * refactor: Add and modify bug thermal metrics, Issue #72
