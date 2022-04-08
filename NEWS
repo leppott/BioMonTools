@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-03-30 18:21:02
+    #> Last Update: 2022-04-08 15:14:32
 
 # Version History
+
+## Changes in Version 0.5.0.9115 (2022-04-08)
+
+-   refactor: Change variable classes in metric.scores()
+    -   Avoid errors in import via read_excel
 
 ## Changes in Version 0.5.0.9114 (2022-03-30)
 

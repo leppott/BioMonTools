@@ -540,9 +540,9 @@ metric.scores <- function(DF_Metrics
   #
 
   # INDEX ####
-  DF_Metrics[,"sum_Index"] <- NA
-  DF_Metrics[,"Index"]     <- NA
-  DF_Metrics[,"Index_Nar"] <- NA
+  DF_Metrics[,"sum_Index"] <- NA_real_
+  DF_Metrics[,"Index"]     <- NA_real_
+  DF_Metrics[,"Index_Nar"] <- NA_character_
 
   # Index, Sum
   # sum all metrics
@@ -562,7 +562,7 @@ metric.scores <- function(DF_Metrics
       next
     }
     # thresholds
-    fun.NumMetrics       <- fun.Thresh.myIndex[, "NumMetrics"]
+    fun.NumMetrics       <- as.numeric(fun.Thresh.myIndex[, "NumMetrics"])
     fun.ScoreRegime      <- fun.Thresh.myIndex[, "ScoreRegime"]
     fun.Scale            <- fun.Thresh.myIndex[, "ScoreScaling"]
     fun.Index.Nar.Thresh <- fun.Thresh.myIndex[, c(paste0("Thresh0"

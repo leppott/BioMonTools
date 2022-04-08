@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9115 (2022-04-08)
+
+* refactor: Change variable classes in metric.scores()
+    + Avoid errors in import via read_excel
+
 ## Changes in Version 0.5.0.9114 (2022-03-30)
 
 * refactor: Rename one misspelled bug thermal metrics, Issue #72
