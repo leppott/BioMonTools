@@ -18,6 +18,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9116 (2022-05-18)
+
+* refactor: Additional bug and fish metrics, Issue #73
+* refactor: Add BCG_ATTR as upper case for fish metrics
+    + Update fish BCG metrics to use upper case letters for BCG metrics
+* style: Add spacing and outlining to metric_values.R
+* refactor: Updates to MetricNames.xlsx to pass tests
+
 ## Changes in Version 0.5.0.9115 (2022-04-08)
 
 * refactor: Change variable classes in metric.scores()

@@ -184,14 +184,14 @@ test_that("metric.scores, index, number metrics", {
 
   # test vectors
   nummet_metsc <- df_nummet_merge[, "n_met_total"]
-  nummet_indsc <- df_nummet_merge[, "NumMetrics"]
+  nummet_indsc <- as.numeric(df_nummet_merge[, "NumMetrics"])
 
   # Need to take out GA single value metrics
   matches <- nummet_metsc == nummet_indsc
   df_nummet_merge[!(matches %in% TRUE), ]
 
   # test
-  testthat::expect_equal(nummet_metsc, nummet_indsc)  # fails due to structure
+  testthat::expect_equal(nummet_metsc, nummet_indsc)
 })## Test ~ metric.scores, index, number metrics ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -231,10 +231,16 @@ test_that("metric.values, names, fish, Function, xlNames", {
   metnam_match <- sum(metnam_fun %in% metnam_xlNames)
 
   # Show non-matches
+  ## A to B
   metnam_fun[!(metnam_fun %in% metnam_xlNames)]
+  ## B to A
+  metnam_xlNames[!(metnam_xlNames %in% metnam_fun)]
 
-  # test
+  # test A to B
   testthat::expect_equal(metnam_len, metnam_match)
+
+  # test B to A
+  testthat::expect_equal(metnam_match, metnam_len)
 
 })## Test ~ metric names, fish, Function, Names ~ END
 

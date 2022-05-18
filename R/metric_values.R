@@ -744,6 +744,8 @@ metric.values.bugs <- function(myDF
     nt_NonInsTrombJuga_BCG_att456 <- nt_Tromb <- nt_ti_cold <- nt_ti_cool <-
     nt_ti_cool_warm <- nt_ti_corecold <- nt_ti_corecold_cold <- nt_ti_eury <-
     nt_ti_na <- nt_ti_warm <- NULL
+  HABSTRUCT <- HABSTRUCT_CS <- HABSTRUCT_NF <- HABSTRUCT_RM <- HABSTRUCT_SG <-
+    NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -767,7 +769,7 @@ metric.values.bugs <- function(myDF
                     , "FFG", "HABIT", "LIFE_CYCLE"
                     , "BCG_ATTR", "THERMAL_INDICATOR"
                     , "FFG2", "HABITAT", "ELEVATION_ATTR"
-                    , "GRADIENT_ATTR", "WSAREA_ATTR")
+                    , "GRADIENT_ATTR", "WSAREA_ATTR", "HABSTRUCT")
   col.req_logical <- c("EXCLUDE", "NONTARGET", "LONGLIVED", "NOTEWORTHY")
   col.req_numeric <- c("N_TAXA", "TOLVAL", "TOLVAL2", "UFC")
   col.req <- c(col.req_character, col.req_logical, col.req_numeric)
@@ -1073,6 +1075,8 @@ metric.values.bugs <- function(myDF
                   , boo_debug_topic)
     message(msg)
   }## IF ~ verbose
+
+  # match, any
   myDF[, "HABIT_BU"]    <- grepl("BU", myDF[, "HABIT"])
   myDF[, "HABIT_CB"]    <- grepl("CB", myDF[, "HABIT"])
   myDF[, "HABIT_CN"]    <- grepl("CN", myDF[, "HABIT"])
@@ -1092,14 +1096,18 @@ metric.values.bugs <- function(myDF
   myDF[, "LC_SEMI"]     <- grepl("SEMI", myDF[, "LIFE_CYCLE"])
   myDF[, "LC_UNI"]      <- grepl("UNI", myDF[, "LIFE_CYCLE"])
   myDF[, "FFG2_PRE"]    <- grepl("PR", myDF[, "FFG2"])
-  myDF[, "TI_STENOCOLD"] <- grepl("STENOC", myDF[,"THERMAL_INDICATOR"])
-  myDF[, "TI_COLD"]     <- grepl("COLD", myDF[,"THERMAL_INDICATOR"])
-  myDF[, "TI_COOL"]     <- grepl("COOL", myDF[,"THERMAL_INDICATOR"])
-  myDF[, "TI_WARM"]     <- grepl("WARM", myDF[,"THERMAL_INDICATOR"])
-  myDF[, "TI_STENOWARM"] <- grepl("STENOW", myDF[,"THERMAL_INDICATOR"])
-  myDF[, "TI_EURY"]     <- grepl("EURYTHERMAL", myDF[,"THERMAL_INDICATOR"])
+  myDF[, "TI_STENOCOLD"]    <- grepl("STENOC", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_COLD"]         <- grepl("COLD", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_COOL"]         <- grepl("COOL", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_WARM"]         <- grepl("WARM", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_STENOWARM"]    <- grepl("STENOW", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_EURY"]         <- grepl("EURYTHERMAL", myDF[, "THERMAL_INDICATOR"])
   myDF[, "TI_INCONCLUSIVE"] <- grepl("INCONCLUSIVE", myDF[,"THERMAL_INDICATOR"])
-  # exact matches only
+  myDF[, "HS_CS"]       <- grepl("CS", myDF[, "HABSTRUCT"])
+  myDF[, "HS_NF"]       <- grepl("NF", myDF[, "HABSTRUCT"])
+  myDF[, "HS_RW"]       <- grepl("RW", myDF[, "HABSTRUCT"])
+  myDF[, "HS_SG"]       <- grepl("SG", myDF[, "HABSTRUCT"])
+  # match, exact only
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])
   myDF[, "HABITAT_BRAC"]   <- "BRAC" == myDF[, "HABITAT"]
   myDF[, "HABITAT_DEPO"]   <- "DEPO" == myDF[, "HABITAT"]
@@ -1348,7 +1356,8 @@ metric.values.bugs <- function(myDF
              , ni_brackish= ni_Americo + ni_Gnorimo
              , ni_Ramello = sum(N_TAXA[GENUS == "RAMELLOGAMMARUS"], na.rm=TRUE)
 
-             ## Number of Taxa ####
+             ## Phylo ####
+             ### nt_phylo ----
              # account for "NONE" in nt_total, should be the only 0 N_TAXA
              , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                    & N_TAXA > 0], na.rm = TRUE)
@@ -1491,7 +1500,7 @@ metric.values.bugs <- function(myDF
                                             , na.rm = TRUE)
              # ,intolMol, ,
 
-             ## Percent Individuals####
+             ### pi_phylo ####
              , pi_Ampe = NA #pi_Ampeliscidae
              , pi_AmpeHaust = NA
              , pi_Amph = 100*sum(N_TAXA[ORDER == "AMPHIPODA"]
@@ -1672,7 +1681,7 @@ metric.values.bugs <- function(myDF
              #EPTsenstive in tolerance group
 
 
-             ## Percent of Taxa ####
+             ### pi_phylo ####
              , pt_Amph = 100*nt_Amph/nt_total
              , pt_Bival = 100*nt_Bival/nt_total
              , pt_Coleo = 100*nt_Coleo/nt_total
@@ -1700,7 +1709,7 @@ metric.values.bugs <- function(myDF
              , pt_Trich = 100*nt_Trich/nt_total
              , pt_Tromb = 100*nt_Tromb/nt_total
 
-             ## Ratio of Taxa ####
+             ### ratio_phylo ####
              # nt_X / log(ni_total)
              # X = specialty group, e.g., Bivalves
              # Log is natural log
@@ -1925,7 +1934,7 @@ metric.values.bugs <- function(myDF
 
 
              ## Thermal Indicators ----
-             ### nt_ti
+             ### nt_ti----
              , nt_ti_stenocold =      dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                   & TI_STENOCOLD == TRUE]
                                            , na.rm = TRUE)
@@ -1968,7 +1977,7 @@ metric.values.bugs <- function(myDF
                                                           TI_STENOWARM == TRUE)]
                                                      , na.rm = TRUE)
 
-              ### pi_ti
+              ### pi_ti----
              , pi_ti_stenocold =        100 * sum(N_TAXA[TI_STENOCOLD == TRUE]
                                                 , na.rm = TRUE) / ni_total
              , pi_ti_cold =             100 * sum(N_TAXA[TI_COLD == TRUE]
@@ -2000,7 +2009,7 @@ metric.values.bugs <- function(myDF
                                              , na.rm = TRUE) / ni_total
 
 
-             ### pt_ti
+             ### pt_ti ----
              , pt_ti_stenocold =           100 * nt_ti_stenocold / nt_total
              , pt_ti_cold =                100 * nt_ti_cold / nt_total
              , pt_ti_cool =                100 * nt_ti_cool / nt_total
@@ -2086,7 +2095,7 @@ metric.values.bugs <- function(myDF
              , pt_tv2_intol_ISA_SalHi_xFL = NA
 
              ## FFG #####
-             ## nt_ffg
+             ### nt_ffg----
              , nt_ffg_col = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                      & FFG_COL == TRUE]
                                               , na.rm = TRUE)
@@ -2123,7 +2132,7 @@ metric.values.bugs <- function(myDF
                                                           FFG_SHR == TRUE)]
                                               , na.rm = TRUE)
 
-             ## pi_ffg
+             ### pi_ffg----
              , pi_ffg_col = 100*sum(N_TAXA[FFG_COL == TRUE]
                                     , na.rm=TRUE)/ni_total
              , pi_ffg_filt = 100*sum(N_TAXA[FFG_FIL == TRUE]
@@ -2148,7 +2157,7 @@ metric.values.bugs <- function(myDF
                                                   FFG_FIL == TRUE]
                                     , na.rm=TRUE)/ni_total
 
-             ## pt_ffg
+             ### pt_ffg----
              , pt_ffg_col = 100*nt_ffg_col/nt_total
              , pt_ffg_filt = 100*nt_ffg_filt/nt_total
              , pt_ffg_pred = 100*nt_ffg_pred/nt_total
@@ -2176,7 +2185,7 @@ metric.values.bugs <- function(myDF
 
              ## Habit ####
              #(need to be wild card. that is, counts both CN,CB and CB as climber)
-             ## nt_habit
+             ### nt_habit----
              , nt_habit_burrow = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                           & HABIT_BU == TRUE]
                                                    , na.rm = TRUE)
@@ -2192,7 +2201,7 @@ metric.values.bugs <- function(myDF
              , nt_habit_swim = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                         & HABIT_SW == TRUE]
                                                  , na.rm = TRUE)
-             ## pi_habit
+             ### pi_habit----
              , pi_habit_burrow = 100*sum(N_TAXA[HABIT_BU == TRUE]
                                          , na.rm=TRUE)/ni_total
              , pi_habit_climb = 100*sum(N_TAXA[HABIT_CB == TRUE]
@@ -2203,7 +2212,7 @@ metric.values.bugs <- function(myDF
                                          , na.rm=TRUE)/ni_total
              , pi_habit_swim = 100*sum(N_TAXA[HABIT_SW == TRUE]
                                        , na.rm=TRUE)/ni_total
-              # pt for each
+              ### pt_habit----
              , pt_habit_burrow = 100*nt_habit_burrow/nt_total
              , pt_habit_climb = 100*nt_habit_climb/nt_total
              , pt_habit_cling = 100*nt_habit_cling/nt_total
@@ -2220,7 +2229,7 @@ metric.values.bugs <- function(myDF
 
              ## Life Cycle ####
              # pi and nt for mltvol, semvol, univol
-             ## nt_LifeCycle
+             ### nt_LifeCycle----
              , nt_volt_multi=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
                                                       & LC_MULTI==TRUE]
                                                , na.rm = TRUE)
@@ -2230,14 +2239,14 @@ metric.values.bugs <- function(myDF
              , nt_volt_uni=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
                                                     & LC_UNI==TRUE]
                                              , na.rm = TRUE)
-             ## pi_LifeCycle
+             ### pi_LifeCycle----
              , pi_volt_multi = 100*sum(N_TAXA[LC_MULTI==TRUE]
                                        , na.rm=TRUE) / ni_total
              , pi_volt_semi = 100*sum(N_TAXA[LC_SEMI==TRUE]
                                       , na.rm=TRUE) / ni_total
              , pi_volt_uni = 100*sum(N_TAXA[LC_UNI==TRUE]
                                      , na.rm=TRUE) / ni_total
-             ## pt_LifeCycle
+             ### pt_LifeCycle----
              , pt_volt_multi = 100*nt_volt_multi/nt_total
              , pt_volt_semi = 100*nt_volt_semi/nt_total
              , pt_volt_uni= 100*nt_volt_uni/nt_total
@@ -2245,16 +2254,16 @@ metric.values.bugs <- function(myDF
 
              ## Dominant N ####
              ## uses previously defined values added to myDF
-             , pi_dom01 = 100*max(N_TAXA, na.rm = TRUE) / ni_total
-             , pi_dom02 = 100*max(ni_dom02, na.rm = TRUE) / ni_total
-             , pi_dom03 = 100*max(ni_dom03, na.rm = TRUE) / ni_total
-             , pi_dom04 = 100*max(ni_dom04, na.rm = TRUE) / ni_total
-             , pi_dom05 = 100*max(ni_dom05, na.rm = TRUE) / ni_total
-             , pi_dom06 = 100*max(ni_dom06, na.rm = TRUE) / ni_total
-             , pi_dom07 = 100*max(ni_dom07, na.rm = TRUE) / ni_total
-             , pi_dom08 = 100*max(ni_dom08, na.rm = TRUE) / ni_total
-             , pi_dom09 = 100*max(ni_dom09, na.rm = TRUE) / ni_total
-             , pi_dom10 = 100*max(ni_dom10, na.rm = TRUE) / ni_total
+             , pi_dom01 = 100 * max(N_TAXA, na.rm = TRUE) / ni_total
+             , pi_dom02 = 100 * max(ni_dom02, na.rm = TRUE) / ni_total
+             , pi_dom03 = 100 * max(ni_dom03, na.rm = TRUE) / ni_total
+             , pi_dom04 = 100 * max(ni_dom04, na.rm = TRUE) / ni_total
+             , pi_dom05 = 100 * max(ni_dom05, na.rm = TRUE) / ni_total
+             , pi_dom06 = 100 * max(ni_dom06, na.rm = TRUE) / ni_total
+             , pi_dom07 = 100 * max(ni_dom07, na.rm = TRUE) / ni_total
+             , pi_dom08 = 100 * max(ni_dom08, na.rm = TRUE) / ni_total
+             , pi_dom09 = 100 * max(ni_dom09, na.rm = TRUE) / ni_total
+             , pi_dom10 = 100 * max(ni_dom10, na.rm = TRUE) / ni_total
 
             # , pi_dom01alt= dplyr::top_n(N_TAXA, n=1)/ni_total
             #https://stackoverflow.com/questions/27766054/getting-the-top-values-by-group
@@ -2334,7 +2343,7 @@ metric.values.bugs <- function(myDF
             # SPEC specialist
             # UNKN unknown
             #
-            ## nt_habitat
+            ### nt_habitat----
             , nt_habitat_brac = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                          & HABITAT_BRAC == TRUE]
                                                   , na.rm = TRUE)
@@ -2359,7 +2368,7 @@ metric.values.bugs <- function(myDF
             , nt_habitat_unkn = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                          & HABITAT_UNKN == TRUE]
                                                   , na.rm = TRUE)
-            ## pi_habitat
+            ### pi_habitat----
             , pi_habitat_brac = 100*sum(N_TAXA[HABITAT_BRAC == TRUE]
                                         , na.rm=TRUE)/ni_total
             , pi_habitat_depo = 100*sum(N_TAXA[HABITAT_DEPO == TRUE]
@@ -2377,7 +2386,7 @@ metric.values.bugs <- function(myDF
                                         , na.rm=TRUE)/ni_total
             , pi_habitat_unkn = 100*sum(N_TAXA[HABITAT_UNKN == TRUE]
                                         , na.rm=TRUE)/ni_total
-            ## pt_habitat
+            ### pt_habitat----
             , pt_habitat_brac = 100*nt_habitat_brac/nt_total
             , pt_habitat_depo = 100*nt_habitat_depo/nt_total
             , pt_habitat_gene = 100*nt_habitat_gene/nt_total
@@ -2422,6 +2431,12 @@ metric.values.bugs <- function(myDF
                                                           | BCG_ATTR == "2"
                                                           | BCG_ATTR == "3")]
                                                  , na.rm = TRUE)
+            , nt_BCG_att1i236i = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & (BCG_ATTR == "1I"
+                                                         | BCG_ATTR == "2"
+                                                         | BCG_ATTR == "3"
+                                                         | BCG_ATTR == "6I")]
+                                               , na.rm = TRUE)
             , nt_BCG_att2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                      & (BCG_ATTR == "2")]
                                               , na.rm = TRUE)
@@ -2456,14 +2471,27 @@ metric.values.bugs <- function(myDF
                                                       & (BCG_ATTR == "5"
                                                          | BCG_ATTR == "6")]
                                                , na.rm = TRUE)
+           , nt_BCG_att56t = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & (BCG_ATTR == "5"
+                                                       | BCG_ATTR == "6T")]
+                                             , na.rm = TRUE)
             , nt_BCG_att6 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                      &  (BCG_ATTR == "6")]
                                               , na.rm = TRUE)
+           , nt_BCG_att6i = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                   &  (BCG_ATTR == "6I")]
+                                            , na.rm = TRUE)
+           , nt_BCG_att6m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    &  (BCG_ATTR == "6M")]
+                                             , na.rm = TRUE)
+           , nt_BCG_att6t = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    &  (BCG_ATTR == "6T")]
+                                             , na.rm = TRUE)
             , nt_BCG_attNA = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                       &  is.na(BCG_ATTR)]
                                                , na.rm = TRUE)
 
-            ## BCG_nt_Phylo
+            ### BCG_nt_Phylo
             , nt_Ephem_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                             & ORDER == "EPHEMEROPTERA"
                                                             & (BCG_ATTR == "1I"
@@ -2517,6 +2545,11 @@ metric.values.bugs <- function(myDF
                                                | BCG_ATTR == "2"
                                                | BCG_ATTR == "3")]
                                        , na.rm=TRUE)/ni_total
+            , pi_BCG_att1i236i = 100*sum(N_TAXA[(BCG_ATTR == "1I"
+                                             | BCG_ATTR == "2"
+                                             | BCG_ATTR == "3"
+                                             | BCG_ATTR == "6I")]
+                                     , na.rm=TRUE)/ni_total
             , pi_BCG_att2 = 100*sum(N_TAXA[(BCG_ATTR == "2")]
                                     , na.rm=TRUE)/ni_total
             , pi_BCG_att23 = 100*sum(N_TAXA[(BCG_ATTR == "2"
@@ -2545,12 +2578,21 @@ metric.values.bugs <- function(myDF
             , pi_BCG_att56 = 100*sum(N_TAXA[(BCG_ATTR == "5"
                                              | BCG_ATTR == "6")]
                                      , na.rm=TRUE)/ni_total
+            , pi_BCG_att56t = 100*sum(N_TAXA[(BCG_ATTR == "5"
+                                           | BCG_ATTR == "6T")]
+                                   , na.rm=TRUE)/ni_total
             , pi_BCG_att6 = 100*sum(N_TAXA[(BCG_ATTR == "6")]
                                     , na.rm=TRUE)/ni_total
+            , pi_BCG_att6i = 100*sum(N_TAXA[(BCG_ATTR == "6I")]
+                                  , na.rm=TRUE)/ni_total
+            , pi_BCG_att6m = 100*sum(N_TAXA[(BCG_ATTR == "6M")]
+                                   , na.rm=TRUE)/ni_total
+            , pi_BCG_att6t = 100*sum(N_TAXA[(BCG_ATTR == "6T")]
+                                   , na.rm=TRUE)/ni_total
             , pi_BCG_attNA = 100*sum(N_TAXA[(is.na(BCG_ATTR) == TRUE)]
                                      , na.rm=TRUE)/ni_total
 
-            ## BCG_pi_Phylo
+            ### BCG_pi_Phylo
             , pi_EPT_BCG_att123 = 100*sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
                                                   | ORDER == "TRICHOPTERA"
                                                   | ORDER == "PLECOPTERA")
@@ -2567,24 +2609,29 @@ metric.values.bugs <- function(myDF
                                           , na.rm=TRUE)/ni_total
 
             ### BCG_pt----
-            , pt_BCG_att1 = 100*nt_BCG_att1/nt_total
-            , pt_BCG_att1i = 100*nt_BCG_att1i/nt_total
-            , pt_BCG_att1m = 100*nt_BCG_att1m/nt_total
-            , pt_BCG_att12 = 100*nt_BCG_att12/nt_total
-            , pt_BCG_att1i2 = 100*nt_BCG_att1i2/nt_total
-            , pt_BCG_att123 = 100*nt_BCG_att123/nt_total
-            , pt_BCG_att1i23 = 100*nt_BCG_att1i23/nt_total
-            , pt_BCG_att2 = 100*nt_BCG_att2/nt_total
-            , pt_BCG_att23 = 100*nt_BCG_att23/nt_total
-            , pt_BCG_att234 = 100*nt_BCG_att234/nt_total
-            , pt_BCG_att3 = 100*nt_BCG_att3/nt_total
-            , pt_BCG_att4 = 100*nt_BCG_att4/nt_total
-            , pt_BCG_att45 = 100*nt_BCG_att45/nt_total
-            , pt_BCG_att456 = 100*nt_BCG_att456/nt_total
-            , pt_BCG_att5 = 100*nt_BCG_att5/nt_total
-            , pt_BCG_att56 = 100*nt_BCG_att56/nt_total
-            , pt_BCG_att6 = 100*nt_BCG_att6/nt_total
-            , pt_BCG_attNA = 100*nt_BCG_attNA/nt_total
+            , pt_BCG_att1 = 100 * nt_BCG_att1/nt_total
+            , pt_BCG_att1i = 100 * nt_BCG_att1i/nt_total
+            , pt_BCG_att1m = 100 * nt_BCG_att1m/nt_total
+            , pt_BCG_att12 = 100 * nt_BCG_att12/nt_total
+            , pt_BCG_att1i2 = 100 * nt_BCG_att1i2/nt_total
+            , pt_BCG_att123 = 100 * nt_BCG_att123/nt_total
+            , pt_BCG_att1i23 = 100 * nt_BCG_att1i23/nt_total
+            , pt_BCG_att1i236i = 100 * nt_BCG_att1i236i/nt_total
+            , pt_BCG_att2 = 100 * nt_BCG_att2/nt_total
+            , pt_BCG_att23 = 100 * nt_BCG_att23/nt_total
+            , pt_BCG_att234 = 100 * nt_BCG_att234/nt_total
+            , pt_BCG_att3 = 100 * nt_BCG_att3/nt_total
+            , pt_BCG_att4 = 100 * nt_BCG_att4/nt_total
+            , pt_BCG_att45 = 100 * nt_BCG_att45/nt_total
+            , pt_BCG_att456 = 100 * nt_BCG_att456/nt_total
+            , pt_BCG_att5 = 100 * nt_BCG_att5/nt_total
+            , pt_BCG_att56 = 100 * nt_BCG_att56/nt_total
+            , pt_BCG_att56t = 100 * nt_BCG_att56t/nt_total
+            , pt_BCG_att6 = 100 * nt_BCG_att6/nt_total
+            , pt_BCG_att6i = 100 * nt_BCG_att6i/nt_total
+            , pt_BCG_att6m = 100 * nt_BCG_att6m/nt_total
+            , pt_BCG_att6t = 100 * nt_BCG_att6t/nt_total
+            , pt_BCG_attNA = 100 * nt_BCG_attNA/nt_total
 
             # BCG_pt_Phylo
             , pt_EPT_BCG_att123 = 100*nt_EPT_BCG_att123/nt_total
@@ -2633,6 +2680,66 @@ metric.values.bugs <- function(myDF
                                                        & WSAREA_XL == TRUE]
                                                 , na.rm = TRUE)
 
+          ## Habitat Structure ----
+          ### nt_habstruct----
+          , nt_habstruct_coarsesub = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                  & HS_CS == TRUE]
+                                           , na.rm = TRUE)
+          , nt_habstruct_noflow = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                   & HS_NF == TRUE]
+                                            , na.rm = TRUE)
+          , nt_habstruct_rootwad = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                   & HS_RW == TRUE]
+                                            , na.rm = TRUE)
+          , nt_habstruct_snag = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & HS_SG == TRUE]
+                                             , na.rm = TRUE)
+          , nt_habstruct_NA = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    &  is.na(HABSTRUCT)]
+                                             , na.rm = TRUE)
+          ### pi_habstruct----
+          , pi_habstruct_coarsesub = 100 * sum(N_TAXA[HS_CS == TRUE]
+                                 , na.rm = TRUE) / ni_total
+          , pi_habstruct_noflow = 100 * sum(N_TAXA[HS_NF == TRUE]
+                                  , na.rm = TRUE) / ni_total
+          , pi_habstruct_rootwad = 100 * sum(N_TAXA[HS_RW == TRUE]
+                                  , na.rm = TRUE) / ni_total
+          , pi_habstruct_snag = 100 * sum(N_TAXA[HS_SG == TRUE]
+                                   , na.rm = TRUE) / ni_total
+          , pi_habstruct_NA = 100 * sum(N_TAXA[(is.na(HABSTRUCT) == TRUE)]
+                                   , na.rm=TRUE) / ni_total
+          ### pt_habstruct----
+          , pt_habstruct_coarsesub = 100 * nt_habstruct_coarsesub / nt_total
+          , pt_habstruct_noflow = 100 * nt_habstruct_noflow / nt_total
+          , pt_habstruct_rootwad = 100 * nt_habstruct_rootwad / nt_total
+          , pt_habstruct_snag = 100 * nt_habstruct_snag / nt_total
+          , pt_habstruct_NA = 100 * nt_habstruct_NA / nt_total
+          ### nval_habstruct
+          , nval_habstruct = sum(HS_CS + HS_NF + HS_RW + HS_SG, na.rm = TRUE)
+
+          ## Number Group within Group ----
+          ### nfam_Order----
+          , nfam_Coleo = dplyr::n_distinct(FAMILY[ORDER == "COLEOPTERA"]
+                                           , na.rm = TRUE)
+          , nfam_Ephem = dplyr::n_distinct(FAMILY[ORDER == "EPHEMEROPTERA"]
+                                           , na.rm = TRUE)
+          , nfam_Odon  = dplyr::n_distinct(FAMILY[ORDER == "ODONATA"]
+                                           , na.rm = TRUE)
+          , nfam_Trich = dplyr::n_distinct(FAMILY[ORDER == "TRICHOPTERA"]
+                                           , na.rm = TRUE)
+
+          ### ngen_Order----
+          , ngen_Coleo = dplyr::n_distinct(GENUS[ORDER == "COLEOPTERA"]
+                                           , na.rm = TRUE)
+          , ngen_Ephem = dplyr::n_distinct(GENUS[ORDER == "EPHEMEROPTERA"]
+                                           , na.rm = TRUE)
+          , ngen_Odon  = dplyr::n_distinct(GENUS[ORDER == "ODONATA"]
+                                           , na.rm = TRUE)
+          , ngen_Trich = dplyr::n_distinct(GENUS[ORDER == "TRICHOPTERA"]
+                                           , na.rm = TRUE)
+          ### ngen_Family----
+          , ngen_Elmid = dplyr::n_distinct(GENUS[FAMILY == "ELMIDAE"]
+                                           , na.rm = TRUE)
 
              #
         , .groups = "drop_last")## met.val.END
@@ -2888,7 +2995,7 @@ metric.values.fish <- function(myDF
   col2upper <- c("TAXAID" ,"FAMILY", "GENUS", "TYPE", "TOLER", "NATIVE"
                  , "TROPHIC", "THERMAL_INDICATOR", "ELEVATION_ATTR"
                  , "GRADIENT_ATTR", "WSAREA_ATTR", "REPRODUCTION", "HABITAT"
-                 , "CONNECTIVITY", "SCC")
+                 , "CONNECTIVITY", "SCC", "BCG_ATTR")
   for (i in col2upper){
     myDF[, i] <- toupper(myDF[, i])
   }##FOR~i~END
@@ -3309,26 +3416,55 @@ metric.values.fish <- function(myDF
                                                                   | BCG_ATTR == "2"
                                                                   | BCG_ATTR == "3")]
                                                         , na.rm = TRUE)
+                  , nt_BCG_att1236b = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                                                               | BCG_ATTR == "2"
+                                                               | BCG_ATTR == "3"
+                                                               | BCG_ATTR == "6B")]
+                                                       , na.rm = TRUE)
                   , nt_BCG_att12346b = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
                                                                 | BCG_ATTR == "2"
                                                                 | BCG_ATTR == "3"
                                                                 | BCG_ATTR == "4"
-                                                                | BCG_ATTR == "6b")]
+                                                                | BCG_ATTR == "6B")]
                                                       , na.rm = TRUE)
-                  , nt_BCG_att1236b = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
-                                                                   | BCG_ATTR == "2"
-                                                                   | BCG_ATTR == "3"
-                                                                   | BCG_ATTR == "6b")]
-                                                         , na.rm = TRUE)
-                  , nt_BCG_att2 = dplyr::n_distinct(TAXAID[BCG_ATTR == "2"], na.rm = TRUE)
-                  , nt_BCG_att2native = dplyr::n_distinct(TAXAID[BCG_ATTR == "2" & NATIVE == "NATIVE"], na.rm = TRUE)
-                 , nt_BCG_att23_scc = dplyr::n_distinct(TAXAID[(BCG_ATTR == "2" | BCG_ATTR == "3") & SCC == TRUE], na.rm = TRUE)
-                  , nt_BCG_att3 = dplyr::n_distinct(TAXAID[BCG_ATTR == "3"], na.rm = TRUE)
-                  , nt_BCG_att3native = dplyr::n_distinct(TAXAID[BCG_ATTR == "3" & NATIVE == "NATIVE"], na.rm = TRUE)
-                  , nt_BCG_att4 = dplyr::n_distinct(TAXAID[BCG_ATTR == "4"], na.rm = TRUE)
-                  , nt_BCG_att4native = dplyr::n_distinct(TAXAID[BCG_ATTR == "4" & NATIVE == "NATIVE"], na.rm = TRUE)
-                  , nt_BCG_att5 = dplyr::n_distinct(TAXAID[BCG_ATTR == "5"], na.rm = TRUE)
-                  , nt_BCG_att5native = dplyr::n_distinct(TAXAID[BCG_ATTR == "5" & NATIVE == "NATIVE"], na.rm = TRUE)
+                  , nt_BCG_att1i236i = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1I"
+                                                                | BCG_ATTR == "2"
+                                                                | BCG_ATTR == "3"
+                                                                | BCG_ATTR == "6I")]
+                                                        , na.rm = TRUE)
+                  , nt_BCG_att2 = dplyr::n_distinct(TAXAID[BCG_ATTR == "2"]
+                                                    , na.rm = TRUE)
+                  , nt_BCG_att2native = dplyr::n_distinct(TAXAID[BCG_ATTR == "2"
+                                                                 & NATIVE == "NATIVE"]
+                                                          , na.rm = TRUE)
+                  , nt_BCG_att23_scc = dplyr::n_distinct(TAXAID[(BCG_ATTR == "2"
+                                                                | BCG_ATTR == "3")
+                                                               & SCC == TRUE]
+                                                        , na.rm = TRUE)
+                  , nt_BCG_att3 = dplyr::n_distinct(TAXAID[BCG_ATTR == "3"]
+                                                    , na.rm = TRUE)
+                  , nt_BCG_att3native = dplyr::n_distinct(TAXAID[BCG_ATTR == "3"
+                                                                 & NATIVE == "NATIVE"]
+                                                          , na.rm = TRUE)
+                  , nt_BCG_att4 = dplyr::n_distinct(TAXAID[BCG_ATTR == "4"]
+                                                    , na.rm = TRUE)
+                  , nt_BCG_att4native = dplyr::n_distinct(TAXAID[BCG_ATTR == "4"
+                                                                 & NATIVE == "NATIVE"]
+                                                          , na.rm = TRUE)
+                  , nt_BCG_att5 = dplyr::n_distinct(TAXAID[BCG_ATTR == "5"]
+                                                    , na.rm = TRUE)
+                  , nt_BCG_att5native = dplyr::n_distinct(TAXAID[BCG_ATTR == "5"
+                                                                 & NATIVE == "NATIVE"]
+                                                          , na.rm = TRUE)
+                  , nt_BCG_att56t = dplyr::n_distinct(TAXAID[BCG_ATTR == "5"
+                                                             | BCG_ATTR == "6T"]
+                                                   , na.rm = TRUE)
+                  , nt_BCG_att6i = dplyr::n_distinct(TAXAID[BCG_ATTR == "6I"]
+                                                    , na.rm = TRUE)
+                  , nt_BCG_att6m = dplyr::n_distinct(TAXAID[BCG_ATTR == "6M"]
+                                                     , na.rm = TRUE)
+                  , nt_BCG_att6t = dplyr::n_distinct(TAXAID[BCG_ATTR == "6T"]
+                                                    , na.rm = TRUE)
                   , nt_BCG_attNA = dplyr::n_distinct(TAXAID[is.na(BCG_ATTR)]
                                                     , na.rm = TRUE)
 
@@ -3342,58 +3478,88 @@ metric.values.fish <- function(myDF
                                                        | BCG_ATTR == "2"
                                                        | BCG_ATTR == "3")]
                                                , na.rm=TRUE)/ni_total
-
-                  , pi_BCG_att12346b = 100*sum(N_TAXA[(BCG_ATTR == "1"
-                                                         | BCG_ATTR == "2"
-                                                         | BCG_ATTR == "3"
-                                                         | BCG_ATTR == "4"
-                                                         | BCG_ATTR == "6b")]
-                                                , na.rm=TRUE)/ni_total
                   , pi_BCG_att1236b = 100*sum(N_TAXA[(BCG_ATTR == "1"
                                                       | BCG_ATTR == "2"
                                                       | BCG_ATTR == "3"
-                                                      | BCG_ATTR == "6b")]
+                                                      | BCG_ATTR == "6B")]
                                               , na.rm=TRUE)/ni_total
-
-
-                  , pi_BCG_att2 = 100 * sum(N_TAXA[BCG_ATTR == "2"], na.rm=TRUE) / ni_total
-                  , pi_BCG_att2native = 100 * sum(N_TAXA[BCG_ATTR == "2" & NATIVE == "NATIVE"], na.rm=TRUE) / ni_total
-                 , pi_BCG_att23_scc = 100 * sum(N_TAXA[(BCG_ATTR == "2" | BCG_ATTR == "3") & SCC == TRUE], na.rm=TRUE) / ni_total
-                  , pi_BCG_att3 = 100 * sum(N_TAXA[BCG_ATTR == "3"], na.rm=TRUE) / ni_total
-                  , pi_BCG_att3native = 100 * sum(N_TAXA[BCG_ATTR == "3" & NATIVE == "NATIVE"], na.rm=TRUE) / ni_total
-                  , pi_BCG_att4 = 100 * sum(N_TAXA[BCG_ATTR == "4"], na.rm=TRUE) / ni_total
-                  , pi_BCG_att4native = 100 * sum(N_TAXA[BCG_ATTR == "4" & NATIVE == "NATIVE"], na.rm=TRUE) / ni_total
-                  , pi_BCG_att5 =  100 * sum(N_TAXA[BCG_ATTR == "5"], na.rm=TRUE) / ni_total
-                  , pi_BCG_att5native = 100 * sum(N_TAXA[BCG_ATTR == "5" & NATIVE == "NATIVE"], na.rm=TRUE) / ni_total
-
+                  , pi_BCG_att12346b = 100*sum(N_TAXA[(BCG_ATTR == "1"
+                                                      | BCG_ATTR == "2"
+                                                      | BCG_ATTR == "3"
+                                                      | BCG_ATTR == "4"
+                                                      | BCG_ATTR == "6B")]
+                                              , na.rm=TRUE)/ni_total
+                  , pi_BCG_att1i236i = 100*sum(N_TAXA[(BCG_ATTR == "1I"
+                                                     | BCG_ATTR == "2"
+                                                     | BCG_ATTR == "3"
+                                                     | BCG_ATTR == "6I")]
+                                             , na.rm=TRUE)/ni_total
+                  , pi_BCG_att2 = 100 * sum(N_TAXA[BCG_ATTR == "2"]
+                                            , na.rm=TRUE) / ni_total
+                  , pi_BCG_att2native = 100 * sum(N_TAXA[BCG_ATTR == "2"
+                                                         & NATIVE == "NATIVE"]
+                                                  , na.rm=TRUE) / ni_total
+                  , pi_BCG_att23_scc = 100 * sum(N_TAXA[(BCG_ATTR == "2"
+                                                        | BCG_ATTR == "3")
+                                                       & SCC == TRUE]
+                                                , na.rm=TRUE) / ni_total
+                  , pi_BCG_att3 = 100 * sum(N_TAXA[BCG_ATTR == "3"]
+                                            , na.rm=TRUE) / ni_total
+                  , pi_BCG_att3native = 100 * sum(N_TAXA[BCG_ATTR == "3"
+                                                         & NATIVE == "NATIVE"]
+                                                  , na.rm=TRUE) / ni_total
+                  , pi_BCG_att4 = 100 * sum(N_TAXA[BCG_ATTR == "4"]
+                                            , na.rm=TRUE) / ni_total
+                  , pi_BCG_att4native = 100 * sum(N_TAXA[BCG_ATTR == "4"
+                                                         & NATIVE == "NATIVE"]
+                                                  , na.rm=TRUE) / ni_total
+                  , pi_BCG_att5 =  100 * sum(N_TAXA[BCG_ATTR == "5"]
+                                             , na.rm=TRUE) / ni_total
+                  , pi_BCG_att5native = 100 * sum(N_TAXA[BCG_ATTR == "5"
+                                                         & NATIVE == "NATIVE"]
+                                                  , na.rm=TRUE) / ni_total
                   , pi_BCG_att56a = 100*sum(N_TAXA[(BCG_ATTR == "5"
-                                                       | BCG_ATTR == "6a")]
+                                                       | BCG_ATTR == "6A")]
                                                , na.rm=TRUE)/ni_total
+                  , pi_BCG_att56t = 100*sum(N_TAXA[(BCG_ATTR == "5"
+                                                   | BCG_ATTR == "6T")]
+                                           , na.rm=TRUE)/ni_total
+                  , pi_BCG_att6i =  100 * sum(N_TAXA[BCG_ATTR == "6I"]
+                                            , na.rm=TRUE) / ni_total
+                  , pi_BCG_att6m =  100 * sum(N_TAXA[BCG_ATTR == "6M"]
+                                             , na.rm=TRUE) / ni_total
+                  , pi_BCG_att6t =  100 * sum(N_TAXA[BCG_ATTR == "6T"]
+                                              , na.rm=TRUE) / ni_total
                   , pi_BCG_att66a = 100*sum(N_TAXA[(BCG_ATTR == "6"
-                                                    | BCG_ATTR == "6a")]
+                                                    | BCG_ATTR == "6A")]
                                             , na.rm=TRUE)/ni_total
                   , pi_BCG_att66a6b = 100*sum(N_TAXA[(BCG_ATTR == "6"
-                                                    | BCG_ATTR == "6a"
-                                                    | BCG_ATTR == "6b")]
+                                                    | BCG_ATTR == "6A"
+                                                    | BCG_ATTR == "6B")]
                                             , na.rm=TRUE)/ni_total
-                 , pi_BCG_attNA = 100 * sum(N_TAXA[is.na(BCG_ATTR)]
+                  , pi_BCG_attNA = 100 * sum(N_TAXA[is.na(BCG_ATTR)]
                                         , na.rm=TRUE) / ni_total
 
                   ### BCG, pt----
                   , pt_BCG_att12 = 100 * nt_BCG_att12 / nt_total
                   , pt_BCG_att123 = 100 * nt_BCG_att123 / nt_total
-                  , pt_BCG_att12346b = 100 * nt_BCG_att12346b / nt_total
                   , pt_BCG_att1236b = 100 * nt_BCG_att1236b / nt_total
+                  , pt_BCG_att12346b = 100 * nt_BCG_att12346b / nt_total
+                  , pt_BCG_att1i236i = 100 * nt_BCG_att1i236i / nt_total
                   , pt_BCG_att2 = 100 * nt_BCG_att2 / nt_total
                   , pt_BCG_att2native = 100 * nt_BCG_att2native / nt_total
-                 , pt_BCG_att23_scc = 100 * nt_BCG_att23_scc / nt_total
+                  , pt_BCG_att23_scc = 100 * nt_BCG_att23_scc / nt_total
                   , pt_BCG_att3 = 100 * nt_BCG_att3 / nt_total
                   , pt_BCG_att3native = 100 * nt_BCG_att3native / nt_total
                   , pt_BCG_att4 = 100 * nt_BCG_att4 / nt_total
                   , pt_BCG_att4native = 100 * nt_BCG_att4native / nt_total
                   , pt_BCG_att5 = 100 * nt_BCG_att5 / nt_total
                   , pt_BCG_att5native = 100 * nt_BCG_att5native / nt_total
-                 , pt_BCG_attNA = 100 * nt_BCG_attNA / nt_total
+                  , pt_BCG_att56t = 100 * nt_BCG_att56t / nt_total
+                  , pt_BCG_att6i = 100 * nt_BCG_att6i / nt_total
+                  , pt_BCG_att6m = 100 * nt_BCG_att6m / nt_total
+                  , pt_BCG_att6t = 100 * nt_BCG_att6t / nt_total
+                  , pt_BCG_attNA = 100 * nt_BCG_attNA / nt_total
 
                   ### BCG, pi_dom----
 
@@ -3406,7 +3572,7 @@ metric.values.fish <- function(myDF
                                                   , na.rm = TRUE) / ni_total
                   , pi_dom01_BCG_att566a = 100 * max(0, max(N_TAXA[(BCG_ATTR == "5"
                                                           | BCG_ATTR == "6"
-                                                          | BCG_ATTR == "6a")]
+                                                          | BCG_ATTR == "6A")]
                                                           , na.rm=TRUE)
                                                 , na.rm = TRUE) / ni_total
 

@@ -3,6 +3,7 @@
 # Erik.Leppo@tetratech.com
 # 2020-04-28
 # Benthic macroinvertebrate data to use with new Habitat and BCG_attNA metrics
+# 2022-05-18, add HabStruct
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 0. Prep####
@@ -18,7 +19,7 @@ wd <- getwd() # assume is package directory
 # 1.1. Import Data
 #myFile <- "data_bio2rarify_500.tsv"
 myFile <- "data_benthos_PacNW.tsv"
-df <- read.delim(file.path(wd,"data-raw",myFile))
+df <- read.delim(file.path(wd, "data-raw", "data", myFile))
 
 df$SubClass <- NA_character_
 df$Elevation_Attr <- NA_character_
@@ -32,6 +33,9 @@ df$Thermal_Indicator[df$Thermal_Indicator == "cold_cool"] <- "Cold"
 df$Thermal_Indicator[df$Thermal_Indicator == "cool_warm"] <- "Cool"
 df$Thermal_Indicator[df$Thermal_Indicator == "warm"] <- "Warm"
 table(df$Thermal_Indicator)
+
+# 20220518, habstruct
+df$HabStruct <- NA_character_
 
 # 1.2. Process Data
 View(df)

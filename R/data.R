@@ -114,7 +114,7 @@
 #' @description A dataset with example taxa data and attributes for calculating
 #' metric values.
 #'
-#' @format A data frame with 598 observations on the following 35 variables.
+#' @format A data frame with 598 observations on the following 36 variables.
 #' \describe{
 #' \item{\code{INDEX_NAME}}{a character vector}
 #' \item{\code{Index_Region}}{a character vector}
@@ -151,6 +151,7 @@
 #' \item{\code{Elevation_Attr}}{a character vector}
 #' \item{\code{Gradient_Attr}}{a character vector}
 #' \item{\code{WSArea_Attr}}{a character vector}
+#' \item{\code{HabStruct}}{a character vector}
 #'}
 #' @source example data
 "data_benthos_PacNW"
