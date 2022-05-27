@@ -4175,6 +4175,14 @@ metric.values.algae <- function(myDF
                 , nt_TROPHIC_7 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                           & TROPHIC_7 == TRUE]
                                                    , na.rm = TRUE)
+                , nt_TROPHIC_12 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & (TROPHIC_1 == TRUE
+                                                               |TROPHIC_2 == TRUE)]
+                                                     , na.rm = TRUE)
+                , nt_TROPHIC_56 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & (TROPHIC_5 == TRUE
+                                                               |TROPHIC_6 == TRUE)]
+                                                     , na.rm = TRUE)
                 , nt_TROPHIC_456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                       & (TROPHIC_4 == TRUE
                                                          |TROPHIC_5 == TRUE
@@ -4338,6 +4346,9 @@ metric.values.algae <- function(myDF
                                     , na.rm = TRUE)/ni_total
                 , pi_BC_5 = 100*sum(N_TAXA[BC_5 == TRUE]
                                     , na.rm = TRUE)/ni_total
+                , pi_BC_12 = 100*sum(N_TAXA[BC_1 == TRUE
+                                            | BC_2 == TRUE]
+                                     , na.rm = TRUE)/ni_total
                 # PT_USGS
                 , pi_PT_1 = 100*sum(N_TAXA[PT_1 == TRUE]
                                      , na.rm = TRUE)/ni_total
@@ -4554,6 +4565,8 @@ metric.values.algae <- function(myDF
                 , pt_TROPHIC_5 = 100*nt_TROPHIC_5/nt_total
                 , pt_TROPHIC_6 = 100*nt_TROPHIC_6/nt_total
                 , pt_TROPHIC_7 = 100*nt_TROPHIC_7/nt_total
+                , pt_TROPHIC_12 = 100*nt_TROPHIC_12/nt_total
+                , pt_TROPHIC_56 = 100*nt_TROPHIC_56/nt_total
                 , pt_TROPHIC_456 = 100*nt_TROPHIC_456/nt_total
 
                 # SAP_USGS
