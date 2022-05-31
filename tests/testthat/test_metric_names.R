@@ -2,7 +2,7 @@
 # Bugs----
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, bugs, Function, xlNames ####
-test_that("metric.values, names, bugs, Function, xlNames", {
+testthat::test_that("metric.values, names, bugs, Function, xlNames", {
   # Packages
   #library(readxl) # part of BioMonTools
 
@@ -57,7 +57,7 @@ test_that("metric.values, names, bugs, Function, xlNames", {
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, bugs, xlScoring, xlNames ####
-test_that("metric.values, names, bugs, xlNames, xlScoring", {
+testthat::test_that("metric.values, names, bugs, xlNames, xlScoring", {
   # Packages
   #library(readxl) # part of BioMonTools
 
@@ -97,7 +97,7 @@ test_that("metric.values, names, bugs, xlNames, xlScoring", {
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, bugs, xlScoring, Function  ####
-test_that("metric.values, names, bugs, Function, xlScoring", {
+testthat::test_that("metric.values, names, bugs, Function, xlScoring", {
   # Packages
   #library(readxl) # part of BioMonTools
 
@@ -138,7 +138,7 @@ test_that("metric.values, names, bugs, Function, xlScoring", {
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metsc, num metrics ####
-test_that("metric.scores, index, number metrics", {
+testthat::test_that("metric.scores, index, number metrics", {
   # Packages
   #library(readxl) # part of BioMonTools
   #library(dplyr)
@@ -199,7 +199,7 @@ test_that("metric.scores, index, number metrics", {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, fish, Function, xlNames ####
 # Need fish data
-test_that("metric.values, names, fish, Function, xlNames", {
+testthat::test_that("metric.values, names, fish, Function, xlNames", {
   #Packages
   #library(readxl) # part of BioMonTools
 
@@ -245,7 +245,7 @@ test_that("metric.values, names, fish, Function, xlNames", {
 })## Test ~ metric names, fish, Function, Names ~ END
 
 ## metval, names, fish, xlScoring, xlNames ####
-test_that("metric.values, names, fish, xlNames, xlScoring", {
+testthat::test_that("metric.values, names, fish, xlNames, xlScoring", {
   # Packages
   #library(readxl) # part of BioMonTools
 
@@ -284,7 +284,7 @@ test_that("metric.values, names, fish, xlNames, xlScoring", {
 })## Test - metric.values, names, Excel, Scoring ~ END
 
 ## metval, names, fish, xlScoring, Function  ####
-test_that("metric.values, names, fish, Function, xlScoring", {
+testthat::test_that("metric.values, names, fish, Function, xlScoring", {
   # Packages
   #library(readxl) # part of BioMonTools
 
@@ -327,7 +327,7 @@ test_that("metric.values, names, fish, Function, xlScoring", {
 # Algae ----
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, Names, algae, Function, xlNames ####
-test_that("metric.values, names, algae, Function, xlNames", {
+testthat::test_that("metric.values, names, algae, Function, xlNames", {
   # Packages
   #library(readxl) # part of BioMonTools
 
@@ -374,7 +374,7 @@ test_that("metric.values, names, algae, Function, xlNames", {
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, algae, xlScoring, xlNames ####
-test_that("metric.values, names, algae, xlScoring, xlNames", {
+testthat::test_that("metric.values, names, algae, xlScoring, xlNames", {
   # Packages
   #library(readxl) # part of BioMonTools
 
@@ -414,7 +414,7 @@ test_that("metric.values, names, algae, xlScoring, xlNames", {
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, algae, xlScoring, Function ####
-test_that("metric.values, names, algae, xlScoring, Function", {
+testthat::test_that("metric.values, names, algae, xlScoring, Function", {
   # Packages
   #library(readxl) # part of BioMonTools
 
@@ -456,7 +456,7 @@ test_that("metric.values, names, algae, xlScoring, Function", {
 # Excel ----
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, xlNames, NA ####
-test_that("metric.values, xlNames, description", {
+testthat::test_that("metric.values, xlNames, description", {
   # Packages
   #library(readxl) # part of BioMonTools
 

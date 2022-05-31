@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-05-18 15:27:56
+    #> Last Update: 2022-05-31 08:42:41
 
 # Version History
+
+## Changes in Version 0.5.0.9117 (2022-05-31)
+
+-   refactor: Additional metrics, Issue #74
+-   fix: Change metric HabitatStruct from RW to RM, Issue #73
 
 ## Changes in Version 0.5.0.9116 (2022-05-18)
 
