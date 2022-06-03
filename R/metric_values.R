@@ -1419,7 +1419,7 @@ metric.values.bugs <- function(myDF
                                                   & CLASS == "GASTROPODA"]
                                            , na.rm = TRUE)
              , nt_Hemipt = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & ORDER == "HEMPITERA"]
+                                                   & ORDER == "HEMIPTERA"]
                                             , na.rm = TRUE)
              , nt_Hepta = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                    & FAMILY == "HEPTAGENIIDAE"]

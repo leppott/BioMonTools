@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-05-31 08:42:41
+    #> Last Update: 2022-06-03 07:26:08
 
 # Version History
+
+## Changes in Version 0.5.0.9118 (2022-06-03)
+
+-   fix: Hemiptera metrics (nt and pt) not working, Issue #73
+    -   Fix spelling
 
 ## Changes in Version 0.5.0.9117 (2022-05-31)
 

@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in Version 0.5.0.9118 (2022-06-03)
+
+* fix: Hemiptera metrics (nt and pt) not working, Issue #73
+    + Fix spelling
+
 ## Changes in Version 0.5.0.9117 (2022-05-31)
 
 * refactor:  Additional metrics, Issue #74
