@@ -4,13 +4,21 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-06-03 07:26:08
+    #> Last Update: 2022-06-09 09:38:46
 
 # Version History
 
+## Changes in version 0.5.0.9119 (2022-06-09)
+
+-   feature: Additional algae metrics
+-   style: Add outlining to algae metrics
+-   style: Add spaces before and after operators in algae calculations
+-   refactor: Add missing values in MetricNames.xlsx based on tests
+-   refactor: Add missing algae metric pt_BC_12_adj as NA
+
 ## Changes in Version 0.5.0.9118 (2022-06-03)
 
--   fix: Hemiptera metrics (nt and pt) not working, Issue #73
+-   fix: Hemiptera metrics (nt and pt) not working, Issue #74
     -   Fix spelling
 
 ## Changes in Version 0.5.0.9117 (2022-05-31)

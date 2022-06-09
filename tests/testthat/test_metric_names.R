@@ -326,7 +326,7 @@ testthat::test_that("metric.values, names, fish, Function, xlScoring", {
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Algae ----
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-## metval, Names, algae, Function, xlNames ####
+## metval, names, algae, Function, xlNames ####
 testthat::test_that("metric.values, names, algae, Function, xlNames", {
   # Packages
   #library(readxl) # part of BioMonTools
@@ -476,13 +476,13 @@ testthat::test_that("metric.values, xlNames, description", {
   # Description, NA
   num_NA_desc <- sum(is.na(df_metnam_xlNames$Description))
 
-  ### test, NA, DESCRITPION ----
+  ### test, NA, DESCRIPTION ----
   testthat::expect_equal(num_NA_desc, 0)
 
   # Description, NA
   num_NA_comm <- sum(is.na(df_metnam_xlNames$Community))
 
-  ### test, NA, DESCRITPION ----
+  ## test, NA, COMMENTS ----
   testthat::expect_equal(num_NA_comm, 0)
 
 })## Test ~ metval, xlNames, NA ~ END
