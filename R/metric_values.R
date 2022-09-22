@@ -91,7 +91,7 @@
 #' * LIFE_CYCLE: UNI, SEMI, MULTI
 #'
 #' * THERMAL_INDICATOR: STENOC, COLD, COOL, WARM, STENOW, EURYTHERMAL
-#' , INCONCLUSIVE, NA
+#' , COWA, NA
 #'
 #' * LONGLIVED: TRUE, FALSE
 #'
@@ -1102,7 +1102,7 @@ metric.values.bugs <- function(myDF
   myDF[, "TI_WARM"]         <- grepl("WARM", myDF[, "THERMAL_INDICATOR"])
   myDF[, "TI_STENOWARM"]    <- grepl("STENOW", myDF[, "THERMAL_INDICATOR"])
   myDF[, "TI_EURY"]         <- grepl("EURYTHERMAL", myDF[, "THERMAL_INDICATOR"])
-  myDF[, "TI_INCONCLUSIVE"] <- grepl("INCONCLUSIVE", myDF[,"THERMAL_INDICATOR"])
+  myDF[, "TI_COWA"]         <- grepl("COWA", myDF[,"THERMAL_INDICATOR"])
   myDF[, "HS_CS"]       <- grepl("CS", myDF[, "HABSTRUCT"])
   myDF[, "HS_NF"]       <- grepl("NF", myDF[, "HABSTRUCT"])
   myDF[, "HS_RM"]       <- grepl("RM", myDF[, "HABSTRUCT"])
@@ -1868,8 +1868,8 @@ metric.values.bugs <- function(myDF
              , nt_ti_eury =           dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                      & TI_EURY == TRUE]
                                               , na.rm = TRUE)
-             , nt_ti_inconclusive =   dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                   & TI_INCONCLUSIVE == TRUE]
+             , nt_ti_cowa =   dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                   & TI_COWA == TRUE]
                                             , na.rm = TRUE)
              , nt_ti_na =             dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                      & TI_NA == TRUE]
@@ -1883,9 +1883,10 @@ metric.values.bugs <- function(myDF
                                                            TI_COLD == TRUE |
                                                            TI_COOL == TRUE)]
                                                       , na.rm = TRUE)
-             , nt_ti_cool_warm =       dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                            & (TI_COOL == TRUE |
-                                                               TI_WARM == TRUE)]
+             , nt_ti_cowa_warm_stenowarm =       dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & (TI_COWA == TRUE |
+                                                               TI_WARM == TRUE |
+                                                               TI_STENOWARM == TRUE )]
                                                        , na.rm = TRUE)
              , nt_ti_warm_stenowarm = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                       & (TI_WARM == TRUE |
@@ -1905,7 +1906,7 @@ metric.values.bugs <- function(myDF
                                                 , na.rm = TRUE) / ni_total
              , pi_ti_eury =             100 * sum(N_TAXA[TI_EURY == TRUE]
                                                 , na.rm = TRUE) / ni_total
-             , pi_ti_inconclusive =    100 * sum(N_TAXA[TI_INCONCLUSIVE == TRUE]
+             , pi_ti_cowa =             100 * sum(N_TAXA[TI_COWA == TRUE]
                                                 , na.rm = TRUE) / ni_total
              , pi_ti_na =               100 * sum(N_TAXA[TI_NA == TRUE]
                                                 , na.rm = TRUE) / ni_total
@@ -1916,8 +1917,9 @@ metric.values.bugs <- function(myDF
                                                       TI_COLD == TRUE |
                                                       TI_COOL == TRUE]
                                              , na.rm = TRUE) / ni_total
-             , pi_ti_cool_warm =        100 * sum(N_TAXA[TI_COOL == TRUE |
-                                                      TI_WARM == TRUE]
+             , pi_ti_cowa_warm_stenowarm = 100 * sum(N_TAXA[TI_COWA == TRUE |
+                                                      TI_WARM == TRUE |
+                                                      TI_STENOWARM == TRUE]
                                                 , na.rm = TRUE) / ni_total
              , pi_ti_warm_stenowarm =   100 * sum(N_TAXA[TI_WARM == TRUE |
                                                       TI_STENOWARM == TRUE]
@@ -1931,11 +1933,11 @@ metric.values.bugs <- function(myDF
              , pt_ti_warm =                100 * nt_ti_warm / nt_total
              , pt_ti_stenowarm =           100 * nt_ti_stenowarm / nt_total
              , pt_ti_eury =                100 * nt_ti_eury / nt_total
-             , pt_ti_inconclusive =        100 * nt_ti_inconclusive / nt_total
+             , pt_ti_cowa =                100 * nt_ti_cowa / nt_total
              , pt_ti_na =                  100 * nt_ti_na / nt_total
              , pt_ti_stenocold_cold =      100 * nt_ti_stenocold_cold / nt_total
-             , pt_ti_stenocold_cold_cool = 100 * nt_ti_stenocold_cold / nt_total
-             , pt_ti_cool_warm =           100 * nt_ti_cool_warm / nt_total
+             , pt_ti_stenocold_cold_cool = 100 * nt_ti_stenocold_cold_cool / nt_total
+             , pt_ti_cowa_warm_stenowarm = 100 * nt_ti_cowa_warm_stenowarm / nt_total
              , pt_ti_warm_stenowarm =      100 * nt_ti_warm_stenowarm / nt_total
 
             ### ratio
