@@ -183,7 +183,7 @@ Shiny. Normally the QC check for required fields is interactive.  Setting
 boo.Shiny to TRUE will always continue.  The default is FALSE.
 }
 \examples{
-# Example data
+# Example 1, data already in R
 
 df_metric_values_bugs <- metric.values(data_benthos_PacNW, "bugs")
 

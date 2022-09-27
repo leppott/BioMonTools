@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-09-22 15:01:08
+    #> Last Update: 2022-09-27 12:31:26
 
 # Version History
+
+## Changes in version 0.5.0.9121 (2022-09-27)
+
+-   feat: Additional BCG metrics, Issue \#79
+-   style: Surround operators with space
+    -   metric_values
+-   test: Add sum of parts tests for new BCG metrics
 
 ## Changes in version 0.5.0.9120 (2022-09-22)
 

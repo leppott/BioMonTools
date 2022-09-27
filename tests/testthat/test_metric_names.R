@@ -1,6 +1,4 @@
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Bugs----
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, bugs, Function, xlNames ####
 testthat::test_that("metric.values, names, bugs, Function, xlNames", {
   # Packages
@@ -194,9 +192,7 @@ testthat::test_that("metric.scores, index, number metrics", {
   testthat::expect_equal(nummet_metsc, nummet_indsc)
 })## Test ~ metric.scores, index, number metrics ~ END
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Fish ----
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, fish, Function, xlNames ####
 # Need fish data
 testthat::test_that("metric.values, names, fish, Function, xlNames", {
@@ -323,9 +319,7 @@ testthat::test_that("metric.values, names, fish, Function, xlScoring", {
 })## Test ~ metric.values, names, bugs, Function, Names ~ END
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Algae ----
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, algae, Function, xlNames ####
 testthat::test_that("metric.values, names, algae, Function, xlNames", {
   # Packages
@@ -452,9 +446,9 @@ testthat::test_that("metric.values, names, algae, xlScoring, Function", {
   # test
   testthat::expect_equal(metnam_len, metnam_match)  # fails due to structure
 })## Test ~ metric.values, names, algae, Function, Names ~ END
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 # Excel ----
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, xlNames, NA ####
 testthat::test_that("metric.values, xlNames, description", {
   # Packages

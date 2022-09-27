@@ -1,6 +1,45 @@
-# met val_sc, PA Freestone IBI ----
-test_that("metric values_scores, PA Freestone IBI", {
-  # _Metric.Values ----
+# Bugs----
+
+## Sum Components ----
+# Sum of parts is equal to the whole
+testthat::test_that("metrics, bugs, sum of parts", {
+  # data
+  df <- metric.values(data_benthos_PacNW, "bugs")
+
+  ### BCG ----
+  #### nt----
+  val_obj <- df$nt_BCG_att1i234b5
+  val_exp <- df$nt_BCG_att1i23 + df$nt_BCG_att4b + df$nt_BCG_att5
+  testthat::expect_equal(val_obj, val_exp)
+
+  val_obj <- df$nt_BCG_att1i234w5
+  val_exp <- df$nt_BCG_att1i23 + df$nt_BCG_att4w + df$nt_BCG_att5
+  testthat::expect_equal(val_obj, val_exp)
+
+  #### pi----
+  val_obj <- df$pi_BCG_att1i234b5
+  val_exp <- df$pi_BCG_att1i23 + df$pi_BCG_att4b + df$pi_BCG_att5
+  testthat::expect_equal(val_obj, val_exp)
+
+  val_obj <- df$pi_BCG_att1i234w5
+  val_exp <- df$pi_BCG_att1i23 + df$pi_BCG_att4w + df$pi_BCG_att5
+  testthat::expect_equal(val_obj, val_exp)
+
+  #### pt----
+  val_obj <- df$pt_BCG_att1i234b5
+  val_exp <- df$pt_BCG_att1i23 + df$pt_BCG_att4b + df$pt_BCG_att5
+  testthat::expect_equal(val_obj, val_exp)
+
+  val_obj <- df$pt_BCG_att1i234w5
+  val_exp <- df$pt_BCG_att1i23 + df$pt_BCG_att4w + df$pt_BCG_att5
+  testthat::expect_equal(val_obj, val_exp)
+
+})## test ~ sum of parts
+
+
+## met val_sc, PA Freestone IBI ----
+testthat::test_that("metric values_scores, PA Freestone IBI", {
+  ### _Metric.Values ----
   SAMPLEID <- c(rep("DriftwoodBr", 31), rep("WestBr", 15))
   STRAHLER <- c(rep(5, 31), rep(1, 15))
   DA_MI2 <- c(rep(84.5, 31), rep(0.3, 15))
@@ -227,7 +266,7 @@ test_that("metric values_scores, PA Freestone IBI", {
   #expect_equal(df_metval_calc, df_metval_qc, tolerance = 0.01)
 
 
-  # _Metric.Scores ----
+  ### _Metric.Scores ----
 
   # Thresholds
   fn_thresh <- file.path(system.file(package="BioMonTools")
@@ -275,9 +314,9 @@ test_that("metric values_scores, PA Freestone IBI", {
 
 })## Test - PA Freestone ~ END
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# met sc, WV GLIMPSS MT_SP ----
-test_that("metric scores, WV GLIMPSS MT_SP", {
+
+## met sc, WV GLIMPSS MT_SP ----
+testthat::test_that("metric scores, WV GLIMPSS MT_SP", {
 #http://dep.wv.gov/WWE/watershed/bio_fish/Documents/20110829GLIMPSSFinalWVDEP.pdf
 
   # Packages
@@ -447,10 +486,11 @@ test_that("metric scores, WV GLIMPSS MT_SP", {
   testthat::expect_equal(x, y)
 
 })## Test ~ WV GLIMPSS ~ END
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# met val_sc, MA kick_lograd IBI ----
-test_that("metric values_scores, MA kick/lowgrad IBI", {
-  # _Metric.Values ----
+
+
+## met val_sc, MA kick_lograd IBI ----
+testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
+  ### _Metric.Values ----
   SAMPLEID <- c(rep("1985006", 16), rep("2011036", 19), rep("1985024", 21))
   INDEX_NAME <- "MassDEP_2020_Bugs"
   INDEX_REGION <- c(rep("KickIBI_CH_100ct", 16)
@@ -1330,7 +1370,7 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
   #expect_equal(df_metval_calc, df_metval_qc, tolerance = 0.01)
 
 
-  # _Metric.Scores ----
+  ### _Metric.Scores ----
 
   # Thresholds
   fn_thresh <- file.path(system.file(package="BioMonTools")
@@ -1436,12 +1476,15 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
 
 })## Test - met val_sc, MA kick/lograd IBI ~ END
 
-
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Fish ----
+# MBSS or GA DNR
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# met val_sc, IDEM Diatom IBIs ----
-test_that("metric values_scores, MA kick/lowgrad IBI", {
-  # _Metric.Values ----
+# Algae----
+## met val_sc, IDEM Diatom IBIs ----
+testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
+  ### _Metric.Values ----
 
   data(data_diatom_mmi_dev) #added via data.R
   df_diatoms <- data_diatom_mmi_dev
@@ -1482,9 +1525,9 @@ test_that("metric values_scores, MA kick/lowgrad IBI", {
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# # met val_sc, SCMB_IBI ----
-# test_that("metric values_scores, SCMB IBI", {
-#   # _Metric.Values ----
+# ## met val_sc, SCMB_IBI ----
+# testthat::test_that("metric values_scores, SCMB IBI", {
+#   ### _Metric.Values ----
 #
 #   data(data_metval_scmb_ibi) #added via data.R
 #   df_metval <- data_metval_scmb_ibi

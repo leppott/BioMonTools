@@ -37,6 +37,12 @@ table(df$Thermal_Indicator)
 # 20220518, habstruct
 df$HabStruct <- NA_character_
 
+# 20220927
+df$BCG_Attr2 <- NA_character_
+df[df$TaxaID == "Ablabesmyia", "BCG_Attr2"] <- "4_BETTER"
+df[df$TaxaID == "Aeshnidae", "BCG_Attr2"] <- "4_WORSE"
+
+
 # 1.2. Process Data
 View(df)
 # QC check
