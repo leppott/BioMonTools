@@ -61,7 +61,7 @@
 #'
 #' * FFG, HABIT, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, FFG2, TOLVAL2,
 #' LONGLIVED, NOTEWORTHY, HABITAT, UFC, ELEVATION_ATTR, GRADIENT_ATTR,
-#' WSAREA_ATTR
+#' WSAREA_ATTR, HABSTRUCT
 #'
 #' Additional Required fields, fish:
 #'
@@ -467,10 +467,19 @@ metric.values <- function(fun.DF
                           , fun.cols2keep = NULL
                           , boo.marine = FALSE
                           , boo.Shiny = FALSE
-                          , verbose = FALSE){##FUNCTION.metric.values.START
+                          , verbose = FALSE) {
   boo_debug_main <- FALSE
   boo_debug_main_num <- 0
   boo_debug_main_num_total <- 7
+  boo_QC <- FALSE
+
+  # QC
+  if(boo_QC) {
+    fun.DF <- data_benthos_PacNW[, 1:32]
+    fun.Community <- "bugs"
+    boo.Shiny <- TRUE
+    verbose <- TRUE
+  }## boo_QC
 
   # global variable bindings
   N_TAXA <- TAXAID <- NULL
@@ -501,6 +510,7 @@ metric.values <- function(fun.DF
   }##IF~!is.null(fun.cols2keep)~END
 
   # QC, missing cols ----
+  # bare minimum, applies to all communities
   if(verbose == TRUE) {
     boo_debug_topic <- "QC missing cols"
     boo_debug_main_num <- boo_debug_main_num + 1
@@ -518,7 +528,7 @@ metric.values <- function(fun.DF
   num.col.req.missing <- length(col.req.missing)
 
   # Trigger prompt if any missing fields (and session is interactive)
-  if(num.col.req.missing!=0 & interactive() == TRUE) {
+  if(num.col.req.missing != 0 & interactive() == TRUE) {
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
     myPrompt.02 <- paste(col.req.missing, collapse=", ")
     myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
@@ -537,7 +547,7 @@ metric.values <- function(fun.DF
     user.input <- NA
     # special condition for Shiny
     # Shiny counts as interactive()==TRUE but cannot access this prompt in Shiny.
-    if(boo.Shiny==FALSE){
+    if(boo.Shiny == FALSE) {
       user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
     } else {
       message(myPrompt)
@@ -645,6 +655,8 @@ metric.values <- function(fun.DF
                   , boo_debug_topic)
     message(msg)
   }## IF ~ verbose
+
+  # Run subfunction based on community
   if (fun.Community=="BUGS") {##IF.START
     metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep, NA
                        , boo.marine, boo.Shiny, verbose)
@@ -693,8 +705,14 @@ metric.values.bugs <- function(myDF
                                , boo.Shiny
                                , verbose){##FUNCTION.metric.values.bugs.START
   #
-  names(myDF) <- toupper(names(myDF))
+  # QC
+  boo_QC <- FALSE
+  if(boo_QC) {
+    myDF <- fun.DF
+  }## IF ~ boo_QC
+
   # not carrying over from previous?!
+  names(myDF) <- toupper(names(myDF))
 
   boo_debug_bugs <- FALSE
   boo_debug_bugs_num <- 0
@@ -752,7 +770,8 @@ metric.values.bugs <- function(myDF
 
   # define pipe
   `%>%` <- dplyr::`%>%`
-  # QC ####
+
+  # QC----
   ## QC, missing cols ----
   if(verbose == TRUE) {
     boo_debug_topic <- "QC, missing cols"
@@ -765,6 +784,7 @@ metric.values.bugs <- function(myDF
                 , boo_debug_topic)
     message(msg)
   }## IF ~ verbose
+
   # QC, Required Fields
   col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_REGION"
                     , "PHYLUM", "SUBPHYLUM", "CLASS", "SUBCLASS", "INFRAORDER"
@@ -795,7 +815,9 @@ metric.values.bugs <- function(myDF
   num.col.req.missing_num <- length(col.req.missing_num)
 
   # Trigger prompt if any missing fields (and session is interactive)
-  if(num.col.req.missing!=0 & interactive()==TRUE) {
+  if(num.col.req.missing != 0) {
+
+    # Create prompt for missing columns
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
     myPrompt.02 <- paste(col.req.missing, collapse=", ")
     myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
@@ -810,38 +832,49 @@ metric.values.bugs <- function(myDF
                       , myPrompt.04
                       , myPrompt.05
                       , sep="\n")
-    #user.input <- readline(prompt=myPrompt)
     user.input <- NA
-    # special condition for Shiny
-    # Shiny counts as interactive()==TRUE but cannot access this prompt in Shiny.
-    if(boo.Shiny==FALSE){
-      user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
+
+    if(interactive() == TRUE & boo.Shiny == FALSE) {
+      #user.input <- readline(prompt=myPrompt)
+      user.input <- utils::menu(c("YES", "NO"), title = myPrompt)
     } else {
       message(myPrompt)
-      message("boo.Shiny == TRUE so prompt skipped and value set to '1'.")
+      message("boo.Shiny == TRUE and interactive == FALSE
+               so prompt skipped and value set to '1'.")
       user.input <- 1
-    }## IF ~ boo.Shiny ~ END
+    }## IF ~ interactive & boo.Shiny
+
+    # # special condition for Shiny
+    # # Shiny counts as interactive()==TRUE locally
+    #        but cannot access this prompt in Shiny.
+    # if(boo.Shiny==FALSE) {
+    #   user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
+    # } else {
+    #   message(myPrompt)
+    #   message("boo.Shiny == TRUE so prompt skipped and value set to '1'.")
+    #   user.input <- 1
+    # }## IF ~ boo.Shiny ~ END
 
     # any answer other than "YES" will stop the function.
-    if(user.input!=1){##IF.user.input.START
+    if(user.input != 1) {
       stop(paste("The user chose *not* to continue due to missing fields: "
                   , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
     }##IF.user.input.END
+
     # Add missing fields
     #myDF[, col.req.missing] <- NA
-    if(num.col.req.missing_char >0) {
+    if(num.col.req.missing_char > 0) {
       myDF[, col.req.missing_char] <- NA_character_
     }
-    if(num.col.req.missing_log >0) {
+    if(num.col.req.missing_log > 0) {
       myDF[, col.req.missing_log] <- NA
     }
-    if(num.col.req.missing_num >0) {
+    if(num.col.req.missing_num > 0) {
       myDF[, col.req.missing_num] <- NA_real_
     }
     warning(paste("Metrics related to the following fields are invalid:"
                   , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
   }##IF.num.col.req.missing.END
-
 
   # message col names
   if(verbose == TRUE) {
@@ -859,7 +892,8 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
 
-  # QC, Exclude as TRUE/FALSE
+  ## QC, Exclude----
+  # ensure TRUE/FALSE
   if(verbose == TRUE) {
     boo_debug_topic <- "QC, cols, values, Exclude"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
@@ -880,7 +914,8 @@ metric.values.bugs <- function(myDF
     warning("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
   }##IF.Exclude.T.END
 
-  # QC, NonTarget as TRUE/FALSE
+  ## QC, NonTarget----
+  # ensure as TRUE/FALSE
   if(verbose == TRUE) {
     boo_debug_topic <- "QC, cols, values, NonTarget"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
@@ -896,12 +931,13 @@ metric.values.bugs <- function(myDF
     msg <- paste0("Column (", myCol, ") exists; ", col_TF)
     message(msg)
   }## IF ~ verbose
+
   NonTarget.F <- sum(myDF$NONTARGET==FALSE, na.rm = TRUE)
   if(NonTarget.F==0) {
     warning("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
   }##IF.Exclude.T.END
 
-  # QC, TolVal
+  ## QC, TolVal----
   # need as numeric, if have "NA" as character it fails
   if(verbose == TRUE) {
     boo_debug_topic <- "QC, cols, numeric, TolVal"
@@ -929,7 +965,7 @@ metric.values.bugs <- function(myDF
     message(msg)
   }##IF ~ TOLVAL ~ END
 
-  # QC, TolVal2
+  ## QC, TolVal2----
   # need as numeric, if have "NA" as character it fails
   if(verbose == TRUE) {
     boo_debug_topic <- "QC, cols, numeric, TolVal2"
@@ -954,7 +990,7 @@ metric.values.bugs <- function(myDF
     message(msg)
   }##IF ~ TOLVAL2 ~ END
 
-  # QC, UFC
+  ## QC, UFC----
   # need as numeric, if have "NA" as character it fails
   if(verbose == TRUE) {
     boo_debug_topic <- "QC, cols, numeric, UFC"
@@ -979,7 +1015,7 @@ metric.values.bugs <- function(myDF
     message(msg)
   }##IF ~ UFC ~ END
 
-  # QC, BCG_Attr
+  ## QC, BCG_Attr ----
   # need as character, if complex all values fail
   if(verbose == TRUE) {
     boo_debug_topic <- "QC, cols, complex, BCG_Attr"
@@ -996,13 +1032,40 @@ metric.values.bugs <- function(myDF
     msg <- paste0("Column (", myCol, ") exists; ", col_TF)
     message(msg)
   }## IF ~ verbose
+
   BCG_Complex <- is.complex(myDF[, "BCG_ATTR"])
+  # only tigger if have a complex field
   if(BCG_Complex == TRUE) {
-    msg <- "**BCG_ATTR is complex!**"
-    msg2 <- "BCG metrics will not calculate properly."
-    msg3 <- "Reimport data with colClass(c('BCG_Attr'='character')"
-    message(paste(msg, msg2, msg3, sep = "\n"))
-    # too late for stop message
+    if(interactive() & boo.Shiny == FALSE) {
+      msg <- "**BCG_ATTR is complex!**"
+      msg2 <- "BCG metrics will not calculate properly."
+      msg3 <- "Reimport data with column class defined."
+      msg4 <- "Use either Fix1 or Fix2.  Replace 'foo.csv' with your file."
+      msg5 <- ""
+      msg6 <- "# Fix 1, base R"
+      msg7 <- "df_data <- read.csv('foo.csv', colClass=c('BCG_Attr'='character'))"
+      msg8 <- ""
+      msg9 <- "# Fix 2, tidyverse"
+      msg10 <- "# install package if needed and load it"
+      msg11 <- "if(!require(readr)){install.packages('readr')}"
+      msg12 <- "# import file and convert from tibble to data frame"
+      msg13 <- "df_data <- as.data.frame(read_csv('foo.csv'))"
+      msg14 <- ""
+      #
+      message(paste(msg, msg2, msg3, msg4, msg5, msg6, msg7, msg8, msg9, msg10
+                    , msg11, msg12, msg13, msg14, sep = "\n"))
+    }## IF ~ interactive & boo.Shiny == FALSE
+
+    if(interactive() == FALSE | boo.Shiny == TRUE) {
+      # > df$BCG_Attr_char <- as.character(df$BCG_Attr)
+      # > df$BCG_Attr_char <- sub("^0\\+", "", df$BCG_Attr_char)
+      # > df$BCG_Attr_char <- sub("\\+0i$", "", df$BCG_Attr_char)
+      # > table(df$BCG_Attr, df$BCG_Attr_char)
+      myDF[, "BCG_ATTR"] <- as.character(myDF[, "BCG_ATTR"])
+      myDF[, "BCG_ATTR"] <- sub("^0\\+", "", myDF[, "BCG_ATTR"])
+      myDF[, "BCG_ATTR"] <- sub("\\+0i$", "", myDF[, "BCG_ATTR"])
+    }## IF ~ interactive() == FALSE | boo.Shiny == TRUE
+
   }##IF ~ BCG_Attr ~ END
 
   # Data Munging ####
@@ -1017,6 +1080,7 @@ metric.values.bugs <- function(myDF
                   , boo_debug_topic)
     message(msg)
   }## IF ~ verbose
+
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
   if(verbose == TRUE) {
@@ -1034,6 +1098,7 @@ metric.values.bugs <- function(myDF
     msg <- paste0("Column (", myCol, ") exists; ", col_TF)
     message(msg)
   }## IF ~ verbose
+
   myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
 
   # # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
@@ -1048,6 +1113,7 @@ metric.values.bugs <- function(myDF
                   , boo_debug_topic)
     message(msg)
   }## IF ~ verbose
+
   # col2upper <- c("TAXAID", "PHYLUM", "SUBPHYLUM", "CLASS", "SUBCLASS"
   #                , "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
   #                , "TRIBE", "GENUS"
@@ -1081,36 +1147,36 @@ metric.values.bugs <- function(myDF
   }## IF ~ verbose
 
   # match, any
-  myDF[, "HABIT_BU"]    <- grepl("BU", myDF[, "HABIT"])
-  myDF[, "HABIT_CB"]    <- grepl("CB", myDF[, "HABIT"])
-  myDF[, "HABIT_CN"]    <- grepl("CN", myDF[, "HABIT"])
-  myDF[, "HABIT_SP"]    <- grepl("SP", myDF[, "HABIT"])
-  myDF[, "HABIT_SW"]    <- grepl("SW", myDF[, "HABIT"])
-  myDF[, "FFG_COL"]     <- grepl("(CG|GC)", myDF[, "FFG"])
-  myDF[, "FFG_FIL"]     <- grepl("(CF|FC)", myDF[, "FFG"])
-  myDF[, "FFG_PRE"]     <- grepl("PR", myDF[, "FFG"])
-  myDF[, "FFG_SCR"]     <- grepl("SC", myDF[, "FFG"])
-  myDF[, "FFG_SHR"]     <- grepl("SH", myDF[, "FFG"])
-  myDF[, "FFG_MAH"]     <- grepl("MH", myDF[, "FFG"])
-  myDF[, "FFG_OMN"]     <- grepl("OM", myDF[, "FFG"])
-  myDF[, "FFG_PAR"]     <- grepl("PA", myDF[, "FFG"])
-  myDF[, "FFG_PIH"]     <- grepl("PH", myDF[, "FFG"])
-  myDF[, "FFG_XYL"]     <- grepl("XY", myDF[, "FFG"])
-  myDF[, "LC_MULTI"]    <- grepl("MULTI", myDF[, "LIFE_CYCLE"])
-  myDF[, "LC_SEMI"]     <- grepl("SEMI", myDF[, "LIFE_CYCLE"])
-  myDF[, "LC_UNI"]      <- grepl("UNI", myDF[, "LIFE_CYCLE"])
-  myDF[, "FFG2_PRE"]    <- grepl("PR", myDF[, "FFG2"])
-  myDF[, "TI_STENOCOLD"]    <- grepl("STENOC", myDF[, "THERMAL_INDICATOR"])
-  myDF[, "TI_COLD"]         <- grepl("COLD", myDF[, "THERMAL_INDICATOR"])
-  myDF[, "TI_COOL"]         <- grepl("COOL", myDF[, "THERMAL_INDICATOR"])
-  myDF[, "TI_WARM"]         <- grepl("WARM", myDF[, "THERMAL_INDICATOR"])
-  myDF[, "TI_STENOWARM"]    <- grepl("STENOW", myDF[, "THERMAL_INDICATOR"])
-  myDF[, "TI_EURY"]         <- grepl("EURYTHERMAL", myDF[, "THERMAL_INDICATOR"])
-  myDF[, "TI_COWA"]         <- grepl("COWA", myDF[,"THERMAL_INDICATOR"])
-  myDF[, "HS_CS"]       <- grepl("CS", myDF[, "HABSTRUCT"])
-  myDF[, "HS_NF"]       <- grepl("NF", myDF[, "HABSTRUCT"])
-  myDF[, "HS_RM"]       <- grepl("RM", myDF[, "HABSTRUCT"])
-  myDF[, "HS_SG"]       <- grepl("SG", myDF[, "HABSTRUCT"])
+  myDF[, "HABIT_BU"]     <- grepl("BU", myDF[, "HABIT"])
+  myDF[, "HABIT_CB"]     <- grepl("CB", myDF[, "HABIT"])
+  myDF[, "HABIT_CN"]     <- grepl("CN", myDF[, "HABIT"])
+  myDF[, "HABIT_SP"]     <- grepl("SP", myDF[, "HABIT"])
+  myDF[, "HABIT_SW"]     <- grepl("SW", myDF[, "HABIT"])
+  myDF[, "FFG_COL"]      <- grepl("(CG|GC)", myDF[, "FFG"])
+  myDF[, "FFG_FIL"]      <- grepl("(CF|FC)", myDF[, "FFG"])
+  myDF[, "FFG_PRE"]      <- grepl("PR", myDF[, "FFG"])
+  myDF[, "FFG_SCR"]      <- grepl("SC", myDF[, "FFG"])
+  myDF[, "FFG_SHR"]      <- grepl("SH", myDF[, "FFG"])
+  myDF[, "FFG_MAH"]      <- grepl("MH", myDF[, "FFG"])
+  myDF[, "FFG_OMN"]      <- grepl("OM", myDF[, "FFG"])
+  myDF[, "FFG_PAR"]      <- grepl("PA", myDF[, "FFG"])
+  myDF[, "FFG_PIH"]      <- grepl("PH", myDF[, "FFG"])
+  myDF[, "FFG_XYL"]      <- grepl("XY", myDF[, "FFG"])
+  myDF[, "LC_MULTI"]     <- grepl("MULTI", myDF[, "LIFE_CYCLE"])
+  myDF[, "LC_SEMI"]      <- grepl("SEMI", myDF[, "LIFE_CYCLE"])
+  myDF[, "LC_UNI"]       <- grepl("UNI", myDF[, "LIFE_CYCLE"])
+  myDF[, "FFG2_PRE"]     <- grepl("PR", myDF[, "FFG2"])
+  myDF[, "TI_STENOCOLD"] <- grepl("STENOC", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_COLD"]      <- grepl("COLD", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_COOL"]      <- grepl("COOL", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_WARM"]      <- grepl("WARM", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_STENOWARM"] <- grepl("STENOW", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_EURY"]      <- grepl("EURYTHERMAL", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_COWA"]      <- grepl("COWA", myDF[,"THERMAL_INDICATOR"])
+  myDF[, "HS_CS"]        <- grepl("CS", myDF[, "HABSTRUCT"])
+  myDF[, "HS_NF"]        <- grepl("NF", myDF[, "HABSTRUCT"])
+  myDF[, "HS_RM"]        <- grepl("RM", myDF[, "HABSTRUCT"])
+  myDF[, "HS_SG"]        <- grepl("SG", myDF[, "HABSTRUCT"])
   # match, exact only
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])
   myDF[, "HABITAT_BRAC"]   <- "BRAC" == myDF[, "HABITAT"]

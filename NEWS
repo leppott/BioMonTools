@@ -4,9 +4,22 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-09-27 12:31:26
+    #> Last Update: 2022-09-29 11:22:29
 
 # Version History
+
+## Changes in version 0.5.0.9122 (2022-09-29)
+
+-   docs: Typo in MetricNames.xlsx (Isoptera instead of Isopoda)
+-   fix: Change logic in metric.values for insertion of missing column
+    names
+    -   Was not working in server environment (interacive == FALSE)
+-   docs: Update error message in metric.values for complex columns,
+    Issue \#71
+    -   Add code needed to error message (base R and tidyverse)
+-   refactor: Change logic for Shiny on server when encounter complex,
+    Issue \#71
+    -   BCG_ATTR column only, interactive FALSE or boo.Shiny TRUE
 
 ## Changes in version 0.5.0.9121 (2022-09-27)
 
