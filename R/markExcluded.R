@@ -1,20 +1,20 @@
-#' @title Mark "excluded" (non-distinct / non-unique / ambiguous) taxa
+#' @title Mark "exclude" (non-distinct / non-unique / ambiguous) taxa
 #'
 #' @description Takes as an input data frame with Sample ID, Taxa ID, and
 #' phlogenetic name fields and returns a similar dataframe with a column for
-#' "excluded" taxa (TRUE or FALSE).
+#' "exclude" taxa (TRUE or FALSE).
 #'
-#' Excluded taxa are refered to by multiple names; ambiguous, non-distinct, and
-#' non-unique. The "excluded" name was chosen so as to be consistent with
+#' Exclude taxa are refered to by multiple names; ambiguous, non-distinct, and
+#' non-unique. The "exclude" name was chosen so as to be consistent with
 #' "non-target" taxa. That is, taxa marked as "TRUE" are treated as
-#' undesireables.  Excluded taxa are those that are present in a sample when
+#' undesireables.  Exclude taxa are those that are present in a sample when
 #' taxa of the same group are present in the same sample are identified finer
-#' level.  That is, the parent is marked as excluded when child taxa are
+#' level.  That is, the parent is marked as exclude when child taxa are
 #' present in the same sample.
 #'
-#' @details The excluded taxa are referenced in the metric values function.
+#' @details The exclude taxa are referenced in the metric values function.
 #' These taxa are removed from the taxa richness metrics.  This is because these
-#' are coarser level taxa.
+#' are coarser level taxa when fine level taxa are present in the same sample.
 #'
 #' Exceptions is a 2 column data frame of synonyms or other exceptions.
 #' Column 1 is the name used in the TaxaID column the input data frame
@@ -42,18 +42,18 @@
 #' Default = "TAXAID".
 #' @param TaxaCount Column name in df_samptax for organism count.
 #' Default = "N_TAXA".
-#' @param Exclude Column name for Excluded Taxa results in returned data frame.
-#' Default = "Excluded".
+#' @param Exclude Column name for Exclude Taxa results in returned data frame.
+#' Default = "Exclude".
 #' @param TaxaLevels Column names in df_samptax that for phylogenetic names to
 #' be evaluated.
 #' Need to be in order from coarse to fine (i.e., Phylum to Species).
 #' @param Exceptions NA or two column data frame of synonyms or other
-#' exceptions.
+#' exceptions.  Default = NA
 #' Column 1 is the name used in the TaxaID column of df_samptax.
 #' Column 2 is the name used in the TaxaLevels columns of df_samptax.
 #'
 #' @return Returns a data frame of df_samptax with an additional column,
-#' ExcludedTaxa.
+#' Exclude.
 #'
 #' @examples
 #'
@@ -93,24 +93,29 @@
 #'                                     , "PhyloID"=c("Pisidiidae"))
 #'
 #' # Filter Data
-#' # df_samptax <- filter(df_samps_bugs, !!as.name(SampID) ==
-#' #                                                  "08BEA3478__2013-08-21_0")
-#' # df_tst_small <- markExcluded(df_samptax, SampID, TaxaID, TaxaCount
-#' #                              , TaxaLevels, Exceptions, Exclude)
+#' # df_samptax <- filter(df_samps_bugs
+#'                        , !!as.name(SampID) == "08BEA3478__2013-08-21_0")
+#' # df_tst_small <- markExcluded(df_samptax
+#'                                , SampID
+#'                                , TaxaID
+#'                                , TaxaCount
+#'                                , TaxaLevels
+#'                                , Exceptions
+#'                                , Exclude)
 #'
 #' # EXAMPLE 1
 #' df_tst <- markExcluded(df_samps_bugs
-#'                        , SampID="SampleID"
-#'                        , TaxaID="TaxaID"
+#'                        , SampID = "SampleID"
+#'                        , TaxaID = "TaxaID"
 #'                        , TaxaCount = "N_Taxa"
-#'                        , Exclude="Exclude_New"
-#'                        , TaxaLevels=TaxaLevels
-#'                        , Exceptions=Exceptions)
+#'                        , Exclude = "Exclude_New"
+#'                        , TaxaLevels = TaxaLevels
+#'                        , Exceptions = Exceptions)
 #'
 #' # Compare
 #' df_compare <- dplyr::summarise(dplyr::group_by(df_tst, SampleID)
-#'                                , Exclude_Import=sum(Exclude)
-#'                                , Exclude_R=sum(Exclude_New))
+#'                                , Exclude_Import = sum(Exclude)
+#'                                , Exclude_R = sum(Exclude_New))
 #' df_compare$Diff <- df_compare$Exclude_Import - df_compare$Exclude_R
 #' #
 #' tbl_diff <- table(df_compare$Diff)
@@ -131,7 +136,7 @@
 #' knitr::kable(df_compare[1:10, ])
 #' knitr::kable(df_compare[672:678, ])
 #' # samples with differences
-#' samp_diff <- as.data.frame(df_compare[df_compare[,"Diff"]!=0, "SampleID"])
+#' samp_diff <- as.data.frame(df_compare[df_compare[,"Diff"] != 0, "SampleID"])
 #' # results for only those with differences
 #' df_tst_diff <- df_tst[df_tst[,"SampleID"] %in% samp_diff$SampleID, ]
 #' # add diff field
@@ -169,7 +174,7 @@
 #' #
 #' tbl_class <- data.frame(results_names, results_values)
 #' names(tbl_class) <- c("Performance Metrics", "Percent")
-#' tbl_class$Percent <- round(tbl_class$Percent *100, 2)
+#' tbl_class$Percent <- round(tbl_class$Percent * 100, 2)
 #' kable(tbl_class)
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -178,16 +183,16 @@
 #' ## No Exceptions
 #'
 #' df_tst2 <- markExcluded(df_samps_bugs
-#'                         , SampID="SampleID"
-#'                         , TaxaID="TaxaID"
+#'                         , SampID = "SampleID"
+#'                         , TaxaID = "TaxaID"
 #'                         , TaxaCount = "N_Taxa"
-#'                         , Exclude="Exclude_New"
-#'                         , TaxaLevels=TaxaLevels
-#'                         , Exceptions=NA)
+#'                         , Exclude = "Exclude_New"
+#'                         , TaxaLevels = TaxaLevels
+#'                         , Exceptions = NA)
 #'
 #' # Compare
 #' df_compare2 <- dplyr::summarise(dplyr::group_by(df_tst2, SampleID)
-#'                                , Exclude_Import=sum(Exclude)
+#'                                , Exclude_Import = sum(Exclude)
 #'                                , Exclude_R=sum(Exclude_New))
 #' df_compare2$Diff <- df_compare2$Exclude_Import - df_compare2$Exclude_R
 #' #
@@ -248,7 +253,7 @@
 #' #
 #' tbl_class2 <- data.frame(results_names2, results_values2)
 #' names(tbl_class2) <- c("Performance Metrics", "Percent")
-#' tbl_class2$Percent <- round(tbl_class2$Percent *100, 2)
+#' tbl_class2$Percent <- round(tbl_class2$Percent * 100, 2)
 #' kable(tbl_class2)
 #
 #' @export
@@ -256,17 +261,21 @@ markExcluded <- function(df_samptax
                          , SampID="SAMPLEID"
                          , TaxaID="TAXAID"
                          , TaxaCount = "N_TAXA"
-                         , Exclude="EXCLUDED"
+                         , Exclude="EXCLUDE"
                          , TaxaLevels
-                         , Exceptions) {
+                         , Exceptions = NA) {
   ##FUNCTION.markExcluded.START
   #
   boo_QC <- FALSE
   if(isTRUE(boo_QC)){
+
     # Data
     df_samps_bugs <- readxl::read_excel(system.file("./extdata/Data_Benthos.xlsx"
                                             , package="BioMonTools")
                                 , guess_max=10^6)
+
+    # Recode to Function Variables
+    df_samptax <- df_samps_bugs
 
     # Variables
     SampID     <- "SampleID"
@@ -288,13 +297,9 @@ markExcluded <- function(df_samptax
                     , "SubGenus"
                     , "Species"
                     , "Variety")
-    # Taxa that should be treated as equivalent
     Exceptions <- data.frame("TaxaID"="Sphaeriidae"
                              , "PhyloID"="Pisidiidae")
 
-    # Recode to Function Variables
-    df_samptax <- df_samps_bugs
-    #
   }## IF ~ isTRUE(boo_QC) ~ END
 
   # global variable bindings ----
@@ -304,12 +309,11 @@ markExcluded <- function(df_samptax
   df_orig <- df_samptax
 
   # Upper Case
-  TaxaLevels <- toupper(TaxaLevels)
   names(df_samptax) <- toupper(names(df_samptax))
-  SampID <- toupper(SampID)
-  TaxaID <- toupper(TaxaID)
-  TaxaCount <- toupper(TaxaCount)
-
+  SampID            <- toupper(SampID)
+  TaxaID            <- toupper(TaxaID)
+  TaxaCount         <- toupper(TaxaCount)
+  TaxaLevels        <- toupper(TaxaLevels)
 
   # QC, check for taxa levels in df
   tl_check <- TaxaLevels %in% names(df_samptax)
@@ -323,12 +327,14 @@ markExcluded <- function(df_samptax
   msg_warn <- paste0("*WARNING*, "
                      , tl_missing_num
                      , " taxa levels missing from input data frame; \n "
-                     , paste(tl_missing, collapse=", ", sep="")
+                     , paste(tl_missing, collapse = ", ", sep = "")
                      , "\n")
   #warning(msg_warn, tl_missing_num>0) # (commented out)
   # cat(msg_warn)
   # utils::flush.console()
-  message(msg_warn)
+  if(tl_missing_num > 0) {
+    message(msg_warn)
+  }##IF ~ tl_missing_num
 
   # QC, remove tibble from data frame
   df_samptax <- as.data.frame(df_samptax)
@@ -337,19 +343,19 @@ markExcluded <- function(df_samptax
   #df_samptax <- as.data.frame(df_samptax)
   #df_samptax[, tl_present] <- as.character(df_samptax[, tl_present])
   #sapply(df_samptax[, tl_present], FUN=as.character)
-  df_samptax[,tl_present] <- as.character(unlist(df_samptax[,tl_present]))
+  df_samptax[,tl_present] <- as.character(unlist(df_samptax[, tl_present]))
 
   # QC, N_TAXA as numeric
   #df_samptax[, TaxaCount] <- as.numeric(df_samptax[, TaxaCount])
 
   # QC, count <1 ?
 
-  # QC, check for Excluded field (ask to continue if already present)
+  # QC, check for Exclude field (ask to continue if already present)
   # needs session to be interactive
   if (sum(Exclude %in% names(df_samptax))==1 & interactive()==TRUE) {
     ##IF.prompt.START
     #ask to continue
-    prompt_01 <- paste0("The user provided name for Excluded ('", Exclude
+    prompt_01 <- paste0("The user provided name for Exclude ('", Exclude
                         ,"') already exists in the user provided data.")
     prompt_02 <- "Do you wish to overwrite it with the results of this function (YES or NO)?"
     msg_prompt <- paste(prompt_01, prompt_02, sep="\n")
@@ -365,7 +371,7 @@ markExcluded <- function(df_samptax
   }##IF.prompt.END
 
 
-  # Add "FALSE" to Excluded Fields
+  # Add "FALSE" to Exclude Fields
   df_samptax[, Exclude] <- FALSE
 
 
@@ -525,18 +531,18 @@ markExcluded <- function(df_samptax
     # dplyr::inner_join with variable by
     # https://stackoverflow.com/questions/28399065/dplyr-join-on-by-a-b-where-a-and-b-are-variables-containing-strings/31612991
     # Experiment so by_var is ok
-    by_var <- c(stats::setNames(nm=by_x_1, by_y_1), stats::setNames(nm=by_x_2
+    by_var <- c(stats::setNames(nm = by_x_1, by_y_1), stats::setNames(nm = by_x_2
                                                                     , by_y_2))
 
-    df_Exclude <- dplyr::left_join(df_Exclude, i_count_dups, by=by_var)
+    df_Exclude <- dplyr::left_join(df_Exclude, i_count_dups, by = by_var)
     #dim(df_Exclude)
 
     # Update Exclude (only for TRUE)
     df_Exclude[is.na(df_Exclude[,"count_tl"]), "count_tl"] <- FALSE
-    df_Exclude[df_Exclude[,"count_tl"]==TRUE, Exclude] <- TRUE
+    df_Exclude[df_Exclude[,"count_tl"] == TRUE, Exclude] <- TRUE
     # Remove "count_tl"
     col_drop <- match("count_tl", names(df_Exclude))
-    df_Exclude <- df_Exclude[,-col_drop]
+    df_Exclude <- df_Exclude[, -col_drop]
     #
   }##for.i.END
   #

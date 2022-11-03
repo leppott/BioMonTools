@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 0.5.0.9123 (2022-11-03)
+
+* refactor: Modify default term for markExcl from Excluded to Exclude
+    + Ensure is consistent in function, example, vignette
+* refactor: markExcl warning don't trigger for 0 levels missing, Issue #80
+* refcator: markExcl add default of NA to Exceptions parameter, Issue #80
+
 ## Changes in version 0.5.0.9122 (2022-09-29)
 
 * docs: Typo in MetricNames.xlsx (Isoptera instead of Isopoda)

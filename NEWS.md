@@ -4,9 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-09-29 11:22:29
+    #> Last Update: 2022-11-03 09:01:35
 
 # Version History
+
+## Changes in version 0.5.0.9123 (2022-11-03)
+
+-   refactor: Modify default term for markExcl from Excluded to Exclude
+    -   Ensure is consistent in function, example, vignette
+-   refactor: markExcl warning don’t trigger for 0 levels missing, Issue
+    \#80
+-   refcator: markExcl add default of NA to Exceptions parameter, Issue
+    \#80
 
 ## Changes in version 0.5.0.9122 (2022-09-29)
 

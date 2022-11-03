@@ -2,16 +2,16 @@
 % Please edit documentation in R/markExcluded.R
 \name{markExcluded}
 \alias{markExcluded}
-\title{Mark "excluded" (non-distinct / non-unique / ambiguous) taxa}
+\title{Mark "exclude" (non-distinct / non-unique / ambiguous) taxa}
 \usage{
 markExcluded(
   df_samptax,
   SampID = "SAMPLEID",
   TaxaID = "TAXAID",
   TaxaCount = "N_TAXA",
-  Exclude = "EXCLUDED",
+  Exclude = "EXCLUDE",
   TaxaLevels,
-  Exceptions
+  Exceptions = NA
 )
 }
 \arguments{
@@ -26,39 +26,39 @@ Default = "TAXAID".}
 \item{TaxaCount}{Column name in df_samptax for organism count.
 Default = "N_TAXA".}
 
-\item{Exclude}{Column name for Excluded Taxa results in returned data frame.
-Default = "Excluded".}
+\item{Exclude}{Column name for Exclude Taxa results in returned data frame.
+Default = "Exclude".}
 
 \item{TaxaLevels}{Column names in df_samptax that for phylogenetic names to
 be evaluated.
 Need to be in order from coarse to fine (i.e., Phylum to Species).}
 
 \item{Exceptions}{NA or two column data frame of synonyms or other
-exceptions.
+exceptions.  Default = NA
 Column 1 is the name used in the TaxaID column of df_samptax.
 Column 2 is the name used in the TaxaLevels columns of df_samptax.}
 }
 \value{
 Returns a data frame of df_samptax with an additional column,
-ExcludedTaxa.
+Exclude.
 }
 \description{
 Takes as an input data frame with Sample ID, Taxa ID, and
 phlogenetic name fields and returns a similar dataframe with a column for
-"excluded" taxa (TRUE or FALSE).
+"exclude" taxa (TRUE or FALSE).
 
-Excluded taxa are refered to by multiple names; ambiguous, non-distinct, and
-non-unique. The "excluded" name was chosen so as to be consistent with
+Exclude taxa are refered to by multiple names; ambiguous, non-distinct, and
+non-unique. The "exclude" name was chosen so as to be consistent with
 "non-target" taxa. That is, taxa marked as "TRUE" are treated as
-undesireables.  Excluded taxa are those that are present in a sample when
+undesireables.  Exclude taxa are those that are present in a sample when
 taxa of the same group are present in the same sample are identified finer
-level.  That is, the parent is marked as excluded when child taxa are
+level.  That is, the parent is marked as exclude when child taxa are
 present in the same sample.
 }
 \details{
-The excluded taxa are referenced in the metric values function.
+The exclude taxa are referenced in the metric values function.
 These taxa are removed from the taxa richness metrics.  This is because these
-are coarser level taxa.
+are coarser level taxa when fine level taxa are present in the same sample.
 
 Exceptions is a 2 column data frame of synonyms or other exceptions.
 Column 1 is the name used in the TaxaID column the input data frame
@@ -115,24 +115,29 @@ Exceptions <- data.frame("TaxaID"=c("Sphaeriidae")
                                     , "PhyloID"=c("Pisidiidae"))
 
 # Filter Data
-# df_samptax <- filter(df_samps_bugs, !!as.name(SampID) ==
-#                                                  "08BEA3478__2013-08-21_0")
-# df_tst_small <- markExcluded(df_samptax, SampID, TaxaID, TaxaCount
-#                              , TaxaLevels, Exceptions, Exclude)
+# df_samptax <- filter(df_samps_bugs
+                       , !!as.name(SampID) == "08BEA3478__2013-08-21_0")
+# df_tst_small <- markExcluded(df_samptax
+                               , SampID
+                               , TaxaID
+                               , TaxaCount
+                               , TaxaLevels
+                               , Exceptions
+                               , Exclude)
 
 # EXAMPLE 1
 df_tst <- markExcluded(df_samps_bugs
-                       , SampID="SampleID"
-                       , TaxaID="TaxaID"
+                       , SampID = "SampleID"
+                       , TaxaID = "TaxaID"
                        , TaxaCount = "N_Taxa"
-                       , Exclude="Exclude_New"
-                       , TaxaLevels=TaxaLevels
-                       , Exceptions=Exceptions)
+                       , Exclude = "Exclude_New"
+                       , TaxaLevels = TaxaLevels
+                       , Exceptions = Exceptions)
 
 # Compare
 df_compare <- dplyr::summarise(dplyr::group_by(df_tst, SampleID)
-                               , Exclude_Import=sum(Exclude)
-                               , Exclude_R=sum(Exclude_New))
+                               , Exclude_Import = sum(Exclude)
+                               , Exclude_R = sum(Exclude_New))
 df_compare$Diff <- df_compare$Exclude_Import - df_compare$Exclude_R
 #
 tbl_diff <- table(df_compare$Diff)
@@ -153,7 +158,7 @@ kable(tbl_results)
 knitr::kable(df_compare[1:10, ])
 knitr::kable(df_compare[672:678, ])
 # samples with differences
-samp_diff <- as.data.frame(df_compare[df_compare[,"Diff"]!=0, "SampleID"])
+samp_diff <- as.data.frame(df_compare[df_compare[,"Diff"] != 0, "SampleID"])
 # results for only those with differences
 df_tst_diff <- df_tst[df_tst[,"SampleID"] \%in\% samp_diff$SampleID, ]
 # add diff field
@@ -191,7 +196,7 @@ results_values <- c(class_sens
 #
 tbl_class <- data.frame(results_names, results_values)
 names(tbl_class) <- c("Performance Metrics", "Percent")
-tbl_class$Percent <- round(tbl_class$Percent *100, 2)
+tbl_class$Percent <- round(tbl_class$Percent * 100, 2)
 kable(tbl_class)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -200,16 +205,16 @@ kable(tbl_class)
 ## No Exceptions
 
 df_tst2 <- markExcluded(df_samps_bugs
-                        , SampID="SampleID"
-                        , TaxaID="TaxaID"
+                        , SampID = "SampleID"
+                        , TaxaID = "TaxaID"
                         , TaxaCount = "N_Taxa"
-                        , Exclude="Exclude_New"
-                        , TaxaLevels=TaxaLevels
-                        , Exceptions=NA)
+                        , Exclude = "Exclude_New"
+                        , TaxaLevels = TaxaLevels
+                        , Exceptions = NA)
 
 # Compare
 df_compare2 <- dplyr::summarise(dplyr::group_by(df_tst2, SampleID)
-                               , Exclude_Import=sum(Exclude)
+                               , Exclude_Import = sum(Exclude)
                                , Exclude_R=sum(Exclude_New))
 df_compare2$Diff <- df_compare2$Exclude_Import - df_compare2$Exclude_R
 #
@@ -270,6 +275,6 @@ results_values2 <- c(class_sens2
 #
 tbl_class2 <- data.frame(results_names2, results_values2)
 names(tbl_class2) <- c("Performance Metrics", "Percent")
-tbl_class2$Percent <- round(tbl_class2$Percent *100, 2)
+tbl_class2$Percent <- round(tbl_class2$Percent * 100, 2)
 kable(tbl_class2)
 }

@@ -80,7 +80,7 @@ Required Fields:
 
     + Non-unique/non-distinct taxa are excluded from richness metric 
     calculations but are counted in the other metrics. Appendix B of the 
-    ‘BCGcalc_README_20180919’ Word document describes the Excluded Taxa Decision
+    ‘BCGcalc_README_20180919’ Word document describes the Exclude Taxa Decision
     Criteria that was used during BCG model calibration. 
 
     + Valid values: TRUE or FALSE 
@@ -224,17 +224,17 @@ knitr::kable(head(df.metval.ci), caption = "Metric Calculation, select metrics")
 
 ## markExcluded
 Takes as an input data frame with Sample ID, Taxa ID, and phlogenetic name 
-fields and returns a similar dataframe with a column for "excluded" taxa (TRUE 
+fields and returns a similar dataframe with a column for "exclude" taxa (TRUE 
 or FALSE).
 
-Excluded taxa are refered to by multiple names; ambiguous, non-distinct, and 
-non-unique. The "excluded" name was chosen so as to be consistent with 
-"non-target" taxa. That is, taxa marked as "TRUE" are treated as undesireables. 
-Excluded taxa are those that are present in a sample when taxa of the same group
-are present in the same sample are identified finer level. That is, the parent 
-is marked as excluded when child taxa are present in the same sample.
+Exclude taxa are refered to by multiple names; ambiguous, non-distinct, and 
+non-unique. The "exclude" name was chosen so as to be consistent with 
+"non-target" taxa. That is, taxa marked as "TRUE" are treated as undesirables. 
+Exclude taxa are those that are present in a sample when taxa of the same group
+are present in the same sample are identified at a finer level. That is, the 
+parent is marked as exclude when child taxa are present in the same sample.
 
-The excluded taxa are referenced in the metric values function. These taxa are 
+The exclude taxa are referenced in the metric values function. These taxa are 
 removed from the taxa richness metrics. This is because these are coarser level 
 taxa.
 
@@ -255,7 +255,7 @@ data will be skipped.
 The spelling of names must be consistent (including case) for this function to 
 produce the intended output.
 
-Returns a data frame of df_samptax with an additional column, ExcludedTaxa.
+Returns a data frame of df_samptax with an additional column, Exclude.
 
 ```{r Excl01}
 # Packages
