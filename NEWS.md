@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-11-03 09:01:35
+    #> Last Update: 2022-11-08 11:31:39
 
 # Version History
+
+## Changes in version 0.5.0.9124 (2022-11-08)
+
+-   fix: Tweak secondary metric name in MetricScoring.xlsx
+    -   GA_DNR_Fish_2020
 
 ## Changes in version 0.5.0.9123 (2022-11-03)
 
