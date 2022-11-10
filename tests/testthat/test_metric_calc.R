@@ -8,30 +8,30 @@ testthat::test_that("metrics, bugs, sum of parts", {
 
   ### BCG ----
   #### nt----
-  val_obj <- df$nt_BCG_att1i234b5
-  val_exp <- df$nt_BCG_att1i23 + df$nt_BCG_att4b + df$nt_BCG_att5
+  val_obj <- df$nt_BCG_att1i234b
+  val_exp <- df$nt_BCG_att1i23 + df$nt_BCG_att4b
   testthat::expect_equal(val_obj, val_exp)
 
-  val_obj <- df$nt_BCG_att1i234w5
-  val_exp <- df$nt_BCG_att1i23 + df$nt_BCG_att4w + df$nt_BCG_att5
+  val_obj <- df$nt_BCG_att4w5
+  val_exp <- df$nt_BCG_att4w + df$nt_BCG_att5
   testthat::expect_equal(val_obj, val_exp)
 
   #### pi----
-  val_obj <- df$pi_BCG_att1i234b5
-  val_exp <- df$pi_BCG_att1i23 + df$pi_BCG_att4b + df$pi_BCG_att5
+  val_obj <- df$pi_BCG_att1i234b
+  val_exp <- df$pi_BCG_att1i23 + df$pi_BCG_att4b
   testthat::expect_equal(val_obj, val_exp)
 
-  val_obj <- df$pi_BCG_att1i234w5
-  val_exp <- df$pi_BCG_att1i23 + df$pi_BCG_att4w + df$pi_BCG_att5
+  val_obj <- df$pi_BCG_att4w5
+  val_exp <- df$pi_BCG_att4w + df$pi_BCG_att5
   testthat::expect_equal(val_obj, val_exp)
 
   #### pt----
-  val_obj <- df$pt_BCG_att1i234b5
-  val_exp <- df$pt_BCG_att1i23 + df$pt_BCG_att4b + df$pt_BCG_att5
+  val_obj <- df$pt_BCG_att1i234b
+  val_exp <- df$pt_BCG_att1i23 + df$pt_BCG_att4b
   testthat::expect_equal(val_obj, val_exp)
 
-  val_obj <- df$pt_BCG_att1i234w5
-  val_exp <- df$pt_BCG_att1i23 + df$pt_BCG_att4w + df$pt_BCG_att5
+  val_obj <- df$pt_BCG_att4w5
+  val_exp <- df$pt_BCG_att4w + df$pt_BCG_att5
   testthat::expect_equal(val_obj, val_exp)
 
 })## test ~ sum of parts
@@ -214,7 +214,9 @@ testthat::test_that("metric values_scores, PA Freestone IBI", {
                  , "UFC"
                  , "ELEVATION_ATTR"
                  , "GRADIENT_ATTR"
-                 , "WSAREA_ATTR")
+                 , "WSAREA_ATTR"
+                 , "HABSTRUCT"
+                 , "BCG_ATTR2")
   df_bugs[, col_extra] <- NA
   df_bugs[, "NONTARGET"] <- FALSE
 
@@ -1261,7 +1263,9 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
                         , UFC = NA_integer_
                         , ELEVATION_ATTR = NA_character_
                         , GRADIENT_ATTR = NA_character_
-                        , WSAREA_ATTR = NA_character_)
+                        , WSAREA_ATTR = NA_character_
+                        , HABSTRUCT = NA_character_
+                        , BCG_ATTR2 = NA_character_)
   # metric values
   df_metval <- BioMonTools::metric.values(df_bugs, "bugs", boo.Shiny = TRUE)
   #1

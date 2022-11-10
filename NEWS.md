@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-11-08 11:31:39
+    #> Last Update: 2022-11-10 07:48:08
 
 # Version History
+
+## Changes in version 0.5.0.9125 (2022-11-10)
+
+-   fix: Update and add some metrics
+    -   metric_values.R
+    -   MetricNames.xlsx
 
 ## Changes in version 0.5.0.9124 (2022-11-08)
 

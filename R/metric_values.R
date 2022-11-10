@@ -2179,6 +2179,9 @@ metric.values.bugs <- function(myDF
              , nt_habit_climb = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                          & HABIT_CB == TRUE]
                                                   , na.rm = TRUE)
+             , nt_habit_climbcling = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & (HABIT_CB == TRUE
+                                                           | HABIT_CN == TRUE)])
              , nt_habit_cling = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                          & HABIT_CN == TRUE]
                                                   , na.rm = TRUE)
@@ -2188,11 +2191,15 @@ metric.values.bugs <- function(myDF
              , nt_habit_swim = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                         & HABIT_SW == TRUE]
                                                  , na.rm = TRUE)
+
              ### pi_habit----
              , pi_habit_burrow = 100 * sum(N_TAXA[HABIT_BU == TRUE]
                                          , na.rm = TRUE) / ni_total
              , pi_habit_climb = 100 * sum(N_TAXA[HABIT_CB == TRUE]
                                         , na.rm = TRUE) / ni_total
+             , pi_habit_climbcling = 100 * sum(N_TAXA[HABIT_CB == TRUE
+                                                      | HABIT_CN == TRUE]
+                                       , na.rm = TRUE) / ni_total
              , pi_habit_cling = 100 * sum(N_TAXA[HABIT_CN == TRUE]
                                         , na.rm = TRUE) / ni_total
              , pi_habit_sprawl = 100 * sum(N_TAXA[HABIT_SP == TRUE]
@@ -2200,11 +2207,12 @@ metric.values.bugs <- function(myDF
              , pi_habit_swim = 100 * sum(N_TAXA[HABIT_SW == TRUE]
                                        , na.rm = TRUE) / ni_total
               ### pt_habit----
-             , pt_habit_burrow = 100 * nt_habit_burrow / nt_total
-             , pt_habit_climb = 100 * nt_habit_climb / nt_total
-             , pt_habit_cling = 100 * nt_habit_cling / nt_total
-             , pt_habit_sprawl = 100 * nt_habit_sprawl / nt_total
-             , pt_habit_swim = 100 * nt_habit_swim / nt_total
+             , pt_habit_burrow =     100 * nt_habit_burrow / nt_total
+             , pt_habit_climb =      100 * nt_habit_climb / nt_total
+             , pt_habit_climbcling = 100 * nt_habit_climbcling / nt_total
+             , pt_habit_cling =      100 * nt_habit_cling / nt_total
+             , pt_habit_sprawl =     100 * nt_habit_sprawl / nt_total
+             , pt_habit_swim =       100 * nt_habit_swim / nt_total
              ## Oddball
              # might not need habit != cling for Pleco
              , pi_habit_cling_PlecoNoCling = 100 * sum(N_TAXA[HABIT_CN == TRUE
@@ -2480,28 +2488,27 @@ metric.values.bugs <- function(myDF
            , nt_BCG_att4b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                    & (BCG_ATTR2 == "4_BETTER")]
                                             , na.rm = TRUE)
+           , nt_BCG_att4m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & (BCG_ATTR2 == "4_MIDDLE")]
+                                             , na.rm = TRUE)
            , nt_BCG_att4w = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                     & (BCG_ATTR2 == "4_WORSE")]
                                              , na.rm = TRUE)
-          , nt_BCG_att1i234b5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+          , nt_BCG_att1i234b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                   & BCG_ATTR2 == "4_BETTER"]
                                                   , na.rm = TRUE) +
                               dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                        & (BCG_ATTR == "1I"
                                                           | BCG_ATTR == "2"
-                                                          | BCG_ATTR == "3"
-                                                          | BCG_ATTR == "5")]
+                                                          | BCG_ATTR == "3")]
                                                 , na.rm = TRUE)
 
-          , nt_BCG_att1i234w5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+          , nt_BCG_att4w5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                       & BCG_ATTR2 == "4_WORSE"]
                                                   , na.rm = TRUE) +
-            dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                     & (BCG_ATTR == "1I"
-                                        | BCG_ATTR == "2"
-                                        | BCG_ATTR == "3"
-                                        | BCG_ATTR == "5")]
-                              , na.rm = TRUE)
+                                dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                         & (BCG_ATTR == "5")]
+                                                  , na.rm = TRUE)
 
             ### BCG_nt_Phylo
             , nt_Ephem_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -2605,21 +2612,19 @@ metric.values.bugs <- function(myDF
                                      , na.rm = TRUE) / ni_total
             , pi_BCG_att4b = 100 * sum(N_TAXA[(BCG_ATTR2 == "4_BETTER")]
                                              , na.rm = TRUE) / ni_total
+            , pi_BCG_att4m = 100 * sum(N_TAXA[(BCG_ATTR2 == "4_MIDDLE")]
+                                     , na.rm = TRUE) / ni_total
             , pi_BCG_att4w = 100 * sum(N_TAXA[(BCG_ATTR2 == "4_WORSE")]
                                              , na.rm = TRUE) / ni_total
-            , pi_BCG_att1i234b5 = 100 * (sum(N_TAXA[BCG_ATTR2 == "4_BETTER"]
+            , pi_BCG_att1i234b = 100 * (sum(N_TAXA[BCG_ATTR2 == "4_BETTER"]
                                                     , na.rm = TRUE) +
                                          sum(N_TAXA[BCG_ATTR == "1I"
                                                     | BCG_ATTR == "2"
-                                                    | BCG_ATTR == "3"
-                                                    | BCG_ATTR == "5"]
+                                                    | BCG_ATTR == "3"]
                                                    , na.rm = TRUE)) / ni_total
-            , pi_BCG_att1i234w5 = 100 * (sum(N_TAXA[BCG_ATTR2 == "4_WORSE"]
+            , pi_BCG_att4w5 = 100 * (sum(N_TAXA[BCG_ATTR2 == "4_WORSE"]
                                              , na.rm = TRUE) +
-                                           sum(N_TAXA[BCG_ATTR == "1I"
-                                                      | BCG_ATTR == "2"
-                                                      | BCG_ATTR == "3"
-                                                      | BCG_ATTR == "5"]
+                                           sum(N_TAXA[BCG_ATTR == "5"]
                                                , na.rm = TRUE)) / ni_total
 
             ### BCG_pi_Phylo
@@ -2639,37 +2644,37 @@ metric.values.bugs <- function(myDF
                                           , na.rm = TRUE) / ni_total
 
             ### BCG_pt----
-            , pt_BCG_att1 = 100 * nt_BCG_att1 / nt_total
-            , pt_BCG_att1i = 100 * nt_BCG_att1i / nt_total
-            , pt_BCG_att1m = 100 * nt_BCG_att1m / nt_total
-            , pt_BCG_att12 = 100 * nt_BCG_att12 / nt_total
-            , pt_BCG_att1i2 = 100 * nt_BCG_att1i2 / nt_total
-            , pt_BCG_att123 = 100 * nt_BCG_att123 / nt_total
+            , pt_BCG_att1 =    100 * nt_BCG_att1 / nt_total
+            , pt_BCG_att1i =   100 * nt_BCG_att1i / nt_total
+            , pt_BCG_att1m =   100 * nt_BCG_att1m / nt_total
+            , pt_BCG_att12 =   100 * nt_BCG_att12 / nt_total
+            , pt_BCG_att1i2 =  100 * nt_BCG_att1i2 / nt_total
+            , pt_BCG_att123 =  100 * nt_BCG_att123 / nt_total
             , pt_BCG_att1i23 = 100 * nt_BCG_att1i23 / nt_total
             , pt_BCG_att1i236i = 100 * nt_BCG_att1i236i / nt_total
-            , pt_BCG_att2 = 100 * nt_BCG_att2 / nt_total
-            , pt_BCG_att23 = 100 * nt_BCG_att23 / nt_total
+            , pt_BCG_att2 =   100 * nt_BCG_att2 / nt_total
+            , pt_BCG_att23 =  100 * nt_BCG_att23 / nt_total
             , pt_BCG_att234 = 100 * nt_BCG_att234 / nt_total
-            , pt_BCG_att3 = 100 * nt_BCG_att3 / nt_total
-            , pt_BCG_att4 = 100 * nt_BCG_att4 / nt_total
-            , pt_BCG_att45 = 100 * nt_BCG_att45 / nt_total
+            , pt_BCG_att3 =   100 * nt_BCG_att3 / nt_total
+            , pt_BCG_att4 =   100 * nt_BCG_att4 / nt_total
+            , pt_BCG_att45 =  100 * nt_BCG_att45 / nt_total
             , pt_BCG_att456 = 100 * nt_BCG_att456 / nt_total
-            , pt_BCG_att5 = 100 * nt_BCG_att5 / nt_total
-            , pt_BCG_att56 = 100 * nt_BCG_att56 / nt_total
+            , pt_BCG_att5 =   100 * nt_BCG_att5 / nt_total
+            , pt_BCG_att56 =  100 * nt_BCG_att56 / nt_total
             , pt_BCG_att56t = 100 * nt_BCG_att56t / nt_total
-            , pt_BCG_att6 = 100 * nt_BCG_att6 / nt_total
-            , pt_BCG_att6i = 100 * nt_BCG_att6i / nt_total
-            , pt_BCG_att6m = 100 * nt_BCG_att6m / nt_total
-            , pt_BCG_att6t = 100 * nt_BCG_att6t / nt_total
-            , pt_BCG_attNA = 100 * nt_BCG_attNA / nt_total
-
-            , pt_BCG_att4b = 100 * nt_BCG_att4b / nt_total
-            , pt_BCG_att4w = 100 * nt_BCG_att4w / nt_total
-            , pt_BCG_att1i234b5 = 100 * nt_BCG_att1i234b5 / nt_total
-            , pt_BCG_att1i234w5 = 100 * nt_BCG_att1i234w5 / nt_total
+            , pt_BCG_att6 =   100 * nt_BCG_att6 / nt_total
+            , pt_BCG_att6i =  100 * nt_BCG_att6i / nt_total
+            , pt_BCG_att6m =  100 * nt_BCG_att6m / nt_total
+            , pt_BCG_att6t =  100 * nt_BCG_att6t / nt_total
+            , pt_BCG_attNA =  100 * nt_BCG_attNA / nt_total
+            , pt_BCG_att4b =  100 * nt_BCG_att4b / nt_total
+            , pt_BCG_att4m =  100 * nt_BCG_att4m / nt_total
+            , pt_BCG_att4w =  100 * nt_BCG_att4w / nt_total
+            , pt_BCG_att1i234b = 100 * nt_BCG_att1i234b / nt_total
+            , pt_BCG_att4w5 = 100 * nt_BCG_att4w5 / nt_total
 
             # BCG_pt_Phylo
-            , pt_EPT_BCG_att123 = 100 * nt_EPT_BCG_att123 / nt_total
+            , pt_EPT_BCG_att123 =  100 * nt_EPT_BCG_att123 / nt_total
             , pt_EPT_BCG_att1i23 = 100 * nt_EPT_BCG_att1i23 / nt_total
 
 
