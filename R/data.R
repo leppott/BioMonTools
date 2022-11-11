@@ -114,7 +114,7 @@
 #' @description A dataset with example taxa data and attributes for calculating
 #' metric values.
 #'
-#' @format A data frame with 598 observations on the following 37 variables.
+#' @format A data frame with 598 observations on the following 38 variables.
 #' \describe{
 #' \item{\code{INDEX_NAME}}{a character vector}
 #' \item{\code{Index_Region}}{a character vector}
@@ -146,13 +146,14 @@
 #' \item{\code{FFG2}}{a logical vector}
 #' \item{\code{TolVal2}}{a logical vector}
 #' \item{\code{UFC}}{a character vector}
-#' \item{\code{UFC_Comment}}{a character vector}
+#' \item{\code{UFC_Comment}}{a numeric vector}
 #' \item{\code{SubClass}}{a character vector}
 #' \item{\code{Elevation_Attr}}{a character vector}
 #' \item{\code{Gradient_Attr}}{a character vector}
 #' \item{\code{WSArea_Attr}}{a character vector}
-#' \item{\code{HabStruct}}{a character vector}#'
+#' \item{\code{HabStruct}}{a character vector}
 #' \item{\code{BCG_Attr2}}{a character vector}
+#' \item{\code{AirBreather}}{a logical vector}
 #'}
 #' @source example data
 "data_benthos_PacNW"

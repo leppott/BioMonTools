@@ -768,6 +768,7 @@ metric.values.bugs <- function(myDF
     pi_BCG_att1i234b5 <- pt_BCG_att1i234b5 <- nt_BCG_att1i234w5 <-
     pi_BCG_att1i234w5 <- pt_BCG_att1i234w5 <- NULL
 
+
   # define pipe
   `%>%` <- dplyr::`%>%`
 
@@ -794,7 +795,8 @@ metric.values.bugs <- function(myDF
                     , "FFG2", "HABITAT", "ELEVATION_ATTR"
                     , "GRADIENT_ATTR", "WSAREA_ATTR", "HABSTRUCT"
                     , "BCG_ATTR2")
-  col.req_logical <- c("EXCLUDE", "NONTARGET", "LONGLIVED", "NOTEWORTHY")
+  col.req_logical <- c("EXCLUDE", "NONTARGET"
+                       , "LONGLIVED", "NOTEWORTHY", "AIRBREATHER")
   col.req_numeric <- c("N_TAXA", "TOLVAL", "TOLVAL2", "UFC")
   col.req <- c(col.req_character, col.req_logical, col.req_numeric)
   # col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
@@ -1456,8 +1458,8 @@ metric.values.bugs <- function(myDF
              , nt_CruMol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                     & PHYLUM == "MOLLUSCA"]
                                              , na.rm = TRUE) +
-               dplyr::n_distinct(TAXAID[EXCLUDE != TRUE &
-                                          SUBPHYLUM == "CRUSTACEA"]
+                           dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & SUBPHYLUM == "CRUSTACEA"]
                                  , na.rm = TRUE)
              , nt_Deca = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                   & ORDER == "DECAPODA"]
@@ -1603,6 +1605,9 @@ metric.values.bugs <- function(myDF
                                  , na.rm = TRUE) / ni_total
              , pi_Corb = 100 * sum(N_TAXA[GENUS == "CORBICULA"]
                                  , na.rm = TRUE) / ni_total
+             , pi_CorixPhys = 100 * sum(N_TAXA[FAMILY == "CORIXIDAE"
+                                               | FAMILY == "PHYSIDAE"]
+                                        , na.rm = TRUE) / ni_total
              , pi_CraCaeGam = 100 * sum(N_TAXA[GENUS == "CRANGONYX"
                                              | GENUS == "CAECIDOTEA"
                                              | GENUS == "GAMMARUS"]
@@ -2874,6 +2879,15 @@ metric.values.bugs <- function(myDF
                                                  & EXCLUDE != TRUE]
                                           , na.rm = TRUE)
           , pt_oneind = 100 * nt_oneind / nt_total
+
+          , nt_airbreath = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & AIRBREATHER == TRUE]
+                                             , na.rm = TRUE)
+          , pi_airbreath = 100 * sum(N_TAXA[AIRBREATHER == TRUE]
+                                     , na.rm = TRUE) / ni_total
+          , pt_airbreath = 100 * nt_airbreath / nt_total
+
+
 
              #
         , .groups = "drop_last")## met.val.END

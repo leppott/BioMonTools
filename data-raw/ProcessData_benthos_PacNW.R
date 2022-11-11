@@ -42,6 +42,8 @@ df$BCG_Attr2 <- NA_character_
 df[df$TaxaID == "Ablabesmyia", "BCG_Attr2"] <- "4_BETTER"
 df[df$TaxaID == "Aeshnidae", "BCG_Attr2"] <- "4_WORSE"
 
+# 20221111
+df$AirBreather <- NA
 
 # 1.2. Process Data
 View(df)

@@ -6,6 +6,43 @@ testthat::test_that("metrics, bugs, sum of parts", {
   # data
   df <- metric.values(data_benthos_PacNW, "bugs")
 
+  ### Phylo ----
+  #### nt----
+  val_obj <- df$nt_EPT
+  val_exp <- df$nt_Ephem + df$nt_Pleco + df$nt_Trich
+  testthat::expect_equal(val_obj, val_exp)
+  #### pi ----
+  val_obj <- df$pi_EPT
+  val_exp <- df$pi_Ephem + df$pi_Pleco + df$pi_Trich
+  testthat::expect_equal(val_obj, val_exp)
+  #### pt ----
+
+
+  # EPT, COET, ET, ECT, OET, POET
+  # SphaerCorb
+  # Spion2Poly
+  # LucinTellin
+  # JugaFlumi
+  # EphemNoCae
+  # DiptNonIns
+  # AmpIsop
+  # AmpeHaust
+  # AmphIsop
+  # PolyNoSpion
+  # CruMol
+
+  # CHIRONOM
+  # Orth2Chi
+  # Tanyp2Chi
+
+  # All percent, 0 - 100
+
+  # Dom, one less than (or equal to) the next
+
+  # Habit, CN + CB
+
+  # Thermal, some "add" ones
+
   ### BCG ----
   #### nt----
   val_obj <- df$nt_BCG_att1i234b
@@ -216,7 +253,8 @@ testthat::test_that("metric values_scores, PA Freestone IBI", {
                  , "GRADIENT_ATTR"
                  , "WSAREA_ATTR"
                  , "HABSTRUCT"
-                 , "BCG_ATTR2")
+                 , "BCG_ATTR2"
+                 , "AIRBREATHER")
   df_bugs[, col_extra] <- NA
   df_bugs[, "NONTARGET"] <- FALSE
 
@@ -1265,7 +1303,8 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
                         , GRADIENT_ATTR = NA_character_
                         , WSAREA_ATTR = NA_character_
                         , HABSTRUCT = NA_character_
-                        , BCG_ATTR2 = NA_character_)
+                        , BCG_ATTR2 = NA_character_
+                        , AIRBREATHER = NA)
   # metric values
   df_metval <- BioMonTools::metric.values(df_bugs, "bugs", boo.Shiny = TRUE)
   #1
@@ -1484,8 +1523,22 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
 # Fish ----
 # MBSS or GA DNR
 
+# Sum components
+# some phylo
+# BCG
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Algae----
+
+# Sum components
+# BC 1 + 2
+# Salinity 1 + 2 and 3 + 4
+# Trophic 12, 456, 56
+# O 345
+# PT 12
+
+
+
 ## met val_sc, IDEM Diatom IBIs ----
 testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
   ### _Metric.Values ----
