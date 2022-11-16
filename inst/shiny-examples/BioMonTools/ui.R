@@ -10,7 +10,7 @@
 
 # Define UI
 # shinyUI(
-#   navbarPage("BioMonTools, v0.5.0.9109"
+#   navbarPage("BioMonTools, v1.0.0.9001"
 #              , tab_Help()
 #              #, tab_Combine()
 #              , tab_Import()

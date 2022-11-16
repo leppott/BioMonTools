@@ -18,12 +18,12 @@ wd <- getwd() # assume is package directory
 # 1.1. Import Data
 #myFile <- "data_bio2rarify_500.tsv"
 myFile <- "data_bio2rarify_3col_600.tsv"
-df <- read.delim(file.path(wd,"data-raw",myFile))
+df <- read.delim(file.path(wd, "data-raw", "data", myFile))
 
 # 1.2. Process Data
-View(df)
+#View(df)
 # QC check
-dim(df)
+#dim(df)
 # structure
 str(df)
 

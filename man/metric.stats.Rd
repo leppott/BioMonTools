@@ -62,7 +62,7 @@ Default = NULL.}
 }
 \value{
 data frame of metrics (rows) and statistics (columns).
-This is in long format with columns for INDEX_REGION, RefStatus, and
+This is in long format with columns for INDEX_CLASS, RefStatus, and
 DataType.
 }
 \description{
@@ -82,7 +82,7 @@ Statistics will be generated for up to 6 combinations for RefStatus (Ref,
 Oth, Str) and DataType (Cal, Ver).
 
 The resulting dataframe will have the statistics in columns with the first 4
-columns as:  INDEX_REGION (if col_Subset not provided), col_RefStatus,
+columns as:  INDEX_CLASS (if col_Subset not provided), col_RefStatus,
 col_DataType, and Metric_Name.
 
 The following statistics are generated with na.rm = TRUE.
@@ -126,12 +126,12 @@ names(df_bugs)[names(df_bugs) \%in\% "BenSampID"] <- "SAMPLEID"
 names(df_bugs)[names(df_bugs) \%in\% "TaxaID"] <- "TAXAID"
 names(df_bugs)[names(df_bugs) \%in\% "Individuals"] <- "N_TAXA"
 names(df_bugs)[names(df_bugs) \%in\% "Exclude"] <- "EXCLUDE"
-names(df_bugs)[names(df_bugs) \%in\% "Class"] <- "INDEX_REGION"
+names(df_bugs)[names(df_bugs) \%in\% "Class"] <- "INDEX_CLASS"
 names(df_bugs)[names(df_bugs) \%in\% "Unique_ID"] <- "SITEID"
 
 # Calc Metrics
 cols_keep <- c("Ref_v1", "CalVal_Class4", "SITEID", "CollDate", "CollMeth")
-# INDEX_NAME and INDEX_REGION kept by default
+# INDEX_NAME and INDEX_CLASS kept by default
 df_metval <- metric.values(df_bugs, "bugs", fun.cols2keep = cols_keep)
 
 # Calc Stats
@@ -144,17 +144,27 @@ RefStatus_Oth <- "Other"
 col_DataType  <- "CALVAL_CLASS4"
 DataType_Cal  <- "cal"
 DataType_Ver  <- "verif"
-col_Subset    <- "INDEX_REGION"
+col_Subset    <- "INDEX_CLASS"
 Subset_Value  <- "CENTRALHILLS"
-df_stats <- metric.stats(df_metval, col_metrics, col_SampID
-                         , col_RefStatus, RefStatus_Ref, RefStatus_Str
+df_stats <- metric.stats(df_metval
+                         , col_metrics
+                         , col_SampID
+                         , col_RefStatus
+                         , RefStatus_Ref
+                         , RefStatus_Str
                          , RefStatus_Oth
-                         , col_DataType, DataType_Cal, DataType_Ver
-                         , col_Subset, Subset_Value)
+                         , col_DataType
+                         , DataType_Cal
+                         , DataType_Ver
+                         , col_Subset
+                         , Subset_Value)
 
 \dontrun{
 # Save Results
-write.table(df_stats, "metric.stats.tsv", col.names=TRUE, row.names=FALSE
-            , sep="\t")
+write.table(df_stats
+            , file.path(tempdir(), "metric.stats.tsv")
+            , col.names = TRUE
+            , row.names = FALSE
+            , sep = "\t")
 }
 }

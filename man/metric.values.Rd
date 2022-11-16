@@ -91,8 +91,8 @@ Required fields, all communities:
 
 * INDEX_NAME
 
-* INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values
-are "hi" or "lo")#'
+* INDEX_CLASS (BCG or MMI site category; e.g., for BCG PacNW valid values
+are "hi" or "lo")
 
 Additional Required fields, bugs:
 
@@ -181,6 +181,8 @@ calculation.
 The parameter boo.Shiny can be set to TRUE when accessing this function in
 Shiny. Normally the QC check for required fields is interactive.  Setting
 boo.Shiny to TRUE will always continue.  The default is FALSE.
+
+Breaking change from 0.5 to 0.6 with change from Index_Name to Index_Class.
 }
 \examples{
 # Example 1, data already in R
@@ -194,40 +196,39 @@ View(df_metric_values_bugs)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Example 2, data from Excel
-
+\dontrun{
 # Packages
 library(readxl)
 library(reshape2)
 
 df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx"
-                                       , package="BioMonTools")
+                                       , package = "BioMonTools")
                             , guess_max = 10^6)
 
 # Columns to keep
 myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
 
 # Run Function
-df_metric_values_bugs <- metric.values(df_samps_bugs
+df_metric_values_bugs <- metric.values(df_samps_bugs[1:100, ]
                                        , "bugs"
-                                       , fun.cols2keep=myCols)
+                                       , fun.cols2keep = myCols)
 
-\dontrun{
 # View Results
 View(df_metric_values_bugs)
 }
 
 # Get data in long format so can QC results more easily
-df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID"
+df_long <- melt(df_metric_values_bugs, id.vars = c("SAMPLEID"
                                                  , "INDEX_NAME"
-                                                 , "INDEX_REGION"
+                                                 , "INDEX_CLASS"
                                                  , toupper(myCols))
-                          , variable.name="METRIC_NAME"
-                          , value.name="METRIC_VALUE")
+                          , variable.name = "METRIC_NAME"
+                          , value.name = "METRIC_VALUE")
 
 \dontrun{
 # Save Results
 write.table(df_long, file.path(tempdir(), "metric.values.tsv")
-            , col.names=TRUE, row.names=FALSE, sep="\t")
+            , col.names = TRUE, row.names = FALSE, sep = "\t")
 
 # DataExplorer Report
 library(DataExplorer)

@@ -8,7 +8,7 @@ metvalgrpxl(
   fun.DF.MetVal,
   fun.DF.xlMetNames = NULL,
   fun.Community,
-  fun.MetVal.Col2Keep = c("SAMPLEID", "INDEX_NAME", "INDEX_REGION"),
+  fun.MetVal.Col2Keep = c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"),
   fun.xlGrpCol = "Sort_Group",
   file.out = NULL
 )
@@ -24,7 +24,7 @@ BioMonTools package.}
 (bugs, fish, or algae)}
 
 \item{fun.MetVal.Col2Keep}{Column names in metric values to keep.
-Default = c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")}
+Default = c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")}
 
 \item{fun.xlGrpCol}{Column name from Excel metric names to use for Groupings.
 Default = Sort_Group}
@@ -71,7 +71,7 @@ df_metnames <- readxl::read_excel(system.file("extdata/MetricNames.xlsx"
                                       , sheet = "MetricMetadata"
                                       , skip = 4)
 ## Columns to Keep
-col2keep <- c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
+col2keep <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
 ## Grouping Column
 col_Grp <- "Sort_Group"
 ## File Name

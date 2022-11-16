@@ -70,7 +70,11 @@
 #' View(tbl_totals)
 #'
 #' # save the data
-#' write.table(bugs_mysize, paste("bugs",mySize,"txt",sep="."),sep="\t")
+#' write.table(bugs_mysize
+#'             , file.path(tempdir(), paste("bugs", mySize, "txt", sep = "."))
+#'                                          , sep = "\t")
+#' # Open tempdir (Windows only)
+#' shell.exec(tempdir())
 #' }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
@@ -116,7 +120,7 @@ rarify<-function(inbug, sample.ID, abund, subsiz, mySeed=NA) {
 
   elaps<-proc.time()-start.time
   cat(c("Rarify of samples complete. \n Number of samples = ",nsamp,"\n"))
-  cat(c(" Execution time (sec) = ", elaps[1]))
+  cat(c(" Execution time (sec) = ", elaps[1], "\n"))
   utils::flush.console()
   return(outbug) #return subsampled data set as function value
 } #end of function ##FUNCTION.rarify.END

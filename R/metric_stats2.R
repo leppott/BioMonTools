@@ -15,7 +15,7 @@
 #' in a single column.
 #' Assumes only a single Subset.
 #'
-#' Required fields are RefStatus, DataType, and Index_Region.  The user is
+#' Required fields are RefStatus, DataType, and INDEX_CLASS.  The user is
 #' allowed to enter their own
 #' values for these fields for each input file.
 #'
@@ -23,12 +23,12 @@
 #' for each metric within each DataType (cal / val).
 #'
 #' Z-scores are calculated using the calibration (or development) data set
-#' for a given Index_Region (or Site Class).
+#' for a given INDEX_CLASS (or Site Class).
 #'
 #' * (mean Ref - mean Str) / sd Ref
 #'
 #' DE is calculated without knowing the expected direction of response for each
-#' metric for a given Index_Region (or Site Class).  DE is the percentage
+#' metric for a given INDEX_CLASS (or Site Class).  DE is the percentage
 #' (0-100) of **stressed** samples that fall **below** the **25th** quantile
 #' (for decreaser metrics, e.g., total taxa) or **above** the **75th** quantile
 #' (for increaser metrics, e.g., HBI) of the **reference** samples.
@@ -45,20 +45,20 @@
 #' Default = "Ref_Status"
 #' @param col_metval_DataType Column name for Data Type – Validation vs.
 #' Calibration.  Default = "Data_Type"
-#' @param col_metval_Subset Column name for Index_Region in data_metstats.
-#' Default = INDEX_REGION
+#' @param col_metval_Subset Column name for INDEX_CLASS in data_metstats.
+#' Default = INDEX_CLASS
 #' @param col_metstat_RefStatus Column name for Reference Status.
 #' Default = "Ref_Status"
 #' @param col_metstat_DataType Column name for Data Type – Validation vs.
 #' Calibration.  Default = "Data_Type"
-#' @param col_metstat_Subset Column name for Index_Region in data_metstats.
+#' @param col_metstat_Subset Column name for INDEX_CLASS in data_metstats.
 #' Default = xx.
 #' @param RefStatus_Ref RefStatus value for Reference.  Default = "Ref"
 #' @param RefStatus_Str RefStatus value for Stressed.  Default = "Str"
 #' @param RefStatus_Oth RefStatus value for Other. Default = "Oth"
 #' @param DataType_Cal DataType value for Calibration. Default = "Cal"
 #' @param DataType_Ver DataType value for Verification. Default = "Ver"
-#' @param Subset_Value Subset value of Index_Region (site class).
+#' @param Subset_Value Subset value of INDEX_CLASS (site class).
 #' Default = NULL
 #'
 #' @return A data frame of the metric.stats input is returned with new columns
@@ -73,12 +73,12 @@
 #' names(df_bugs)[names(df_bugs) %in% "TaxaID"] <- "TAXAID"
 #' names(df_bugs)[names(df_bugs) %in% "Individuals"] <- "N_TAXA"
 #' names(df_bugs)[names(df_bugs) %in% "Exclude"] <- "EXCLUDE"
-#' names(df_bugs)[names(df_bugs) %in% "Class"] <- "INDEX_REGION"
+#' names(df_bugs)[names(df_bugs) %in% "Class"] <- "INDEX_CLASS"
 #' names(df_bugs)[names(df_bugs) %in% "Unique_ID"] <- "SITEID"
 #'
 #' # Calc Metrics
 #' cols_keep <- c("Ref_v1", "CalVal_Class4", "SITEID", "CollDate", "CollMeth")
-#' # INDEX_NAME and INDEX_REGION kept by default
+#' # INDEX_NAME and INDEX_CLASS kept by default
 #' df_metval <- metric.values(df_bugs, "bugs", fun.cols2keep = cols_keep)
 #'
 #' # Calc Stats
@@ -91,23 +91,30 @@
 #' col_DataType  <- "CALVAL_CLASS4"
 #' DataType_Cal  <- "cal"
 #' DataType_Ver  <- "verif"
-#' col_Subset    <- "INDEX_REGION"
+#' col_Subset    <- "INDEX_CLASS"
 #' Subset_Value  <- "CENTRALHILLS"
-#' df_stats <- metric.stats(df_metval, col_metrics, col_SampID
-#'                          , col_RefStatus, RefStatus_Ref, RefStatus_Str
+#' df_stats <- metric.stats(df_metval
+#'                          , col_metrics
+#'                          , col_SampID
+#'                          , col_RefStatus
+#'                          , RefStatus_Ref
+#'                          , RefStatus_Str
 #'                          , RefStatus_Oth
-#'                          , col_DataType, DataType_Cal, DataType_Ver
-#'                          , col_Subset, Subset_Value)
+#'                          , col_DataType
+#'                          , DataType_Cal
+#'                          , DataType_Ver
+#'                          , col_Subset
+#'                          , Subset_Value)
 #'
 #' # Calc Stats2 (z-scores and DE)
 #' data_metval <- df_metval
 #' data_metstat <- df_stats
 #' col_metval_RefStatus <- "REF_V1"
 #' col_metval_DataType <- "CALVAL_CLASS4"
-#' col_metval_Subset <- "INDEX_REGION"
+#' col_metval_Subset <- "INDEX_CLASS"
 #' col_metstat_RefStatus <- "REF_V1"
 #' col_metstat_DataType <- "CALVAL_CLASS4"
-#' col_metstat_Subset <- "INDEX_REGION"
+#' col_metstat_Subset <- "INDEX_CLASS"
 #' RefStatus_Ref = "Ref"
 #' RefStatus_Str = "Strs"
 #' RefStatus_Oth = "Other"
@@ -131,8 +138,11 @@
 #'
 #' \dontrun{
 #' # Save Results
-#' write.table(df_stats2, "metric.stats2.tsv", col.names=TRUE, row.names=FALSE
-#'             , sep="\t")
+#' write.table(df_stats2
+#'             , file.path(tempdir(), "metric.stats2.tsv")
+#'             , col.names = TRUE
+#'             , row.names = FALSE
+#'             , sep = "\t")
 #' }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
@@ -140,10 +150,10 @@ metric.stats2 <- function(data_metval
                           , data_metstat
                           , col_metval_RefStatus = "RefStatus"
                           , col_metval_DataType = "DataType"
-                          , col_metval_Subset = "INDEX_REGION"
+                          , col_metval_Subset = "INDEX_CLASS"
                           , col_metstat_RefStatus = "RefStatus"
                           , col_metstat_DataType = "DataType"
-                          , col_metstat_Subset = "INDEX_REGION"
+                          , col_metstat_Subset = "INDEX_CLASS"
                           , RefStatus_Ref = "Ref"
                           , RefStatus_Str = "Str"
                           , RefStatus_Oth = "Oth"
@@ -162,11 +172,11 @@ metric.stats2 <- function(data_metval
     names(df_bugs)[names(df_bugs) %in% "TaxaID"] <- "TAXAID"
     names(df_bugs)[names(df_bugs) %in% "Individuals"] <- "N_TAXA"
     names(df_bugs)[names(df_bugs) %in% "Exclude"] <- "EXCLUDE"
-    names(df_bugs)[names(df_bugs) %in% "Class"] <- "INDEX_REGION"
+    names(df_bugs)[names(df_bugs) %in% "Class"] <- "INDEX_CLASS"
     names(df_bugs)[names(df_bugs) %in% "Unique_ID"] <- "SITEID"
     # Calc metrics
     cols_keep <- c("Ref_v1", "CalVal_Class4", "SITEID", "CollDate", "CollMeth")
-    # INDEX_NAME and INDEX_REGION kept by default
+    # INDEX_NAME and INDEX_CLASS kept by default
     df_metval <- metric.values(df_bugs, "bugs", fun.cols2keep = cols_keep)
     #
     ## Calc stats
@@ -181,7 +191,7 @@ metric.stats2 <- function(data_metval
     col_DataType <- "CALVAL_CLASS4"
     DataType_Cal <- "cal"
     DataType_Ver <- "verif"
-    col_Subset <- "INDEX_REGION"
+    col_Subset <- "INDEX_CLASS"
     Subset_Value <- "CENTRALHILLS"
     df_stats <- metric.stats(df_metval, col_metrics, col_SampID
                              , col_RefStatus, RefStatus_Ref, RefStatus_Str
@@ -194,10 +204,10 @@ metric.stats2 <- function(data_metval
     data_metstat <- df_stats
     col_metval_RefStatus <- "REF_V1"
     col_metval_DataType <- "CALVAL_CLASS4"
-    col_metval_Subset <- "INDEX_REGION"
+    col_metval_Subset <- "INDEX_CLASS"
     col_metstat_RefStatus <- "REF_V1"
     col_metstat_DataType <- "CALVAL_CLASS4"
-    col_metstat_Subset <- "INDEX_REGION"
+    col_metstat_Subset <- "INDEX_CLASS"
     RefStatus_Ref <- "Ref"
     RefStatus_Str <- "Strs"
     RefStatus_Oth <- "Other"

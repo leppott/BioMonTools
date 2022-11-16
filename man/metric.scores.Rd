@@ -26,14 +26,14 @@ Index Region (strata).}
 (e.g., COASTAL).}
 
 \item{DF_Thresh_Metric}{Data frame of Scoring Thresholds for metrics
-(INDEX_NAME, INDEX_REGION,
+(INDEX_NAME, INDEX_CLASS,
 METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime
 , SingleValue_Add, NormDist_Tail_Lo, NormDist_Tail_Hi, CatGrad_xvar
 , CatGrad_InfPt, CatGrad_Lo_m,    CatGrad_Lo_b,    CatGrad_Mid_m,    CatGrad_Mid_b
 ,    CatGrad_Hi_m,    CatGrad_Hi_b).}
 
 \item{DF_Thresh_Index}{Data frame of Scoring Thresholds for indices
-(INDEX_NAME, INDEX_REGION,METRIC_NAME, ScoreRegime, Thresh01, Thresh02
+(INDEX_NAME, INDEX_CLASS,METRIC_NAME, ScoreRegime, Thresh01, Thresh02
 , Thresh03, Thresh04, Thresh05, Thresh06, Thresh07
 , Nar01, Nar02, Nar03, Nar04, Nar05, Nar06).}
 
@@ -70,35 +70,37 @@ library(readxl)
 library(reshape2)
 
 # Thresholds
-fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata"
-, "MetricScoring.xlsx")
-df_thresh_metric <- read_excel(fn_thresh, sheet="metric.scoring")
-df_thresh_index <- read_excel(fn_thresh, sheet="index.scoring")
+fn_thresh <- file.path(system.file(package = "BioMonTools")
+                       , "extdata"
+                       , "MetricScoring.xlsx")
+df_thresh_metric <- read_excel(fn_thresh, sheet = "metric.scoring")
+df_thresh_index <- read_excel(fn_thresh, sheet = "index.scoring")
 
 #~~~~~~~~~~~~~~~~~~~~~~~~
 # Pacific Northwest, BCG Level 1 Indicator Taxa Index
 df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx"
-                                        , package="BioMonTools")
+                                        , package = "BioMonTools")
                             , guess_max = 10^6)
 
 myIndex <- "BCG_PacNW_L1"
 df_samps_bugs$Index_Name   <- myIndex
-df_samps_bugs$Index_Region <- "ALL"
+df_samps_bugs$INDEX_CLASS <- "ALL"
 (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
-                          , "INDEX_NAME"]==myIndex, "METRIC_NAME"]))
+                          , "INDEX_NAME"] == myIndex, "METRIC_NAME"]))
 # Run Function
-df_metric_values_bugs <- metric.values(df_samps_bugs, "bugs"
+df_metric_values_bugs <- metric.values(df_samps_bugs
+                                       , "bugs"
                                        , fun.MetricNames = myMetrics.Bugs)
 
 # index to BCG.PacNW.L1
 df_metric_values_bugs$INDEX_NAME <- myIndex
-df_metric_values_bugs$INDEX_REGION <- "ALL"
+df_metric_values_bugs$INDEX_CLASS <- "ALL"
 
 # SCORE Metrics
 df_metric_scores_bugs <- metric.scores(df_metric_values_bugs
                                        , myMetrics.Bugs
                                        , "INDEX_NAME"
-                                       , "INDEX_REGION"
+                                       , "INDEX_CLASS"
                                        , df_thresh_metric
                                        , df_thresh_index)
 
@@ -109,10 +111,11 @@ View(df_metric_scores_bugs)
 # QC, table
 table(df_metric_scores_bugs$Index, df_metric_scores_bugs$Index_Nar)
 # QC, plot
-hist(df_metric_scores_bugs$Index, main="PacNW BCG Example Data"
-     , xlab="Level 1 Indicator Taxa Index Score")
-abline(v=c(21,30), col="blue")
-text(21+c(-2,+2), 200, c("Low","Medium"), col="blue")
+hist(df_metric_scores_bugs$Index
+     , main = "PacNW BCG Example Data"
+     , xlab = "Level 1 Indicator Taxa Index Score")
+abline(v=c(21,30), col = "blue")
+text(21 + c(-2, +2), 200, c("Low", "Medium"), col = "blue")
 
 #~~~~~~~~~~~~~~~~~~~~~~~~
 # Metrics, Index, Benthic Macroinvertebrates, genus
@@ -127,27 +130,29 @@ myIndex <- "MBSS_2005_Bugs"
 # Taxa Data
 myDF_Bugs_MBSS <- data_benthos_MBSS
 myDF_Bugs_MBSS$NONTARGET <- FALSE
-myDF_Bugs_MBSS$INDEX_REGION <- toupper(myDF_Bugs_MBSS$strata_r)
+myDF_Bugs_MBSS$INDEX_CLASS <- toupper(myDF_Bugs_MBSS$INDEX_CLASS)
 myDF_Bugs_MBSS$SAMPLEID <- myDF_Bugs_MBSS$SITE
-myDF_Bugs_MBSS$INDEX_NAME <- myDF_Bugs_MBSS$Index.Name
+myDF_Bugs_MBSS$INDEX_NAME <- myIndex
 myDF_Bugs_MBSS$TAXAID <- myDF_Bugs_MBSS$TAXON
 myDF_Bugs_MBSS$SubPhylum <- NA
 myDF_Bugs_MBSS$SubFamily <- NA
 myDF_Bugs_MBSS$TOLVAL <- myDF_Bugs_MBSS$FinalTolVal07
 myDF_Bugs_MBSS$TOLVAL2 <- myDF_Bugs_MBSS$FinalTolVal08
 myDF_Bugs_MBSS$EXCLUDE <- myDF_Bugs_MBSS$EXCLUDE=="Y"
-myMetric_Values_Bugs_MBSS <- metric.values(myDF_Bugs_MBSS, "bugs"
-, myMetrics_Bugs_MBSS)
+
+myMetric_Values_Bugs_MBSS <- metric.values(myDF_Bugs_MBSS
+                                           , "bugs"
+                                           , myMetrics_Bugs_MBSS)
 
 \dontrun{
 View(myMetric_Values_Bugs_MBSS)
 }
 # SCORE
-myMetric_Values_Bugs_MBSS$INDEX_REGION <- toupper(myMetric_Values_Bugs_MBSS$INDEX_REGION)
+myMetric_Values_Bugs_MBSS$INDEX_CLASS <- toupper(myMetric_Values_Bugs_MBSS$INDEX_CLASS)
 Metrics_Bugs_Scores_MBSS <- metric.scores(myMetric_Values_Bugs_MBSS
                                           , myMetrics_Bugs_MBSS
                                           , "INDEX_NAME"
-                                          , "INDEX_REGION"
+                                          , "INDEX_CLASS"
                                           , df_thresh_metric
                                           , df_thresh_index)
 \dontrun{

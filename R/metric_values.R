@@ -47,8 +47,8 @@
 #'
 #' * INDEX_NAME
 #'
-#' * INDEX_REGION (BCG or MMI site category; e.g., for BCG PacNW valid values
-#' are "hi" or "lo")#'
+#' * INDEX_CLASS (BCG or MMI site category; e.g., for BCG PacNW valid values
+#' are "hi" or "lo")
 #'
 #' Additional Required fields, bugs:
 #'
@@ -137,6 +137,8 @@
 #' The parameter boo.Shiny can be set to TRUE when accessing this function in
 #' Shiny. Normally the QC check for required fields is interactive.  Setting
 #' boo.Shiny to TRUE will always continue.  The default is FALSE.
+#'
+#' Breaking change from 0.5 to 0.6 with change from Index_Name to Index_Class.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param fun.DF Data frame of taxa (list required fields)
 #' @param fun.Community Community name for which to calculate metric values
@@ -170,40 +172,39 @@
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' # Example 2, data from Excel
-#'
+#'\dontrun{
 #' # Packages
 #' library(readxl)
 #' library(reshape2)
 #'
 #' df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx"
-#'                                        , package="BioMonTools")
+#'                                        , package = "BioMonTools")
 #'                             , guess_max = 10^6)
 #'
 #' # Columns to keep
 #' myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
 #'
 #' # Run Function
-#' df_metric_values_bugs <- metric.values(df_samps_bugs
+#' df_metric_values_bugs <- metric.values(df_samps_bugs[1:100, ]
 #'                                        , "bugs"
-#'                                        , fun.cols2keep=myCols)
+#'                                        , fun.cols2keep = myCols)
 #'
-#'\dontrun{
 #' # View Results
 #' View(df_metric_values_bugs)
 #' }
 #'
 #' # Get data in long format so can QC results more easily
-#' df_long <- melt(df_metric_values_bugs, id.vars=c("SAMPLEID"
+#' df_long <- melt(df_metric_values_bugs, id.vars = c("SAMPLEID"
 #'                                                  , "INDEX_NAME"
-#'                                                  , "INDEX_REGION"
+#'                                                  , "INDEX_CLASS"
 #'                                                  , toupper(myCols))
-#'                           , variable.name="METRIC_NAME"
-#'                           , value.name="METRIC_VALUE")
+#'                           , variable.name = "METRIC_NAME"
+#'                           , value.name = "METRIC_VALUE")
 #'
 #'\dontrun{
 #' # Save Results
 #' write.table(df_long, file.path(tempdir(), "metric.values.tsv")
-#'             , col.names=TRUE, row.names=FALSE, sep="\t")
+#'             , col.names = TRUE, row.names = FALSE, sep = "\t")
 #'
 #' # DataExplorer Report
 #' library(DataExplorer)
@@ -278,7 +279,7 @@
 # # Get data in long format so can QC results more easily
 # df.long <- melt(df.metric.values.bugs, id.vars=c("SAMPLEID"
 #                                                 , "INDEX_NAME"
-#                                                 , "INDEX_REGION")
+#                                                 , "INDEX_CLASS")
 #                           , variable.name="METRIC_NAME"
 #                           , value.name="METRIC_VALUE")
 # # Save Results
@@ -301,7 +302,7 @@
 # names(fun.DF) <- toupper(names(fun.DF))
 # fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
 # fun.DF <- fun.DF[fun.DF[,"NONTARGET"]==FALSE,]
-# fun.DF[,"INDEX_REGION"] <- toupper(fun.DF[,"INDEX_REGION"])
+# fun.DF[,"INDEX_CLASS"] <- toupper(fun.DF[,"INDEX_CLASS"])
 # #
 # myDF <- fun.DF
 # #
@@ -347,7 +348,7 @@
 # # filter works here
 # # 5 taxa and 202 ind.
 #
-# met.val <- dplyr::summarise(dplyr::group_by(x, SAMPLEID, INDEX_NAME, INDEX_REGION)
+# met.val <- dplyr::summarise(dplyr::group_by(x, SAMPLEID, INDEX_NAME, INDEX_CLASS)
 #                  # individuals #
 #                  , ni_total=sum(N_TAXA)
 #                  #
@@ -475,9 +476,14 @@ metric.values <- function(fun.DF
 
   # QC
   if(boo_QC) {
-    fun.DF <- data_benthos_PacNW[, 1:32]
+    fun.DF <- data_benthos_PacNW#[, 1:32] # 598, 37
+    fun.DF <- data_benthos_MBSS # 5066, 37
     fun.Community <- "bugs"
-    boo.Shiny <- TRUE
+    fun.MetricNames <- NULL
+    boo.Adjust <- FALSE
+    fun.cols2keep <- NULL
+    boo.marine <- FALSE
+    boo.Shiny <- FALSE
     verbose <- TRUE
   }## boo_QC
 
@@ -523,7 +529,7 @@ metric.values <- function(fun.DF
     message(msg)
   }## IF ~ boo_debug_main
   #QC, Add required fields for this part of the code
-  col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "INDEX_NAME", "INDEX_REGION")
+  col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "INDEX_NAME", "INDEX_CLASS")
   col.req.missing <- col.req[!(col.req %in% toupper(names(fun.DF)))]
   num.col.req.missing <- length(col.req.missing)
 
@@ -578,8 +584,8 @@ metric.values <- function(fun.DF
     if(req.name %in% col.req.missing) {
       fun.DF[, req.name] <- "BioMonTools"
     }## IF ~ req.name
-    ## Add missing, Index_Region
-    req.name <- "INDEX_REGION"
+    ## Add missing, INDEX_CLASS
+    req.name <- "INDEX_CLASS"
     if(req.name %in% col.req.missing) {
       fun.DF[, req.name] <- fun.Community
     }## IF ~ req.name
@@ -640,7 +646,7 @@ metric.values <- function(fun.DF
                   , boo_debug_topic)
     message(msg)
   }## IF ~ verbose
- # fun.DF[,"INDEX_REGION"] <- toupper(fun.DF[,"INDEX_REGION"])
+ # fun.DF[,"INDEX_CLASS"] <- toupper(fun.DF[,"INDEX_CLASS"])
   # convert community to upper case
   fun.Community <- toupper(fun.Community)
   # run the proper sub function
@@ -709,6 +715,12 @@ metric.values.bugs <- function(myDF
   boo_QC <- FALSE
   if(boo_QC) {
     myDF <- fun.DF
+    boo.Adjust <- boo.Adjust
+    cols2keep <- fun.cols2keep
+    MetricSort <- NA
+    boo.marine <- boo.marine
+    boo.Shiny <- boo.Shiny
+    verbose <- verbose
   }## IF ~ boo_QC
 
   # not carrying over from previous?!
@@ -719,7 +731,7 @@ metric.values.bugs <- function(myDF
   boo_debug_bugs_num_total <- 18
 
   # global variable bindings ----
-  INDEX_NAME <- INDEX_REGION <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
+  INDEX_NAME <- INDEX_CLASS <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
     BCG_ATTR <- NONTARGET <- LONGLIVED <- NOTEWORTHY <- TOLVAL <- TOLVAL2 <-
     UFC <- ELEVATION_ATTR <- GRADIENT_ATTR <- WSAREA_ATTR <- NULL
   FFG2_PRE <- TI_CORECOLD <- TI_COLD <- TI_COOL <- TI_WARM <- TI_NA <-
@@ -787,7 +799,7 @@ metric.values.bugs <- function(myDF
   }## IF ~ verbose
 
   # QC, Required Fields
-  col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_REGION"
+  col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS"
                     , "PHYLUM", "SUBPHYLUM", "CLASS", "SUBCLASS", "INFRAORDER"
                     , "ORDER", "FAMILY", "SUBFAMILY", "TRIBE", "GENUS"
                     , "FFG", "HABIT", "LIFE_CYCLE"
@@ -800,7 +812,7 @@ metric.values.bugs <- function(myDF
   col.req_numeric <- c("N_TAXA", "TOLVAL", "TOLVAL2", "UFC")
   col.req <- c(col.req_character, col.req_logical, col.req_numeric)
   # col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
-  #             , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
+  #             , "INDEX_CLASS", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
   #             , "SUBCLASS", "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
   #             , "TRIBE", "GENUS", "FFG", "HABIT", "LIFE_CYCLE", "TOLVAL"
   #             , "BCG_ATTR", "THERMAL_INDICATOR", "LONGLIVED", "NOTEWORTHY"
@@ -1123,7 +1135,7 @@ metric.values.bugs <- function(myDF
   #                , "FFG2", "HABITAT"
   #                , "ELEVATION_ATTR", "GRADIENT_ATTR", "WSAREA_ATTR")
   col2upper <- col.req_character[!(col.req_character %in%
-                                  c("SAMPLEID", "INDEX_NAME", "INDEX_REGION"))]
+                                  c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"))]
   # #myDF <- apply(myDF[, col2upper], 2, toupper)
   for(i in col2upper){
     myDF[, i] <- toupper(myDF[, i])
@@ -1224,7 +1236,7 @@ metric.values.bugs <- function(myDF
   #
   # Calculate Metrics (could have used pipe, %>%)
   # met.val <- myDF %>%
-  #                 dplyr::group_by(SAMPLEID, INDEX_NAME, INDEX_REGION) %>%
+  #                 dplyr::group_by(SAMPLEID, INDEX_NAME, INDEX_CLASS) %>%
   #                   dplyr::summarise(ni_total=sum(N_TAXA)
   #                         , nt_total=dplyr::n_distinct(TAXAID[EXCLUDE != TRUE], na.rm = TRUE)
   #                         , ni_max= max(N_TAXA)
@@ -1233,7 +1245,7 @@ metric.values.bugs <- function(myDF
   #https://stackoverflow.com/questions/45365484/how-to-find-top-n-descending-values-in-group-in-dplyr
   # may have to create a 2nd output with domX metrics then join together.
   # dom.val <- myDF %>%
-  #               group_by(SAMPLEID, INDEX_NAME, INDEX_REGION) %>%
+  #               group_by(SAMPLEID, INDEX_NAME, INDEX_CLASS) %>%
   #                 summarise(N_TAXA=n()) %>%
   #                   top_n(n=3, wt=N_TAXA) %>%
   #                     arrange()
@@ -1299,67 +1311,67 @@ metric.values.bugs <- function(myDF
   df.dom01.sum <- dplyr::summarise(dplyr::group_by(df.dom01
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                             , ni_dom01=sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom02.sum <- dplyr::summarise(dplyr::group_by(df.dom02
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                             , ni_dom02=sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom03.sum <- dplyr::summarise(dplyr::group_by(df.dom03
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                             , ni_dom03=sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom04.sum <- dplyr::summarise(dplyr::group_by(df.dom04
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                             , ni_dom04=sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom05.sum <- dplyr::summarise(dplyr::group_by(df.dom05
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                             , ni_dom05=sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom06.sum <- dplyr::summarise(dplyr::group_by(df.dom06
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                             , ni_dom06=sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom07.sum <- dplyr::summarise(dplyr::group_by(df.dom07
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                             , ni_dom07=sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom08.sum <- dplyr::summarise(dplyr::group_by(df.dom08
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                             , ni_dom08=sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom09.sum <- dplyr::summarise(dplyr::group_by(df.dom09
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                             , ni_dom09=sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom10.sum <- dplyr::summarise(dplyr::group_by(df.dom10
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                             , ni_dom10=sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom02_NoJugaRiss_BCG_att456.sum <- dplyr::summarise(dplyr::group_by(df.dom02_NoJugaRiss_BCG_att456
                                                                        , SAMPLEID
                                                                        , INDEX_NAME
-                                                                       , INDEX_REGION)
+                                                                       , INDEX_CLASS)
                                                        , ni_dom02_NoJugaRiss_BCG_att456=sum(N_TAXA)
                                                        , .groups = "drop_last")
   # Add column of domN to main DF
@@ -1411,7 +1423,7 @@ metric.values.bugs <- function(myDF
                   , boo_debug_topic)
     message(msg)
   }## IF ~ verbose
-  met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME, INDEX_REGION)
+  met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME, INDEX_CLASS)
              #
              # one metric per line
              #
@@ -2906,11 +2918,14 @@ metric.values.bugs <- function(myDF
   }## IF ~ verbose
   # replace NA with 0
   #met.val[is.na(met.val)] <- 0
-  # but exclude SAMPLEID,  INDEX_NAME  INDEX_REGION
+  # but exclude SAMPLEID,  INDEX_NAME  INDEX_CLASS
   # met.val <- met.val %>% dplyr::mutate(dplyr::across(where(is.numeric)
   #                                            , tidyr::replace_na
   #                                            , 0))
+  met.val <- as.data.frame(met.val)
   met.val <- met.val %>% dplyr::mutate_if(is.numeric, tidyr::replace_na, 0)
+  # Crazy slow on tibble (several minutes) convert to data frame (< 2 seconds)
+
  # met.val <- replace(is.na(met.val), 0)
 
   # Marine Metrics
@@ -2987,7 +3002,7 @@ metric.values.bugs <- function(myDF
   } else {
     met2include <- MetricNames[!(MetricNames %in% "ni_total")]
     # remove ni_total if included as will always include it
-    met.val <- met.val[, c("SAMPLEID", "INDEX_REGION", "INDEX_NAME",
+    met.val <- met.val[, c("SAMPLEID", "INDEX_CLASS", "INDEX_NAME",
                            "ni_total", met2include)]
   }##IF~MetricNames~END
 
@@ -3060,7 +3075,7 @@ metric.values.fish <- function(myDF
                                , verbose) {
 
   # global variable bindings ----
-  SAMPLEID <- INDEX_NAME <- INDEX_REGION <- TAXAID <- N_TAXA <- NATIVE <-
+  SAMPLEID <- INDEX_NAME <- INDEX_CLASS <- TAXAID <- N_TAXA <- NATIVE <-
     HYBRID <- TYPE <- TROPHIC <- SILT <- TOLER <- N_ANOMALIES <- GENUS <-
     FAMILY <- SAMP_WIDTH_M <- SAMP_LENGTH_M <- NULL
   TROPHIC_GE <- TROPHIC_HB <- TROPHIC_IS <- TROPHIC_IV <- TROPHIC_OM <-
@@ -3094,7 +3109,7 @@ metric.values.fish <- function(myDF
   #myDF <- myDF[myDF[,"NonTarget"]==0,] # not relevant for fish
   ## QC, missing cols ----
   # QC, Required Fields
-  # col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_REGION"
+  # col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS"
   #                        , "PHYLUM", "SUBPHYLUM", "CLASS"
   #                        , "SUBCLASS", "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
   #                        , "TRIBE", "GENUS", "FFG", "HABIT", "LIFE_CYCLE"
@@ -3105,7 +3120,7 @@ metric.values.fish <- function(myDF
   # col.req_numeric <- c("N_TAXA", "TOLVAL", "TOLVAL2", "UFC")
   # col.req <- c(col.req_character, col.req_logical, col.req_numeric)
   col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "N_ANOMALIES", "SAMP_BIOMASS"
-               , "INDEX_NAME", "INDEX_REGION"
+               , "INDEX_NAME", "INDEX_CLASS"
                , "DA_MI2", "SAMP_WIDTH_M", "SAMP_LENGTH_M"
                , "TYPE", "TOLER", "NATIVE", "TROPHIC", "SILT"
                , "FAMILY", "GENUS", "HYBRID", "BCG_ATTR", "THERMAL_INDICATOR"
@@ -3222,61 +3237,61 @@ metric.values.fish <- function(myDF
   df.dom01.sum <- dplyr::summarise(dplyr::group_by(df.dom01
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                                    , ni_dom01=sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom02.sum <- dplyr::summarise(dplyr::group_by(df.dom02
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                                    , ni_dom02=sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom03.sum <- dplyr::summarise(dplyr::group_by(df.dom03
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                                    , ni_dom03=sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom04.sum <- dplyr::summarise(dplyr::group_by(df.dom04
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                                    , ni_dom04=sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom05.sum <- dplyr::summarise(dplyr::group_by(df.dom05
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                                    , ni_dom05=sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom06.sum <- dplyr::summarise(dplyr::group_by(df.dom06
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                                    , ni_dom06=sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom07.sum <- dplyr::summarise(dplyr::group_by(df.dom07
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                                    , ni_dom07=sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom08.sum <- dplyr::summarise(dplyr::group_by(df.dom08
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                                    , ni_dom08=sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom09.sum <- dplyr::summarise(dplyr::group_by(df.dom09
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                                    , ni_dom09=sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom10.sum <- dplyr::summarise(dplyr::group_by(df.dom10
                                                    , SAMPLEID
                                                    , INDEX_NAME
-                                                   , INDEX_REGION)
+                                                   , INDEX_CLASS)
                                    , ni_dom10=sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
 
@@ -3344,7 +3359,7 @@ metric.values.fish <- function(myDF
   # code above is different than benthos
   # Calculate Metrics (could have used pipe, %>%)
   met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME
-                                              , INDEX_REGION, SAMP_WIDTH_M
+                                              , INDEX_CLASS, SAMP_WIDTH_M
                                               , SAMP_LENGTH_M)
                               , .groups = "drop_last"
                        #
@@ -3865,7 +3880,7 @@ metric.values.fish <- function(myDF
   #
   # # # subset to only metrics specified by user
   # # if (!is.null(MetricNames)){
-  # #   met.val <- met.val[,c(Index_Name, SITE, INDEX_REGION, ACREAGE, LEN_SAMP, MetricNames)]
+  # #   met.val <- met.val[,c(Index_Name, SITE, INDEX_CLASS, ACREAGE, LEN_SAMP, MetricNames)]
   # # }
   # myFlds_Remove <- c("ni_total", "pi_rbs",
   #                    , "pi_brooktrout", "pi_sculpin", "nt_total"
@@ -3881,7 +3896,7 @@ metric.values.fish <- function(myDF
   } else {
     met2include <- MetricNames[!(MetricNames %in% "ni_total")]
     # remove ni_total if included as will always include it
-    met.val <- met.val[, c("SAMPLEID", "INDEX_REGION", "INDEX_NAME", met2include)]
+    met.val <- met.val[, c("SAMPLEID", "INDEX_CLASS", "INDEX_NAME", met2include)]
   }##IF~MetricNames~END
 
   # Add extra fields
@@ -3908,14 +3923,14 @@ metric.values.fish <- function(myDF
   #     # Expected constants
   #     ## m
   #     met.val[,"NUMBENTSP_m"] <- NA
-  #     met.val[,"NUMBENTSP_m"][met.val[,"INDEX_REGION"]=="COASTAL"]   <- 1.69
-  #     met.val[,"NUMBENTSP_m"][met.val[,"INDEX_REGION"]=="EPIEDMONT"] <- 1.25
-  #     met.val[,"NUMBENTSP_m"][met.val[,"INDEX_REGION"]=="HIGHLAND"]  <- 1.23
+  #     met.val[,"NUMBENTSP_m"][met.val[,"INDEX_CLASS"]=="COASTAL"]   <- 1.69
+  #     met.val[,"NUMBENTSP_m"][met.val[,"INDEX_CLASS"]=="EPIEDMONT"] <- 1.25
+  #     met.val[,"NUMBENTSP_m"][met.val[,"INDEX_CLASS"]=="HIGHLAND"]  <- 1.23
   #     ## b
   #     met.val[,"NUMBENTSP_b"] <- NA
-  #     met.val[,"NUMBENTSP_b"][met.val[,"INDEX_REGION"]=="COASTAL"]   <- -3.33
-  #     met.val[,"NUMBENTSP_b"][met.val[,"INDEX_REGION"]=="EPIEDMONT"] <- -2.36
-  #     met.val[,"NUMBENTSP_b"][met.val[,"INDEX_REGION"]=="HIGHLAND"]  <- -2.35
+  #     met.val[,"NUMBENTSP_b"][met.val[,"INDEX_CLASS"]=="COASTAL"]   <- -3.33
+  #     met.val[,"NUMBENTSP_b"][met.val[,"INDEX_CLASS"]=="EPIEDMONT"] <- -2.36
+  #     met.val[,"NUMBENTSP_b"][met.val[,"INDEX_CLASS"]=="HIGHLAND"]  <- -2.35
   #     # Calc Expected
   #     met.val[,"NUMBENTSP_Exp"] <- (met.val[,"NUMBENTSP_m"] * log10(met.val[,"ACREAGE"])) + met.val[,"NUMBENTSP_b"]
   #     # Calc Adjusted
@@ -3967,7 +3982,7 @@ metric.values.algae <- function(myDF
   # global variable bindings ----
   SampleID <- N_TAXA <- NULL
 
-  NONTARGET <- SAMPLEID <- INDEX_NAME <- INDEX_REGION <- ni_total <- TAXAID <-
+  NONTARGET <- SAMPLEID <- INDEX_NAME <- INDEX_CLASS <- ni_total <- TAXAID <-
     EXCLUDE <- GENUS <- LOW_N <- HIGH_N <- LOW_P <- HIGH_P <- BC_1 <- BC_2 <-
     BC_3 <- BC_4 <- BC_5 <- PT_1 <- PT_2 <- PT_3 <- PT_4 <- PT_5 <-
     SALINITY_1 <- SALINITY_2 <- SALINITY_3 <- SALINITY_4 <- O_1 <- O_2 <- O_3 <-
@@ -4008,13 +4023,13 @@ metric.values.algae <- function(myDF
   # QC----
   # QC, Required Fields
   ## QC, missing cols ----
-  # col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_REGION"
+  # col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS"
   #                        , "PHYLUM", "ORDER", "FAMILY", "GENUS"
   #                        )
   # col.req_logical <- c("EXCLUDE", "NONTARGET")
   # col.req_numeric <- c("N_TAXA")
   # col.req <- c(col.req_character, col.req_logical, col.req_numeric)
-  col.req <- c("INDEX_NAME", "INDEX_REGION", "SAMPLEID","TAXAID","N_TAXA"
+  col.req <- c("INDEX_NAME", "INDEX_CLASS", "SAMPLEID","TAXAID","N_TAXA"
                ,"EXCLUDE","NONTARGET"
                ,"PHYLUM","ORDER","FAMILY","GENUS","BC_USGS"
                ,"TROPHIC_USGS","SAP_USGS","PT_USGS","O_USGS","SALINITY_USGS"
@@ -4169,7 +4184,7 @@ metric.values.algae <- function(myDF
 
   # Calculate Metrics (could have used pipe, %>%)
     met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME
-                                                , INDEX_REGION)
+                                                , INDEX_CLASS)
                 #
                 ## Individuals ----
                 , ni_total = sum(N_TAXA, na.rm = TRUE)
@@ -4831,7 +4846,7 @@ metric.values.algae <- function(myDF
     } else {
       met2include <- MetricNames[!(MetricNames %in% "ni_total")]
       # remove ni_total if included as will always include it
-      met.val <- met.val[, c("SAMPLEID", "INDEX_REGION", "INDEX_NAME",
+      met.val <- met.val[, c("SAMPLEID", "INDEX_CLASS", "INDEX_NAME",
                              "ni_total", met2include)]
     }##IF~MetricNames~END
 

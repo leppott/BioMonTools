@@ -1,4 +1,4 @@
-INDEX_REGION,SourceEntity,StationID,SampleID_Tt,SampleID,RepNum,CollDate,TaxaID,N_TAXA,NonTarget,Phylum,Class,Subclass,Order,Family,Subfamily,Tribe,Genus,BCG_Attr,FFG,Habit,Life_Cycle,Habitat,Noteworthy,Thermal_Indicator,Exclude
+INDEX_CLASS,SourceEntity,StationID,SampleID_Tt,SampleID,RepNum,CollDate,TaxaID,N_TAXA,NonTarget,Phylum,Class,Subclass,Order,Family,Subfamily,Tribe,Genus,BCG_Attr,FFG,Habit,Life_Cycle,Habitat,Noteworthy,Thermal_Indicator,Exclude
 MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Baetis tricaudatus complex,82,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,CN,multi,RHEO,NA,cool_warm,FALSE
 MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Caecidotea,1,FALSE,Arthropoda,Malacostraca,NA,Isopoda,Asellidae,NA,NA,Caecidotea,5,OM,CB,multi,GENE,NA,cool_warm,FALSE
 MARIPACNW,King County - DNRP,134,Tt_81,4583_7075,7075,2012-08-22,Crangonyx,42,FALSE,Arthropoda,Malacostraca,NA,Amphipoda,Crangonyctidae,NA,NA,Crangonyx,5,CG,SW,multi,GENE,NA,cool_warm,FALSE

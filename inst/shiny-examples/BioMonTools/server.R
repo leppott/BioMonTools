@@ -638,7 +638,7 @@ shinyServer(function(input, output) {
   output$UI_col_calcmet_Cols2Keep <- renderUI({
     str_col <- "Columns to keep"
     col_req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
-                 , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
+                 , "INDEX_CLASS", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
                  , "SUBCLASS", "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
                  , "TRIBE", "GENUS", "FFG", "HABIT", "LIFE_CYCLE", "TOLVAL"
                  , "BCG_ATTR", "THERMAL_INDICATOR", "LONGLIVED", "NOTEWORTHY"
@@ -716,7 +716,7 @@ shinyServer(function(input, output) {
                                , fun.Community = fun_fun.Community
                                , fun.MetVal.Col2Keep = c("SAMPLEID"
                                                          , "INDEX_NAME"
-                                                         , "INDEX_REGION")
+                                                         , "INDEX_CLASS")
                                , fun.xlGrpCol = "Sort_Group2"
                                , file.out = fn_metvalxl)
 

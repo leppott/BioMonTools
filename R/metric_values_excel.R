@@ -28,7 +28,7 @@
 #' @param fun.Community Community name of calculated metric values
 #' (bugs, fish, or algae)
 #' @param fun.MetVal.Col2Keep Column names in metric values to keep.
-#' Default = c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
+#' Default = c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
 #' @param fun.xlGrpCol Column name from Excel metric names to use for Groupings.
 #' Default = Sort_Group
 #' @param file.out Output file name.  Default (NULL) will generate a file name
@@ -50,7 +50,7 @@
 #'                                       , sheet = "MetricMetadata"
 #'                                       , skip = 4)
 #' ## Columns to Keep
-#' col2keep <- c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
+#' col2keep <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
 #' ## Grouping Column
 #' col_Grp <- "Sort_Group"
 #' ## File Name
@@ -68,7 +68,7 @@
 metvalgrpxl <- function(fun.DF.MetVal
             , fun.DF.xlMetNames = NULL
             , fun.Community
-            , fun.MetVal.Col2Keep = c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
+            , fun.MetVal.Col2Keep = c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
             , fun.xlGrpCol = "Sort_Group"
             , file.out = NULL) {
 
@@ -83,7 +83,7 @@ metvalgrpxl <- function(fun.DF.MetVal
                                           , sheet = "MetricMetadata"
                                           , skip = 4)
     fun.Community <- "bugs"
-    fun.MetVal.Col2Keep = c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")
+    fun.MetVal.Col2Keep = c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
     fun.xlGrpCol = "Sort_Group"
     file.out <- file.path(tempdir(), paste0("MetValGrps_"
                                             , fun.Community

@@ -28,7 +28,7 @@
 #'   \item{\code{NATIVE}}{a character vector}
 #'   \item{\code{TROPHIC}}{a character vector}
 #'   \item{\code{SILT}}{a character vector}
-#'   \item{\code{INDEX_REGION}}{a character vector}
+#'   \item{\code{INDEX_CLASS}}{a character vector}
 #'   \item{\code{SAMP_LENGTH_M}}{a numeric vector}
 #'   \item{\code{SAMP_WIDTH_M}}{a numeric vector}
 #'   \item{\code{SAMP_BIOMASS}}{a numeric vector}
@@ -117,8 +117,7 @@
 #' @format A data frame with 598 observations on the following 38 variables.
 #' \describe{
 #' \item{\code{INDEX_NAME}}{a character vector}
-#' \item{\code{Index_Region}}{a character vector}
-#' \item{\code{SITE_TYPE}}{a character vector}
+#' \item{\code{INDEX_CLASS}}{a character vector}
 #' \item{\code{SampleID}}{a character vector}
 #' \item{\code{TaxaID}}{a character vector}
 #' \item{\code{N_TAXA}}{a numeric vector}
@@ -216,8 +215,8 @@
 #' @format A data frame with 50,664 observations on the following 31 variables.
 #'
 #'  \describe{
-#'   \item{\code{Index.Name}}{a character vector}
-#'   \item{\code{SITE}}{a character vector}
+#'   \item{\code{INDEX_NAME}}{a character vector}
+#'   \item{\code{SITEID}}{a character vector}
 #'   \item{\code{DATE}}{a character vector}
 #'   \item{\code{TAXON}}{a character vector}
 #'   \item{\code{N_TAXA}}{a numeric vector, count}
@@ -225,7 +224,7 @@
 #'   (max = 30)}
 #'   \item{\code{EXCLUDE}}{a character vector, whether taxon should be excluded
 #'   from taxa richness metrics}
-#'   \item{\code{strata_r}}{a character vector, index region}
+#'   \item{\code{INDEX_CLASS}}{a character vector, index region}
 #'   \item{\code{Phylum}}{a character vector}
 #'   \item{\code{Class}}{a character vector}
 #'   \item{\code{Order}}{a character vector}
@@ -263,7 +262,7 @@
 #'
 #'   \describe{
 #'   \item{\code{INDEX_NAME}}{a character vector}
-#'   \item{\code{INDEX_REGION}}{a character vector}
+#'   \item{\code{INDEX_CLASS}}{a character vector}
 #'   \item{\code{STATIONID}}{a character vector}
 #'   \item{\code{COLLDATE}}{a Date}
 #'   \item{\code{SAMPLEID}}{a character vector}
@@ -316,7 +315,7 @@
 #'   \describe{
 #'     \item{\code{SAMPLEID}}{a character vector}
 #'     \item{\code{INDEX_NAME}}{a character vector}
-#'     \item{\code{INDEX_REGION}}{a character vector}
+#'     \item{\code{INDEX_CLASS}}{a character vector}
 #'     \item{\code{ni_total}}{a numeric vector}
 #'     \item{\code{li_total}}{a numeric vector}
 #'     \item{\code{nt_total}}{a numeric vector}

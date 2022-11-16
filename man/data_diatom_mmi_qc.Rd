@@ -10,7 +10,7 @@ A data frame with 497 observations on the following 250 variables.
   \describe{
     \item{\code{SAMPLEID}}{a character vector}
     \item{\code{INDEX_NAME}}{a character vector}
-    \item{\code{INDEX_REGION}}{a character vector}
+    \item{\code{INDEX_CLASS}}{a character vector}
     \item{\code{ni_total}}{a numeric vector}
     \item{\code{li_total}}{a numeric vector}
     \item{\code{nt_total}}{a numeric vector}

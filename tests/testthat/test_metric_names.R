@@ -154,7 +154,7 @@ testthat::test_that("metric.scores, index, number metrics", {
                                  , na = c("", "NA", NA))
   # Number of metrics by index name and region
   df_metsc_cnt_met <- df_metsc %>%
-    dplyr::group_by(INDEX_NAME, INDEX_REGION) %>%
+    dplyr::group_by(INDEX_NAME, INDEX_CLASS) %>%
     dplyr::summarize(n_met_all = dplyr::n()
               , n_met_single = sum(!is.na(SingleValue_Add))
               , n_met_total = n_met_all - n_met_single
@@ -174,7 +174,7 @@ testthat::test_that("metric.scores, index, number metrics", {
   valid_ScoreRegime <- c("AVERAGE", "SUM", "AVERAGE_100", "AVERAGESCALE_100")
   df_indsc_cnt_met <- df_indsc %>%
     dplyr::filter(ScoreRegime %in% valid_ScoreRegime) %>%
-    dplyr::select(INDEX_NAME, INDEX_REGION, NumMetrics)
+    dplyr::select(INDEX_NAME, INDEX_CLASS, NumMetrics)
 
   # Merge
   df_nummet_merge <- merge(df_metsc_cnt_met, df_indsc_cnt_met

@@ -81,7 +81,7 @@ testthat::test_that("metric values_scores, PA Freestone IBI", {
   STRAHLER <- c(rep(5, 31), rep(1, 15))
   DA_MI2 <- c(rep(84.5, 31), rep(0.3, 15))
   INDEX_NAME <- "PADEP_Freestone"
-  INDEX_REGION <- c(rep("large", 31), rep("small", 15))
+  INDEX_CLASS <- c(rep("large", 31), rep("small", 15))
   TAXAID <- c("Isonychia"
              ,"Epeorus"
              ,"Leucrocuta"
@@ -224,7 +224,7 @@ testthat::test_that("metric values_scores, PA Freestone IBI", {
              , rep("Trichoptera", 9), rep(NA, 6), "Ephemeroptera", "Plecoptera"
              , NA, rep("Trichoptera", 2), rep(NA, 10))
   EXCLUDE <- rep(FALSE, 46)
-  df_bugs <- data.frame(SAMPLEID, STRAHLER, DA_MI2, INDEX_NAME, INDEX_REGION
+  df_bugs <- data.frame(SAMPLEID, STRAHLER, DA_MI2, INDEX_NAME, INDEX_CLASS
                         , TAXAID, N_TAXA, TOLVAL, ORDER, EXCLUDE)
 
   # Add extra columns
@@ -262,7 +262,7 @@ testthat::test_that("metric values_scores, PA Freestone IBI", {
   df_bugs[nrow(df_bugs) + 1, ] <- NA
   df_bugs[nrow(df_bugs), "SAMPLEID"] <- "Test_Remove"
   df_bugs[nrow(df_bugs), "INDEX_NAME"] <- "PADEP_Freestone"
-  df_bugs[nrow(df_bugs), "INDEX_REGION"] <- "large"
+  df_bugs[nrow(df_bugs), "INDEX_CLASS"] <- "large"
   df_bugs[nrow(df_bugs), "TAXAID"] <- "Test_Remove"
   df_bugs[nrow(df_bugs), "N_TAXA"] <- 999
   df_bugs[nrow(df_bugs), "EXCLUDE"] <- TRUE
@@ -320,12 +320,12 @@ testthat::test_that("metric values_scores, PA Freestone IBI", {
     , "INDEX_NAME"]==myIndex, "METRIC_NAME"]))
 
   df_metval_calc[, "INDEX_NAME"] <- "PADEP_Freestone"
-  df_metval_calc[, "INDEX_REGION"] <- c("LARGE", "SMALL")
+  df_metval_calc[, "INDEX_CLASS"] <- c("LARGE", "SMALL")
 
   df_metsc_calc <- BioMonTools::metric.scores(df_metval_calc
                                               , myMetrics.Bugs
                                               , "INDEX_NAME"
-                                              , "INDEX_REGION"
+                                              , "INDEX_CLASS"
                                               , df_thresh_metric
                                               , df_thresh_index)
   # For report all numbers rounded
@@ -334,7 +334,7 @@ testthat::test_that("metric values_scores, PA Freestone IBI", {
   # df_QC
   df_metsc_qc <- df_metval_qc
   df_metsc_qc$INDEX_NAME   <- "PADEP_Freestone"
-  df_metsc_qc$INDEX_REGION <- c("LARGE", "SMALL")
+  df_metsc_qc$INDEX_CLASS <- c("LARGE", "SMALL")
   df_metsc_qc$SC_nt_total  <- c(100, 45.5)
   df_metsc_qc$SC_nt_tv_intol4_EPT <- c(100, 15.8)
   df_metsc_qc$SC_x_Becks3  <- c(100, 26.3)
@@ -366,7 +366,7 @@ testthat::test_that("metric scores, WV GLIMPSS MT_SP", {
   ## Table D-1
   SAMPLEID <- "WestForkPondFork"
   INDEX_NAME <- "WV_GLIMPSS"
-  INDEX_REGION <- "MT_SP"
+  INDEX_CLASS <- "MT_SP"
 
   metric_nam <- c("ni_total"
                    , "nt_tv_intol4"
@@ -412,7 +412,7 @@ testthat::test_that("metric scores, WV GLIMPSS MT_SP", {
                  , NA #"pi_ChiroAnne"
                  , NA) #"pi_tv_toler6")
 
-  df_metval <- data.frame(SAMPLEID, INDEX_NAME, INDEX_REGION, t(metric_val))
+  df_metval <- data.frame(SAMPLEID, INDEX_NAME, INDEX_CLASS, t(metric_val))
   names(df_metval)[4:ncol(df_metval)] <- metric_nam
 
   # Add Bear Fork, Table D-2
@@ -456,7 +456,7 @@ testthat::test_that("metric scores, WV GLIMPSS MT_SP", {
   df_metsc_calc <- BioMonTools::metric.scores(df_metval
                                 , metric_nam[-1]
                                 , "INDEX_NAME"
-                                , "INDEX_REGION"
+                                , "INDEX_CLASS"
                                 , df_thresh_metric
                                 , df_thresh_index
                                 , "ni_total")
@@ -512,7 +512,7 @@ testthat::test_that("metric scores, WV GLIMPSS MT_SP", {
   # DF_Metrics <- df_metval
   # col_MetricNames <- metric_nam
   # col_IndexName <- "INDEX_NAME"
-  # col_IndexRegion <- "INDEX_REGION"
+  # col_IndexRegion <- "INDEX_CLASS"
   # DF_Thresh_Metric <- df_thresh_metric
   # DF_Thresh_Index <- df_thresh_index
   # col_ni_total = "ni_total"
@@ -533,7 +533,7 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
   ### _Metric.Values ----
   SAMPLEID <- c(rep("1985006", 16), rep("2011036", 19), rep("1985024", 21))
   INDEX_NAME <- "MassDEP_2020_Bugs"
-  INDEX_REGION <- c(rep("KickIBI_CH_100ct", 16)
+  INDEX_CLASS <- c(rep("KickIBI_CH_100ct", 16)
                     , rep("LowGradientIBI", 19)
                     , rep("KickIBI_WH_100ct", 21))
   TAXAID <- c("Cricotopus"
@@ -1271,7 +1271,7 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
              ,"Simulium")
 
   df_bugs <- data.frame(INDEX_NAME
-                        , INDEX_REGION
+                        , INDEX_CLASS
                         , SAMPLEID
                         , TAXAID
                         , N_TAXA
@@ -1428,14 +1428,14 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
 
 
   df_metval_calc[, "INDEX_NAME"] <- "MassDEP_2020_Bugs"
-  df_metval_calc[, "INDEX_REGION"] <- c("KickIBI_CH_100ct"
+  df_metval_calc[, "INDEX_CLASS"] <- c("KickIBI_CH_100ct"
                                         , "KickIBI_WH_100ct"
                                         , "LowGradientIBI")
 
   df_metsc_calc <- BioMonTools::metric.scores(df_metval_calc
                                               , myMetrics.Bugs
                                               , "INDEX_NAME"
-                                              , "INDEX_REGION"
+                                              , "INDEX_CLASS"
                                               , df_thresh_metric
                                               , df_thresh_index)
   # For report all numbers rounded
@@ -1444,7 +1444,7 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
   # df_QC
   df_metsc_qc <- df_metval_qc
   df_metsc_qc$INDEX_NAME   <- "MassDEP_2020_Bugs"
-  df_metsc_qc$INDEX_REGION <- c("KICKIBI_CH_100CT"
+  df_metsc_qc$INDEX_CLASS <- c("KICKIBI_CH_100CT"
                                 , "KICKIBI_WH_100CT"
                                 , "LOWGRADIENTIBI")
   df_metsc_qc$SC_nt_total <- c(34.4
@@ -1610,7 +1610,7 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
 #   df_metsc_calc <- metric.scores(df_metval[, 1:7]
 #                                  , myMetrics
 #                                  , "INDEX_NAME"
-#                                  , "INDEX_REGION"
+#                                  , "INDEX_CLASS"
 #                                  , df_thresh_metric
 #                                  , df_thresh_index)
 #

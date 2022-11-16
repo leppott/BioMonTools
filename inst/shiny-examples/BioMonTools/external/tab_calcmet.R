@@ -18,7 +18,7 @@ function() {
                      , selected = "bugs")
        #, p("3. Columns.")
        # , p("Required Columns:")
-       # , p("SAMPLEID, TAXAID, N_TAXA, EXCLUDE, INDEX_NAME, INDEX_REGION
+       # , p("SAMPLEID, TAXAID, N_TAXA, EXCLUDE, INDEX_NAME, INDEX_CLASS
        #     , NONTARGET, SAMP_BIOMASS, PHYLUM, SUBPHYLUM, CLASS
        #     , SUBCLASS, INFRAORDER, ORDER, FAMILY, SUBFAMILY, TRIBE
        #     , GENUS")

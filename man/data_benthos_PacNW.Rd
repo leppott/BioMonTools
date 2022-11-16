@@ -8,8 +8,7 @@
 A data frame with 598 observations on the following 38 variables.
 \describe{
 \item{\code{INDEX_NAME}}{a character vector}
-\item{\code{Index_Region}}{a character vector}
-\item{\code{SITE_TYPE}}{a character vector}
+\item{\code{INDEX_CLASS}}{a character vector}
 \item{\code{SampleID}}{a character vector}
 \item{\code{TaxaID}}{a character vector}
 \item{\code{N_TAXA}}{a numeric vector}

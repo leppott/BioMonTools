@@ -6,6 +6,7 @@
 # 20170601
 # 20170907, modify file for just MBSS
 # 20211210, copied from MBSStools package
+# 2022-11-15 (EWL) update for INDEX_CLASS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 0. Prep ####
@@ -16,29 +17,32 @@ wd <- getwd()
 # 1. Get data and Process #####
 # 1.1. Import Data
 myFile <- "data_taxa_fish_MBSS.tab"
-data.import <- read.delim(file.path(".", "data-raw", myFile))
+data.import <- read.delim(file.path(".", "data-raw", "data", myFile))
 # 1.2. Process Data
 #View(data.import)
 names(data.import)
 dim(data.import)
 
-# 20190501, Convert EXCLUDE from Y/NULL to TRUE/FALSE
-str(data.import)
-table(data.import$EXCLUDE, useNA = "ifany")
-data.import[,"EXCLUDE"] <- as.character(data.import[,"EXCLUDE"] )
-data.import[data.import[,"EXCLUDE"]=="Y", ] <- "TRUE"
-data.import[data.import[,"EXCLUDE"]=="", ] <- "FALSE"
-data.import[is.na(data.import[,"EXCLUDE"]), ] <- "FALSE"
-table(data.import$EXCLUDE, useNA = "ifany")
-data.import[,"EXCLUDE"] <- as.logical(data.import[,"EXCLUDE"] )
-table(data.import$EXCLUDE, useNA = "ifany")
-str(data.import)
+# # 20190501, Convert EXCLUDE from Y/NULL to TRUE/FALSE
+# str(data.import)
+# table(data.import$EXCLUDE, useNA = "ifany")
+# data.import[,"EXCLUDE"] <- as.character(data.import[,"EXCLUDE"] )
+# data.import[data.import[,"EXCLUDE"]=="Y", ] <- "TRUE"
+# data.import[data.import[,"EXCLUDE"]=="", ] <- "FALSE"
+# data.import[is.na(data.import[,"EXCLUDE"]), ] <- "FALSE"
+# table(data.import$EXCLUDE, useNA = "ifany")
+# data.import[,"EXCLUDE"] <- as.logical(data.import[,"EXCLUDE"] )
+# table(data.import$EXCLUDE, useNA = "ifany")
+# str(data.import)
+data.import$EXCLUDE <- NA_character_
+data.import$BCG_ATTR <- NA_character_
+
 
 # 20211210, Munge Columns
 ## col, rename
 names(data.import)[names(data.import) == "SITE"] <- "SAMPLEID"
 names(data.import)[names(data.import) == "Index.Name"] <- "INDEX_NAME"
-names(data.import)[names(data.import) == "FIBISTRATA"] <- "INDEX_REGION"
+names(data.import)[names(data.import) == "FIBISTRATA"] <- "INDEX_CLASS"
 names(data.import)[names(data.import) == "SPECIES"] <- "TAXAID"
 names(data.import)[names(data.import) == "TOTAL"] <- "N_TAXA"
 names(data.import)[names(data.import) == "LEN_SAMP"] <- "SAMP_LENGTH_M"
@@ -66,7 +70,7 @@ data.import <- data.import[, !(names(data.import) %in% col_remove)]
 
 # QC column names from metric.values()
 col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "N_ANOMALIES", "SAMP_BIOMASS"
-             , "INDEX_NAME", "INDEX_REGION"
+             , "INDEX_NAME", "INDEX_CLASS"
              , "DA_MI2", "SAMP_WIDTH_M", "SAMP_LENGTH_M"
              , "TYPE", "TOLER", "NATIVE", "TROPHIC", "SILT"
              , "FAMILY", "GENUS", "HYBRID", "THERMAL_INDICATOR"

@@ -116,7 +116,7 @@ Exceptions <- data.frame("TaxaID"=c("Sphaeriidae")
 
 # Filter Data
 # df_samptax <- filter(df_samps_bugs
-                       , !!as.name(SampID) == "08BEA3478__2013-08-21_0")
+#                       , !!as.name(SampID) == "08BEA3478__2013-08-21_0")
 # df_tst_small <- markExcluded(df_samptax
                                , SampID
                                , TaxaID

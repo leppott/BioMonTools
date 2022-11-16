@@ -2,6 +2,7 @@
 
 # Erik.Leppo@tetratech.com
 # 2022-03-22
+# 2022-11-15 (EWL) update for INDEX_CLASS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 0. Prep####
@@ -17,10 +18,13 @@ wd <- getwd() # assume is package directory
 fn <- "data_metval_SCMB_IBI.tsv"
 df <- read.delim(file.path(wd, "data-raw", "data", fn))
 
+# Change Names
+names(df)[names(df) %in% "Index_Region"] <- "INDEX_CLASS"
+
 # 1.2. Process Data
-View(df)
+#View(df)
 # QC check
-dim(df)
+#dim(df)
 # structure
 str(df)
 

@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-11-15 14:03:38
+    #> Last Update: 2022-11-16 16:04:42
 
 # Version History
+
+## Changes in version 1.0.0.9001 (2022-11-16)
+
+- breaking change: Site_Type and Index_Region to Index_Class
+- refactor: Update rarify function to save example to tempdir
 
 ## Changes in version 0.5.0.9127 (2022-11-15)
 

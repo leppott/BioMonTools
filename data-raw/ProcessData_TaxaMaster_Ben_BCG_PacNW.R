@@ -15,14 +15,14 @@ wd <- file.path(system.file(package="BCGcalc"), "extdata") # assume is package d
 
 # 1. Get data and process#####
 # 1.1. Import Data
-myFile <- "TaxaMaster_Bug_BCG_PacNW_v1.xlsx"
-ws <- "TaxaMaster_Ben_BCG_PacNW"
-df <- as.data.frame(readxl::read_excel(file.path(wd,myFile), sheet = ws))
+myFile <- "TaxaMaster_Bug_BCG_PugLowWilVal.xlsx"
+ws <- "TaxaMaster_Ben_BCG_PugLowWilVal"
+df <- as.data.frame(readxl::read_excel(file.path(wd, myFile), sheet = ws))
 
 # 1.2. Process Data
-View(df)
+#View(df)
 # QC check
-dim(df)
+#dim(df)
 # structure
 str(df)
 
@@ -30,5 +30,5 @@ str(df)
 # 2. Save as RDA for use in package####
 #
 TaxaMaster_Ben_BCG_PacNW <- df
-devtools::use_data(TaxaMaster_Ben_BCG_PacNW, overwrite = TRUE)
+usethis::use_data(TaxaMaster_Ben_BCG_PacNW, overwrite = TRUE)
 

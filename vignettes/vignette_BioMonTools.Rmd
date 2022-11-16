@@ -215,7 +215,7 @@ df.metval <- BioMonTools::metric.values(df.data, "bugs", fun.cols2keep=myCols)
 #names(df.metval)[grepl("_ti_", names(df.metval))]
 col.met2keep <- c("ni_total", "nt_total", "nt_ti_corecold", "nt_ti_cold"
                   , "nt_ti_cool", "pi_ti_corecold", "pi_ti_cold", "pi_ti_cool")
-col.ID <- c("SAMPLEID", toupper(myCols), "INDEX_NAME", "INDEX_REGION")
+col.ID <- c("SAMPLEID", toupper(myCols), "INDEX_NAME", "INDEX_CLASS")
 # Ouput
 df.metval.ci <- df.metval[, c(col.ID, col.met2keep)]
 # RMD table

@@ -4,6 +4,7 @@
 # 2020-04-28
 # Benthic macroinvertebrate data to use with new Habitat and BCG_attNA metrics
 # 2022-05-18, add HabStruct
+# 2022-11-15 (EWL) update for INDEX_CLASS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 0. Prep####
@@ -44,6 +45,11 @@ df[df$TaxaID == "Aeshnidae", "BCG_Attr2"] <- "4_WORSE"
 
 # 20221111
 df$AirBreather <- NA
+
+# Change Names
+names(df)[names(df) %in% "Index_Region"] <- "INDEX_CLASS"
+# Remove SITE_TYPE
+df <- df[, names(df)[!names(df) %in% "SITE_TYPE"]]
 
 # 1.2. Process Data
 View(df)

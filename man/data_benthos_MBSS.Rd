@@ -8,8 +8,8 @@
 A data frame with 50,664 observations on the following 31 variables.
 
  \describe{
-  \item{\code{Index.Name}}{a character vector}
-  \item{\code{SITE}}{a character vector}
+  \item{\code{INDEX_NAME}}{a character vector}
+  \item{\code{SITEID}}{a character vector}
   \item{\code{DATE}}{a character vector}
   \item{\code{TAXON}}{a character vector}
   \item{\code{N_TAXA}}{a numeric vector, count}
@@ -17,7 +17,7 @@ A data frame with 50,664 observations on the following 31 variables.
   (max = 30)}
   \item{\code{EXCLUDE}}{a character vector, whether taxon should be excluded
   from taxa richness metrics}
-  \item{\code{strata_r}}{a character vector, index region}
+  \item{\code{INDEX_CLASS}}{a character vector, index region}
   \item{\code{Phylum}}{a character vector}
   \item{\code{Class}}{a character vector}
   \item{\code{Order}}{a character vector}

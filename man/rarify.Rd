@@ -83,6 +83,10 @@ tbl_totals <- aggregate(cbind(N_Taxa_Orig, N_Taxa_500) ~ SampleID
 View(tbl_totals)
 
 # save the data
-write.table(bugs_mysize, paste("bugs",mySize,"txt",sep="."),sep="\t")
+write.table(bugs_mysize
+            , file.path(tempdir(), paste("bugs", mySize, "txt", sep = "."))
+                                         , sep = "\t")
+# Open tempdir (Windows only)
+shell.exec(tempdir())
 }
 }

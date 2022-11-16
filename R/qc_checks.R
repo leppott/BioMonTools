@@ -84,7 +84,7 @@ qc.checks <- function(df.metrics, df.checks, input.shape="wide") {
   if (input.shape=="wide") {##IF.input.shape.START
     df.long <- reshape2::melt(df.metrics, id.vars=c("SAMPLEID"
                                                     , "INDEX_NAME"
-                                                    , "INDEX_REGION")
+                                                    , "INDEX_CLASS")
                              , variable.name="METRIC_NAME"
                              , value.name="METRIC_VALUE")
     # # compare to input
@@ -103,13 +103,13 @@ qc.checks <- function(df.metrics, df.checks, input.shape="wide") {
   df.checks$METRIC_NAME <- tolower(df.checks$METRIC_NAME)
 
   #
-  df.long[,"INDEX_REGION"] <- tolower(df.long[,"INDEX_REGION"])
-  df.checks[,"INDEX_REGION"] <- tolower(df.checks[,"INDEX_REGION"])
+  df.long[,"INDEX_CLASS"] <- tolower(df.long[,"INDEX_CLASS"])
+  df.checks[,"INDEX_CLASS"] <- tolower(df.checks[,"INDEX_CLASS"])
   #
   # merge metrics and checks
   df.merge <- merge(df.long, df.checks
-                    , by.x=c("INDEX_NAME", "INDEX_REGION", "METRIC_NAME")
-                    , by.y=c("INDEX_NAME", "INDEX_REGION", "METRIC_NAME"))
+                    , by.x=c("INDEX_NAME", "INDEX_CLASS", "METRIC_NAME")
+                    , by.y=c("INDEX_NAME", "INDEX_CLASS", "METRIC_NAME"))
   #
   # perform evaluation (adds Pass/Fail, default is NA)
 

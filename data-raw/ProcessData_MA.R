@@ -15,7 +15,7 @@ wd <- getwd() # assume is package directory
 # 1. Get data and process#####
 # 1.1. Import Data
 fn <- "data_ELMR_MA_ALL.tsv"
-df <- read.delim(file.path(wd,"data-raw",fn))
+df <- read.delim(file.path(wd, "data-raw", "data", fn))
 
 
 # 1.2. Process Data

@@ -24,13 +24,13 @@
 #' @param col_IndexRegion Name of column with relevant bioregion or site class
 #' (e.g., COASTAL).
 #' @param DF_Thresh_Metric Data frame of Scoring Thresholds for metrics
-#' (INDEX_NAME, INDEX_REGION,
+#' (INDEX_NAME, INDEX_CLASS,
 #' METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime
 #' , SingleValue_Add, NormDist_Tail_Lo, NormDist_Tail_Hi, CatGrad_xvar
 #' , CatGrad_InfPt, CatGrad_Lo_m,	CatGrad_Lo_b,	CatGrad_Mid_m,	CatGrad_Mid_b
 #' ,	CatGrad_Hi_m,	CatGrad_Hi_b).
 #' @param DF_Thresh_Index Data frame of Scoring Thresholds for indices
-#' (INDEX_NAME, INDEX_REGION,METRIC_NAME, ScoreRegime, Thresh01, Thresh02
+#' (INDEX_NAME, INDEX_CLASS,METRIC_NAME, ScoreRegime, Thresh01, Thresh02
 #' , Thresh03, Thresh04, Thresh05, Thresh06, Thresh07
 #' , Nar01, Nar02, Nar03, Nar04, Nar05, Nar06).
 #' @param col_ni_total Name of column with total number of individuals.  Used
@@ -48,35 +48,37 @@
 #' library(reshape2)
 #'
 #' # Thresholds
-#' fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata"
-#' , "MetricScoring.xlsx")
-#' df_thresh_metric <- read_excel(fn_thresh, sheet="metric.scoring")
-#' df_thresh_index <- read_excel(fn_thresh, sheet="index.scoring")
+#' fn_thresh <- file.path(system.file(package = "BioMonTools")
+#'                        , "extdata"
+#'                        , "MetricScoring.xlsx")
+#' df_thresh_metric <- read_excel(fn_thresh, sheet = "metric.scoring")
+#' df_thresh_index <- read_excel(fn_thresh, sheet = "index.scoring")
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~
 #' # Pacific Northwest, BCG Level 1 Indicator Taxa Index
 #' df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx"
-#'                                         , package="BioMonTools")
+#'                                         , package = "BioMonTools")
 #'                             , guess_max = 10^6)
 #'
 #' myIndex <- "BCG_PacNW_L1"
 #' df_samps_bugs$Index_Name   <- myIndex
-#' df_samps_bugs$Index_Region <- "ALL"
+#' df_samps_bugs$INDEX_CLASS <- "ALL"
 #' (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
-#'                           , "INDEX_NAME"]==myIndex, "METRIC_NAME"]))
+#'                           , "INDEX_NAME"] == myIndex, "METRIC_NAME"]))
 #' # Run Function
-#' df_metric_values_bugs <- metric.values(df_samps_bugs, "bugs"
+#' df_metric_values_bugs <- metric.values(df_samps_bugs
+#'                                        , "bugs"
 #'                                        , fun.MetricNames = myMetrics.Bugs)
 #'
 #' # index to BCG.PacNW.L1
 #' df_metric_values_bugs$INDEX_NAME <- myIndex
-#' df_metric_values_bugs$INDEX_REGION <- "ALL"
+#' df_metric_values_bugs$INDEX_CLASS <- "ALL"
 #'
 #' # SCORE Metrics
 #' df_metric_scores_bugs <- metric.scores(df_metric_values_bugs
 #'                                        , myMetrics.Bugs
 #'                                        , "INDEX_NAME"
-#'                                        , "INDEX_REGION"
+#'                                        , "INDEX_CLASS"
 #'                                        , df_thresh_metric
 #'                                        , df_thresh_index)
 #'
@@ -87,10 +89,11 @@
 #' # QC, table
 #' table(df_metric_scores_bugs$Index, df_metric_scores_bugs$Index_Nar)
 #' # QC, plot
-#' hist(df_metric_scores_bugs$Index, main="PacNW BCG Example Data"
-#'      , xlab="Level 1 Indicator Taxa Index Score")
-#' abline(v=c(21,30), col="blue")
-#' text(21+c(-2,+2), 200, c("Low","Medium"), col="blue")
+#' hist(df_metric_scores_bugs$Index
+#'      , main = "PacNW BCG Example Data"
+#'      , xlab = "Level 1 Indicator Taxa Index Score")
+#' abline(v=c(21,30), col = "blue")
+#' text(21 + c(-2, +2), 200, c("Low", "Medium"), col = "blue")
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~
 #' # Metrics, Index, Benthic Macroinvertebrates, genus
@@ -105,27 +108,29 @@
 #' # Taxa Data
 #' myDF_Bugs_MBSS <- data_benthos_MBSS
 #' myDF_Bugs_MBSS$NONTARGET <- FALSE
-#' myDF_Bugs_MBSS$INDEX_REGION <- toupper(myDF_Bugs_MBSS$strata_r)
+#' myDF_Bugs_MBSS$INDEX_CLASS <- toupper(myDF_Bugs_MBSS$INDEX_CLASS)
 #' myDF_Bugs_MBSS$SAMPLEID <- myDF_Bugs_MBSS$SITE
-#' myDF_Bugs_MBSS$INDEX_NAME <- myDF_Bugs_MBSS$Index.Name
+#' myDF_Bugs_MBSS$INDEX_NAME <- myIndex
 #' myDF_Bugs_MBSS$TAXAID <- myDF_Bugs_MBSS$TAXON
 #' myDF_Bugs_MBSS$SubPhylum <- NA
 #' myDF_Bugs_MBSS$SubFamily <- NA
 #' myDF_Bugs_MBSS$TOLVAL <- myDF_Bugs_MBSS$FinalTolVal07
 #' myDF_Bugs_MBSS$TOLVAL2 <- myDF_Bugs_MBSS$FinalTolVal08
 #' myDF_Bugs_MBSS$EXCLUDE <- myDF_Bugs_MBSS$EXCLUDE=="Y"
-#' myMetric_Values_Bugs_MBSS <- metric.values(myDF_Bugs_MBSS, "bugs"
-#' , myMetrics_Bugs_MBSS)
+#'
+#' myMetric_Values_Bugs_MBSS <- metric.values(myDF_Bugs_MBSS
+#'                                            , "bugs"
+#'                                            , myMetrics_Bugs_MBSS)
 #'
 #'\dontrun{
 #' View(myMetric_Values_Bugs_MBSS)
 #' }
 #' # SCORE
-#' myMetric_Values_Bugs_MBSS$INDEX_REGION <- toupper(myMetric_Values_Bugs_MBSS$INDEX_REGION)
+#' myMetric_Values_Bugs_MBSS$INDEX_CLASS <- toupper(myMetric_Values_Bugs_MBSS$INDEX_CLASS)
 #' Metrics_Bugs_Scores_MBSS <- metric.scores(myMetric_Values_Bugs_MBSS
 #'                                           , myMetrics_Bugs_MBSS
 #'                                           , "INDEX_NAME"
-#'                                           , "INDEX_REGION"
+#'                                           , "INDEX_CLASS"
 #'                                           , df_thresh_metric
 #'                                           , df_thresh_index)
 #' \dontrun{
@@ -169,19 +174,19 @@ metric.scores <- function(DF_Metrics
                           , DF_Thresh_Metric
                           , DF_Thresh_Index
                           , col_ni_total = "ni_total") {##FUNCTION.metric.score.START
- #
+  #
   boo.QC <- FALSE
   if(boo.QC==TRUE){
     # DF_Metrics <- df_metric_values_bugs
     # col_MetricNames <- myMetrics.Bugs
     # col_IndexName <- "INDEX_NAME"
-    # col_IndexRegion <-  "INDEX_REGION"
+    # col_IndexRegion <-  "INDEX_CLASS"
     # DF_Thresh <- df_thresh
     #~~~~~~~~~~~~~~~~~~~~~
     # DF_Metrics       <- df_metric_values_bugs
     # col_MetricNames  <- myMetrics.Bugs
     # col_IndexName    <- "INDEX_NAME"
-    # col_IndexRegion  <- "INDEX_REGION"
+    # col_IndexRegion  <- "INDEX_CLASS"
     # DF_Thresh_Metric <- df_thresh_metric
     # DF_Thresh_Index  <- df_thresh_index
     (a <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
@@ -192,7 +197,7 @@ metric.scores <- function(DF_Metrics
   }##IF~boo.QC~END
 
   # global variable bindings ----
-  INDEX_NAME <- INDEX_REGION <- METRIC_NAME <- NULL
+  INDEX_NAME <- INDEX_CLASS <- METRIC_NAME <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -206,7 +211,7 @@ metric.scores <- function(DF_Metrics
   #
   # QC, Column Names
   # Error check on fields (thresh metric)
-  myFlds <- c("INDEX_NAME", "INDEX_REGION", "METRIC_NAME", "Thresh_Lo", "Thresh_Mid", "Thresh_Hi"
+  myFlds <- c("INDEX_NAME", "INDEX_CLASS", "METRIC_NAME", "Thresh_Lo", "Thresh_Mid", "Thresh_Hi"
               , "Direction", "ScoreRegime", "SingleValue_Add", "NormDist_Tail_Lo", "NormDist_Tail_Hi"
               , "CatGrad_xvar", "CatGrad_InfPt", "CatGrad_Lo_m",	"CatGrad_Lo_b",	"CatGrad_Mid_m"
               ,	"CatGrad_Mid_b",	"CatGrad_Hi_m", "CatGrad_Hi_b")
@@ -216,14 +221,14 @@ metric.scores <- function(DF_Metrics
     stop(myMsg)
   }
   # Error check on fields (metrics)
-  myFlds_2 <- c("INDEX_NAME", "INDEX_REGION")
+  myFlds_2 <- c("INDEX_NAME", "INDEX_CLASS")
   if (length(myFlds_2)!=sum(myFlds_2 %in% names(DF_Metrics))) {
     myMsg <- paste0("Fields missing from DF_Metrics input data frame.  Expecting: \n"
                     , paste(myFlds_2, sep="", collapse=", "), collapse="")
     stop(myMsg)
   }
   # Error check on fields (thresh Index)
-  myFlds_Index <- c("INDEX_NAME", "INDEX_REGION", "NumMetrics", "ScoreRegime"
+  myFlds_Index <- c("INDEX_NAME", "INDEX_CLASS", "NumMetrics", "ScoreRegime"
                     , paste0("Thresh0",1:6), paste0("Nar0",1:5))
   if (length(myFlds_Index)!=sum(myFlds_Index %in% names(DF_Thresh_Index))) {
     myMsg <- paste0("Fields missing from DF_Metrics input data frame.  Expecting: \n"
@@ -234,9 +239,9 @@ metric.scores <- function(DF_Metrics
   # Munge ####
   #
   # Index Region Field to upper case
-  DF_Metrics[,"INDEX_REGION"]       <- toupper(as.matrix(DF_Metrics[,"INDEX_REGION"]))
-  DF_Thresh_Metric[,"INDEX_REGION"] <- toupper(as.matrix(DF_Thresh_Metric[,"INDEX_REGION"]))
-  DF_Thresh_Index[,"INDEX_REGION"]  <- toupper(as.matrix(DF_Thresh_Index[,"INDEX_REGION"]))
+  DF_Metrics[,"INDEX_CLASS"]       <- toupper(as.matrix(DF_Metrics[,"INDEX_CLASS"]))
+  DF_Thresh_Metric[,"INDEX_CLASS"] <- toupper(as.matrix(DF_Thresh_Metric[,"INDEX_CLASS"]))
+  DF_Thresh_Index[,"INDEX_CLASS"]  <- toupper(as.matrix(DF_Thresh_Index[,"INDEX_CLASS"]))
   #
   # Add "SCORE" columns for each metric
   Score.MetricNames <- paste0("SC_", col_MetricNames)
@@ -249,7 +254,7 @@ metric.scores <- function(DF_Metrics
       for (c in col_MetricNames){##FOR.c.START
         #
         # Thresholds (filter with dplyr)
-        fun.Thresh.myMetric <- as.data.frame(dplyr::filter(DF_Thresh_Metric, INDEX_NAME==a & INDEX_REGION==b & METRIC_NAME==c))
+        fun.Thresh.myMetric <- as.data.frame(dplyr::filter(DF_Thresh_Metric, INDEX_NAME==a & INDEX_CLASS==b & METRIC_NAME==c))
         # QC
         #stopifnot(nrow(fun.Thresh.myMetric)==1)
         if(nrow(fun.Thresh.myMetric)!=1){
@@ -549,86 +554,87 @@ metric.scores <- function(DF_Metrics
   DF_Metrics[,"sum_Index"] <- rowSums(DF_Metrics[, Score.MetricNames], na.rm = TRUE)
 
   # Index, Value
-    # Need to cycle based on Index (aa) and Region (bb)
+  # Need to cycle based on Index (aa) and Region (bb)
   for (aa in unique(as.matrix(DF_Metrics[,col_IndexName]))){##FOR.a.START
     for (bb in unique(as.matrix(DF_Metrics[,col_IndexRegion]))) {##FOR.b.START
 
-    # Thresholds (filter with dplyr)
-    fun.Thresh.myIndex <- as.data.frame(dplyr::filter(DF_Thresh_Index
-                                                      , INDEX_NAME==aa & INDEX_REGION==bb))
-    # QC
-    if(nrow(fun.Thresh.myIndex)!=1){
-      #return(0)
-      next
-    }
-    # thresholds
-    fun.NumMetrics       <- as.numeric(fun.Thresh.myIndex[, "NumMetrics"])
-    fun.ScoreRegime      <- fun.Thresh.myIndex[, "ScoreRegime"]
-    fun.Scale            <- fun.Thresh.myIndex[, "ScoreScaling"]
-    fun.Index.Nar.Thresh <- fun.Thresh.myIndex[, c(paste0("Thresh0"
-                                                          , seq_len(7)))]
-    fun.Index.Nar.Nar    <- fun.Thresh.myIndex[, c(paste0("Nar0", seq_len(6)))]
+      # Thresholds (filter with dplyr)
+      fun.Thresh.myIndex <- as.data.frame(dplyr::filter(DF_Thresh_Index
+                                                        , INDEX_NAME==aa
+                                                          & INDEX_CLASS==bb))
+      # QC
+      if(nrow(fun.Thresh.myIndex)!=1){
+        #return(0)
+        next
+      }
+      # thresholds
+      fun.NumMetrics       <- as.numeric(fun.Thresh.myIndex[, "NumMetrics"])
+      fun.ScoreRegime      <- fun.Thresh.myIndex[, "ScoreRegime"]
+      fun.Scale            <- fun.Thresh.myIndex[, "ScoreScaling"]
+      fun.Index.Nar.Thresh <- fun.Thresh.myIndex[, c(paste0("Thresh0"
+                                                            , seq_len(7)))]
+      fun.Index.Nar.Nar    <- fun.Thresh.myIndex[, c(paste0("Nar0", seq_len(6)))]
 
-    fun.Index.Nar.Numb <- sum(!is.na(fun.Index.Nar.Nar), na.rm = TRUE)
+      fun.Index.Nar.Numb <- sum(!is.na(fun.Index.Nar.Nar), na.rm = TRUE)
 
-    fun.ZeroInd_Use <- fun.Thresh.myIndex[, "Use_ZeroInd"]
-    fun.ZeroInd_Sc  <- fun.Thresh.myIndex[, "ZeroInd_Score"]
-    fun.ZeroInd_Nar <- fun.Thresh.myIndex[, "ZeroInd_Narrative"]
+      fun.ZeroInd_Use <- fun.Thresh.myIndex[, "Use_ZeroInd"]
+      fun.ZeroInd_Sc  <- fun.Thresh.myIndex[, "ZeroInd_Score"]
+      fun.ZeroInd_Nar <- fun.Thresh.myIndex[, "ZeroInd_Narrative"]
 
-    # default value
-    fun.Value <- DF_Metrics[, "sum_Index"]
-    fun.Result <- fun.Value * NA  #default value of NA
-    #
-    # Score Regime, INDEX ####
-    # Scoring
-    if(fun.ScoreRegime == "AVERAGE"){##IF.scoring.START
-      fun.Result <- DF_Metrics[, "sum_Index"] / fun.NumMetrics
-    # } else if (fun.ScoreRegime == "AVERAGE_10"){
-    #   sr_mult    <- 10
-    #   fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
-    # } else if (fun.ScoreRegime == "AVERAGE_20"){
-    #   sr_mult    <- 20
-    #   fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
-    } else if (fun.ScoreRegime == "AVERAGE_100"){
-      sr_mult    <- 100 / fun.NumMetrics
-      fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
-    } else if (fun.ScoreRegime == "AVERAGESCALE_100") {
-      sr_mult    <- 100 / fun.NumMetrics / fun.Scale
-      fun.Result <- sr_mult * DF_Metrics[, "sum_Index"]
-    } else {
-      # SUM
-      fun.Result <- DF_Metrics[, "sum_Index"]
-    }##IF.scoring.END
-    #
-    # Narrative
-    myBreaks <- as.numeric(paste(fun.Index.Nar.Thresh[1, 1:(fun.Index.Nar.Numb + 1)]))
-    myLabels <- paste(fun.Index.Nar.Nar[1, 1:fun.Index.Nar.Numb])
-    fun.Result.Nar <- as.vector(cut(fun.Result
-                                    , breaks=myBreaks
-                                    , labels=myLabels
-                                    , include.lowest=TRUE
-                                    , right=FALSE
-                                    , ordered_result = TRUE))
+      # default value
+      fun.Value <- DF_Metrics[, "sum_Index"]
+      fun.Result <- fun.Value * NA  #default value of NA
+      #
+      # Score Regime, INDEX ####
+      # Scoring
+      if(fun.ScoreRegime == "AVERAGE"){##IF.scoring.START
+        fun.Result <- DF_Metrics[, "sum_Index"] / fun.NumMetrics
+        # } else if (fun.ScoreRegime == "AVERAGE_10"){
+        #   sr_mult    <- 10
+        #   fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
+        # } else if (fun.ScoreRegime == "AVERAGE_20"){
+        #   sr_mult    <- 20
+        #   fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
+      } else if (fun.ScoreRegime == "AVERAGE_100"){
+        sr_mult    <- 100 / fun.NumMetrics
+        fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
+      } else if (fun.ScoreRegime == "AVERAGESCALE_100") {
+        sr_mult    <- 100 / fun.NumMetrics / fun.Scale
+        fun.Result <- sr_mult * DF_Metrics[, "sum_Index"]
+      } else {
+        # SUM
+        fun.Result <- DF_Metrics[, "sum_Index"]
+      }##IF.scoring.END
+      #
+      # Narrative
+      myBreaks <- as.numeric(paste(fun.Index.Nar.Thresh[1, 1:(fun.Index.Nar.Numb + 1)]))
+      myLabels <- paste(fun.Index.Nar.Nar[1, 1:fun.Index.Nar.Numb])
+      fun.Result.Nar <- as.vector(cut(fun.Result
+                                      , breaks=myBreaks
+                                      , labels=myLabels
+                                      , include.lowest=TRUE
+                                      , right=FALSE
+                                      , ordered_result = TRUE))
 
-    # Update for zero individuals
-    if(fun.ZeroInd_Use == TRUE) {
-      boo_zero_ni_total <- DF_Metrics[, col_ni_total] == 0
-      fun.Result[boo_zero_ni_total]     <- fun.ZeroInd_Sc
-      fun.Result.Nar[boo_zero_ni_total] <- fun.ZeroInd_Nar
-    }##IF~fun.zeroind_use~END
+      # Update for zero individuals
+      if(fun.ZeroInd_Use == TRUE) {
+        boo_zero_ni_total <- DF_Metrics[, col_ni_total] == 0
+        fun.Result[boo_zero_ni_total]     <- fun.ZeroInd_Sc
+        fun.Result.Nar[boo_zero_ni_total] <- fun.ZeroInd_Nar
+      }##IF~fun.zeroind_use~END
 
 
-    # Update input DF with matching values
-    myTF <- DF_Metrics[,col_IndexName]==aa & DF_Metrics[,col_IndexRegion]==bb
-    DF_Metrics[myTF, "Index"]     <- fun.Result[myTF]
-    DF_Metrics[myTF, "Index_Nar"] <- fun.Result.Nar[myTF]
+      # Update input DF with matching values
+      myTF <- DF_Metrics[,col_IndexName]==aa & DF_Metrics[,col_IndexRegion]==bb
+      DF_Metrics[myTF, "Index"]     <- fun.Result[myTF]
+      DF_Metrics[myTF, "Index_Nar"] <- fun.Result.Nar[myTF]
 
-    # Add factor levels for Index_Nar
-    ## only works if doing a single index or multiple indices with the same narrative categories
-    # DF_Metrics[myTF, "Index_Nar"] <- factor(DF_Metrics[myTF, "Index_Nar"]
-    #                                         , levels = fun.Index.Nar.Nar
-    #                                         , labels = fun.Index.Nar.Nar
-    #                                         , ordered = TRUE)
+      # Add factor levels for Index_Nar
+      ## only works if doing a single index or multiple indices with the same narrative categories
+      # DF_Metrics[myTF, "Index_Nar"] <- factor(DF_Metrics[myTF, "Index_Nar"]
+      #                                         , levels = fun.Index.Nar.Nar
+      #                                         , labels = fun.Index.Nar.Nar
+      #                                         , ordered = TRUE)
 
     }##FOR.bb.END
   }##FOR.aa.END

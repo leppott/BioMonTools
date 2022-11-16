@@ -15,12 +15,12 @@ test_that("metric_stats & metric_stats2", {
   names(df_bugs)[names(df_bugs) %in% "TaxaID"] <- "TAXAID"
   names(df_bugs)[names(df_bugs) %in% "Individuals"] <- "N_TAXA"
   names(df_bugs)[names(df_bugs) %in% "Exclude"] <- "EXCLUDE"
-  names(df_bugs)[names(df_bugs) %in% "Class"] <- "INDEX_REGION"
+  names(df_bugs)[names(df_bugs) %in% "Class"] <- "INDEX_CLASS"
   names(df_bugs)[names(df_bugs) %in% "Unique_ID"] <- "SITEID"
 
   # Calc Metrics
   cols_keep <- c("Ref_v1", "CalVal_Class4", "SITEID", "CollDate", "CollMeth")
-  # INDEX_NAME and INDEX_REGION kept by default
+  # INDEX_NAME and INDEX_CLASS kept by default
   df_metval <- BioMonTools::metric.values(df_bugs
                                           , "bugs"
                                           , fun.cols2keep = cols_keep)
@@ -35,7 +35,7 @@ test_that("metric_stats & metric_stats2", {
   col_DataType  <- "CALVAL_CLASS4"
   DataType_Cal  <- "cal"
   DataType_Ver  <- "verif"
-  col_Subset    <- "INDEX_REGION"
+  col_Subset    <- "INDEX_CLASS"
   Subset_Value  <- "CentralHills"
   df_stats <- BioMonTools::metric.stats(df_metval
                                        , col_metrics
@@ -73,10 +73,10 @@ test_that("metric_stats & metric_stats2", {
   # data_metstat <- df_stats
   # col_metval_RefStatus <- "REF_V1"
   # col_metval_DataType <- "CALVAL_CLASS4"
-  # col_metval_Subset <- "INDEX_REGION"
+  # col_metval_Subset <- "INDEX_CLASS"
   # col_metstat_RefStatus <- "REF_V1"
   # col_metstat_DataType <- "CALVAL_CLASS4"
-  # col_metstat_Subset <- "INDEX_REGION"
+  # col_metstat_Subset <- "INDEX_CLASS"
   # RefStatus_Ref = "Ref"
   # RefStatus_Str = "Strs"
   # RefStatus_Oth = "Other"

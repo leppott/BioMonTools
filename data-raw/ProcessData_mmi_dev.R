@@ -15,7 +15,7 @@ wd <- getwd() # assume is package directory
 # 1. Get data and process#####
 # 1.1. Import Data
 fn <- "data_mmi_dev.tsv"
-df <- read.delim(file.path(wd, "data-raw", fn))
+df <- read.delim(file.path(wd, "data-raw", "data", fn))
 
 # Add columns for metric.values
 col_add <- c("INDEX_NAME", "SUBPHYLUM", "CLASS", "SUBCLASS", "INFRAORDER"
@@ -32,9 +32,9 @@ for (i in col_add) {
 class(df[, "TOLVAL2"]) <- "numeric"
 
 # 1.2. Process Data
-View(df)
+#View(df)
 # QC check
-dim(df)
+#dim(df)
 # structure
 str(df)
 

@@ -15,7 +15,7 @@
   \item{\code{NATIVE}}{a character vector}
   \item{\code{TROPHIC}}{a character vector}
   \item{\code{SILT}}{a character vector}
-  \item{\code{INDEX_REGION}}{a character vector}
+  \item{\code{INDEX_CLASS}}{a character vector}
   \item{\code{SAMP_LENGTH_M}}{a numeric vector}
   \item{\code{SAMP_WIDTH_M}}{a numeric vector}
   \item{\code{SAMP_BIOMASS}}{a numeric vector}
