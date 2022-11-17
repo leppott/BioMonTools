@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-11-16 16:04:42
+    #> Last Update: 2022-11-17 11:16:24
 
 # Version History
+
+## Changes in version 1.0.0.9002 (2022-11-17)
+
+- fix: Update markExclude to avoid dplyr deprecation warnings, Issue
+  \#51
 
 ## Changes in version 1.0.0.9001 (2022-11-16)
 

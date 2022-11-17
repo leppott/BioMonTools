@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9002 (2022-11-17)
+
+* fix: Update markExclude to avoid dplyr deprecation warnings, Issue #51
+
 ## Changes in version 1.0.0.9001 (2022-11-16)
 
 * breaking change: Site_Type and Index_Region to Index_Class

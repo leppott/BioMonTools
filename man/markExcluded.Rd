@@ -118,12 +118,12 @@ Exceptions <- data.frame("TaxaID"=c("Sphaeriidae")
 # df_samptax <- filter(df_samps_bugs
 #                       , !!as.name(SampID) == "08BEA3478__2013-08-21_0")
 # df_tst_small <- markExcluded(df_samptax
-                               , SampID
-                               , TaxaID
-                               , TaxaCount
-                               , TaxaLevels
-                               , Exceptions
-                               , Exclude)
+#                              , SampID
+#                              , TaxaID
+#                              , TaxaCount
+#                              , TaxaLevels
+#                              , Exceptions
+#                              , Exclude)
 
 # EXAMPLE 1
 df_tst <- markExcluded(df_samps_bugs

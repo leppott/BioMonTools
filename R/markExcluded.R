@@ -96,12 +96,12 @@
 #' # df_samptax <- filter(df_samps_bugs
 #' #                       , !!as.name(SampID) == "08BEA3478__2013-08-21_0")
 #' # df_tst_small <- markExcluded(df_samptax
-#'                                , SampID
-#'                                , TaxaID
-#'                                , TaxaCount
-#'                                , TaxaLevels
-#'                                , Exceptions
-#'                                , Exclude)
+#' #                              , SampID
+#' #                              , TaxaID
+#' #                              , TaxaCount
+#' #                              , TaxaLevels
+#' #                              , Exceptions
+#' #                              , Exclude)
 #'
 #' # EXAMPLE 1
 #' df_tst <- markExcluded(df_samps_bugs
@@ -258,10 +258,10 @@
 #
 #' @export
 markExcluded <- function(df_samptax
-                         , SampID="SAMPLEID"
-                         , TaxaID="TAXAID"
+                         , SampID = "SAMPLEID"
+                         , TaxaID = "TAXAID"
                          , TaxaCount = "N_TAXA"
-                         , Exclude="EXCLUDE"
+                         , Exclude = "EXCLUDE"
                          , TaxaLevels
                          , Exceptions = NA) {
   ##FUNCTION.markExcluded.START
@@ -270,7 +270,7 @@ markExcluded <- function(df_samptax
   if(isTRUE(boo_QC)){
 
     # Data
-    df_samps_bugs <- readxl::read_excel(system.file("./extdata/Data_Benthos.xlsx"
+    df_samps_bugs <- readxl::read_excel(system.file("extdata/Data_Benthos.xlsx"
                                             , package="BioMonTools")
                                 , guess_max=10^6)
 
@@ -379,7 +379,7 @@ markExcluded <- function(df_samptax
  # i <- tl_present[6]  # QC
 
   # Loop through TaxaLevels
-  for (i in tl_present){##for.i.START
+  for (i in tl_present) {
     #
     # if(boo_QC==TRUE){##IF.QC_val.START
     #   #i <- tl_present[6]
@@ -451,15 +451,25 @@ markExcluded <- function(df_samptax
     # as.name(TaxaCount) == eval(substitute(TaxaCount))
     # interp(SampID)
     # https://stackoverflow.com/questions/27949212/using-dplyr-n-distinct-in-function-with-quoted-variable?rq=1
-    i_count <- dplyr::summarise_(dplyr::group_by_(df_samptax
-                                                 , SampID
-                                                 , i)
-                                 # individuals #
-                                 , count_tl =
-                          lazyeval::interp(~dplyr::n_distinct(var, na.rm=TRUE)
-                                                         , var=as.name(TaxaID))
-    )
+    # i_count <- dplyr::summarise_(dplyr::group_by_(df_samptax
+    #                                              , SampID
+    #                                              , i)
+    #            # individuals #
+    #            , count_tl = lazyeval::interp(~dplyr::n_distinct(var, na.rm=TRUE)
+    #                                          , var = as.name(TaxaID))
+    # )
 
+    # 2022-11-17, get rid of deprecation warning for summarise_ and group_by_
+    # https://stackoverflow.com/questions/47081564/replacing-group-by-with-group-by-when-the-argument-is-a-string-in-dplyr
+    # use !!as.name(foo)
+    # https://dplyr.tidyverse.org/reference/se-deprecated.html
+    # rework without interp
+
+    i_count <- dplyr::summarise(dplyr::group_by(df_samptax
+                                                , !!as.name(SampID)
+                                                , !!as.name(i))
+                              , count_tl = dplyr::n_distinct(!!as.name(TaxaID))
+                              , .groups = "drop_last")
 
 
 
