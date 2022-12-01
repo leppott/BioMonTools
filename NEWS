@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-11-17 11:16:24
+    #> Last Update: 2022-12-01 15:04:47
 
 # Version History
+
+## Changes in version 1.0.0.9003 (2022-12-01)
+
+- feature: Add taxa_translate function
+  - More general than qc_taxa
 
 ## Changes in version 1.0.0.9002 (2022-11-17)
 

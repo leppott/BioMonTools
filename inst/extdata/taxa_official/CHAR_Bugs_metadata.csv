@@ -1,0 +1,38 @@
+MBSS Master Taxa File,,,
+Community,Bugs,,
+Version,2019-11-01,,
+Contact,tomas.ivasauskas@maryland.gov,,
+,,,
+Field Names,,,
+,Taxon,,
+,Phylum,,
+,Class,,
+,Order,,
+,Family,,
+,Genus,,
+,Other_Taxa,,
+,Tribe,,
+,FFG,,
+,FAM_TV,,
+,Habit,"Separate values with ""comma"" (with or without spaces).",
+,FinalTolVal07,,
+,Comment,,
+,,,
+Valid Values,,,
+,FFG,Collector,
+,FFG,Filterer,
+,FFG,Piercer,
+,FFG,Predator,
+,FFG,Scraper,
+,FFG,Shredder,
+,Habit,bu,burrower
+,Habit,cb,climber
+,Habit,cl,???
+,Habit,cn,clinger
+,Habit,dv,diver
+,Habit,le,
+,Habit,lo,
+,Habit,sk,skater
+,Habit,SK,
+,Habit,sp,sprawler
+,Habit,sw,swimmer

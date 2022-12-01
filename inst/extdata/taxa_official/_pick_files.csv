@@ -1,0 +1,4 @@
+project,filename,taxaid,calc_type,calc_type_taxaid,metadata_file
+Pacific Northwest,TAXA_TRANSLATOR_MASTER_20221201.csv,Taxon_orig,"BCG,Thermal,MTTI,Bob","OTU_BCG_MariNW,Taxon_v2,OTU_MTTI,Taxon_v2",TAXA_TRANSLATOR_MASTER_20221117_METADATA.csv
+MBSS_bugs,CHAR_Bugs.csv,Taxon,BIBI,Taxon,CHAR_Bugs_metadata.csv
+MBSS_fish,CHAR_Fish.csv,SPECIES,FIBI,SPECIES,CHAR_Fish_metadata.csv

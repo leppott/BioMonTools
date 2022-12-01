@@ -1,0 +1,169 @@
+INDEX_CLASS,INDEX_NAME,SourceEntity,StationID,SampleID_Tt,SampleID,RepNum_new,CollDate,TaxaID,N_TAXA,NonTarget,Phylum,Class,Subclass,Order,Family,Subfamily,Tribe,Genus,BCG_Attr,FFG,Life_Cycle,Noteworthy
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Agapetus,46,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Agapetinae,NA,Agapetus,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Allocosmoecus partitus,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Limnephilidae,Dicosmoecinae,NA,Allocosmoecus,2,SC,uni,TRUE
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Ameletus,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ameletidae,NA,NA,Ameletus,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Amiocentrus aspilus,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,Amiocentrus,3,CG,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Ampumixis dispar,10,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Ampumixis,2,CG,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Antocha,24,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Antocha,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Apatania,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Apataniidae,Apataniinae,Apataniini,Apatania,2,SC,uni,TRUE
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Arctopsyche grandis,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Arctopsychinae,NA,Arctopsyche,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Baetis,49,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Calineuria californica,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Calineuria,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Chloroperlidae,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,NA,NA,NA,4,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Clinocera,1,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Clinocerinae,NA,Clinocera,3,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Cricotopus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Cricotopus,4,MH,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Cricotopus (Nostococladius),1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Cricotopus,2,MH,multi,TRUE
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Diphetor hageni,3,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Drunella doddsii,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Epeorus,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Epeorus,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Epeorus grandis group,3,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Epeorus,2,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Eubrianax edwardsii,39,FALSE,Arthropoda,Insecta,NA,Coleoptera,Psephenidae,Eubrianacinae,NA,Eubrianax,2,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Eukiefferiella brehmi group,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Glossosoma,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Glossosomatidae,14,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,NA,NA,NA,4,SC,UNKN,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Gomphidae,3,FALSE,Arthropoda,Insecta,NA,Odonata,Gomphidae,NA,NA,NA,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Gumaga,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Sericostomatidae,NA,NA,Gumaga,2,OM,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Heptageniidae,13,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,NA,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Heterlimnius corpulentus,10,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Heteroplectron californicum,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Calamoceratidae,Calamoceratinae,NA,Heteroplectron,2,SH,semi,TRUE
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Hydropsyche,34,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Hydropsychidae,28,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,NA,NA,NA,4,UNKN,UNKN,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Hydroptila,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydroptilidae,Hydroptilinae,Hydroptilini,Hydroptila,4,PH,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Ironodes,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Ironodes,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Malenka,9,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,Malenka,4,SH,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Micrasema,7,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,Micrasema,3,CG,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Micropsectra,4,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Microtendipes,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Chironomini,Microtendipes,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Neophylax splendens,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Thremmatidae,NA,NA,Neophylax,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Neotrichia,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydroptilidae,Hydroptilinae,Neotrichiini,Neotrichia,3,SC,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Oligochaeta,24,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Optioservus,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Ordobrevia nubifera,34,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Ordobrevia,3,CG,semi,TRUE
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Orthocladiinae,7,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,NA,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Orthocladius complex,7,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Orthocladius complex,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Parametriocnemus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Perlidae,15,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,NA,NA,NA,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Potthastia,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Diamesinae,Diamesini,Potthastia,3,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Rheotanytarsus,3,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Rhyacophila angelita group,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Rhyacophila betteni group,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Rhyacophila brunnea/vemna groups,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Rhyacophila hyalinata group,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,2,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Rhyacophila narvae,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Simulium,3,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Tanytarsini,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,NA,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Tanytarsus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Tanytarsus,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Thienemannimyia group,5,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Thienemannimyia group,4,PR,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Trombidiformes,18,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Tvetenia bavarica group,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Uenoidae,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Uenoidae,NA,NA,NA,2,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Wormaldia,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Philopotamidae,Philopotaminae,NA,Wormaldia,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Zaitzevia,5,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1003,05014REF,1,8/3/2005,Zapada cinctipes,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Agapetus,40,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Agapetinae,NA,Agapetus,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Amiocentrus aspilus,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,Amiocentrus,3,CG,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Ampumixis dispar,21,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Ampumixis,2,CG,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Antocha,23,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Antocha,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Apatania,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Apataniidae,Apataniinae,Apataniini,Apatania,2,SC,uni,TRUE
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Baetidae,10,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,NA,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Baetis,36,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Brillia,15,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Calineuria californica,3,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Calineuria,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Clinocera,4,FALSE,Arthropoda,Insecta,NA,Diptera,Empididae,Clinocerinae,NA,Clinocera,3,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Cricotopus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Cricotopus,4,MH,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Diphetor hageni,8,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Drunella doddsii,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Epeorus grandis group,4,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Epeorus,2,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Ephemerella,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,3,CG,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Eubrianax edwardsii,42,FALSE,Arthropoda,Insecta,NA,Coleoptera,Psephenidae,Eubrianacinae,NA,Eubrianax,2,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Eukiefferiella,6,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Eukiefferiella brehmi group,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Eukiefferiella devonica group,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Eukiefferiella,3,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Glossosoma,11,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Gomphidae,1,FALSE,Arthropoda,Insecta,NA,Odonata,Gomphidae,NA,NA,NA,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Gumaga,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Sericostomatidae,NA,NA,Gumaga,2,OM,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Heptageniidae,26,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,NA,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Heterlimnius corpulentus,12,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Hexatoma,1,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Hexatoma,3,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Hydropsyche,43,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Hydropsychidae,23,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,NA,NA,NA,4,UNKN,UNKN,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Malenka,20,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,Malenka,4,SH,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Maruina,2,FALSE,Arthropoda,Insecta,NA,Diptera,Psychodidae,Psychodinae,NA,Maruina,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Micrasema,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,Micrasema,3,CG,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Micropsectra,6,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Oligochaeta,10,FALSE,Annelida,Clitellata,Oligochaeta,NA,NA,NA,NA,NA,4,CG,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Ordobrevia nubifera,51,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Ordobrevia,3,CG,semi,TRUE
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Oreodytes,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Dytiscidae,Hydroporinae,NA,Oreodytes,NA,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Orthocladiinae,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,NA,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Orthocladius complex,7,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Orthocladius complex,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Pagastia,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Diamesinae,Diamesini,Pagastia,3,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Parametriocnemus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Perlidae,14,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,NA,NA,NA,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Polycentropodidae,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Polycentropodidae,NA,NA,NA,3,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Rheotanytarsus,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Rheotanytarsus,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Rhyacophila angelita group,6,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Rhyacophila betteni group,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Rhyacophila brunnea/vemna groups,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Rhyacophila hyalinata group,2,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,2,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Simulium,2,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Skwala,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Perlodinae,Arcynopterygini,Skwala,3,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Tanytarsus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Tanytarsus,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Thienemannimyia group,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Thienemannimyia group,4,PR,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Trombidiformes,19,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Tvetenia bavarica group,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Uenoidae,3,FALSE,Arthropoda,Insecta,NA,Trichoptera,Uenoidae,NA,NA,NA,2,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Wormaldia,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Philopotamidae,Philopotaminae,NA,Wormaldia,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,32556,Tt_1004,05014REFa,1,8/3/2005,Zaitzevia,6,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Ameletus,2,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ameletidae,NA,NA,Ameletus,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Atrichopogon,1,FALSE,Arthropoda,Insecta,NA,Diptera,Ceratopogonidae,Forcipomyiinae,NA,Atrichopogon,3,CG,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Baetis,8,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Baetis tricaudatus complex,21,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Baetis,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Brachycentrus,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Brachycentridae,NA,NA,Brachycentrus,3,OM,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Brillia,17,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Brillia,4,SH,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Calineuria californica,5,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Calineuria,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Cinygmula,39,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Cinygmula,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Corynoneura,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Corynoneura,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Despaxia augusta,2,FALSE,Arthropoda,Insecta,NA,Plecoptera,Leuctridae,Leuctrinae,NA,Despaxia,3,SH,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Dicranota,7,FALSE,Arthropoda,Insecta,NA,Diptera,Pediciidae,Pediciinae,NA,Dicranota,4,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Diphetor hageni,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Baetidae,NA,NA,Diphetor,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Dixa,5,FALSE,Arthropoda,Insecta,NA,Diptera,Dixidae,NA,NA,Dixa,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Dolophilodes,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Philopotamidae,Philopotaminae,NA,Dolophilodes,2,CF,uni,TRUE
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Doroneuria,11,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,Acroneuriinae,Acroneuriini,Doroneuria,2,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Drunella coloradensis/flavilinea,1,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Drunella doddsii,13,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Drunella grandis/spinifera,3,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Drunella,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Ecclisocosmoecus scylla,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Limnephilidae,Dicosmoecinae,NA,Ecclisocosmoecus,2,SH,semi,TRUE
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Ecclisomyia,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Limnephilidae,Dicosmoecinae,NA,Ecclisomyia,2,OM,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Ephemerella,6,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Ephemerellidae,NA,NA,Ephemerella,3,CG,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Glossosoma,53,FALSE,Arthropoda,Insecta,NA,Trichoptera,Glossosomatidae,Glossosomatinae,Glossosomatini,Glossosoma,4,SC,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Heterlimnius corpulentus,5,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Heterlimnius,3,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Hexatoma,3,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Limoniinae,NA,Hexatoma,3,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Hydropsyche,4,FALSE,Arthropoda,Insecta,NA,Trichoptera,Hydropsychidae,Hydropsychinae,NA,Hydropsyche,4,CF,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Isoperla,5,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlodidae,Isoperlinae,NA,Isoperla,3,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Lepidostoma,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Lepidostomatidae,Lepidostomatinae,NA,Lepidostoma,3,SH,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Lepidostoma-panel case larvae,5,FALSE,Arthropoda,Insecta,NA,Trichoptera,Lepidostomatidae,NA,NA,Lepidostoma,4,NA,NA,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Malenka,13,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,NA,NA,Malenka,4,SH,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Micropsectra,78,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,Micropsectra,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Moselia,1,FALSE,Arthropoda,Insecta,NA,Plecoptera,Leuctridae,Leuctrinae,NA,Moselia,2,SH,uni,TRUE
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Neoleptophlebia/Paraleptophlebia,4,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Leptophlebiidae,NA,NA,Neoleptophlebia/Paraleptophlebia,3,CG,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Optioservus,2,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Optioservus,4,SC,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Parametriocnemus,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Parametriocnemus,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Perlidae,56,FALSE,Arthropoda,Insecta,NA,Plecoptera,Perlidae,NA,NA,NA,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Pteronarcys,6,FALSE,Arthropoda,Insecta,NA,Plecoptera,Pteronarcyidae,Pteronarcyinae,Pteronarcyini,Pteronarcys,3,OM,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Pteronarcys princeps,5,FALSE,Arthropoda,Insecta,NA,Plecoptera,Pteronarcyidae,Pteronarcyinae,Pteronarcyini,Pteronarcys,3,OM,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Rhabdomastix,1,FALSE,Arthropoda,Insecta,NA,Diptera,Limoniidae,Chioneinae,NA,Rhabdomastix,3,SH,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Rheocricotopus,10,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Rheocricotopus,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Rhithrogena,23,FALSE,Arthropoda,Insecta,NA,Ephemeroptera,Heptageniidae,NA,NA,Rhithrogena,4,SC,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Rhyacophila betteni group,17,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Rhyacophila brunnea/vemna groups,1,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,4,PR,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Rhyacophila narvae,7,FALSE,Arthropoda,Insecta,NA,Trichoptera,Rhyacophilidae,NA,NA,Rhyacophila,3,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Simulium,9,FALSE,Arthropoda,Insecta,NA,Diptera,Simuliidae,Simuliinae,Simuliini,Simulium,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Sphaeriidae,1,FALSE,Mollusca,Bivalvia,NA,Veneroida,Sphaeriidae,NA,NA,NA,4,CF,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Sweltsa,51,FALSE,Arthropoda,Insecta,NA,Plecoptera,Chloroperlidae,Chloroperlinae,NA,Sweltsa,4,PR,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Tanytarsini,2,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Chironominae,Tanytarsini,NA,4,CF,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Thienemannimyia group,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Thienemannimyia group,4,PR,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Trombidiformes,5,FALSE,Arthropoda,Arachnida,NA,Trombidiformes,NA,NA,NA,NA,4,PR,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Tvetenia bavarica group,1,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Orthocladiinae,NA,Tvetenia,4,CG,multi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Zaitzevia,1,FALSE,Arthropoda,Insecta,NA,Coleoptera,Elmidae,Elminae,NA,Zaitzevia,4,CG,semi,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Zapada cinctipes,10,FALSE,Arthropoda,Insecta,NA,Plecoptera,Nemouridae,Nemourinae,NA,Zapada,4,SH,uni,NA
+HiGrad-HiElev,BCG_MariNW_Bugs500ct,ORDEQ,33308,Tt_1031,06095DFW,1,8/7/2006,Zavrelimyia,9,FALSE,Arthropoda,Insecta,NA,Diptera,Chironomidae,Tanypodinae,Pentaneurini,Zavrelimyia,4,PR,multi,NA
