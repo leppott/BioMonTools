@@ -7,6 +7,7 @@
 taxa_translate(
   df_user = NULL,
   df_official = NULL,
+  df_official_metadata = NULL,
   taxaid_user = "TAXAID",
   taxaid_official_match = NULL,
   taxaid_official_project = NULL,
@@ -20,6 +21,10 @@ taxa_translate(
 \item{df_user}{User taxa data}
 
 \item{df_official}{Official project taxa data (master taxa list).}
+
+\item{df_official_metadata}{Metadata for offiical project taxa data.
+Included
+Default is NULL}
 
 \item{taxaid_user}{Taxonomic identifier in user data.  Default is "TAXAID".}
 
@@ -48,7 +53,7 @@ with additional columns from the official data appended to it.  Names from
 the user data that overlap with the official data have the suffix '_User'.
 The second element (nonmatch) of the list is a vector of the non-matching
 taxa from the user data.  The third element (metadata) includes the
-metadata for the official data.
+metadata for the official data (if provided).
 }
 \description{
 Convert user taxa names to those in an official project based

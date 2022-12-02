@@ -22,6 +22,9 @@
 #'
 #' @param df_user User taxa data
 #' @param df_official Official project taxa data (master taxa list).
+#' @param df_official_metadata Metadata for offiical project taxa data.
+#' Included
+#' Default is NULL
 #' @param taxaid_user Taxonomic identifier in user data.  Default is "TAXAID".
 #' @param taxaid_official_match Taxonomic identifier in official data user to
 #' match with user data.  This is not the project taxanomic identifier.
@@ -42,13 +45,14 @@
 #' the user data that overlap with the official data have the suffix '_User'.
 #' The second element (nonmatch) of the list is a vector of the non-matching
 #' taxa from the user data.  The third element (metadata) includes the
-#' metadata for the official data.
+#' metadata for the official data (if provided).
 #'
 #' @examples
 #' # none at this time
 #'
 taxa_translate <- function(df_user = NULL
                            , df_official = NULL
+                           , df_official_metadata = NULL
                            , taxaid_user = "TAXAID"
                            , taxaid_official_match = NULL
                            , taxaid_official_project = NULL
@@ -93,7 +97,7 @@ taxa_translate <- function(df_user = NULL
     # metadata
     fn_meta <- df_pick[match(sel_project, official_projects), "metadata_file"]
     path_meta <- file.path("inst", "extdata", "taxa_official", fn_meta)
-    df_meta <- read.csv(path_meta)
+    df_official_metadata <- read.csv(path_meta)
 
     # QC, add bad row to user input for testing
     df_user[nrow(df_user) + 1, taxaid_user] <- "_Test"
@@ -246,7 +250,7 @@ taxa_translate <- function(df_user = NULL
   # RESULTS ----
   ls_results <- list("merge" = df_merge
                      , "nonmatch" = taxa_nonmatch
-                     , "official_metadata" = df_meta)
+                     , "official_metadata" = df_official_metadata)
 
 
   if(boo_DEBUG == TRUE){

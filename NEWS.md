@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-12-01 15:04:47
+    #> Last Update: 2022-12-02 07:27:42
 
 # Version History
+
+## Changes in version 1.0.0.9004 (2022-12-02)
+
+- fix: Updated taxa_translate function to include metadata as parameter
 
 ## Changes in version 1.0.0.9003 (2022-12-01)
 
