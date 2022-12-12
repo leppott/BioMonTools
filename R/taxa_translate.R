@@ -63,8 +63,8 @@ taxa_translate <- function(df_user = NULL
                            , sum_n_taxa_group_by = NULL) {
 
   # DEBUG ----
-  boo_DEBUG <- FALSE
-  if(boo_DEBUG == TRUE){
+  boo_DEBUG_tt <- FALSE
+  if(boo_DEBUG_tt == TRUE){
     # pick files
     fn_pick <- "_pick_files.csv"
     path_pick <- file.path("inst", "extdata", "taxa_official", fn_pick)
@@ -112,7 +112,7 @@ taxa_translate <- function(df_user = NULL
     sum_n_taxa_col <- "N_TAXA"
     sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
 
-  }##IF ~ boo_DEBUG
+  }##IF ~ boo_DEBUG_tt
 
   # QC ----
   ## QC, df type----
@@ -179,9 +179,9 @@ taxa_translate <- function(df_user = NULL
                     , suffixes = c("_USER", "")
                     , sort = FALSE)
 
-  if(boo_DEBUG == TRUE){
+  if(boo_DEBUG_tt == TRUE){
     testthat::expect_equal(nrow(df_user), nrow(df_merge))
-  } ## IF ~ boo_DEBUG
+  } ## IF ~ boo_DEBUG_tt
 
 
   # Munge ----
@@ -190,7 +190,7 @@ taxa_translate <- function(df_user = NULL
     df_official[, taxaid_official_match]
 
   ## remove "other" project taxaid columns
-  col_keep <- !names(df_merge) %in% col_drop_project
+  col_keep <- !names(df_merge) %in% col_drop #col_drop_project
   df_merge <- df_merge[, col_keep]
 
   ## Drop Col
@@ -218,10 +218,10 @@ taxa_translate <- function(df_user = NULL
                     , .groups = "drop_last")
     names(df_summ)[names(df_summ) %in% "col2rename"] <- sum_n_taxa_col
     # QC, ni_total
-    if(boo_DEBUG == TRUE){
+    if(boo_DEBUG_tt == TRUE){
       testthat::expect_equal(sum(df_summ[, sum_n_taxa_col], na.rm = TRUE)
                              , sum(df_merge[, sum_n_taxa_col], na.rm = TRUE))
-    } ## IF ~ boo_DEBUG
+    } ## IF ~ boo_DEBUG_tt
     df_merge <- df_summ
   }## IF ~ boo_combine
 
@@ -254,9 +254,9 @@ taxa_translate <- function(df_user = NULL
                      , "official_metadata" = df_official_metadata)
 
 
-  if(boo_DEBUG == TRUE){
+  if(boo_DEBUG_tt == TRUE){
     str(ls_results)
-  } ## IF ~ boo_DEBUG
+  } ## IF ~ boo_DEBUG_tt
 
   return(ls_results)
 

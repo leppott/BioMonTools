@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-12-12 12:27:22
+    #> Last Update: 2022-12-12 13:03:42
 
 # Version History
+
+## Changes in version 1.0.0.9006 (2022-12-12)
+
+- refactor: Change internal parameter boo_DEBUG to boo_DEBUG_tt in
+  `taxa_translate`
 
 ## Changes in version 1.0.0.9005 (2022-12-12)
 
