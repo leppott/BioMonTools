@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9005 (2022-12-12)
+
+* refactor: Make `taxa_translate` as an export object
+
 ## Changes in version 1.0.0.9004 (2022-12-02)
 
 * fix: Updated taxa_translate function to include metadata as parameter

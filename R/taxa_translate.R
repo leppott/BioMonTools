@@ -50,6 +50,7 @@
 #' @examples
 #' # none at this time
 #'
+#'@export
 taxa_translate <- function(df_user = NULL
                            , df_official = NULL
                            , df_official_metadata = NULL

@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-12-02 07:27:42
+    #> Last Update: 2022-12-12 12:27:22
 
 # Version History
+
+## Changes in version 1.0.0.9005 (2022-12-12)
+
+- refactor: Make `taxa_translate` as an export object
 
 ## Changes in version 1.0.0.9004 (2022-12-02)
 
