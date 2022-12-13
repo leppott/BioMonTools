@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9008 (2022-12-13)
+
+* refactor: Tweak debug code in `taxa_translate`
+* fix: Update `taxa_translate` for col_drop_project
+    + Should be debug only
+
 ## Changes in version 1.0.0.9007 (2022-12-13)
 
 * refactor: Change internal workings of `taxa_translate`

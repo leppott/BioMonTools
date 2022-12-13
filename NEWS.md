@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-12-13 12:29:37
+    #> Last Update: 2022-12-13 14:20:44
 
 # Version History
+
+## Changes in version 1.0.0.9008 (2022-12-13)
+
+- refactor: Tweak debug code in `taxa_translate`
+- fix: Update `taxa_translate` for col_drop_project
+  - Should be debug only
 
 ## Changes in version 1.0.0.9007 (2022-12-13)
 

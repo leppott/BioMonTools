@@ -98,9 +98,9 @@ taxa_translate <- function(df_user = NULL
     taxaid_official_project <- calc_type_taxaid[match(sel_calc_type, calc_type)]
     # col_drop_project <- unique(calc_type_taxaid[!calc_type_taxaid %in%
     #                                                  taxaid_official_project])
-    col_drop_project <- unlist(strsplit(df_pick[df_pick$project == sel_project
-                                       , "col_drop"]
-                                       , ","))
+    # col_drop_project <- unlist(strsplit(df_pick[df_pick$project == sel_project
+    #                                    , "col_drop"]
+    #                                    , ","))
 
     # metadata
     fn_meta <- df_pick[match(sel_project, official_projects), "metadata_file"]
@@ -215,9 +215,9 @@ taxa_translate <- function(df_user = NULL
                                             , "Match_Official")])
   df_merge <- df_merge[, col_reorder]
 
-  ## Drop "other" project taxaid columns
-  col_keep <- !names(df_merge) %in% col_drop_project
-  df_merge <- df_merge[, col_keep]
+  # ## Drop "other" project taxaid columns
+  # col_keep <- !names(df_merge) %in% col_drop_project
+  # df_merge <- df_merge[, col_keep]
 
   ## Drop Col
   if(is.null(col_drop) == FALSE) {
