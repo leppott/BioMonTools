@@ -78,5 +78,38 @@ Slightly different than `qc_taxa` since no options in `taxa_translate` for
 using one field over another and is more generic.
 }
 \examples{
-None at this time
+# Example 1, PacNW
+## Input Parameters
+df_user <- data_benthos_PacNW
+fn_official <- file.path(system.file("extdata", package = "BioMonTools")
+                         , "taxa_official"
+                         , "TAXA_TRANSLATOR_ORWA_MASTER_20221212.csv")
+df_official <- read.csv(fn_official)
+fn_official_metadata <- file.path(system.file("extdata"
+                                              , package = "BioMonTools")
+                                  , "taxa_official"
+                      , "TAXA_TRANSLATOR_ORWA_MASTER_METADATA_20221117.csv")
+df_official_metadata <- read.csv(fn_official_metadata)
+taxaid_user <- "TaxaID"
+taxaid_official_match <- "Taxon_orig"
+taxaid_official_project <- "OTU_BCG_MariNW"
+col_drop <- NULL
+sum_n_taxa_boo <- TRUE
+sum_n_taxa_col <- "N_TAXA"
+sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
+## Run Function
+df_taxatrans <- taxa_translate(df_user
+                               , df_official
+                               , df_official_metadata
+                               , taxaid_user
+                               , taxaid_official_match
+                               , taxaid_official_project
+                               , col_drop
+                               , sum_n_taxa_boo
+                               , sum_n_taxa_col
+                               , sum_n_taxa_group_by)
+## View Results
+# View(df_taxatrans$merge)
+df_taxatrans$nonmatch
+# View(df_taxatrans$official_metadata)
 }

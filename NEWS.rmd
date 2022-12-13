@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9009 (2022-12-13)
+
+* fix: Update `taxa_translate` for when sum taxa
+* update: Revise taxa_translate files in extdata
+
 ## Changes in version 1.0.0.9008 (2022-12-13)
 
 * refactor: Tweak debug code in `taxa_translate`

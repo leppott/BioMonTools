@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-12-13 14:20:44
+    #> Last Update: 2022-12-13 16:31:49
 
 # Version History
+
+## Changes in version 1.0.0.9009 (2022-12-13)
+
+- fix: Update `taxa_translate` for when sum taxa
+- update: Revise taxa_translate files in extdata
 
 ## Changes in version 1.0.0.9008 (2022-12-13)
 
