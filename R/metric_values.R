@@ -723,6 +723,8 @@ metric.values.bugs <- function(myDF
     verbose <- verbose
   }## IF ~ boo_QC
 
+  time_start <- Sys.time()
+
   # not carrying over from previous?!
   names(myDF) <- toupper(names(myDF))
 
@@ -1423,7 +1425,12 @@ metric.values.bugs <- function(myDF
                   , boo_debug_topic)
     message(msg)
   }## IF ~ verbose
-  met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME, INDEX_CLASS)
+
+  time_start2 <- Sys.time()
+  met.val <- dplyr::summarise(dplyr::group_by(myDF
+                                              , SAMPLEID
+                                              , INDEX_NAME
+                                              , INDEX_CLASS)
              #
              # one metric per line
              #
@@ -1439,6 +1446,8 @@ metric.values.bugs <- function(myDF
              , ni_Gnorimo = sum(N_TAXA[GENUS == "GNORIMOSPHAEROMA"], na.rm = TRUE)
              , ni_brackish = ni_Americo + ni_Gnorimo
              , ni_Ramello = sum(N_TAXA[GENUS == "RAMELLOGAMMARUS"], na.rm = TRUE)
+
+
 
              ## Phylo ####
              ### nt_phylo ----
@@ -1868,7 +1877,7 @@ metric.values.bugs <- function(myDF
                                              | FAMILY == "CHIRONOMIDAE"]
                                       , na.rm = TRUE) / ni_total
 
-
+              ## Other misc ----
              # dominant
              , pi_dom02_BCG_att456_NoJugaRiss = 100 * max(ni_dom02_NoJugaRiss_BCG_att456) / ni_total
              #
@@ -2177,6 +2186,7 @@ metric.values.bugs <- function(myDF
              #, rt_ffg_infc, converborbelt, scavbrow, subsurf, watercol
              #, rt_ffg_pred
              # carnivoreomnivore, deepdeposit, suspension
+
              ## FFG2 ####
              # marine
              ## nt_ffg2
@@ -2903,6 +2913,11 @@ metric.values.bugs <- function(myDF
 
              #
         , .groups = "drop_last")## met.val.END
+
+  time_end2 <- Sys.time()
+  # difftime(time_end2, time_start2)
+  # dim(met.val)
+
   #
   # Clean Up ####
   if(verbose == TRUE) {
@@ -3829,7 +3844,7 @@ metric.values.fish <- function(myDF
                                                         , na.rm = TRUE)
 
 
-                  # Habitat ####
+                  ## Habitat ####
                   # BCG Great Plains 2021
                   # W = water column
                   # B = benthic
@@ -4835,6 +4850,9 @@ metric.values.algae <- function(myDF
 
 
                 , .groups = "drop_last")##met.val.END
+  time_end2 <- Sys.time()
+  difftime(time_end2, time_start2)
+  dim(met.val)
 
   # Clean Up ####
     # replace NA with 0
@@ -4864,6 +4882,11 @@ metric.values.algae <- function(myDF
       df.return <- merge(as.data.frame(myDF.cols2keep)
                          , as.data.frame(met.val), by="SAMPLEID")
     }##IF.is.null.cols2keep.END
+
+  # Run Time
+  time_end <- Sys.time()
+  msg <- difftime(time_end, time_start)
+  message(msg)
 
     # df to report back
     return(df.return)

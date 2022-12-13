@@ -48,8 +48,12 @@
 #' metadata for the official data (if provided).
 #'
 #' @examples
-#' # none at this time
-#'
+#' None at this time
+# # Example 1, PacNW
+# df_user <- data_benthos_PacNW
+#
+#
+#
 #'@export
 taxa_translate <- function(df_user = NULL
                            , df_official = NULL
@@ -92,8 +96,11 @@ taxa_translate <- function(df_user = NULL
                                         sel_project, "calc_type_taxaid"], ","))
     sel_calc_type <- calc_type[1] # "BCG" # USER INPUT
     taxaid_official_project <- calc_type_taxaid[match(sel_calc_type, calc_type)]
-    col_drop_project <- unique(calc_type_taxaid[!calc_type_taxaid %in%
-                                                     taxaid_official_project])
+    # col_drop_project <- unique(calc_type_taxaid[!calc_type_taxaid %in%
+    #                                                  taxaid_official_project])
+    col_drop_project <- unlist(strsplit(df_pick[df_pick$project == sel_project
+                                       , "col_drop"]
+                                       , ","))
 
     # metadata
     fn_meta <- df_pick[match(sel_project, official_projects), "metadata_file"]
@@ -110,7 +117,10 @@ taxa_translate <- function(df_user = NULL
     # summary
     sum_n_taxa_boo <- TRUE
     sum_n_taxa_col <- "N_TAXA"
-    sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
+    sum_n_taxa_group_by <- c("INDEX_NAME"
+                             , "INDEX_CLASS"
+                             , "SampleID"
+                             , taxaid_official_project)
 
   }##IF ~ boo_DEBUG_tt
 
@@ -172,11 +182,11 @@ taxa_translate <- function(df_user = NULL
 
 
   # Merge ----
-  df_merge <- merge(df_user, df_official
-                    , by.x = taxaid_user
-                    , by.y = taxaid_official_match
-                    , all.x = TRUE
-                    , suffixes = c("_USER", "")
+  df_merge <- merge(df_official, df_user
+                    , by.y = taxaid_user
+                    , by.x = taxaid_official_match
+                    , all.y = TRUE
+                    , suffixes = c("", "_USER")
                     , sort = FALSE)
 
   if(boo_DEBUG_tt == TRUE){
@@ -184,13 +194,29 @@ taxa_translate <- function(df_user = NULL
   } ## IF ~ boo_DEBUG_tt
 
 
+
   # Munge ----
+
+  ## Rename taxaid_official_match to taxaid_user
+  names(df_merge)[names(df_merge) %in% taxaid_official_match] <- taxaid_user
+
   ## if matched official as a column
   df_merge[, "Match_Official"] <- df_merge[, taxaid_user] %in%
     df_official[, taxaid_official_match]
 
-  ## remove "other" project taxaid columns
-  col_keep <- !names(df_merge) %in% col_drop #col_drop_project
+  ## Make new taxaID as 2nd column
+  ### user taxa id, project taxa id, other columns
+  col_reorder <- c(taxaid_user
+                   , taxaid_official_project
+                   , "Match_Official"
+                   , names(df_merge)[!names(df_merge)
+                                     %in% c(taxaid_user
+                                            , taxaid_official_project
+                                            , "Match_Official")])
+  df_merge <- df_merge[, col_reorder]
+
+  ## Drop "other" project taxaid columns
+  col_keep <- !names(df_merge) %in% col_drop_project
   df_merge <- df_merge[, col_keep]
 
   ## Drop Col
@@ -198,6 +224,11 @@ taxa_translate <- function(df_user = NULL
     df_merge <- df_merge[
       , names(df_merge)[!names(df_merge) %in% col_drop]]
   }## IF ~ is.null(col_drop)
+
+  ## Drop "_USER" columns
+  col_user <- grepl("_USER$", names(df_merge))
+  df_merge <- df_merge[, names(df_merge)[!col_user]]
+
 
 
   # NonMatch Info ----
@@ -208,8 +239,10 @@ taxa_translate <- function(df_user = NULL
   taxa_nonmatch_n <- length(taxa_nonmatch)
 
 
+
   # Summary ----
   if(sum_n_taxa_boo == TRUE) {
+    # Recalc
     df_summ <- dplyr::summarise(
                     dplyr::group_by(df_merge
                             , dplyr::across(dplyr::all_of(sum_n_taxa_group_by)))
@@ -217,22 +250,39 @@ taxa_translate <- function(df_user = NULL
                                        , na.rm = TRUE)
                     , .groups = "drop_last")
     names(df_summ)[names(df_summ) %in% "col2rename"] <- sum_n_taxa_col
-    # QC, ni_total
-    if(boo_DEBUG_tt == TRUE){
-      testthat::expect_equal(sum(df_summ[, sum_n_taxa_col], na.rm = TRUE)
-                             , sum(df_merge[, sum_n_taxa_col], na.rm = TRUE))
+    ## Merge2----
+    ## Re-add official taxa info
+    df_merge_summ <- merge(df_summ
+                           , df_official
+                           , by.x = taxaid_official_project
+                           , by.y = taxaid_official_match
+                           , all.x = TRUE
+                           , sort = FALSE)
+    ## if matched official as a column
+    df_merge_summ[, "Match_Official"] <- df_merge_summ[, taxaid_official_project] %in%
+      df_official[, taxaid_official_match]
+    # QC----
+    if(boo_DEBUG_tt == TRUE) {
+      # nrows
+      testthat::expect_equal(nrow(df_merge_summ)
+                             , nrow(df_summ))
+      # ni_total
+      testthat::expect_equal(sum(df_merge_summ[, sum_n_taxa_col], na.rm = TRUE)
+                             , sum(df_user[, sum_n_taxa_col], na.rm = TRUE))
     } ## IF ~ boo_DEBUG_tt
-    df_merge <- df_summ
+    df_merge <- df_merge_summ
   }## IF ~ boo_combine
 
 
   # Console Output ----
+
   ## Console, matches----
   msg <- paste0("User taxa match, "
                 , taxa_user_n - taxa_nonmatch_n
                 , " / "
                 , taxa_user_n)
   message(msg)
+
   ## Console, non-matches----
   if(taxa_nonmatch_n > 0) {
     str_tax <- ifelse(taxa_nonmatch_n == 1, "taxon", "taxa")

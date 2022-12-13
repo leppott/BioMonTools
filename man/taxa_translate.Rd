@@ -78,6 +78,5 @@ Slightly different than `qc_taxa` since no options in `taxa_translate` for
 using one field over another and is more generic.
 }
 \examples{
-# none at this time
-
+None at this time
 }
