@@ -1,7 +1,7 @@
-project,filename,taxaid,calc_type,calc_type_taxaid,col_drop,metadata_file
-Pacific Northwest (BCG),TAXA_TRANSLATOR_ORWA_MASTER_20221212.csv,Taxon_orig,BCG,OTU_BCG_MariNW,"Taxon_v2,OTU_MTTI",TAXA_TRANSLATOR_ORWA_MASTER_METADATA_20221117.csv
-Pacific Northwest (Thermal),TAXA_TRANSLATOR_ORWA_MASTER_20221212.csv,Taxon_orig,Thermal,Taxon_v2,"OTU_BCG_MariNW,OTU_MTTI",TAXA_TRANSLATOR_ORWA_MASTER_METADATA_20221117.csv
-Pacific Northwest (MTTI),TAXA_TRANSLATOR_ORWA_MASTER_20221212.csv,Taxon_orig,MTTI,OTU_MTTI,"OTU_BCG_MariNW,OTU_MTTI",TAXA_TRANSLATOR_ORWA_MASTER_METADATA_20221117.csv
-Pacific Northwest (Bob),TAXA_TRANSLATOR_ORWA_MASTER_20221212.csv,Taxon_orig,Bob,Taxon_v2,"OTU_BCG_MariNW,Taxon_v2",TAXA_TRANSLATOR_ORWA_MASTER_METADATA_20221117.csv
-MBSS (bugs),CHAR_Bugs.csv,Taxon,BIBI,Taxon,NA,CHAR_Bugs_metadata.csv
-MBSS (fish),CHAR_Fish.csv,SPECIES,FIBI,SPECIES,NA,CHAR_Fish_metadata.csv
+project,filename,taxaid,calc,calc_taxaid,col_drop,metadata_filename,attributes_filename,attributes_taxaid
+Pacific Northwest (BCG),TAXA_TRANSLATOR_ORWA_MASTER_20221212b.csv,Taxon_orig,BCG,OTU_BCG_MariNW,"Taxon_v2,OTU_MTTI",TAXA_TRANSLATOR_ORWA_ATTRIBUTES_METADATA_20221117.csv,TAXA_TRANSLATOR_ORWA_ATTRIBUTES_20221212.csv,Taxon_AttributeTable
+Pacific Northwest (Thermal),TAXA_TRANSLATOR_ORWA_MASTER_20221212b.csv,Taxon_orig,Thermal,Taxon_v2,"OTU_BCG_MariNW,OTU_MTTI",TAXA_TRANSLATOR_ORWA_ATTRIBUTES_METADATA_20221117.csv,TAXA_TRANSLATOR_ORWA_ATTRIBUTES_20221212.csv,Taxon_AttributeTable
+Pacific Northwest (MTTI),TAXA_TRANSLATOR_ORWA_MASTER_20221212b.csv,Taxon_orig,MTTI,OTU_MTTI,"OTU_BCG_MariNW,Taxon_v2",TAXA_TRANSLATOR_ORWA_ATTRIBUTES_METADATA_20221117.csv,TAXA_TRANSLATOR_ORWA_ATTRIBUTES_20221212.csv,Taxon_AttributeTable
+Pacific Northwest (Biodiversity Index),TAXA_TRANSLATOR_ORWA_MASTER_20221212b.csv,Taxon_orig,Biodiversity Index,Taxon_v2,"OTU_BCG_MariNW,OTU_MTTI",TAXA_TRANSLATOR_ORWA_ATTRIBUTES_METADATA_20221117.csv,TAXA_TRANSLATOR_ORWA_ATTRIBUTES_20221212.csv,Taxon_AttributeTable
+MBSS (bugs),CHAR_Bugs.csv,Taxon,BIBI,Taxon,NA,CHAR_Bugs_metadata.csv,NA,NA
+MBSS (fish),CHAR_Fish.csv,SPECIES,FIBI,SPECIES,NA,CHAR_Fish_metadata.csv,NA,NA

@@ -18,38 +18,47 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9010 (2022-12-16)
+
+* fix: Update `taxa_translaste`
+    + Update nonmatch to data frame with count and sum of occurrence, Issue #81
+    + Refine matching
+    + Include summed taxa properly
+    + Drop non-matching taxa (NA and DNI)
+    + Update example
+
 ## Changes in version 1.0.0.9009 (2022-12-13)
 
-* fix: Update `taxa_translate` for when sum taxa
+* fix: Update `taxa_translate` for when sum taxa, Issue #81
 * update: Revise taxa_translate files in extdata
 
 ## Changes in version 1.0.0.9008 (2022-12-13)
 
-* refactor: Tweak debug code in `taxa_translate`
+* refactor: Tweak debug code in `taxa_translate`, Issue #81
 * fix: Update `taxa_translate` for col_drop_project
     + Should be debug only
 
 ## Changes in version 1.0.0.9007 (2022-12-13)
 
-* refactor: Change internal workings of `taxa_translate`
+* refactor: Change internal workings of `taxa_translate`, Issue #81
     + If summarize retain the official taxa columns
     + Reorder columns in the merged output
 
 ## Changes in version 1.0.0.9006 (2022-12-12)
 
-* refactor: Change internal parameter boo_DEBUG to boo_DEBUG_tt in `taxa_translate`
+* refactor: Change internal parameter boo_DEBUG to boo_DEBUG_tt in `taxa_translate`, Issue #81
 
 ## Changes in version 1.0.0.9005 (2022-12-12)
 
-* refactor: Make `taxa_translate` as an export object
+* refactor: Make `taxa_translate` as an export object, Issue #81
 
 ## Changes in version 1.0.0.9004 (2022-12-02)
 
-* fix: Updated taxa_translate function to include metadata as parameter
+* fix: Updated `taxa_translate` function to include metadata as parameter, Issue #81
 
 ## Changes in version 1.0.0.9003 (2022-12-01)
 
-* feature: Add taxa_translate function
+* feature: Add taxa_translate function, Issue #81
     + More general than qc_taxa
 
 ## Changes in version 1.0.0.9002 (2022-11-17)

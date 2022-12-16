@@ -66,8 +66,10 @@ phylogeny, autecology, and other project specific fields.
 The inputs for the function uses existing data frames (or tibbles).
 
 Any fields that match between the user file and the official file the
-official data column name is retained.  The data fields from the user file
-have the suffix "_USER".
+official data column name have the 'official' version retained.
+
+The 'col_drop' parameter can be used to remove unwanted columns; e.g.,
+the other taxa id fields in the 'official' data file.
 
 By default, taxa are not collapsed to the official taxaid.  That is, if
 multiple taxa in a sample have the same name the rows will not be combined.
@@ -83,7 +85,7 @@ using one field over another and is more generic.
 df_user <- data_benthos_PacNW
 fn_official <- file.path(system.file("extdata", package = "BioMonTools")
                          , "taxa_official"
-                         , "TAXA_TRANSLATOR_ORWA_MASTER_20221212.csv")
+                         , "TAXA_TRANSLATOR_ORWA_MASTER_20221212b.csv")
 df_official <- read.csv(fn_official)
 fn_official_metadata <- file.path(system.file("extdata"
                                               , package = "BioMonTools")
@@ -93,12 +95,12 @@ df_official_metadata <- read.csv(fn_official_metadata)
 taxaid_user <- "TaxaID"
 taxaid_official_match <- "Taxon_orig"
 taxaid_official_project <- "OTU_BCG_MariNW"
-col_drop <- NULL
+col_drop <- c("Taxon_v2", "OTU_MTTI") # non desired ID cols in Official
 sum_n_taxa_boo <- TRUE
 sum_n_taxa_col <- "N_TAXA"
 sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
 ## Run Function
-df_taxatrans <- taxa_translate(df_user
+taxatrans <- taxa_translate(df_user
                                , df_official
                                , df_official_metadata
                                , taxaid_user
@@ -109,7 +111,7 @@ df_taxatrans <- taxa_translate(df_user
                                , sum_n_taxa_col
                                , sum_n_taxa_group_by)
 ## View Results
-# View(df_taxatrans$merge)
-df_taxatrans$nonmatch
-# View(df_taxatrans$official_metadata)
+# View(taxatrans$merge)
+taxatrans$nonmatch
+# View(taxatrans$official_metadata)
 }

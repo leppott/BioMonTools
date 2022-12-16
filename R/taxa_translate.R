@@ -9,8 +9,10 @@
 #' The inputs for the function uses existing data frames (or tibbles).
 #'
 #' Any fields that match between the user file and the official file the
-#' official data column name is retained.  The data fields from the user file
-#' have the suffix "_USER".
+#' official data column name have the 'official' version retained.
+#'
+#' The 'col_drop' parameter can be used to remove unwanted columns; e.g.,
+#' the other taxa id fields in the 'official' data file.
 #'
 #' By default, taxa are not collapsed to the official taxaid.  That is, if
 #' multiple taxa in a sample have the same name the rows will not be combined.
@@ -53,7 +55,7 @@
 #' df_user <- data_benthos_PacNW
 #' fn_official <- file.path(system.file("extdata", package = "BioMonTools")
 #'                          , "taxa_official"
-#'                          , "TAXA_TRANSLATOR_ORWA_MASTER_20221212.csv")
+#'                          , "TAXA_TRANSLATOR_ORWA_MASTER_20221212b.csv")
 #' df_official <- read.csv(fn_official)
 #' fn_official_metadata <- file.path(system.file("extdata"
 #'                                               , package = "BioMonTools")
@@ -63,12 +65,12 @@
 #' taxaid_user <- "TaxaID"
 #' taxaid_official_match <- "Taxon_orig"
 #' taxaid_official_project <- "OTU_BCG_MariNW"
-#' col_drop <- NULL
+#' col_drop <- c("Taxon_v2", "OTU_MTTI") # non desired ID cols in Official
 #' sum_n_taxa_boo <- TRUE
 #' sum_n_taxa_col <- "N_TAXA"
 #' sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
 #' ## Run Function
-#' df_taxatrans <- taxa_translate(df_user
+#' taxatrans <- taxa_translate(df_user
 #'                                , df_official
 #'                                , df_official_metadata
 #'                                , taxaid_user
@@ -79,9 +81,9 @@
 #'                                , sum_n_taxa_col
 #'                                , sum_n_taxa_group_by)
 #' ## View Results
-#' # View(df_taxatrans$merge)
-#' df_taxatrans$nonmatch
-#' # View(df_taxatrans$official_metadata)
+#' # View(taxatrans$merge)
+#' taxatrans$nonmatch
+#' # View(taxatrans$official_metadata)
 #
 #'@export
 taxa_translate <- function(df_user = NULL
@@ -212,37 +214,35 @@ taxa_translate <- function(df_user = NULL
 
   # Merge ----
   df_merge <- merge(df_official, df_user
-                    , by.y = taxaid_user
                     , by.x = taxaid_official_match
+                    , by.y = taxaid_user
                     , all.y = TRUE
                     , suffixes = c("", "_USER")
                     , sort = FALSE)
 
-  if(boo_DEBUG_tt == TRUE){
+  if(boo_DEBUG_tt == TRUE) {
     testthat::expect_equal(nrow(df_user), nrow(df_merge))
   } ## IF ~ boo_DEBUG_tt
 
+  # user taxa id will be gone after the merge
 
 
   # Munge ----
 
-  ## Rename taxaid_official_match to taxaid_user
-  names(df_merge)[names(df_merge) %in% taxaid_official_match] <- taxaid_user
-
-  ## if matched official as a column
-  df_merge[, "Match_Official"] <- df_merge[, taxaid_user] %in%
+  ### new Col, match merge main ID to df_official
+  df_merge[, "Match_Official"] <- df_merge[, taxaid_official_match] %in%
     df_official[, taxaid_official_match]
 
-  ## Make new taxaID as 2nd column
-  ### user taxa id, project taxa id, other columns
-  col_reorder <- c(taxaid_user
-                   , taxaid_official_project
-                   , "Match_Official"
-                   , names(df_merge)[!names(df_merge)
-                                     %in% c(taxaid_user
-                                            , taxaid_official_project
-                                            , "Match_Official")])
-  df_merge <- df_merge[, col_reorder]
+  ## Drop the "matching" column
+  col_drop_idmatch <- names(df_merge)[!names(df_merge) %in% taxaid_official_match]
+  df_merge <- df_merge[, col_drop_idmatch]
+
+  ## Drop "_USER" columns
+  col_user <- grepl("_USER$", names(df_merge))
+  df_merge <- df_merge[, names(df_merge)[!col_user]]
+
+  ## Rename taxaid_official_project to taxaid_user
+  names(df_merge)[names(df_merge) %in% taxaid_official_project] <- taxaid_user
 
   # ## Drop "other" project taxaid columns
   # col_keep <- !names(df_merge) %in% col_drop_project
@@ -254,20 +254,22 @@ taxa_translate <- function(df_user = NULL
       , names(df_merge)[!names(df_merge) %in% col_drop]]
   }## IF ~ is.null(col_drop)
 
-  ## Drop "_USER" columns
-  col_user <- grepl("_USER$", names(df_merge))
-  df_merge <- df_merge[, names(df_merge)[!col_user]]
+  ## Resort columns
+  # Make taxaid first (taxaid_user - was taxaid_official_project)
+  col_reorder <- c(taxaid_user
+                   , "Match_Official"
+                   , names(df_merge)[!names(df_merge)
+                                     %in% c(taxaid_user
+                                            , "Match_Official")])
+  df_merge <- df_merge[, col_reorder]
 
+  ## Drop TaxaID is NA
+  row_taxaid_NA <- is.na(df_merge[, taxaid_user])
+  df_merge <- df_merge[!row_taxaid_NA, ]
 
-
-  # NonMatch Info ----
-  taxa_user <- sort(unique(df_user[, taxaid_user]))
-  taxa_user_n <- length(taxa_user)
-  df_nonmatch <- df_merge[df_merge[, "Match_Official"] == FALSE, ]
-  taxa_nonmatch <- sort(unique(df_nonmatch[, taxaid_user]))
-  taxa_nonmatch_n <- length(taxa_nonmatch)
-
-
+  ## Drop TaxaID is DNI
+  row_taxaid_DNI <- df_merge[, taxaid_user] %in% "DNI"
+  df_merge <- df_merge[!row_taxaid_DNI, ]
 
   # Summary ----
   if(sum_n_taxa_boo == TRUE) {
@@ -280,28 +282,51 @@ taxa_translate <- function(df_user = NULL
                     , .groups = "drop_last")
     names(df_summ)[names(df_summ) %in% "col2rename"] <- sum_n_taxa_col
     ## Merge2----
-    ## Re-add official taxa info
-    df_merge_summ <- merge(df_summ
+    ## Re-merge official taxa info
+    df_summ_merge <- merge(df_summ
                            , df_official
                            , by.x = taxaid_user
                            , by.y = taxaid_official_match
                            , all.x = TRUE
                            , sort = FALSE)
     ## if matched official as a column
-    df_merge_summ[, "Match_Official"] <- df_merge_summ[, taxaid_official_project] %in%
+    df_summ_merge[, "Match_Official"] <- df_summ_merge[, taxaid_official_project] %in%
       df_official[, taxaid_official_match]
     # QC----
     if(boo_DEBUG_tt == TRUE) {
       # nrows
-      testthat::expect_equal(nrow(df_merge_summ)
+      testthat::expect_equal(nrow(df_summ_merge)
                              , nrow(df_summ))
       # ni_total
-      testthat::expect_equal(sum(df_merge_summ[, sum_n_taxa_col], na.rm = TRUE)
-                             , sum(df_user[, sum_n_taxa_col], na.rm = TRUE))
+      testthat::expect_equal(sum(df_summ[, sum_n_taxa_col], na.rm = TRUE)
+                             , sum(df_merge[, sum_n_taxa_col], na.rm = TRUE))
+      # ni_total
+      testthat::expect_equal(sum(df_summ_merge[, sum_n_taxa_col], na.rm = TRUE)
+                             , sum(df_summ[, sum_n_taxa_col], na.rm = TRUE))
     } ## IF ~ boo_DEBUG_tt
-    df_merge <- df_merge_summ
+    df_merge <- df_summ_merge
   }## IF ~ boo_combine
 
+
+  # QC, NA or DNI taxa names----
+
+
+  # NonMatch Info ----
+  taxa_user <- sort(unique(df_user[, taxaid_user]))
+  taxa_user_n <- length(taxa_user)
+  #df_nonmatch <- df_merge[df_merge[, "Match_Official"] == FALSE, ]
+
+  taxa_nonmatch <- taxa_user[!taxa_user %in% df_official[, taxaid_official_match]]
+  taxa_nonmatch_n <- length(taxa_nonmatch)
+  #
+  df_user_nonmatch <- df_user[df_user[, taxaid_user] %in% taxa_nonmatch, ]
+  #
+  df_nonmatch <- dplyr::summarise(
+    dplyr::group_by(df_user_nonmatch, !!as.name(taxaid_user))
+    , N_Taxa_Sum = sum(!!as.name(sum_n_taxa_col), na.rm = TRUE)
+    , N_Taxa_Count = dplyr::n_distinct(!!as.name(taxaid_user), na.rm = TRUE)
+    , .groups = "drop_last")
+  df_nonmatch <- data.frame(df_nonmatch)
 
   # Console Output ----
 
@@ -329,7 +354,7 @@ taxa_translate <- function(df_user = NULL
 
   # RESULTS ----
   ls_results <- list("merge" = df_merge
-                     , "nonmatch" = taxa_nonmatch
+                     , "nonmatch" = df_nonmatch
                      , "official_metadata" = df_official_metadata)
 
 
