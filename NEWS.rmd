@@ -18,6 +18,20 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9013 (2022-12-20)
+
+* refactor: Update `taxa_translate` to drop a particular ID after translation
+, Issue #81
+   + Added input paramter
+   + Updated example
+   + Updated test
+
+## Changes in version 1.0.0.9012 (2022-12-20)
+
+* data: Update extdata for `taxa_translate` example, Issue #81
+   + Revised PacNW_ORWA data file (2022-12-19)
+* tests: Revise `taxa_translate` test for revised data
+
 ## Changes in version 1.0.0.9011 (2022-12-19)
 
 * tests: Create tests for `taxa_translate`, Issue #81

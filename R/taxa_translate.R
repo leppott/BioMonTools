@@ -22,6 +22,11 @@
 #' Slightly different than `qc_taxa` since no options in `taxa_translate` for
 #' using one field over another and is more generic.
 #'
+#' The parameter `taxaid_drop` is used to drop records that matched to a new
+#' name that should not be included in the results.  Examples include "999" or
+#' "DNI" (Do Not Include).  Default is NULL so no action is taken.  "NA"s are
+#' always removed.
+#'
 #' @param df_user User taxa data
 #' @param df_official Official project taxa data (master taxa list).
 #' @param df_official_metadata Metadata for offiical project taxa data.
@@ -32,6 +37,8 @@
 #' match with user data.  This is not the project taxanomic identifier.
 #' @param taxaid_official_project Taxonomic identifier in official data that is
 #' specific to a project, e.g., after operational taxonomic unit (OTU) applied.
+#' @param taxaid_drop Official taxonomic identifier that signals a record
+#' should be dropped; e.g., DNI (Do Not Include) or -999.  Default = NULL
 #' @param col_drop Columns to remove in output.  Default = NULL
 #' @param sum_n_taxa_boo Boolean value for if the results should be summarized
 #' Default = FALSE
@@ -55,7 +62,7 @@
 #' df_user <- data_benthos_PacNW
 #' fn_official <- file.path(system.file("extdata", package = "BioMonTools")
 #'                          , "taxa_official"
-#'                          , "TAXA_TRANSLATOR_ORWA_MASTER_20221212b.csv")
+#'                          , "TAXA_TRANSLATOR_ORWA_MASTER_20221219.csv")
 #' df_official <- read.csv(fn_official)
 #' fn_official_metadata <- file.path(system.file("extdata"
 #'                                               , package = "BioMonTools")
@@ -64,8 +71,9 @@
 #' df_official_metadata <- read.csv(fn_official_metadata)
 #' taxaid_user <- "TaxaID"
 #' taxaid_official_match <- "Taxon_orig"
-#' taxaid_official_project <- "OTU_BCG_MariNW"
-#' col_drop <- c("Taxon_v2", "OTU_MTTI") # non desired ID cols in Official
+#' taxaid_official_project <- "OTU_MTTI"
+#' taxaid_drop <- "DNI"
+#' col_drop <- c("Taxon_v2", "OTU_BCG_MariNW") # non desired ID cols in Official
 #' sum_n_taxa_boo <- TRUE
 #' sum_n_taxa_col <- "N_TAXA"
 #' sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
@@ -76,6 +84,7 @@
 #'                                , taxaid_user
 #'                                , taxaid_official_match
 #'                                , taxaid_official_project
+#'                                , taxaid_drop
 #'                                , col_drop
 #'                                , sum_n_taxa_boo
 #'                                , sum_n_taxa_col
@@ -92,6 +101,7 @@ taxa_translate <- function(df_user = NULL
                            , taxaid_user = "TAXAID"
                            , taxaid_official_match = NULL
                            , taxaid_official_project = NULL
+                           , taxaid_drop = NULL
                            , col_drop = NULL
                            , sum_n_taxa_boo = FALSE
                            , sum_n_taxa_col = NULL
@@ -100,58 +110,80 @@ taxa_translate <- function(df_user = NULL
   # DEBUG ----
   boo_DEBUG_tt <- FALSE
   if(boo_DEBUG_tt == TRUE){
-    # pick files
-    fn_pick <- "_pick_files.csv"
-    path_pick <- file.path("inst", "extdata", "taxa_official", fn_pick)
-    df_pick <- read.csv(path_pick)
-    # df_user
-    fn_user <- "_Input_HiGradHiElev_noExclude_20220108_small.csv"
-    path_user <- file.path("inst", "extdata", fn_user)
-    df_user <- read.csv(path_user)
-    # df_official
-    official_projects <- df_pick[, "project"]
-    official_files <- df_pick[, "filename"]
-    taxaid_projects <- df_pick[, "taxaid"]
-    sel_project <- official_projects[1] #"Pacific Northwest"  # USER INPUT
-    fn_official <- official_files[match(sel_project, official_projects)]
-    path_official <- file.path("inst", "extdata", "taxa_official", fn_official)
-    df_official <- read.csv(path_official, na.strings = "")
-    # taxaid_user
-    taxaid_user <- "TaxaID" # <- pre-defined but user could select
-    # taxaid_official
-    taxaid_official_match <- taxaid_projects[match(sel_project, official_projects)]
-    # taxaid_project
-    calc_type <- unlist(strsplit(df_pick[df_pick[, "project"] == sel_project
-                                         , "calc_type"], ","))
-    calc_type_taxaid <- unlist(strsplit(df_pick[df_pick[, "project"] ==
-                                        sel_project, "calc_type_taxaid"], ","))
-    sel_calc_type <- calc_type[1] # "BCG" # USER INPUT
-    taxaid_official_project <- calc_type_taxaid[match(sel_calc_type, calc_type)]
-    # col_drop_project <- unique(calc_type_taxaid[!calc_type_taxaid %in%
-    #                                                  taxaid_official_project])
-    # col_drop_project <- unlist(strsplit(df_pick[df_pick$project == sel_project
-    #                                    , "col_drop"]
-    #                                    , ","))
-
-    # metadata
-    fn_meta <- df_pick[match(sel_project, official_projects), "metadata_file"]
-    path_meta <- file.path("inst", "extdata", "taxa_official", fn_meta)
-    df_official_metadata <- read.csv(path_meta)
-
-    # QC, add bad row to user input for testing
-    df_user[nrow(df_user) + 1, taxaid_user] <- "_Test"
-    # add bad column to drop
-    df_user[, "Test_Col"] <- NA_character_
-
-    col_drop <- "Test_Col"
-
-    # summary
+    # Example 1, PacNW ----
+    ## Input Parameters
+    df_user <- data_benthos_PacNW
+    fn_official <- file.path(system.file("extdata", package = "BioMonTools")
+                             , "taxa_official"
+                             , "TAXA_TRANSLATOR_ORWA_MASTER_20221219.csv")
+    df_official <- read.csv(fn_official)
+    fn_official_metadata <- file.path(system.file("extdata"
+                                                  , package = "BioMonTools")
+                                      , "taxa_official"
+                                      , "TAXA_TRANSLATOR_ORWA_MASTER_METADATA_20221117.csv")
+    df_official_metadata <- read.csv(fn_official_metadata)
+    taxaid_user <- "TaxaID"
+    taxaid_official_match <- "Taxon_orig"
+    taxaid_official_project <- "OTU_MTTI"
+    taxaid_drop <- "DNI"
+    col_drop <- c("Taxon_v2", "OTU_BCG_MariNW") # non desired ID cols in Official
     sum_n_taxa_boo <- TRUE
     sum_n_taxa_col <- "N_TAXA"
-    sum_n_taxa_group_by <- c("INDEX_NAME"
-                             , "INDEX_CLASS"
-                             , "SampleID"
-                             , taxaid_official_project)
+    sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
+
+        ## OLD ----
+    # # pick files
+    # fn_pick <- "_pick_files.csv"
+    # path_pick <- file.path("inst", "extdata", "taxa_official", fn_pick)
+    # df_pick <- read.csv(path_pick)
+    # # df_user
+    # fn_user <- "_Input_HiGradHiElev_noExclude_20220108_small.csv"
+    # path_user <- file.path("inst", "extdata", fn_user)
+    # df_user <- read.csv(path_user)
+    # # df_official
+    # official_projects <- df_pick[, "project"]
+    # official_files <- df_pick[, "filename"]
+    # taxaid_projects <- df_pick[, "taxaid"]
+    # sel_project <- official_projects[1] #"Pacific Northwest"  # USER INPUT
+    # fn_official <- official_files[match(sel_project, official_projects)]
+    # path_official <- file.path("inst", "extdata", "taxa_official", fn_official)
+    # df_official <- read.csv(path_official, na.strings = "")
+    # # taxaid_user
+    # taxaid_user <- "TaxaID" # <- pre-defined but user could select
+    # # taxaid_official
+    # taxaid_official_match <- taxaid_projects[match(sel_project, official_projects)]
+    # # taxaid_project
+    # calc_type <- unlist(strsplit(df_pick[df_pick[, "project"] == sel_project
+    #                                      , "calc_type"], ","))
+    # calc_type_taxaid <- unlist(strsplit(df_pick[df_pick[, "project"] ==
+    #                                     sel_project, "calc_type_taxaid"], ","))
+    # sel_calc_type <- calc_type[1] # "BCG" # USER INPUT
+    # taxaid_official_project <- calc_type_taxaid[match(sel_calc_type, calc_type)]
+    # # col_drop_project <- unique(calc_type_taxaid[!calc_type_taxaid %in%
+    # #                                                  taxaid_official_project])
+    # # col_drop_project <- unlist(strsplit(df_pick[df_pick$project == sel_project
+    # #                                    , "col_drop"]
+    # #                                    , ","))
+    #
+    # # metadata
+    # fn_meta <- df_pick[match(sel_project, official_projects), "metadata_file"]
+    # path_meta <- file.path("inst", "extdata", "taxa_official", fn_meta)
+    # df_official_metadata <- read.csv(path_meta)
+    #
+    # # QC, add bad row to user input for testing
+    # df_user[nrow(df_user) + 1, taxaid_user] <- "_Test"
+    # # add bad column to drop
+    # df_user[, "Test_Col"] <- NA_character_
+    #
+    # col_drop <- "Test_Col"
+    #
+    # # summary
+    # sum_n_taxa_boo <- TRUE
+    # sum_n_taxa_col <- "N_TAXA"
+    # sum_n_taxa_group_by <- c("INDEX_NAME"
+    #                          , "INDEX_CLASS"
+    #                          , "SampleID"
+    #                          , taxaid_official_project)
 
   }##IF ~ boo_DEBUG_tt
 
@@ -229,32 +261,32 @@ taxa_translate <- function(df_user = NULL
 
   # Munge ----
 
-  ### new Col, match merge main ID to df_official
+  ## new Col, match merge main ID to df_official----
   df_merge[, "Match_Official"] <- df_merge[, taxaid_official_match] %in%
     df_official[, taxaid_official_match]
 
-  ## Drop the "matching" column
+  ## Drop the "matching" column----
   col_drop_idmatch <- names(df_merge)[!names(df_merge) %in% taxaid_official_match]
   df_merge <- df_merge[, col_drop_idmatch]
 
-  ## Drop "_USER" columns
+  ## Drop "_USER" columns----
   col_user <- grepl("_USER$", names(df_merge))
   df_merge <- df_merge[, names(df_merge)[!col_user]]
 
-  ## Rename taxaid_official_project to taxaid_user
+  ## Rename taxaid_official_project to taxaid_user----
   names(df_merge)[names(df_merge) %in% taxaid_official_project] <- taxaid_user
 
   # ## Drop "other" project taxaid columns
   # col_keep <- !names(df_merge) %in% col_drop_project
   # df_merge <- df_merge[, col_keep]
 
-  ## Drop Col
+  ## Drop Col----
   if(is.null(col_drop) == FALSE) {
     df_merge <- df_merge[
       , names(df_merge)[!names(df_merge) %in% col_drop]]
   }## IF ~ is.null(col_drop)
 
-  ## Resort columns
+  ## Resort columns----
   # Make taxaid first (taxaid_user - was taxaid_official_project)
   col_reorder <- c(taxaid_user
                    , "Match_Official"
@@ -263,13 +295,16 @@ taxa_translate <- function(df_user = NULL
                                             , "Match_Official")])
   df_merge <- df_merge[, col_reorder]
 
-  ## Drop TaxaID is NA
+  ## Drop TaxaID ----
+  ### NA
   row_taxaid_NA <- is.na(df_merge[, taxaid_user])
   df_merge <- df_merge[!row_taxaid_NA, ]
+  ### taxaid_drop
+  if(!is.null(taxaid_drop)) {
+    row_taxaid_drop <- !df_merge[, taxaid_user] %in% taxaid_drop
+    df_merge <- df_merge[row_taxaid_drop, ]
+  }## IF ~ is.null(taxaid_drop)
 
-  ## Drop TaxaID is DNI
-  row_taxaid_DNI <- df_merge[, taxaid_user] %in% "DNI"
-  df_merge <- df_merge[!row_taxaid_DNI, ]
 
   # Summary ----
   if(sum_n_taxa_boo == TRUE) {

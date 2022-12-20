@@ -11,6 +11,7 @@ taxa_translate(
   taxaid_user = "TAXAID",
   taxaid_official_match = NULL,
   taxaid_official_project = NULL,
+  taxaid_drop = NULL,
   col_drop = NULL,
   sum_n_taxa_boo = FALSE,
   sum_n_taxa_col = NULL,
@@ -33,6 +34,9 @@ match with user data.  This is not the project taxanomic identifier.}
 
 \item{taxaid_official_project}{Taxonomic identifier in official data that is
 specific to a project, e.g., after operational taxonomic unit (OTU) applied.}
+
+\item{taxaid_drop}{Official taxonomic identifier that signals a record
+should be dropped; e.g., DNI (Do Not Include) or -999.  Default = NULL}
 
 \item{col_drop}{Columns to remove in output.  Default = NULL}
 
@@ -78,6 +82,11 @@ Will also need to provide `sum_n_taxa_col` and `sum_n_taxa_group_by`.
 
 Slightly different than `qc_taxa` since no options in `taxa_translate` for
 using one field over another and is more generic.
+
+The parameter `taxaid_drop` is used to drop records that matched to a new
+name that should not be included in the results.  Examples include "999" or
+"DNI" (Do Not Include).  Default is NULL so no action is taken.  "NA"s are
+always removed.
 }
 \examples{
 # Example 1, PacNW
@@ -85,7 +94,7 @@ using one field over another and is more generic.
 df_user <- data_benthos_PacNW
 fn_official <- file.path(system.file("extdata", package = "BioMonTools")
                          , "taxa_official"
-                         , "TAXA_TRANSLATOR_ORWA_MASTER_20221212b.csv")
+                         , "TAXA_TRANSLATOR_ORWA_MASTER_20221219.csv")
 df_official <- read.csv(fn_official)
 fn_official_metadata <- file.path(system.file("extdata"
                                               , package = "BioMonTools")
@@ -94,8 +103,9 @@ fn_official_metadata <- file.path(system.file("extdata"
 df_official_metadata <- read.csv(fn_official_metadata)
 taxaid_user <- "TaxaID"
 taxaid_official_match <- "Taxon_orig"
-taxaid_official_project <- "OTU_BCG_MariNW"
-col_drop <- c("Taxon_v2", "OTU_MTTI") # non desired ID cols in Official
+taxaid_official_project <- "OTU_MTTI"
+taxaid_drop <- "DNI"
+col_drop <- c("Taxon_v2", "OTU_BCG_MariNW") # non desired ID cols in Official
 sum_n_taxa_boo <- TRUE
 sum_n_taxa_col <- "N_TAXA"
 sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
@@ -106,6 +116,7 @@ taxatrans <- taxa_translate(df_user
                                , taxaid_user
                                , taxaid_official_match
                                , taxaid_official_project
+                               , taxaid_drop
                                , col_drop
                                , sum_n_taxa_boo
                                , sum_n_taxa_col
