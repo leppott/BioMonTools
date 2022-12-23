@@ -27,6 +27,9 @@
 #' "DNI" (Do Not Include).  Default is NULL so no action is taken.  "NA"s are
 #' always removed.
 #'
+#' The taxa list and metadata file names will be added to the results as two
+#' new columns.
+#'
 #' @param df_user User taxa data
 #' @param df_official Official project taxa data (master taxa list).
 #' @param df_official_metadata Metadata for offiical project taxa data.
@@ -62,12 +65,12 @@
 #' df_user <- data_benthos_PacNW
 #' fn_official <- file.path(system.file("extdata", package = "BioMonTools")
 #'                          , "taxa_official"
-#'                          , "TAXA_TRANSLATOR_ORWA_MASTER_20221219.csv")
+#'                          , "ORWA_TAXATRANSLATOR_20221219.csv")
 #' df_official <- read.csv(fn_official)
 #' fn_official_metadata <- file.path(system.file("extdata"
 #'                                               , package = "BioMonTools")
 #'                                   , "taxa_official"
-#'                       , "TAXA_TRANSLATOR_ORWA_MASTER_METADATA_20221117.csv")
+#'                       , "ORWA_ATTRIBUTES_METADATA_20221117.csv")
 #' df_official_metadata <- read.csv(fn_official_metadata)
 #' taxaid_user <- "TaxaID"
 #' taxaid_official_match <- "Taxon_orig"
@@ -115,12 +118,12 @@ taxa_translate <- function(df_user = NULL
     df_user <- data_benthos_PacNW
     fn_official <- file.path(system.file("extdata", package = "BioMonTools")
                              , "taxa_official"
-                             , "TAXA_TRANSLATOR_ORWA_MASTER_20221219.csv")
+                             , "ORWA_TAXATRANSLATOR_20221219.csv")
     df_official <- read.csv(fn_official)
     fn_official_metadata <- file.path(system.file("extdata"
                                                   , package = "BioMonTools")
                                       , "taxa_official"
-                                      , "TAXA_TRANSLATOR_ORWA_MASTER_METADATA_20221117.csv")
+                                      , "ORWA_ATTRIBUTES_METADATA_20221117.csv")
     df_official_metadata <- read.csv(fn_official_metadata)
     taxaid_user <- "TaxaID"
     taxaid_official_match <- "Taxon_orig"
@@ -344,7 +347,6 @@ taxa_translate <- function(df_user = NULL
 
 
   # QC, NA or DNI taxa names----
-
 
   # NonMatch Info ----
   taxa_user <- sort(unique(df_user[, taxaid_user]))

@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9014 (2022-12-23)
+
+* docs: Update `taxa_translate` example files
+
 ## Changes in version 1.0.0.9013 (2022-12-20)
 
 * refactor: Update `taxa_translate` to drop a particular ID after translation
