@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-12-23 14:04:41
+    #> Last Update: 2023-01-09 11:03:33
 
 # Version History
+
+## Changes in version 1.0.0.9015 (2023-01-09)
+
+- fix: Turn off QC testing in function `assign_indexclass`
+  - Was using test data instead of user input
 
 ## Changes in version 1.0.0.9014 (2022-12-23)
 
@@ -73,12 +78,12 @@ NEWS
 
 ## Changes in version 1.0.0.9003 (2022-12-01)
 
-- feature: Add taxa_translate function, Issue \#81
+- feature: Add `taxa_translate` function, Issue \#81
   - More general than qc_taxa
 
 ## Changes in version 1.0.0.9002 (2022-11-17)
 
-- fix: Update markExclude to avoid dplyr deprecation warnings, Issue
+- fix: Update `markExclude` to avoid dplyr deprecation warnings, Issue
   \#51
 
 ## Changes in version 1.0.0.9001 (2022-11-16)
@@ -88,7 +93,7 @@ NEWS
 
 ## Changes in version 0.5.0.9127 (2022-11-15)
 
-- feat: New function assign_IndexClass, Issue \#82
+- feat: New function `assign_IndexClass`, Issue \#82
   - Add IndexClass.xlsx to ext folder
 
 ## Changes in version 0.5.0.9126 (2022-11-11)
