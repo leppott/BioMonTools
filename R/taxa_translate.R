@@ -30,6 +30,8 @@
 #' The taxa list and metadata file names will be added to the results as two
 #' new columns.
 #'
+#' Another output is the unique taxa with old and new names.
+#'
 #' @param df_user User taxa data
 #' @param df_official Official project taxa data (master taxa list).
 #' @param df_official_metadata Metadata for offiical project taxa data.
@@ -52,12 +54,13 @@
 #' data when summarizing the user data.  Suggestions are SAMPID and TAXA_ID.
 #' Default = NULL
 #'
-#' @return A list with three elements.  The first (merge) is the user data frame
+#' @return A list with four elements.  The first (merge) is the user data frame
 #' with additional columns from the official data appended to it.  Names from
 #' the user data that overlap with the official data have the suffix '_User'.
 #' The second element (nonmatch) of the list is a vector of the non-matching
 #' taxa from the user data.  The third element (metadata) includes the
-#' metadata for the official data (if provided).
+#' metadata for the official data (if provided).  The fourth element will be a
+#' data frame of the unique taxa names old and new.
 #'
 #' @examples
 #' # Example 1, PacNW
@@ -315,6 +318,35 @@ taxa_translate <- function(df_user = NULL
   df_merge[, "Match_Official"] <- df_merge[, taxaid_official_match] %in%
     df_official[, taxaid_official_match]
 
+  ## Element 4, unique taxa translate ----
+  # run here to get "raw" version with all rows
+  if(sum_n_taxa_boo == TRUE) {
+    df_taxatrans_unique <- dplyr::summarise(
+      dplyr::group_by(df_merge
+                      , !!as.name(taxaid_official_match)
+                      , !!as.name(taxaid_official_project)
+                      , Match_Official
+                      , Changed)
+      , N_Taxa_Sum = sum(!!as.name(sum_n_taxa_col), na.rm = TRUE)
+      # , N_Taxa_Count = dplyr::n_distinct(!!as.name(taxaid_official_match)
+      #                                    , na.rm = TRUE)
+      , .groups = "drop_last")
+    df_taxatrans_unique <- data.frame(df_taxatrans_unique)
+  } else {
+     df_taxatrans_unique <- unique(df_merge[, c(taxaid_official_match
+                                            , taxaid_official_project
+                                            , "Match_Official"
+                                            , "Changed"
+                                            )])
+
+  #
+  }## IF ~ sum_n_taxa_boo
+  # rename column
+  names(df_taxatrans_unique)[1] <- taxaid_user
+  # sort
+  df_taxatrans_unique <- df_taxatrans_unique[order(df_taxatrans_unique[
+    , taxaid_user]), ]
+
   ## Drop the "matching" column----
   col_drop_idmatch <- names(df_merge)[!names(df_merge) %in% taxaid_official_match]
   df_merge <- df_merge[, col_drop_idmatch]
@@ -439,7 +471,8 @@ taxa_translate <- function(df_user = NULL
   # RESULTS ----
   ls_results <- list("merge" = df_merge
                      , "nonmatch" = df_nonmatch
-                     , "official_metadata" = df_official_metadata)
+                     , "official_metadata" = df_official_metadata
+                     , "taxatrans_unique" = df_taxatrans_unique)
 
 
   if(boo_DEBUG_tt == TRUE){

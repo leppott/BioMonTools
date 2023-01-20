@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-01-16 15:40:55
+    #> Last Update: 2023-01-20 10:24:55
 
 # Version History
+
+## Changes in version 1.0.0.9017 (2023-01-20)
+
+- feature: Add unique taxa crosswalk to output of `taxa_translate`
 
 ## Changes in version 1.0.0.9016 (2023-01-16)
 

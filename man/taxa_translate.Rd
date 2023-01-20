@@ -52,12 +52,13 @@ data when summarizing the user data.  Suggestions are SAMPID and TAXA_ID.
 Default = NULL}
 }
 \value{
-A list with three elements.  The first (merge) is the user data frame
+A list with four elements.  The first (merge) is the user data frame
 with additional columns from the official data appended to it.  Names from
 the user data that overlap with the official data have the suffix '_User'.
 The second element (nonmatch) of the list is a vector of the non-matching
 taxa from the user data.  The third element (metadata) includes the
-metadata for the official data (if provided).
+metadata for the official data (if provided).  The fourth element will be a
+data frame of the unique taxa names old and new.
 }
 \description{
 Convert user taxa names to those in an official project based
@@ -90,6 +91,8 @@ always removed.
 
 The taxa list and metadata file names will be added to the results as two
 new columns.
+
+Another output is the unique taxa with old and new names.
 }
 \examples{
 # Example 1, PacNW

@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9017 (2023-01-20)
+
+* feature: Add unique taxa crosswalk to output of `taxa_translate`
+
 ## Changes in version 1.0.0.9016 (2023-01-16)
 
 * test: Add test for multiple stages for `taxa_translate`
