@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-01-20 10:24:55
+    #> Last Update: 2023-01-20 14:21:48
 
 # Version History
+
+## Changes in version 1.0.0.9018 (2023-01-20)
+
+- refactor: Update MetricNames.xlsx groupings
+  - Added “Experimental”
 
 ## Changes in version 1.0.0.9017 (2023-01-20)
 

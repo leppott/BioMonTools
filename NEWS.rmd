@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9018 (2023-01-20)
+
+* refactor: Update MetricNames.xlsx groupings
+    + Added "Experimental"
+
 ## Changes in version 1.0.0.9017 (2023-01-20)
 
 * feature: Add unique taxa crosswalk to output of `taxa_translate`
