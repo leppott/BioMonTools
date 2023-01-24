@@ -41,6 +41,9 @@ Multiple criteria are treated as "AND" so all must be met to be assigned
 to a particular Index_Class.
 
 Internally uses `tidyr` and `dplyr`
+
+If Index_Class is included in data then it is renamed Index_Class_Orig and
+returned in the output data frame.
 }
 \details{
 Requires use of reference file with criteria.

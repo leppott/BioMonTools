@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-01-20 14:21:48
+    #> Last Update: 2023-01-23 20:04:17
 
 # Version History
+
+## Changes in version 1.0.0.9019 (2023-01-23)
+
+- refactor: Update `assign_indexclass` to account or NA and ““, Issue
+  \#85
+- fix: Update `assign_indexclass` to account non standard column names,
+  Isue \#85
+- tests: Add tests for `assign_indexclass`, Issue \#85
 
 ## Changes in version 1.0.0.9018 (2023-01-20)
 
