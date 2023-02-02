@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-01-23 20:04:17
+    #> Last Update: 2023-02-02 10:18:47
 
 # Version History
+
+## Changes in version 1.0.0.9020 (2023-02-02)
+
+- fix: Update `metric.values` thermal NA metrics
+  - Add blank (““) to NA as a condition
+- test: Additional `assign_indexclass` tests
 
 ## Changes in version 1.0.0.9019 (2023-01-23)
 
@@ -15,6 +21,8 @@ NEWS
 - fix: Update `assign_indexclass` to account non standard column names,
   Isue \#85
 - tests: Add tests for `assign_indexclass`, Issue \#85
+- refactor: Update `assign_indexclass` to not fail if index_class in
+  input data, Issue \#85
 
 ## Changes in version 1.0.0.9018 (2023-01-20)
 

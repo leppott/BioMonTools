@@ -475,7 +475,7 @@ metric.values <- function(fun.DF
   boo_QC <- FALSE
 
   # QC
-  if(boo_QC) {
+  if (boo_QC) {
     fun.DF <- data_benthos_PacNW#[, 1:32] # 598, 37
     fun.DF <- data_benthos_MBSS # 5066, 37
     fun.Community <- "bugs"
@@ -493,7 +493,7 @@ metric.values <- function(fun.DF
   # define pipe
   `%>%` <- dplyr::`%>%`
   # Munge ####
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "munge"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -510,14 +510,14 @@ metric.values <- function(fun.DF
   # convert Field Names to UPPER CASE
   names(fun.DF) <- toupper(names(fun.DF))
   # convert cols2keep to UPPER CASE
-  if(!is.null(fun.cols2keep)){
+  if (!is.null(fun.cols2keep)) {
     #names(fun.cols2keep) <- toupper(fun.cols2keep)
     fun.cols2keep <- toupper(fun.cols2keep)
   }##IF~!is.null(fun.cols2keep)~END
 
   # QC, missing cols ----
   # bare minimum, applies to all communities
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "QC missing cols"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -534,7 +534,7 @@ metric.values <- function(fun.DF
   num.col.req.missing <- length(col.req.missing)
 
   # Trigger prompt if any missing fields (and session is interactive)
-  if(num.col.req.missing != 0 & interactive() == TRUE) {
+  if (num.col.req.missing != 0 & interactive() == TRUE) {
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
     myPrompt.02 <- paste(col.req.missing, collapse=", ")
     myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
@@ -553,7 +553,7 @@ metric.values <- function(fun.DF
     user.input <- NA
     # special condition for Shiny
     # Shiny counts as interactive()==TRUE but cannot access this prompt in Shiny.
-    if(boo.Shiny == FALSE) {
+    if (boo.Shiny == FALSE) {
       user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
     } else {
       message(myPrompt)
@@ -562,13 +562,13 @@ metric.values <- function(fun.DF
     }## IF ~ boo.Shiny ~ END
 
     # any answer other than "YES" will stop the function.
-    if(user.input != 1){##IF.user.input.START
+    if (user.input != 1) {##IF.user.input.START
       stop(paste("The user chose *not* to continue due to missing fields: "
                  , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
     }##IF.user.input.END
 
     # Add missing fields
-    if(verbose == TRUE) {
+    if (verbose == TRUE) {
       boo_debug_topic <- "add missing fields"
       boo_debug_main_num <- boo_debug_main_num + 1
       msg <- paste0("debug_metval_main, "
@@ -581,29 +581,29 @@ metric.values <- function(fun.DF
     }## IF ~ verbose
     ## Add missing, Index_Name
     req.name <- "INDEX_NAME"
-    if(req.name %in% col.req.missing) {
+    if (req.name %in% col.req.missing) {
       fun.DF[, req.name] <- "BioMonTools"
     }## IF ~ req.name
     ## Add missing, INDEX_CLASS
     req.name <- "INDEX_CLASS"
-    if(req.name %in% col.req.missing) {
+    if (req.name %in% col.req.missing) {
       fun.DF[, req.name] <- fun.Community
     }## IF ~ req.name
     ## Add missing, N_Taxa
     req.name <- c("SAMPLEID", "TAXAID", "N_TAXA")
-    if(sum(req.name %in% col.req.missing) == length(req.name)) {
+    if (sum(req.name %in% col.req.missing) == length(req.name)) {
       req.name.missing <- req.name[req.name %in% col.req.missing]
       stop(paste("Required columns missing: "
-                 , paste(paste0("   ",req.name.missing), collapse="\n"),sep="\n"))
+                 , paste(paste0("   ",req.name.missing), collapse = "\n"),sep = "\n"))
     }## IF ~ req.name
     ## old
     #fun.DF[,col.req.missing] <- NA_character_
     warning(paste("Metrics related to the following fields are invalid:"
-                  , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
+                  , paste(paste0("   ", col.req.missing), collapse = "\n"), sep = "\n"))
   }##IF.num.col.req.missing.END
 
   # message col names
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "colnames:"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -619,7 +619,7 @@ metric.values <- function(fun.DF
   }## IF ~ verbose
 
   # Remove Count = 0 taxa unless TaxaID = NONE
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "remove count 0"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -635,7 +635,7 @@ metric.values <- function(fun.DF
   # non-target taxa removed in community function, if appropriate
   #
   # SiteType to upper case
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "sitetype toupper"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -650,7 +650,7 @@ metric.values <- function(fun.DF
   # convert community to upper case
   fun.Community <- toupper(fun.Community)
   # run the proper sub function
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "start subfunctions"
     boo_debug_main_num <- boo_debug_main_num + 1
     msg <- paste0("debug_metval_main, "
@@ -663,13 +663,13 @@ metric.values <- function(fun.DF
   }## IF ~ verbose
 
   # Run subfunction based on community
-  if (fun.Community=="BUGS") {##IF.START
+  if (fun.Community == "BUGS") {##IF.START
     metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep, NA
                        , boo.marine, boo.Shiny, verbose)
-  } else if(fun.Community=="FISH"){
+  } else if (fun.Community == "FISH") {
     metric.values.fish(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
                        , boo.Shiny, verbose)
-  } else if(fun.Community=="ALGAE"){
+  } else if (fun.Community == "ALGAE") {
     metric.values.algae(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
                         , boo.Shiny, verbose)
   }##IF.END
@@ -709,11 +709,11 @@ metric.values.bugs <- function(myDF
                                , MetricSort = NA
                                , boo.marine = FALSE
                                , boo.Shiny
-                               , verbose){##FUNCTION.metric.values.bugs.START
+                               , verbose) {##FUNCTION.metric.values.bugs.START
   #
   # QC
   boo_QC <- FALSE
-  if(boo_QC) {
+  if (boo_QC) {
     myDF <- fun.DF
     boo.Adjust <- boo.Adjust
     cols2keep <- fun.cols2keep
@@ -781,6 +781,7 @@ metric.values.bugs <- function(myDF
   nt_BCG_att4b <- pi_BCG_att4b <- pt_BCG_att4b <- nt_BCG_att1i234b5 <-
     pi_BCG_att1i234b5 <- pt_BCG_att1i234b5 <- nt_BCG_att1i234w5 <-
     pi_BCG_att1i234w5 <- pt_BCG_att1i234w5 <- NULL
+  nt_Hemipt <- NULL
 
 
   # define pipe
@@ -788,7 +789,7 @@ metric.values.bugs <- function(myDF
 
   # QC----
   ## QC, missing cols ----
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "QC, missing cols"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -831,7 +832,7 @@ metric.values.bugs <- function(myDF
   num.col.req.missing_num <- length(col.req.missing_num)
 
   # Trigger prompt if any missing fields (and session is interactive)
-  if(num.col.req.missing != 0) {
+  if (num.col.req.missing != 0) {
 
     # Create prompt for missing columns
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
@@ -847,10 +848,10 @@ metric.values.bugs <- function(myDF
                       , myPrompt.03
                       , myPrompt.04
                       , myPrompt.05
-                      , sep="\n")
+                      , sep = "\n")
     user.input <- NA
 
-    if(interactive() == TRUE & boo.Shiny == FALSE) {
+    if (interactive() == TRUE & boo.Shiny == FALSE) {
       #user.input <- readline(prompt=myPrompt)
       user.input <- utils::menu(c("YES", "NO"), title = myPrompt)
     } else {
@@ -863,7 +864,7 @@ metric.values.bugs <- function(myDF
     # # special condition for Shiny
     # # Shiny counts as interactive()==TRUE locally
     #        but cannot access this prompt in Shiny.
-    # if(boo.Shiny==FALSE) {
+    # if (boo.Shiny==FALSE) {
     #   user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
     # } else {
     #   message(myPrompt)
@@ -872,28 +873,30 @@ metric.values.bugs <- function(myDF
     # }## IF ~ boo.Shiny ~ END
 
     # any answer other than "YES" will stop the function.
-    if(user.input != 1) {
+    if (user.input != 1) {
       stop(paste("The user chose *not* to continue due to missing fields: "
-                  , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
+                  , paste(paste0("   ",col.req.missing), collapse = "\n"), sep = "\n"))
     }##IF.user.input.END
 
     # Add missing fields
     #myDF[, col.req.missing] <- NA
-    if(num.col.req.missing_char > 0) {
+    if (num.col.req.missing_char > 0) {
       myDF[, col.req.missing_char] <- NA_character_
     }
-    if(num.col.req.missing_log > 0) {
+    if (num.col.req.missing_log > 0) {
       myDF[, col.req.missing_log] <- NA
     }
-    if(num.col.req.missing_num > 0) {
+    if (num.col.req.missing_num > 0) {
       myDF[, col.req.missing_num] <- NA_real_
     }
     warning(paste("Metrics related to the following fields are invalid:"
-                  , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
+                  , paste(paste0("   ", col.req.missing)
+                          , collapse = "\n")
+                  , sep = "\n"))
   }##IF.num.col.req.missing.END
 
   # message col names
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "colnames"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -910,7 +913,7 @@ metric.values.bugs <- function(myDF
 
   ## QC, Exclude----
   # ensure TRUE/FALSE
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "QC, cols, values, Exclude"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -925,14 +928,14 @@ metric.values.bugs <- function(myDF
     msg <- paste0("Column (", myCol, ") exists; ", col_TF)
     message(msg)
   }## IF ~ verbose
-  Exclude.T <- sum(myDF$EXCLUDE==TRUE, na.rm = TRUE)
-  if(Exclude.T==0) {
+  Exclude.T <- sum(myDF$EXCLUDE == TRUE, na.rm = TRUE)
+  if (Exclude.T == 0) {
     warning("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
   }##IF.Exclude.T.END
 
   ## QC, NonTarget----
   # ensure as TRUE/FALSE
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "QC, cols, values, NonTarget"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -948,14 +951,14 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
 
-  NonTarget.F <- sum(myDF$NONTARGET==FALSE, na.rm = TRUE)
-  if(NonTarget.F==0) {
+  NonTarget.F <- sum(myDF$NONTARGET == FALSE, na.rm = TRUE)
+  if (NonTarget.F == 0) {
     warning("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
   }##IF.Exclude.T.END
 
   ## QC, TolVal----
   # need as numeric, if have "NA" as character it fails
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "QC, cols, numeric, TolVal"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -973,7 +976,7 @@ metric.values.bugs <- function(myDF
   TolVal_Char_NA <- myDF[, "TOLVAL"] == "NA"
   # Fails with mix of NA and "NA", rework
   TolVal_Char_NA <- TolVal_Char_NA == TRUE & !is.na(TolVal_Char_NA)
-  if(sum(TolVal_Char_NA, na.rm = TRUE) > 0) {
+  if (sum(TolVal_Char_NA, na.rm = TRUE) > 0) {
     #myDF[TolVal_Char_NA, "TOLVAL"] <- NA
     myDF[, "TOLVAL"] <- as.numeric(myDF[, "TOLVAL"])
     # will give a warning - NAs introduced by coercion
@@ -983,7 +986,7 @@ metric.values.bugs <- function(myDF
 
   ## QC, TolVal2----
   # need as numeric, if have "NA" as character it fails
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "QC, cols, numeric, TolVal2"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -998,8 +1001,8 @@ metric.values.bugs <- function(myDF
     msg <- paste0("Column (", myCol, ") exists; ", col_TF)
     message(msg)
   }## IF ~ verbose
-  TolVal2_Char_NA <- myDF[, "TOLVAL2"]=="NA"
-  if(sum(TolVal2_Char_NA, na.rm = TRUE)>0) {
+  TolVal2_Char_NA <- myDF[, "TOLVAL2"] == "NA"
+  if (sum(TolVal2_Char_NA, na.rm = TRUE) > 0) {
     myDF[TolVal2_Char_NA, "TOLVAL2"] <- NA
     myDF[, "TOLVAL2"] <- as.numeric(myDF[, "TOLVAL2"])
     msg <- "Updated col class; TOLVAL2 to numeric"
@@ -1008,7 +1011,7 @@ metric.values.bugs <- function(myDF
 
   ## QC, UFC----
   # need as numeric, if have "NA" as character it fails
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "QC, cols, numeric, UFC"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -1024,7 +1027,7 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
   UFC_Char_NA <- myDF[, "UFC"] == "NA"
-  if(sum(UFC_Char_NA, na.rm = TRUE) > 0) {
+  if (sum(UFC_Char_NA, na.rm = TRUE) > 0) {
     myDF[UFC_Char_NA, "UFC"] <- NA
     myDF[, "UFC"] <- as.numeric(myDF[, "UFC"])
     msg <- "Updated col class; UFC to numeric"
@@ -1033,7 +1036,7 @@ metric.values.bugs <- function(myDF
 
   ## QC, BCG_Attr ----
   # need as character, if complex all values fail
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "QC, cols, complex, BCG_Attr"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -1051,8 +1054,8 @@ metric.values.bugs <- function(myDF
 
   BCG_Complex <- is.complex(myDF[, "BCG_ATTR"])
   # only tigger if have a complex field
-  if(BCG_Complex == TRUE) {
-    if(interactive() & boo.Shiny == FALSE) {
+  if (BCG_Complex == TRUE) {
+    if (interactive() & boo.Shiny == FALSE) {
       msg <- "**BCG_ATTR is complex!**"
       msg2 <- "BCG metrics will not calculate properly."
       msg3 <- "Reimport data with column class defined."
@@ -1063,7 +1066,7 @@ metric.values.bugs <- function(myDF
       msg8 <- ""
       msg9 <- "# Fix 2, tidyverse"
       msg10 <- "# install package if needed and load it"
-      msg11 <- "if(!require(readr)){install.packages('readr')}"
+      msg11 <- "if(!require(readr)) {install.packages('readr')}"
       msg12 <- "# import file and convert from tibble to data frame"
       msg13 <- "df_data <- as.data.frame(read_csv('foo.csv'))"
       msg14 <- ""
@@ -1072,7 +1075,7 @@ metric.values.bugs <- function(myDF
                     , msg11, msg12, msg13, msg14, sep = "\n"))
     }## IF ~ interactive & boo.Shiny == FALSE
 
-    if(interactive() == FALSE | boo.Shiny == TRUE) {
+    if (interactive() == FALSE | boo.Shiny == TRUE) {
       # > df$BCG_Attr_char <- as.character(df$BCG_Attr)
       # > df$BCG_Attr_char <- sub("^0\\+", "", df$BCG_Attr_char)
       # > df$BCG_Attr_char <- sub("\\+0i$", "", df$BCG_Attr_char)
@@ -1085,7 +1088,7 @@ metric.values.bugs <- function(myDF
   }##IF ~ BCG_Attr ~ END
 
   # Data Munging ####
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "Munging"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -1099,7 +1102,7 @@ metric.values.bugs <- function(myDF
 
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "Munging, NonTarget"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -1118,7 +1121,7 @@ metric.values.bugs <- function(myDF
   myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
 
   # # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "Munging, text cols, toupper"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -1139,7 +1142,7 @@ metric.values.bugs <- function(myDF
   col2upper <- col.req_character[!(col.req_character %in%
                                   c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"))]
   # #myDF <- apply(myDF[, col2upper], 2, toupper)
-  for(i in col2upper){
+  for (i in col2upper) {
     myDF[, i] <- toupper(myDF[, i])
   }## FOR ~ i ~ END
   # use toupper() earlier, don't need
@@ -1150,7 +1153,7 @@ metric.values.bugs <- function(myDF
   # (need unique values for functions in summarise)
   # each will be TRUE or FALSE
   # finds any match so "CN, CB" is both "CN" and "CB"
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "Munging, TF"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -1194,7 +1197,8 @@ metric.values.bugs <- function(myDF
   myDF[, "HS_RM"]        <- grepl("RM", myDF[, "HABSTRUCT"])
   myDF[, "HS_SG"]        <- grepl("SG", myDF[, "HABSTRUCT"])
   # match, exact only
-  myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"]) |
+                                  myDF[, "THERMAL_INDICATOR"] == ""
   myDF[, "HABITAT_BRAC"]   <- "BRAC" == myDF[, "HABITAT"]
   myDF[, "HABITAT_DEPO"]   <- "DEPO" == myDF[, "HABITAT"]
   myDF[, "HABITAT_GENE"]   <- "GENE" == myDF[, "HABITAT"]
@@ -1260,7 +1264,7 @@ metric.values.bugs <- function(myDF
 
   # Create Dominant N ####
   # Create df for Top N (without ties)
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "Munging, Dom"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -1273,121 +1277,121 @@ metric.values.bugs <- function(myDF
   }## IF ~ verbose
   df.dom01 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
                             dplyr::group_by(SAMPLEID)  %>%
-                                dplyr::filter(dplyr::row_number()<=1)
+                                dplyr::filter(dplyr::row_number() <= 1)
   df.dom02 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
-    dplyr::filter(dplyr::row_number()<=2)
+    dplyr::filter(dplyr::row_number() <= 2)
   df.dom03 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=3)
+    dplyr::filter(dplyr::row_number() <= 3)
   df.dom04 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=4)
+    dplyr::filter(dplyr::row_number() <= 4)
   df.dom05 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=5)
+    dplyr::filter(dplyr::row_number() <= 5)
   df.dom06 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=6)
+    dplyr::filter(dplyr::row_number() <= 6)
   df.dom07 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=7)
+    dplyr::filter(dplyr::row_number() <= 7)
   df.dom08 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=8)
+    dplyr::filter(dplyr::row_number() <= 8)
   df.dom09 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=9)
+    dplyr::filter(dplyr::row_number() <= 9)
   df.dom10 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
-    dplyr::filter(dplyr::row_number()<=10)
+    dplyr::filter(dplyr::row_number() <= 10)
   df.dom02_NoJugaRiss_BCG_att456 <-  dplyr::arrange(myDF, SAMPLEID
                                                     , dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter((is.na(GENUS) == TRUE | GENUS!="JUGA")
-                  & (is.na(ORDER)==TRUE | ORDER!="RISSOOIDEA")
+    dplyr::filter((is.na(GENUS) == TRUE | GENUS != "JUGA")
+                  & (is.na(ORDER) == TRUE | ORDER != "RISSOOIDEA")
                   & (BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6")) %>%
-    dplyr::filter(dplyr::row_number()<=2)
+    dplyr::filter(dplyr::row_number() <= 2)
 
   # Summarise Top N
   df.dom01.sum <- dplyr::summarise(dplyr::group_by(df.dom01
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                            , ni_dom01=sum(N_TAXA, na.rm = TRUE)
+                            , ni_dom01 = sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom02.sum <- dplyr::summarise(dplyr::group_by(df.dom02
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                            , ni_dom02=sum(N_TAXA, na.rm = TRUE)
+                            , ni_dom02 = sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom03.sum <- dplyr::summarise(dplyr::group_by(df.dom03
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                            , ni_dom03=sum(N_TAXA, na.rm = TRUE)
+                            , ni_dom03 = sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom04.sum <- dplyr::summarise(dplyr::group_by(df.dom04
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                            , ni_dom04=sum(N_TAXA, na.rm = TRUE)
+                            , ni_dom04 = sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom05.sum <- dplyr::summarise(dplyr::group_by(df.dom05
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                            , ni_dom05=sum(N_TAXA, na.rm = TRUE)
+                            , ni_dom05 = sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom06.sum <- dplyr::summarise(dplyr::group_by(df.dom06
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                            , ni_dom06=sum(N_TAXA, na.rm = TRUE)
+                            , ni_dom06 = sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom07.sum <- dplyr::summarise(dplyr::group_by(df.dom07
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                            , ni_dom07=sum(N_TAXA, na.rm = TRUE)
+                            , ni_dom07 = sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom08.sum <- dplyr::summarise(dplyr::group_by(df.dom08
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                            , ni_dom08=sum(N_TAXA, na.rm = TRUE)
+                            , ni_dom08 = sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom09.sum <- dplyr::summarise(dplyr::group_by(df.dom09
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                            , ni_dom09=sum(N_TAXA, na.rm = TRUE)
+                            , ni_dom09 = sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom10.sum <- dplyr::summarise(dplyr::group_by(df.dom10
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                            , ni_dom10=sum(N_TAXA, na.rm = TRUE)
+                            , ni_dom10 = sum(N_TAXA, na.rm = TRUE)
                             , .groups = "drop_last")
   df.dom02_NoJugaRiss_BCG_att456.sum <- dplyr::summarise(dplyr::group_by(df.dom02_NoJugaRiss_BCG_att456
                                                                        , SAMPLEID
                                                                        , INDEX_NAME
                                                                        , INDEX_CLASS)
-                                                       , ni_dom02_NoJugaRiss_BCG_att456=sum(N_TAXA)
+                                                       , ni_dom02_NoJugaRiss_BCG_att456 = sum(N_TAXA)
                                                        , .groups = "drop_last")
   # Add column of domN to main DF
-  myDF <- merge(myDF, df.dom01.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom02.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom03.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom04.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom05.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom06.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom07.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom08.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom09.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom10.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom02_NoJugaRiss_BCG_att456.sum, all.x=TRUE)
+  myDF <- merge(myDF, df.dom01.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom02.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom03.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom04.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom05.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom06.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom07.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom08.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom09.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom10.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom02_NoJugaRiss_BCG_att456.sum, all.x = TRUE)
 
   # Clean up extra Dom data frames
   rm(df.dom01)
@@ -1414,7 +1418,7 @@ metric.values.bugs <- function(myDF
   rm(df.dom02_NoJugaRiss_BCG_att456.sum)
 
   # Metric Calc ####
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "metric calc"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -1463,7 +1467,7 @@ metric.values.bugs <- function(myDF
              , nt_Capit = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                    & FAMILY == "CAPITELLIDAE"]
                                             , na.rm = TRUE)
-             , nt_Caridea= dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+             , nt_Caridea = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                     & INFRAORDER == "CARIDEA"]
                                              , na.rm = TRUE)
              #, nt_Chiro ## in special Chironomidae section
@@ -1570,7 +1574,7 @@ metric.values.bugs <- function(myDF
                                                   & CLASS == "POLYCHAETA"]
                                            , na.rm = TRUE)
              , nt_PolyNoSpion = 100 * sum(N_TAXA[CLASS == "POLYCHAETA"
-                                                & (is.na(FAMILY)==TRUE
+                                                & (is.na(FAMILY) == TRUE
                                                    | FAMILY != "SPIONIDAE")]
                                         , na.rm = TRUE)
              , nt_Ptero = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -1653,13 +1657,13 @@ metric.values.bugs <- function(myDF
              , pi_Ephem = 100 * sum(N_TAXA[ORDER == "EPHEMEROPTERA"]
                                   , na.rm = TRUE) / ni_total
              , pi_EphemNoCae = 100 * sum(N_TAXA[ORDER == "EPHEMEROPTERA"
-                                          & (is.na(FAMILY)==TRUE
+                                          & (is.na(FAMILY) == TRUE
                                              | FAMILY != "CAENIDAE")]
                                        , na.rm = TRUE) / ni_total
              , pi_EphemNoCaeBae = 100 * sum(N_TAXA[ORDER == "EPHEMEROPTERA"
-                                             & (is.na(FAMILY)==TRUE
+                                             & (is.na(FAMILY) == TRUE
                                                 | FAMILY != "CAENIDAE")
-                                             & (is.na(FAMILY)==TRUE
+                                             & (is.na(FAMILY) == TRUE
                                                 | FAMILY != "BAETIDAE")]
                                       , na.rm = TRUE) / ni_total
              , pi_EPT = 100 * sum(N_TAXA[ORDER == "EPHEMEROPTERA"
@@ -1667,22 +1671,22 @@ metric.values.bugs <- function(myDF
                                        | ORDER == "PLECOPTERA"]
                                 , na.rm = TRUE) / ni_total
              , pi_EPTNoBaeHydro = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
-                                                  & (is.na(FAMILY)==TRUE
+                                                  & (is.na(FAMILY) == TRUE
                                                      | FAMILY != "BAETIDAE"))
                                                  | (ORDER == "TRICHOPTERA"
-                                                    & (is.na(FAMILY)==TRUE
+                                                    & (is.na(FAMILY) == TRUE
                                                   | FAMILY != "HYDROPSYCHIDAE"))
                                                  | ORDER == "PLECOPTERA"]
                                           , na.rm = TRUE) / ni_total
              , pi_EPTNoCheu = 100 * sum(N_TAXA[ORDER == "EPHEMEROPTERA"
                                              | ORDER == "TRICHOPTERA"
                                              | ORDER == "PLECOPTERA"
-                                     & (is.na(FAMILY)==TRUE
+                                     & (is.na(FAMILY) == TRUE
                                         | FAMILY != "Cheumatopsyche")]
                                      , na.rm = TRUE) / ni_total
              , pi_EPTNoHydro = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA")
                                               | (ORDER == "TRICHOPTERA"
-                                                 & (is.na(FAMILY)==TRUE
+                                                 & (is.na(FAMILY) == TRUE
                                                     | FAMILY != "HYDROPSYCHIDAE"))
                                               | ORDER == "PLECOPTERA"]
                                        , na.rm = TRUE) / ni_total
@@ -1769,7 +1773,7 @@ metric.values.bugs <- function(myDF
              , pi_Trich = 100 * sum(N_TAXA[ORDER == "TRICHOPTERA"]
                                   , na.rm = TRUE) / ni_total
              , pi_TrichNoHydro = 100 * sum(N_TAXA[ORDER == "TRICHOPTERA"
-                                           & (is.na(FAMILY)==TRUE |
+                                           & (is.na(FAMILY) == TRUE |
                                                 FAMILY != "HYDROPSYCHIDAE")]
                                     , na.rm = TRUE) / ni_total
              , pi_Tromb = 100 * sum(N_TAXA[ORDER == "TROMBIDIFORMES"]
@@ -1857,14 +1861,14 @@ metric.values.bugs <- function(myDF
              , pi_Tanyp = 100 * sum(N_TAXA[SUBFAMILY == "TANYPODINAE"]
                                   , na.rm = TRUE) / ni_total
              , pi_COC2Chi = 100 * sum(N_TAXA[GENUS == "CHIRONOMUS"
-                                       | GENUS=="CRICOTOPUS"
-                                       | GENUS=="CRICOTOPUS/ORTHOCLADIUS"
-                                       | GENUS=="ORTHOCLADIUS/CRICOTOPUS"
-                                       | GENUS=="ORTHOCLADIUS"]
+                                       | GENUS == "CRICOTOPUS"
+                                       | GENUS == "CRICOTOPUS/ORTHOCLADIUS"
+                                       | GENUS == "ORTHOCLADIUS/CRICOTOPUS"
+                                       | GENUS == "ORTHOCLADIUS"]
                                     , na.rm = TRUE)/ni_Chiro
 
              , pi_ChCr2Chi = 100 * sum(N_TAXA[GENUS == "CHIRONOMUS"
-                                            | GENUS=="CRICOTOPUS"]
+                                            | GENUS == "CRICOTOPUS"]
                                      , na.rm = TRUE)/ni_Chiro
              , pi_Orth2Chi = 100 * sum(N_TAXA[SUBFAMILY == "ORTHOCLADIINAE"]
                                      , na.rm = TRUE)/ni_Chiro
@@ -1884,14 +1888,14 @@ metric.values.bugs <- function(myDF
              # 20180608, rework PacNW
              # NonINSECTA, Attribute 456
              , nt_NonIns_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                     & (is.na(CLASS)==TRUE
+                                     & (is.na(CLASS) == TRUE
                                         | CLASS != "INSECTA")
                                      & (BCG_ATTR == "4"
                                         | BCG_ATTR == "5"
                                         | BCG_ATTR == "6")]
                                      , na.rm = TRUE)
              , pi_NonIns_BCG_att456 = 100 * sum(N_TAXA[
-                                     (is.na(CLASS)==TRUE
+                                     (is.na(CLASS) == TRUE
                                       | CLASS != "INSECTA")
                                      & (BCG_ATTR == "4"
                                         | BCG_ATTR == "5"
@@ -1900,23 +1904,23 @@ metric.values.bugs <- function(myDF
              , pt_NonIns_BCG_att456 = 100 * nt_NonIns_BCG_att456 / nt_total
              # NonInsectaJugaRiss, Attribute 456
              , nt_NonInsJugaRiss_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                     & (is.na(CLASS)==TRUE
+                                     & (is.na(CLASS) == TRUE
                                         | CLASS != "INSECTA")
                                      & (is.na(ORDER) == TRUE
-                                        | ORDER!="RISSOOIDEA")
+                                        | ORDER != "RISSOOIDEA")
                                      & (is.na(GENUS) == TRUE
-                                        | GENUS!="JUGA")
+                                        | GENUS != "JUGA")
                                      & (BCG_ATTR == "4"
                                         | BCG_ATTR == "5"
                                         | BCG_ATTR == "6")]
                                      , na.rm = TRUE)
              , pi_NonInsJugaRiss_BCG_att456 = 100 * sum(N_TAXA[
-                                     (is.na(CLASS)==TRUE
+                                     (is.na(CLASS) == TRUE
                                       | CLASS != "INSECTA")
                                      & (is.na(ORDER) == TRUE
-                                        | ORDER!="RISSOOIDEA")
+                                        | ORDER != "RISSOOIDEA")
                                      & (is.na(GENUS) == TRUE
-                                        | GENUS!="JUGA")
+                                        | GENUS != "JUGA")
                                      & (BCG_ATTR == "4"
                                         | BCG_ATTR == "5"
                                         | BCG_ATTR == "6")]
@@ -1928,18 +1932,18 @@ metric.values.bugs <- function(myDF
                               , na.rm = TRUE)) / ni_total
              # 20181018, MS, sensitive COLEOPTERA & (Family is Null or not Hydrophyilidae)
              , pi_Colesens = 100 * sum(N_TAXA[ORDER == "COLEOPTERA"
-                             & (FAMILY!="HYDROPHILIDAE"
-                                | is.na(FAMILY)==TRUE)]
+                             & (FAMILY != "HYDROPHILIDAE"
+                                | is.na(FAMILY) == TRUE)]
                              , na.rm = TRUE) / ni_total
              # 20181207, BCG PacNW, Level 1 Signal metrics
-             , nt_longlived =  dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                     & LONGLIVED==TRUE]
+             , nt_longlived =  dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & LONGLIVED == TRUE]
                                               , na.rm = TRUE)
-             , nt_noteworthy = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                      & NOTEWORTHY==TRUE]
+             , nt_noteworthy = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & NOTEWORTHY == TRUE]
                                                , na.rm = TRUE)
-             , nt_ffg2_pred =  dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                     & FFG2_PRE==TRUE]
+             , nt_ffg2_pred =  dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & FFG2_PRE == TRUE]
                                               , na.rm = TRUE)
              , ni_Noto = sum(N_TAXA[GENUS == "NOTOMASTUS"], na.rm = TRUE)
 
@@ -2042,26 +2046,26 @@ metric.values.bugs <- function(myDF
 
              ## Tolerance ----
              # 4 and 6 are WV GLIMPSS (no equal)
-             , nt_tv_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                      & TOLVAL>=0
-                                                      & TOLVAL<=3]
+             , nt_tv_intol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & TOLVAL >= 0
+                                                      & TOLVAL <= 3]
                                                , na.rm = TRUE)
-             , nt_tv_intol4 = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                       & TOLVAL>=0
-                                                       & TOLVAL<4]
+             , nt_tv_intol4 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                       & TOLVAL >= 0
+                                                       & TOLVAL < 4]
                                                 , na.rm = TRUE)
-             , nt_tv_toler = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                      & TOLVAL>=7
-                                                      & TOLVAL<=10]
+             , nt_tv_toler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & TOLVAL >= 7
+                                                      & TOLVAL <= 10]
                                                , na.rm = TRUE)
-             , pi_tv_intol = 100*sum(N_TAXA[TOLVAL>=0
-                                            & TOLVAL<=3], na.rm = TRUE) / ni_total
-             , pi_tv_intol4 = 100*sum(N_TAXA[TOLVAL>=0
-                                             & TOLVAL<4], na.rm = TRUE) / ni_total
-             , pi_tv_toler = 100*sum(N_TAXA[TOLVAL>=7
-                                            & TOLVAL<=10], na.rm = TRUE) / ni_total
-             , pi_tv_toler6 = 100*sum(N_TAXA[TOLVAL>6
-                                             & TOLVAL<=10], na.rm = TRUE) / ni_total
+             , pi_tv_intol = 100*sum(N_TAXA[TOLVAL >= 0
+                                            & TOLVAL <= 3], na.rm = TRUE) / ni_total
+             , pi_tv_intol4 = 100*sum(N_TAXA[TOLVAL >= 0
+                                             & TOLVAL < 4], na.rm = TRUE) / ni_total
+             , pi_tv_toler = 100*sum(N_TAXA[TOLVAL >= 7
+                                            & TOLVAL <= 10], na.rm = TRUE) / ni_total
+             , pi_tv_toler6 = 100*sum(N_TAXA[TOLVAL > 6
+                                             & TOLVAL <= 10], na.rm = TRUE) / ni_total
              , pt_tv_intol = 100*nt_tv_intol / nt_total
              , pt_tv_intol4 = 100*nt_tv_intol4 / nt_total
              , pt_tv_toler = 100*nt_tv_toler / nt_total
@@ -2069,9 +2073,9 @@ metric.values.bugs <- function(myDF
              # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, in Pct Ind group
              # nt_intMol (for marine)
              # intol4_EPT is PA not WV so [0-4].
-             , nt_tv_intol4_EPT = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                        & TOLVAL>=0
-                                                        & TOLVAL<=4
+             , nt_tv_intol4_EPT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & TOLVAL >= 0
+                                                        & TOLVAL <= 4
                                                         & (ORDER == "EPHEMEROPTERA"
                                                            | ORDER == "TRICHOPTERA"
                                                            | ORDER == "PLECOPTERA")]
@@ -2079,19 +2083,19 @@ metric.values.bugs <- function(myDF
              # USEPA, WSA and NRSA
              ## ntol is not tolerant
              ## stol is super tolerant
-             , nt_tv_ntol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                     & TOLVAL>=0
-                                                     & TOLVAL<6]
+             , nt_tv_ntol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & TOLVAL >= 0
+                                                     & TOLVAL < 6]
                                               , na.rm = TRUE)
-             , nt_tv_stol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                     & TOLVAL>=8
-                                                     & TOLVAL<=10]
+             , nt_tv_stol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & TOLVAL >= 8
+                                                     & TOLVAL <= 10]
                                               , na.rm = TRUE)
-             , pi_tv_ntol = 100 * sum(N_TAXA[TOLVAL>=0
-                                           & TOLVAL<6]
+             , pi_tv_ntol = 100 * sum(N_TAXA[TOLVAL >= 0
+                                           & TOLVAL < 6]
                                     , na.rm = TRUE) / ni_total
-             , pi_tv_stol = 100 * sum(N_TAXA[TOLVAL>=8
-                                           & TOLVAL<=10]
+             , pi_tv_stol = 100 * sum(N_TAXA[TOLVAL >= 8
+                                           & TOLVAL <= 10]
                                     , na.rm = TRUE) / ni_total
              , pt_tv_ntol = 100 * nt_tv_ntol / nt_total
              , pt_tv_stol = 100 * nt_tv_stol / nt_total
@@ -2100,7 +2104,7 @@ metric.values.bugs <- function(myDF
              ## Tolerance2 ####
              ## special condition tolerance values
              # MBSS
-             , pi_tv2_intol=sum(N_TAXA[TOLVAL2<=3
+             , pi_tv2_intol = sum(N_TAXA[TOLVAL2 <= 3
                                        & !is.na(TOLVAL2)])/sum(N_TAXA[!is.na(TOLVAL2)])
              #, pi_tv_intolurb=pi_tv2_intol
              , pi_tv2_toler_ISA_SalHi_xFL = NA
@@ -2252,26 +2256,26 @@ metric.values.bugs <- function(myDF
              ## Life Cycle ####
              # pi and nt for mltvol, semvol, univol
              ### nt_LifeCycle----
-             , nt_volt_multi=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                      & LC_MULTI==TRUE]
+             , nt_volt_multi = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & LC_MULTI == TRUE]
                                                , na.rm = TRUE)
-             , nt_volt_semi=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                     & LC_SEMI==TRUE]
+             , nt_volt_semi = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                     & LC_SEMI == TRUE]
                                               , na.rm = TRUE)
-             , nt_volt_uni=dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE
-                                                    & LC_UNI==TRUE]
+             , nt_volt_uni = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                    & LC_UNI == TRUE]
                                              , na.rm = TRUE)
              ### pi_LifeCycle----
-             , pi_volt_multi = 100 * sum(N_TAXA[LC_MULTI==TRUE]
+             , pi_volt_multi = 100 * sum(N_TAXA[LC_MULTI == TRUE]
                                        , na.rm = TRUE) / ni_total
-             , pi_volt_semi = 100 * sum(N_TAXA[LC_SEMI==TRUE]
+             , pi_volt_semi = 100 * sum(N_TAXA[LC_SEMI == TRUE]
                                       , na.rm = TRUE) / ni_total
-             , pi_volt_uni = 100 * sum(N_TAXA[LC_UNI==TRUE]
+             , pi_volt_uni = 100 * sum(N_TAXA[LC_UNI == TRUE]
                                      , na.rm = TRUE) / ni_total
              ### pt_LifeCycle----
              , pt_volt_multi = 100 * nt_volt_multi / nt_total
              , pt_volt_semi = 100 * nt_volt_semi / nt_total
-             , pt_volt_uni= 100 * nt_volt_uni / nt_total
+             , pt_volt_uni = 100 * nt_volt_uni / nt_total
 
 
              ## Dominant N ####
@@ -2335,7 +2339,7 @@ metric.values.bugs <- function(myDF
              , x_Shan_2 = x_Shan_e/log(2)
              , x_Shan_10 = x_Shan_e/log(10)
              #, x_D Simpson
-             , x_D = 1-sum((N_TAXA / ni_total)^2, na.rm = TRUE)
+             , x_D = 1 - sum((N_TAXA / ni_total)^2, na.rm = TRUE)
              #, X_D_G (Gleason) - [nt_total]/Log([ni_total])
             , x_D_G = (nt_total) / log(ni_total)
              #, x_D_Mg Margalef -  ([nt_total]-1)/Log([ni_total])
@@ -2821,7 +2825,7 @@ metric.values.bugs <- function(myDF
           #This metric excludes Class INSECTA, Class ARACHNIDA and Order DECAPODA;
           # and only includes Attribute IV, V, VI taxa.
           , nt_NonInsArachDeca_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                     & (is.na(CLASS)==TRUE
+                                                                     & (is.na(CLASS) == TRUE
                                                                         | (CLASS != "INSECTA"
                                                                            & CLASS != "ARACHNIDA"))
                                                                      & (is.na(ORDER) == TRUE
@@ -2831,7 +2835,7 @@ metric.values.bugs <- function(myDF
                                                                         | BCG_ATTR == "6")]
                                                               , na.rm = TRUE)
           , pi_NonInsArachDeca_BCG_att456 = 100*sum(N_TAXA[
-            (is.na(CLASS)==TRUE
+            (is.na(CLASS) == TRUE
              | (CLASS != "INSECTA"
                 & CLASS != "ARACHNIDA"))
             & (is.na(ORDER) == TRUE
@@ -2846,20 +2850,20 @@ metric.values.bugs <- function(myDF
           #clumpy' taxa (Juga [genus] and RISSOOIDEA [superfamily as Order] in PacNW);
           #and it only includes Attribute IV, V, VI taxa.
           , nt_NonInsArachDecaJugaRiss_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                             & (is.na(CLASS)==TRUE
+                                                                             & (is.na(CLASS) == TRUE
                                                                                 | (CLASS != "INSECTA"
                                                                                    & CLASS != "ARACHNIDA"))
                                                                              & (is.na(ORDER) == TRUE
                                                                                 | (ORDER != "DECAPODA"
-                                                                                   & ORDER!="RISSOOIDEA"))
+                                                                                   & ORDER != "RISSOOIDEA"))
                                                                              & (is.na(GENUS) == TRUE
-                                                                                | GENUS!="JUGA")
+                                                                                | GENUS != "JUGA")
                                                                              & (BCG_ATTR == "4"
                                                                                 | BCG_ATTR == "5"
                                                                                 | BCG_ATTR == "6")]
                                                                       , na.rm = TRUE)
           , pi_NonInsArachDecaJugaRiss_BCG_att456 = 100*sum(N_TAXA[
-            (is.na(CLASS)==TRUE
+            (is.na(CLASS) == TRUE
              | (CLASS != "INSECTA"
                 & CLASS != "ARACHNIDA"))
             & (is.na(ORDER) == TRUE
@@ -2874,7 +2878,7 @@ metric.values.bugs <- function(myDF
           , pt_NonInsArachDecaJugaRiss_BCG_att456 = 100 * nt_NonInsArachDecaJugaRiss_BCG_att456 / nt_total
 
           , nt_NonInsTrombJuga_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                     & (is.na(CLASS)==TRUE
+                                                                     & (is.na(CLASS) == TRUE
                                                                         | CLASS != "INSECTA")
                                                                      & (is.na(ORDER) == TRUE
                                                                         | ORDER != "TROMBIDIFORMES")
@@ -2885,7 +2889,7 @@ metric.values.bugs <- function(myDF
                                                                         | BCG_ATTR == "6")]
                                                               , na.rm = TRUE)
           , pi_NonInsTrombJuga_BCG_att456 = 100 * sum(N_TAXA[
-            (is.na(CLASS)==TRUE
+            (is.na(CLASS) == TRUE
              | CLASS != "INSECTA")
             & (is.na(ORDER) == TRUE
                | ORDER != "TROMBIDIFORMES")
@@ -2920,7 +2924,7 @@ metric.values.bugs <- function(myDF
 
   #
   # Clean Up ####
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "clean up"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -2998,7 +3002,7 @@ metric.values.bugs <- function(myDF
 
   ## Subset ----
   # # subset to only metrics specified by user
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "subset"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -3011,7 +3015,7 @@ metric.values.bugs <- function(myDF
   }## IF ~ verbose
   if (is.null(MetricNames)) {
     # remove marine if MetrcNames not provided and boo.marine = false (default)
-    if(boo.marine == FALSE){
+    if (boo.marine == FALSE) {
       met.val <- met.val[, !(names(met.val) %in% MetricNames_Marine)]
     }## IF ~ boo.marine ~ END
   } else {
@@ -3022,7 +3026,7 @@ metric.values.bugs <- function(myDF
   }##IF~MetricNames~END
 
   # Add extra fields
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "extra fields"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -3033,20 +3037,23 @@ metric.values.bugs <- function(myDF
                   , boo_debug_topic)
     message(msg)
   }## IF ~ verbose
-  if(is.null(cols2keep)){##IF.is.null.cols2keep.START
+  if (is.null(cols2keep)) {##IF.is.null.cols2keep.START
     df.return <- as.data.frame(met.val)
   } else {
     # create df with grouped fields
-    myDF.cols2keep <- myDF %>% dplyr::group_by(.dots=c("SAMPLEID", cols2keep)) %>%
-      dplyr::summarize(col.drop=sum(N_TAXA))
+    myDF.cols2keep <- myDF %>%
+      dplyr::group_by(.dots = c("SAMPLEID", cols2keep)) %>%
+      dplyr::summarize(col.drop = sum(N_TAXA))
     col.drop <- ncol(myDF.cols2keep)
     myDF.cols2keep <- myDF.cols2keep[,-col.drop]
     # merge
-    df.return <- merge(as.data.frame(myDF.cols2keep), as.data.frame(met.val), by="SAMPLEID")
+    df.return <- merge(as.data.frame(myDF.cols2keep)
+                       , as.data.frame(met.val)
+                       , by = "SAMPLEID")
   }##IF.is.null.cols2keep.END
 
   # df to report back
-  if(verbose == TRUE) {
+  if (verbose == TRUE) {
     boo_debug_topic <- "return result"
     boo_debug_bugs_num <- boo_debug_bugs_num + 1
     msg <- paste0("debug_metval_bugs, "
@@ -3145,27 +3152,27 @@ metric.values.fish <- function(myDF
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
   # Trigger prompt if any missing fields (and session is interactive)
-  if(num.col.req.missing!=0 & interactive()==TRUE){##IF.num.col.req.missing.START
+  if (num.col.req.missing != 0 & interactive() == TRUE) {##IF.num.col.req.missing.START
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
-    myPrompt.02 <- paste(col.req.missing, collapse=", ")
+    myPrompt.02 <- paste(col.req.missing, collapse = ", ")
     myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
     myPrompt.04 <- "For example, if the NATIVE field is missing all native related metrics will not be correct."
     myPrompt.05 <- "Do you wish to continue (YES or NO)?"
 
     myPrompt <- paste(" ", myPrompt.01, myPrompt.02, " ", myPrompt.03, myPrompt.04
-                      , myPrompt.05, sep="\n")
+                      , myPrompt.05, sep = "\n")
     #user.input <- readline(prompt=myPrompt)
     user.input <- NA
-    user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
+    user.input <- utils::menu(c("YES", "NO"), title = myPrompt)
     # any answer other than "YES" will stop the function.
-    if(user.input!=1){##IF.user.input.START
+    if (user.input != 1) {##IF.user.input.START
       stop(paste("The user chose *not* to continue due to missing fields: "
-                 , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
+                 , paste(paste0("   ", col.req.missing), collapse = "\n"), sep = "\n"))
     }##IF.user.input.END
     # Add missing fields
     myDF[, col.req.missing] <- NA
     warning(paste("Metrics related to the following fields are invalid:"
-                  , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
+                  , paste(paste0("   ", col.req.missing), collapse = "\n"), sep = "\n"))
   }##IF.num.col.req.missing.END
 
   # Data Munging ----
@@ -3174,7 +3181,7 @@ metric.values.fish <- function(myDF
                  , "TROPHIC", "THERMAL_INDICATOR", "ELEVATION_ATTR"
                  , "GRADIENT_ATTR", "WSAREA_ATTR", "REPRODUCTION", "HABITAT"
                  , "CONNECTIVITY", "SCC", "BCG_ATTR")
-  for (i in col2upper){
+  for (i in col2upper) {
     myDF[, i] <- toupper(myDF[, i])
   }##FOR~i~END
 
@@ -3219,108 +3226,108 @@ metric.values.fish <- function(myDF
   #
   df.dom01 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
-    dplyr::filter(dplyr::row_number()<=1)
+    dplyr::filter(dplyr::row_number() <= 1)
   df.dom02 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
-    dplyr::filter(dplyr::row_number()<=2)
+    dplyr::filter(dplyr::row_number() <= 2)
   df.dom03 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=3)
+    dplyr::filter(dplyr::row_number() <= 3)
   df.dom04 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=4)
+    dplyr::filter(dplyr::row_number() <= 4)
   df.dom05 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=5)
+    dplyr::filter(dplyr::row_number() <= 5)
   df.dom06 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=6)
+    dplyr::filter(dplyr::row_number() <= 6)
   df.dom07 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=7)
+    dplyr::filter(dplyr::row_number() <= 7)
   df.dom08 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=8)
+    dplyr::filter(dplyr::row_number() <= 8)
   df.dom09 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
-    dplyr::filter(dplyr::row_number()<=9)
+    dplyr::filter(dplyr::row_number() <= 9)
   df.dom10 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
-    dplyr::filter(dplyr::row_number()<=10)
+    dplyr::filter(dplyr::row_number() <= 10)
 
   # Summarise Top N
   df.dom01.sum <- dplyr::summarise(dplyr::group_by(df.dom01
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                                   , ni_dom01=sum(N_TAXA, na.rm = TRUE)
+                                   , ni_dom01 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom02.sum <- dplyr::summarise(dplyr::group_by(df.dom02
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                                   , ni_dom02=sum(N_TAXA, na.rm = TRUE)
+                                   , ni_dom02 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom03.sum <- dplyr::summarise(dplyr::group_by(df.dom03
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                                   , ni_dom03=sum(N_TAXA, na.rm = TRUE)
+                                   , ni_dom03 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom04.sum <- dplyr::summarise(dplyr::group_by(df.dom04
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                                   , ni_dom04=sum(N_TAXA, na.rm = TRUE)
+                                   , ni_dom04 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom05.sum <- dplyr::summarise(dplyr::group_by(df.dom05
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                                   , ni_dom05=sum(N_TAXA, na.rm = TRUE)
+                                   , ni_dom05 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom06.sum <- dplyr::summarise(dplyr::group_by(df.dom06
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                                   , ni_dom06=sum(N_TAXA, na.rm = TRUE)
+                                   , ni_dom06 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom07.sum <- dplyr::summarise(dplyr::group_by(df.dom07
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                                   , ni_dom07=sum(N_TAXA, na.rm = TRUE)
+                                   , ni_dom07 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom08.sum <- dplyr::summarise(dplyr::group_by(df.dom08
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                                   , ni_dom08=sum(N_TAXA, na.rm = TRUE)
+                                   , ni_dom08 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom09.sum <- dplyr::summarise(dplyr::group_by(df.dom09
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                                   , ni_dom09=sum(N_TAXA, na.rm = TRUE)
+                                   , ni_dom09 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
   df.dom10.sum <- dplyr::summarise(dplyr::group_by(df.dom10
                                                    , SAMPLEID
                                                    , INDEX_NAME
                                                    , INDEX_CLASS)
-                                   , ni_dom10=sum(N_TAXA, na.rm = TRUE)
+                                   , ni_dom10 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
 
   # Add column of domN to main DF
-  myDF <- merge(myDF, df.dom01.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom02.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom03.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom04.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom05.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom06.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom07.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom08.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom09.sum, all.x=TRUE)
-  myDF <- merge(myDF, df.dom10.sum, all.x=TRUE)
+  myDF <- merge(myDF, df.dom01.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom02.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom03.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom04.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom05.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom06.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom07.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom08.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom09.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom10.sum, all.x = TRUE)
 
   # Clean up extra Dom data frames
   rm(df.dom01)
@@ -3367,7 +3374,7 @@ metric.values.fish <- function(myDF
                                      , "SUM_ANOMALIES"
                                      , "MOD_ANOMALIES")]
              , all.x = TRUE)
-  myDF[myDF$MOD_ANOMALIES==TRUE, "N_ANOMALIES"] <- myDF[myDF$MOD_ANOMALIES == TRUE
+  myDF[myDF$MOD_ANOMALIES == TRUE, "N_ANOMALIES"] <- myDF[myDF$MOD_ANOMALIES == TRUE
                                                         , "SUM_ANOMALIES"]
 
   # Metric Calc ####
@@ -3420,7 +3427,7 @@ metric.values.fish <- function(myDF
                        , pi_native = 100 * sum(N_TAXA[NATIVE == "NATIVE"], na.rm = TRUE) / ni_total
                        , pi_nonnative = 100 * sum(N_TAXA[is.na(NATIVE) | NATIVE != "NATIVE"], na.rm = TRUE) / ni_total
                        , pi_Notur = 100 * sum(N_TAXA[GENUS == "NOTURUS"], na.rm = TRUE) / ni_total
-                       , pi_sculpin=100 * sum(N_TAXA[TYPE == "SCULPIN"], na.rm = TRUE) / ni_total
+                       , pi_sculpin = 100 * sum(N_TAXA[TYPE == "SCULPIN"], na.rm = TRUE) / ni_total
                        , pi_Lepomis = 100 * sum(N_TAXA[GENUS == "LEPOMIS"], na.rm = TRUE) / ni_total
                        , pi_Salm = 100 * sum(N_TAXA[FAMILY == "SALMONIDAE"], na.rm = TRUE) / ni_total
                        , pi_trout = 100 * sum(N_TAXA["TROUT" %in% TYPE], na.rm = TRUE) / ni_total
@@ -3514,16 +3521,16 @@ metric.values.fish <- function(myDF
                        , pi_lithophil = 100*sum(N_TAXA[SILT == TRUE], na.rm = TRUE) / ni_total
                        , pi_detritivore = 100 * sum(N_TAXA[TROPHIC_DE == TRUE], na.rm = TRUE) / ni_total
                        # % gen, omn, invert
-                       , pi_genomninvrt = 100*sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_OM == TRUE | TROPHIC_IV == TRUE], na.rm = TRUE)/ ni_total
+                       , pi_genomninvrt = 100*sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_OM == TRUE | TROPHIC_IV == TRUE], na.rm = TRUE) / ni_total
                        , pi_herbivore = 100 * sum(N_TAXA[TROPHIC_HB == TRUE], na.rm = TRUE) / ni_total
-                       , pi_insectivore = 100*sum(N_TAXA[TROPHIC_IS == TRUE], na.rm = TRUE)/ ni_total
+                       , pi_insectivore = 100*sum(N_TAXA[TROPHIC_IS == TRUE], na.rm = TRUE) / ni_total
                        , pi_insctCypr = 100*sum(N_TAXA[TROPHIC_IS == TRUE &
-                                                         FAMILY == "CYPRINIDAE"], na.rm = TRUE)/ ni_total
-                       , pi_gen = 100*sum(N_TAXA[TROPHIC_GE == TRUE], na.rm = TRUE)/ ni_total
-                       , pi_genherb = 100*sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_HB == TRUE], na.rm = TRUE)/ ni_total
+                                                         FAMILY == "CYPRINIDAE"], na.rm = TRUE) / ni_total
+                       , pi_gen = 100*sum(N_TAXA[TROPHIC_GE == TRUE], na.rm = TRUE) / ni_total
+                       , pi_genherb = 100*sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_HB == TRUE], na.rm = TRUE) / ni_total
                        , pi_omnivore = 100 * sum(N_TAXA[TROPHIC_OM == TRUE], na.rm = TRUE) / ni_total
                        , pi_planktivore = 100 * sum(N_TAXA[TROPHIC_PL == TRUE], na.rm = TRUE) / ni_total
-                       , pi_topcarn = 100*sum(N_TAXA[TROPHIC_TC == TRUE], na.rm = TRUE)/ ni_total
+                       , pi_topcarn = 100*sum(N_TAXA[TROPHIC_TC == TRUE], na.rm = TRUE) / ni_total
                        , pi_pisc_noae = 100 * sum(N_TAXA[TYPE == "PISCIVORE"
                                                          & (TAXAID != "ANGUILLA ROSTRATA"
                                                             | is.na(TAXAID))], na.rm = TRUE) / ni_total
@@ -3540,7 +3547,7 @@ metric.values.fish <- function(myDF
                        , nt_tv_intol = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT"], na.rm = TRUE)
                        , nt_tv_intolhwi = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT" |
                                                                      TOLER == "HWI"], na.rm = TRUE)
-                       , pi_tv_toler= 100*sum(N_TAXA[TOLER=="TOLERANT"], na.rm = TRUE) / ni_total
+                       , pi_tv_toler= 100*sum(N_TAXA[TOLER == "TOLERANT"], na.rm = TRUE) / ni_total
                        #
 
 
@@ -3894,7 +3901,7 @@ metric.values.fish <- function(myDF
   met.val[is.na(met.val)] <- 0
   #
   # # # subset to only metrics specified by user
-  # # if (!is.null(MetricNames)){
+  # # if (!is.null(MetricNames)) {
   # #   met.val <- met.val[,c(Index_Name, SITE, INDEX_CLASS, ACREAGE, LEN_SAMP, MetricNames)]
   # # }
   # myFlds_Remove <- c("ni_total", "pi_rbs",
@@ -3915,16 +3922,19 @@ metric.values.fish <- function(myDF
   }##IF~MetricNames~END
 
   # Add extra fields
-  if(is.null(cols2keep)){##IF.is.null.cols2keep.START
+  if (is.null(cols2keep)) {##IF.is.null.cols2keep.START
     df.return <- as.data.frame(met.val)
   } else {
     # create df with grouped fields
-    myDF.cols2keep <- myDF %>% dplyr::group_by(.dots=c("SAMPLEID", cols2keep)) %>%
-      dplyr::summarize(col.drop=sum(N_TAXA))
+    myDF.cols2keep <- myDF %>%
+      dplyr::group_by(.dots = c("SAMPLEID", cols2keep)) %>%
+      dplyr::summarize(col.drop = sum(N_TAXA))
     col.drop <- ncol(myDF.cols2keep)
     myDF.cols2keep <- myDF.cols2keep[,-col.drop]
     # merge
-    df.return <- merge(as.data.frame(myDF.cols2keep), as.data.frame(met.val), by="SAMPLEID")
+    df.return <- merge(as.data.frame(myDF.cols2keep)
+                       , as.data.frame(met.val)
+                       , by = "SAMPLEID")
   }##IF.is.null.cols2keep.END
 
     # adjust ----
@@ -4020,12 +4030,12 @@ metric.values.algae <- function(myDF
     nt_TROPHIC_456 <- nt_SAP_1 <- nt_SAP_2 <- nt_SAP_3 <- nt_SAP_4 <-
     nt_SAP_5 <- nt_NON_N_FIXER <- nt_N_FIXER <- nt_HIGHLY_MOTILE <-
     nt_MODERATELY_MOTILE <- nt_NON_MOTILE <- nt_SLIGHTLY_MOTILE <-
-    nt_WEAKLY_MOTILE <-nt_BIG <- nt_SMALL <- nt_MEDIUM <- nt_VERY_BIG <-
+    nt_WEAKLY_MOTILE <- nt_BIG <- nt_SMALL <- nt_MEDIUM <- nt_VERY_BIG <-
     nt_VERY_SMALL <- nt_ADNATE <- nt_STALKED <- nt_HIGHLY_MOTILE.1 <-
     nt_ARAPHID <- nt_DIAT_CL_1 <- nt_DIAT_CL_2 <- nt_BEN_SES_1 <-
     nt_BEN_SES_2 <- nt_DIAT_CA_1 <- nt_DIAT_CA_2 <- nt_DIAT_COND_1 <-
     nt_DIAT_COND_2 <- nt_DIATAS_TN_1 <- nt_DIATAS_TN_2 <- nt_DIATAS_TP_1 <-
-    nt_DIATAS_TP_2 <-nt_MOTILITY_1 <- nt_MOTILITY_2 <-nt_NF_1 <- nt_NF_2 <-
+    nt_DIATAS_TP_2 <- nt_MOTILITY_1 <- nt_MOTILITY_2 <- nt_NF_1 <- nt_NF_2 <-
     TOLVAL <- REF_INDICATORS <- nt_Sens_810 <- nt_RefIndicators <- nt_Tol_13 <-
     POLL_TOL <- NULL
   nt_TROPHIC_12 <- nt_TROPHIC_56 <- pi_BC_12 <- pt_TROPHIC_12 <-
@@ -4056,21 +4066,21 @@ metric.values.algae <- function(myDF
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
   # Trigger prompt if any missing fields (and session is interactive)
-  if(num.col.req.missing!=0 & interactive()==TRUE){##IF.num.col.req.missing.START
+  if (num.col.req.missing != 0 & interactive() == TRUE) {##IF.num.col.req.missing.START
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
-    myPrompt.02 <- paste(col.req.missing, collapse=", ")
+    myPrompt.02 <- paste(col.req.missing, collapse = ", ")
     myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
     myPrompt.04 <- "For example, if the HABIT field is missing all habit related metrics will not be correct."
     myPrompt.05 <- "Do you wish to continue (YES or NO)?"
 
     myPrompt <- paste(" ", myPrompt.01, myPrompt.02, " ", myPrompt.03, myPrompt.04
-                      , myPrompt.05, sep="\n")
+                      , myPrompt.05, sep = "\n")
     #user.input <- readline(prompt=myPrompt)
     user.input <- NA
     # special condition for Shiny
     #Shiny counts as interactive()==TRUE but cannot access this prompt in Shiny.
-    if(boo.Shiny==FALSE){
-      user.input <- utils::menu(c("YES", "NO"), title=myPrompt)
+    if (boo.Shiny == FALSE) {
+      user.input <- utils::menu(c("YES", "NO"), title = myPrompt)
     } else {
       message(myPrompt)
       message("boo.Shiny == TRUE so prompt skipped and value set to '1'.")
@@ -4078,32 +4088,32 @@ metric.values.algae <- function(myDF
     }## IF ~ boo.Shiny ~ END
 
     # any answer other than "YES" will stop the function.
-    if(user.input!=1){##IF.user.input.START
+    if (user.input != 1) {##IF.user.input.START
       stop(paste("The user chose *not* to continue due to missing fields: "
-                 , paste(paste0("   ",col.req.missing), collapse="\n"),sep="\n"))
+                 , paste(paste0("   ",col.req.missing), collapse = "\n"), sep = "\n"))
     }##IF.user.input.END
     # Add missing fields
     myDF[,col.req.missing] <- NA
     warning(paste("Metrics related to the following fields are invalid:"
-                  , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
+                  , paste(paste0("   ", col.req.missing), collapse = "\n"), sep = "\n"))
   }##IF.num.col.req.missing.END
 
   # QC, Exclude as TRUE/FALSE
-  Exclude.T <- sum(myDF$EXCLUDE==TRUE, na.rm = TRUE)
-  if(Exclude.T==0){##IF.Exclude.T.START
+  Exclude.T <- sum(myDF$EXCLUDE == TRUE, na.rm = TRUE)
+  if (Exclude.T == 0) {##IF.Exclude.T.START
     warning("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
   }##IF.Exclude.T.END
 
   # QC, NonTarget as TRUE/FALSE
-  NonTarget.F <- sum(myDF$NONTARGET==FALSE, na.rm = TRUE)
-  if(NonTarget.F==0){##IF.Exclude.T.START
+  NonTarget.F <- sum(myDF$NONTARGET == FALSE, na.rm = TRUE)
+  if (NonTarget.F == 0) {##IF.Exclude.T.START
     warning("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
   }##IF.Exclude.T.END
 
   # QC, TolVal
   # need as numeric, if have "NA" as character it fails
-  TolVal_Char_NA <- myDF[, "TOLVAL"]=="NA"
-  if(sum(TolVal_Char_NA, na.rm = TRUE)>0){
+  TolVal_Char_NA <- myDF[, "TOLVAL"] == "NA"
+  if (sum(TolVal_Char_NA, na.rm = TRUE) > 0) {
     myDF[TolVal_Char_NA, "TOLVAL"] <- NA
     myDF[, "TOLVAL"] <- as.numeric(myDF[, "TOLVAL"])
   }##IF ~ TOLVAL ~ END
@@ -4610,7 +4620,7 @@ metric.values.algae <- function(myDF
                 ### MOTILITY_USGS----
                 , pi_HIGHLY_MOTILE = 100 * sum(N_TAXA[HIGHLY_MOTILE == TRUE]
                                            , na.rm = TRUE) / ni_total
-                , pi_MODERATELY_MOTILE = 100 * sum(N_TAXA[MODERATELY_MOTILE==TRUE]
+                , pi_MODERATELY_MOTILE = 100 * sum(N_TAXA[MODERATELY_MOTILE == TRUE]
                                              , na.rm = TRUE) / ni_total
                 , pi_NON_MOTILE = 100 * sum(N_TAXA[NON_MOTILE == TRUE]
                                                  , na.rm = TRUE) / ni_total
@@ -4814,9 +4824,9 @@ metric.values.algae <- function(myDF
 
                 ## Tolerance----
                 ### Number of Taxa----
-                , nt_Sens_810 = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE# DOES NOT FOLLOW NORMAL TOLVAL CONVENTION
-                                                         & TOLVAL>= 8 # LOWER VALUES MORE TOLERANT (Indiana)
-                                                         & TOLVAL<= 10]
+                , nt_Sens_810 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE# DOES NOT FOLLOW NORMAL TOLVAL CONVENTION
+                                                         & TOLVAL >= 8 # LOWER VALUES MORE TOLERANT (Indiana)
+                                                         & TOLVAL <= 10]
                                                   , na.rm = TRUE)
                 , nt_RefIndicators = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE # Diatom Indicator Species Analysis
                                                           & REF_INDICATORS == TRUE]
@@ -4833,8 +4843,8 @@ metric.values.algae <- function(myDF
                                           N_TAXA[!is.na(TOLVAL)], na.rm = TRUE)
                 , pi_RefIndicators = 100 * sum(N_TAXA[REF_INDICATORS == TRUE], # Diatom Indicator Species Analysis
                                              na.rm = TRUE) / ni_total
-                , pi_Tol_13 = 100 * sum(N_TAXA[TOLVAL>=1 # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
-                                        & TOLVAL<=3], na.rm = TRUE) / sum(
+                , pi_Tol_13 = 100 * sum(N_TAXA[TOLVAL >= 1 # DOES NOT FOLLOW NORMAL TOLVAL CONVENTION (Indiana)
+                                        & TOLVAL <= 3], na.rm = TRUE) / sum(
                                           N_TAXA[!is.na(TOLVAL)], na.rm = TRUE) # LOWER VALUES MORE TOLERANT
 
                 ### Percent of Taxa----
@@ -4859,7 +4869,7 @@ metric.values.algae <- function(myDF
     met.val[is.na(met.val)] <- 0
 
   # subset to only metrics specified by user
-    if(is.null(MetricNames)){
+    if (is.null(MetricNames)) {
       met.val <- met.val
     } else {
       met2include <- MetricNames[!(MetricNames %in% "ni_total")]
@@ -4869,18 +4879,18 @@ metric.values.algae <- function(myDF
     }##IF~MetricNames~END
 
     # Add extra fields
-    if(is.null(cols2keep)){##IF.is.null.cols2keep.START
+    if (is.null(cols2keep)) {##IF.is.null.cols2keep.START
       df.return <- as.data.frame(met.val)
     } else {
       # create df with grouped fields
-      myDF.cols2keep <- myDF %>% dplyr::group_by(.dots=c("SAMPLEID"
+      myDF.cols2keep <- myDF %>% dplyr::group_by(.dots = c("SAMPLEID"
                                                          , cols2keep)) %>%
-        dplyr::summarize(col.drop=sum(N_TAXA))
+        dplyr::summarize(col.drop = sum(N_TAXA))
       col.drop <- ncol(myDF.cols2keep)
       myDF.cols2keep <- myDF.cols2keep[,-col.drop]
       # merge
       df.return <- merge(as.data.frame(myDF.cols2keep)
-                         , as.data.frame(met.val), by="SAMPLEID")
+                         , as.data.frame(met.val), by = "SAMPLEID")
     }##IF.is.null.cols2keep.END
 
   # Run Time

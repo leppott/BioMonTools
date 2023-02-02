@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9020 (2023-02-02)
+
+* fix: Update `metric.values` thermal NA metrics
+   + Add blank ("") to NA as a condition
+* test: Additional `assign_indexclass` tests
+
 ## Changes in version 1.0.0.9019 (2023-01-23)
 
 * refactor: Update `assign_indexclass` to account or NA and "", Issue #85
