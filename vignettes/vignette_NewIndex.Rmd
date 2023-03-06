@@ -1,0 +1,31 @@
+---
+title: "Vignette, Adding a New Index"
+author: "Erik.Leppo@tetratech.com"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: 
+---
+<!-- Data is in vignettes\data folder  -->
+```{r rmd_setup, include = FALSE}
+#library(knitr)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Purpose
+To show the user how to add a new suite of metrics and scoring thresholds to 
+allow for index calculation with the `metric.score` function.
+
+# Resources Needed
+The user will need the documentation for the intended index and preferably a 
+test data set (typically in the documentation for the index).
+
+# Steps
+1. Add to MetricScores.xlsx (metrics and index).
+
+2. Create testthat example for metric values and metric/index scores.
+
+
+

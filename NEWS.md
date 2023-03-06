@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-02-02 10:18:47
+    #> Last Update: 2023-03-06 09:31:53
 
 # Version History
+
+## Changes in version 1.0.0.9021 (2023-02-02)
+
+- docs: Add vignette for adding a new index, Issue \#87
+  - incomplete
+- refactor: Add CO MMI (bugs)
+  - Draft 2006, verify with report and EDAS database
 
 ## Changes in version 1.0.0.9020 (2023-02-02)
 

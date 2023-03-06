@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9021 (2023-02-02)
+
+* docs: Add vignette for adding a new index, Issue #87
+    + incomplete
+* refactor: Add CO MMI (bugs)
+    + Draft 2006, verify with report and EDAS database
+
 ## Changes in version 1.0.0.9020 (2023-02-02)
 
 * fix: Update `metric.values` thermal NA metrics
