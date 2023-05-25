@@ -12,7 +12,8 @@ metric.values(
   fun.cols2keep = NULL,
   boo.marine = FALSE,
   boo.Shiny = FALSE,
-  verbose = FALSE
+  verbose = FALSE,
+  metric_subset = NULL
 )
 }
 \arguments{
@@ -38,6 +39,9 @@ Ignored if fun.MetricNames is not null. Default = FALSE.}
 Default = FALSE.}
 
 \item{verbose}{Include messages to track progress.  Default = FALSE}
+
+\item{metric_subset}{Subset of metrics to be generated.  Internal function.
+Default = NULL}
 }
 \value{
 data frame of SampleID and metric values

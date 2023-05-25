@@ -12,7 +12,8 @@ metric.values.bugs(
   MetricSort = NA,
   boo.marine = FALSE,
   boo.Shiny,
-  verbose
+  verbose,
+  metric_subset
 )
 }
 \arguments{
@@ -37,6 +38,9 @@ Ignored if fun.MetricNames is not null. Default = FALSE.}
 Default = FALSE.}
 
 \item{verbose}{Include messages to track progress.  Default = FALSE}
+
+\item{metric_subset}{Subset of metrics to be generated.  Internal function.
+Default = NULL}
 }
 \value{
 Data frame

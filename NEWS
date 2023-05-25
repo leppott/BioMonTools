@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-03-06 09:31:53
+    #> Last Update: 2023-05-25 17:48:03.718765
 
 # Version History
+
+## Changes in version 1.0.0.9022 (2023-05-25)
+
+- feature: New parameter in `metric.values` to run only subset, Issue
+  \#90
+- style: Style changes in metric_values.R
 
 ## Changes in version 1.0.0.9021 (2023-02-02)
 

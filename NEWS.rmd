@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9022 (2023-05-25)
+
+* feature: New parameter in `metric.values` to run only subset, Issue #90
+* style: Style changes in metric_values.R
+
 ## Changes in version 1.0.0.9021 (2023-02-02)
 
 * docs: Add vignette for adding a new index, Issue #87
