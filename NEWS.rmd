@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9025 (2023-05-26)
+
+* refactor: Update MetricFlags.xlsx for MTTI index
+
 ## Changes in version 1.0.0.9024 (2023-05-26)
 
 * refactor: Update metric.values MTTI subset metrics, Issue #90
