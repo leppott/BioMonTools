@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-05-25 17:48:03.718765
+    #> Last Update: 2023-05-26 11:10:57.09456
 
 # Version History
+
+## Changes in version 1.0.0.9023 (2023-05-26)
+
+- refactor: Update MetricFlags.xlsx for MTTI index
 
 ## Changes in version 1.0.0.9022 (2023-05-25)
 
