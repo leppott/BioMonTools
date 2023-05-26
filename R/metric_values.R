@@ -1485,9 +1485,7 @@ metric.values.bugs <- function(myDF
                                 # WAopt
                                 , x_tv2_min = min(TOLVAL2, na.rm = TRUE)
                                 , x_tv2_max = max(TOLVAL2, na.rm = TRUE)
-                                , nt_dni = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                    & TAXAID == "DNI"]
-                                                             , na.rm = TRUE)
+                                , nt_dni = sum(TAXAID == "DNI", na.rm = TRUE)
                                 , pi_dni = 100 * sum(N_TAXA[TAXAID == "DNI"]
                                                      , na.rm = TRUE) / ni_total
                                 , pt_dni = 100 * nt_dni / nt_total
@@ -2124,17 +2122,17 @@ metric.values.bugs <- function(myDF
                                                                          & TOLVAL >= 7
                                                                          & TOLVAL <= 10]
                                                                   , na.rm = TRUE)
-                                , pi_tv_intol = 100*sum(N_TAXA[TOLVAL >= 0
+                                , pi_tv_intol = 100 * sum(N_TAXA[TOLVAL >= 0
                                                                & TOLVAL <= 3], na.rm = TRUE) / ni_total
-                                , pi_tv_intol4 = 100*sum(N_TAXA[TOLVAL >= 0
+                                , pi_tv_intol4 = 100 * sum(N_TAXA[TOLVAL >= 0
                                                                 & TOLVAL < 4], na.rm = TRUE) / ni_total
-                                , pi_tv_toler = 100*sum(N_TAXA[TOLVAL >= 7
+                                , pi_tv_toler = 100 * sum(N_TAXA[TOLVAL >= 7
                                                                & TOLVAL <= 10], na.rm = TRUE) / ni_total
-                                , pi_tv_toler6 = 100*sum(N_TAXA[TOLVAL > 6
+                                , pi_tv_toler6 = 100 * sum(N_TAXA[TOLVAL > 6
                                                                 & TOLVAL <= 10], na.rm = TRUE) / ni_total
-                                , pt_tv_intol = 100*nt_tv_intol / nt_total
-                                , pt_tv_intol4 = 100*nt_tv_intol4 / nt_total
-                                , pt_tv_toler = 100*nt_tv_toler / nt_total
+                                , pt_tv_intol = 100 * nt_tv_intol / nt_total
+                                , pt_tv_intol4 = 100 * nt_tv_intol4 / nt_total
+                                , pt_tv_toler = 100 * nt_tv_toler / nt_total
                                 #,nt_tvfam_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & FAM_TV<=3 & !is.na(FAM_TV)])
                                 # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, in Pct Ind group
                                 # nt_intMol (for marine)

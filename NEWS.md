@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-05-26 11:10:57.09456
+    #> Last Update: 2023-05-26 15:05:38.73431
 
 # Version History
+
+## Changes in version 1.0.0.9024 (2023-05-26)
+
+- refactor: Update metric.values MTTI subset metrics, Issue \#90
 
 ## Changes in version 1.0.0.9023 (2023-05-26)
 
