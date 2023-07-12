@@ -2506,6 +2506,12 @@ metric.values.bugs <- function(myDF
                                                                           & (BCG_ATTR == "1"
                                                                              | BCG_ATTR == "2")]
                                                                    , na.rm = TRUE)
+                                , nt_BCG_att1234 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                          & (BCG_ATTR == "1"
+                                                                             | BCG_ATTR == "2"
+                                                                             | BCG_ATTR == "3"
+                                                                             | BCG_ATTR == "4")]
+                                                                   , na.rm = TRUE)
                                 , nt_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                            & (BCG_ATTR == "1I"
                                                                               | BCG_ATTR == "2")]
@@ -2743,6 +2749,7 @@ metric.values.bugs <- function(myDF
                                 , pt_BCG_att1i =   100 * nt_BCG_att1i / nt_total
                                 , pt_BCG_att1m =   100 * nt_BCG_att1m / nt_total
                                 , pt_BCG_att12 =   100 * nt_BCG_att12 / nt_total
+                                , pt_BCG_att1234 = 100 * nt_BCG_att1234 / nt_total
                                 , pt_BCG_att1i2 =  100 * nt_BCG_att1i2 / nt_total
                                 , pt_BCG_att123 =  100 * nt_BCG_att123 / nt_total
                                 , pt_BCG_att1i23 = 100 * nt_BCG_att1i23 / nt_total

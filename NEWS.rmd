@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9026 (2023-07-12)
+
+* refactor: Add bug metrics for MN BCG, Issue #92
+* style: Update spacing in test file metric_names
+
 ## Changes in version 1.0.0.9025 (2023-05-26)
 
 * refactor: Update MetricFlags.xlsx for MTTI index

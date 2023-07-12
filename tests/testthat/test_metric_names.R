@@ -5,16 +5,16 @@ testthat::test_that("metric.values, names, bugs, Function, xlNames", {
   #library(readxl) # part of BioMonTools
 
   # Data
-  fn_metnam_xlNames   <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlNames   <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricNames.xlsx")
   # Import
   df_metnam_xlNames   <- readxl::read_excel(fn_metnam_xlNames
-                                            , sheet="MetricMetadata"
+                                            , sheet = "MetricMetadata"
                                             , skip = 4)
   df_metnam_xlNames <- as.data.frame(df_metnam_xlNames)
   # Metric Names
-  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"]=="bugs"
+  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"] == "bugs"
                                       , "METRIC_NAME"
                                       , drop = TRUE]
 
@@ -60,27 +60,27 @@ testthat::test_that("metric.values, names, bugs, xlNames, xlScoring", {
   #library(readxl) # part of BioMonTools
 
   # Data
-  fn_metnam_xlNames   <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlNames   <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricNames.xlsx")
-  fn_metnam_xlScoring <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlScoring <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricScoring.xlsx")
   # Import
   df_metnam_xlNames   <- readxl::read_excel(fn_metnam_xlNames
-                                            , sheet="MetricMetadata"
+                                            , sheet = "MetricMetadata"
                                             , skip = 4)
   df_metnam_xlScoring <- readxl::read_excel(fn_metnam_xlScoring
-                                            , sheet="metric.scoring")
+                                            , sheet = "metric.scoring")
   # Convert to data frames
   df_metnam_xlNames <- as.data.frame(df_metnam_xlNames)
   df_metnam_xlScoring <- as.data.frame(df_metnam_xlScoring)
 
   # Names
-  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"]=="bugs"
+  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"] == "bugs"
                                       , "METRIC_NAME", drop = TRUE]
   metnam_xlScoring <- unique(df_metnam_xlScoring[df_metnam_xlScoring[
-    , "Community"]=="bugs", "METRIC_NAME", drop = TRUE])
+    , "Community"] == "bugs", "METRIC_NAME", drop = TRUE])
 
   # Check
   metnam_xlScoring_match <- sum(metnam_xlScoring %in% metnam_xlNames)
@@ -100,17 +100,17 @@ testthat::test_that("metric.values, names, bugs, Function, xlScoring", {
   #library(readxl) # part of BioMonTools
 
   # Data
-  fn_metnam_xlScoring <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlScoring <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricScoring.xlsx")
   # Import
   df_metnam_xlScoring <- readxl::read_excel(fn_metnam_xlScoring
-                                            , sheet="metric.scoring")
+                                            , sheet = "metric.scoring")
   df_metnam_xlScoring <- as.data.frame(df_metnam_xlScoring)
 
   # Metric Names
   metnam_xlScoring <- unique(df_metnam_xlScoring[df_metnam_xlScoring[
-    , "Community"]=="bugs", "METRIC_NAME", drop = TRUE])
+    , "Community"] == "bugs", "METRIC_NAME", drop = TRUE])
 
   # Benthic Data
   df_benthos <- BioMonTools::data_benthos_PacNW
@@ -143,14 +143,14 @@ testthat::test_that("metric.scores, index, number metrics", {
   `%>%` <- dplyr::`%>%`
 
   # Data File
-  fn_xlScoring <- file.path(system.file(package="BioMonTools")
+  fn_xlScoring <- file.path(system.file(package = "BioMonTools")
                             , "extdata"
                             , "MetricScoring.xlsx")
 
   # METRICS (metric.scoring)
   # Import
   df_metsc <- readxl::read_excel(fn_xlScoring
-                                 , sheet="metric.scoring"
+                                 , sheet = "metric.scoring"
                                  , na = c("", "NA", NA))
   # Number of metrics by index name and region
   df_metsc_cnt_met <- df_metsc %>%
@@ -169,7 +169,7 @@ testthat::test_that("metric.scores, index, number metrics", {
 
   # METRICS (index.scoring)
   # Import
-  df_indsc<- readxl::read_excel(fn_xlScoring, sheet="index.scoring")
+  df_indsc <- readxl::read_excel(fn_xlScoring, sheet = "index.scoring")
   # Number of metrics by index name and region
   valid_ScoreRegime <- c("AVERAGE", "SUM", "AVERAGE_100", "AVERAGESCALE_100")
   df_indsc_cnt_met <- df_indsc %>%
@@ -200,16 +200,16 @@ testthat::test_that("metric.values, names, fish, Function, xlNames", {
   #library(readxl) # part of BioMonTools
 
   # Data
-  fn_metnam_xlNames   <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlNames   <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricNames.xlsx")
   # Import
   df_metnam_xlNames   <- readxl::read_excel(fn_metnam_xlNames
-                                            , sheet="MetricMetadata"
+                                            , sheet = "MetricMetadata"
                                             , skip = 4)
   df_metnam_xlNames <- as.data.frame(df_metnam_xlNames)
   # Metric Names
-  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"]=="fish"
+  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"] == "fish"
                                       , "METRIC_NAME"
                                       , drop = TRUE]
 
@@ -246,27 +246,27 @@ testthat::test_that("metric.values, names, fish, xlNames, xlScoring", {
   #library(readxl) # part of BioMonTools
 
   # Data
-  fn_metnam_xlNames   <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlNames   <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricNames.xlsx")
-  fn_metnam_xlScoring <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlScoring <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricScoring.xlsx")
   # Import
   df_metnam_xlNames   <- readxl::read_excel(fn_metnam_xlNames
-                                            , sheet="MetricMetadata"
+                                            , sheet = "MetricMetadata"
                                             , skip = 4)
   df_metnam_xlScoring <- readxl::read_excel(fn_metnam_xlScoring
-                                            , sheet="metric.scoring")
+                                            , sheet = "metric.scoring")
   # Convert to data frames
   df_metnam_xlNames <- as.data.frame(df_metnam_xlNames)
   df_metnam_xlScoring <- as.data.frame(df_metnam_xlScoring)
 
   # Names
-  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"]=="fish"
+  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"] == "fish"
                                       , "METRIC_NAME", drop = TRUE]
   metnam_xlScoring <- unique(df_metnam_xlScoring[df_metnam_xlScoring[
-    , "Community"]=="fish", "METRIC_NAME", drop = TRUE])
+    , "Community"] == "fish", "METRIC_NAME", drop = TRUE])
 
   # Check
   metnam_xlScoring_match <- sum(metnam_xlScoring %in% metnam_xlNames)
@@ -285,17 +285,17 @@ testthat::test_that("metric.values, names, fish, Function, xlScoring", {
   #library(readxl) # part of BioMonTools
 
   # Data
-  fn_metnam_xlScoring <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlScoring <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricScoring.xlsx")
   # Import
   df_metnam_xlScoring <- readxl::read_excel(fn_metnam_xlScoring
-                                            , sheet="metric.scoring")
+                                            , sheet = "metric.scoring")
   df_metnam_xlScoring <- as.data.frame(df_metnam_xlScoring)
 
   # Metric Names
   metnam_xlScoring <- unique(df_metnam_xlScoring[df_metnam_xlScoring[
-    , "Community"]=="fish", "METRIC_NAME", drop = TRUE])
+    , "Community"] == "fish", "METRIC_NAME", drop = TRUE])
 
   # Benthic Data
   df_fish <- BioMonTools::data_fish_MBSS
@@ -326,16 +326,16 @@ testthat::test_that("metric.values, names, algae, Function, xlNames", {
   #library(readxl) # part of BioMonTools
 
   # Data
-  fn_metnam_xlNames   <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlNames   <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricNames.xlsx")
   # Import
   df_metnam_xlNames   <- readxl::read_excel(fn_metnam_xlNames
-                                            , sheet="MetricMetadata"
+                                            , sheet = "MetricMetadata"
                                             , skip = 4)
   df_metnam_xlNames <- as.data.frame(df_metnam_xlNames)
   # Metric Names
-  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"]=="algae"
+  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"] == "algae"
                                       , "METRIC_NAME"
                                       , drop = TRUE]
 
@@ -373,27 +373,27 @@ testthat::test_that("metric.values, names, algae, xlScoring, xlNames", {
   #library(readxl) # part of BioMonTools
 
   # Data
-  fn_metnam_xlNames   <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlNames   <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricNames.xlsx")
-  fn_metnam_xlScoring <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlScoring <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricScoring.xlsx")
   # Import
   df_metnam_xlNames   <- readxl::read_excel(fn_metnam_xlNames
-                                            , sheet="MetricMetadata"
+                                            , sheet = "MetricMetadata"
                                             , skip = 4)
   df_metnam_xlScoring <- readxl::read_excel(fn_metnam_xlScoring
-                                            , sheet="metric.scoring")
+                                            , sheet = "metric.scoring")
   # Convert to data frames
   df_metnam_xlNames <- as.data.frame(df_metnam_xlNames)
   df_metnam_xlScoring <- as.data.frame(df_metnam_xlScoring)
 
   # Names
-  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"]=="algae"
+  metnam_xlNames <- df_metnam_xlNames[df_metnam_xlNames[, "Community"] == "algae"
                                       , "METRIC_NAME", drop = TRUE]
   metnam_xlScoring <- unique(df_metnam_xlScoring[df_metnam_xlScoring[
-    , "Community"]=="algae", "METRIC_NAME", drop = TRUE])
+    , "Community"] == "algae", "METRIC_NAME", drop = TRUE])
 
   # Check
   metnam_xlScoring_match <- sum(metnam_xlScoring %in% metnam_xlNames)
@@ -413,17 +413,17 @@ testthat::test_that("metric.values, names, algae, xlScoring, Function", {
   #library(readxl) # part of BioMonTools
 
   # Data
-  fn_metnam_xlScoring <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlScoring <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricScoring.xlsx")
   # Import
   df_metnam_xlScoring <- readxl::read_excel(fn_metnam_xlScoring
-                                            , sheet="metric.scoring")
+                                            , sheet = "metric.scoring")
   df_metnam_xlScoring <- as.data.frame(df_metnam_xlScoring)
 
   # Metric Names
   metnam_xlScoring <- unique(df_metnam_xlScoring[df_metnam_xlScoring[
-    , "Community"]=="algae", "METRIC_NAME", drop = TRUE])
+    , "Community"] == "algae", "METRIC_NAME", drop = TRUE])
 
   # Algae data
   df_diatoms <- BioMonTools::data_diatom_mmi_dev
@@ -455,12 +455,12 @@ testthat::test_that("metric.values, xlNames, description", {
   #library(readxl) # part of BioMonTools
 
   # Data
-  fn_metnam_xlNames   <- file.path(system.file(package="BioMonTools")
+  fn_metnam_xlNames   <- file.path(system.file(package = "BioMonTools")
                                    , "extdata"
                                    , "MetricNames.xlsx")
   # Import
   df_metnam_xlNames   <- readxl::read_excel(fn_metnam_xlNames
-                                            , sheet="MetricMetadata"
+                                            , sheet = "MetricMetadata"
                                             , skip = 4)
   df_metnam_xlNames <- as.data.frame(df_metnam_xlNames)
 

@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-05-26 15:51:35.559936
+    #> Last Update: 2023-07-12 09:08:52.21977
 
 # Version History
+
+## Changes in version 1.0.0.9026 (2023-07-12)
+
+- refactor: Add bug metrics for MN BCG, Issue \#92
+- style: Update spacing in test file metric_names
 
 ## Changes in version 1.0.0.9025 (2023-05-26)
 
@@ -1505,7 +1510,7 @@ test: Add tests + rarify + qc_checks (gives warning but passes)
 
 - Added metrics, Issue \#3
   - metric.values
-    - x_NCBI, x_D\_Mg, x_D\_G
+    - x_NCBI, x_D_Mg, x_D_G
     - Additional QC for TolVal2 as numeric (same as TolVal).
   - MetricNames.xlsx
 
