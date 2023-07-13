@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-07-12 09:08:52.21977
+    #> Last Update: 2023-07-12 14:12:58.429385
 
 # Version History
+
+## Changes in version 1.0.0.9027 (2023-07-12)
+
+- refactor: Additional metrics for MN BCG, Issue \#92
 
 ## Changes in version 1.0.0.9026 (2023-07-12)
 

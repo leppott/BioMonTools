@@ -1347,6 +1347,14 @@ metric.values.bugs <- function(myDF
                   & (is.na(ORDER) == TRUE | ORDER != "RISSOOIDEA")
                   & (BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6")) %>%
     dplyr::filter(dplyr::row_number() <= 2)
+  df.dom01_BCG_att4 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID)  %>%
+    dplyr::filter(BCG_ATTR == "4") %>%
+    dplyr::filter(dplyr::row_number() <= 1)
+  df.dom01_BCG_att5 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID)  %>%
+    dplyr::filter(BCG_ATTR == "5") %>%
+    dplyr::filter(dplyr::row_number() <= 1)
 
   # Summarise Top N
   df.dom01.sum <- dplyr::summarise(dplyr::group_by(df.dom01
@@ -1415,6 +1423,20 @@ metric.values.bugs <- function(myDF
                                                                        , INDEX_CLASS)
                                                        , ni_dom02_NoJugaRiss_BCG_att456 = sum(N_TAXA)
                                                        , .groups = "drop_last")
+  df.dom01_BCG_att4.sum <- dplyr::summarise(dplyr::group_by(df.dom01_BCG_att4
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom01_BCG_att4 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df.dom01_BCG_att5.sum <- dplyr::summarise(dplyr::group_by(df.dom01_BCG_att5
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom01_BCG_att5 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+
+
   # Add column of domN to main DF
   myDF <- merge(myDF, df.dom01.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom02.sum, all.x = TRUE)
@@ -1427,6 +1449,8 @@ metric.values.bugs <- function(myDF
   myDF <- merge(myDF, df.dom09.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom10.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom02_NoJugaRiss_BCG_att456.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom01_BCG_att4.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom01_BCG_att5.sum, all.x = TRUE)
 
   # Clean up extra Dom data frames
   rm(df.dom01)
@@ -1440,6 +1464,8 @@ metric.values.bugs <- function(myDF
   rm(df.dom09)
   rm(df.dom10)
   rm(df.dom02_NoJugaRiss_BCG_att456)
+  rm(df.dom01_BCG_att4)
+  rm(df.dom01_BCG_att5)
   rm(df.dom01.sum)
   rm(df.dom02.sum)
   rm(df.dom03.sum)
@@ -1451,6 +1477,8 @@ metric.values.bugs <- function(myDF
   rm(df.dom09.sum)
   rm(df.dom10.sum)
   rm(df.dom02_NoJugaRiss_BCG_att456.sum)
+  rm(df.dom01_BCG_att4.sum)
+  rm(df.dom01_BCG_att5.sum)
 
   # Metric Calc -----
   if (verbose == TRUE) {
@@ -2728,7 +2756,7 @@ metric.values.bugs <- function(myDF
                                                            sum(N_TAXA[BCG_ATTR == "5"]
                                                                , na.rm = TRUE)) / ni_total
 
-                                ### BCG_pi_Phylo
+                                ### BCG_pi_Phylo----
                                 , pi_EPT_BCG_att123 = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
                                                                         | ORDER == "TRICHOPTERA"
                                                                         | ORDER == "PLECOPTERA")
@@ -2743,6 +2771,9 @@ metric.values.bugs <- function(myDF
                                                                            | BCG_ATTR == "2"
                                                                            | BCG_ATTR == "3")]
                                                                  , na.rm = TRUE) / ni_total
+                                ### BCG_pi_dom ----
+                                , pi_dom01_BCG_att4 = 100 * max(ni_dom01_BCG_att4, na.rm = TRUE) / ni_total
+                                , pi_dom01_BCG_att5 = 100 * max(ni_dom01_BCG_att5, na.rm = TRUE) / ni_total
 
                                 ### BCG_pt----
                                 , pt_BCG_att1 =    100 * nt_BCG_att1 / nt_total
@@ -2775,11 +2806,12 @@ metric.values.bugs <- function(myDF
                                 , pt_BCG_att1i234b = 100 * nt_BCG_att1i234b / nt_total
                                 , pt_BCG_att4w5 = 100 * nt_BCG_att4w5 / nt_total
 
+                                ### BCG_special ----
                                 # BCG_pt_Phylo
                                 , pt_EPT_BCG_att123 =  100 * nt_EPT_BCG_att123 / nt_total
                                 , pt_EPT_BCG_att1i23 = 100 * nt_EPT_BCG_att1i23 / nt_total
 
-
+                                # domX_BCG
                                 # pi_dom01_att 4, 5, 56
                                 # pi_dom05_att 123, not 456
 
