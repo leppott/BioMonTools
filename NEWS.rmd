@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9028 (2023-07-26)
+
+* refactor: Add percent Cheumatopsyche metric
+
 ## Changes in version 1.0.0.9027 (2023-07-12)
 
 * refactor: Additional metrics for MN BCG, Issue #92

@@ -1734,6 +1734,8 @@ metric.values.bugs <- function(myDF
                                 , pi_CruMol = 100 * sum(N_TAXA[PHYLUM == "MOLLUSCA"
                                                                | SUBPHYLUM == "CRUSTACEA"]
                                                         , na.rm = TRUE) / ni_total
+                                , pi_Cheu =  100 * sum(N_TAXA[FAMILY = "Cheumatopsyche"]
+                                                       , na.rm = TRUE) / ni_total
                                 , pi_Deca = 100 * sum(N_TAXA[ORDER == "DECAPODA"]
                                                       , na.rm = TRUE) / ni_total
                                 , pi_Dipt = 100 * sum(N_TAXA[ORDER == "DIPTERA"]

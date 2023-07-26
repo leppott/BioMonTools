@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-07-12 14:12:58.429385
+    #> Last Update: 2023-07-26 13:41:58.476212
 
 # Version History
+
+## Changes in version 1.0.0.9028 (2023-07-26)
+
+- refactor: Add percent Cheumatopsyche metric
 
 ## Changes in version 1.0.0.9027 (2023-07-12)
 
