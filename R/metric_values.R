@@ -2774,8 +2774,10 @@ metric.values.bugs <- function(myDF
                                                                            | BCG_ATTR == "3")]
                                                                  , na.rm = TRUE) / ni_total
                                 ### BCG_pi_dom ----
-                                , pi_dom01_BCG_att4 = 100 * max(ni_dom01_BCG_att4, na.rm = TRUE) / ni_total
-                                , pi_dom01_BCG_att5 = 100 * max(ni_dom01_BCG_att5, na.rm = TRUE) / ni_total
+                                , pi_dom01_BCG_att4 = 100 * max(0
+                                                      , max(ni_dom01_BCG_att4, na.rm = TRUE), na.rm = TRUE) / ni_total
+                                , pi_dom01_BCG_att5 = 100 * max(0
+                                                      , max(ni_dom01_BCG_att5, na.rm = TRUE), na.rm = TRUE) / ni_total
 
                                 ### BCG_pt----
                                 , pt_BCG_att1 =    100 * nt_BCG_att1 / nt_total
