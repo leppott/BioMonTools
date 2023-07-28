@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9031 (2023-07-28)
+
+* fix: Update domX calculations to combine taxa before calculate in metric_values
+    + bugs and fish
+
 ## Changes in version 1.0.0.9030 (2023-07-28)
 
 * refactor: Update metrics for MN BCG, Issue #92

@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-07-28 09:28:02.914489
+    #> Last Update: 2023-07-28 13:10:23.502457
 
 # Version History
+
+## Changes in version 1.0.0.9031 (2023-07-28)
+
+- fix: Update domX calculations to combine taxa before calculate in
+  metric_values
+  - bugs and fish
 
 ## Changes in version 1.0.0.9030 (2023-07-28)
 

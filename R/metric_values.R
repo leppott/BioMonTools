@@ -1310,48 +1310,56 @@ metric.values.bugs <- function(myDF
                   , boo_debug_topic)
     message(msg)
   }## IF ~ verbose
-  df.dom01 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+
+  # DF for dom so same taxa get combined
+  myDF_dom <- dplyr::summarise(dplyr::group_by(myDF, INDEX_NAME, INDEX_CLASS
+                                               , SAMPLEID, TAXAID
+                                               , GENUS, ORDER, BCG_ATTR)
+                               , N_TAXA = sum(N_TAXA, na.rm = TRUE)
+                               , .groups = "drop_last")
+
+  df.dom01 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
                             dplyr::group_by(SAMPLEID)  %>%
                                 dplyr::filter(dplyr::row_number() <= 1)
-  df.dom02 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom02 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(dplyr::row_number() <= 2)
-  df.dom03 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom03 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 3)
-  df.dom04 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom04 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 4)
-  df.dom05 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom05 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 5)
-  df.dom06 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom06 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 6)
-  df.dom07 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom07 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 7)
-  df.dom08 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom08 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 8)
-  df.dom09 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom09 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 9)
-  df.dom10 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom10 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(dplyr::row_number() <= 10)
-  df.dom02_NoJugaRiss_BCG_att456 <-  dplyr::arrange(myDF, SAMPLEID
+  df.dom02_NoJugaRiss_BCG_att456 <-  dplyr::arrange(myDF_dom, SAMPLEID
                                                     , dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter((is.na(GENUS) == TRUE | GENUS != "JUGA")
                   & (is.na(ORDER) == TRUE | ORDER != "RISSOOIDEA")
                   & (BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6")) %>%
     dplyr::filter(dplyr::row_number() <= 2)
-  df.dom01_BCG_att4 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom01_BCG_att4 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(BCG_ATTR == "4") %>%
     dplyr::filter(dplyr::row_number() <= 1)
-  df.dom01_BCG_att5 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom01_BCG_att5 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(BCG_ATTR == "5") %>%
     dplyr::filter(dplyr::row_number() <= 1)
@@ -1459,6 +1467,7 @@ metric.values.bugs <- function(myDF
   myDF[is.na(myDF[, "ni_dom01_BCG_att5"]), "ni_dom01_BCG_att5"] <- 0
 
   # Clean up extra Dom data frames
+  rm(myDF_dom)
   rm(df.dom01)
   rm(df.dom02)
   rm(df.dom03)
@@ -1548,7 +1557,6 @@ metric.values.bugs <- function(myDF
                                 , ni_Gnorimo = sum(N_TAXA[GENUS == "GNORIMOSPHAEROMA"], na.rm = TRUE)
                                 , ni_brackish = ni_Americo + ni_Gnorimo
                                 , ni_Ramello = sum(N_TAXA[GENUS == "RAMELLOGAMMARUS"], na.rm = TRUE)
-
 
 
                                 ## Phylo ####
@@ -2779,9 +2787,6 @@ metric.values.bugs <- function(myDF
                                                                            | BCG_ATTR == "2"
                                                                            | BCG_ATTR == "3")]
                                                                  , na.rm = TRUE) / ni_total
-                                ### BCG_pi_dom ----
-                                , pi_dom01_BCG_att4 = 100 * max(ni_dom01_BCG_att4, na.rm = TRUE) / ni_total
-                                , pi_dom01_BCG_att5 = 100 * max(ni_dom01_BCG_att5, na.rm = TRUE) / ni_total
 
                                 ### BCG_pt----
                                 , pt_BCG_att1 =    100 * nt_BCG_att1 / nt_total
@@ -2818,6 +2823,10 @@ metric.values.bugs <- function(myDF
                                 # BCG_pt_Phylo
                                 , pt_EPT_BCG_att123 =  100 * nt_EPT_BCG_att123 / nt_total
                                 , pt_EPT_BCG_att1i23 = 100 * nt_EPT_BCG_att1i23 / nt_total
+
+                                ### BCG_pi_dom ----
+                                , pi_dom01_BCG_att4 = 100 * max(ni_dom01_BCG_att4, na.rm = TRUE) / ni_total
+                                , pi_dom01_BCG_att5 = 100 * max(ni_dom01_BCG_att5, na.rm = TRUE) / ni_total
 
                                 # domX_BCG
                                 # pi_dom01_att 4, 5, 56
@@ -3349,36 +3358,44 @@ metric.values.fish <- function(myDF
   myDF[, "WSAREA_XL"]      <- "XLARGE" == myDF[, "WSAREA_ATTR"]
 
   # Create Dominant N ####
+
+  # DF for dom so same taxa get combined
+  myDF_dom <- dplyr::summarise(dplyr::group_by(myDF, INDEX_NAME, INDEX_CLASS
+                                               , SAMPLEID, TAXAID)
+                               , N_TAXA = sum(N_TAXA, na.rm = TRUE)
+                               , .groups = "drop_last")
+
+
   # Create df for Top N (without ties)
   #
-  df.dom01 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom01 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(dplyr::row_number() <= 1)
-  df.dom02 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom02 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(dplyr::row_number() <= 2)
-  df.dom03 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom03 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 3)
-  df.dom04 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom04 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 4)
-  df.dom05 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom05 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 5)
-  df.dom06 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom06 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 6)
-  df.dom07 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom07 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 7)
-  df.dom08 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom08 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 8)
-  df.dom09 <- dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom09 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(dplyr::row_number() <= 9)
-  df.dom10 <-  dplyr::arrange(myDF, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+  df.dom10 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(dplyr::row_number() <= 10)
 
@@ -3457,6 +3474,7 @@ metric.values.fish <- function(myDF
   myDF <- merge(myDF, df.dom10.sum, all.x = TRUE)
 
   # Clean up extra Dom data frames
+  rm(myDF_dom)
   rm(df.dom01)
   rm(df.dom02)
   rm(df.dom03)
