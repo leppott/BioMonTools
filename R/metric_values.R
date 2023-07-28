@@ -480,7 +480,7 @@ metric.values <- function(fun.DF
   # QC
   if (boo_QC) {
     fun.DF <- data_benthos_PacNW#[, 1:32] # 598, 37
-    fun.DF <- data_benthos_MBSS # 5066, 37
+    #fun.DF <- data_benthos_MBSS # 5066, 37
     fun.Community <- "bugs"
     fun.MetricNames <- NULL
     boo.Adjust <- FALSE
@@ -1451,6 +1451,12 @@ metric.values.bugs <- function(myDF
   myDF <- merge(myDF, df.dom02_NoJugaRiss_BCG_att456.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom01_BCG_att4.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom01_BCG_att5.sum, all.x = TRUE)
+
+  # Convert NA to 0 (avoid -Inf in later calculations)
+  myDF[is.na(myDF[, "ni_dom02_NoJugaRiss_BCG_att456"])
+       , "ni_dom02_NoJugaRiss_BCG_att456"] <- 0
+  myDF[is.na(myDF[, "ni_dom01_BCG_att4"]), "ni_dom01_BCG_att4"] <- 0
+  myDF[is.na(myDF[, "ni_dom01_BCG_att5"]), "ni_dom01_BCG_att5"] <- 0
 
   # Clean up extra Dom data frames
   rm(df.dom01)
@@ -2774,10 +2780,8 @@ metric.values.bugs <- function(myDF
                                                                            | BCG_ATTR == "3")]
                                                                  , na.rm = TRUE) / ni_total
                                 ### BCG_pi_dom ----
-                                , pi_dom01_BCG_att4 = 100 * max(0
-                                                      , max(ni_dom01_BCG_att4, na.rm = TRUE), na.rm = TRUE) / ni_total
-                                , pi_dom01_BCG_att5 = 100 * max(0
-                                                      , max(ni_dom01_BCG_att5, na.rm = TRUE), na.rm = TRUE) / ni_total
+                                , pi_dom01_BCG_att4 = 100 * max(ni_dom01_BCG_att4, na.rm = TRUE) / ni_total
+                                , pi_dom01_BCG_att5 = 100 * max(ni_dom01_BCG_att5, na.rm = TRUE) / ni_total
 
                                 ### BCG_pt----
                                 , pt_BCG_att1 =    100 * nt_BCG_att1 / nt_total

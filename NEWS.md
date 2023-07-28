@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-07-28 07:57:49.265612
+    #> Last Update: 2023-07-28 09:28:02.914489
 
 # Version History
+
+## Changes in version 1.0.0.9030 (2023-07-28)
+
+- refactor: Update metrics for MN BCG, Issue \#92
+  - In myDF remove NA for specialized dom01 calculations
 
 ## Changes in version 1.0.0.9029 (2023-07-28)
 
