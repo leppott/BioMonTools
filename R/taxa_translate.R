@@ -162,7 +162,7 @@ taxa_translate <- function(df_user = NULL
 
   # DEBUG ----
   boo_DEBUG_tt <- FALSE
-  if(boo_DEBUG_tt == TRUE){
+  if (boo_DEBUG_tt == TRUE) {
     # Example 1, PacNW ----
     ## Input Parameters
     df_user <- data_benthos_PacNW
@@ -248,29 +248,29 @@ taxa_translate <- function(df_user = NULL
 
   ## QC, df----
 
-  if(is.null(df_user)) {
+  if (is.null(df_user)) {
     msg <- "'df_user' not provided.  Unable to process."
     stop(msg)
   }## IF ~ is.null(df_user)
 
-  if(is.null(df_official)) {
+  if (is.null(df_official)) {
     msg <- "'df_official' not provided.  Unable to process."
     stop(msg)
   }## IF ~ is.null(df_official)
 
   ## QC, taxaid ----
 
-  if(is.null(taxaid_user)) {
+  if (is.null(taxaid_user)) {
     msg <- "'taxaid_user' not provided.  Unable to process."
     stop(msg)
   }## IF ~ is.null(taxaid_user)
 
-  if(is.null(taxaid_official_match)) {
+  if (is.null(taxaid_official_match)) {
     msg <- "'taxaid_official_match' not provided.  Unable to process."
     stop(msg)
   }## IF ~ is.null(taxaid_official)
 
-  if(is.null(taxaid_official_project)) {
+  if (is.null(taxaid_official_project)) {
     msg <- "'taxaid_official_project' not provided.  Unable to process."
     stop(msg)
   }## IF ~ is.null(taxaid_official_project)
@@ -278,19 +278,19 @@ taxa_translate <- function(df_user = NULL
   ## QC, taxaid match df ----
 
   boo_taxaid_user <- taxaid_user %in% names(df_user)
-  if(boo_taxaid_user == FALSE) {
+  if (boo_taxaid_user == FALSE) {
     msg <- "'taxaid_user' not found in 'df_user'.  Unable to process."
     stop(msg)
   }## IF ~ boo_taxaid_user == FALSE
 
   boo_taxaid_official_match <- taxaid_official_match %in% names(df_official)
-  if(boo_taxaid_official_match == FALSE) {
+  if (boo_taxaid_official_match == FALSE) {
     msg <- "'taxaid_official_match' not found in 'df_official'.  Unable to process."
     stop(msg)
   }## IF ~ taxaid_official_match == FALSE
 
   boo_taxaid_official_project <- taxaid_official_project %in% names(df_official)
-  if(boo_taxaid_official_project == FALSE) {
+  if (boo_taxaid_official_project == FALSE) {
     msg <- "'taxaid_official_project' not found in 'df_official'.  Unable to process."
     stop(msg)
   }## IF ~ taxaid_official_match == FALSE
@@ -305,7 +305,7 @@ taxa_translate <- function(df_user = NULL
                     , suffixes = c("", "_USER")
                     , sort = FALSE)
 
-  if(boo_DEBUG_tt == TRUE) {
+  if (boo_DEBUG_tt == TRUE) {
     testthat::expect_equal(nrow(df_user), nrow(df_merge))
   } ## IF ~ boo_DEBUG_tt
 
@@ -317,10 +317,13 @@ taxa_translate <- function(df_user = NULL
   ## new Col, match merge main ID to df_official----
   df_merge[, "Match_Official"] <- df_merge[, taxaid_official_match] %in%
     df_official[, taxaid_official_match]
+  # new Col, TaxaID modified
+  df_merge[, "Changed"] <- df_merge[, taxaid_official_match]  ==
+    df_merge[, taxaid_official_project]
 
   ## Element 4, unique taxa translate ----
   # run here to get "raw" version with all rows
-  if(sum_n_taxa_boo == TRUE) {
+  if (sum_n_taxa_boo == TRUE) {
     df_taxatrans_unique <- dplyr::summarise(
       dplyr::group_by(df_merge
                       , !!as.name(taxaid_official_match)
@@ -339,8 +342,8 @@ taxa_translate <- function(df_user = NULL
                                             , "Changed"
                                             )])
 
-  #
   }## IF ~ sum_n_taxa_boo
+
   # rename column
   names(df_taxatrans_unique)[1] <- taxaid_user
   # sort
@@ -363,7 +366,7 @@ taxa_translate <- function(df_user = NULL
   # df_merge <- df_merge[, col_keep]
 
   ## Drop Col----
-  if(is.null(col_drop) == FALSE) {
+  if (is.null(col_drop) == FALSE) {
     df_merge <- df_merge[
       , names(df_merge)[!names(df_merge) %in% col_drop]]
   }## IF ~ is.null(col_drop)
@@ -382,14 +385,14 @@ taxa_translate <- function(df_user = NULL
   row_taxaid_NA <- is.na(df_merge[, taxaid_user])
   df_merge <- df_merge[!row_taxaid_NA, ]
   ### taxaid_drop
-  if(!is.null(taxaid_drop)) {
+  if (!is.null(taxaid_drop)) {
     row_taxaid_drop <- !df_merge[, taxaid_user] %in% taxaid_drop
     df_merge <- df_merge[row_taxaid_drop, ]
   }## IF ~ is.null(taxaid_drop)
 
 
   # Summary ----
-  if(sum_n_taxa_boo == TRUE) {
+  if (sum_n_taxa_boo == TRUE) {
     # Recalc
     df_summ <- dplyr::summarise(
                     dplyr::group_by(df_merge
@@ -410,7 +413,7 @@ taxa_translate <- function(df_user = NULL
     df_summ_merge[, "Match_Official"] <- df_summ_merge[, taxaid_official_project] %in%
       df_official[, taxaid_official_match]
     # QC----
-    if(boo_DEBUG_tt == TRUE) {
+    if (boo_DEBUG_tt == TRUE) {
       # nrows
       testthat::expect_equal(nrow(df_summ_merge)
                              , nrow(df_summ))
@@ -454,7 +457,7 @@ taxa_translate <- function(df_user = NULL
   message(msg)
 
   ## Console, non-matches----
-  if(taxa_nonmatch_n > 0) {
+  if (taxa_nonmatch_n > 0) {
     str_tax <- ifelse(taxa_nonmatch_n == 1, "taxon", "taxa")
     msg_1 <- paste0("The following user "
                     , str_tax
@@ -475,7 +478,7 @@ taxa_translate <- function(df_user = NULL
                      , "taxatrans_unique" = df_taxatrans_unique)
 
 
-  if(boo_DEBUG_tt == TRUE){
+  if (boo_DEBUG_tt == TRUE) {
     str(ls_results)
   } ## IF ~ boo_DEBUG_tt
 

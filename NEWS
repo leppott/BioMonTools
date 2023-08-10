@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-07-28 13:10:23.502457
+    #> Last Update: 2023-08-10 13:35:29.543656
 
 # Version History
+
+## Changes in version 1.0.0.9032 (2023-08-10)
+
+- fix: Add line for “changed” taxa in `taxa_translate`
 
 ## Changes in version 1.0.0.9031 (2023-07-28)
 
