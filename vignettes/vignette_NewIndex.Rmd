@@ -3,7 +3,10 @@ title: "Vignette, Adding a New Index"
 author: "Erik.Leppo@tetratech.com"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
-vignette: 
+vignette: >
+  %\VignetteIndexEntry{BioMonTools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 <!-- Data is in vignettes\data folder  -->
 ```{r rmd_setup, include = FALSE}

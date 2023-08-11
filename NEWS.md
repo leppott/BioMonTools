@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-10 13:35:29.543656
+    #> Last Update: 2023-08-11 06:47:33.851065
 
 # Version History
+
+## Changes in version 1.0.0.9033 (2023-08-11)
+
+- fix: Fill in missing Vignette Builder for vignette_NewIndex
 
 ## Changes in version 1.0.0.9032 (2023-08-10)
 

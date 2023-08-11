@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9033 (2023-08-11)
+
+* fix: Fill in missing Vignette Builder for vignette_NewIndex
+
 ## Changes in version 1.0.0.9032 (2023-08-10)
 
 * fix: Add line for "changed" taxa in `taxa_translate`
