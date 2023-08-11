@@ -202,24 +202,33 @@ Fields that are optional can be in the output (see examples below).
 # library(dplyr)
 
 # Load Data
-df.data <- readxl::read_excel(system.file("./extdata/Data_Benthos.xlsx"
+df_data <- readxl::read_excel(system.file("./extdata/Data_Benthos.xlsx"
                                        , package = "BioMonTools")
                       , guess_max = 10^6)
 # Columns to keep
 myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
 
 # Run Function
-df.metval <- BioMonTools::metric.values(df.data, "bugs", fun.cols2keep = myCols)
+df_metval <- BioMonTools::metric.values(df_data, "bugs", fun.cols2keep = myCols)
 # Metrics of Interest
 ## thermal indicator (_ti_)
 #names(df.metval)[grepl("_ti_", names(df.metval))]
-col.met2keep <- c("ni_total", "nt_total", "nt_ti_corecold", "nt_ti_cold"
-                  , "nt_ti_cool", "pi_ti_corecold", "pi_ti_cold", "pi_ti_cool")
-col.ID <- c("SAMPLEID", toupper(myCols), "INDEX_NAME", "INDEX_CLASS")
+col_met2keep <- c("ni_total"
+                  , "nt_total"
+                  , "nt_ti_stenocold" # renamed from corecold
+                  , "nt_ti_cold"
+                  , "nt_ti_cool"
+                  , "pi_ti_stenocold" # renamed from corecold
+                  , "pi_ti_cold"
+                  , "pi_ti_cool")
+col_ID <- c("SAMPLEID"
+            , toupper(myCols)
+            , "INDEX_NAME"
+            , "INDEX_CLASS")
 # Ouput
-df.metval.ci <- df.metval[, c(col.ID, col.met2keep)]
+df_metval_ci <- df_metval[, c(col_ID, col_met2keep)]
 # RMD table
-knitr::kable(head(df.metval.ci), caption = "Metric Calculation, select metrics")
+knitr::kable(head(df_metval_ci), caption = "Metric Calculation, select metrics")
 ```
 
 ## markExcluded
@@ -269,8 +278,8 @@ Returns a data frame of df_samptax with an additional column, Exclude.
 
 # Data
 df_samps_bugs <- readxl::read_excel(system.file("./extdata/Data_Benthos.xlsx"
-                                        , package="BioMonTools")
-                            , guess_max=10^6)
+                                        , package = "BioMonTools")
+                            , guess_max = 10^6)
 
 # Variables
 SampID     <- "SampleID"
@@ -293,7 +302,7 @@ TaxaLevels <- c("Kingdom"
                 , "Species"
                 , "Variety")
 # Taxa that should be treated as equivalent
-Exceptions <- data.frame("TaxaID" = "Sphaeriidae", "PhyloID"= "Pisidiidae")
+Exceptions <- data.frame("TaxaID" = "Sphaeriidae", "PhyloID" = "Pisidiidae")
 
 # Filter Data
 # df_samptax <- filter(df_samps_bugs, !!as.name(SampID) == 
@@ -303,17 +312,17 @@ Exceptions <- data.frame("TaxaID" = "Sphaeriidae", "PhyloID"= "Pisidiidae")
 
 # EXAMPLE 1
 df_tst <- BioMonTools::markExcluded(df_samps_bugs
-                                    , SampID="SampleID"
-                                    , TaxaID="TaxaID"
+                                    , SampID = "SampleID"
+                                    , TaxaID = "TaxaID"
                                     , TaxaCount = "N_Taxa"
-                                    , Exclude="Exclude_New"
-                                    , TaxaLevels=TaxaLevels
-                                    , Exceptions=Exceptions)
+                                    , Exclude = "Exclude_New"
+                                    , TaxaLevels = TaxaLevels
+                                    , Exceptions = Exceptions)
 
 # Compare
 df_compare <- dplyr::summarise(dplyr::group_by(df_tst, SampleID)
-                               , Exclude_Import=sum(Exclude)
-                               , Exclude_R=sum(Exclude_New))
+                               , Exclude_Import = sum(Exclude)
+                               , Exclude_R = sum(Exclude_New))
 df_compare$Diff <- df_compare$Exclude_Import - df_compare$Exclude_R
 #
 tbl_diff <- table(df_compare$Diff)
@@ -330,9 +339,9 @@ df_compare <- df_compare %>% dplyr::arrange(desc(Diff))
 tbl_results <- table(df_tst$Exclude, df_tst$Exclude_New, useNA = "ifany")
 #
 # Show differences
-knitr::kable(tbl_results, caption="Confusion Matrix")
+knitr::kable(tbl_results, caption = "Confusion Matrix")
 # samples with differences
-samp_diff <- as.data.frame(df_compare[df_compare[,"Diff"]!=0, "SampleID"])
+samp_diff <- as.data.frame(df_compare[df_compare[,"Diff"] != 0, "SampleID"])
 # results for only those with differences
 df_tst_diff <- df_tst[df_tst[,"SampleID"] %in% samp_diff$SampleID, ]
 # add diff field
@@ -369,8 +378,8 @@ results_values <- c(class_sens
 #
 tbl_class <- data.frame(results_names, results_values)
 names(tbl_class) <- c("Performance Metrics", "Percent")
-tbl_class$Percent <- round(tbl_class$Percent *100, 2)
-knitr::kable(tbl_class, caption="Classification Performance Metrics")
+tbl_class$Percent <- round(tbl_class$Percent * 100, 2)
+knitr::kable(tbl_class, caption = "Classification Performance Metrics")
 ```
 
 The same data with no "exceptions" leaves 8 records misclassified.
@@ -386,8 +395,8 @@ The same data with no "exceptions" leaves 8 records misclassified.
 
 # Data
 df_samps_bugs <- readxl::read_excel(system.file("./extdata/Data_Benthos.xlsx"
-                                              , package="BioMonTools")
-                                  , guess_max=10^6)
+                                              , package = "BioMonTools")
+                                  , guess_max = 10^6)
 
 # Variables
 SampID     <- "SampleID"
@@ -443,11 +452,11 @@ df_compare2 <- df_compare2 %>% dplyr::arrange(desc(Diff))
 tbl_results2 <- table(df_tst2$Exclude, df_tst2$Exclude_New, useNA = "ifany")
 #
 # Show differences
-knitr::kable(tbl_results2, caption="Confusion Matrix")
+knitr::kable(tbl_results2, caption = "Confusion Matrix")
 knitr::kable(df_compare2[1:10, ])
 knitr::kable(tail(df_compare2))
 # samples with differences
-(samp_diff2 <- as.data.frame(df_compare2[df_compare2[,"Diff"]!=0, "SampleID"]))
+(samp_diff2 <- as.data.frame(df_compare2[df_compare2[,"Diff"] != 0, "SampleID"]))
 # results for only those with differences
 df_tst_diff2 <- dplyr::filter(df_tst2, SampleID %in% samp_diff2$SampleID)
 # add diff field
@@ -485,8 +494,8 @@ results_values2 <- c(class_sens2
 #
 tbl_class2 <- data.frame(results_names2, results_values2)
 names(tbl_class2) <- c("Performance Metrics", "Percent")
-tbl_class2$Percent <- round(tbl_class2$Percent *100, 2)
-knitr::kable(tbl_class2, caption="Classification Performance Metrics")
+tbl_class2$Percent <- round(tbl_class2$Percent * 100, 2)
+knitr::kable(tbl_class2, caption = "Classification Performance Metrics")
 ```
 
 ## rarify
@@ -572,7 +581,7 @@ flagged samples.
 
 # Import
 df.samps.bugs <- readxl::read_excel(system.file("extdata/Data_Benthos.xlsx"
-                                                , package="BioMonTools")
+                                                , package = "BioMonTools")
                            , guess_max = 10^6)
 
 # Calculate Metrics
@@ -586,24 +595,26 @@ df.metrics <- BioMonTools::metric.values(df.samps.bugs
 # Flags
 # Import QC Checks
 df.checks <- readxl::read_excel(system.file("extdata/MetricFlags.xlsx"
-                                          , package="BioMonTools")
-                                , sheet="Flags") 
+                                          , package = "BioMonTools")
+                                , sheet = "Flags") 
 # Run Function
 df.flags <- BioMonTools::qc.checks(df.metrics, df.checks)
 
 # Change terminology; PASS/FAIL to NA/flag
-df.flags[,"FLAG"][df.flags[,"FLAG"]=="FAIL"] <- "flag"
-df.flags[, "FLAG"][df.flags[,"FLAG"]=="PASS"] <- NA
+df.flags[,"FLAG"][df.flags[,"FLAG"] == "FAIL"] <- "flag"
+df.flags[, "FLAG"][df.flags[,"FLAG"] == "PASS"] <- NA
 # long to wide format
-df.flags.wide <- reshape2::dcast(df.flags, SAMPLEID ~ CHECKNAME, value.var="FLAG")
+df.flags.wide <- reshape2::dcast(df.flags
+                                 , SAMPLEID ~ CHECKNAME
+                                 , value.var = "FLAG")
 # Calc number of "flag"s by row.
-df.flags.wide$NumFlags <- rowSums(df.flags.wide=="flag", na.rm=TRUE)
+df.flags.wide$NumFlags <- rowSums(df.flags.wide == "flag", na.rm = TRUE)
 # Rearrange columns
 NumCols <- ncol(df.flags.wide)
-df.flags.wide <- df.flags.wide[, c(1, NumCols, 2:(NumCols-1))]
+df.flags.wide <- df.flags.wide[, c(1, NumCols, 2:(NumCols - 1))]
 # View(df.flags.wide)
 
 # Summarize Results
-knitr::kable(table(df.flags[,"CHECKNAME"], df.flags[,"FLAG"], useNA="ifany"))
+knitr::kable(table(df.flags[,"CHECKNAME"], df.flags[,"FLAG"], useNA = "ifany"))
 ```
 

@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-08-11 06:47:33.851065
+    #> Last Update: 2023-08-11 07:25:10.708775
 
 # Version History
+
+## Changes in version 1.0.0.9034 (2023-08-11)
+
+- fix: BioMonTools vignette change reference to metric names
+  - corecold changed to stenocold
 
 ## Changes in version 1.0.0.9033 (2023-08-11)
 
