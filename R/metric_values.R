@@ -1748,7 +1748,7 @@ metric.values.bugs <- function(myDF
                                 , pi_CruMol = 100 * sum(N_TAXA[PHYLUM == "MOLLUSCA"
                                                                | SUBPHYLUM == "CRUSTACEA"]
                                                         , na.rm = TRUE) / ni_total
-                                , pi_Cheu =  100 * sum(N_TAXA[FAMILY = "Cheumatopsyche"]
+                                , pi_Cheu =  100 * sum(N_TAXA[GENUS = "Cheumatopsyche"]
                                                        , na.rm = TRUE) / ni_total
                                 , pi_Deca = 100 * sum(N_TAXA[ORDER == "DECAPODA"]
                                                       , na.rm = TRUE) / ni_total
@@ -1789,8 +1789,8 @@ metric.values.bugs <- function(myDF
                                 , pi_EPTNoCheu = 100 * sum(N_TAXA[ORDER == "EPHEMEROPTERA"
                                                                   | ORDER == "TRICHOPTERA"
                                                                   | ORDER == "PLECOPTERA"
-                                                                  & (is.na(FAMILY) == TRUE
-                                                                     | FAMILY != "Cheumatopsyche")]
+                                                                  & (is.na(GENUS) == TRUE
+                                                                     | GENUS != "Cheumatopsyche")]
                                                            , na.rm = TRUE) / ni_total
                                 , pi_EPTNoHydro = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA")
                                                                    | (ORDER == "TRICHOPTERA"
