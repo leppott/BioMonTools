@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-09-25 08:46:53.459383
+    #> Last Update: 2023-09-25 08:59:08.877931
 
 # Version History
+
+## Changes in version 1.0.0.9036 (2023-09-25)
+
+- fix: Update Cheumatopsyche metrics in MetricNames.xlsx, Issue \#93
+  - pi_Cheu
+  - pi_EPTNoCheu
 
 ## Changes in version 1.0.0.9035 (2023-09-25)
 

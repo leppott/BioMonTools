@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9036 (2023-09-25)
+
+* fix: Update Cheumatopsyche metrics in MetricNames.xlsx, Issue #93
+    + pi_Cheu
+    + pi_EPTNoCheu
+
 ## Changes in version 1.0.0.9035 (2023-09-25)
 
 * fix: Update code for Cheumatopsyche metrics, metric_values.R, Issue #93
