@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9038 (2023-10-20)
+
+* refactor: Modify output of `taxa_translate` function, Issue #94
+    + taxatrans$taxatrans_unique
+
 ## Changes in version 1.0.0.9037 (2023-10-20)
 
 * feat: Add new metric, ni_totalNoDeca, Issue #94

@@ -59,8 +59,8 @@
 #' the user data that overlap with the official data have the suffix '_User'.
 #' The second element (nonmatch) of the list is a vector of the non-matching
 #' taxa from the user data.  The third element (metadata) includes the
-#' metadata for the official data (if provided).  The fourth element will be a
-#' data frame of the unique taxa names old and new.
+#' metadata for the official data (if provided).  The fourth element (unique) is
+#' a data frame of the unique taxa names old and new.
 #'
 #' @examples
 #' # Example 1, PacNW
@@ -328,8 +328,7 @@ taxa_translate <- function(df_user = NULL
       dplyr::group_by(df_merge
                       , !!as.name(taxaid_official_match)
                       , !!as.name(taxaid_official_project)
-                      , Match_Official
-                      , Changed)
+                      , Match_Official)
       , N_Taxa_Sum = sum(!!as.name(sum_n_taxa_col), na.rm = TRUE)
       # , N_Taxa_Count = dplyr::n_distinct(!!as.name(taxaid_official_match)
       #                                    , na.rm = TRUE)
@@ -339,7 +338,6 @@ taxa_translate <- function(df_user = NULL
      df_taxatrans_unique <- unique(df_merge[, c(taxaid_official_match
                                             , taxaid_official_project
                                             , "Match_Official"
-                                            , "Changed"
                                             )])
 
   }## IF ~ sum_n_taxa_boo
@@ -349,6 +347,15 @@ taxa_translate <- function(df_user = NULL
   # sort
   df_taxatrans_unique <- df_taxatrans_unique[order(df_taxatrans_unique[
     , taxaid_user]), ]
+
+  # add "modified" column
+  df_taxatrans_unique[, "Modified"] <-
+    df_taxatrans_unique[, taxaid_user] !=
+    df_taxatrans_unique[, taxaid_official_project]
+  # move to new position
+  df_taxatrans_unique <- dplyr::relocate(df_taxatrans_unique
+                                         , Modified
+                                         , .after = Match_Official)
 
   ## Drop the "matching" column----
   col_drop_idmatch <- names(df_merge)[!names(df_merge) %in% taxaid_official_match]
