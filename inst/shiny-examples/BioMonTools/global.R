@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_version <- "1.0.0.9036"
+pkg_version <- "1.0.0.9037"
 
 # Packages----
 library(BioMonTools)
@@ -37,9 +37,9 @@ path_results <- file.path("results")
 
 # create results subfolders
 dir_results_sub <- c("subsample", "markexcl", "taxamaps", "calcmet")
-for (i in dir_results_sub){
+for (i in dir_results_sub) {
   dir_new <- file.path("results", i)
-  if(dir.exists(dir_new) == FALSE) {
+  if (dir.exists(dir_new) == FALSE) {
     dir.create(dir_new)
   } else {
     message(paste0("Directory already exists; ", i))

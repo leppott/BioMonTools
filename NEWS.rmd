@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9037 (2023-10-20)
+
+* feat: Add new metric, ni_totalNoDeca, Issue #94
+* style: Add spaces to code for readability
+
 ## Changes in version 1.0.0.9036 (2023-09-25)
 
 * fix: Update Cheumatopsyche metrics in MetricNames.xlsx, Issue #93

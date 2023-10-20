@@ -247,11 +247,11 @@
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' # Example 5, periphyton (algae) metrics
 #'
-#' df_metric_values_periphyton <- metric.values(data_diatom_mmi_dev, "algae")
+#' # df_metric_values_periphyton <- metric.values(data_diatom_mmi_dev, "algae")
 #'
 #'\dontrun{
 #' # View Results
-#' View(df_metric_values_periphyton)
+# # View(df_metric_values_periphyton)
 #' }
 #'
 # #~~~~~~~~~~~~~~~~~~~~~~~
@@ -1547,6 +1547,8 @@ metric.values.bugs <- function(myDF
                                 #
                                 ## Individuals ####
                                 , ni_total = sum(N_TAXA, na.rm = TRUE)
+                                , ni_totalNoDeca = sum(N_TAXA[is.na(ORDER) == TRUE |
+                                                                ORDER != "DECAPODA"], na.rm = TRUE)
                                 , li_total = log(ni_total)
                                 , ni_Chiro = sum(N_TAXA[FAMILY == "CHIRONOMIDAE"], na.rm = TRUE)
                                 , ni_EPT = sum(N_TAXA[ORDER == "EPHEMEROPTERA" |

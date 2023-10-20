@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-09-25 08:59:08.877931
+    #> Last Update: 2023-10-20 08:40:58.393159
 
 # Version History
+
+## Changes in version 1.0.0.9037 (2023-10-20)
+
+- feat: Add new metric, ni_totalNoDeca, Issue \#94
+- style: Add spaces to code for readability
 
 ## Changes in version 1.0.0.9036 (2023-09-25)
 

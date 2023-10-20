@@ -79,7 +79,7 @@ shinyServer(function(input, output) {
     inFile <- input$fn_input
 
     #
-    if(is.null(inFile)) {
+    if (is.null(inFile)) {
       return()
     }
 
@@ -124,9 +124,9 @@ shinyServer(function(input, output) {
     df_data <- df_import()
 
   }##expression~END
-  , filter="top"
+  , filter = "top"
   , caption = "Table. Uploaded data."
-  , options=list(scrollX=TRUE
+  , options = list(scrollX=TRUE
                  , lengthMenu = c(5, 10, 25, 50, 100, 1000)
                  , autoWidth = TRUE
                  )
@@ -704,7 +704,7 @@ shinyServer(function(input, output) {
       #
       # Save as Excel
       df_metnames <- readxl::read_excel(system.file("extdata/MetricNames.xlsx"
-                                                    , package="BioMonTools")
+                                                    , package = "BioMonTools")
                                         , guess_max = 10^6
                                         , sheet = "MetricMetadata"
                                         , skip = 4)
