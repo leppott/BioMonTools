@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-10-20 14:03:55.65295
+    #> Last Update: 2023-10-24 13:42:49.775616
 
 # Version History
+
+## Changes in version 1.0.0.9039 (2023-10-24)
+
+- feature: Add taxaid_dni parameter to metric.values, Issue \#96
 
 ## Changes in version 1.0.0.9038 (2023-10-20)
 

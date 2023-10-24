@@ -13,7 +13,8 @@ metric.values(
   boo.marine = FALSE,
   boo.Shiny = FALSE,
   verbose = FALSE,
-  metric_subset = NULL
+  metric_subset = NULL,
+  taxaid_dni = NULL
 )
 }
 \arguments{
@@ -41,6 +42,10 @@ Default = FALSE.}
 \item{verbose}{Include messages to track progress.  Default = FALSE}
 
 \item{metric_subset}{Subset of metrics to be generated.  Internal function.
+Default = NULL}
+
+\item{taxaid_dni}{Taxa names to be included in DNI (Do Not Include) metrics
+(n = 3) but dropped for all other metrics.  Only for benthic metrics.
 Default = NULL}
 }
 \value{
@@ -185,6 +190,9 @@ calculation.
 The parameter boo.Shiny can be set to TRUE when accessing this function in
 Shiny. Normally the QC check for required fields is interactive.  Setting
 boo.Shiny to TRUE will always continue.  The default is FALSE.
+
+The parameter 'taxaid_dni' denotes taxa to be included in Do Not Include
+(DNI) metrics but dropped from all other metrics.  Only for benthic metrics.
 
 Breaking change from 0.5 to 0.6 with change from Index_Name to Index_Class.
 }

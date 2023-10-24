@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9039 (2023-10-24)
+
+* feature: Add taxaid_dni parameter to metric.values, Issue #96
+
 ## Changes in version 1.0.0.9038 (2023-10-20)
 
 * refactor: Modify output of `taxa_translate` function, Issue #94

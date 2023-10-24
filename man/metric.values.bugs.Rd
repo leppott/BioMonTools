@@ -13,7 +13,8 @@ metric.values.bugs(
   boo.marine = FALSE,
   boo.Shiny,
   verbose,
-  metric_subset
+  metric_subset,
+  taxaid_dni = NULL
 )
 }
 \arguments{
@@ -40,6 +41,10 @@ Default = FALSE.}
 \item{verbose}{Include messages to track progress.  Default = FALSE}
 
 \item{metric_subset}{Subset of metrics to be generated.  Internal function.
+Default = NULL}
+
+\item{taxaid_dni}{Taxa names to be included in DNI (Do Not Include) metrics
+(n = 3) but dropped for all other metrics.  Only for benthic metrics.
 Default = NULL}
 }
 \value{

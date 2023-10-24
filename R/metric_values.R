@@ -138,6 +138,9 @@
 #' Shiny. Normally the QC check for required fields is interactive.  Setting
 #' boo.Shiny to TRUE will always continue.  The default is FALSE.
 #'
+#' The parameter 'taxaid_dni' denotes taxa to be included in Do Not Include
+#' (DNI) metrics but dropped from all other metrics.  Only for benthic metrics.
+#'
 #' Breaking change from 0.5 to 0.6 with change from Index_Name to Index_Class.
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param fun.DF Data frame of taxa (list required fields)
@@ -158,6 +161,9 @@
 #' Default = FALSE.
 #' @param verbose Include messages to track progress.  Default = FALSE
 #' @param metric_subset Subset of metrics to be generated.  Internal function.
+#' Default = NULL
+#' @param taxaid_dni Taxa names to be included in DNI (Do Not Include) metrics
+#' (n = 3) but dropped for all other metrics.  Only for benthic metrics.
 #' Default = NULL
 #'
 #' @return data frame of SampleID and metric values
@@ -471,7 +477,8 @@ metric.values <- function(fun.DF
                           , boo.marine = FALSE
                           , boo.Shiny = FALSE
                           , verbose = FALSE
-                          , metric_subset = NULL) {
+                          , metric_subset = NULL
+                          , taxaid_dni = NULL) {
   boo_debug_main <- FALSE
   boo_debug_main_num <- 0
   boo_debug_main_num_total <- 7
@@ -489,6 +496,14 @@ metric.values <- function(fun.DF
     boo.Shiny <- FALSE
     verbose <- TRUE
     metric_subset <- NULL
+    taxaid_dni <- NULL
+
+    # Create DNI sample
+    taxaid_dni <- "DNI"
+    fun.DF <- rbind(fun.DF, fun.DF[1, ])
+    fun.DF[nrow(fun.DF), "TaxaID"] <- taxaid_dni
+    tail(fun.DF)
+
   }## boo_QC
 
   # global variable bindings
@@ -688,7 +703,8 @@ metric.values <- function(fun.DF
                        , boo.marine
                        , boo.Shiny
                        , verbose
-                       , metric_subset)
+                       , metric_subset
+                       , taxaid_dni)
   } else if (fun.Community == "FISH") {
     metric.values.fish(fun.DF
                        , fun.MetricNames
@@ -729,6 +745,9 @@ metric.values <- function(fun.DF
 #' @param verbose Include messages to track progress.  Default = FALSE
 #' @param metric_subset Subset of metrics to be generated.  Internal function.
 #' Default = NULL
+#' @param taxaid_dni Taxa names to be included in DNI (Do Not Include) metrics
+#' (n = 3) but dropped for all other metrics.  Only for benthic metrics.
+#' Default = NULL
 #'
 #' @return Data frame
 #'
@@ -743,7 +762,8 @@ metric.values.bugs <- function(myDF
                                , boo.marine = FALSE
                                , boo.Shiny
                                , verbose
-                               , metric_subset) {
+                               , metric_subset
+                               , taxaid_dni = NULL) {
   #
   # QC
   boo_QC <- FALSE
@@ -756,6 +776,7 @@ metric.values.bugs <- function(myDF
     boo.Shiny <- boo.Shiny
     verbose <- verbose
     metric_subset <- NULL
+    taxaid_dni <- "DNI"  #added last entry in previous function
   }## IF ~ boo_QC
 
   time_start <- Sys.time()
@@ -1153,7 +1174,7 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
 
-  myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
+  myDF <- dplyr::filter(myDF, NONTARGET != TRUE | is.na(NONTARGET))
 
   # # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
   if (verbose == TRUE) {
@@ -1312,11 +1333,18 @@ metric.values.bugs <- function(myDF
   }## IF ~ verbose
 
   # DF for dom so same taxa get combined
-  myDF_dom <- dplyr::summarise(dplyr::group_by(myDF, INDEX_NAME, INDEX_CLASS
-                                               , SAMPLEID, TAXAID
-                                               , GENUS, ORDER, BCG_ATTR)
+  # 2023-10-24, remove taxaid_dni
+  myDF_dom <- dplyr::summarise(dplyr::group_by(myDF
+                                               , INDEX_NAME
+                                               , INDEX_CLASS
+                                               , SAMPLEID
+                                               , TAXAID
+                                               , GENUS
+                                               , ORDER
+                                               , BCG_ATTR)
                                , N_TAXA = sum(N_TAXA, na.rm = TRUE)
-                               , .groups = "drop_last")
+                               , .groups = "drop_last") %>%
+    dplyr::filter(!TAXAID %in% taxaid_dni) # doesn't work if do first
 
   df.dom01 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
                             dplyr::group_by(SAMPLEID)  %>%
@@ -1510,9 +1538,14 @@ metric.values.bugs <- function(myDF
 
   time_start2 <- Sys.time()
 
+  # Need for metrics without taxaid_dni
+  myDF.dni_F <- dplyr::filter(myDF, !TAXAID %in% taxaid_dni)
+
   if (metric_subset == "MTTI") {
     ## Metric Calc, MTTI ----
-    met.val <- dplyr::summarise(dplyr::group_by(myDF
+
+    ### met.val, DNI = FALSE----
+    met.val.dni_F <- dplyr::summarise(dplyr::group_by(myDF.dni_F
                                                 , SAMPLEID
                                                 , INDEX_NAME
                                                 , INDEX_CLASS)
@@ -1528,24 +1561,48 @@ metric.values.bugs <- function(myDF
                                 # WAopt
                                 , x_tv2_min = min(TOLVAL2, na.rm = TRUE)
                                 , x_tv2_max = max(TOLVAL2, na.rm = TRUE)
-                                , nt_dni = sum(TAXAID == "DNI", na.rm = TRUE)
-                                , pi_dni = 100 * sum(N_TAXA[TAXAID == "DNI"]
-                                                     , na.rm = TRUE) / ni_total
-                                , pt_dni = 100 * nt_dni / nt_total
 
                                 , .groups = "drop_last"
-                                )## met.val.mtti ~ END
+    )## met.val.dni_F ~ END
+
+    ### met.val, DNI = TRUE----
+    met.val.dni_T <- dplyr::summarise(dplyr::group_by(myDF
+                                                      , SAMPLEID
+                                                      , INDEX_NAME
+                                                      , INDEX_CLASS)
+                                      #
+                                      # one metric per line
+                                      #
+                                      #### totals ----
+                                      , ni_total = sum(N_TAXA, na.rm = TRUE)
+                                      , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                             & N_TAXA > 0], na.rm = TRUE)
+                                      #### DNI ----
+                                      , nt_dni = sum(TAXAID == "DNI", na.rm = TRUE)
+                                      , pi_dni = 100 * sum(N_TAXA[TAXAID == "DNI"]
+                                                           , na.rm = TRUE) / ni_total
+                                      , pt_dni = 100 * nt_dni / nt_total
+
+                                      , .groups = "drop_last"
+    )## met.val.dni_F ~ END
+
+    ### met.val, join----
+    cols2match <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
+    met_dni <- c("nt_dni", "pi_dni", "pt_dni")
+    met.val <- dplyr::left_join(met.val.dni_F
+                                , met.val.dni_T[, c(cols2match, met_dni)])
 
   } else {
     ## Metric Calc, ALL ----
-    met.val <- dplyr::summarise(dplyr::group_by(myDF
+    ### met.val, DNI = FALSE----
+    met.val.dni_F <- dplyr::summarise(dplyr::group_by(myDF.dni_F
                                                 , SAMPLEID
                                                 , INDEX_NAME
                                                 , INDEX_CLASS)
                                 #
                                 # one metric per line
                                 #
-                                ## Individuals ####
+                                ### Individuals ####
                                 , ni_total = sum(N_TAXA, na.rm = TRUE)
                                 , ni_totalNoDeca = sum(N_TAXA[is.na(ORDER) == TRUE |
                                                                 ORDER != "DECAPODA"], na.rm = TRUE)
@@ -1561,8 +1618,8 @@ metric.values.bugs <- function(myDF
                                 , ni_Ramello = sum(N_TAXA[GENUS == "RAMELLOGAMMARUS"], na.rm = TRUE)
 
 
-                                ## Phylo ####
-                                ### nt_phylo ----
+                                ### Phylo ####
+                                #### nt_phylo ----
                                 # account for "NONE" in nt_total, should be the only 0 N_TAXA
                                 , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                       & N_TAXA > 0], na.rm = TRUE)
@@ -1708,7 +1765,7 @@ metric.values.bugs <- function(myDF
                                                                , na.rm = TRUE)
                                 # ,intolMol, ,
 
-                                ### pi_phylo ####
+                                #### pi_phylo ####
                                 , pi_Ampe = NA #pi_Ampeliscidae
                                 , pi_AmpeHaust = NA
                                 , pi_Amph = 100 * sum(N_TAXA[ORDER == "AMPHIPODA"]
@@ -1896,7 +1953,7 @@ metric.values.bugs <- function(myDF
                                 #EPTsenstive in tolerance group
 
 
-                                ### pi_phylo ####
+                                #### pi_phylo ####
                                 , pt_Amph = 100 * nt_Amph / nt_total
                                 , pt_Bival = 100 * nt_Bival / nt_total
                                 , pt_Coleo = 100*nt_Coleo / nt_total
@@ -1925,7 +1982,7 @@ metric.values.bugs <- function(myDF
                                 , pt_Trich = 100 * nt_Trich / nt_total
                                 , pt_Tromb = 100 * nt_Tromb / nt_total
 
-                                ### ratio_phylo ####
+                                #### ratio_phylo ####
                                 # nt_X / log(ni_total)
                                 # X = specialty group, e.g., Bivalves
                                 # Log is natural log
@@ -1953,7 +2010,7 @@ metric.values.bugs <- function(myDF
                                 #, rt_Tubif = nt_Tubif
 
 
-                                ## Midges ####
+                                ### Midges ####
                                 # Family    = Chironomidae
                                 # subfamily = Chironominae
                                 # subfamily = Orthocladiinae
@@ -1991,7 +2048,7 @@ metric.values.bugs <- function(myDF
                                                                   | FAMILY == "CHIRONOMIDAE"]
                                                            , na.rm = TRUE) / ni_total
 
-                                ## Other misc ----
+                                ### Other misc ----
                                 # dominant
                                 , pi_dom02_BCG_att456_NoJugaRiss = 100 * max(ni_dom02_NoJugaRiss_BCG_att456) / ni_total
                                 #
@@ -2058,8 +2115,8 @@ metric.values.bugs <- function(myDF
                                 , ni_Noto = sum(N_TAXA[GENUS == "NOTOMASTUS"], na.rm = TRUE)
 
 
-                                ## Thermal Indicators ----
-                                ### nt_ti----
+                                ### Thermal Indicators ----
+                                #### nt_ti----
                                 , nt_ti_stenocold =      dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                                   & TI_STENOCOLD == TRUE]
                                                                            , na.rm = TRUE)
@@ -2103,7 +2160,7 @@ metric.values.bugs <- function(myDF
                                                                                        TI_STENOWARM == TRUE)]
                                                                            , na.rm = TRUE)
 
-                                ### pi_ti----
+                                #### pi_ti----
                                 , pi_ti_stenocold =        100 * sum(N_TAXA[TI_STENOCOLD == TRUE]
                                                                      , na.rm = TRUE) / ni_total
                                 , pi_ti_cold =             100 * sum(N_TAXA[TI_COLD == TRUE]
@@ -2136,7 +2193,7 @@ metric.values.bugs <- function(myDF
                                                                      , na.rm = TRUE) / ni_total
 
 
-                                ### pt_ti ----
+                                #### pt_ti ----
                                 , pt_ti_stenocold =           100 * nt_ti_stenocold / nt_total
                                 , pt_ti_cold =                100 * nt_ti_cold / nt_total
                                 , pt_ti_cool =                100 * nt_ti_cool / nt_total
@@ -2154,7 +2211,7 @@ metric.values.bugs <- function(myDF
                                 , ri_ti_sccc_wsw = pi_ti_stenocold_cold_cool / pi_ti_warm_stenowarm
 
 
-                                ## Tolerance ----
+                                ### Tolerance ----
                                 # 4 and 6 are WV GLIMPSS (no equal)
                                 , nt_tv_intol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                          & TOLVAL >= 0
@@ -2211,7 +2268,7 @@ metric.values.bugs <- function(myDF
                                 , pt_tv_stol = 100 * nt_tv_stol / nt_total
 
 
-                                ## Tolerance2 ####
+                                ### Tolerance2 ####
                                 ## special condition tolerance values
                                 # MBSS
                                 , pi_tv2_intol = sum(N_TAXA[TOLVAL2 <= 3
@@ -2221,8 +2278,8 @@ metric.values.bugs <- function(myDF
                                 , pi_tv2_intol_ISA_SalHi_xFL = NA
                                 , pt_tv2_intol_ISA_SalHi_xFL = NA
 
-                                ## FFG #####
-                                ### nt_ffg----
+                                ### FFG #####
+                                #### nt_ffg----
                                 , nt_ffg_col = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                         & FFG_COL == TRUE]
                                                                  , na.rm = TRUE)
@@ -2259,7 +2316,7 @@ metric.values.bugs <- function(myDF
                                                                                           FFG_SHR == TRUE)]
                                                                               , na.rm = TRUE)
 
-                                ### pi_ffg----
+                                #### pi_ffg----
                                 , pi_ffg_col = 100 * sum(N_TAXA[FFG_COL == TRUE]
                                                          , na.rm = TRUE) / ni_total
                                 , pi_ffg_filt = 100 * sum(N_TAXA[FFG_FIL == TRUE]
@@ -2284,7 +2341,7 @@ metric.values.bugs <- function(myDF
                                                                        FFG_FIL == TRUE]
                                                               , na.rm = TRUE) / ni_total
 
-                                ### pt_ffg----
+                                #### pt_ffg----
                                 , pt_ffg_col =   100 * nt_ffg_col / nt_total
                                 , pt_ffg_filt =  100 * nt_ffg_filt / nt_total
                                 , pt_ffg_pred =  100 * nt_ffg_pred / nt_total
@@ -2301,7 +2358,7 @@ metric.values.bugs <- function(myDF
                                 #, rt_ffg_pred
                                 # carnivoreomnivore, deepdeposit, suspension
 
-                                ## FFG2 ####
+                                ### FFG2 ####
                                 # marine
                                 ## nt_ffg2
                                 , nt_ffg2_intface = NA
@@ -2311,9 +2368,9 @@ metric.values.bugs <- function(myDF
                                 ## pt_ffg2
                                 # = conveyorbelt, interface, scavengerbrowser, subsurface, watercolumn, predator
 
-                                ## Habit ####
+                                ### Habit ####
                                 #(need to be wild card. that is, counts both CN,CB and CB as climber)
-                                ### nt_habit----
+                                #### nt_habit----
                                 , nt_habit_burrow = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                              & HABIT_BU == TRUE]
                                                                       , na.rm = TRUE)
@@ -2333,7 +2390,7 @@ metric.values.bugs <- function(myDF
                                                                            & HABIT_SW == TRUE]
                                                                     , na.rm = TRUE)
 
-                                ### pi_habit----
+                                #### pi_habit----
                                 , pi_habit_burrow = 100 * sum(N_TAXA[HABIT_BU == TRUE]
                                                               , na.rm = TRUE) / ni_total
                                 , pi_habit_climb = 100 * sum(N_TAXA[HABIT_CB == TRUE]
@@ -2347,7 +2404,7 @@ metric.values.bugs <- function(myDF
                                                               , na.rm = TRUE) / ni_total
                                 , pi_habit_swim = 100 * sum(N_TAXA[HABIT_SW == TRUE]
                                                             , na.rm = TRUE) / ni_total
-                                ### pt_habit----
+                                #### pt_habit----
                                 , pt_habit_burrow =     100 * nt_habit_burrow / nt_total
                                 , pt_habit_climb =      100 * nt_habit_climb / nt_total
                                 , pt_habit_climbcling = 100 * nt_habit_climbcling / nt_total
@@ -2363,9 +2420,9 @@ metric.values.bugs <- function(myDF
 
 
 
-                                ## Life Cycle ####
+                                ### Life Cycle ####
                                 # pi and nt for mltvol, semvol, univol
-                                ### nt_LifeCycle----
+                                #### nt_LifeCycle----
                                 , nt_volt_multi = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                            & LC_MULTI == TRUE]
                                                                     , na.rm = TRUE)
@@ -2375,20 +2432,20 @@ metric.values.bugs <- function(myDF
                                 , nt_volt_uni = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                          & LC_UNI == TRUE]
                                                                   , na.rm = TRUE)
-                                ### pi_LifeCycle----
+                                #### pi_LifeCycle----
                                 , pi_volt_multi = 100 * sum(N_TAXA[LC_MULTI == TRUE]
                                                             , na.rm = TRUE) / ni_total
                                 , pi_volt_semi = 100 * sum(N_TAXA[LC_SEMI == TRUE]
                                                            , na.rm = TRUE) / ni_total
                                 , pi_volt_uni = 100 * sum(N_TAXA[LC_UNI == TRUE]
                                                           , na.rm = TRUE) / ni_total
-                                ### pt_LifeCycle----
+                                #### pt_LifeCycle----
                                 , pt_volt_multi = 100 * nt_volt_multi / nt_total
                                 , pt_volt_semi = 100 * nt_volt_semi / nt_total
                                 , pt_volt_uni = 100 * nt_volt_uni / nt_total
 
 
-                                ## Dominant N ####
+                                ### Dominant N ####
                                 ## uses previously defined values added to myDF
                                 , pi_dom01 = 100 * max(N_TAXA, na.rm = TRUE) / ni_total
                                 , pi_dom02 = 100 * max(ni_dom02, na.rm = TRUE) / ni_total
@@ -2405,7 +2462,7 @@ metric.values.bugs <- function(myDF
                                 #https://stackoverflow.com/questions/27766054/getting-the-top-values-by-group
                                 # top_n uses ties so can't use it
 
-                                ## Indices ####
+                                ### Indices ####
                                 #, x_AMBI - may need extra function or like "top" functions do some precalc
                                 #,x_Becks.CLASS1=n_distinct(N_TAXA[EXCLUDE!=TRUE & TolVal>=0 & TolVal<=2.5])
                                 #,x_Becks.CLASS2=n_distinct(N_TAXA[EXCLUDE!=TRUE & TolVal>=2.5 & TolVal<=4])
@@ -2461,14 +2518,14 @@ metric.values.bugs <- function(myDF
                                 , x_Evenness = x_Shan_e/log(nt_total)
                                 # evenness - different from Pielou in MS Coastal Metric Calc 2011 db
 
-                                ## Density ####
+                                ### Density ####
                                 # Numbers per area sampled
 
-                                ## Estuary-Marine ####
+                                ### Estuary-Marine ####
                                 # Mixed in with other metrics
                                 , x_Becks_tv2 = NA
 
-                                ## Habitat ####
+                                ### Habitat ####
                                 # BCG PacNW group 2020
                                 # BRAC brackish
                                 # DEPO depositional
@@ -2479,7 +2536,7 @@ metric.values.bugs <- function(myDF
                                 # SPEC specialist
                                 # UNKN unknown
                                 #
-                                ### nt_habitat----
+                                #### nt_habitat----
                                 , nt_habitat_brac = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                              & HABITAT_BRAC == TRUE]
                                                                       , na.rm = TRUE)
@@ -2504,7 +2561,7 @@ metric.values.bugs <- function(myDF
                                 , nt_habitat_unkn = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                              & HABITAT_UNKN == TRUE]
                                                                       , na.rm = TRUE)
-                                ### pi_habitat----
+                                #### pi_habitat----
                                 , pi_habitat_brac = 100 * sum(N_TAXA[HABITAT_BRAC == TRUE]
                                                               , na.rm = TRUE) / ni_total
                                 , pi_habitat_depo = 100 * sum(N_TAXA[HABITAT_DEPO == TRUE]
@@ -2522,7 +2579,7 @@ metric.values.bugs <- function(myDF
                                                               , na.rm = TRUE) / ni_total
                                 , pi_habitat_unkn = 100 * sum(N_TAXA[HABITAT_UNKN == TRUE]
                                                               , na.rm = TRUE) / ni_total
-                                ### pt_habitat----
+                                #### pt_habitat----
                                 , pt_habitat_brac = 100 * nt_habitat_brac / nt_total
                                 , pt_habitat_depo = 100 * nt_habitat_depo / nt_total
                                 , pt_habitat_gene = 100 * nt_habitat_gene / nt_total
@@ -2532,13 +2589,13 @@ metric.values.bugs <- function(myDF
                                 , pt_habitat_spec = 100 * nt_habitat_spec / nt_total
                                 , pt_habitat_unkn = 100 * nt_habitat_unkn / nt_total
 
-                                ## BCG ####
+                                ### BCG ####
                                 # 1i, 1m, 1t
                                 # Xi, Xm, Xt
                                 # 5i, 5m, 5t
                                 # 6i, 6m, 6t
                                 # toupper(), 2022-02-22
-                                ### BCG_nt----
+                                #### BCG_nt----
                                 , nt_BCG_att1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                          & BCG_ATTR == "1"]
                                                                   , na.rm = TRUE)
@@ -2690,7 +2747,7 @@ metric.values.bugs <- function(myDF
                                                                                     | BCG_ATTR == "2")]
                                                                           , na.rm = TRUE)
 
-                                ### BCG_pi----
+                                #### BCG_pi----
                                 , pi_BCG_att1 = 100 * sum(N_TAXA[(BCG_ATTR == "1")]
                                                           , na.rm = TRUE) / ni_total
                                 , pi_BCG_att1i = 100 * sum(N_TAXA[(BCG_ATTR == "1I")]
@@ -2774,7 +2831,7 @@ metric.values.bugs <- function(myDF
                                                            sum(N_TAXA[BCG_ATTR == "5"]
                                                                , na.rm = TRUE)) / ni_total
 
-                                ### BCG_pi_Phylo----
+                                #### BCG_pi_Phylo----
                                 , pi_EPT_BCG_att123 = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
                                                                         | ORDER == "TRICHOPTERA"
                                                                         | ORDER == "PLECOPTERA")
@@ -2790,7 +2847,7 @@ metric.values.bugs <- function(myDF
                                                                            | BCG_ATTR == "3")]
                                                                  , na.rm = TRUE) / ni_total
 
-                                ### BCG_pt----
+                                #### BCG_pt----
                                 , pt_BCG_att1 =    100 * nt_BCG_att1 / nt_total
                                 , pt_BCG_att1i =   100 * nt_BCG_att1i / nt_total
                                 , pt_BCG_att1m =   100 * nt_BCG_att1m / nt_total
@@ -2821,12 +2878,12 @@ metric.values.bugs <- function(myDF
                                 , pt_BCG_att1i234b = 100 * nt_BCG_att1i234b / nt_total
                                 , pt_BCG_att4w5 = 100 * nt_BCG_att4w5 / nt_total
 
-                                ### BCG_special ----
+                                #### BCG_special ----
                                 # BCG_pt_Phylo
                                 , pt_EPT_BCG_att123 =  100 * nt_EPT_BCG_att123 / nt_total
                                 , pt_EPT_BCG_att1i23 = 100 * nt_EPT_BCG_att1i23 / nt_total
 
-                                ### BCG_pi_dom ----
+                                #### BCG_pi_dom ----
                                 , pi_dom01_BCG_att4 = 100 * max(ni_dom01_BCG_att4, na.rm = TRUE) / ni_total
                                 , pi_dom01_BCG_att5 = 100 * max(ni_dom01_BCG_att5, na.rm = TRUE) / ni_total
 
@@ -2834,13 +2891,13 @@ metric.values.bugs <- function(myDF
                                 # pi_dom01_att 4, 5, 56
                                 # pi_dom05_att 123, not 456
 
-                                ## UFC ----
+                                ### UFC ----
                                 #Taxonomic Uncertainty Frequency Class (use HBI calculation)
                                 , x_UFC = sum(N_TAXA * UFC, na.rm = TRUE) / sum(N_TAXA[!is.na(UFC)
                                                                                        & UFC >= 1
                                                                                        & UFC <= 6]
                                                                                 , na.rm = TRUE)
-                                ## Elevation ----
+                                ### Elevation ----
                                 , nt_elev_low = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                          & ELEVATION_LOW == TRUE]
                                                                   , na.rm = TRUE)
@@ -2848,7 +2905,7 @@ metric.values.bugs <- function(myDF
                                                                           & ELEVATION_HIGH == TRUE]
                                                                    , na.rm = TRUE)
 
-                                ## Gradient ----
+                                ### Gradient ----
                                 , nt_grad_low = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                          & GRADIENT_LOW == TRUE]
                                                                   , na.rm = TRUE)
@@ -2859,7 +2916,7 @@ metric.values.bugs <- function(myDF
                                                                           & GRADIENT_HIGH == TRUE]
                                                                    , na.rm = TRUE)
 
-                                ## WS_Area ----
+                                ### WS_Area ----
                                 , nt_wsarea_small = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                              & WSAREA_S == TRUE]
                                                                       , na.rm = TRUE)
@@ -2873,8 +2930,8 @@ metric.values.bugs <- function(myDF
                                                                               & WSAREA_XL == TRUE]
                                                                        , na.rm = TRUE)
 
-                                ## Habitat Structure ----
-                                ### nt_habstruct----
+                                ### Habitat Structure ----
+                                #### nt_habstruct----
                                 , nt_habstruct_coarsesub = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                                     & HS_CS == TRUE]
                                                                              , na.rm = TRUE)
@@ -2890,7 +2947,7 @@ metric.values.bugs <- function(myDF
                                 , nt_habstruct_NA = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                              &  is.na(HABSTRUCT)]
                                                                       , na.rm = TRUE)
-                                ### pi_habstruct----
+                                #### pi_habstruct----
                                 , pi_habstruct_coarsesub = 100 * sum(N_TAXA[HS_CS == TRUE]
                                                                      , na.rm = TRUE) / ni_total
                                 , pi_habstruct_noflow = 100 * sum(N_TAXA[HS_NF == TRUE]
@@ -2901,7 +2958,7 @@ metric.values.bugs <- function(myDF
                                                                 , na.rm = TRUE) / ni_total
                                 , pi_habstruct_NA = 100 * sum(N_TAXA[(is.na(HABSTRUCT) == TRUE)]
                                                               , na.rm = TRUE) / ni_total
-                                ### pt_habstruct----
+                                #### pt_habstruct----
                                 , pt_habstruct_coarsesub = 100 * nt_habstruct_coarsesub / nt_total
                                 , pt_habstruct_noflow = 100 * nt_habstruct_noflow / nt_total
                                 , pt_habstruct_rootmat = 100 * nt_habstruct_rootmat / nt_total
@@ -2910,8 +2967,8 @@ metric.values.bugs <- function(myDF
                                 ### nval_habstruct
                                 , nval_habstruct = sum(HS_CS + HS_NF + HS_RM + HS_SG, na.rm = TRUE)
 
-                                ## Number Group within Group ----
-                                ### nfam_Order----
+                                ### Number Group within Group ----
+                                #### nfam_Order----
                                 , nfam_Coleo = dplyr::n_distinct(FAMILY[ORDER == "COLEOPTERA"]
                                                                  , na.rm = TRUE)
                                 , nfam_Ephem = dplyr::n_distinct(FAMILY[ORDER == "EPHEMEROPTERA"]
@@ -2921,7 +2978,7 @@ metric.values.bugs <- function(myDF
                                 , nfam_Trich = dplyr::n_distinct(FAMILY[ORDER == "TRICHOPTERA"]
                                                                  , na.rm = TRUE)
 
-                                ### ngen_Order----
+                                #### ngen_Order----
                                 , ngen_Coleo = dplyr::n_distinct(GENUS[ORDER == "COLEOPTERA"]
                                                                  , na.rm = TRUE)
                                 , ngen_Ephem = dplyr::n_distinct(GENUS[ORDER == "EPHEMEROPTERA"]
@@ -2930,11 +2987,11 @@ metric.values.bugs <- function(myDF
                                                                  , na.rm = TRUE)
                                 , ngen_Trich = dplyr::n_distinct(GENUS[ORDER == "TRICHOPTERA"]
                                                                  , na.rm = TRUE)
-                                ### ngen_Family----
+                                #### ngen_Family----
                                 , ngen_Elmid = dplyr::n_distinct(GENUS[FAMILY == "ELMIDAE"]
                                                                  , na.rm = TRUE)
 
-                                ## SPECIAL ####
+                                ### SPECIAL ####
                                 # oddball or specialized metrics
                                 # , ni_NonIns = sum(N_TAXA[CLASS==NA | CLASS!="INSECTA"], na.rm = TRUE)
                                 # , ni_NonArach = sum(N_TAXA[CLASS==NA | CLASS!="ARACHNIDA"], na.rm = TRUE)
@@ -3034,26 +3091,41 @@ metric.values.bugs <- function(myDF
                                 , pi_airbreath = 100 * sum(N_TAXA[AIRBREATHER == TRUE]
                                                            , na.rm = TRUE) / ni_total
                                 , pt_airbreath = 100 * nt_airbreath / nt_total
-                                # MTTI
-                                , nt_dni = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                    & TAXAID == "DNI"]
-                                                             , na.rm = TRUE)
-                                , pi_dni = 100 * sum(N_TAXA[TAXAID == "DNI"]
-                                                     , na.rm = TRUE) / ni_total
-                                , pt_dni = 100 * nt_dni / nt_total
-
-
 
                                 #
-                                , .groups = "drop_last")## met.val.END
+                                , .groups = "drop_last")## met.val.dni_F
+
+
+    ##met.val, DNI = TRUE----
+    met.val.dni_T <- dplyr::summarise(dplyr::group_by(myDF
+                                                      , SAMPLEID
+                                                      , INDEX_NAME
+                                                      , INDEX_CLASS)
+                                      #
+                                      # one metric per line
+                                      #
+                                      ### totals----
+                                      , ni_total = sum(N_TAXA, na.rm = TRUE)
+                                      , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                            & N_TAXA > 0], na.rm = TRUE)
+
+                                      ### DNI----
+                                      , nt_dni = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                          & TAXAID == "DNI"]
+                                                                   , na.rm = TRUE)
+                                      , pi_dni = 100 * sum(N_TAXA[TAXAID == "DNI"]
+                                                           , na.rm = TRUE) / ni_total
+                                      , pt_dni = 100 * nt_dni / nt_total
+                                      , .groups = "drop_last")## met.val.dni_T
+
+    ## met.val, join----
+    cols2match <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
+    met_dni <- c("nt_dni", "pi_dni", "pt_dni")
+    met.val <- dplyr::left_join(met.val.dni_F
+                                , met.val.dni_T[, c(cols2match, met_dni)])
 
 
   }## IF ~ metric_subset
-
-
-
-
-
 
 
   time_end2 <- Sys.time()
