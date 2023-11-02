@@ -1757,6 +1757,10 @@ metric.values.bugs <- function(myDF
                                 , nt_Trich = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                       & ORDER == "TRICHOPTERA"]
                                                                , na.rm = TRUE)
+                                , nt_TrichNoHydro = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                                & ORDER == "TRICHOPTERA"
+                                                                             & FAMILY != "HYDROPSYCHIDAE"]
+                                                                         , na.rm = TRUE)
                                 , nt_Tromb = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                       & ORDER == "TROMBIDIFORMES"]
                                                                , na.rm = TRUE)
@@ -1980,6 +1984,7 @@ metric.values.bugs <- function(myDF
                                 , pt_PolyNoSpion = 100 * nt_PolyNoSpion / nt_total
                                 , pt_Spion = 100 * nt_Spion / nt_total
                                 , pt_Trich = 100 * nt_Trich / nt_total
+                                , pt_TrichNoHydro = 100 * nt_TrichNoHydro / nt_total
                                 , pt_Tromb = 100 * nt_Tromb / nt_total
 
                                 #### ratio_phylo ####
