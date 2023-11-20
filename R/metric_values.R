@@ -3624,7 +3624,7 @@ metric.values.fish <- function(myDF
                                                                        (TYPE != "MOSQUITOFISH" | is.na(TYPE)) &
                                                                        (GENUS != "LEPOMIS" | is.na(GENUS))], na.rm = TRUE)
                        #
-                       # ## Percent Individuals ####
+                        ## Percent Individuals ####
                        , pi_AmmEthPerc = 100 * sum(N_TAXA[GENUS == "AMMOCRYPTA"
                                                           | GENUS == "ETHEOSTOMA"
                                                           | GENUS == "PERCINA"], na.rm = TRUE) / ni_total
@@ -3653,6 +3653,7 @@ metric.values.fish <- function(myDF
                        , pi_trout = 100 * sum(N_TAXA["TROUT" %in% TYPE], na.rm = TRUE) / ni_total
                        , pi_connect = 100 * sum(N_TAXA[CONNECTIVITY == TRUE], na.rm = TRUE) / ni_total
                        , pi_scc = 100 * sum(N_TAXA[SCC == TRUE], na.rm = TRUE) / ni_total
+                       , pi_brooktrout2trout = 100 * sum(N_TAXA[TYPE == "BROOK TROUT"], na.rm = TRUE) / sum(N_TAXA["TROUT" %in% TYPE], na.rm = TRUE)
 
                        # benthic fluvial specialist
                        , pi_bfs = 100 * sum(N_TAXA[(TYPE == "BENTHIC" & TROPHIC_IV == TRUE) |
@@ -3814,6 +3815,8 @@ metric.values.fish <- function(myDF
                        ## BCG ####
 
                   ### BCG, nt ----
+                 , nt_BCG_att1 = dplyr::n_distinct(TAXAID[BCG_ATTR == "1"]
+                                                    , na.rm = TRUE)
                   , nt_BCG_att12 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
                                                                   | BCG_ATTR == "2")]
                                                         , na.rm = TRUE)
@@ -3821,6 +3824,17 @@ metric.values.fish <- function(myDF
                                                                   | BCG_ATTR == "2"
                                                                   | BCG_ATTR == "3")]
                                                         , na.rm = TRUE)
+                 , nt_BCG_att1234 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                                                              | BCG_ATTR == "2"
+                                                              | BCG_ATTR == "3"
+                                                              | BCG_ATTR == "4")]
+                                                      , na.rm = TRUE)
+                 , nt_BCG_att1236 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                                                               | BCG_ATTR == "2"
+                                                               | BCG_ATTR == "3"
+                                                               | BCG_ATTR == "6")]
+                                                       , na.rm = TRUE)
+                 , nt_BCG_att1236sp = NA
                   , nt_BCG_att1236b = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
                                                                | BCG_ATTR == "2"
                                                                | BCG_ATTR == "3"
@@ -3861,6 +3875,11 @@ metric.values.fish <- function(myDF
                   , nt_BCG_att5native = dplyr::n_distinct(TAXAID[BCG_ATTR == "5"
                                                                  & NATIVE == "NATIVE"]
                                                           , na.rm = TRUE)
+
+                 , nt_BCG_att55a6a = dplyr::n_distinct(TAXAID[(BCG_ATTR == "5"
+                                                                | BCG_ATTR == "5A"
+                                                                | BCG_ATTR == "6A")]
+                                                        , na.rm = TRUE)
                   , nt_BCG_att56t = dplyr::n_distinct(TAXAID[BCG_ATTR == "5"
                                                              | BCG_ATTR == "6T"]
                                                    , na.rm = TRUE)
@@ -3883,6 +3902,17 @@ metric.values.fish <- function(myDF
                                                        | BCG_ATTR == "2"
                                                        | BCG_ATTR == "3")]
                                                , na.rm = TRUE) / ni_total
+                 , pi_BCG_att1234 = 100*sum(N_TAXA[(BCG_ATTR == "1"
+                                                     | BCG_ATTR == "2"
+                                                     | BCG_ATTR == "3"
+                                                     | BCG_ATTR == "4")]
+                                             , na.rm = TRUE) / ni_total
+                 , pi_BCG_att1236 = 100*sum(N_TAXA[(BCG_ATTR == "1"
+                                                     | BCG_ATTR == "2"
+                                                     | BCG_ATTR == "3"
+                                                     | BCG_ATTR == "6")]
+                                            , na.rm = TRUE) / ni_total
+                 , pi_BCG_att1236sp = NA
                   , pi_BCG_att1236b = 100*sum(N_TAXA[(BCG_ATTR == "1"
                                                       | BCG_ATTR == "2"
                                                       | BCG_ATTR == "3"
@@ -3923,12 +3953,21 @@ metric.values.fish <- function(myDF
                   , pi_BCG_att5native = 100 * sum(N_TAXA[BCG_ATTR == "5"
                                                          & NATIVE == "NATIVE"]
                                                   , na.rm = TRUE) / ni_total
+                  , pi_BCG_att55a6a = 100*sum(N_TAXA[(BCG_ATTR == "5"
+                                                     | BCG_ATTR == "5A"
+                                                    | BCG_ATTR == "6A")]
+                                            , na.rm = TRUE) / ni_total
                   , pi_BCG_att56a = 100*sum(N_TAXA[(BCG_ATTR == "5"
                                                        | BCG_ATTR == "6A")]
                                                , na.rm = TRUE) / ni_total
+                  , pi_BCG_att5a6a = 100*sum(N_TAXA[(BCG_ATTR == "5A"
+                                                    | BCG_ATTR == "6A")]
+                                            , na.rm = TRUE) / ni_total
                   , pi_BCG_att56t = 100*sum(N_TAXA[(BCG_ATTR == "5"
                                                    | BCG_ATTR == "6T")]
                                            , na.rm = TRUE) / ni_total
+                  , pi_BCG_att6 =  100 * sum(N_TAXA[BCG_ATTR == "6"]
+                                              , na.rm = TRUE) / ni_total
                   , pi_BCG_att6i =  100 * sum(N_TAXA[BCG_ATTR == "6I"]
                                             , na.rm = TRUE) / ni_total
                   , pi_BCG_att6m =  100 * sum(N_TAXA[BCG_ATTR == "6M"]
@@ -3948,7 +3987,10 @@ metric.values.fish <- function(myDF
                   ### BCG, pt----
                   , pt_BCG_att12 = 100 * nt_BCG_att12 / nt_total
                   , pt_BCG_att123 = 100 * nt_BCG_att123 / nt_total
+                  , pt_BCG_att1234 = 100 * nt_BCG_att1234 / nt_total
+                  , pt_BCG_att1236 = 100 * nt_BCG_att1236 / nt_total
                   , pt_BCG_att1236b = 100 * nt_BCG_att1236b / nt_total
+                  , pt_BCG_att1236sp = 100 * nt_BCG_att1236sp / nt_total
                   , pt_BCG_att12346b = 100 * nt_BCG_att12346b / nt_total
                   , pt_BCG_att1i236i = 100 * nt_BCG_att1i236i / nt_total
                   , pt_BCG_att2 = 100 * nt_BCG_att2 / nt_total
@@ -3960,6 +4002,7 @@ metric.values.fish <- function(myDF
                   , pt_BCG_att4native = 100 * nt_BCG_att4native / nt_total
                   , pt_BCG_att5 = 100 * nt_BCG_att5 / nt_total
                   , pt_BCG_att5native = 100 * nt_BCG_att5native / nt_total
+                  , pt_BCG_att55a6a = 100 * nt_BCG_att55a6 / nt_total
                   , pt_BCG_att56t = 100 * nt_BCG_att56t / nt_total
                   , pt_BCG_att6i = 100 * nt_BCG_att6i / nt_total
                   , pt_BCG_att6m = 100 * nt_BCG_att6m / nt_total
@@ -3971,10 +4014,21 @@ metric.values.fish <- function(myDF
                   , pi_dom01_BCG_att4 = 100 * max(0, max(N_TAXA[(BCG_ATTR == "4")]
                                                         , na.rm = TRUE)
                                                   , na.rm = TRUE) / ni_total
+                 , pi_dom01_BCG_att45 = 100 * max(0, max(N_TAXA[(BCG_ATTR == "4"
+                                                                   | BCG_ATTR == "5")]
+                                                           , na.rm = TRUE)
+                                                    , na.rm = TRUE) / ni_total
 
                   , pi_dom01_BCG_att5 = 100 * max(0, max(N_TAXA[(BCG_ATTR == "5")]
                                                         , na.rm = TRUE)
                                                   , na.rm = TRUE) / ni_total
+                 , pi_dom01_BCG_att5a = 100 * max(0, max(N_TAXA[(BCG_ATTR == "5A")]
+                                                        , na.rm = TRUE)
+                                                 , na.rm = TRUE) / ni_total
+                 , pi_dom01_BCG_att5a6a = 100 * max(0, max(N_TAXA[(BCG_ATTR == "5A"
+                                                                   | BCG_ATTR == "6A")]
+                                                           , na.rm = TRUE)
+                                                    , na.rm = TRUE) / ni_total
                   , pi_dom01_BCG_att566a = 100 * max(0, max(N_TAXA[(BCG_ATTR == "5"
                                                           | BCG_ATTR == "6"
                                                           | BCG_ATTR == "6A")]

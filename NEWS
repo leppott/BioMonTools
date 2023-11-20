@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-11-20 12:36:21.469646
+    #> Last Update: 2023-11-20 18:25:10.405792
 
 # Version History
+
+## Changes in version 1.0.0.9041 (2023-11-20)
+
+- feature: Add MN BCG fish metrics, Issue \#92
+  - BCG_att1236sp fish metrics (n=3) as NA until better defined
+- refactor: Update MetricNames.xlsx with new metrics, Issue \#92
 
 ## Changes in version 1.0.0.9040 (2023-11-20)
 

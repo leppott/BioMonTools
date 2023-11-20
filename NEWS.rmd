@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9041 (2023-11-20)
+
+* feature: Add MN BCG fish metrics, Issue #92
+    + BCG_att1236sp fish metrics (n=3) as NA until better defined
+* refactor: Update MetricNames.xlsx with new metrics, Issue #92
+
 ## Changes in version 1.0.0.9040 (2023-11-20)
 
 * fix: Cheumatopsyche metrics, Issue #93
