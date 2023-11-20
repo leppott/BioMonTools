@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-11-20 18:25:10.405792
+    #> Last Update: 2023-11-20 18:39:47.340434
 
 # Version History
+
+## Changes in version 1.0.0.9042 (2023-11-20)
+
+- refactor: Fix BCG_att1236sp fish metrics, pi and pt
+  - Remove nt
 
 ## Changes in version 1.0.0.9041 (2023-11-20)
 

@@ -3768,7 +3768,7 @@ metric.values.fish <- function(myDF
                        , nt_tv_intol = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT"], na.rm = TRUE)
                        , nt_tv_intolhwi = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT" |
                                                                      TOLER == "HWI"], na.rm = TRUE)
-                       , pi_tv_toler= 100*sum(N_TAXA[TOLER == "TOLERANT"], na.rm = TRUE) / ni_total
+                       , pi_tv_toler = 100 * sum(N_TAXA[TOLER == "TOLERANT"], na.rm = TRUE) / ni_total
                        #
 
 
@@ -3834,7 +3834,6 @@ metric.values.fish <- function(myDF
                                                                | BCG_ATTR == "3"
                                                                | BCG_ATTR == "6")]
                                                        , na.rm = TRUE)
-                 , nt_BCG_att1236sp = NA
                   , nt_BCG_att1236b = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
                                                                | BCG_ATTR == "2"
                                                                | BCG_ATTR == "3"
@@ -3912,7 +3911,18 @@ metric.values.fish <- function(myDF
                                                      | BCG_ATTR == "3"
                                                      | BCG_ATTR == "6")]
                                             , na.rm = TRUE) / ni_total
-                 , pi_BCG_att1236sp = NA
+                 , pi_BCG_att1236sp = 100 * sum(N_TAXA[(BCG_ATTR == "1"
+                                                      | BCG_ATTR == "2"
+                                                      | BCG_ATTR == "3"
+                                                      | BCG_ATTR == "6")]
+                                              , na.rm = TRUE) / sum(N_TAXA[(BCG_ATTR == "1"
+                                                                            | BCG_ATTR == "2"
+                                                                            | BCG_ATTR == "3"
+                                                                            | BCG_ATTR == "6"
+                                                                            | BCG_ATTR == "5"
+                                                                            | BCG_ATTR == "5A"
+                                                                            | BCG_ATTR == "6A")]
+                                                                    , na.rm = TRUE)
                   , pi_BCG_att1236b = 100*sum(N_TAXA[(BCG_ATTR == "1"
                                                       | BCG_ATTR == "2"
                                                       | BCG_ATTR == "3"
@@ -3990,7 +4000,10 @@ metric.values.fish <- function(myDF
                   , pt_BCG_att1234 = 100 * nt_BCG_att1234 / nt_total
                   , pt_BCG_att1236 = 100 * nt_BCG_att1236 / nt_total
                   , pt_BCG_att1236b = 100 * nt_BCG_att1236b / nt_total
-                  , pt_BCG_att1236sp = 100 * nt_BCG_att1236sp / nt_total
+
+                  , pt_BCG_att1236sp = 100 * nt_BCG_att1236 / (nt_BCG_att1236 +
+                                                                 nt_BCG_att55a6a)
+
                   , pt_BCG_att12346b = 100 * nt_BCG_att12346b / nt_total
                   , pt_BCG_att1i236i = 100 * nt_BCG_att1i236i / nt_total
                   , pt_BCG_att2 = 100 * nt_BCG_att2 / nt_total

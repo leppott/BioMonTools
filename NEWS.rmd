@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9042 (2023-11-20)
+
+* refactor: Fix BCG_att1236sp fish metrics, pi and pt
+    + Remove nt
+
 ## Changes in version 1.0.0.9041 (2023-11-20)
 
 * feature: Add MN BCG fish metrics, Issue #92
