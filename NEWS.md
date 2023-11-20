@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-10-24 13:42:49.775616
+    #> Last Update: 2023-11-20 12:36:21.469646
 
 # Version History
+
+## Changes in version 1.0.0.9040 (2023-11-20)
+
+- fix: Cheumatopsyche metrics, Issue \#93
+  - Search term updated; Cheumatopsyche to CHEUMATOPSYCHE
+  - Add missing equal sign
+  - Move so alphabetical in output
 
 ## Changes in version 1.0.0.9039 (2023-10-24)
 

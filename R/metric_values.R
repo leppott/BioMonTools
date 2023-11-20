@@ -1593,6 +1593,7 @@ metric.values.bugs <- function(myDF
                                 , met.val.dni_T[, c(cols2match, met_dni)])
 
   } else {
+
     ## Metric Calc, ALL ----
     ### met.val, DNI = FALSE----
     met.val.dni_F <- dplyr::summarise(dplyr::group_by(myDF.dni_F
@@ -1782,6 +1783,8 @@ metric.values.bugs <- function(myDF
                                                       , na.rm = TRUE) / ni_total
                                 , pi_Capit = 100 * sum(N_TAXA[FAMILY == "CAPITELLIDAE"]
                                                        , na.rm = TRUE) / ni_total
+                                , pi_Cheu =  100 * sum(N_TAXA[GENUS == "CHEUMATOPSYCHE"]
+                                                       , na.rm = TRUE) / ni_total
                                 , pi_Cirra = 100 * sum(N_TAXA[FAMILY == "CIRRATULIDAE"]
                                                        , na.rm = TRUE) / ni_total
                                 , pi_Clite = 100 * sum(N_TAXA[CLASS == "CLITELLATA"]
@@ -1807,8 +1810,6 @@ metric.values.bugs <- function(myDF
                                 , pi_CruMol = 100 * sum(N_TAXA[PHYLUM == "MOLLUSCA"
                                                                | SUBPHYLUM == "CRUSTACEA"]
                                                         , na.rm = TRUE) / ni_total
-                                , pi_Cheu =  100 * sum(N_TAXA[GENUS = "Cheumatopsyche"]
-                                                       , na.rm = TRUE) / ni_total
                                 , pi_Deca = 100 * sum(N_TAXA[ORDER == "DECAPODA"]
                                                       , na.rm = TRUE) / ni_total
                                 , pi_Dipt = 100 * sum(N_TAXA[ORDER == "DIPTERA"]
@@ -1849,7 +1850,7 @@ metric.values.bugs <- function(myDF
                                                                   | ORDER == "TRICHOPTERA"
                                                                   | ORDER == "PLECOPTERA"
                                                                   & (is.na(GENUS) == TRUE
-                                                                     | GENUS != "Cheumatopsyche")]
+                                                                     | GENUS != "CHEUMATOPSYCHE")]
                                                            , na.rm = TRUE) / ni_total
                                 , pi_EPTNoHydro = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA")
                                                                    | (ORDER == "TRICHOPTERA"
