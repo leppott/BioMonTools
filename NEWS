@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-10-24 13:42:49.775616
+    #> Last Update: 2023-11-27 12:32:39.283821
 
 # Version History
+
+## Changes in version 1.0.0.9041 (2023-11-27)
+
+- refactor: Update metrics for NM BCG
+
+## Changes in version 1.0.0.9040 (2023-11-02)
+
+- refactor: Update metrics for NM BCG
 
 ## Changes in version 1.0.0.9039 (2023-10-24)
 

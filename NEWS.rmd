@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9041 (2023-11-27)
+
+* refactor: Update metrics for NM BCG
+
 ## Changes in version 1.0.0.9040 (2023-11-02)
 
 * refactor: Update metrics for NM BCG

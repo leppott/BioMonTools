@@ -3096,6 +3096,11 @@ metric.values.bugs <- function(myDF
                                 , pi_airbreath = 100 * sum(N_TAXA[AIRBREATHER == TRUE]
                                                            , na.rm = TRUE) / ni_total
                                 , pt_airbreath = 100 * nt_airbreath / nt_total
+                                , ni_total_300 = 100 * (ni_total / 300)
+                                , nt_Mol_nonatt6 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                            & PHYLUM == "MOLLUSCA"
+                                                                            & BCG_ATTR != "6"]
+                                                                     , na.rm = TRUE)
 
                                 #
                                 , .groups = "drop_last")## met.val.dni_F
