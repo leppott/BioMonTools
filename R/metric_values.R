@@ -3417,6 +3417,7 @@ metric.values.fish <- function(myDF
   myDF[, "TROPHIC_TC"] <- grepl("TC", myDF[, "TROPHIC"]) # Top Carnivore
   myDF[, "TROPHIC_DE"] <- grepl("DE", myDF[, "TROPHIC"]) # Detritivore
   myDF[, "TROPHIC_PL"] <- grepl("PL", myDF[, "TROPHIC"]) # Planktivore
+  myDF[, "TROPHIC_PI"] <- grepl("PI", myDF[, "TROPHIC"]) # Piscivore
   myDF[, "TI_CORECOLD"] <- grepl("COREC", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_COLD"]     <- grepl("COLD", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_COOL"]     <- grepl("COOL", myDF[,"THERMAL_INDICATOR"])
@@ -3744,6 +3745,7 @@ metric.values.fish <- function(myDF
                        , nt_omnivore = dplyr::n_distinct(TAXAID[TROPHIC_OM == TRUE], na.rm = TRUE)
                        , nt_planktivore = dplyr::n_distinct(TAXAID[TROPHIC_PL == TRUE], na.rm = TRUE)
                        , nt_topcarn = dplyr::n_distinct(TAXAID[TROPHIC_TC == TRUE], na.rm = TRUE)
+                       , nt_piscivore = dplyr::n_distinct(TAXAID[TROPHIC_PI == TRUE], na.rm = TRUE)
 
                        ### Trophic, pi----
                         # % Lithophilic spawners
@@ -3892,6 +3894,11 @@ metric.values.fish <- function(myDF
                                                        | BCG_ATTR == "2"
                                                        | BCG_ATTR == "3")]
                                                , na.rm = TRUE) / ni_total
+                 , pi_BCG_att1234 = 100 * sum(N_TAXA[(BCG_ATTR == "1"
+                                                      | BCG_ATTR == "2"
+                                                      | BCG_ATTR == "3"
+                                                      | BCG_ATTR == "4")]
+                                              , na.rm = TRUE) / ni_total
                   , pi_BCG_att1236b = 100*sum(N_TAXA[(BCG_ATTR == "1"
                                                       | BCG_ATTR == "2"
                                                       | BCG_ATTR == "3"
@@ -3951,6 +3958,16 @@ metric.values.fish <- function(myDF
                                                     | BCG_ATTR == "6A"
                                                     | BCG_ATTR == "6B")]
                                             , na.rm = TRUE) / ni_total
+                  , pi_BCG_nonatt6 = 100 * sum(N_TAXA[(BCG_ATTR != "6"
+                                                       & BCG_ATTR != "6A"
+                                                       & BCG_ATTR != "6B"
+                                                       & BCG_ATTR != "6I"
+                                                       & BCG_ATTR != "6M"
+                                                       & BCG_ATTR != "6S"
+                                                       & BCG_ATTR != "6s"
+                                                       & BCG_ATTR != "6T"
+                                                       & BCG_ATTR != "6t")]
+                                              , na.rm = TRUE) / ni_total
                   , pi_BCG_attNA = 100 * sum(N_TAXA[is.na(BCG_ATTR)]
                                         , na.rm = TRUE) / ni_total
 
@@ -4098,6 +4115,31 @@ metric.values.fish <- function(myDF
                   ## pt_habitat
                   , pt_habitat_b = 100 * nt_habitat_b / nt_total
                   , pt_habitat_w = 100 * nt_habitat_w / nt_total
+
+                 ## SPECIAL ####
+                 # New Mexico Fish BCG
+                  , nt_piscivore_BCG_nonatt6 = dplyr::n_distinct(TAXAID[TROPHIC_PI == TRUE
+                                                                       & BCG_ATTR != "6"
+                                                                       & BCG_ATTR != "6A"
+                                                                       & BCG_ATTR != "6B"
+                                                                       & BCG_ATTR != "6I"
+                                                                       & BCG_ATTR != "6M"
+                                                                       & BCG_ATTR != "6S"
+                                                                       & BCG_ATTR != "6s"
+                                                                       & BCG_ATTR != "6T"
+                                                                       & BCG_ATTR != "6t"]
+                                                                , na.rm = TRUE)
+                 , nt_LLNLB = dplyr::n_distinct(TAXAID[TYPE == "LLNLB"], na.rm = TRUE)
+                 , nt_Cyprin_BCG_att1234 = dplyr::n_distinct(TAXAID[FAMILY == "CYPRINIDAE"
+                                                        & (BCG_ATTR == "1"
+                                                           |BCG_ATTR == "2"
+                                                           |BCG_ATTR == "3"
+                                                           |BCG_ATTR == "4")]
+                                                 , na.rm = TRUE)
+                 , ni_Hybognathus_amarus = sum(N_TAXA[TAXAID == "Hybognathus amarus"]
+                                               , na.rm = TRUE)
+                 , x_TrophicCats = dplyr::n_distinct(TROPHIC, na.rm = TRUE)
+
 
                        #
                        # name changes ####

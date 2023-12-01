@@ -17,6 +17,9 @@ cat(paste0("Last Update: ",Sys.time()))
 ```
 
 # Version History
+## Changes in version 1.0.0.9042 (2023-12-01)
+
+* refactor: Update metrics for NM BCG (fish)
 
 ## Changes in version 1.0.0.9041 (2023-11-27)
 
