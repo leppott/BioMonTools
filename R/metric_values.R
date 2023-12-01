@@ -4136,7 +4136,7 @@ metric.values.fish <- function(myDF
                                                            |BCG_ATTR == "3"
                                                            |BCG_ATTR == "4")]
                                                  , na.rm = TRUE)
-                 , ni_Hybognathus_amarus = sum(N_TAXA[TAXAID == "Hybognathus amarus"]
+                 , ni_Hybognathus_amarus = sum(N_TAXA[TAXAID == "HYBOGNATHUS AMARUS"]
                                                , na.rm = TRUE)
                  , x_TrophicCats = dplyr::n_distinct(TROPHIC, na.rm = TRUE)
 
