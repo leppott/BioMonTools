@@ -3375,12 +3375,22 @@ metric.values.fish <- function(myDF
                       , myPrompt.05, sep = "\n")
     #user.input <- readline(prompt=myPrompt)
     user.input <- NA
-    user.input <- utils::menu(c("YES", "NO"), title = myPrompt)
+
+    if (interactive() == TRUE & boo.Shiny == FALSE) {
+      user.input <- utils::menu(c("YES", "NO"), title = myPrompt)
+    } else {
+      message(myPrompt)
+      message("boo.Shiny == TRUE and interactive == FALSE
+              so prompt skipped and value set to '1'.")
+      user.input <- 1
+    }## IF ~ interactive and boo.Shiny
+
     # any answer other than "YES" will stop the function.
     if (user.input != 1) {##IF.user.input.START
       stop(paste("The user chose *not* to continue due to missing fields: "
                  , paste(paste0("   ", col.req.missing), collapse = "\n"), sep = "\n"))
     }##IF.user.input.END
+
     # Add missing fields
     myDF[, col.req.missing] <- NA
     warning(paste("Metrics related to the following fields are invalid:"

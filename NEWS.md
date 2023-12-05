@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-12-05 16:17:49.767425
+    #> Last Update: 2023-12-05 16:57:21.197142
 
 # Version History
+
+## Changes in version 1.0.0.9046 (2023-12-05)
+
+- fix: metric.values boo.shiny code updated to match bugs and algae
 
 ## Changes in version 1.0.0.9045 (2023-12-05)
 
