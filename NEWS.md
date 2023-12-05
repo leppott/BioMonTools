@@ -4,9 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-11-20 18:39:47.340434
+    #> Last Update: 2023-12-05 14:12:10.397641
 
 # Version History
+
+## Changes in version 1.0.0.9044 (2023-11-21)
+
+- fix: Update metric, nt_BCG_att55a6, Issue \#92
+  - add ‘na.rm = TRUE’
+
+## Changes in version 1.0.0.9043 (2023-11-21)
+
+- fix: Add missing metric, nt_BCG_att55a6, Issue \#92
 
 ## Changes in version 1.0.0.9042 (2023-11-20)
 

@@ -18,6 +18,15 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9044 (2023-11-21)
+
+* fix: Update metric, nt_BCG_att55a6, Issue #92
+    + add 'na.rm = TRUE'
+
+## Changes in version 1.0.0.9043 (2023-11-21)
+
+* fix: Add missing metric, nt_BCG_att55a6, Issue #92
+
 ## Changes in version 1.0.0.9042 (2023-11-20)
 
 * refactor: Fix BCG_att1236sp fish metrics, pi and pt

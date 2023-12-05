@@ -3874,7 +3874,10 @@ metric.values.fish <- function(myDF
                   , nt_BCG_att5native = dplyr::n_distinct(TAXAID[BCG_ATTR == "5"
                                                                  & NATIVE == "NATIVE"]
                                                           , na.rm = TRUE)
-
+                 , nt_BCG_att55a6 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "5"
+                                                               | BCG_ATTR == "5A"
+                                                               | BCG_ATTR == "6")]
+                                                             , na.rm = TRUE)
                  , nt_BCG_att55a6a = dplyr::n_distinct(TAXAID[(BCG_ATTR == "5"
                                                                 | BCG_ATTR == "5A"
                                                                 | BCG_ATTR == "6A")]
