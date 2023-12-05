@@ -695,30 +695,31 @@ metric.values <- function(fun.DF
   # Subfunctions ----
   # Run subfunction based on community
   if (fun.Community == "BUGS") {##IF.START
-    metric.values.bugs(fun.DF
-                       , fun.MetricNames
-                       , boo.Adjust
-                       , fun.cols2keep
-                       , NA
-                       , boo.marine
-                       , boo.Shiny
-                       , verbose
-                       , metric_subset
-                       , taxaid_dni)
+    metric.values.bugs(myDF = fun.DF
+                       , MetricNames = fun.MetricNames
+                       , boo.Adjust = boo.Adjust
+                       , cols2keep = fun.cols2keep
+                       , MetricSort = NA
+                       , boo.marine = boo.marine
+                       , boo.Shiny = boo.Shiny
+                       , verbose = verbose
+                       , metric_subset = metric_subset
+                       , taxaid_dni = taxaid_dni)
   } else if (fun.Community == "FISH") {
-    metric.values.fish(fun.DF
-                       , fun.MetricNames
-                       , boo.Adjust
-                       , fun.cols2keep
-                       , boo.Shiny
-                       , verbose)
+    metric.values.fish(myDF = fun.DF
+                       , MetricNames = fun.MetricNames
+                       , boo.Adjust = boo.Adjust
+                       , cols2keep = fun.cols2keep
+                       , boo.Shiny = boo.Shiny
+                       , verbose = verbose)
   } else if (fun.Community == "ALGAE") {
-    metric.values.algae(fun.DF
-                        , fun.MetricNames
-                        , boo.Adjust
-                        , fun.cols2keep
-                        , boo.Shiny
-                        , verbose)
+    metric.values.algae(myDF = fun.DF
+                        , MetricNames = fun.MetricNames
+                        , boo.Adjust = boo.Adjust
+                        , cols2keep = fun.cols2keep
+                        , MetricSort = NA
+                        , boo.Shiny = boo.Shiny
+                        , verbose = verbose)
   }##IF.END
 }##FUNCTION.metric.values.START
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

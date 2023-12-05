@@ -4,11 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-12-05 14:12:10.397641
+    #> Last Update: 2023-12-05 16:17:49.767425
 
 # Version History
 
-## Changes in version 1.0.0.9044 (2023-11-21)
+## Changes in version 1.0.0.9045 (2023-12-05)
+
+- refactor: metric.values specify parameters for subfunctions
+
+## Changes in version 1.0.0.9044 (2023-12-05)
 
 - fix: Update metric, nt_BCG_att55a6, Issue \#92
   - add ‘na.rm = TRUE’

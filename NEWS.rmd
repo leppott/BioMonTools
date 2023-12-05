@@ -18,7 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
-## Changes in version 1.0.0.9044 (2023-11-21)
+## Changes in version 1.0.0.9045 (2023-12-05)
+
+* refactor: metric.values specify parameters for subfunctions
+
+## Changes in version 1.0.0.9044 (2023-12-05)
 
 * fix: Update metric, nt_BCG_att55a6, Issue #92
     + add 'na.rm = TRUE'
