@@ -3662,9 +3662,14 @@ metric.values.fish <- function(myDF
                        , pi_Lepomis = 100 * sum(N_TAXA[GENUS == "LEPOMIS"], na.rm = TRUE) / ni_total
                        , pi_Salm = 100 * sum(N_TAXA[FAMILY == "SALMONIDAE"], na.rm = TRUE) / ni_total
                        , pi_trout = 100 * sum(N_TAXA["TROUT" %in% TYPE], na.rm = TRUE) / ni_total
+                       , pi_brooktrout_BCG_att6 = 100 * (sum(N_TAXA[TYPE == "BROOK TROUT"], na.rm = TRUE) +
+                                                           sum(N_TAXA[BCG_ATTR == "6"], na.rm = TRUE)) / ni_total
                        , pi_connect = 100 * sum(N_TAXA[CONNECTIVITY == TRUE], na.rm = TRUE) / ni_total
                        , pi_scc = 100 * sum(N_TAXA[SCC == TRUE], na.rm = TRUE) / ni_total
-                       , pi_brooktrout2trout = 100 * sum(N_TAXA[TYPE == "BROOK TROUT"], na.rm = TRUE) / sum(N_TAXA["TROUT" %in% TYPE], na.rm = TRUE)
+                       , pi_brooktrout2brooktrout_BCG_att6 = 100 *
+                          sum(N_TAXA[TYPE == "BROOK TROUT"], na.rm = TRUE) /
+                            (sum(N_TAXA[TYPE == "BROOK TROUT"], na.rm = TRUE) +
+                               sum(N_TAXA[BCG_ATTR == "6"], na.rm = TRUE))
 
                        # benthic fluvial specialist
                        , pi_bfs = 100 * sum(N_TAXA[(TYPE == "BENTHIC" & TROPHIC_IV == TRUE) |

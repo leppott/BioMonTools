@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9049 (2023-12-06)
+
+* refactor: Change names of trout metrics in `metric.values`
+    + Better reflects contents of metrics
+
 ## Changes in version 1.0.0.9048 (2023-12-06)
 
 * refactor: Add pi_trout to `metric.values`

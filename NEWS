@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-12-06 14:47:57.306577
+    #> Last Update: 2023-12-06 16:51:31.255291
 
 # Version History
+
+## Changes in version 1.0.0.9049 (2023-12-06)
+
+- refactor: Change names of trout metrics in `metric.values`
+  - Better reflects contents of metrics
 
 ## Changes in version 1.0.0.9048 (2023-12-06)
 
