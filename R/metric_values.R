@@ -3750,19 +3750,20 @@ metric.values.fish <- function(myDF
 
                        ### Trophic, pi----
                         # % Lithophilic spawners
-                       , pi_lithophil = 100*sum(N_TAXA[SILT == TRUE], na.rm = TRUE) / ni_total
+                       , pi_lithophil = 100 * sum(N_TAXA[SILT == TRUE], na.rm = TRUE) / ni_total
                        , pi_detritivore = 100 * sum(N_TAXA[TROPHIC_DE == TRUE], na.rm = TRUE) / ni_total
                        # % gen, omn, invert
-                       , pi_genomninvrt = 100*sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_OM == TRUE | TROPHIC_IV == TRUE], na.rm = TRUE) / ni_total
+                       , pi_genomninvrt = 100 * sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_OM == TRUE | TROPHIC_IV == TRUE], na.rm = TRUE) / ni_total
                        , pi_herbivore = 100 * sum(N_TAXA[TROPHIC_HB == TRUE], na.rm = TRUE) / ni_total
-                       , pi_insectivore = 100*sum(N_TAXA[TROPHIC_IS == TRUE], na.rm = TRUE) / ni_total
-                       , pi_insctCypr = 100*sum(N_TAXA[TROPHIC_IS == TRUE &
+                       , pi_insectivore = 100 * sum(N_TAXA[TROPHIC_IS == TRUE], na.rm = TRUE) / ni_total
+                       , pi_insctCypr = 100 * sum(N_TAXA[TROPHIC_IS == TRUE &
                                                          FAMILY == "CYPRINIDAE"], na.rm = TRUE) / ni_total
                        , pi_gen = 100*sum(N_TAXA[TROPHIC_GE == TRUE], na.rm = TRUE) / ni_total
                        , pi_genherb = 100*sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_HB == TRUE], na.rm = TRUE) / ni_total
                        , pi_omnivore = 100 * sum(N_TAXA[TROPHIC_OM == TRUE], na.rm = TRUE) / ni_total
                        , pi_planktivore = 100 * sum(N_TAXA[TROPHIC_PL == TRUE], na.rm = TRUE) / ni_total
-                       , pi_topcarn = 100*sum(N_TAXA[TROPHIC_TC == TRUE], na.rm = TRUE) / ni_total
+                       , pi_topcarn = 100 * sum(N_TAXA[TROPHIC_TC == TRUE], na.rm = TRUE) / ni_total
+                       , pi_trout = 100 * sum(N_TAXA["TROUT" %in% TYPE], na.rm = TRUE) / ni_total
                        , pi_pisc_noae = 100 * sum(N_TAXA[TYPE == "PISCIVORE"
                                                          & (TAXAID != "ANGUILLA ROSTRATA"
                                                             | is.na(TAXAID))], na.rm = TRUE) / ni_total
@@ -3850,6 +3851,12 @@ metric.values.fish <- function(myDF
                                                                | BCG_ATTR == "3"
                                                                | BCG_ATTR == "6B")]
                                                        , na.rm = TRUE)
+                 , nt_BCG_att12346 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                                                              | BCG_ATTR == "2"
+                                                              | BCG_ATTR == "3"
+                                                              | BCG_ATTR == "4"
+                                                              | BCG_ATTR == "6")]
+                                                      , na.rm = TRUE)
                   , nt_BCG_att12346b = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
                                                                 | BCG_ATTR == "2"
                                                                 | BCG_ATTR == "3"

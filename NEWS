@@ -4,9 +4,22 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-12-05 16:57:21.197142
+    #> Last Update: 2023-12-06 14:47:57.306577
 
 # Version History
+
+## Changes in version 1.0.0.9048 (2023-12-06)
+
+- refactor: Add pi_trout to `metric.values`
+
+## Changes in version 1.0.0.9047 (2023-12-06)
+
+- refactor: Update MetricNames.xlsx to match function, fish metrics
+- refactor: Update `metric.values` to match MetricNames.xlsx, fish
+  metrics
+  - Added “nt_BCG_att12346”
+  - Left “nt_BCG_att1236sp” to be added later as unsure of definition
+- tests: Update taxa_translate test for file name change
 
 ## Changes in version 1.0.0.9046 (2023-12-05)
 

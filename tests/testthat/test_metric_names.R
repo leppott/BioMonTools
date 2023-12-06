@@ -476,7 +476,7 @@ testthat::test_that("metric.values, xlNames, description", {
   # Description, NA
   num_NA_comm <- sum(is.na(df_metnam_xlNames$Community))
 
-  ## test, NA, COMMENTS ----
+  ### test, NA, COMMENTS ----
   testthat::expect_equal(num_NA_comm, 0)
 
 })## Test ~ metval, xlNames, NA ~ END
