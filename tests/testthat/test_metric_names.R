@@ -297,7 +297,7 @@ testthat::test_that("metric.values, names, fish, Function, xlScoring", {
   metnam_xlScoring <- unique(df_metnam_xlScoring[df_metnam_xlScoring[
     , "Community"] == "fish", "METRIC_NAME", drop = TRUE])
 
-  # Benthic Data
+  # Fish Data
   df_fish <- BioMonTools::data_fish_MBSS
   #df_benthos$SUBCLASS <- NA
 

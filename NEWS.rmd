@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9050 (2023-12-06)
+
+* refactor: Update MetricNames.xlsx with recent name changes
+
 ## Changes in version 1.0.0.9049 (2023-12-06)
 
 * refactor: Change names of trout metrics in `metric.values`
