@@ -480,8 +480,8 @@ metric.values <- function(fun.DF
                           , metric_subset = NULL
                           , taxaid_dni = NULL) {
   boo_debug_main <- FALSE
-  boo_debug_main_num <- 0
-  boo_debug_main_num_total <- 7
+  debug_main_num <- 0
+  debug_main_num_total <- 7
   boo_QC <- FALSE
 
   # QC
@@ -513,14 +513,14 @@ metric.values <- function(fun.DF
   `%>%` <- dplyr::`%>%`
   # Munge ####
   if (verbose == TRUE) {
-    boo_debug_topic <- "munge"
-    boo_debug_main_num <- boo_debug_main_num + 1
+    debug_topic <- "munge"
+    debug_main_num <- debug_main_num + 1
     msg <- paste0("debug_metval_main, "
-                  , boo_debug_main_num
+                  , debug_main_num
                   , "/"
-                  , boo_debug_main_num_total
+                  , debug_main_num_total
                   , ", "
-                  , boo_debug_topic)
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
   # Data Munging (common to all data types)
@@ -546,14 +546,14 @@ metric.values <- function(fun.DF
   # QC, missing cols ----
   # bare minimum, applies to all communities
   if (verbose == TRUE) {
-    boo_debug_topic <- "QC missing cols"
-    boo_debug_main_num <- boo_debug_main_num + 1
+    debug_topic <- "QC missing cols"
+    debug_main_num <- debug_main_num + 1
     msg <- paste0("debug_metval_main, "
-                  , boo_debug_main_num
+                  , debug_main_num
                   , "/"
-                  , boo_debug_main_num_total
+                  , debug_main_num_total
                   , ", "
-                  , boo_debug_topic)
+                  , debug_topic)
     message(msg)
   }## IF ~ boo_debug_main
   #QC, Add required fields for this part of the code
@@ -598,14 +598,14 @@ metric.values <- function(fun.DF
 
     # Add missing fields
     if (verbose == TRUE) {
-      boo_debug_topic <- "add missing fields"
-      boo_debug_main_num <- boo_debug_main_num + 1
+      debug_topic <- "add missing fields"
+      debug_main_num <- debug_main_num + 1
       msg <- paste0("debug_metval_main, "
-                    , boo_debug_main_num
+                    , debug_main_num
                     , "/"
-                    , boo_debug_main_num_total
+                    , debug_main_num_total
                     , ", "
-                    , boo_debug_topic)
+                    , debug_topic)
       message(msg)
     }## IF ~ verbose
     ## Add missing, Index_Name
@@ -633,14 +633,14 @@ metric.values <- function(fun.DF
 
   # message col names
   if (verbose == TRUE) {
-    boo_debug_topic <- "colnames:"
-    boo_debug_main_num <- boo_debug_main_num + 1
+    debug_topic <- "colnames:"
+    debug_main_num <- debug_main_num + 1
     msg <- paste0("debug_metval_main, "
-                  , boo_debug_main_num
+                  , debug_main_num
                   , "/"
-                  , boo_debug_main_num_total
+                  , debug_main_num_total
                   , ", "
-                  , boo_debug_topic)
+                  , debug_topic)
     msg <- paste(msg
                  , paste("    ", names(fun.DF), collapse = "\n")
                  , sep = "\n")
@@ -649,14 +649,14 @@ metric.values <- function(fun.DF
 
   # Remove Count = 0 taxa unless TaxaID = NONE
   if (verbose == TRUE) {
-    boo_debug_topic <- "remove count 0"
-    boo_debug_main_num <- boo_debug_main_num + 1
+    debug_topic <- "remove count 0"
+    debug_main_num <- debug_main_num + 1
     msg <- paste0("debug_metval_main, "
-                  , boo_debug_main_num
+                  , debug_main_num
                   , "/"
-                  , boo_debug_main_num_total
+                  , debug_main_num_total
                   , ", "
-                  , boo_debug_topic)
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
   #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
@@ -665,14 +665,14 @@ metric.values <- function(fun.DF
   #
   # SiteType to upper case
   if (verbose == TRUE) {
-    boo_debug_topic <- "sitetype toupper"
-    boo_debug_main_num <- boo_debug_main_num + 1
+    debug_topic <- "sitetype toupper"
+    debug_main_num <- debug_main_num + 1
     msg <- paste0("debug_metval_main, "
-                  , boo_debug_main_num
+                  , debug_main_num
                   , "/"
-                  , boo_debug_main_num_total
+                  , debug_main_num_total
                   , ", "
-                  , boo_debug_topic)
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
  # fun.DF[,"INDEX_CLASS"] <- toupper(fun.DF[,"INDEX_CLASS"])
@@ -681,14 +681,14 @@ metric.values <- function(fun.DF
 
   # run the proper sub function
   if (verbose == TRUE) {
-    boo_debug_topic <- "start subfunctions"
-    boo_debug_main_num <- boo_debug_main_num + 1
+    debug_topic <- "start subfunctions"
+    debug_main_num <- debug_main_num + 1
     msg <- paste0("debug_metval_main, "
-                  , boo_debug_main_num
+                  , debug_main_num
                   , "/"
-                  , boo_debug_main_num_total
+                  , debug_main_num_total
                   , ", "
-                  , boo_debug_topic)
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
 
@@ -785,9 +785,10 @@ metric.values.bugs <- function(myDF
   # not carrying over from previous?!
   names(myDF) <- toupper(names(myDF))
 
+  debug_sub_community <- "BUGS"
   boo_debug_bugs <- FALSE
-  boo_debug_bugs_num <- 0
-  boo_debug_bugs_num_total <- 18
+  debug_sub_num <- 0
+  debug_sub_num_total <- 18
 
   # global variable bindings ----
   INDEX_NAME <- INDEX_CLASS <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
@@ -847,14 +848,16 @@ metric.values.bugs <- function(myDF
   # QC----
   ## QC, missing cols ----
   if (verbose == TRUE) {
-    boo_debug_topic <- "QC, missing cols"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                , boo_debug_bugs_num
+    debug_topic <- "QC, missing cols"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                , debug_sub_num
                 , "/"
-                , boo_debug_bugs_num_total
+                , debug_sub_num_total
                 , ", "
-                , boo_debug_topic)
+                , debug_topic)
     message(msg)
   }## IF ~ verbose
 
@@ -954,14 +957,16 @@ metric.values.bugs <- function(myDF
 
   # message col names
   if (verbose == TRUE) {
-    boo_debug_topic <- "colnames"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "colnames"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     msg <- paste(msg
                  , paste("    ", names(myDF), collapse = "\n")
                  , sep = "\n")
@@ -971,14 +976,16 @@ metric.values.bugs <- function(myDF
   ## QC, Exclude----
   # ensure TRUE/FALSE
   if (verbose == TRUE) {
-    boo_debug_topic <- "QC, cols, values, Exclude"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "QC, cols, values, Exclude"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
     myCol <- "EXCLUDE"
     col_TF <- myCol %in% names(myDF)
@@ -993,14 +1000,16 @@ metric.values.bugs <- function(myDF
   ## QC, NonTarget----
   # ensure as TRUE/FALSE
   if (verbose == TRUE) {
-    boo_debug_topic <- "QC, cols, values, NonTarget"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "QC, cols, values, NonTarget"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
     myCol <- "NONTARGET"
     col_TF <- myCol %in% names(myDF)
@@ -1016,14 +1025,16 @@ metric.values.bugs <- function(myDF
   ## QC, TolVal----
   # need as numeric, if have "NA" as character it fails
   if (verbose == TRUE) {
-    boo_debug_topic <- "QC, cols, numeric, TolVal"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "QC, cols, numeric, TolVal"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
     myCol <- "TOLVAL"
     col_TF <- myCol %in% names(myDF)
@@ -1044,14 +1055,16 @@ metric.values.bugs <- function(myDF
   ## QC, TolVal2----
   # need as numeric, if have "NA" as character it fails
   if (verbose == TRUE) {
-    boo_debug_topic <- "QC, cols, numeric, TolVal2"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "QC, cols, numeric, TolVal2"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
     myCol <- "TOLVAL2"
     col_TF <- myCol %in% names(myDF)
@@ -1069,14 +1082,16 @@ metric.values.bugs <- function(myDF
   ## QC, UFC----
   # need as numeric, if have "NA" as character it fails
   if (verbose == TRUE) {
-    boo_debug_topic <- "QC, cols, numeric, UFC"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "QC, cols, numeric, UFC"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
     myCol <- "UFC"
     col_TF <- myCol %in% names(myDF)
@@ -1094,14 +1109,16 @@ metric.values.bugs <- function(myDF
   ## QC, BCG_Attr ----
   # need as character, if complex all values fail
   if (verbose == TRUE) {
-    boo_debug_topic <- "QC, cols, complex, BCG_Attr"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "QC, cols, complex, BCG_Attr"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
     myCol <- "BCG_ATTR"
     col_TF <- myCol %in% names(myDF)
@@ -1146,28 +1163,32 @@ metric.values.bugs <- function(myDF
 
   # Data Munging ####
   if (verbose == TRUE) {
-    boo_debug_topic <- "Munging"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "Munging"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
 
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
   if (verbose == TRUE) {
-    boo_debug_topic <- "Munging, NonTarget"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "Munging, NonTarget"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
     myCol <- "NONTARGET"
     col_TF <- myCol %in% names(myDF)
@@ -1179,14 +1200,16 @@ metric.values.bugs <- function(myDF
 
   # # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
   if (verbose == TRUE) {
-    boo_debug_topic <- "Munging, text cols, toupper"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "Munging, text cols, toupper"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
 
@@ -1211,14 +1234,16 @@ metric.values.bugs <- function(myDF
   # each will be TRUE or FALSE
   # finds any match so "CN, CB" is both "CN" and "CB"
   if (verbose == TRUE) {
-    boo_debug_topic <- "Munging, TF"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "Munging, TF"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
 
@@ -1322,14 +1347,16 @@ metric.values.bugs <- function(myDF
   # Create Dominant N ####
   # Create df for Top N (without ties)
   if (verbose == TRUE) {
-    boo_debug_topic <- "Munging, Dom"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "Munging, Dom"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
 
@@ -1526,14 +1553,16 @@ metric.values.bugs <- function(myDF
 
   # Metric Calc -----
   if (verbose == TRUE) {
-    boo_debug_topic <- "metric calc"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "Calc, metrics"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
 
@@ -3137,14 +3166,16 @@ metric.values.bugs <- function(myDF
   #
   # Clean Up ####
   if (verbose == TRUE) {
-    boo_debug_topic <- "clean up"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "clean up"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
   # replace NA with 0
@@ -3215,14 +3246,16 @@ metric.values.bugs <- function(myDF
   ## Subset ----
   # # subset to only metrics specified by user
   if (verbose == TRUE) {
-    boo_debug_topic <- "subset"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "subset"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
   if (is.null(MetricNames)) {
@@ -3239,14 +3272,16 @@ metric.values.bugs <- function(myDF
 
   # Add extra fields
   if (verbose == TRUE) {
-    boo_debug_topic <- "extra fields"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "extra fields"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
   if (is.null(cols2keep)) {##IF.is.null.cols2keep.START
@@ -3266,14 +3301,16 @@ metric.values.bugs <- function(myDF
 
   # df to report back
   if (verbose == TRUE) {
-    boo_debug_topic <- "return result"
-    boo_debug_bugs_num <- boo_debug_bugs_num + 1
-    msg <- paste0("debug_metval_bugs, "
-                  , boo_debug_bugs_num
-                  , "/"
-                  , boo_debug_bugs_num_total
+    debug_topic <- "return result"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
                   , ", "
-                  , boo_debug_topic)
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
     message(msg)
   }## IF ~ verbose
   return(df.return)
@@ -3302,11 +3339,19 @@ metric.values.bugs <- function(myDF
 #'
 #' @export
 metric.values.fish <- function(myDF
-                               , MetricNames=NULL
-                               , boo.Adjust=FALSE
-                               , cols2keep=NULL
+                               , MetricNames  =NULL
+                               , boo.Adjust = FALSE
+                               , cols2keep = NULL
                                , boo.Shiny
                                , verbose) {
+
+  # not carrying over from previous?!
+  names(myDF) <- toupper(names(myDF))
+
+  boo_debug_sub_community <- "FISH"
+  boo_debug_sub <- FALSE
+  debug_sub_num <- 0
+  debug_sub_num_total <- 10
 
   # global variable bindings ----
   SAMPLEID <- INDEX_NAME <- INDEX_CLASS <- TAXAID <- N_TAXA <- NATIVE <-
@@ -3338,10 +3383,27 @@ metric.values.fish <- function(myDF
 
   # define pipe
   `%>%` <- dplyr::`%>%`
+
   # QC ####
+
   # Remove Non-Target Taxa
   #myDF <- myDF[myDF[,"NonTarget"]==0,] # not relevant for fish
+
   ## QC, missing cols ----
+  if (verbose == TRUE) {
+    debug_topic <- "QC, required cols"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , boo_debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # QC, Required Fields
   # col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS"
   #                        , "PHYLUM", "SUBPHYLUM", "CLASS"
@@ -3398,6 +3460,21 @@ metric.values.fish <- function(myDF
   }##IF.num.col.req.missing.END
 
   # Data Munging ----
+
+  if (verbose == TRUE) {
+    debug_topic <- "Munge, values to upper"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , boo_debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # Column Values to UPPER case for met.val below
   col2upper <- c("TAXAID" ,"FAMILY", "GENUS", "TYPE", "TOLER", "NATIVE"
                  , "TROPHIC", "THERMAL_INDICATOR", "ELEVATION_ATTR"
@@ -3408,6 +3485,21 @@ metric.values.fish <- function(myDF
   }##FOR~i~END
 
   # Add extra columns for some fields
+
+  if (verbose == TRUE) {
+    debug_topic <- "Munge, TF"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , boo_debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # (need unique values for functions in summarise)
   # each will be TRUE or FALSE
   # finds any match so "GE, IV" is both "GE" and "IV"
@@ -3444,6 +3536,20 @@ metric.values.fish <- function(myDF
   myDF[, "WSAREA_XL"]      <- "XLARGE" == myDF[, "WSAREA_ATTR"]
 
   # Create Dominant N ####
+
+  if (verbose == TRUE) {
+    debug_topic <- "Munge, Dom"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , boo_debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
 
   # DF for dom so same taxa get combined
   myDF_dom <- dplyr::summarise(dplyr::group_by(myDF, INDEX_NAME, INDEX_CLASS
@@ -3583,8 +3689,23 @@ metric.values.fish <- function(myDF
   rm(df.dom10.sum)
 
   # N_Anomalies ----
+
+  if (verbose == TRUE) {
+    debug_topic <- "Munge, anomalies"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , boo_debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # By taxon or sample total
-  # Data set up to have anomlaies by taxon.
+  # Data set up to have anomalies by taxon.
   # But some report as sample total.
   # This routine redistributes values proportionally to all taxa
   #  *IF* all are the same value
@@ -3609,6 +3730,22 @@ metric.values.fish <- function(myDF
                                                         , "SUM_ANOMALIES"]
 
   # Metric Calc ####
+
+  if (verbose == TRUE) {
+    debug_topic <- "Calc, metrics"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , boo_debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+
   # code above is different than benthos
   # Calculate Metrics (could have used pipe, %>%)
   met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME
@@ -4209,6 +4346,21 @@ metric.values.fish <- function(myDF
                        # , PTOL      = pi_tv_toler
                        #
         )## met.val.END
+
+  if (verbose == TRUE) {
+    debug_topic <- "clean up"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , boo_debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   #
   # replace NA with 0
   met.val[is.na(met.val)] <- 0
@@ -4226,6 +4378,21 @@ metric.values.fish <- function(myDF
   # met.val <- met.val[,-match(myFlds_Remove,names(met.val))]
 
   # # subset to only metrics specified by user
+
+  if (verbose == TRUE) {
+    debug_topic <- "subset"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , boo_debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   if (is.null(MetricNames)) {
     #met.val <- met.val
   } else {
@@ -4235,6 +4402,21 @@ metric.values.fish <- function(myDF
   }##IF~MetricNames~END
 
   # Add extra fields
+
+  if (verbose == TRUE) {
+    debug_topic <- "extra fields"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , boo_debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   if (is.null(cols2keep)) {##IF.is.null.cols2keep.START
     df.return <- as.data.frame(met.val)
   } else {
@@ -4281,6 +4463,21 @@ metric.values.fish <- function(myDF
   # #}##IF.boo.Ajust.END
   #
   # df to report back
+
+  if (verbose == TRUE) {
+    debug_topic <- "return results"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , boo_debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   return(df.return)
 }##FUNCTION.metric.values.fish.END
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-12-06 17:09:56.10596
+    #> Last Update: 2023-12-08 08:23:58.707544
 
 # Version History
+
+## Changes in version 1.0.0.9051 (2023-12-07)
+
+- refactor: Modify verbose statements in `metric.values`
+  - Change terminology in code so more generic
+  - Add verbose statements to fish sub function
 
 ## Changes in version 1.0.0.9050 (2023-12-06)
 
