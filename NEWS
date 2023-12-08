@@ -4,16 +4,21 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-12-08 10:47:26.185718
+    #> Last Update: 2023-12-08 12:38:53.736647
 
 # Version History
 
-## Changes in version 1.0.0.9052 (2023-12-07)
+## Changes in version 1.0.0.9053 (2023-12-08)
+
+- refactor: More edits to `metric.values` fish calc for error in Red
+  Lakes Shiny app
+
+## Changes in version 1.0.0.9052 (2023-12-08)
 
 - refactor: Edit `metric.values` fish calc for error in Red Lakes Shiny
   app
 
-## Changes in version 1.0.0.9051 (2023-12-07)
+## Changes in version 1.0.0.9051 (2023-12-08)
 
 - refactor: Modify verbose statements in `metric.values`
   - Change terminology in code so more generic

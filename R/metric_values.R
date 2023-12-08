@@ -3508,6 +3508,10 @@ metric.values.fish <- function(myDF
   # (need unique values for functions in summarise)
   # each will be TRUE or FALSE
   # finds any match so "GE, IV" is both "GE" and "IV"
+
+  if (!"TROPHIC" %in% names(myDF)) {
+    myDF[, "TROPHIC"] <- NA
+  }## IF ~ TROPHIC
   myDF[, "TROPHIC_GE"] <- grepl("GE", myDF[, "TROPHIC"]) # Generalist
   myDF[, "TROPHIC_HB"] <- grepl("HB", myDF[, "TROPHIC"]) # Herbivore
   myDF[, "TROPHIC_IS"] <- grepl("IS", myDF[, "TROPHIC"]) # Insectivore
@@ -3516,25 +3520,50 @@ metric.values.fish <- function(myDF
   myDF[, "TROPHIC_TC"] <- grepl("TC", myDF[, "TROPHIC"]) # Top Carnivore
   myDF[, "TROPHIC_DE"] <- grepl("DE", myDF[, "TROPHIC"]) # Detritivore
   myDF[, "TROPHIC_PL"] <- grepl("PL", myDF[, "TROPHIC"]) # Planktivore
+
+  if (!"THERMAL_INDICATOR" %in% names(myDF)) {
+    myDF[, "THERMAL_INDICATOR"] <- NA
+  }## IF ~ THERMAL_INDICATOR
   myDF[, "TI_CORECOLD"] <- grepl("COREC", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_COLD"]     <- grepl("COLD", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_COOL"]     <- grepl("COOL", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_WARM"]     <- grepl("WARM", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_EURY"]     <- grepl("EURYTHERMAL", myDF[,"THERMAL_INDICATOR"])
+
+  if (!"REPRODUCTION" %in% names(myDF)) {
+    myDF[, "REPRODUCTION"] <- NA
+  }## IF ~ REPRODUCTION
   myDF[, "REPRO_BCAST"]     <- grepl("BROADCASTER", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_NS"]     <- grepl("SIMPLE NEST", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_NC"]     <- grepl("COMPLEX NEST", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_BEAR"]     <- grepl("BEARER", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_MIG"]     <- grepl("MIGRATORY", myDF[,"REPRODUCTION"])
+
+  if (!"HABITAT" %in% names(myDF)) {
+    myDF[, "HABITAT"] <- NA
+  }## IF ~ HABITAT
   myDF[, "HABITAT_B"]     <- grepl("B", myDF[,"HABITAT"])
   myDF[, "HABITAT_W"]     <- grepl("W", myDF[,"HABITAT"])
+
   # exact matches only
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])
+
+  if (!"ELEVATION_ATTR" %in% names(myDF)) {
+    myDF[, "ELEVATION_ATTR"] <- NA
+  }## IF ~ ELEVATION_ATTR
   myDF[, "ELEVATION_LOW"]  <- "LOW" == myDF[, "ELEVATION_ATTR"]
   myDF[, "ELEVATION_HIGH"] <- "HIGH" == myDF[, "ELEVATION_ATTR"]
+
+  if (!"GRADIENT_ATTR" %in% names(myDF)) {
+    myDF[, "GRADIENT_ATTR"] <- NA
+  }## IF ~ GRADIENT_ATTR
   myDF[, "GRADIENT_LOW"]   <- "LOW" == myDF[, "GRADIENT_ATTR"]
   myDF[, "GRADIENT_MOD"]   <- "MOD" == myDF[, "GRADIENT_ATTR"]
   myDF[, "GRADIENT_HIGH"]  <- "HIGH" == myDF[, "GRADIENT_ATTR"]
+
+  if (!"WSAREA_ATTR" %in% names(myDF)) {
+    myDF[, "WSAREA_ATTR"] <- NA
+  }## IF ~ WSAREA_ATTR
   myDF[, "WSAREA_S"]       <- "SMALL" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_M"]       <- "MEDIUM" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_L"]       <- "LARGE" == myDF[, "WSAREA_ATTR"]
