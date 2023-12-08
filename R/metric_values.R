@@ -3427,7 +3427,7 @@ metric.values.fish <- function(myDF
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
   # Trigger prompt if any missing fields (and session is interactive)
-  if (num.col.req.missing != 0 & interactive() == TRUE) {##IF.num.col.req.missing.START
+  if (num.col.req.missing != 0) {##IF.num.col.req.missing.START
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
     myPrompt.02 <- paste(col.req.missing, collapse = ", ")
     myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
@@ -3488,10 +3488,11 @@ metric.values.fish <- function(myDF
     }## IF ~ i %in%
   }##FOR ~ i col2upper
 
+
   # Add extra columns for some fields
 
   if (verbose == TRUE) {
-    # 3
+    # 4
     debug_topic <- "Munge, TF"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
@@ -3739,6 +3740,10 @@ metric.values.fish <- function(myDF
                   , debug_topic)
     message(msg)
   }## IF ~ verbose
+
+  # Munge N_Anomalies, NA to 0
+  myDF[, "N_ANOMALIES"] <- as.numeric(myDF[, "N_ANOMALIES"])
+  myDF[is.na(myDF[, "N_ANOMALIES"]), "N_ANOMALIES"] <- 0
 
   # By taxon or sample total
   # Data set up to have anomalies by taxon.

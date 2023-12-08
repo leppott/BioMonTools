@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-12-08 12:38:53.736647
+    #> Last Update: 2023-12-08 13:31:08.498101
 
 # Version History
+
+## Changes in version 1.0.0.9054 (2023-12-08)
+
+- refactor: Edits to `metric.values` fish calc for error in Red Lakes
+  Shiny app
+  - N_ANOMALIES NA to 0
+  - Change “interactive” part of require column check
 
 ## Changes in version 1.0.0.9053 (2023-12-08)
 
