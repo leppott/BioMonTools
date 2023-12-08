@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9052 (2023-12-07)
+
+* refactor: Edit `metric.values` fish calc for error in Red Lakes Shiny app
+
 ## Changes in version 1.0.0.9051 (2023-12-07)
 
 * refactor: Modify verbose statements in `metric.values`

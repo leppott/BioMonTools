@@ -3391,6 +3391,7 @@ metric.values.fish <- function(myDF
 
   ## QC, missing cols ----
   if (verbose == TRUE) {
+    # 1
     debug_topic <- "QC, required cols"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
@@ -3462,6 +3463,7 @@ metric.values.fish <- function(myDF
   # Data Munging ----
 
   if (verbose == TRUE) {
+    # 2
     debug_topic <- "Munge, values to upper"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
@@ -3481,12 +3483,15 @@ metric.values.fish <- function(myDF
                  , "GRADIENT_ATTR", "WSAREA_ATTR", "REPRODUCTION", "HABITAT"
                  , "CONNECTIVITY", "SCC", "BCG_ATTR")
   for (i in col2upper) {
-    myDF[, i] <- toupper(myDF[, i])
-  }##FOR~i~END
+    if (i %in% names(myDF)) {
+      myDF[, i] <- toupper(myDF[, i])
+    }## IF ~ i %in%
+  }##FOR ~ i col2upper
 
   # Add extra columns for some fields
 
   if (verbose == TRUE) {
+    # 3
     debug_topic <- "Munge, TF"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
@@ -3538,6 +3543,7 @@ metric.values.fish <- function(myDF
   # Create Dominant N ####
 
   if (verbose == TRUE) {
+    # 4
     debug_topic <- "Munge, Dom"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
@@ -3691,6 +3697,7 @@ metric.values.fish <- function(myDF
   # N_Anomalies ----
 
   if (verbose == TRUE) {
+    # 5
     debug_topic <- "Munge, anomalies"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
@@ -3732,6 +3739,7 @@ metric.values.fish <- function(myDF
   # Metric Calc ####
 
   if (verbose == TRUE) {
+    # 6
     debug_topic <- "Calc, metrics"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
@@ -4348,6 +4356,7 @@ metric.values.fish <- function(myDF
         )## met.val.END
 
   if (verbose == TRUE) {
+    # 7
     debug_topic <- "clean up"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
@@ -4380,6 +4389,7 @@ metric.values.fish <- function(myDF
   # # subset to only metrics specified by user
 
   if (verbose == TRUE) {
+    # 8
     debug_topic <- "subset"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
@@ -4404,6 +4414,7 @@ metric.values.fish <- function(myDF
   # Add extra fields
 
   if (verbose == TRUE) {
+    # 9
     debug_topic <- "extra fields"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
@@ -4465,6 +4476,7 @@ metric.values.fish <- function(myDF
   # df to report back
 
   if (verbose == TRUE) {
+    # 10
     debug_topic <- "return results"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
