@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9055 (2023-12-08)
+
+* refactor: Remove interactive TRUE from algae in `metric.values`
+    + Same issue with the fish but being proactive
+    + Not included on bugs
 
 ## Changes in version 1.0.0.9054 (2023-12-08)
 

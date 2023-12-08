@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-12-08 13:31:08.498101
+    #> Last Update: 2023-12-08 13:51:19.882553
 
 # Version History
+
+## Changes in version 1.0.0.9055 (2023-12-08)
+
+- refactor: Remove interactive TRUE from algae in `metric.values`
+  - Same issue with the fish but being proactive
+  - Not included on bugs
 
 ## Changes in version 1.0.0.9054 (2023-12-08)
 

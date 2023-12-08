@@ -4622,7 +4622,7 @@ metric.values.algae <- function(myDF
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
   # Trigger prompt if any missing fields (and session is interactive)
-  if (num.col.req.missing != 0 & interactive() == TRUE) {##IF.num.col.req.missing.START
+  if (num.col.req.missing != 0) {##IF.num.col.req.missing.START
     myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
     myPrompt.02 <- paste(col.req.missing, collapse = ", ")
     myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
