@@ -18,7 +18,7 @@
 #' @title Fish data, MBSS
 #'
 #' @description A dataset with example fish taxa data for metric calculation.
-#' @format{ A data frame with 1694 observations on the following 27 variables.
+#' @format{ A data frame with 1694 observations on the following 28 variables.
 #' \describe{
 #'   \item{\code{SAMPLEID}}{a character vector}
 #'   \item{\code{TAXAID}}{a character vector}
@@ -33,11 +33,12 @@
 #'   \item{\code{SAMP_WIDTH_M}}{a numeric vector}
 #'   \item{\code{SAMP_BIOMASS}}{a numeric vector}
 #'   \item{\code{INDEX_NAME}}{a character vector}
+#'   \item{\code{EXCLUDE}}{a logical vector}
+#'   \item{\code{BCG_ATTR}}{a character vector}#'
 #'   \item{\code{DA_MI2}}{a numeric vector}
 #'   \item{\code{N_ANOMALIES}}{a numeric vector}
 #'   \item{\code{FAMILY}}{a character vector}
 #'   \item{\code{GENUS}}{a character vector}
-#'   \item{\code{BCG_ATTR}}{a character vector}
 #'   \item{\code{THERMAL_INDICATOR}}{a character vector}
 #'   \item{\code{ELEVATION_ATTR}}{a character vector}
 #'   \item{\code{GRADIENT_ATTR}}{a character vector}

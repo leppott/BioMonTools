@@ -3348,7 +3348,7 @@ metric.values.fish <- function(myDF
   # not carrying over from previous?!
   names(myDF) <- toupper(names(myDF))
 
-  boo_debug_sub_community <- "FISH"
+  debug_sub_community <- "FISH"
   boo_debug_sub <- FALSE
   debug_sub_num <- 0
   debug_sub_num_total <- 10
@@ -3395,7 +3395,7 @@ metric.values.fish <- function(myDF
     debug_topic <- "QC, required cols"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
-                  , boo_debug_sub_community
+                  , debug_sub_community
                   , ", "
                   , debug_sub_num
                   , "/"
@@ -3406,24 +3406,27 @@ metric.values.fish <- function(myDF
   }## IF ~ verbose
 
   # QC, Required Fields
-  # col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS"
-  #                        , "PHYLUM", "SUBPHYLUM", "CLASS"
-  #                        , "SUBCLASS", "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
-  #                        , "TRIBE", "GENUS", "FFG", "HABIT", "LIFE_CYCLE"
-  #                        , "BCG_ATTR", "THERMAL_INDICATOR"
-  #                        , "FFG2", "HABITAT", "ELEVATION_ATTR"
-  #                        , "GRADIENT_ATTR", "WSAREA_ATTR")
-  # col.req_logical <- c("EXCLUDE", "NONTARGET", "LONGLIVED", "NOTEWORTHY")
-  # col.req_numeric <- c("N_TAXA", "TOLVAL", "TOLVAL2", "UFC")
-  # col.req <- c(col.req_character, col.req_logical, col.req_numeric)
-  col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "N_ANOMALIES", "SAMP_BIOMASS"
-               , "INDEX_NAME", "INDEX_CLASS"
-               , "DA_MI2", "SAMP_WIDTH_M", "SAMP_LENGTH_M"
-               , "TYPE", "TOLER", "NATIVE", "TROPHIC", "SILT"
-               , "FAMILY", "GENUS", "HYBRID", "BCG_ATTR", "THERMAL_INDICATOR"
-               , "ELEVATION_ATTR", "GRADIENT_ATTR", "WSAREA_ATTR"
-               , "REPRODUCTION", "HABITAT", "CONNECTIVITY", "SCC"
-               )
+  col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS"
+                         , "FAMILY", "GENUS"
+                         , "TYPE", "TOLER", "NATIVE", "TROPHIC", "SILT"
+                         , "BCG_ATTR", "THERMAL_INDICATOR"
+                         , "HABITAT", "ELEVATION_ATTR"
+                         , "GRADIENT_ATTR", "WSAREA_ATTR"
+                         , "REPRODUCTION", "HABITAT", "CONNECTIVITY", "SCC")
+  col.req_logical <- c("EXCLUDE", "HYBRID")
+  col.req_numeric <- c("N_TAXA", "N_ANOMALIES",  "SAMP_BIOMASS", "DA_MI2"
+                       , "SAMP_WIDTH_M", "SAMP_LENGTH_M"
+                       )
+  col.req <- c(col.req_character, col.req_logical, col.req_numeric)
+  # col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE"
+  #              , "N_ANOMALIES", "SAMP_BIOMASS"
+  #              , "INDEX_NAME", "INDEX_CLASS"
+  #              , "DA_MI2", "SAMP_WIDTH_M", "SAMP_LENGTH_M"
+  #              , "TYPE", "TOLER", "NATIVE", "TROPHIC", "SILT"
+  #              , "FAMILY", "GENUS", "HYBRID", "BCG_ATTR", "THERMAL_INDICATOR"
+  #              , "ELEVATION_ATTR", "GRADIENT_ATTR", "WSAREA_ATTR"
+  #              , "REPRODUCTION", "HABITAT", "CONNECTIVITY", "SCC"
+  #              )
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
   # Trigger prompt if any missing fields (and session is interactive)
@@ -3460,6 +3463,90 @@ metric.values.fish <- function(myDF
                   , paste(paste0("   ", col.req.missing), collapse = "\n"), sep = "\n"))
   }##IF.num.col.req.missing.END
 
+  ## QC, Exclude----
+  # ensure TRUE/FALSE
+  if (verbose == TRUE) {
+    debug_topic <- "QC, cols, values, Exclude"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+    myCol <- "EXCLUDE"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
+    message(msg)
+  }## IF ~ verbose
+  Exclude.T <- sum(myDF$EXCLUDE == TRUE, na.rm = TRUE)
+  if (Exclude.T == 0) {
+    warn1 <- "EXCLUDE column does not have any TRUE values."
+    warn2 <- "This is common with fish samples."
+    warn3 <- "Valid values are TRUE or FALSE."
+    warn4 <- "Other values are not recognized"
+    msg <- paste(warn1, warn2, warn3, warn4, sep = "\n")
+    message(msg)
+  }##IF.Exclude.T.END
+
+  ## QC, BCG_Attr ----
+  # need as character, if complex all values fail
+  if (verbose == TRUE) {
+    debug_topic <- "QC, cols, complex, BCG_Attr"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+    myCol <- "BCG_ATTR"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
+    message(msg)
+  }## IF ~ verbose
+
+  BCG_Complex <- is.complex(myDF[, "BCG_ATTR"])
+  # only tigger if have a complex field
+  if (BCG_Complex == TRUE) {
+    if (interactive() & boo.Shiny == FALSE) {
+      msg <- "**BCG_ATTR is complex!**"
+      msg2 <- "BCG metrics will not calculate properly."
+      msg3 <- "Reimport data with column class defined."
+      msg4 <- "Use either Fix1 or Fix2.  Replace 'foo.csv' with your file."
+      msg5 <- ""
+      msg6 <- "# Fix 1, base R"
+      msg7 <- "df_data <- read.csv('foo.csv', colClass=c('BCG_Attr'='character'))"
+      msg8 <- ""
+      msg9 <- "# Fix 2, tidyverse"
+      msg10 <- "# install package if needed and load it"
+      msg11 <- "if(!require(readr)) {install.packages('readr')}"
+      msg12 <- "# import file and convert from tibble to data frame"
+      msg13 <- "df_data <- as.data.frame(read_csv('foo.csv'))"
+      msg14 <- ""
+      #
+      message(paste(msg, msg2, msg3, msg4, msg5, msg6, msg7, msg8, msg9, msg10
+                    , msg11, msg12, msg13, msg14, sep = "\n"))
+    }## IF ~ interactive & boo.Shiny == FALSE
+
+    if (interactive() == FALSE | boo.Shiny == TRUE) {
+      # > df$BCG_Attr_char <- as.character(df$BCG_Attr)
+      # > df$BCG_Attr_char <- sub("^0\\+", "", df$BCG_Attr_char)
+      # > df$BCG_Attr_char <- sub("\\+0i$", "", df$BCG_Attr_char)
+      # > table(df$BCG_Attr, df$BCG_Attr_char)
+      myDF[, "BCG_ATTR"] <- as.character(myDF[, "BCG_ATTR"])
+      myDF[, "BCG_ATTR"] <- sub("^0\\+", "", myDF[, "BCG_ATTR"])
+      myDF[, "BCG_ATTR"] <- sub("\\+0i$", "", myDF[, "BCG_ATTR"])
+    }## IF ~ interactive() == FALSE | boo.Shiny == TRUE
+
+  }##IF ~ BCG_Attr ~ END
+
   # Data Munging ----
 
   if (verbose == TRUE) {
@@ -3467,7 +3554,7 @@ metric.values.fish <- function(myDF
     debug_topic <- "Munge, values to upper"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
-                  , boo_debug_sub_community
+                  , debug_sub_community
                   , ", "
                   , debug_sub_num
                   , "/"
@@ -3496,7 +3583,7 @@ metric.values.fish <- function(myDF
     debug_topic <- "Munge, TF"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
-                  , boo_debug_sub_community
+                  , debug_sub_community
                   , ", "
                   , debug_sub_num
                   , "/"
@@ -3577,7 +3664,7 @@ metric.values.fish <- function(myDF
     debug_topic <- "Munge, Dom"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
-                  , boo_debug_sub_community
+                  , debug_sub_community
                   , ", "
                   , debug_sub_num
                   , "/"
@@ -3731,7 +3818,7 @@ metric.values.fish <- function(myDF
     debug_topic <- "Munge, anomalies"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
-                  , boo_debug_sub_community
+                  , debug_sub_community
                   , ", "
                   , debug_sub_num
                   , "/"
@@ -3777,7 +3864,7 @@ metric.values.fish <- function(myDF
     debug_topic <- "Calc, metrics"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
-                  , boo_debug_sub_community
+                  , debug_sub_community
                   , ", "
                   , debug_sub_num
                   , "/"
@@ -3856,49 +3943,49 @@ metric.values.fish <- function(myDF
                         #
                        ## Number of Taxa ####
                        # account for "NONE" in nt_total, should be the only 0 N_TAXA
-                       , nt_total = dplyr::n_distinct(TAXAID[N_TAXA > 0], na.rm = TRUE)
-                       #, nt_benthic=dplyr::n_distinct(TAXAID[TYPE == "DARTER" | TYPE == "SCULPIN" | TYPE == "MADTOM" | TYPE == "LAMPREY"])
-                       , nt_benthic = dplyr::n_distinct(TAXAID[TYPE == "BENTHIC"], na.rm = TRUE)
-                       , nt_AmmEthPerc = dplyr::n_distinct(TAXAID[GENUS == "AMMOCRYPTA"
+                       , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & N_TAXA > 0], na.rm = TRUE)
+                       #, nt_benthic=dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TYPE == "DARTER" | TYPE == "SCULPIN" | TYPE == "MADTOM" | TYPE == "LAMPREY"])
+                       , nt_benthic = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TYPE == "BENTHIC"], na.rm = TRUE)
+                       , nt_AmmEthPerc = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (GENUS == "AMMOCRYPTA"
                                                                   | GENUS == "ETHEOSTOMA"
-                                                                  | GENUS == "PERCINA"], na.rm = TRUE)
-                       , nt_AmmEthPerc_Cott_Notur = dplyr::n_distinct(TAXAID[(GENUS == "AMMOCRYPTA"
+                                                                  | GENUS == "PERCINA")], na.rm = TRUE)
+                       , nt_AmmEthPerc_Cott_Notur = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (GENUS == "AMMOCRYPTA"
                                                                               | GENUS == "ETHEOSTOMA"
                                                                               | GENUS == "PERCINA"
                                                                               | GENUS == "NOTURUS")
                                                                              | FAMILY == "COTTIDAE"]
                                                                       , na.rm = TRUE)
-                       , nt_Cato = dplyr::n_distinct(TAXAID[FAMILY == "CATOSTOMIDAE"], na.rm = TRUE)
-                       , nt_Cent = dplyr::n_distinct(TAXAID[FAMILY == "CENTRARCHIDAE"], na.rm = TRUE)
-                       , nt_natCent = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & FAMILY == "CENTRARCHIDAE"], na.rm = TRUE)
-                       , nt_Cott = dplyr::n_distinct(TAXAID[FAMILY == "COTTIDAE"], na.rm = TRUE)
-                       , nt_Cyprin = dplyr::n_distinct(TAXAID[FAMILY == "CYPRINIDAE"], na.rm = TRUE)
-                       , nt_Lepomis = dplyr::n_distinct(TAXAID[GENUS == "LEPOMIS"], na.rm = TRUE)
-                       , nt_native = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & N_TAXA > 0], na.rm = TRUE)
-                       , nt_nonnative = dplyr::n_distinct(TAXAID[(is.na(NATIVE) | NATIVE != "NATIVE")
+                       , nt_Cato = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "CATOSTOMIDAE"], na.rm = TRUE)
+                       , nt_Cent = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "CENTRARCHIDAE"], na.rm = TRUE)
+                       , nt_natCent = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & FAMILY == "CENTRARCHIDAE"], na.rm = TRUE)
+                       , nt_Cott = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "COTTIDAE"], na.rm = TRUE)
+                       , nt_Cyprin = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
+                       , nt_Lepomis = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "LEPOMIS"], na.rm = TRUE)
+                       , nt_native = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & N_TAXA > 0], na.rm = TRUE)
+                       , nt_nonnative = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (is.na(NATIVE) | NATIVE != "NATIVE")
                                                                  & N_TAXA > 0], na.rm = TRUE)
-                       , nt_nativenonhybrid = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" &
+                       , nt_nativenonhybrid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" &
                                                                          (HYBRID != TRUE | is.na(HYBRID))], na.rm = TRUE)
-                       , nt_Notur = dplyr::n_distinct(TAXAID[GENUS == "NOTURUS"], na.rm = TRUE)
-                       , nt_beninvert = dplyr::n_distinct(TAXAID[TYPE == "BENTHIC" & TROPHIC_IV == TRUE], na.rm = TRUE)
-                       , nt_Ictal = dplyr::n_distinct(TAXAID[FAMILY == "ICTALURIDAE"], na.rm = TRUE)
-                       , nt_natsunfish = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "SUNFISH"], na.rm = TRUE)
-                       , nt_natCent_sunfish = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" &
+                       , nt_Notur = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "NOTURUS"], na.rm = TRUE)
+                       , nt_beninvert = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TYPE == "BENTHIC" & TROPHIC_IV == TRUE], na.rm = TRUE)
+                       , nt_Ictal = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "ICTALURIDAE"], na.rm = TRUE)
+                       , nt_natsunfish = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & TYPE == "SUNFISH"], na.rm = TRUE)
+                       , nt_natCent_sunfish = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" &
                                                                  (TYPE == "SUNFISH" | TYPE == "CENTRARCHIDAE")], na.rm = TRUE)
-                       , nt_natCent = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & FAMILY == "CENTRARCHIDAE"], na.rm = TRUE)
-                       , nt_natinsctCypr = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" &
+                       , nt_natCent = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & FAMILY == "CENTRARCHIDAE"], na.rm = TRUE)
+                       , nt_natinsctCypr = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" &
                                                                       TROPHIC_IS == TRUE & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
-                       , nt_natrbs = dplyr::n_distinct(TAXAID[NATIVE == "NATIVE" & TYPE == "RBS"], na.rm = TRUE)
-                       , nt_Salm = dplyr::n_distinct(TAXAID[FAMILY == "SALMONIDAE"], na.rm = TRUE)
-                       , nt_connect = dplyr::n_distinct(TAXAID[CONNECTIVITY == TRUE], na.rm = TRUE)
-                       , nt_scc = dplyr::n_distinct(TAXAID[SCC == TRUE], na.rm = TRUE)
-                       , nt_beninsct_nows_nobg = dplyr::n_distinct(TAXAID[TROPHIC_IS == TRUE
+                       , nt_natrbs = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & TYPE == "RBS"], na.rm = TRUE)
+                       , nt_Salm = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "SALMONIDAE"], na.rm = TRUE)
+                       , nt_connect = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CONNECTIVITY == TRUE], na.rm = TRUE)
+                       , nt_scc = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & SCC == TRUE], na.rm = TRUE)
+                       , nt_beninsct_nows_nobg = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TROPHIC_IS == TRUE
                                                                           & (TAXAID != "CATOSTOMUS COMMERSONII"
                                                                              | TAXAID != "LEPOMIS MACROCHIRUS"
                                                                              | is.na(TAXAID))
                                                                           ], na.rm = TRUE)
-                       , nt_trout_sunfish_notoler = dplyr::n_distinct(TAXAID["TROUT" %in% TYPE
-                                                                              | TYPE == "SUNFISH"
+                       , nt_trout_sunfish_notoler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ("TROUT" %in% TYPE
+                                                                              | TYPE == "SUNFISH")
                                                                               & (TOLER != "TOLERANT"
                                                                                  | is.na(TOLER))
                                                                               ], na.rm = TRUE)
@@ -3926,11 +4013,11 @@ metric.values.fish <- function(myDF
 
                        ## Trophic ####
                        ### Trophic, nt----
-                       , nt_detritivore = dplyr::n_distinct(TAXAID[TROPHIC_DE == TRUE], na.rm = TRUE)
-                       , nt_herbivore = dplyr::n_distinct(TAXAID[TROPHIC_HB == TRUE], na.rm = TRUE)
-                       , nt_omnivore = dplyr::n_distinct(TAXAID[TROPHIC_OM == TRUE], na.rm = TRUE)
-                       , nt_planktivore = dplyr::n_distinct(TAXAID[TROPHIC_PL == TRUE], na.rm = TRUE)
-                       , nt_topcarn = dplyr::n_distinct(TAXAID[TROPHIC_TC == TRUE], na.rm = TRUE)
+                       , nt_detritivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TROPHIC_DE == TRUE], na.rm = TRUE)
+                       , nt_herbivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TROPHIC_HB == TRUE], na.rm = TRUE)
+                       , nt_omnivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TROPHIC_OM == TRUE], na.rm = TRUE)
+                       , nt_planktivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TROPHIC_PL == TRUE], na.rm = TRUE)
+                       , nt_topcarn = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TROPHIC_TC == TRUE], na.rm = TRUE)
 
                        ### Trophic, pi----
                         # % Lithophilic spawners
@@ -3961,9 +4048,9 @@ metric.values.fish <- function(myDF
 
                        #
                        ## Tolerance ####
-                       , nt_tv_intol = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT"], na.rm = TRUE)
-                       , nt_tv_intolhwi = dplyr::n_distinct(TAXAID[TOLER == "INTOLERANT" |
-                                                                     TOLER == "HWI"], na.rm = TRUE)
+                       , nt_tv_intol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TOLER == "INTOLERANT"], na.rm = TRUE)
+                       , nt_tv_intolhwi = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (TOLER == "INTOLERANT" |
+                                                                     TOLER == "HWI")], na.rm = TRUE)
                        , pi_tv_toler = 100 * sum(N_TAXA[TOLER == "TOLERANT"], na.rm = TRUE) / ni_total
                        #
 
@@ -4011,89 +4098,89 @@ metric.values.fish <- function(myDF
                        ## BCG ####
 
                   ### BCG, nt ----
-                 , nt_BCG_att1 = dplyr::n_distinct(TAXAID[BCG_ATTR == "1"]
+                 , nt_BCG_att1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "1"]
                                                     , na.rm = TRUE)
-                  , nt_BCG_att12 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                  , nt_BCG_att12 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "1"
                                                                   | BCG_ATTR == "2")]
                                                         , na.rm = TRUE)
-                  , nt_BCG_att123 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                  , nt_BCG_att123 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "1"
                                                                   | BCG_ATTR == "2"
                                                                   | BCG_ATTR == "3")]
                                                         , na.rm = TRUE)
-                 , nt_BCG_att1234 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                 , nt_BCG_att1234 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "1"
                                                               | BCG_ATTR == "2"
                                                               | BCG_ATTR == "3"
                                                               | BCG_ATTR == "4")]
                                                       , na.rm = TRUE)
-                 , nt_BCG_att1236 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                 , nt_BCG_att1236 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "1"
                                                                | BCG_ATTR == "2"
                                                                | BCG_ATTR == "3"
                                                                | BCG_ATTR == "6")]
                                                        , na.rm = TRUE)
-                  , nt_BCG_att1236b = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                  , nt_BCG_att1236b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "1"
                                                                | BCG_ATTR == "2"
                                                                | BCG_ATTR == "3"
                                                                | BCG_ATTR == "6B")]
                                                        , na.rm = TRUE)
-                 , nt_BCG_att12346 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                 , nt_BCG_att12346 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "1"
                                                               | BCG_ATTR == "2"
                                                               | BCG_ATTR == "3"
                                                               | BCG_ATTR == "4"
                                                               | BCG_ATTR == "6")]
                                                       , na.rm = TRUE)
-                  , nt_BCG_att12346b = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                  , nt_BCG_att12346b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "1"
                                                                 | BCG_ATTR == "2"
                                                                 | BCG_ATTR == "3"
                                                                 | BCG_ATTR == "4"
                                                                 | BCG_ATTR == "6B")]
                                                       , na.rm = TRUE)
-                  , nt_BCG_att1i236i = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1I"
+                  , nt_BCG_att1i236i = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "1I"
                                                                 | BCG_ATTR == "2"
                                                                 | BCG_ATTR == "3"
                                                                 | BCG_ATTR == "6I")]
                                                         , na.rm = TRUE)
-                  , nt_BCG_att2 = dplyr::n_distinct(TAXAID[BCG_ATTR == "2"]
+                  , nt_BCG_att2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "2"]
                                                     , na.rm = TRUE)
-                  , nt_BCG_att2native = dplyr::n_distinct(TAXAID[BCG_ATTR == "2"
+                  , nt_BCG_att2native = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "2"
                                                                  & NATIVE == "NATIVE"]
                                                           , na.rm = TRUE)
-                  , nt_BCG_att23_scc = dplyr::n_distinct(TAXAID[(BCG_ATTR == "2"
+                  , nt_BCG_att23_scc = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "2"
                                                                 | BCG_ATTR == "3")
                                                                & SCC == TRUE]
                                                         , na.rm = TRUE)
-                  , nt_BCG_att3 = dplyr::n_distinct(TAXAID[BCG_ATTR == "3"]
+                  , nt_BCG_att3 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "3"]
                                                     , na.rm = TRUE)
-                  , nt_BCG_att3native = dplyr::n_distinct(TAXAID[BCG_ATTR == "3"
+                  , nt_BCG_att3native = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "3"
                                                                  & NATIVE == "NATIVE"]
                                                           , na.rm = TRUE)
-                  , nt_BCG_att4 = dplyr::n_distinct(TAXAID[BCG_ATTR == "4"]
+                  , nt_BCG_att4 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "4"]
                                                     , na.rm = TRUE)
-                  , nt_BCG_att4native = dplyr::n_distinct(TAXAID[BCG_ATTR == "4"
+                  , nt_BCG_att4native = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "4"
                                                                  & NATIVE == "NATIVE"]
                                                           , na.rm = TRUE)
-                  , nt_BCG_att5 = dplyr::n_distinct(TAXAID[BCG_ATTR == "5"]
+                  , nt_BCG_att5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "5"]
                                                     , na.rm = TRUE)
-                  , nt_BCG_att5native = dplyr::n_distinct(TAXAID[BCG_ATTR == "5"
+                  , nt_BCG_att5native = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "5"
                                                                  & NATIVE == "NATIVE"]
                                                           , na.rm = TRUE)
-                 , nt_BCG_att55a6 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "5"
+                 , nt_BCG_att55a6 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "5"
                                                                | BCG_ATTR == "5A"
                                                                | BCG_ATTR == "6")]
                                                              , na.rm = TRUE)
-                 , nt_BCG_att55a6a = dplyr::n_distinct(TAXAID[(BCG_ATTR == "5"
+                 , nt_BCG_att55a6a = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "5"
                                                                 | BCG_ATTR == "5A"
                                                                 | BCG_ATTR == "6A")]
                                                         , na.rm = TRUE)
-                  , nt_BCG_att56t = dplyr::n_distinct(TAXAID[BCG_ATTR == "5"
-                                                             | BCG_ATTR == "6T"]
+                  , nt_BCG_att56t = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "5"
+                                                             | BCG_ATTR == "6T")]
                                                    , na.rm = TRUE)
-                  , nt_BCG_att6i = dplyr::n_distinct(TAXAID[BCG_ATTR == "6I"]
+                  , nt_BCG_att6i = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "6I"]
                                                     , na.rm = TRUE)
-                  , nt_BCG_att6m = dplyr::n_distinct(TAXAID[BCG_ATTR == "6M"]
+                  , nt_BCG_att6m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "6M"]
                                                      , na.rm = TRUE)
-                  , nt_BCG_att6t = dplyr::n_distinct(TAXAID[BCG_ATTR == "6T"]
+                  , nt_BCG_att6t = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & BCG_ATTR == "6T"]
                                                     , na.rm = TRUE)
-                  , nt_BCG_attNA = dplyr::n_distinct(TAXAID[is.na(BCG_ATTR)]
+                  , nt_BCG_attNA = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & is.na(BCG_ATTR)]
                                                     , na.rm = TRUE)
 
                   ### BCG, pi ----
@@ -4255,23 +4342,23 @@ metric.values.fish <- function(myDF
 
                   ## Thermal Indicators ####
                   ## nt_ti
-                  , nt_ti_corecold = dplyr::n_distinct(TAXAID[TI_CORECOLD == TRUE]
+                  , nt_ti_corecold = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TI_CORECOLD == TRUE]
                                                        , na.rm = TRUE)
-                  , nt_ti_cold = dplyr::n_distinct(TAXAID[TI_COLD == TRUE]
+                  , nt_ti_cold = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TI_COLD == TRUE]
                                                    , na.rm = TRUE)
-                  , nt_ti_cool = dplyr::n_distinct(TAXAID[TI_COOL == TRUE]
+                  , nt_ti_cool = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TI_COOL == TRUE]
                                                    , na.rm = TRUE)
-                  , nt_ti_warm = dplyr::n_distinct(TAXAID[TI_WARM == TRUE]
+                  , nt_ti_warm = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TI_WARM == TRUE]
                                                    , na.rm = TRUE)
-                  , nt_ti_eury = dplyr::n_distinct(TAXAID[TI_EURY == TRUE]
+                  , nt_ti_eury = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TI_EURY == TRUE]
                                                    , na.rm = TRUE)
-                  , nt_ti_na = dplyr::n_distinct(TAXAID[TI_NA == TRUE]
+                  , nt_ti_na = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TI_NA == TRUE]
                                                  , na.rm = TRUE)
-                  , nt_ti_corecold_cold = dplyr::n_distinct(TAXAID[TI_CORECOLD == TRUE |
-                                                                     TI_COLD == TRUE]
+                  , nt_ti_corecold_cold = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (TI_CORECOLD == TRUE |
+                                                                     TI_COLD == TRUE)]
                                                             , na.rm = TRUE)
-                  , nt_ti_cool_warm = dplyr::n_distinct(TAXAID[TI_COOL == TRUE |
-                                                                 TI_WARM == TRUE]
+                  , nt_ti_cool_warm = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (TI_COOL == TRUE |
+                                                                 TI_WARM == TRUE)]
                                                         , na.rm = TRUE)
 
                   ## pi_ti
@@ -4307,39 +4394,39 @@ metric.values.fish <- function(myDF
 
 
                   ## Elevation ----
-                  , nt_elev_low = dplyr::n_distinct(TAXAID[ELEVATION_LOW == TRUE]
+                  , nt_elev_low = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ELEVATION_LOW == TRUE]
                                                     , na.rm = TRUE)
-                  , nt_elev_high = dplyr::n_distinct(TAXAID[ELEVATION_HIGH == TRUE]
+                  , nt_elev_high = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & ELEVATION_HIGH == TRUE]
                                                      , na.rm = TRUE)
 
                   ## Gradient ----
-                  , nt_grad_low = dplyr::n_distinct(TAXAID[GRADIENT_LOW == TRUE]
+                  , nt_grad_low = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GRADIENT_LOW == TRUE]
                                                     , na.rm = TRUE)
-                  , nt_grad_mod = dplyr::n_distinct(TAXAID[GRADIENT_MOD == TRUE]
+                  , nt_grad_mod = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GRADIENT_MOD == TRUE]
                                                     , na.rm = TRUE)
-                  , nt_grad_high = dplyr::n_distinct(TAXAID[GRADIENT_HIGH == TRUE]
+                  , nt_grad_high = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GRADIENT_HIGH == TRUE]
                                                      , na.rm = TRUE)
 
                   ## WS_Area ----
-                  , nt_wsarea_small = dplyr::n_distinct(TAXAID[WSAREA_S == TRUE]
+                  , nt_wsarea_small = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & WSAREA_S == TRUE]
                                                         , na.rm = TRUE)
-                  , nt_wsarea_medium = dplyr::n_distinct(TAXAID[WSAREA_M == TRUE]
+                  , nt_wsarea_medium = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & WSAREA_M == TRUE]
                                                          , na.rm = TRUE)
-                  , nt_wsarea_large = dplyr::n_distinct(TAXAID[WSAREA_L == TRUE]
+                  , nt_wsarea_large = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & WSAREA_L == TRUE]
                                                         , na.rm = TRUE)
-                  , nt_wsarea_xlarge = dplyr::n_distinct(TAXAID[WSAREA_XL == TRUE]
+                  , nt_wsarea_xlarge = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & WSAREA_XL == TRUE]
                                                          , na.rm = TRUE)
 
                   ## Reproduction ----
-                  , nt_repro_broadcaster = dplyr::n_distinct(TAXAID[REPRO_BCAST == TRUE]
+                  , nt_repro_broadcaster = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & REPRO_BCAST == TRUE]
                                                         , na.rm = TRUE)
-                  , nt_repro_nestsimp = dplyr::n_distinct(TAXAID[REPRO_NS == TRUE]
+                  , nt_repro_nestsimp = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & REPRO_NS == TRUE]
                                                          , na.rm = TRUE)
-                  , nt_repro_nestcomp = dplyr::n_distinct(TAXAID[REPRO_NC == TRUE]
+                  , nt_repro_nestcomp = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & REPRO_NC == TRUE]
                                                         , na.rm = TRUE)
-                  , nt_repro_bearer = dplyr::n_distinct(TAXAID[REPRO_BEAR == TRUE]
+                  , nt_repro_bearer = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & REPRO_BEAR == TRUE]
                                                          , na.rm = TRUE)
-                  , nt_repro_migratory = dplyr::n_distinct(TAXAID[REPRO_MIG == TRUE]
+                  , nt_repro_migratory = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & REPRO_MIG == TRUE]
                                                         , na.rm = TRUE)
 
 
@@ -4349,9 +4436,9 @@ metric.values.fish <- function(myDF
                   # B = benthic
                   #
                   # nt_habitat
-                  , nt_habitat_b = dplyr::n_distinct(TAXAID[HABITAT_B == TRUE]
+                  , nt_habitat_b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_B == TRUE]
                                                         , na.rm = TRUE)
-                  , nt_habitat_w = dplyr::n_distinct(TAXAID[HABITAT_W == TRUE]
+                  , nt_habitat_w = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_W == TRUE]
                                                         , na.rm = TRUE)
                   ## pi_habitat
                   , pi_habitat_b = 100 * sum(N_TAXA[HABITAT_B == TRUE]
@@ -4394,7 +4481,7 @@ metric.values.fish <- function(myDF
     debug_topic <- "clean up"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
-                  , boo_debug_sub_community
+                  , debug_sub_community
                   , ", "
                   , debug_sub_num
                   , "/"
@@ -4427,7 +4514,7 @@ metric.values.fish <- function(myDF
     debug_topic <- "subset"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
-                  , boo_debug_sub_community
+                  , debug_sub_community
                   , ", "
                   , debug_sub_num
                   , "/"
@@ -4452,7 +4539,7 @@ metric.values.fish <- function(myDF
     debug_topic <- "extra fields"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
-                  , boo_debug_sub_community
+                  , debug_sub_community
                   , ", "
                   , debug_sub_num
                   , "/"
@@ -4514,7 +4601,7 @@ metric.values.fish <- function(myDF
     debug_topic <- "return results"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
-                  , boo_debug_sub_community
+                  , debug_sub_community
                   , ", "
                   , debug_sub_num
                   , "/"

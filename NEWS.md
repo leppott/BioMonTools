@@ -4,9 +4,19 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-12-08 13:51:19.882553
+    #> Last Update: 2023-12-11 17:35:24.913234
 
 # Version History
+
+## Changes in version 1.0.0.9056 (2023-12-11)
+
+- refactor: Add EXCLUDE taxa to fish metrics
+  - nt\_\*
+  - Error checking to ensure column is included
+- refactor: Added QC check to fish calc in `metric.values`
+- fix: Change QC sub function name for fish in `metric.values`
+- refactor: Add “EXCLUDE” column to example fish data
+- docs: Update description of data_fish_MBSS
 
 ## Changes in version 1.0.0.9055 (2023-12-08)
 

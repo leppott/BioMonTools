@@ -18,6 +18,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9056 (2023-12-11)
+
+* refactor: Add EXCLUDE taxa to fish metrics
+    + nt_*
+    + Error checking to ensure column is included
+* refactor: Added QC check to fish calc in `metric.values`
+* fix: Change QC sub function name for fish in `metric.values`
+* refactor: Add "EXCLUDE" column to example fish data
+* docs: Update description of data_fish_MBSS
+
 ## Changes in version 1.0.0.9055 (2023-12-08)
 
 * refactor: Remove interactive TRUE from algae in `metric.values`

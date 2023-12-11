@@ -7,6 +7,7 @@
 # 20170907, modify file for just MBSS
 # 20211210, copied from MBSStools package
 # 2022-11-15 (EWL) update for INDEX_CLASS
+# 2023-12-11, EXCLUDE to logical not character
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 0. Prep ####
@@ -34,7 +35,7 @@ dim(data.import)
 # data.import[,"EXCLUDE"] <- as.logical(data.import[,"EXCLUDE"] )
 # table(data.import$EXCLUDE, useNA = "ifany")
 # str(data.import)
-data.import$EXCLUDE <- NA_character_
+data.import$EXCLUDE <- FALSE
 data.import$BCG_ATTR <- NA_character_
 
 
