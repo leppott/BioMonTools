@@ -3832,6 +3832,11 @@ metric.values.fish <- function(myDF
                                                                   | BCG_ATTR == "2"
                                                                   | BCG_ATTR == "3")]
                                                         , na.rm = TRUE)
+                  , nt_BCG_att1234 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                                                             | BCG_ATTR == "2"
+                                                             | BCG_ATTR == "3"
+                                                             | BCG_ATTR == "4")]
+                                                     , na.rm = TRUE)
                   , nt_BCG_att1236b = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
                                                                | BCG_ATTR == "2"
                                                                | BCG_ATTR == "3"
@@ -3974,6 +3979,7 @@ metric.values.fish <- function(myDF
                   ### BCG, pt----
                   , pt_BCG_att12 = 100 * nt_BCG_att12 / nt_total
                   , pt_BCG_att123 = 100 * nt_BCG_att123 / nt_total
+                  , pt_BCG_att1234 = 100 * nt_BCG_att1234 / nt_total
                   , pt_BCG_att1236b = 100 * nt_BCG_att1236b / nt_total
                   , pt_BCG_att12346b = 100 * nt_BCG_att12346b / nt_total
                   , pt_BCG_att1i236i = 100 * nt_BCG_att1i236i / nt_total
