@@ -3950,6 +3950,10 @@ metric.values.fish <- function(myDF
                   , pi_BCG_att56t = 100*sum(N_TAXA[(BCG_ATTR == "5"
                                                    | BCG_ATTR == "6T")]
                                            , na.rm = TRUE) / ni_total
+                  , pi_BCG_att66s6t =  100 * sum(N_TAXA[BCG_ATTR == "6"
+                                                        |BCG_ATTR == "6S"
+                                                        |BCG_ATTR == "6T"]
+                                             , na.rm = TRUE) / ni_total
                   , pi_BCG_att6i =  100 * sum(N_TAXA[BCG_ATTR == "6I"]
                                             , na.rm = TRUE) / ni_total
                   , pi_BCG_att6m =  100 * sum(N_TAXA[BCG_ATTR == "6M"]
@@ -3963,16 +3967,6 @@ metric.values.fish <- function(myDF
                                                     | BCG_ATTR == "6A"
                                                     | BCG_ATTR == "6B")]
                                             , na.rm = TRUE) / ni_total
-                  , pi_BCG_nonatt6 = 100 * sum(N_TAXA[(BCG_ATTR != "6"
-                                                       & BCG_ATTR != "6A"
-                                                       & BCG_ATTR != "6B"
-                                                       & BCG_ATTR != "6I"
-                                                       & BCG_ATTR != "6M"
-                                                       & BCG_ATTR != "6S"
-                                                       & BCG_ATTR != "6s"
-                                                       & BCG_ATTR != "6T"
-                                                       & BCG_ATTR != "6t")]
-                                              , na.rm = TRUE) / ni_total
                   , pi_BCG_attNA = 100 * sum(N_TAXA[is.na(BCG_ATTR)]
                                         , na.rm = TRUE) / ni_total
 
@@ -4124,16 +4118,10 @@ metric.values.fish <- function(myDF
 
                  ## SPECIAL ####
                  # New Mexico Fish BCG
-                  , nt_piscivore_BCG_nonatt6 = dplyr::n_distinct(TAXAID[TROPHIC_PI == TRUE
-                                                                       & BCG_ATTR != "6"
-                                                                       & BCG_ATTR != "6A"
-                                                                       & BCG_ATTR != "6B"
-                                                                       & BCG_ATTR != "6I"
-                                                                       & BCG_ATTR != "6M"
-                                                                       & BCG_ATTR != "6S"
-                                                                       & BCG_ATTR != "6s"
-                                                                       & BCG_ATTR != "6T"
-                                                                       & BCG_ATTR != "6t"]
+                  , nt_piscivore_BCG_att66s6t = dplyr::n_distinct(TAXAID[TROPHIC_PI == TRUE
+                                                                       & (BCG_ATTR == "6"
+                                                                       | BCG_ATTR == "6S"
+                                                                       | BCG_ATTR == "6T")]
                                                                 , na.rm = TRUE)
                  , nt_LLNLB = dplyr::n_distinct(TAXAID[TYPE == "LLNLB"], na.rm = TRUE)
                  , nt_Cyprin_BCG_att1234 = dplyr::n_distinct(TAXAID[FAMILY == "CYPRINIDAE"
