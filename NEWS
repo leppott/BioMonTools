@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-12-11 17:35:24.913234
+    #> Last Update: 2023-12-12 14:49:45.384095
 
 # Version History
+
+## Changes in version 1.0.0.9057 (2023-12-12)
+
+- refactor: Add testing (QC) to `metric.values` fish calc section
 
 ## Changes in version 1.0.0.9056 (2023-12-11)
 

@@ -3339,11 +3339,22 @@ metric.values.bugs <- function(myDF
 #'
 #' @export
 metric.values.fish <- function(myDF
-                               , MetricNames  =NULL
+                               , MetricNames = NULL
                                , boo.Adjust = FALSE
                                , cols2keep = NULL
                                , boo.Shiny
                                , verbose) {
+
+  # QC
+  boo_QC <- FALSE
+  if (boo_QC) {
+    myDF <- BioMonTools::data_fish_MBSS
+    MetricNames <- NULL
+    boo.Adjust <- FALSE
+    cols2keep <- NULL
+    boo.Shiny <- FALSE
+    verbose <- TRUE
+  }## IF ~ boo_QC
 
   # not carrying over from previous?!
   names(myDF) <- toupper(names(myDF))

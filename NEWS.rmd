@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9057 (2023-12-12)
+
+* refactor: Add testing (QC) to `metric.values` fish calc section
+
 ## Changes in version 1.0.0.9056 (2023-12-11)
 
 * refactor: Add EXCLUDE taxa to fish metrics
