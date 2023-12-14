@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2023-12-12 14:49:45.384095
+    #> Last Update: 2023-12-14 17:00:50.380076
 
 # Version History
+
+## Changes in version 1.0.0.9058 (2023-12-14)
+
+- refactor: Add metrics for NM BCG, Issue \#97
+  - Pull request not able to easily merge, make changes by hand
 
 ## Changes in version 1.0.0.9057 (2023-12-12)
 
