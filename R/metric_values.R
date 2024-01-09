@@ -1640,6 +1640,7 @@ metric.values.bugs <- function(myDF
                                                                 ORDER != "DECAPODA"], na.rm = TRUE)
                                 , li_total = log(ni_total)
                                 , ni_Chiro = sum(N_TAXA[FAMILY == "CHIRONOMIDAE"], na.rm = TRUE)
+                                , ni_Dipt = sum(N_TAXA[ORDER == "DIPTERA"], na.rm = TRUE)
                                 , ni_EPT = sum(N_TAXA[ORDER == "EPHEMEROPTERA" |
                                                         ORDER == "TRICHOPTERA" |
                                                         ORDER == "PLECOPTERA"], na.rm = TRUE)
@@ -2065,6 +2066,7 @@ metric.values.bugs <- function(myDF
                                                        , na.rm = TRUE) / ni_total
                                 , pi_Tanyp = 100 * sum(N_TAXA[SUBFAMILY == "TANYPODINAE"]
                                                        , na.rm = TRUE) / ni_total
+                                , pi_Chi2Dipt = 100 * ni_Chiro / ni_Dipt
                                 , pi_COC2Chi = 100 * sum(N_TAXA[GENUS == "CHIRONOMUS"
                                                                 | GENUS == "CRICOTOPUS"
                                                                 | GENUS == "CRICOTOPUS/ORTHOCLADIUS"
@@ -2144,6 +2146,7 @@ metric.values.bugs <- function(myDF
                                 , nt_longlived =  dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                            & LONGLIVED == TRUE]
                                                                     , na.rm = TRUE)
+                                , pt_longlived = 100 * nt_longlived / nt_total
                                 , nt_noteworthy = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                            & NOTEWORTHY == TRUE]
                                                                     , na.rm = TRUE)
@@ -2255,6 +2258,10 @@ metric.values.bugs <- function(myDF
                                                                          & TOLVAL >= 0
                                                                          & TOLVAL <= 3]
                                                                   , na.rm = TRUE)
+                                , nt_tv_intol2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                         & TOLVAL >= 0
+                                                                         & TOLVAL <= 2]
+                                                                  , na.rm = TRUE)
                                 , nt_tv_intol4 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                           & TOLVAL >= 0
                                                                           & TOLVAL < 4]
@@ -2263,6 +2270,14 @@ metric.values.bugs <- function(myDF
                                                                          & TOLVAL >= 7
                                                                          & TOLVAL <= 10]
                                                                   , na.rm = TRUE)
+                                , nt_tv_toler6 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                         & TOLVAL >= 6
+                                                                         & TOLVAL <= 10]
+                                                                  , na.rm = TRUE)
+                                , nt_tv_toler8 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                          & TOLVAL >= 6
+                                                                          & TOLVAL <= 10]
+                                                                   , na.rm = TRUE)
                                 , pi_tv_intol = 100 * sum(N_TAXA[TOLVAL >= 0
                                                                & TOLVAL <= 3], na.rm = TRUE) / ni_total
                                 , pi_tv_intol4 = 100 * sum(N_TAXA[TOLVAL >= 0
@@ -2271,9 +2286,15 @@ metric.values.bugs <- function(myDF
                                                                & TOLVAL <= 10], na.rm = TRUE) / ni_total
                                 , pi_tv_toler6 = 100 * sum(N_TAXA[TOLVAL > 6
                                                                 & TOLVAL <= 10], na.rm = TRUE) / ni_total
+                                , pi_tv_toler8 = 100 * sum(N_TAXA[TOLVAL >= 8
+                                                                  & TOLVAL <= 10], na.rm = TRUE) / ni_total
                                 , pt_tv_intol = 100 * nt_tv_intol / nt_total
                                 , pt_tv_intol4 = 100 * nt_tv_intol4 / nt_total
                                 , pt_tv_toler = 100 * nt_tv_toler / nt_total
+                                , pt_tv_toler6 = 100 * nt_tv_toler6 / nt_total
+                                , pt_tv_toler8 = 100 * nt_tv_toler8 / nt_total
+
+
                                 #,nt_tvfam_intol = dplyr::n_distinct(TAXAID[EXCLUDE!=TRUE & FAM_TV<=3 & !is.na(FAM_TV)])
                                 # pi_Baet2Eph, pi_Hyd2EPT, pi_Hyd2Tri, in Pct Ind group
                                 # nt_intMol (for marine)
@@ -2353,6 +2374,11 @@ metric.values.bugs <- function(myDF
                                                                                           FFG_SCR == TRUE |
                                                                                           FFG_SHR == TRUE)]
                                                                               , na.rm = TRUE)
+                                , nt_ffg_pred_NoChi = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                         & FFG_PRE == TRUE
+                                                                         & (is.na(FAMILY) == TRUE
+                                                                            | FAMILY != "CHIRONOMIDAE")]
+                                                                  , na.rm = TRUE)
 
                                 #### pi_ffg----
                                 , pi_ffg_col = 100 * sum(N_TAXA[FFG_COL == TRUE]

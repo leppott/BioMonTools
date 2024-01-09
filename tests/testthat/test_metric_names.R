@@ -171,7 +171,11 @@ testthat::test_that("metric.scores, index, number metrics", {
   # Import
   df_indsc <- readxl::read_excel(fn_xlScoring, sheet = "index.scoring")
   # Number of metrics by index name and region
-  valid_ScoreRegime <- c("AVERAGE", "SUM", "AVERAGE_100", "AVERAGESCALE_100")
+  valid_ScoreRegime <- c("AVERAGE"
+                         , "SUM"
+                         , "AVERAGE_100"
+                         , "AVERAGE_010"
+                         , "AVERAGESCALE_100")
   df_indsc_cnt_met <- df_indsc %>%
     dplyr::filter(ScoreRegime %in% valid_ScoreRegime) %>%
     dplyr::select(INDEX_NAME, INDEX_CLASS, NumMetrics)

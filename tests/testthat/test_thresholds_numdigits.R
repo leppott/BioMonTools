@@ -56,6 +56,10 @@ test_that("thresholds, num digits, index", {
   testthat::expect_true(metric_thresh_lo_nbad == 0)
   testthat::expect_true(metric_thresh_mid_nbad == 0)
   testthat::expect_true(metric_thresh_hi_nbad == 0)
+
+  # Easiest to View df and find visually
+ # View(df_thresh_metric)
+
 })## Test ~ thresholds, num digits ~ END
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

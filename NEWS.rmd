@@ -18,6 +18,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9059 (2024-01-09)
+
+* feat: Add new issue template for metric and index requests, Issue #99
+* refactor: Add metrics and index for MN IBI (bugs and fish), Issue #92
+    + MetricNames.xlsx
+    + MetricScoring.xlsx
+    + `metric.values()`
+* tests: Run tests for new metrics
+    + Tweak data and tests as needed
+
 ## Changes in version 1.0.0.9058 (2023-12-14)
 
 * refactor: Add metrics for NM BCG, Issue #97
