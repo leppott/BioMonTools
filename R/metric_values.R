@@ -538,7 +538,7 @@ metric.values <- function(fun.DF
     metric_subset <- toupper(metric_subset)
   } else {
     metric_subset <- "ALL"
-  }##IF~!is.null(fun.cols2keep)~END
+  }##IF~!is.null(metric_subset)~END
 
 
   metric_subset <- ifelse(is.na(metric_subset), NA, toupper(metric_subset))
@@ -840,13 +840,14 @@ metric.values.bugs <- function(myDF
     pi_BCG_att1i234b5 <- pt_BCG_att1i234b5 <- nt_BCG_att1i234w5 <-
     pi_BCG_att1i234w5 <- pt_BCG_att1i234w5 <- NULL
   nt_Hemipt <- nt_dni <- pi_dni <- pt_dni <- NULL
-
+  pi_EphemNoBaeTri <- nt_EphemNoBaeTri <- nt_COETNoBraBaeHydTri <- x_BCICTQa <-
+    NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
 
   # QC----
-  ## QC, missing cols ----
+  ## QC, Missing Cols ----
   if (verbose == TRUE) {
     debug_topic <- "QC, missing cols"
     debug_sub_num <- debug_sub_num + 1
@@ -972,6 +973,10 @@ metric.values.bugs <- function(myDF
                  , sep = "\n")
     message(msg)
   }## IF ~ verbose
+
+  ## QC, Cols2Keep ----
+  # remove duplicates with required so no errors, e.g., SAMPLEID
+  cols2keep <- cols2keep[!cols2keep %in% col.req]
 
   ## QC, Exclude----
   # ensure TRUE/FALSE
@@ -1678,6 +1683,18 @@ metric.values.bugs <- function(myDF
                                                                         | ORDER == "COLEOPTERA"
                                                                         | ORDER == "ODONATA")]
                                                               , na.rm = TRUE)
+                                , nt_COETNoBraBaeHydTri = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                     & (ORDER == "EPHEMEROPTERA"
+                                                                        | ORDER == "TRICHOPTERA"
+                                                                        | ORDER == "COLEOPTERA"
+                                                                        | ORDER == "ODONATA")
+                                                                     & (is.na(FAMILY)
+                                                                        | FAMILY != "BAETIDAE")
+                                                                     & (is.na(GENUS)
+                                                                        | GENUS == "BRACHYCENTRUS"
+                                                                        | GENUS == "HYDROPSYCHE"
+                                                                        | GENUS == "TRICORYTHODES")]
+                                                              , na.rm = TRUE)
                                 , nt_CruMol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                        & PHYLUM == "MOLLUSCA"]
                                                                 , na.rm = TRUE) +
@@ -1698,6 +1715,13 @@ metric.values.bugs <- function(myDF
                                 , nt_Ephem = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                       & ORDER == "EPHEMEROPTERA"]
                                                                , na.rm = TRUE)
+                                , nt_EphemNoBaeTri = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                      & ORDER == "EPHEMEROPTERA"
+                                                                      & (is.na(FAMILY) == TRUE
+                                                                         | FAMILY != "BAETIDAE")
+                                                                      & (is.na(GENUS) == TRUE
+                                                                         | GENUS != "TRICORYTHODES")]
+                                                                      , na.rm = TRUE)
                                 , nt_Ephemerellid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                              & FAMILY == "EPHEMERELLIDAE"]
                                                                       , na.rm = TRUE)
@@ -1771,7 +1795,8 @@ metric.values.bugs <- function(myDF
                                 , nt_Poly = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                      & CLASS == "POLYCHAETA"]
                                                               , na.rm = TRUE)
-                                , nt_PolyNoSpion = 100 * sum(N_TAXA[CLASS == "POLYCHAETA"
+                                , nt_PolyNoSpion = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                    & CLASS == "POLYCHAETA"
                                                                     & (is.na(FAMILY) == TRUE
                                                                        | FAMILY != "SPIONIDAE")]
                                                              , na.rm = TRUE)
@@ -1870,6 +1895,12 @@ metric.values.bugs <- function(myDF
                                                                          | FAMILY != "CAENIDAE")
                                                                       & (is.na(FAMILY) == TRUE
                                                                          | FAMILY != "BAETIDAE")]
+                                                               , na.rm = TRUE) / ni_total
+                                , pi_EphemNoBaeTri = 100 * sum(N_TAXA[ORDER == "EPHEMEROPTERA"
+                                                                      & (is.na(FAMILY) == TRUE
+                                                                         | FAMILY != "BAETIDAE")
+                                                                      & (is.na(GENUS) == TRUE
+                                                                         | GENUS != "TRICORYTHODES")]
                                                                , na.rm = TRUE) / ni_total
                                 , pi_EPT = 100 * sum(N_TAXA[ORDER == "EPHEMEROPTERA"
                                                             | ORDER == "TRICHOPTERA"
@@ -2562,6 +2593,8 @@ metric.values.bugs <- function(myDF
                                 , x_NCBI = sum(N_TAXA * TOLVAL2, na.rm = TRUE)/sum(N_TAXA[!is.na(TOLVAL2)
                                                                                           & TOLVAL2 >= 0]
                                                                                    , na.rm = TRUE)
+                                , x_BCICTQa = sum(TOLVAL2[EXCLUDE != TRUE], na.rm = TRUE) / nt_total
+
                                 # Shannon-Weiner
                                 #, x_Shan_Num= -sum(log(N_TAXA / ni_total)), na.rm = TRUE)
                                 #, x_Shan_e=x_Shan_Num/log(exp(1))
@@ -3396,6 +3429,8 @@ metric.values.fish <- function(myDF
     verbose <- TRUE
   }## IF ~ boo_QC
 
+  time_start <- Sys.time()
+
   # not carrying over from previous?!
   names(myDF) <- toupper(names(myDF))
 
@@ -3440,7 +3475,7 @@ metric.values.fish <- function(myDF
   # Remove Non-Target Taxa
   #myDF <- myDF[myDF[,"NonTarget"]==0,] # not relevant for fish
 
-  ## QC, missing cols ----
+  ## QC, Missing Cols ----
   if (verbose == TRUE) {
     # 1
     debug_topic <- "QC, required cols"
@@ -3513,6 +3548,10 @@ metric.values.fish <- function(myDF
     warning(paste("Metrics related to the following fields are invalid:"
                   , paste(paste0("   ", col.req.missing), collapse = "\n"), sep = "\n"))
   }##IF.num.col.req.missing.END
+
+  ## QC, Cols2Keep ----
+  # remove duplicates with required so no errors, e.g., SAMPLEID
+  cols2keep <- cols2keep[!cols2keep %in% col.req]
 
   ## QC, Exclude----
   # ensure TRUE/FALSE
@@ -4762,17 +4801,17 @@ metric.values.fish <- function(myDF
 #'
 #' @export
 metric.values.algae <- function(myDF
-                                , MetricNames=NULL
-                                , boo.Adjust=FALSE
-                                , cols2keep=NULL
+                                , MetricNames = NULL
+                                , boo.Adjust = FALSE
+                                , cols2keep = NULL
                                 , MetricSort = NA
-                                , boo.Shiny=FALSE
+                                , boo.Shiny = FALSE
                                 , verbose) {
-  ##FUNCTION ~ metric.values.algae ~ START
+
+  time_start <- Sys.time()
 
   # global variable bindings ----
-  SampleID <- N_TAXA <- NULL
-
+  N_TAXA <- NULL
   NONTARGET <- SAMPLEID <- INDEX_NAME <- INDEX_CLASS <- ni_total <- TAXAID <-
     EXCLUDE <- GENUS <- LOW_N <- HIGH_N <- LOW_P <- HIGH_P <- BC_1 <- BC_2 <-
     BC_3 <- BC_4 <- BC_5 <- PT_1 <- PT_2 <- PT_3 <- PT_4 <- PT_5 <-
@@ -4813,7 +4852,7 @@ metric.values.algae <- function(myDF
 
   # QC----
   # QC, Required Fields
-  ## QC, missing cols ----
+  ## QC, Missing Cols ----
   # col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS"
   #                        , "PHYLUM", "ORDER", "FAMILY", "GENUS"
   #                        )
@@ -4864,19 +4903,25 @@ metric.values.algae <- function(myDF
                   , paste(paste0("   ", col.req.missing), collapse = "\n"), sep = "\n"))
   }##IF.num.col.req.missing.END
 
-  # QC, Exclude as TRUE/FALSE
+  ## QC, Cols2Keep ----
+  # remove duplicates with required so no errors, e.g., SAMPLEID
+  cols2keep <- cols2keep[!cols2keep %in% col.req]
+
+  ## QC, Exclude ----
+  # as TRUE/FALSE
   Exclude.T <- sum(myDF$EXCLUDE == TRUE, na.rm = TRUE)
   if (Exclude.T == 0) {##IF.Exclude.T.START
     warning("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
   }##IF.Exclude.T.END
 
-  # QC, NonTarget as TRUE/FALSE
+  ## QC, NonTarget ----
+  # as TRUE/FALSE
   NonTarget.F <- sum(myDF$NONTARGET == FALSE, na.rm = TRUE)
   if (NonTarget.F == 0) {##IF.Exclude.T.START
     warning("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
   }##IF.Exclude.T.END
 
-  # QC, TolVal
+  ## QC, TolVal----
   # need as numeric, if have "NA" as character it fails
   TolVal_Char_NA <- myDF[, "TOLVAL"] == "NA"
   if (sum(TolVal_Char_NA, na.rm = TRUE) > 0) {
@@ -5626,9 +5671,6 @@ metric.values.algae <- function(myDF
 
 
                 , .groups = "drop_last")##met.val.END
-  time_end2 <- Sys.time()
-  difftime(time_end2, time_start2)
-  dim(met.val)
 
   # Clean Up ####
     # replace NA with 0
@@ -5659,10 +5701,10 @@ metric.values.algae <- function(myDF
                          , as.data.frame(met.val), by = "SAMPLEID")
     }##IF.is.null.cols2keep.END
 
-  # Run Time
-  time_end <- Sys.time()
-  msg <- difftime(time_end, time_start)
-  message(msg)
+    # Run Time
+    time_end <- Sys.time()
+    msg <- difftime(time_end, time_start)
+    message(msg)
 
     # df to report back
     return(df.return)

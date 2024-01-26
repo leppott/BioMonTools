@@ -8,10 +8,11 @@ metric.scores(
   DF_Metrics,
   col_MetricNames,
   col_IndexName,
-  col_IndexRegion,
+  col_IndexClass,
   DF_Thresh_Metric,
   DF_Thresh_Index,
-  col_ni_total = "ni_total"
+  col_ni_total = "ni_total",
+  col_IndexRegion = NULL
 )
 }
 \arguments{
@@ -22,7 +23,7 @@ Index Region (strata).}
 
 \item{col_IndexName}{Name of column with index (e.g., MBSS.2005.Bugs)}
 
-\item{col_IndexRegion}{Name of column with relevant bioregion or site class
+\item{col_IndexClass}{Name of column with relevant bioregion or site class
 (e.g., COASTAL).}
 
 \item{DF_Thresh_Metric}{Data frame of Scoring Thresholds for metrics
@@ -39,7 +40,10 @@ METRIC_NAME, Direction, Thresh_Lo, Thresh_Mid, Thresh_Hi, ScoreRegime
 
 \item{col_ni_total}{Name of column with total number of individuals.  Used
 for cases where sample was collected but no organisms collected.
-Default = ni_total.}
+Default = ni_total.#'}
+
+\item{col_IndexRegion}{Name of column with relevant bioregion or site class
+(e.g., COASTAL). Default = NULL. DEPRECATED}
 }
 \value{
 vector of scores
@@ -62,6 +66,11 @@ that is the sum of all metric scores.  Valid "ScoreRegime" values are:
 The index is on the same scale as the individual metric scores.
 
 * AVERAGE_100 = AVERAGE is scaled 0 to 100.
+
+FIX, 2024-01-29, v1.0.0.9060
+Rename col_IndexRegion to col_IndexClass
+Add col_IndexRegion as variable at end to avoid breaking existing code
+Later remove it as an input variable but add code in the function to accept
 }
 \examples{
 # Example data

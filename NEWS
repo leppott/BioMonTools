@@ -4,11 +4,24 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-01-10 08:30:50.803042
+    #> Last Update: 2024-01-26 16:55:57.184979
 
 # Version History
 
-## Changes in version 1.0.0.9059 (2024-01-10)
+## Changes in version 1.0.0.9061 (2024-01-26)
+
+- refactor: Add metrics for WY bug MMI, Issue \#101
+  - MetricNames.xlsx
+  - MetricScoring.xlsx
+  - `metric.values()`
+- fix: Correct metric.values nt_PolyNoSpion, Issue \#102
+  - Was not calculating number of taxa
+- fix: Change input parameter in metric.scores function, Issue \#103
+  - Replace col_IndexRegion with col_IndexClass
+  - Add col_IndexRegion at end of parameters to avoid breaking existing
+    code
+
+## Changes in version 1.0.0.9060 (2024-01-10)
 
 - refactor: Add ni_total flags (small and large) for MN_IBI_Bugs, Issue
   \#92

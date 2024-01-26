@@ -16,12 +16,17 @@
 #' The index is on the same scale as the individual metric scores.
 #'
 #' * AVERAGE_100 = AVERAGE is scaled 0 to 100.
+#'
+#' FIX, 2024-01-29, v1.0.0.9060
+#' Rename col_IndexRegion to col_IndexClass
+#' Add col_IndexRegion as variable at end to avoid breaking existing code
+#' Later remove it as an input variable but add code in the function to accept
 #
 #' @param DF_Metrics Data frame of metric values (as columns), Index Name, and
 #' Index Region (strata).
 #' @param col_MetricNames Names of columns of metric values.
 #' @param col_IndexName Name of column with index (e.g., MBSS.2005.Bugs)
-#' @param col_IndexRegion Name of column with relevant bioregion or site class
+#' @param col_IndexClass Name of column with relevant bioregion or site class
 #' (e.g., COASTAL).
 #' @param DF_Thresh_Metric Data frame of Scoring Thresholds for metrics
 #' (INDEX_NAME, INDEX_CLASS,
@@ -35,7 +40,9 @@
 #' , Nar01, Nar02, Nar03, Nar04, Nar05, Nar06).
 #' @param col_ni_total Name of column with total number of individuals.  Used
 #' for cases where sample was collected but no organisms collected.
-#' Default = ni_total.
+#' Default = ni_total.#'
+#' @param col_IndexRegion Name of column with relevant bioregion or site class
+#' (e.g., COASTAL). Default = NULL. DEPRECATED
 # @param col_Xvar Name of column with additional variable needed to calculate
 # scores.  For example, log10 drainage area.
 #'
@@ -170,13 +177,14 @@
 metric.scores <- function(DF_Metrics
                           , col_MetricNames
                           , col_IndexName
-                          , col_IndexRegion
+                          , col_IndexClass
                           , DF_Thresh_Metric
                           , DF_Thresh_Index
-                          , col_ni_total = "ni_total") {##FUNCTION.metric.score.START
+                          , col_ni_total = "ni_total"
+                          , col_IndexRegion = NULL) {
   #
   boo.QC <- FALSE
-  if(boo.QC==TRUE){
+  if (boo.QC == TRUE) {
     # DF_Metrics <- df_metric_values_bugs
     # col_MetricNames <- myMetrics.Bugs
     # col_IndexName <- "INDEX_NAME"
@@ -190,10 +198,10 @@ metric.scores <- function(DF_Metrics
     # DF_Thresh_Metric <- df_thresh_metric
     # DF_Thresh_Index  <- df_thresh_index
     (a <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
-    (b <- toupper(unique(as.matrix(DF_Metrics[, col_IndexRegion]))[2]))
+    (b <- toupper(unique(as.matrix(DF_Metrics[, col_IndexClass]))[2]))
     (c <- col_MetricNames[8])
     (aa <- unique(as.matrix(DF_Metrics[, col_IndexName]))[1])
-    (bb <- toupper(unique(as.matrix(DF_Metrics[, col_IndexRegion]))[2]))
+    (bb <- toupper(unique(as.matrix(DF_Metrics[, col_IndexClass]))[2]))
   }##IF~boo.QC~END
 
   # global variable bindings ----
@@ -201,6 +209,12 @@ metric.scores <- function(DF_Metrics
 
   # define pipe
   `%>%` <- dplyr::`%>%`
+
+  # IndexClass not IndexRegion ----
+  if (is.na(col_IndexClass)) {
+    col_IndexClass <- col_IndexRegion
+  }##
+
 
   # QC ####
   #
@@ -250,7 +264,7 @@ metric.scores <- function(DF_Metrics
   # SCORING ####
   # Need to cycle based on Index (a), Region (b), and Metric (c)
   for (a in unique(as.matrix(DF_Metrics[, col_IndexName]))){##FOR.a.START
-    for (b in unique(as.matrix(DF_Metrics[, col_IndexRegion]))) {##FOR.b.START
+    for (b in unique(as.matrix(DF_Metrics[, col_IndexClass]))) {##FOR.b.START
       for (c in col_MetricNames){##FOR.c.START
         #
         # Thresholds (filter with dplyr)
@@ -537,7 +551,7 @@ metric.scores <- function(DF_Metrics
         }##IF.scoring.END
         #
         # Update input DF with matching values
-        myTF <- DF_Metrics[, col_IndexName]==a & DF_Metrics[, col_IndexRegion]==b
+        myTF <- DF_Metrics[, col_IndexName]==a & DF_Metrics[, col_IndexClass]==b
         DF_Metrics[myTF, paste0("SC_", c)] <- fun.Result[myTF]
       }##FOR.c.END
     }##FOR.a.END
@@ -556,7 +570,7 @@ metric.scores <- function(DF_Metrics
   # Index, Value
   # Need to cycle based on Index (aa) and Region (bb)
   for (aa in unique(as.matrix(DF_Metrics[,col_IndexName]))){##FOR.a.START
-    for (bb in unique(as.matrix(DF_Metrics[,col_IndexRegion]))) {##FOR.b.START
+    for (bb in unique(as.matrix(DF_Metrics[,col_IndexClass]))) {##FOR.b.START
 
       # Thresholds (filter with dplyr)
       fun.Thresh.myIndex <- as.data.frame(dplyr::filter(DF_Thresh_Index
@@ -625,7 +639,7 @@ metric.scores <- function(DF_Metrics
 
 
       # Update input DF with matching values
-      myTF <- DF_Metrics[,col_IndexName]==aa & DF_Metrics[,col_IndexRegion]==bb
+      myTF <- DF_Metrics[,col_IndexName]==aa & DF_Metrics[,col_IndexClass]==bb
       DF_Metrics[myTF, "Index"]     <- fun.Result[myTF]
       DF_Metrics[myTF, "Index_Nar"] <- fun.Result.Nar[myTF]
 
