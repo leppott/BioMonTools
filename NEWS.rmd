@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9060 (2024-01-10)
+
+* refactor: Add ni_total flags (small and large) for MN_IBI_Bugs, Issue #92
+    + MetricFlags.xlsx
+
 ## Changes in version 1.0.0.9059 (2024-01-09)
 
 * feat: Add new issue template for metric and index requests, Issue #99

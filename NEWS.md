@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-01-09 17:47:25.602262
+    #> Last Update: 2024-01-10 08:30:50.803042
 
 # Version History
+
+## Changes in version 1.0.0.9059 (2024-01-10)
+
+- refactor: Add ni_total flags (small and large) for MN_IBI_Bugs, Issue
+  \#92
+  - MetricFlags.xlsx
 
 ## Changes in version 1.0.0.9059 (2024-01-09)
 
