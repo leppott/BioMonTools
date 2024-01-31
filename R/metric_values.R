@@ -2306,7 +2306,7 @@ metric.values.bugs <- function(myDF
                                                                          & TOLVAL <= 10]
                                                                   , na.rm = TRUE)
                                 , nt_tv_toler8 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                          & TOLVAL >= 6
+                                                                          & TOLVAL >= 8
                                                                           & TOLVAL <= 10]
                                                                    , na.rm = TRUE)
                                 , pi_tv_intol = 100 * sum(N_TAXA[TOLVAL >= 0

@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-01-26 16:55:57.184979
+    #> Last Update: 2024-01-31 16:29:02.014357
 
 # Version History
+
+## Changes in version 1.0.0.9062 (2024-01-26)
+
+- fix: Modify metric.values() benthic metric nt_tv_toler8, Issue \#104
+  - Was using 6 instead of 8 as minimum
 
 ## Changes in version 1.0.0.9061 (2024-01-26)
 
@@ -16,6 +21,8 @@ NEWS
   - `metric.values()`
 - fix: Correct metric.values nt_PolyNoSpion, Issue \#102
   - Was not calculating number of taxa
+- fix: Update metric.values fun.cols2keep to ignore required cols, Issue
+  \#100
 - fix: Change input parameter in metric.scores function, Issue \#103
   - Replace col_IndexRegion with col_IndexClass
   - Add col_IndexRegion at end of parameters to avoid breaking existing
