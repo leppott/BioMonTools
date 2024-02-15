@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-01-31 16:29:02.014357
+    #> Last Update: 2024-02-15 16:07:04.952746
 
 # Version History
+
+## Changes in version 1.0.0.9063 (2024-02-15)
+
+- fix: Update metric.values metric, nt_COETNoBraBaeHydTri, Issue \#101
+  - Replace Hydropsyche with Hydropsychidae
+  - Metric not calculating properly
+  - Update MetricNames.xlsx
+- tests: Wrote test for nt_COETNoBraBaeHydTri, Issue \#101
 
 ## Changes in version 1.0.0.9062 (2024-01-26)
 

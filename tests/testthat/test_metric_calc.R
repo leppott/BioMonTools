@@ -1505,7 +1505,7 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
   # test
   #testthat::expect_equal(df_metsc_calc, df_metsc_qc)
 
-  col_order<- names(df_metsc_calc)
+  col_order <- names(df_metsc_calc)
 
   # `%>%` <- dplyr::`%>%`
   # df_metsc_qc<- df_metsc_qc %>%
@@ -1518,6 +1518,35 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
   testthat::expect_equal(x, y)
 
 })## Test - met val_sc, MA kick/lograd IBI ~ END
+
+
+# Check individual metrics
+testthat::test_that("metrics, bugs, nt_COETNoBraBaeHydTri", {
+  # Example 1
+  df_metric_values_bugs <- BioMonTools::metric.values(BioMonTools::data_benthos_PacNW, "bugs")
+  # Filter for one metric
+  df_val <- df_metric_values_bugs[order(df_metric_values_bugs$SAMPLEID)
+                                  , c("SAMPLEID", "nt_COETNoBraBaeHydTri")]
+  df_calc <- data.frame(SAMPLEID = sort(df_val$SAMPLEID)
+                        , nt_COETNoBraBaeHydTri = c(13
+                                                    , 5
+                                                    , 21
+                                                    , 17
+                                                    , 22
+                                                    , 4
+                                                    , 20
+                                                    , 10
+                                                    , 20
+                                                    , 17
+                                                    , 3
+                                                    , 11
+                        ))
+  # Test
+  testthat::expect_equal(df_val[, 2], df_calc[, 2])
+
+
+})## Test - met val, WY, nt_COETNoBraBaeHydTri
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Fish ----

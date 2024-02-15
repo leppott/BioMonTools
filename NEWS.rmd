@@ -18,6 +18,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9063 (2024-02-15)
+
+* fix: Update metric.values metric, nt_COETNoBraBaeHydTri, Issue #101
+    + Replace Hydropsyche with Hydropsychidae
+    + Metric not calculating properly
+    + Update MetricNames.xlsx
+* tests: Wrote test for nt_COETNoBraBaeHydTri, Issue #101
+
 ## Changes in version 1.0.0.9062 (2024-01-26)
 
 * fix: Modify metric.values() benthic metric nt_tv_toler8, Issue #104

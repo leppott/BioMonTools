@@ -1647,8 +1647,8 @@ metric.values.bugs <- function(myDF
                                 , ni_Chiro = sum(N_TAXA[FAMILY == "CHIRONOMIDAE"], na.rm = TRUE)
                                 , ni_Dipt = sum(N_TAXA[ORDER == "DIPTERA"], na.rm = TRUE)
                                 , ni_EPT = sum(N_TAXA[ORDER == "EPHEMEROPTERA" |
-                                                        ORDER == "TRICHOPTERA" |
-                                                        ORDER == "PLECOPTERA"], na.rm = TRUE)
+                                                        ORDER == "PLECOPTERA" |
+                                                        ORDER == "TRICHOPTERA"], na.rm = TRUE)
                                 , ni_Trich = sum(N_TAXA[ORDER == "TRICHOPTERA"], na.rm = TRUE)
                                 , ni_Americo = sum(N_TAXA[GENUS == "AMERICOROPHIUM"], na.rm = TRUE)
                                 , ni_Gnorimo = sum(N_TAXA[GENUS == "GNORIMOSPHAEROMA"], na.rm = TRUE)
@@ -1678,22 +1678,24 @@ metric.values.bugs <- function(myDF
                                                                       & ORDER == "COLEOPTERA"]
                                                                , na.rm = TRUE)
                                 , nt_COET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                     & (ORDER == "EPHEMEROPTERA"
-                                                                        | ORDER == "TRICHOPTERA"
-                                                                        | ORDER == "COLEOPTERA"
-                                                                        | ORDER == "ODONATA")]
+                                                                     & (ORDER == "COLEOPTERA"
+                                                                        | ORDER == "ODONATA"
+                                                                        | ORDER == "EPHEMEROPTERA"
+                                                                        | ORDER == "TRICHOPTERA")]
                                                               , na.rm = TRUE)
                                 , nt_COETNoBraBaeHydTri = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                     & (ORDER == "EPHEMEROPTERA"
-                                                                        | ORDER == "TRICHOPTERA"
-                                                                        | ORDER == "COLEOPTERA"
-                                                                        | ORDER == "ODONATA")
-                                                                     & (is.na(FAMILY)
+                                                                     & (ORDER == "COLEOPTERA"
+                                                                        | ORDER == "ODONATA"
+                                                                        | ORDER == "EPHEMEROPTERA"
+                                                                        | ORDER == "TRICHOPTERA")
+                                                                     & (is.na(FAMILY) == TRUE
                                                                         | FAMILY != "BAETIDAE")
-                                                                     & (is.na(GENUS)
-                                                                        | GENUS == "BRACHYCENTRUS"
-                                                                        | GENUS == "HYDROPSYCHE"
-                                                                        | GENUS == "TRICORYTHODES")]
+                                                                     & (is.na(FAMILY) == TRUE
+                                                                        | FAMILY != "HYDROPSYCHIDAE")
+                                                                     & (is.na(GENUS) == TRUE
+                                                                        | GENUS != "BRACHYCENTRUS")
+                                                                     & (is.na(GENUS) == TRUE
+                                                                        | GENUS != "TRICORYTHODES")]
                                                               , na.rm = TRUE)
                                 , nt_CruMol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                        & PHYLUM == "MOLLUSCA"]
