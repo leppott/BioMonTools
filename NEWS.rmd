@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9064 (2024-02-21)
+
+* fix: Update MetricScoring.xlsx, ScoreRegime for MN_IBI_bugs, Issue #92
+    + Cont_010 to Cont_0010 to match code
+
 ## Changes in version 1.0.0.9063 (2024-02-15)
 
 * fix: Update metric.values metric, nt_COETNoBraBaeHydTri, Issue #101
