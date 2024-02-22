@@ -229,55 +229,63 @@ metric.scores <- function(DF_Metrics
               , "Direction", "ScoreRegime", "SingleValue_Add", "NormDist_Tail_Lo", "NormDist_Tail_Hi"
               , "CatGrad_xvar", "CatGrad_InfPt", "CatGrad_Lo_m",	"CatGrad_Lo_b",	"CatGrad_Mid_m"
               ,	"CatGrad_Mid_b",	"CatGrad_Hi_m", "CatGrad_Hi_b")
-  if (length(myFlds)!=sum(myFlds %in% names(DF_Thresh_Metric))) {
+  if (length(myFlds) != sum(myFlds %in% names(DF_Thresh_Metric))) {
     myMsg <- paste0("Fields missing from DF_Thresh_Metric input data frame (v0.3.3.9011 and after). Expecting: \n"
-                    , paste(myFlds[!(myFlds %in% names(DF_Thresh_Metric))], sep="", collapse=", "), collapse="")
+                    , paste(myFlds[!(myFlds %in% names(DF_Thresh_Metric))]
+                            , sep = ""
+                            , collapse = ", ")
+                    , collapse = "")
     stop(myMsg)
   }
   # Error check on fields (metrics)
   myFlds_2 <- c("INDEX_NAME", "INDEX_CLASS")
-  if (length(myFlds_2)!=sum(myFlds_2 %in% names(DF_Metrics))) {
+  if (length(myFlds_2) != sum(myFlds_2 %in% names(DF_Metrics))) {
     myMsg <- paste0("Fields missing from DF_Metrics input data frame.  Expecting: \n"
-                    , paste(myFlds_2, sep="", collapse=", "), collapse="")
+                    , paste(myFlds_2, sep = "", collapse = ", ")
+                    , collapse = "")
     stop(myMsg)
   }
   # Error check on fields (thresh Index)
   myFlds_Index <- c("INDEX_NAME", "INDEX_CLASS", "NumMetrics", "ScoreRegime"
                     , paste0("Thresh0",1:6), paste0("Nar0",1:5))
-  if (length(myFlds_Index)!=sum(myFlds_Index %in% names(DF_Thresh_Index))) {
+  if (length(myFlds_Index) != sum(myFlds_Index %in% names(DF_Thresh_Index))) {
     myMsg <- paste0("Fields missing from DF_Metrics input data frame.  Expecting: \n"
-                    , paste(myFlds_Index,sep="", collapse=", "), collapse="")
+                    , paste(myFlds_Index, sep = "", collapse = ", ")
+                    , collapse = "")
     stop(myMsg)
   }
-  #
+
   # Munge ####
-  #
+
   # Index Region Field to upper case
   DF_Metrics[,"INDEX_CLASS"]       <- toupper(as.matrix(DF_Metrics[,"INDEX_CLASS"]))
   DF_Thresh_Metric[,"INDEX_CLASS"] <- toupper(as.matrix(DF_Thresh_Metric[,"INDEX_CLASS"]))
   DF_Thresh_Index[,"INDEX_CLASS"]  <- toupper(as.matrix(DF_Thresh_Index[,"INDEX_CLASS"]))
-  #
+
   # Add "SCORE" columns for each metric
   Score.MetricNames <- paste0("SC_", col_MetricNames)
   DF_Metrics[, Score.MetricNames] <- NA
-  #
+
   # SCORING ####
   # Need to cycle based on Index (a), Region (b), and Metric (c)
-  for (a in unique(as.matrix(DF_Metrics[, col_IndexName]))){##FOR.a.START
-    for (b in unique(as.matrix(DF_Metrics[, col_IndexClass]))) {##FOR.b.START
-      for (c in col_MetricNames){##FOR.c.START
+  for (a in unique(as.matrix(DF_Metrics[, col_IndexName]))) {
+    for (b in unique(as.matrix(DF_Metrics[, col_IndexClass]))) {
+      for (c in col_MetricNames) {
         #
         # Thresholds (filter with dplyr)
-        fun.Thresh.myMetric <- as.data.frame(dplyr::filter(DF_Thresh_Metric, INDEX_NAME==a & INDEX_CLASS==b & METRIC_NAME==c))
+        fun.Thresh.myMetric <- as.data.frame(dplyr::filter(DF_Thresh_Metric
+                                                           , INDEX_NAME == a
+                                                           & INDEX_CLASS == b
+                                                           & METRIC_NAME == c))
         # QC
         #stopifnot(nrow(fun.Thresh.myMetric)==1)
-        if(nrow(fun.Thresh.myMetric)!=1){
+        if (nrow(fun.Thresh.myMetric) != 1) {
           #return(0)
           next
         }##IF~nrow~END
         #
         # Debug
-        if(boo.QC){
+        if (boo.QC) {
           myMsg <- paste0("\nIndex = ", a, ", Region = ", b, ", Metric = ", c)
           message(myMsg)
         }##IF~boo.QC~END
@@ -316,78 +324,89 @@ metric.scores <- function(DF_Metrics
         fun.Value <- DF_Metrics[, c]
         fun.Result <- fun.Value * NA  #default value of NA
         #
-        if(fun.ScoreRegime=="CONT_0100"){##IF.scoring.START
+        if (fun.ScoreRegime == "CONT_0100") {
           # Cont_0100 ####
           score_max <- 100
-          if(fun.Direction=="DECREASE"){
-            fun.calc <- score_max*((fun.Value-fun.Lo)/(fun.Hi-fun.Lo))
-          }else if (fun.Direction=="INCREASE") {
-            fun.calc <- score_max*((fun.Hi-fun.Value)/(fun.Hi-fun.Lo))
+          if (fun.Direction == "DECREASE") {
+            fun.calc <- score_max*((fun.Value - fun.Lo) / (fun.Hi - fun.Lo))
+          }else if (fun.Direction == "INCREASE") {
+            fun.calc <- score_max*((fun.Hi - fun.Value) / (fun.Hi - fun.Lo))
           }
           fun.Result <- sapply(fun.calc, function(x) {stats::median(c(0, score_max, x))})
-        } else if(fun.ScoreRegime=="CONT_0010"){
+        } else if (fun.ScoreRegime == "CONT_0010") {
           # Cont_0010 ####
           score_max <- 10
-          if(fun.Direction=="DECREASE"){
-            fun.calc <- score_max*((fun.Value-fun.Lo)/(fun.Hi-fun.Lo))
-          }else if (fun.Direction=="INCREASE") {
-            fun.calc <- score_max*((fun.Hi-fun.Value)/(fun.Hi-fun.Lo))
+          if (fun.Direction == "DECREASE") {
+            fun.calc <- score_max*((fun.Value - fun.Lo) / (fun.Hi - fun.Lo))
+          }else if (fun.Direction == "INCREASE") {
+            fun.calc <- score_max*((fun.Hi - fun.Value) / (fun.Hi - fun.Lo))
           }
           fun.Result <- sapply(fun.calc, function(x) {stats::median(c(0, score_max, x))})
-        } else if(fun.ScoreRegime=="CAT_135"){
+        } else if (fun.ScoreRegime == "CAT_135") {
           # Cat_135 ####
-          if(fun.Direction=="DECREASE") {
-            fun.Result <- ifelse(fun.Value>=fun.Hi,5
-                                 ,ifelse(fun.Value<fun.Lo,1,3))
-            if(boo.QC==TRUE){##IF.boo.QC.START
-              message(paste0("\nMetric=",c,", Value=",fun.Value,", Result=", fun.Result))
+          if (fun.Direction == "DECREASE") {
+            fun.Result <- ifelse(fun.Value >= fun.Hi
+                                 , 5
+                                 ,ifelse(fun.Value < fun.Lo, 1, 3))
+            if (boo.QC == TRUE) {
+              message(paste0("\nMetric="
+                             , c
+                             , ", Value="
+                             , fun.Value
+                             , ", Result="
+                             , fun.Result))
               #utils::flush.console()
             }##IF.boo.QC.END
-          } else if (fun.Direction=="INCREASE") {
-            fun.Result <- ifelse(fun.Value<=fun.Lo,5
-                                 ,ifelse(fun.Value>fun.Hi,1,3))
+          } else if (fun.Direction == "INCREASE") {
+            fun.Result <- ifelse(fun.Value <= fun.Lo
+                                 , 5
+                                 , ifelse(fun.Value > fun.Hi, 1, 3))
           }##IF~fun.Direction~END
-        } else if(fun.ScoreRegime=="CAT_0246" | fun.ScoreRegime=="CAT_0123") {
+        } else if (fun.ScoreRegime == "CAT_0246" | fun.ScoreRegime == "CAT_0123") {
           # Cat_0246 ####
-          if(fun.Direction=="DECREASE") {
-            fun.Result <- ifelse(fun.Value>=fun.Hi,6
-                                 ,ifelse(fun.Value>=fun.Mid,4
-                                         ,ifelse(fun.Value>=fun.Lo,2,0)))
-            if(fun.ScoreRegime=="CAT_0123"){##CAT_0123.START
+          if (fun.Direction == "DECREASE") {
+            fun.Result <- ifelse(fun.Value >= fun.Hi
+                                 , 6
+                                 ,ifelse(fun.Value >= fun.Mid
+                                         , 4
+                                         , ifelse(fun.Value >= fun.Lo, 2, 0)))
+            if (fun.ScoreRegime == "CAT_0123") {
               fun.Result <- fun.Result / 2
             }##CAT_0123.END
-          } else if (fun.Direction=="INCREASE") {
-            fun.Result <- ifelse(fun.Value<=fun.Lo,6
-                                 ,ifelse(fun.Value<=fun.Mid,4
-                                         ,ifelse(fun.Value<=fun.Hi,2,0)))
-            if(fun.ScoreRegime=="CAT_0123"){##CAT_0123.START
+          } else if (fun.Direction == "INCREASE") {
+            fun.Result <- ifelse(fun.Value <= fun.Lo
+                                 , 6
+                                 , ifelse(fun.Value <= fun.Mid
+                                          , 4
+                                          , ifelse(fun.Value <= fun.Hi, 2, 0)))
+            if (fun.ScoreRegime == "CAT_0123") {
               fun.Result <- fun.Result / 2
             }##CAT_0123.END
-          } else if (fun.Direction=="SCOREVALUE"){##SCOREVALUE.START
+          } else if (fun.Direction == "SCOREVALUE") {
             fun.Result <- fun.Value
           }##SCOREVALUE.END
-        } else if(fun.ScoreRegime=="NORMDIST_135") {
+        } else if (fun.ScoreRegime == "NORMDIST_135") {
           # NormDist_135 ####
           fun.Result <- ifelse(fun.Value < fun.ND_Lo | fun.Value > fun.ND_Hi, 1
                                , ifelse(fun.Value >= fun.ND_Lo & fun.Value < fun.Lo, 3
                                         , ifelse(fun.Value <= fun.ND_Hi & fun.Value > fun.Hi, 3
                                                  , ifelse(fun.Value >= fun.Lo & fun.Value <= fun.Hi, 5, NA))))
-        } else if(fun.ScoreRegime=="SINGLEVALUE"){
+        } else if (fun.ScoreRegime == "SINGLEVALUE") {
           # SingleValue ####
-          if(!is.na(fun.Hi)){
+          if (!is.na(fun.Hi)) {
             fun.Result <- ifelse(fun.Value > fun.Hi, fun.SV_Add, 0)
           }##SingleValue_Hi
           #
-          if(!is.na(fun.Lo)){
+          if (!is.na(fun.Lo)) {
             fun.Result <- ifelse(fun.Value < fun.Lo, fun.SV_Add, 0)
           }##SingleValue_Lo
-        } else if(fun.ScoreRegime=="CATGRAD_135") {
+        } else if (fun.ScoreRegime == "CATGRAD_135") {
           # ContGrad135 ####
           #
           # get xvar and calc Expected Score
           # QC to ensure xvar is present in data
           boo_CG_xvar <- fun.CG_xvar %in% names(DF_Metrics)
-          if(boo_CG_xvar == FALSE){
+          if (boo_CG_xvar == FALSE) {
             myMsg <- paste0("\nField missing from DF_Metric input data frame. Expecting: \n"
                             , fun.CG_xvar)
             stop(myMsg)
@@ -404,13 +423,19 @@ metric.scores <- function(DF_Metrics
           #
           # Check for inflection point, then score based on Gradient
           # Gradient is only a decrease scoring regime
-          if(is.na(fun.CG_IP)){
+          if (is.na(fun.CG_IP)) {
             # ContGrad_135 w/o IP
-            fun.Result <- ifelse(fun.Value >= x_Exp_Hi, 5, ifelse(fun.Value < x_Exp_Lo, 1, 3))
+            fun.Result <- ifelse(fun.Value >= x_Exp_Hi
+                                 , 5
+                                 , ifelse(fun.Value < x_Exp_Lo, 1, 3))
           } else {
             fun.Result <- ifelse(fun.CG_xval >= fun.CG_IP
-                                 , ifelse(fun.Value >= fun.Hi, 5, ifelse(fun.Value < fun.Lo, 1, 3))
-                                 , ifelse(fun.Value >= x_Exp_Hi, 5, ifelse(fun.Value < x_Exp_Lo, 1, 3)))
+                                 , ifelse(fun.Value >= fun.Hi
+                                          , 5
+                                          , ifelse(fun.Value < fun.Lo, 1, 3))
+                                 , ifelse(fun.Value >= x_Exp_Hi
+                                          , 5
+                                          , ifelse(fun.Value < x_Exp_Lo, 1, 3)))
           }##IF~is.na(fun.CG_IP)~END
 
 
@@ -418,7 +443,7 @@ metric.scores <- function(DF_Metrics
           # use dplyr::mutate ?
           #~~~~~~~~~~
 
-        } else if(fun.ScoreRegime == "CAT_135_SELMET") {
+        } else if (fun.ScoreRegime == "CAT_135_SELMET") {
           # Cat_135_SelMet ####
           #
           # QC, check for name
@@ -432,9 +457,13 @@ metric.scores <- function(DF_Metrics
           # Get Master Metric Score
           c_master_score <- DF_Metrics[, paste0("SC_", fun.SelMet_Name)]
           #
-          if(sum(is.na(c_master_score)) == length(c_master_score)){
-            myMsg <- paste0("\nMaster metric (", fun.SelMet_Name, ") not scored before dependent metric (", c, ").\n",
-                            "Reorder columns before proceeding.")
+          if (sum(is.na(c_master_score)) == length(c_master_score)) {
+            myMsg <- paste0("\nMaster metric ("
+                            , fun.SelMet_Name
+                            , ") not scored before dependent metric ("
+                            , c
+                            , ").\n"
+                            , "Reorder columns before proceeding.")
             stop(myMsg)
             # Scores for testing
             if (boo.QC == TRUE) {
@@ -447,7 +476,7 @@ metric.scores <- function(DF_Metrics
           #
           # Keep only relevant values
           #fun.Value_orig <- fun.Value # for testing only
-          if(fun.SelMet_Cond == "greaterthan"){
+          if (fun.SelMet_Cond == "greaterthan") {
             fun.Value <- ifelse(c_master_score > fun.SelMet_Score, fun.Value, NA)
           } else if (fun.SelMet_Cond == "equal") {
             fun.Value <- ifelse(c_master_score == fun.SelMet_Score, fun.Value, NA)
@@ -458,20 +487,26 @@ metric.scores <- function(DF_Metrics
           # Score (only non NA)
           # Same Cat135 code as above
           # Cat_135 #
-          if(fun.Direction=="DECREASE") {
-            fun.Result <- ifelse(fun.Value>=fun.Hi,5
-                                 ,ifelse(fun.Value<fun.Lo,1,3))
-            if(boo.QC==TRUE){##IF.boo.QC.START
-              myMsg <- paste0("\nMetric=",c,", Value=",fun.Value,", Result=", fun.Result)
+          if (fun.Direction == "DECREASE") {
+            fun.Result <- ifelse(fun.Value >= fun.Hi
+                                 , 5
+                                 ,ifelse(fun.Value < fun.Lo, 1, 3))
+            if (boo.QC == TRUE) {
+              myMsg <- paste0("\nMetric="
+                              , c
+                              , ", Value="
+                              , fun.Value
+                              , ", Result="
+                              , fun.Result)
               message(myMsg)
               #utils::flush.console()
             }##IF.boo.QC.END
-          } else if (fun.Direction=="INCREASE") {
-            fun.Result <- ifelse(fun.Value<=fun.Lo,5
-                                 ,ifelse(fun.Value>fun.Hi,1,3))
+          } else if (fun.Direction == "INCREASE") {
+            fun.Result <- ifelse(fun.Value <= fun.Lo, 5
+                                 ,ifelse(fun.Value > fun.Hi, 1, 3))
           }##IF~fun.direction~END
           #
-        } else if(fun.ScoreRegime == "CAT_135_SCMET") {
+        } else if (fun.ScoreRegime == "CAT_135_SCMET") {
           # Cat_135_ScMet ####
           #
           # QC, check for name
@@ -486,7 +521,7 @@ metric.scores <- function(DF_Metrics
           c_master_score <- DF_Metrics[, paste0("SC_", fun.ScMet_Name)]
           c_master_value <- DF_Metrics[, fun.ScMet_Name]
           #
-          # if(sum(is.na(c_master_value)) == length(c_master_value)){
+          # if (sum(is.na(c_master_value)) == length(c_master_value)) {
           #   myMsg <- paste0("\nMaster metric (", fun.ScMet_Name, ") not included before dependent metric (", c, ").\n",
           #                   "Reorder columns before proceeding.")
           #   stop(myMsg)
@@ -505,35 +540,47 @@ metric.scores <- function(DF_Metrics
           # Score (only non NA)
           # Same Cat135 code as above
           # Cat_135 #
-          if(fun.Direction=="DECREASE") {
-            fun.Result <- ifelse(fun.Value>=fun.Hi,5
-                                 ,ifelse(fun.Value<fun.Lo,1,3))
-            if(boo.QC==TRUE){##IF.boo.QC.START
-              myMsg <- paste0("\nMetric=",c,", Value=",fun.Value,", Result=", fun.Result)
+          if (fun.Direction == "DECREASE") {
+            fun.Result <- ifelse(fun.Value >= fun.Hi
+                                 , 5
+                                 , ifelse(fun.Value < fun.Lo, 1, 3))
+            if (boo.QC == TRUE) {
+              myMsg <- paste0("\nMetric="
+                              , c
+                              , ", Value="
+                              , fun.Value
+                              , ", Result="
+                              , fun.Result)
               message(myMsg)
               #utils::flush.console()
             }##IF.boo.QC.END
-          } else if (fun.Direction=="INCREASE") {
-            fun.Result <- ifelse(fun.Value<=fun.Lo,5
-                                 ,ifelse(fun.Value>fun.Hi,1,3))
+          } else if (fun.Direction == "INCREASE") {
+            fun.Result <- ifelse(fun.Value <= fun.Lo
+                                 , 5
+                                 ,ifelse(fun.Value > fun.Hi, 1, 3))
           }##IF~fun.direction~END
 
           # Change scores if meet conditions
-          if(fun.ScMet_Cond == "greaterthan"){
-            fun.Result <- ifelse(c_master_value > fun.ScMet_Value, fun.ScMet_ScMet, fun.Result)
+          if (fun.ScMet_Cond == "greaterthan") {
+            fun.Result <- ifelse(c_master_value > fun.ScMet_Value
+                                 , fun.ScMet_ScMet
+                                 , fun.Result)
           } else if (fun.ScMet_Cond == "equal") {
-            fun.Result <- ifelse(c_master_value == fun.ScMet_Value, fun.ScMet_ScMet, fun.Result)
+            fun.Result <- ifelse(c_master_value == fun.ScMet_Value
+                                 , fun.ScMet_ScMet
+                                 , fun.Result)
           } else {
             # something not right.  Give "ERROR" rather than score so know is an issue.
             # Don't want to "stop" as wouldn't be able to get results.
             fun.Result <- "ERROR"
           }##IF~SelMetMaster~END
 
-        } else if(fun.ScoreRegime == "Cat_101") {
+        } else if (fun.ScoreRegime == "Cat_101") {
           # Cat_101 ----
-          fun.Result <- ifelse(fun.Value > fun.Hi, 1
-                               ,ifelse(fun.Value < fun.Lo, 1, 0))
-          if(boo.QC == TRUE){
+          fun.Result <- ifelse(fun.Value > fun.Hi
+                               , 1
+                               , ifelse(fun.Value < fun.Lo, 1, 0))
+          if (boo.QC == TRUE) {
             message(paste0("\nMetric="
                            , c
                            , ", Value="
@@ -542,7 +589,7 @@ metric.scores <- function(DF_Metrics
                            , fun.Result))
             #utils::flush.console()
           }##IF.boo.QC.END
-        } else if(is.na(fun.ScoreRegime)) {
+        } else if (is.na(fun.ScoreRegime)) {
           # No Score Regime ####
           fun.Result <- NA
         } else {
@@ -551,7 +598,7 @@ metric.scores <- function(DF_Metrics
         }##IF.scoring.END
         #
         # Update input DF with matching values
-        myTF <- DF_Metrics[, col_IndexName]==a & DF_Metrics[, col_IndexClass]==b
+        myTF <- DF_Metrics[, col_IndexName] == a & DF_Metrics[, col_IndexClass] == b
         DF_Metrics[myTF, paste0("SC_", c)] <- fun.Result[myTF]
       }##FOR.c.END
     }##FOR.a.END
@@ -565,19 +612,20 @@ metric.scores <- function(DF_Metrics
 
   # Index, Sum
   # sum all metrics
-  DF_Metrics[,"sum_Index"] <- rowSums(DF_Metrics[, Score.MetricNames], na.rm = TRUE)
+  DF_Metrics[,"sum_Index"] <- rowSums(DF_Metrics[, Score.MetricNames]
+                                      , na.rm = TRUE)
 
   # Index, Value
   # Need to cycle based on Index (aa) and Region (bb)
-  for (aa in unique(as.matrix(DF_Metrics[,col_IndexName]))){##FOR.a.START
-    for (bb in unique(as.matrix(DF_Metrics[,col_IndexClass]))) {##FOR.b.START
+  for (aa in unique(as.matrix(DF_Metrics[,col_IndexName]))) {
+    for (bb in unique(as.matrix(DF_Metrics[,col_IndexClass]))) {
 
       # Thresholds (filter with dplyr)
       fun.Thresh.myIndex <- as.data.frame(dplyr::filter(DF_Thresh_Index
-                                                        , INDEX_NAME==aa
-                                                          & INDEX_CLASS==bb))
+                                                        , INDEX_NAME == aa
+                                                          & INDEX_CLASS == bb))
       # QC
-      if(nrow(fun.Thresh.myIndex)!=1){
+      if (nrow(fun.Thresh.myIndex) != 1) {
         #return(0)
         next
       }
@@ -601,15 +649,15 @@ metric.scores <- function(DF_Metrics
       #
       # Score Regime, INDEX ####
       # Scoring
-      if(fun.ScoreRegime == "AVERAGE"){##IF.scoring.START
+      if (fun.ScoreRegime == "AVERAGE") {
         fun.Result <- DF_Metrics[, "sum_Index"] / fun.NumMetrics
-        # } else if (fun.ScoreRegime == "AVERAGE_10"){
+        # } else if (fun.ScoreRegime == "AVERAGE_10") {
         #   sr_mult    <- 10
         #   fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
-        # } else if (fun.ScoreRegime == "AVERAGE_20"){
+        # } else if (fun.ScoreRegime == "AVERAGE_20") {
         #   sr_mult    <- 20
         #   fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
-      } else if (fun.ScoreRegime == "AVERAGE_100"){
+      } else if (fun.ScoreRegime == "AVERAGE_100") {
         sr_mult    <- 100 / fun.NumMetrics
         fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
       } else if (fun.ScoreRegime == "AVERAGESCALE_100") {
@@ -624,14 +672,14 @@ metric.scores <- function(DF_Metrics
       myBreaks <- as.numeric(paste(fun.Index.Nar.Thresh[1, 1:(fun.Index.Nar.Numb + 1)]))
       myLabels <- paste(fun.Index.Nar.Nar[1, 1:fun.Index.Nar.Numb])
       fun.Result.Nar <- as.vector(cut(fun.Result
-                                      , breaks=myBreaks
-                                      , labels=myLabels
-                                      , include.lowest=TRUE
-                                      , right=FALSE
+                                      , breaks = myBreaks
+                                      , labels = myLabels
+                                      , include.lowest = TRUE
+                                      , right = FALSE
                                       , ordered_result = TRUE))
 
       # Update for zero individuals
-      if(fun.ZeroInd_Use == TRUE) {
+      if (fun.ZeroInd_Use == TRUE) {
         boo_zero_ni_total <- DF_Metrics[, col_ni_total] == 0
         fun.Result[boo_zero_ni_total]     <- fun.ZeroInd_Sc
         fun.Result.Nar[boo_zero_ni_total] <- fun.ZeroInd_Nar
@@ -639,7 +687,7 @@ metric.scores <- function(DF_Metrics
 
 
       # Update input DF with matching values
-      myTF <- DF_Metrics[,col_IndexName]==aa & DF_Metrics[,col_IndexClass]==bb
+      myTF <- DF_Metrics[, col_IndexName] == aa & DF_Metrics[, col_IndexClass] == bb
       DF_Metrics[myTF, "Index"]     <- fun.Result[myTF]
       DF_Metrics[myTF, "Index_Nar"] <- fun.Result.Nar[myTF]
 

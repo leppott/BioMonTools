@@ -18,6 +18,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.0.9065 (2024-02-22)
+
+* fix: Update MetricScoring.xlsx
+    + Change MN_IBI_Bugs INDEX_CLASS from 5 IBI classes to 9 site classes, 
+    Issue #92
+    + Update all ScoreRegime from Cont_010 to Cont_0010
+    + Added Modify_Value and Modify_Code to adjust values before scoring
+        - not implemented
+* style:  Update spacing in metric.values
+
 ## Changes in version 1.0.0.9064 (2024-02-21)
 
 * fix: Update MetricScoring.xlsx, ScoreRegime for MN_IBI_bugs, Issue #92

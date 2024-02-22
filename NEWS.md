@@ -4,9 +4,19 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-02-21 15:51:09.191259
+    #> Last Update: 2024-02-22 14:44:25.910211
 
 # Version History
+
+## Changes in version 1.0.0.9065 (2024-02-22)
+
+- fix: Update MetricScoring.xlsx
+  - Change MN_IBI_Bugs INDEX_CLASS from 5 IBI classes to 9 site classes,
+    Issue \#92
+  - Update all ScoreRegime from Cont_010 to Cont_0010
+  - Added Modify_Value and Modify_Code to adjust values before scoring
+    - not implemented
+- style: Update spacing in metric.values
 
 ## Changes in version 1.0.0.9064 (2024-02-21)
 
