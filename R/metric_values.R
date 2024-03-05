@@ -2813,7 +2813,7 @@ metric.values.bugs <- function(myDF
                                                            & (BCG_ATTR == "5")]
                                                     , na.rm = TRUE)
 
-                                ### BCG_nt_Phylo
+                                #### BCG_nt_Phylo----
                                 , nt_Ephem_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                                  & ORDER == "EPHEMEROPTERA"
                                                                                  & (BCG_ATTR == "1I"
@@ -2845,6 +2845,37 @@ metric.values.bugs <- function(myDF
                                                                                  & (BCG_ATTR == "1I"
                                                                                     | BCG_ATTR == "2")]
                                                                           , na.rm = TRUE)
+
+
+                                , nt_Coleo_BCG_att234b4m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                            & ORDER == "COLEOPTERA"
+                                                                            & (BCG_ATTR == "2"
+                                                                               | BCG_ATTR == "3"
+                                                                               | BCG_ATTR2 == "4_BETTER"
+                                                                               | BCG_ATTR2 == "4_MIDDLE")]
+                                                                              , na.rm = TRUE)
+
+                                , nt_Ephem_BCG_att234b4m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                             & ORDER == "EPHEMEROPTERA"
+                                                                             & (BCG_ATTR == "2"
+                                                                                | BCG_ATTR == "3"
+                                                                                | BCG_ATTR2 == "4_BETTER"
+                                                                                | BCG_ATTR2 == "4_MIDDLE")]
+                                                                              , na.rm = TRUE)
+                                , nt_Odon_BCG_att234b4m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                           & ORDER == "ODONATA"
+                                                                           & (BCG_ATTR == "2"
+                                                                              | BCG_ATTR == "3"
+                                                                              | BCG_ATTR2 == "4_BETTER"
+                                                                              | BCG_ATTR2 == "4_MIDDLE")]
+                                                                            , na.rm = TRUE)
+                                , nt_Trich_BCG_att234b4m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                             & ORDER == "TRICHOPTERA"
+                                                                             & (BCG_ATTR == "2"
+                                                                                | BCG_ATTR == "3"
+                                                                                | BCG_ATTR2 == "4_BETTER"
+                                                                                | BCG_ATTR2 == "4_MIDDLE")]
+                                                                            , na.rm = TRUE)
 
                                 #### BCG_pi----
                                 , pi_BCG_att1 = 100 * sum(N_TAXA[(BCG_ATTR == "1")]
@@ -3067,6 +3098,13 @@ metric.values.bugs <- function(myDF
                                 , nval_habstruct = sum(HS_CS + HS_NF + HS_RM + HS_SG, na.rm = TRUE)
 
                                 ### Number Group within Group ----
+                                #### nord_Order----
+                                , nord_COET = dplyr::n_distinct(ORDER[ORDER == "COLEOPTERA"
+                                                                      | ORDER == "ODONATA"
+                                                                      | ORDER == "EPHEMEROPTERA"
+                                                                      | ORDER == "TRICHOPTERA"]
+                                                                , na.rm = TRUE)
+
                                 #### nfam_Order----
                                 , nfam_Coleo = dplyr::n_distinct(FAMILY[ORDER == "COLEOPTERA"]
                                                                  , na.rm = TRUE)

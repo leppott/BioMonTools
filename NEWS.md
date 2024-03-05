@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-02-22 14:44:25.910211
+    #> Last Update: 2024-03-05 15:59:08.5844
 
 # Version History
+
+## Changes in version 1.0.0.9066 (2024-03-05)
+
+- refactor: Additional metrics for Great Plains BCG, Issue \#106
+  - metric_values.R
+  - MetricNames.xlsx
 
 ## Changes in version 1.0.0.9065 (2024-02-22)
 
