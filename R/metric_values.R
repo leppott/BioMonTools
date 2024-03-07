@@ -5833,6 +5833,13 @@ metric.values.coral <- function(myDF
   debug_sub_num_total <- 18
 
   # global variable bindings ----
+  INDEX_NAME <- INDEX_CLASS <- SAMPLEID <- TAXAID <- BCG_ATTR <- WEEDY <- PHYLUM <-
+    CLASS <- SUBCLASS <- ORDER <- FAMILY <- GENUS <- SUBGENUS <- SPECIES <- JUVENILE <-
+    LRBC <- TOTTRANLNGTH_M <- DIAMMAX_CM <- DIAMPERP_CM <- HEIGHT_CM <- MORPHCONVFACT <-
+    TOTMORT_PCT <- WEEDY_CONFIRMED <- DIAM_CM <- R2 <- CSA <- LIVETISSUE_PCT <-
+    LCSA <- LCSA3D_samp_m2 <- LCSA3D_BCG_att1234_m2 <- LCSA3D_LRBC_m2 <-
+    ncol_AcroOrbi_m2 <- nt_BCG_att123 <- nt_BCG_att1234 <- nt_total <- pcol_Acropora <-
+    pcol_SmallWeedy <- pt_BCG_att5 <- ncol_Acropora <- ncol_SmallWeedy <- nt_BCG_att5
 
   # QC----
   ## QC, Missing Cols ----
