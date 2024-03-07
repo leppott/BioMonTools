@@ -5791,26 +5791,31 @@ metric.values.coral <- function(myDF
                                 , boo.Shiny = FALSE
                                 , verbose) {
 
-  # BenB TEST ####
-  wd <- getwd()
-  input.dir <- "inst/extdata"
-  library(readr)
-  library(dplyr)
-  myTestfile <- read_csv(file.path(wd, input.dir
-                                   , "FL_BCG_BioMonTools_Input_20240306.csv")
-                         , na = c("NA",""), trim_ws = TRUE, skip = 0
-                         , col_names = TRUE, guess_max = 100000)
-  unique_samps <- unique(myTestfile$SampleID)
-  unique_samps_250 <- unique_samps[1:250]
-
-  myDF <- myTestfile %>%
-    filter(SampleID %in% unique_samps_250)
-  MetricNames = NULL
-  boo.Adjust = FALSE
-  cols2keep = NULL
-  MetricSort = NA
-  boo.Shiny = FALSE
-  verbose = TRUE
+  # # BenB TEST ####
+  # wd <- getwd()
+  # input.dir <- "inst/extdata"
+  # library(readr)
+  # library(dplyr)
+  # myTestfile <- read_csv(file.path(wd, input.dir
+  #                                  , "FL_BCG_BioMonTools_Input_20240307.csv")
+  #                        , na = c("NA",""), trim_ws = TRUE, skip = 0
+  #                        , col_names = TRUE, guess_max = 100000)
+  # unique_samps <- unique(myTestfile$SampleID)
+  # unique_samps_250 <- unique_samps[1:250]
+  #
+  # myDF <- myTestfile %>%
+  #   filter(SampleID %in% unique_samps_250)
+  # MetricNames = NULL
+  # boo.Adjust = FALSE
+  # cols2keep = NULL
+  # MetricSort = NA
+  # boo.Shiny = FALSE
+  # verbose = TRUE
+  #
+  # # Convert to data.frame.  Code breaks if fun.DF is a tibble.
+  # myDF <- as.data.frame(myDF)
+  # # convert Field Names to UPPER CASE
+  # names(myDF) <- toupper(names(myDF))
 
   # Start ###############################################
 
@@ -5819,7 +5824,7 @@ metric.values.coral <- function(myDF
 
   time_start <- Sys.time()
 
-  # not carrying over from previous?!
+  # not carrying over from previous
   names(myDF) <- toupper(names(myDF))
 
   debug_sub_community <- "CORAL"
@@ -5851,8 +5856,8 @@ metric.values.coral <- function(myDF
                          , "GENUS", "SUBGENUS", "SPECIES")
 
   col.req_logical <- c("JUVENILE", "LRBC")
-  col.req_numeric <- c("TOTALTRANSECTLENGTH_M", "DIAMMAX_CM", "DIAMPERP_CM"
-                       , "HEIGHT_M", "MORPHCONVFACT")
+  col.req_numeric <- c("TOTTRANLNGTH_M", "DIAMMAX_CM", "DIAMPERP_CM"
+                       , "HEIGHT_CM", "MORPHCONVFACT", "TOTMORT_PCT")
   col.req <- c(col.req_character, col.req_logical, col.req_numeric)
 
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
@@ -6019,6 +6024,11 @@ metric.values.coral <- function(myDF
     warning("WEEDY column contains unrecognized values. \n  Valid values are 'Never', 'Sometimes', or'Always'.  \n  Other values are not recognized.")
   }##IF.WEEDY.END
 
+  ## QC, Mortality ----
+  if (any(myDF$TOTMORT_PCT > 100)) {
+    warning("TOTMORT_PCT column contains values outside the normal range of 0-100. \n Fix invalid values before proceeding because LCSA-based metrics will not be calculated correctly.")
+  }##IF.Mort.END
+
   ## QC, BCG_Attr ----
   # need as character, if complex all values fail
   if (verbose == TRUE) {
@@ -6078,13 +6088,87 @@ metric.values.coral <- function(myDF
   # Convert values to upper case
   myDF[, "WEEDY"] <- toupper(myDF[, "WEEDY"])
 
-  # Add extra columns for some fields
-  # (need unique values for functions in summariZe)
-  # each will be TRUE or FALSE
-  # finds any match so "CN, CB" is both "CN" and "CB"
-  myDF[, "WEEDY_ALWAYS"] <- grepl("ALWAYS", myDF[, "WEEDY"])
-  myDF[, "WEEDY_SOMETIMES"] <- grepl("SOMETIMES", myDF[, "WEEDY"])
-  myDF[, "WEEDY_NEVER"] <- grepl("NEVER", myDF[, "WEEDY"])
+  # Do some calcs
+  myDF <- myDF %>%
+    dplyr::mutate(WEEDY_CONFIRMED = dplyr::case_when((WEEDY == "ALWAYS") ~ TRUE
+                                                     , (WEEDY == "NEVER") ~ FALSE
+                                                     , (WEEDY == "SOMETIMES"
+                                                        & DIAMMAX_CM < 30
+                                                        & HEIGHT_CM < 10) ~ TRUE
+                                                     , TRUE ~ FALSE)
+                  , DIAM_CM = dplyr::case_when((!is.na(DIAMPERP_CM)
+                                                & !is.na(DIAMMAX_CM))
+                                               ~ as.numeric((DIAMPERP_CM + DIAMMAX_CM)/2)
+                                               , TRUE ~ as.numeric(DIAMMAX_CM))
+                  , R2 = ((HEIGHT_CM + (DIAM_CM/2))/2)^2
+                  , CSA = R2*MORPHCONVFACT*pi
+                  , LIVETISSUE_PCT = 100 - TOTMORT_PCT
+                  , LCSA = CSA * (LIVETISSUE_PCT/100)) %>%
+    dplyr::select(-c(R2, LIVETISSUE_PCT))
+
+  # Metric Calc----
+
+  # Calculate Metrics (could have used pipe, %>%)
+  met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME
+                                              , INDEX_CLASS)
+              ## Individuals ----
+              , ncol_total = dplyr::n()
+              , lcol_total = log(ncol_total)
+
+              ## Number of Taxa ----
+              , nt_total = dplyr::n_distinct(TAXAID, na.rm = TRUE)
+
+              ## Percent of Taxa ----
+
+              ## Number of Individuals ----
+              , ncol_Acropora = sum(GENUS == "ACROPORA", na.rm = TRUE)
+              , ncol_AcroOrbi_m2 = sum((GENUS == "ACROPORA"| GENUS == "ORBICELLA")
+                                       , na.rm = TRUE) / unique(TOTTRANLNGTH_M) # Transect width 1m
+
+              ## Percent of Individuals ----
+              , pcol_Acropora =   100 * ncol_Acropora / ncol_total
+
+              ## BCG ----
+              ### BCG, nt ####
+              , nt_BCG_att123 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                                                          | BCG_ATTR == "2"
+                                                          | BCG_ATTR == "3")]
+                                                  , na.rm = TRUE)
+
+              , nt_BCG_att1234 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                                                           | BCG_ATTR == "2"
+                                                           | BCG_ATTR == "3"
+                                                           | BCG_ATTR == "4")]
+                                                   , na.rm = TRUE)
+
+              , nt_BCG_att5 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "5")]
+                                                , na.rm = TRUE)
+
+              ### BCG, pt ####
+              , pt_BCG_att5 =   100 * nt_BCG_att5 / nt_total
+
+              ## Surface Area ----
+              # Transect width 1m
+              , LCSA3D_samp_m2 = sum(LCSA, na.rm = TRUE) / unique(TOTTRANLNGTH_M)
+
+              , LCSA3D_BCG_att1234_m2 = sum(LCSA[(BCG_ATTR == "1"
+                                                  | BCG_ATTR == "2"
+                                                  | BCG_ATTR == "3"
+                                                  | BCG_ATTR == "4")]
+                                            , na.rm = TRUE) / unique(TOTTRANLNGTH_M)
+              , LCSA3D_LRBC_m2 = sum(LCSA[(LRBC == TRUE)]
+                                     , na.rm = TRUE) / unique(TOTTRANLNGTH_M)
+
+              ## Weedy ----
+              ### Weedy, ncol ####
+              , ncol_SmallWeedy = sum(WEEDY_CONFIRMED == TRUE, na.rm = TRUE)
+
+
+              ### Weedy, pcol ####
+              , pcol_SmallWeedy =   100 * ncol_SmallWeedy / ncol_total
+
+
+  )##met.val.END
 
 
 }##FUNCTION.metric.values.coral.END

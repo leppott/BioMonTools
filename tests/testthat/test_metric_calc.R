@@ -1670,3 +1670,38 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
 #
 # })## Test - met val_sc, SCMB_IBI
 
+# Coral ####
+testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
+  ### _Metric.Values ----
+
+  data(data_diatom_mmi_dev) #added via data.R
+  df_diatoms <- data_diatom_mmi_dev
+
+  # metric values
+  df_metval_calc <- BioMonTools::metric.values(fun.DF = df_diatoms
+                                               , fun.Community = "algae"
+                                               , boo.Shiny = TRUE)
+
+  # df, calc
+  data(data_diatom_mmi_qc)
+
+  df_metval_qc <- data_diatom_mmi_qc
+
+  # change integers to numeric
+  # Round values to 1 or 2 digits
+  #library(dplyr)
+
+  `%>%` <- dplyr::`%>%`
+
+  df_metval_calc <- df_metval_calc %>%
+    dplyr::mutate_if(is.integer, as.numeric) %>%
+    dplyr::mutate_if(is.numeric, round, digits =2)
+
+  df_metval_qc <- df_metval_qc %>%
+    dplyr::mutate_if(is.integer, as.numeric) %>%
+    dplyr::mutate_if(is.numeric, round, digits =2)
+
+
+  # test
+  testthat::expect_equal(df_metval_calc, df_metval_qc)
+})## Test - met val_sc, IDEM Diatom IBIs ~ END
