@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.1.9501 (2024-03-07)
+
+* update: Added coral metrics, specifically for FL BCG
+    + metric_values.R
+    + MetricNames.xlsx
+    
 ## Changes in version 1.0.0.9066 (2024-03-05)
 
 * refactor: Additional metrics for Great Plains BCG, Issue #106

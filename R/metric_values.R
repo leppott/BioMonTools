@@ -1,8 +1,8 @@
 #' @title Calculate metric values
 #'
-#' @description This function calculates metric values for bugs and fish.
-#' Inputs are a data frame with SampleID and taxa with phylogenetic and
-#' autecological information (see below for required fields by community).
+#' @description This function calculates metric values for bugs, fish, algae
+#' , and coral. Inputs are a data frame with SampleID and taxa with phylogenetic
+#' and autecological information (see below for required fields by community).
 #' The dplyr package is used to generate the metric values.
 #'
 #' @details All percent metric results are 0-100.
@@ -145,7 +145,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param fun.DF Data frame of taxa (list required fields)
 #' @param fun.Community Community name for which to calculate metric values
-#' (bugs, fish, or algae)
+#' (bugs, fish, algae, or coral)
 #' @param fun.MetricNames Optional vector of metric names to be returned.
 #' If none are supplied then all will be returned.  Default=NULL
 #' @param boo.Adjust Optional boolean value on whether to perform adjustments of
@@ -5791,34 +5791,6 @@ metric.values.coral <- function(myDF
                                 , boo.Shiny = FALSE
                                 , verbose) {
 
-  # # BenB TEST ####
-  # wd <- getwd()
-  # input.dir <- "inst/extdata"
-  # library(readr)
-  # library(dplyr)
-  # myTestfile <- read_csv(file.path(wd, input.dir
-  #                                  , "FL_BCG_BioMonTools_Input_20240307.csv")
-  #                        , na = c("NA",""), trim_ws = TRUE, skip = 0
-  #                        , col_names = TRUE, guess_max = 100000)
-  # unique_samps <- unique(myTestfile$SampleID)
-  # unique_samps_250 <- unique_samps[1:250]
-  #
-  # myDF <- myTestfile %>%
-  #   filter(SampleID %in% unique_samps_250)
-  # MetricNames = NULL
-  # boo.Adjust = FALSE
-  # cols2keep = NULL
-  # MetricSort = NA
-  # boo.Shiny = FALSE
-  # verbose = TRUE
-  #
-  # # Convert to data.frame.  Code breaks if fun.DF is a tibble.
-  # myDF <- as.data.frame(myDF)
-  # # convert Field Names to UPPER CASE
-  # names(myDF) <- toupper(names(myDF))
-
-  # Start ###############################################
-
   # define pipe
   `%>%` <- dplyr::`%>%`
 
@@ -5839,7 +5811,8 @@ metric.values.coral <- function(myDF
     TOTMORT_PCT <- WEEDY_CONFIRMED <- DIAM_CM <- R2 <- CSA <- LIVETISSUE_PCT <-
     LCSA <- LCSA3D_samp_m2 <- LCSA3D_BCG_att1234_m2 <- LCSA3D_LRBC_m2 <-
     ncol_AcroOrbi_m2 <- nt_BCG_att123 <- nt_BCG_att1234 <- nt_total <- pcol_Acropora <-
-    pcol_SmallWeedy <- pt_BCG_att5 <- ncol_Acropora <- ncol_SmallWeedy <- nt_BCG_att5
+    pcol_SmallWeedy <- pt_BCG_att5 <- ncol_Acropora <- ncol_SmallWeedy <-
+    nt_BCG_att5 <- NULL
 
   # QC----
   ## QC, Missing Cols ----
@@ -6092,6 +6065,27 @@ metric.values.coral <- function(myDF
   }##IF ~ BCG_Attr ~ END
 
   # Data Munging----
+  # Convert columns to upper case
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, text cols, toupper"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  col2upper <- col.req_character[!(col.req_character %in%
+                                     c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"))]
+  for (i in col2upper) {
+    myDF[, i] <- toupper(myDF[, i])
+  }## FOR ~ i ~ END
+
   # Convert values to upper case
   myDF[, "WEEDY"] <- toupper(myDF[, "WEEDY"])
 

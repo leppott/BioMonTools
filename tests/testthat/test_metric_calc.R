@@ -1671,37 +1671,43 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
 # })## Test - met val_sc, SCMB_IBI
 
 # Coral ####
-testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
   ### _Metric.Values ----
-
-  data(data_diatom_mmi_dev) #added via data.R
-  df_diatoms <- data_diatom_mmi_dev
-
-  # metric values
-  df_metval_calc <- BioMonTools::metric.values(fun.DF = df_diatoms
-                                               , fun.Community = "algae"
-                                               , boo.Shiny = TRUE)
-
-  # df, calc
-  data(data_diatom_mmi_qc)
-
-  df_metval_qc <- data_diatom_mmi_qc
-
-  # change integers to numeric
-  # Round values to 1 or 2 digits
-  #library(dplyr)
-
-  `%>%` <- dplyr::`%>%`
-
-  df_metval_calc <- df_metval_calc %>%
-    dplyr::mutate_if(is.integer, as.numeric) %>%
-    dplyr::mutate_if(is.numeric, round, digits =2)
-
-  df_metval_qc <- df_metval_qc %>%
-    dplyr::mutate_if(is.integer, as.numeric) %>%
-    dplyr::mutate_if(is.numeric, round, digits =2)
-
-
-  # test
-  testthat::expect_equal(df_metval_calc, df_metval_qc)
-})## Test - met val_sc, IDEM Diatom IBIs ~ END
+# BenB TEST ####
+# wd <- getwd()
+# input.dir <- "inst/extdata"
+# library(readr)
+# library(dplyr)
+# myTestfile <- read_csv(file.path(wd, input.dir
+#                                  , "FL_BCG_BioMonTools_Input_20240307.csv")
+#                        , na = c("NA",""), trim_ws = TRUE, skip = 0
+#                        , col_names = TRUE, guess_max = 100000)
+# unique_samps <- unique(myTestfile$SampleID)
+# unique_samps_250 <- unique_samps[1:250]
+#
+# myDF <- myTestfile %>%
+#   filter(SampleID %in% unique_samps_250)
+#
+# # Convert to data.frame.  Code breaks if fun.DF is a tibble.
+# myDF <- as.data.frame(myDF)
+# # convert Field Names to UPPER CASE
+# names(myDF) <- toupper(names(myDF))
+#
+# myDF$N_TAXA <- 27 # need to add ignore N_TAXA to metric_values
+# myDF$INDEX_CLASS <- "CORAL_TEST"
+# myDF$INDEX_NAME <- "CORAL_TEST"
+#
+#   # data(data_diatom_mmi_dev) #added via data.R
+#   # df_diatoms <- data_diatom_mmi_dev
+#
+#   # metric values
+#   df_metval_calc <- metric.values(fun.DF = myDF
+#                                                , fun.Community = "CORAL"
+#                                                , boo.Shiny = FALSE)
+#
+#   # df, calc
+#   # data(data_diatom_mmi_qc)
+#   #
+#   # df_metval_qc <- data_diatom_mmi_qc
+#
+#   # test
+#   testthat::expect_equal(df_metval_calc, df_metval_qc)
