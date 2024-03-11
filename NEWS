@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-03-05 15:59:08.5844
+    #> Last Update: 2024-03-11 17:00:45.477862
 
 # Version History
+
+## Changes in version 1.0.1.9501 (2024-03-07)
+
+- update: Added coral metrics, specifically for FL BCG
+  - metric_values.R
+  - MetricNames.xlsx
 
 ## Changes in version 1.0.0.9066 (2024-03-05)
 

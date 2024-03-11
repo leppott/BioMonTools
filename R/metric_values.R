@@ -5994,7 +5994,7 @@ metric.values.coral <- function(myDF
     message(msg)
   }## IF ~ verbose
 
-  weedy_values <- c("Never", "Sometimes", "Always")
+  weedy_values <- c("Never", "Sometimes")
 
   # Extract the "Weedy" column
   weedy_column <- unique(myDF[, "WEEDY"])
@@ -6091,11 +6091,13 @@ metric.values.coral <- function(myDF
 
   # Do some calcs
   myDF <- myDF %>%
-    dplyr::mutate(WEEDY_CONFIRMED = dplyr::case_when((WEEDY == "ALWAYS") ~ TRUE
-                                                     , (WEEDY == "NEVER") ~ FALSE
+    dplyr::mutate(WEEDY_CONFIRMED = dplyr::case_when((WEEDY == "NEVER") ~ FALSE
+                                                     , ((TAXAID == "Siderastrea siderea"
+                                                         | TAXAID == "Stephanocoenia intersepta")
+                                                         & DIAMMAX_CM <= 30
+                                                         & HEIGHT_CM <= 10) ~ TRUE
                                                      , (WEEDY == "SOMETIMES"
-                                                        & DIAMMAX_CM < 30
-                                                        & HEIGHT_CM < 10) ~ TRUE
+                                                        & DIAMMAX_CM < 75) ~ TRUE
                                                      , TRUE ~ FALSE)
                   , DIAM_CM = dplyr::case_when((!is.na(DIAMPERP_CM)
                                                 & !is.na(DIAMMAX_CM))
@@ -6112,6 +6114,9 @@ metric.values.coral <- function(myDF
   # Calculate Metrics (could have used pipe, %>%)
   met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME
                                               , INDEX_CLASS)
+              # Transect width 1m
+              , transect_area_m2 = max(TOTTRANLNGTH_M, na.rm = TRUE)
+
               ## Individuals ----
               , ncol_total = dplyr::n()
               , lcol_total = log(ncol_total)
@@ -6124,7 +6129,7 @@ metric.values.coral <- function(myDF
               ## Number of Individuals ----
               , ncol_Acropora = sum(GENUS == "ACROPORA", na.rm = TRUE)
               , ncol_AcroOrbi_m2 = sum((GENUS == "ACROPORA"| GENUS == "ORBICELLA")
-                                       , na.rm = TRUE) / unique(TOTTRANLNGTH_M) # Transect width 1m
+                                       , na.rm = TRUE) / transect_area_m2
 
               ## Percent of Individuals ----
               , pcol_Acropora =   100 * ncol_Acropora / ncol_total
@@ -6149,16 +6154,15 @@ metric.values.coral <- function(myDF
               , pt_BCG_att5 =   100 * nt_BCG_att5 / nt_total
 
               ## Surface Area ----
-              # Transect width 1m
-              , LCSA3D_samp_m2 = sum(LCSA, na.rm = TRUE) / unique(TOTTRANLNGTH_M)
+              , LCSA3D_samp_m2 = sum(LCSA, na.rm = TRUE) / transect_area_m2
 
               , LCSA3D_BCG_att1234_m2 = sum(LCSA[(BCG_ATTR == "1"
                                                   | BCG_ATTR == "2"
                                                   | BCG_ATTR == "3"
                                                   | BCG_ATTR == "4")]
-                                            , na.rm = TRUE) / unique(TOTTRANLNGTH_M)
+                                            , na.rm = TRUE) / transect_area_m2
               , LCSA3D_LRBC_m2 = sum(LCSA[(LRBC == TRUE)]
-                                     , na.rm = TRUE) / unique(TOTTRANLNGTH_M)
+                                     , na.rm = TRUE) / transect_area_m2
 
               ## Weedy ----
               ### Weedy, ncol ####
