@@ -1676,10 +1676,12 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
   df_corals <- data_coral_bcg_metric_dev
 
   # metric values
-  df_corals$N_TAXA <- 10
+  # df_corals$N_TAXA <- 10
   df_metval_calc <- metric.values(fun.DF = df_corals
                                   , fun.Community = "CORAL"
                                   , boo.Shiny = FALSE)
+
+  df_metval_calc <- as.data.frame(df_metval_calc)
 
   # df, calc
   data(data_coral_bcg_metric_qc)
@@ -1688,21 +1690,3 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
 
   # test
   testthat::expect_equal(df_metval_calc, df_metval_qc)
-
-  # test BenB
-  `%>%` <- dplyr::`%>%`
-  df_metval_calc_v2 <- df_metval_calc %>%
-    dplyr::ungroup() %>%
-    dplyr::select(-c(INDEX_NAME, INDEX_CLASS)) %>%
-    tidyr::pivot_longer(!c(SAMPLEID), names_to = "MetricName"
-                        , values_to = "MetricValues_Calc")
-
-  df_metval_qc_v2 <- df_metval_qc %>%
-    dplyr::select(-c(INDEX_NAME, INDEX_CLASS)) %>%
-    tidyr::pivot_longer(!c(SAMPLEID), names_to = "MetricName"
-                        , values_to = "MetricValues_QC")
-
-  df_compare <- dplyr::left_join(df_metval_calc_v2, df_metval_qc_v2
-                          , by = c("SAMPLEID" = "SAMPLEID"
-                                   , "MetricName" = "MetricName"))
-  testthat::expect_equal(df_compare$MetricValues_Calc, df_compare$MetricValues_QC)

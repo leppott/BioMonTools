@@ -557,7 +557,11 @@ metric.values <- function(fun.DF
     message(msg)
   }## IF ~ boo_debug_main
   #QC, Add required fields for this part of the code
-  col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "INDEX_NAME", "INDEX_CLASS")
+  if (toupper(fun.Community) == "CORAL") {
+    col.req <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS")
+  } else {
+    col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "INDEX_NAME", "INDEX_CLASS")
+  } # end if/else
   col.req.missing <- col.req[!(col.req %in% toupper(names(fun.DF)))]
   num.col.req.missing <- length(col.req.missing)
 
@@ -660,7 +664,9 @@ metric.values <- function(fun.DF
     message(msg)
   }## IF ~ verbose
   #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
-  fun.DF <- fun.DF %>% dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
+  if (toupper(fun.Community) != "CORAL") {
+    fun.DF <- fun.DF %>% dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
+  }
   # non-target taxa removed in community function, if appropriate
   #
   # SiteType to upper case
