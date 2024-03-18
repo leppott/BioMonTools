@@ -6086,18 +6086,21 @@ metric.values.coral <- function(myDF
     myDF[, i] <- toupper(myDF[, i])
   }## FOR ~ i ~ END
 
-  # Convert values to upper case
-  myDF[, "WEEDY"] <- toupper(myDF[, "WEEDY"])
-
   # Do some calcs
-  myDF <- myDF %>%
+  myDF  <- myDF %>%
     dplyr::mutate(WEEDY_CONFIRMED = dplyr::case_when((WEEDY == "NEVER") ~ FALSE
-                                                     , ((TAXAID == "Siderastrea siderea"
-                                                         | TAXAID == "Stephanocoenia intersepta")
+                                                     , (WEEDY == "SOMETIMES"
+                                                        & TAXAID != "SIDERASTREA SIDEREA"
+                                                        & TAXAID != "STEPHANOCOENIA INTERSEPTA"
+                                                        & DIAMMAX_CM < 75) ~ TRUE
+                                                     , ((TAXAID == "SIDERASTREA SIDEREA"
+                                                         | TAXAID == "STEPHANOCOENIA INTERSEPTA")
                                                          & DIAMMAX_CM <= 30
                                                          & HEIGHT_CM <= 10) ~ TRUE
-                                                     , (WEEDY == "SOMETIMES"
-                                                        & DIAMMAX_CM < 75) ~ TRUE
+                                                     , ((TAXAID == "SIDERASTREA SIDEREA"
+                                                         | TAXAID == "STEPHANOCOENIA INTERSEPTA")
+                                                        & DIAMMAX_CM > 30
+                                                        & HEIGHT_CM > 10) ~ FALSE
                                                      , TRUE ~ FALSE)
                   , DIAM_CM = dplyr::case_when((!is.na(DIAMPERP_CM)
                                                 & !is.na(DIAMMAX_CM))

@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-03-11 17:00:45.477862
+    #> Last Update: 2024-03-18 14:56:12.673399
 
 # Version History
+
+## Changes in version 1.0.1.9550 (2024-03-18)
+
+- fix: made changes to coral metrics
+  - added test for Florida BCG
 
 ## Changes in version 1.0.1.9501 (2024-03-07)
 

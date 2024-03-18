@@ -1672,42 +1672,37 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
 
 # Coral ####
   ### _Metric.Values ----
-# BenB TEST ####
-# wd <- getwd()
-# input.dir <- "inst/extdata"
-# library(readr)
-# library(dplyr)
-# myTestfile <- read_csv(file.path(wd, input.dir
-#                                  , "FL_BCG_BioMonTools_Input_20240307.csv")
-#                        , na = c("NA",""), trim_ws = TRUE, skip = 0
-#                        , col_names = TRUE, guess_max = 100000)
-# unique_samps <- unique(myTestfile$SampleID)
-# unique_samps_250 <- unique_samps[1:250]
-#
-# myDF <- myTestfile %>%
-#   filter(SampleID %in% unique_samps_250)
-#
-# # Convert to data.frame.  Code breaks if fun.DF is a tibble.
-# myDF <- as.data.frame(myDF)
-# # convert Field Names to UPPER CASE
-# names(myDF) <- toupper(names(myDF))
-#
-# myDF$N_TAXA <- 27 # need to add ignore N_TAXA to metric_values
-# myDF$INDEX_CLASS <- "CORAL_TEST"
-# myDF$INDEX_NAME <- "CORAL_TEST"
-#
-#   # data(data_diatom_mmi_dev) #added via data.R
-#   # df_diatoms <- data_diatom_mmi_dev
-#
-#   # metric values
-#   df_metval_calc <- metric.values(fun.DF = myDF
-#                                                , fun.Community = "CORAL"
-#                                                , boo.Shiny = FALSE)
-#
-#   # df, calc
-#   # data(data_diatom_mmi_qc)
-#   #
-#   # df_metval_qc <- data_diatom_mmi_qc
-#
-#   # test
-#   testthat::expect_equal(df_metval_calc, df_metval_qc)
+  data(data_coral_bcg_metric_dev) #added via data.R
+  df_corals <- data_coral_bcg_metric_dev
+
+  # metric values
+  df_corals$N_TAXA <- 10
+  df_metval_calc <- metric.values(fun.DF = df_corals
+                                  , fun.Community = "CORAL"
+                                  , boo.Shiny = FALSE)
+
+  # df, calc
+  data(data_coral_bcg_metric_qc)
+
+  df_metval_qc <- data_coral_bcg_metric_qc
+
+  # test
+  testthat::expect_equal(df_metval_calc, df_metval_qc)
+
+  # test BenB
+  `%>%` <- dplyr::`%>%`
+  df_metval_calc_v2 <- df_metval_calc %>%
+    dplyr::ungroup() %>%
+    dplyr::select(-c(INDEX_NAME, INDEX_CLASS)) %>%
+    tidyr::pivot_longer(!c(SAMPLEID), names_to = "MetricName"
+                        , values_to = "MetricValues_Calc")
+
+  df_metval_qc_v2 <- df_metval_qc %>%
+    dplyr::select(-c(INDEX_NAME, INDEX_CLASS)) %>%
+    tidyr::pivot_longer(!c(SAMPLEID), names_to = "MetricName"
+                        , values_to = "MetricValues_QC")
+
+  df_compare <- dplyr::left_join(df_metval_calc_v2, df_metval_qc_v2
+                          , by = c("SAMPLEID" = "SAMPLEID"
+                                   , "MetricName" = "MetricName"))
+  testthat::expect_equal(df_compare$MetricValues_Calc, df_compare$MetricValues_QC)
