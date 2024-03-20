@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9004
+
+* fix: Update MetricNames.xlsx for missing coral metric per tests
+
 ## Changes in version 1.0.2.9003
 
 * refactor: Update Excel files for MN IBI

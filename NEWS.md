@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-03-20 12:00:19.086709
+    #> Last Update: 2024-03-20 12:10:59.038894
 
 # Version History
+
+## Changes in version 1.0.2.9004
+
+- fix: Update MetricNames.xlsx for missing coral metric per tests
 
 ## Changes in version 1.0.2.9003
 

@@ -6121,10 +6121,12 @@ metric.values.coral <- function(myDF
   # Metric Calc----
 
   # Calculate Metrics (could have used pipe, %>%)
-  met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME
+  met.val <- dplyr::summarise(dplyr::group_by(myDF
+                                              , SAMPLEID
+                                              , INDEX_NAME
                                               , INDEX_CLASS)
               # Transect width 1m
-              , transect_area_m2 = max(TOTTRANLNGTH_M, na.rm = TRUE)
+              , transect_area_m2 = max(TOTTRANLNGTH_M, na.rm = TRUE) * 1
 
               ## Individuals ----
               , ncol_total = dplyr::n()
@@ -6137,7 +6139,7 @@ metric.values.coral <- function(myDF
 
               ## Number of Individuals ----
               , ncol_Acropora = sum(GENUS == "ACROPORA", na.rm = TRUE)
-              , ncol_AcroOrbi_m2 = sum((GENUS == "ACROPORA"| GENUS == "ORBICELLA")
+              , ncol_AcroOrbi_m2 = sum((GENUS == "ACROPORA" | GENUS == "ORBICELLA")
                                        , na.rm = TRUE) / transect_area_m2
 
               ## Percent of Individuals ----
