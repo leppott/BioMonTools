@@ -3250,6 +3250,14 @@ metric.values.bugs <- function(myDF
                                                                                | BCG_ATTR != "6")]
                                                                      , na.rm = TRUE)
 
+                                # WY, add to match MetricScores.xlsx
+                                , pi_EphemNoBaeTri_RFadj = NA_real_
+                                , nt_volt_semi_RFadj = NA_real_
+                                , nt_COETNoBraBaeHydTri_RFadj = NA_real_
+                                , x_BCICTQa_RFadjB = NA_real_
+
+
+
                                 #
                                 , .groups = "drop_last")## met.val.dni_F
 

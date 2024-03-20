@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9005
+
+* refactor: Update MetricScoring.xlsx for WY, Issue #101
+* fix: After testing add 4 metrics for WY from scoring, Issue #101
+    + Add to MetricNames.xlsx
+    + Add to metric.values.R
+
 ## Changes in version 1.0.2.9004
 
 * fix: Update MetricNames.xlsx for missing coral metric per tests

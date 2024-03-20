@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-03-20 12:10:59.038894
+    #> Last Update: 2024-03-20 14:28:20.556348
 
 # Version History
+
+## Changes in version 1.0.2.9005
+
+- refactor: Update MetricScoring.xlsx for WY, Issue \#101
+- fix: After testing add 4 metrics for WY from scoring, Issue \#101
+  - Add to MetricNames.xlsx
+  - Add to metric.values.R
 
 ## Changes in version 1.0.2.9004
 
