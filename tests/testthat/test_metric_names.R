@@ -26,7 +26,7 @@ testthat::test_that("metric.values, names, bugs, Function, xlNames", {
                                           , "bugs"
                                           , boo.marine = TRUE
                                           , boo.Shiny = TRUE)
-  metnam_fun <- colnames(df_metval)[-c(1:3)] # remove first 3 columns
+  metnam_fun <- colnames(df_metval)[-(1:3)] # remove first 3 columns
 
   # Check
   metnam_len <- length(metnam_fun)
@@ -121,7 +121,7 @@ testthat::test_that("metric.values, names, bugs, Function, xlScoring", {
                                           , "bugs"
                                           , boo.marine = TRUE
                                           , boo.Shiny = TRUE)
-  metnam_fun <- colnames(df_metval)[-c(1:3)] # remove first 3 columns
+  metnam_fun <- colnames(df_metval)[-(1:3)] # remove first 3 columns
 
   # Check
   metnam_len <- length(metnam_xlScoring)
@@ -224,7 +224,7 @@ testthat::test_that("metric.values, names, fish, Function, xlNames", {
   df_metval <- BioMonTools::metric.values(df_fish
                                           , "fish"
                                           , boo.Shiny = TRUE)
-  metnam_fun <- colnames(df_metval)[-c(1:5)] # remove first few columns
+  metnam_fun <- colnames(df_metval)[-(1:5)] # remove first few columns
 
   # Check
   metnam_len <- length(metnam_fun)
@@ -309,7 +309,7 @@ testthat::test_that("metric.values, names, fish, Function, xlScoring", {
   df_metval <- BioMonTools::metric.values(df_fish
                                           , "fish"
                                           , boo.Shiny = TRUE)
-  metnam_fun <- colnames(df_metval)[-c(1:5)] # remove first few columns
+  metnam_fun <- colnames(df_metval)[-(1:5)] # remove first few columns
 
   # Check
   metnam_len <- length(metnam_xlScoring)
@@ -350,7 +350,7 @@ testthat::test_that("metric.values, names, algae, Function, xlNames", {
   df_metval <- BioMonTools::metric.values(df_diatoms
                                           , "algae"
                                           , boo.Shiny = TRUE)
-  metnam_fun <- colnames(df_metval)[-c(1:3)] # remove first 3 columns
+  metnam_fun <- colnames(df_metval)[-(1:3)] # remove first 3 columns
 
   # Check
   metnam_len <- length(metnam_fun)
@@ -436,7 +436,7 @@ testthat::test_that("metric.values, names, algae, xlScoring, Function", {
   df_metval <- BioMonTools::metric.values(df_diatoms
                                           , "algae"
                                           , boo.Shiny = TRUE)
-  metnam_fun <- colnames(df_metval)[-c(1:3)] # remove first 3 columns
+  metnam_fun <- colnames(df_metval)[-(1:3)] # remove first 3 columns
 
   # Check
   metnam_len <- length(metnam_xlScoring)
@@ -478,7 +478,7 @@ testthat::test_that("metric.values, names, coral, Function, xlNames", {
   df_metval <- BioMonTools::metric.values(df_corals
                                           , "coral"
                                           , boo.Shiny = TRUE)
-  metnam_fun <- colnames(df_metval)[-c(1:3)] # remove first 3 columns
+  metnam_fun <- colnames(df_metval)[-(1:3)] # remove first 3 columns
 
   # Check
   metnam_len <- length(metnam_fun)
@@ -564,7 +564,7 @@ testthat::test_that("metric.values, names, coral, xlScoring, Function", {
   df_metval <- BioMonTools::metric.values(df_corals
                                           , "coral"
                                           , boo.Shiny = TRUE)
-  metnam_fun <- colnames(df_metval)[-c(1:3)] # remove first 3 columns
+  metnam_fun <- colnames(df_metval)[-(1:3)] # remove first 3 columns
 
   # Check
   metnam_len <- length(metnam_xlScoring)

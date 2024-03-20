@@ -21,6 +21,7 @@ Functions to aid the data analysis of bioassessment and biomonitoring data.
 Suite of functions and tools for metric calculation and scoring for mult-metric
 indices and related data manipulation.
 
+ <!-- badges: start -->
 # Badges
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/leppott/BioMonTools/graphs/commit-activity)
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
@@ -28,12 +29,13 @@ indices and related data manipulation.
 
 [![CodeFactor](https://www.codefactor.io/repository/github/leppott/BioMonTools/badge)](https://www.codefactor.io/repository/github/leppott/BioMonTools)
 [![codecov](https://codecov.io/gh/leppott/BioMonTools/branch/master/graph/badge.svg)](https://codecov.io/gh/leppott/BioMonTools)
-[![R-CMD-check](https://github.com/leppott/BioMonTools/workflows/R-CMD-check/badge.svg)](https://github.com/leppott/BioMonTools/actions)
+[![R-CMD-check](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml)
 
 [![GitHub issues](https://img.shields.io/github/issues/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/issues/)
 
 [![GitHub release](https://img.shields.io/github/release/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
 [![Github all releases](https://img.shields.io/github/downloads/leppott/BioMonTools/total.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
+<!-- badges: end -->
 
 # Installation
 To install the current version use the code below to install from GitHub.  The

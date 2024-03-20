@@ -4,9 +4,22 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-03-20 11:18:26.087055
+    #> Last Update: 2024-03-20 11:39:37.506813
 
 # Version History
+
+## Changes in version 1.0.2.9002
+
+- refactor: Update GitHub Actions with usethis::use_github_action()
+  - check-standard
+  - test-coverage
+  - pkgdown
+- docs: Update check badge in ReadMe
+
+## Changes in version 1.0.2.9001
+
+- fix: Remove uneeded concatenate in tests per CodeFactor
+  - test_metric_names
 
 ## Changes in version 1.0.2
 
@@ -15,7 +28,7 @@ NEWS
 
 ## Changes in pull request \#107
 
-- update: Coral metrics from Blocktt
+- refactor: Coral metrics from Blocktt
 
 ## Changes in version 1.0.1.9550 (2024-03-18)
 
