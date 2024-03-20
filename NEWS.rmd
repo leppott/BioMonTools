@@ -18,6 +18,15 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2
+
+* fix: Update to minor version number 1.0.2
+    + Incorrect version numbers from pull request
+
+## Changes in pull request #107
+
+* update: Coral metrics from Blocktt
+
 ## Changes in version 1.0.1.9550 (2024-03-18)
 
 * fix: made changes to coral metrics

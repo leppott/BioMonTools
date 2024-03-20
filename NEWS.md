@@ -4,9 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-03-18 16:55:12.391657
+    #> Last Update: 2024-03-20 11:18:26.087055
 
 # Version History
+
+## Changes in version 1.0.2
+
+- fix: Update to minor version number 1.0.2
+  - Incorrect version numbers from pull request
+
+## Changes in pull request \#107
+
+- update: Coral metrics from Blocktt
 
 ## Changes in version 1.0.1.9550 (2024-03-18)
 
