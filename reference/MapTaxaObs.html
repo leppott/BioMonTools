@@ -20,7 +20,7 @@ prefix "map.taxa." by default.'><meta property="og:image" content="/logo.png"><!
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9111</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9002</span>
       </span>
     </div>
 
@@ -39,6 +39,9 @@ prefix "map.taxa." by default.'><meta property="og:image" content="/logo.png"><!
     </li>
     <li>
       <a href="../articles/vignette_MapTaxaObs.html">Taxa Maps</a>
+    </li>
+    <li>
+      <a href="../articles/vignette_NewIndex.html">Vignette, Adding a New Index</a>
     </li>
   </ul></li>
 <li>
@@ -72,61 +75,90 @@ prefix "map.taxa." by default.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">MapTaxaObs</span><span class="op">(</span>
-  <span class="va">df_obs</span>,
-  <span class="va">SampID</span>,
-  <span class="va">TaxaID</span>,
-  <span class="va">TaxaCount</span>,
-  <span class="va">Lat</span>,
-  <span class="va">Long</span>,
-  output_dir <span class="op">=</span> <span class="cn">NULL</span>,
-  output_prefix <span class="op">=</span> <span class="st">"maps.taxa"</span>,
-  output_type <span class="op">=</span> <span class="st">"pdf"</span>,
-  <span class="va">database</span>,
-  <span class="va">regions</span>,
-  map_grp <span class="op">=</span> <span class="cn">NULL</span>,
-  leg_loc <span class="op">=</span> <span class="st">"right"</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">MapTaxaObs</span><span class="op">(</span></span>
+<span>  <span class="va">df_obs</span>,</span>
+<span>  <span class="va">SampID</span>,</span>
+<span>  <span class="va">TaxaID</span>,</span>
+<span>  <span class="va">TaxaCount</span>,</span>
+<span>  <span class="va">Lat</span>,</span>
+<span>  <span class="va">Long</span>,</span>
+<span>  output_dir <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  output_prefix <span class="op">=</span> <span class="st">"maps.taxa"</span>,</span>
+<span>  output_type <span class="op">=</span> <span class="st">"pdf"</span>,</span>
+<span>  <span class="va">database</span>,</span>
+<span>  <span class="va">regions</span>,</span>
+<span>  map_grp <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  leg_loc <span class="op">=</span> <span class="st">"right"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df_obs</dt>
 <dd><p>Observation data frame</p></dd>
+
+
 <dt>SampID</dt>
 <dd><p>df_obs column name, Unique Sample identifier</p></dd>
+
+
 <dt>TaxaID</dt>
 <dd><p>df_obs column name, Unique Taxa identifier</p></dd>
+
+
 <dt>TaxaCount</dt>
 <dd><p>df_obs column name, Number of individuals for TaxonID and
 SampID</p></dd>
+
+
 <dt>Lat</dt>
 <dd><p>df_obs column name, Latitude</p></dd>
+
+
 <dt>Long</dt>
 <dd><p>df_obs column name, Longitude</p></dd>
+
+
 <dt>output_dir</dt>
 <dd><p>Directory to save output.  Default is working directory.</p></dd>
+
+
 <dt>output_prefix</dt>
 <dd><p>Prefix to TaxaID for each file.  Default = "map.taxa."</p></dd>
+
+
 <dt>output_type</dt>
 <dd><p>File format for output; jpg or pdf.</p></dd>
+
+
 <dt>database</dt>
 <dd><p>maps::map function database; world, usa, state, county</p></dd>
+
+
 <dt>regions</dt>
 <dd><p>maps::map function regions.  Names pertinent to map_db.</p></dd>
+
+
 <dt>map_grp</dt>
 <dd><p>Map grouping variable from df_obs.  Will generate legend and
 color code the points on the map.  Default = NULL</p></dd>
+
+
 <dt>leg_loc</dt>
 <dd><p>Legend location text.  Default = "right"
 Other values may not work properly.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Optional arguments to be passed to methods.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Taxa maps to user defined directory as jpg or pdf.</p>
+    
+
+<p>Taxa maps to user defined directory as jpg or pdf.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -144,36 +176,36 @@ well.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">df_obs</span> <span class="op">&lt;-</span> <span class="va">data_Taxa_MA</span></span>
-<span class="r-in"><span class="va">SampID</span> <span class="op">&lt;-</span> <span class="st">"estuary"</span></span>
-<span class="r-in"><span class="va">TaxaID</span> <span class="op">&lt;-</span> <span class="st">"TaxaName"</span></span>
-<span class="r-in"><span class="va">TaxaCount</span> <span class="op">&lt;-</span> <span class="st">"Count"</span></span>
-<span class="r-in"><span class="va">Lat</span> <span class="op">&lt;-</span> <span class="st">"Latitude"</span></span>
-<span class="r-in"><span class="va">Long</span> <span class="op">&lt;-</span> <span class="st">"Longitude"</span></span>
-<span class="r-in"><span class="va">output_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">output_prefix</span> <span class="op">&lt;-</span> <span class="st">"maps.taxa."</span></span>
-<span class="r-in"><span class="va">output_type</span> <span class="op">&lt;-</span> <span class="st">"pdf"</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">myDB</span> <span class="op">&lt;-</span> <span class="st">"state"</span></span>
-<span class="r-in"><span class="va">myRegion</span> <span class="op">&lt;-</span> <span class="st">"massachusetts"</span></span>
-<span class="r-in"><span class="va">myXlim</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">73</span><span class="op">+</span><span class="op">(</span><span class="fl">30</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span>, <span class="op">-</span><span class="op">(</span><span class="fl">69</span><span class="op">+</span><span class="op">(</span><span class="fl">56</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">myYlim</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">(</span><span class="fl">41</span><span class="op">+</span><span class="op">(</span><span class="fl">14</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span>,<span class="op">(</span><span class="fl">42</span><span class="op">+</span><span class="op">(</span><span class="fl">53</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Run function with extra arguments for map</span></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu">MapTaxaObs</span><span class="op">(</span><span class="va">df_obs</span></span>
-<span class="r-in">           , <span class="va">SampID</span></span>
-<span class="r-in">           , <span class="va">TaxaID</span></span>
-<span class="r-in">           , <span class="va">TaxaCount</span></span>
-<span class="r-in">           , <span class="va">Lat</span></span>
-<span class="r-in">           , <span class="va">Long</span></span>
-<span class="r-in">           , database<span class="op">=</span><span class="st">"state"</span></span>
-<span class="r-in">           , regions<span class="op">=</span><span class="st">"massachusetts"</span></span>
-<span class="r-in">           , xlim <span class="op">=</span> <span class="va">myXlim</span></span>
-<span class="r-in">           , ylim <span class="op">=</span> <span class="va">myYlim</span></span>
-<span class="r-in">           , map_grp <span class="op">=</span> <span class="st">"estuary"</span></span>
-<span class="r-in">           , leg_loc <span class="op">=</span> <span class="st">"bottomleft"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df_obs</span> <span class="op">&lt;-</span> <span class="va">data_Taxa_MA</span></span></span>
+<span class="r-in"><span><span class="va">SampID</span> <span class="op">&lt;-</span> <span class="st">"estuary"</span></span></span>
+<span class="r-in"><span><span class="va">TaxaID</span> <span class="op">&lt;-</span> <span class="st">"TaxaName"</span></span></span>
+<span class="r-in"><span><span class="va">TaxaCount</span> <span class="op">&lt;-</span> <span class="st">"Count"</span></span></span>
+<span class="r-in"><span><span class="va">Lat</span> <span class="op">&lt;-</span> <span class="st">"Latitude"</span></span></span>
+<span class="r-in"><span><span class="va">Long</span> <span class="op">&lt;-</span> <span class="st">"Longitude"</span></span></span>
+<span class="r-in"><span><span class="va">output_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">output_prefix</span> <span class="op">&lt;-</span> <span class="st">"maps.taxa."</span></span></span>
+<span class="r-in"><span><span class="va">output_type</span> <span class="op">&lt;-</span> <span class="st">"pdf"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">myDB</span> <span class="op">&lt;-</span> <span class="st">"state"</span></span></span>
+<span class="r-in"><span><span class="va">myRegion</span> <span class="op">&lt;-</span> <span class="st">"massachusetts"</span></span></span>
+<span class="r-in"><span><span class="va">myXlim</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">73</span><span class="op">+</span><span class="op">(</span><span class="fl">30</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span>, <span class="op">-</span><span class="op">(</span><span class="fl">69</span><span class="op">+</span><span class="op">(</span><span class="fl">56</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">myYlim</span>     <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">(</span><span class="fl">41</span><span class="op">+</span><span class="op">(</span><span class="fl">14</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span>,<span class="op">(</span><span class="fl">42</span><span class="op">+</span><span class="op">(</span><span class="fl">53</span><span class="op">/</span><span class="fl">60</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Run function with extra arguments for map</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">MapTaxaObs</span><span class="op">(</span><span class="va">df_obs</span></span></span>
+<span class="r-in"><span>           , <span class="va">SampID</span></span></span>
+<span class="r-in"><span>           , <span class="va">TaxaID</span></span></span>
+<span class="r-in"><span>           , <span class="va">TaxaCount</span></span></span>
+<span class="r-in"><span>           , <span class="va">Lat</span></span></span>
+<span class="r-in"><span>           , <span class="va">Long</span></span></span>
+<span class="r-in"><span>           , database<span class="op">=</span><span class="st">"state"</span></span></span>
+<span class="r-in"><span>           , regions<span class="op">=</span><span class="st">"massachusetts"</span></span></span>
+<span class="r-in"><span>           , xlim <span class="op">=</span> <span class="va">myXlim</span></span></span>
+<span class="r-in"><span>           , ylim <span class="op">=</span> <span class="va">myYlim</span></span></span>
+<span class="r-in"><span>           , map_grp <span class="op">=</span> <span class="st">"estuary"</span></span></span>
+<span class="r-in"><span>           , leg_loc <span class="op">=</span> <span class="st">"bottomleft"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -188,7 +220,7 @@ well.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

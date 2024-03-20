@@ -21,7 +21,7 @@ sample) and seed. The seed is given so the results can be reproduced from the
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9111</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9002</span>
       </span>
     </div>
 
@@ -40,6 +40,9 @@ sample) and seed. The seed is given so the results can be reproduced from the
     </li>
     <li>
       <a href="../articles/vignette_MapTaxaObs.html">Taxa Maps</a>
+    </li>
+    <li>
+      <a href="../articles/vignette_NewIndex.html">Vignette, Adding a New Index</a>
     </li>
   </ul></li>
 <li>
@@ -74,7 +77,7 @@ sample) and seed. The seed is given so the results can be reproduced from the
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">rarify</span><span class="op">(</span><span class="va">inbug</span>, <span class="va">sample.ID</span>, <span class="va">abund</span>, <span class="va">subsiz</span>, mySeed <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rarify</span><span class="op">(</span><span class="va">inbug</span>, <span class="va">sample.ID</span>, <span class="va">abund</span>, <span class="va">subsiz</span>, mySeed <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -82,20 +85,31 @@ sample) and seed. The seed is given so the results can be reproduced from the
     <dl><dt>inbug</dt>
 <dd><p>Input data frame.  Needs 3 columns (SampleID, taxonomicID
 , Count).</p></dd>
+
+
 <dt>sample.ID</dt>
 <dd><p>Column name in inbug for sample identifier.</p></dd>
+
+
 <dt>abund</dt>
 <dd><p>Column name in inbug for organism count.</p></dd>
+
+
 <dt>subsiz</dt>
 <dd><p>Target subsample size for each sample.</p></dd>
+
+
 <dt>mySeed</dt>
 <dd><p>Seed for random number generator.  If provided the results with
 the same inbug file will produce the same results. Defaut = NA (random seed
 will be used.)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Returns a data frame with the same three columns but the abund field
+    
+
+<p>Returns a data frame with the same three columns but the abund field
 has been modified so the total count for each sample is no longer above the
 target (subsiz).</p>
     </div>
@@ -109,56 +123,60 @@ target (subsiz).</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Subsample to 500 organisms (from over 500 organisms) for 12 samples.</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># load bio data</span></span>
-<span class="r-in"><span class="va">df_biodata</span> <span class="op">&lt;-</span> <span class="va">data_bio2rarify</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">df_biodata</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Subsample to 500 organisms (from over 500 organisms) for 12 samples.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># load bio data</span></span></span>
+<span class="r-in"><span><span class="va">df_biodata</span> <span class="op">&lt;-</span> <span class="va">data_bio2rarify</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">df_biodata</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 350   3</span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">df_biodata</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># subsample</span></span>
-<span class="r-in"><span class="va">mySize</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
-<span class="r-in"><span class="va">Seed_OR</span> <span class="op">&lt;-</span> <span class="fl">18590214</span></span>
-<span class="r-in"><span class="va">Seed_WA</span> <span class="op">&lt;-</span> <span class="fl">18891111</span></span>
-<span class="r-in"><span class="va">Seed_US</span> <span class="op">&lt;-</span> <span class="fl">17760704</span></span>
-<span class="r-in"><span class="va">bugs_mysize</span> <span class="op">&lt;-</span> <span class="fu">rarify</span><span class="op">(</span>inbug<span class="op">=</span><span class="va">df_biodata</span>, sample.ID<span class="op">=</span><span class="st">"SampleID"</span></span>
-<span class="r-in">                     ,abund<span class="op">=</span><span class="st">"N_Taxa"</span>,subsiz<span class="op">=</span><span class="va">mySize</span>, mySeed<span class="op">=</span><span class="va">Seed_US</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">df_biodata</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># subsample</span></span></span>
+<span class="r-in"><span><span class="va">mySize</span> <span class="op">&lt;-</span> <span class="fl">500</span></span></span>
+<span class="r-in"><span><span class="va">Seed_OR</span> <span class="op">&lt;-</span> <span class="fl">18590214</span></span></span>
+<span class="r-in"><span><span class="va">Seed_WA</span> <span class="op">&lt;-</span> <span class="fl">18891111</span></span></span>
+<span class="r-in"><span><span class="va">Seed_US</span> <span class="op">&lt;-</span> <span class="fl">17760704</span></span></span>
+<span class="r-in"><span><span class="va">bugs_mysize</span> <span class="op">&lt;-</span> <span class="fu">rarify</span><span class="op">(</span>inbug<span class="op">=</span><span class="va">df_biodata</span>, sample.ID<span class="op">=</span><span class="st">"SampleID"</span></span></span>
+<span class="r-in"><span>                     ,abund<span class="op">=</span><span class="st">"N_Taxa"</span>,subsiz<span class="op">=</span><span class="va">mySize</span>, mySeed<span class="op">=</span><span class="va">Seed_US</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rarify of samples complete. </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Number of samples =  12 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Execution time (sec) =  0.0130000000000052</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># view results</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">bugs_mysize</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Execution time (sec) =  0.00800000000000267 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># view results</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">bugs_mysize</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 350   3</span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">bugs_mysize</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Compare pre- and post- subsample counts</span></span>
-<span class="r-in"><span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">df_biodata</span>, <span class="va">bugs_mysize</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SampleID"</span>, <span class="st">"TaxaID"</span><span class="op">)</span></span>
-<span class="r-in">                    , suffixes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"_Orig"</span>,<span class="st">"_500"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="va">df_compare</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SampleID"</span></span>
-<span class="r-in">                             , <span class="st">"TaxaID"</span></span>
-<span class="r-in">                             , <span class="st">"N_Taxa_Orig"</span></span>
-<span class="r-in">                             , <span class="st">"N_Taxa_500"</span><span class="op">)</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># compare totals</span></span>
-<span class="r-in"><span class="va">tbl_totals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">N_Taxa_Orig</span>, <span class="va">N_Taxa_500</span><span class="op">)</span> <span class="op">~</span> <span class="va">SampleID</span></span>
-<span class="r-in">                                                     , <span class="va">df_compare</span>, <span class="va">sum</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">tbl_totals</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># save the data</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">bugs_mysize</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"bugs"</span>,<span class="va">mySize</span>,<span class="st">"txt"</span>,sep<span class="op">=</span><span class="st">"."</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">"\t"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">bugs_mysize</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Compare pre- and post- subsample counts</span></span></span>
+<span class="r-in"><span><span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">df_biodata</span>, <span class="va">bugs_mysize</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SampleID"</span>, <span class="st">"TaxaID"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                    , suffixes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"_Orig"</span>,<span class="st">"_500"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="va">df_compare</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SampleID"</span></span></span>
+<span class="r-in"><span>                             , <span class="st">"TaxaID"</span></span></span>
+<span class="r-in"><span>                             , <span class="st">"N_Taxa_Orig"</span></span></span>
+<span class="r-in"><span>                             , <span class="st">"N_Taxa_500"</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># compare totals</span></span></span>
+<span class="r-in"><span><span class="va">tbl_totals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">N_Taxa_Orig</span>, <span class="va">N_Taxa_500</span><span class="op">)</span> <span class="op">~</span> <span class="va">SampleID</span></span></span>
+<span class="r-in"><span>                                                     , <span class="va">df_compare</span>, <span class="va">sum</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">tbl_totals</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># save the data</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">bugs_mysize</span></span></span>
+<span class="r-in"><span>            , <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"bugs"</span>, <span class="va">mySize</span>, <span class="st">"txt"</span>, sep <span class="op">=</span> <span class="st">"."</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                                         , sep <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Open tempdir (Windows only)</span></span></span>
+<span class="r-in"><span><span class="fu">shell.exec</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -173,7 +191,7 @@ target (subsiz).</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

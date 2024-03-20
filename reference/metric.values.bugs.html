@@ -18,7 +18,7 @@ Macroinvertebrates"><meta property="og:image" content="/logo.png"><!-- mathjax -
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9111</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9002</span>
       </span>
     </div>
 
@@ -37,6 +37,9 @@ Macroinvertebrates"><meta property="og:image" content="/logo.png"><!-- mathjax -
     </li>
     <li>
       <a href="../articles/vignette_MapTaxaObs.html">Taxa Maps</a>
+    </li>
+    <li>
+      <a href="../articles/vignette_NewIndex.html">Vignette, Adding a New Index</a>
     </li>
   </ul></li>
 <li>
@@ -68,46 +71,76 @@ Macroinvertebrates</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">metric.values.bugs</span><span class="op">(</span>
-  <span class="va">myDF</span>,
-  MetricNames <span class="op">=</span> <span class="cn">NULL</span>,
-  boo.Adjust <span class="op">=</span> <span class="cn">FALSE</span>,
-  cols2keep <span class="op">=</span> <span class="cn">NULL</span>,
-  MetricSort <span class="op">=</span> <span class="cn">NA</span>,
-  boo.marine <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">boo.Shiny</span>,
-  <span class="va">verbose</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">metric.values.bugs</span><span class="op">(</span></span>
+<span>  <span class="va">myDF</span>,</span>
+<span>  MetricNames <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  boo.Adjust <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  cols2keep <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  MetricSort <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  boo.marine <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">boo.Shiny</span>,</span>
+<span>  <span class="va">verbose</span>,</span>
+<span>  <span class="va">metric_subset</span>,</span>
+<span>  taxaid_dni <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>myDF</dt>
 <dd><p>Data frame of taxa.</p></dd>
+
+
 <dt>MetricNames</dt>
 <dd><p>Optional vector of metric names to be returned.</p></dd>
+
+
 <dt>boo.Adjust</dt>
 <dd><p>Optional boolean value on whether to perform adjustments of
 values prior to scoring.  Default = FALSE but may be TRUE for certain
 metrics.</p></dd>
+
+
 <dt>cols2keep</dt>
 <dd><p>Column names of fun.DF to retain in the output.  Uses
 column names.</p></dd>
+
+
 <dt>MetricSort</dt>
 <dd><p>How metric names should be sort; NA = as is
 , AZ = alphabetical.  Default = NULL.</p></dd>
+
+
 <dt>boo.marine</dt>
 <dd><p>Should estuary/marine metrics be included.
 Ignored if fun.MetricNames is not null. Default = FALSE.</p></dd>
+
+
 <dt>boo.Shiny</dt>
 <dd><p>Boolean value for if the function is accessed via Shiny.
 Default = FALSE.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p>Include messages to track progress.  Default = FALSE</p></dd>
+
+
+<dt>metric_subset</dt>
+<dd><p>Subset of metrics to be generated.  Internal function.
+Default = NULL</p></dd>
+
+
+<dt>taxaid_dni</dt>
+<dd><p>Taxa names to be included in DNI (Do Not Include) metrics
+(n = 3) but dropped for all other metrics.  Only for benthic metrics.
+Default = NULL</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Data frame</p>
+    
+
+<p>Data frame</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -126,7 +159,7 @@ Default = FALSE.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

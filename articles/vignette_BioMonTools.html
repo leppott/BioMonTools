@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9111</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9002</span>
       </span>
     </div>
 
@@ -61,6 +61,9 @@
     </li>
     <li>
       <a href="../articles/vignette_MapTaxaObs.html">Taxa Maps</a>
+    </li>
+    <li>
+      <a href="../articles/vignette_NewIndex.html">Vignette, Adding a New Index</a>
     </li>
   </ul>
 </li>
@@ -85,13 +88,13 @@
 
       
 
-      </header><script src="vignette_BioMonTools_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 data-toc-skip class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 data-toc-skip class="date">2022-03-04</h4>
+            <h4 data-toc-skip class="date">2024-03-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/HEAD/vignettes/vignette_BioMonTools.Rmd" class="external-link"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -104,28 +107,34 @@
 <div class="section level2">
 <h2 id="purpose">Purpose<a class="anchor" aria-label="anchor" href="#purpose"></a>
 </h2>
-<p>The <code>BioMonTools</code> package was created to enable users to have a common set of tools for bioassessment and biomonitoring data.</p>
+<p>The <code>BioMonTools</code> package was created to enable users to
+have a common set of tools for bioassessment and biomonitoring data.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>The package is hosted on GitHub (<a href="https://github.com/leppott/BioMonTools" class="external-link uri">https://github.com/leppott/BioMonTools</a>) and can be installed using the following lines of code. It is necessary to install the <code>devtools</code> package.</p>
+<p>The package is hosted on GitHub (<a href="https://github.com/leppott/BioMonTools" class="external-link uri">https://github.com/leppott/BioMonTools</a>) and can be
+installed using the following lines of code. It is necessary to install
+the <code>devtools</code> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Installing the BioMonTools library (with the vignette) from GitHub</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span> 
-<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"leppott/BioMonTools"</span>, force<span class="op">=</span><span class="cn">TRUE</span>, build_vignettes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Installing the BioMonTools library (with the vignette) from GitHub</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span> </span>
+<span><span class="fu">install_github</span><span class="op">(</span><span class="st">"leppott/BioMonTools"</span>, force<span class="op">=</span><span class="cn">TRUE</span>, build_vignettes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="help">Help<a class="anchor" aria-label="anchor" href="#help"></a>
 </h2>
-<p>After the <code>BioMonTools</code> package has been installed running the following line of code will open the help file with links to all functions.</p>
+<p>After the <code>BioMonTools</code> package has been installed running
+the following line of code will open the help file with links to all
+functions.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/help.html" class="external-link">help</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html" class="external-link">help</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="package-functions">Package Functions<a class="anchor" aria-label="anchor" href="#package-functions"></a>
 </h2>
-<p>The suite of functions in the <code>BioMonTools</code> package are presented below.</p>
+<p>The suite of functions in the <code>BioMonTools</code> package are
+presented below.</p>
 <ul>
 <li>metric.values</li>
 <li>markExcluded</li>
@@ -134,188 +143,237 @@
 <div class="section level3">
 <h3 id="metric-values">metric.values<a class="anchor" aria-label="anchor" href="#metric-values"></a>
 </h3>
-<p>Calculate metric values from a data frame with taxa by sample with fully qualified master taxa information. All percent metric results are 0-1.</p>
+<p>Calculate metric values from a data frame with taxa by sample with
+fully qualified master taxa information. All percent metric results are
+0-1.</p>
 <div class="section level4">
 <h4 id="data-preparation">Data Preparation<a class="anchor" aria-label="anchor" href="#data-preparation"></a>
 </h4>
-<p>There are a number of required fields for the input file. If any fields are missing the user will be prompted as to which are missing and the user can decide whether to continue or quit. If the user continues, the missing fields will be added but will be filled with zero or NA (as appropriate). Any metrics based on the missing fields will not be valid.</p>
+<p>There are a number of required fields for the input file. If any
+fields are missing the user will be prompted as to which are missing and
+the user can decide whether to continue or quit. If the user continues,
+the missing fields will be added but will be filled with zero or NA (as
+appropriate). Any metrics based on the missing fields will not be
+valid.</p>
 <p>Required Fields:</p>
 <ul>
 <li>
 <p>SAMPLEID</p>
 <ul>
 <li><p>Unique sample identifier</p></li>
-<li><p>Valid entries: character or number, must be unique</p></li>
+<li><p>Valid values: character or number, must be unique</p></li>
 </ul>
 </li>
 <li>
 <p>TAXAID</p>
 <ul>
 <li><p>Unique taxa identifier</p></li>
-<li><p>Valid entries: character or number, must be unique</p></li>
+<li><p>Valid values: character or number, must be unique</p></li>
 </ul>
 </li>
 <li>
 <p>N_TAXA</p>
 <ul>
 <li><p>Number of individuals</p></li>
-<li><p>Valid entries: number</p></li>
+<li><p>Valid values: number</p></li>
 </ul>
 </li>
 <li>
 <p>EXCLUDE</p>
 <ul>
-<li><p>Non-unique/non-distinct taxa are excluded from richness metric calculations but are counted in the other metrics. Appendix B of the ‘BCGcalc_README_20180919’ Word document describes the Excluded Taxa Decision Criteria that was used during BCG model calibration.</p></li>
-<li><p>Valid entries: TRUE or FALSE</p></li>
+<li><p>Non-unique/non-distinct taxa are excluded from richness metric
+calculations but are counted in the other metrics. Appendix B of the
+‘BCGcalc_README_20180919’ Word document describes the Exclude Taxa
+Decision Criteria that was used during BCG model calibration.</p></li>
+<li><p>Valid values: TRUE or FALSE</p></li>
 <li><p>Non-unique/non-distinct taxa should be entered as “TRUE”</p></li>
 </ul>
 </li>
 <li>
 <p>NONTARGET</p>
 <ul>
-<li><p>Non-target taxa are not part of the intended capture list; e.g., fish, herps, water column taxa. They are excluded from all metric calculations.</p></li>
-<li><p>Valid entries: TRUE or FALSE.</p></li>
+<li><p>Non-target taxa are not part of the intended capture list; e.g.,
+fish, herps, water column taxa. They are excluded from all metric
+calculations.</p></li>
+<li><p>Valid values: TRUE or FALSE.</p></li>
 <li><p>NonTarget taxa should be entered as “TRUE”</p></li>
 </ul>
 </li>
 <li>
 <p>INDEX_NAME</p>
 <ul>
-<li><p>Name of the BCG rules worksheet in the ‘Rules’ file (in the ‘extdata’ folder) that the R code is referencing.</p></li>
-<li><p>Valid entries for the Puget Lowlands/Willamette Valley model: BCG_PacNW_v1_500ct or BCG_PacNW_v1_300ct.</p></li>
+<li><p>Name of the BCG rules worksheet in the ‘Rules’ file (in the
+‘extdata’ folder) that the R code is referencing.</p></li>
+<li><p>Valid values for the Puget Lowlands/Willamette Valley model:
+BCG_PacNW_v1_500ct or BCG_PacNW_v1_300ct.</p></li>
 </ul>
 </li>
 <li>
 <p>SITE_TYPE</p>
 <ul>
-<li><p>Select which BCG model to apply: Low (lo) gradient (&lt;1% NHD+ v2 flowline slope) or high (hi) gradient (≥ 1% NHD+ v2 flowline slope).</p></li>
-<li><p>Valid entries: “hi” or “lo”.</p></li>
+<li><p>Select which BCG model to apply: Low (lo) gradient (&lt;1% NHD+
+v2 flowline slope) or high (hi) gradient (≥ 1% NHD+ v2 flowline
+slope).</p></li>
+<li><p>Valid values: “hi” or “lo”.</p></li>
 </ul>
 </li>
 <li>
-<p>PHYLUM, SUBPHYLUM, CLASS, ORDER, FAMILY, SUBFAMILY, TRIBE, GENUS</p>
+<p>PHYLUM, SUBPHYLUM, CLASS, ORDER, FAMILY, SUBFAMILY, TRIBE,
+GENUS</p>
 <ul>
 <li><p>Phylogeny</p></li>
-<li><p>Other phylogenetic rankings (e.g., SubOrder or SuperFamily) can be included but are not used in the current metric calculations.</p></li>
-<li><p>Valid entries: text</p></li>
+<li><p>Other phylogenetic rankings (e.g., SubOrder or SuperFamily) can
+be included but are not used in the current metric
+calculations.</p></li>
+<li><p>Valid values: text</p></li>
 </ul>
 </li>
 <li>
 <p>BCG_Attr</p>
 <ul>
-<li><p>BCG attribute assignments (for example, Stamp and Gerritsen 2018).</p></li>
-<li><p>Valid entries: 1i, 1m, 2, 3, 4, 5, 6; if not available, leave blank or enter ‘NA’.</p></li>
+<li><p>BCG attribute assignments (for example, Stamp and Gerritsen
+2018).</p></li>
+<li><p>Valid values: 1i, 1m, 2, 3, 4, 5, 6; if not available, leave
+blank or enter ‘NA’.</p></li>
 </ul>
 </li>
 <li>
-<p>FFG, HABIT, LIFE_CYCLE, TOLVAL, THERMAL_INDICATOR, UFC, ELEVATION_ATTR, GRADIENT_ATTR, WSAREA_ATTR</p>
+<p>FFG, HABIT, LIFE_CYCLE, TOLVAL, THERMAL_INDICATOR, UFC,
+ELEVATION_ATTR, GRADIENT_ATTR, WSAREA_ATTR, REPRODUCTION,
+CONNECTIVITY</p>
 <ul>
 <li>
 <p>FFG</p>
 <ul>
-<li><p>Valid values for FFG: CG, CF, PR, SC, SH</p></li>
+<li><p>Valid values: CG, CF, PR, SC, SH</p></li>
 <li><p>Function feeding group entries.</p></li>
 </ul>
 </li>
 <li>
 <p>HABIT</p>
 <ul>
-<li><p>Valid values for HABIT: BU, CB, CN, SP, SW</p></li>
+<li><p>Valid values: BU, CB, CN, SP, SW</p></li>
 <li><p>Habit designations.</p></li>
 </ul>
 </li>
 <li>
 <p>LIFE_CYLCE</p>
 <ul>
-<li><p>Valid values for LIFE_CYCLE: UNI, SEMI, MULTI</p></li>
+<li><p>Valid values: UNI, SEMI, MULTI</p></li>
 <li><p>Life cycle designations.</p></li>
 </ul>
 </li>
 <li>
 <p>THERMAL_INDICATOR</p>
 <ul>
-<li>Valid values for THERMAL_INDICATOR: COLD, COLD_COOL, COOL_WARM, WARM</li>
+<li>Valid values: STENOC, COLD, COOL, WARM, STENOW , EURYTHERMAL,
+INCONCLUSIVE, NA</li>
 </ul>
 </li>
 <li>
 <p>LONGLIVED</p>
 <ul>
-<li>Valid values for LONGLIVED: TRUE, FALSE</li>
+<li>Valid values: TRUE, FALSE</li>
 </ul>
 </li>
 <li>
 <p>NOTEWORTHY</p>
 <ul>
-<li>Valid values for NOTEWORTHY: TRUE, FALSE</li>
+<li>Valid values: TRUE, FALSE</li>
 </ul>
 </li>
 <li>
 <p>HABITAT</p>
 <ul>
-<li>Valid values for HABITAT: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN</li>
+<li>Valid values: BRAC, DEPO, GENE, HEAD, RHEO, RIVE, SPEC, UNKN</li>
 </ul>
 </li>
 <li>
 <p>UFC</p>
 <ul>
-<li><p>Valid values are numeric 1, 2, 3, 4, 5, 6</p></li>
+<li><p>Valid values: numeric; 1, 2, 3, 4, 5, 6</p></li>
 <li><p>Taxonomic Uncertainty Frequency Class</p></li>
 </ul>
 </li>
 <li>
 <p>ELEVATION_ATTR</p>
 <ul>
-<li>Valid values for ELEVATION_ATTR: LOW, HIGH</li>
+<li>Valid values: LOW, HIGH</li>
 </ul>
 </li>
 <li>
 <p>GRADIENT_ATTR</p>
 <ul>
-<li>Valid values for GRADIENT_ATTR: LOW, MOD, HIGH</li>
+<li>Valid values: LOW, MOD, HIGH</li>
 </ul>
 </li>
 <li>
 <p>WSAREA_ATTR</p>
 <ul>
-<li>Valid values for WSAREA_ATTR: SMALL, MEDIUM, LARGE, XLARGE</li>
+<li>Valid values: SMALL, MEDIUM, LARGE, XLARGE</li>
+</ul>
+</li>
+<li>
+<p>REPRODUCTION</p>
+<ul>
+<li>Valid values: BROADCASTER, SIMPLE NEST, COMPLEX NEST, BEARER,
+MIGRATORY</li>
+</ul>
+</li>
+<li>
+<p>CONNECTIVITY</p>
+<ul>
+<li>Valid values: TRUE, FALSE</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p>Fields that are optional can be in the output (see examples below).</p>
+<p>Fields that are optional can be in the output (see examples
+below).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Packages</span>
-<span class="co">#library(readxl)</span>
-<span class="co">#library(knitr)</span>
-<span class="co">#library(BioMonTools)</span>
-<span class="co">#library(dplyr)</span>
-
-<span class="co"># Load Data</span>
-<span class="va">df.data</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"./extdata/Data_Benthos.xlsx"</span>
-                                       , package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span>
-                      , guess_max <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span>
-<span class="co"># Columns to keep</span>
-<span class="va">myCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Area_mi2"</span>, <span class="st">"SurfaceArea"</span>, <span class="st">"Density_m2"</span>, <span class="st">"Density_ft2"</span><span class="op">)</span>
-
-<span class="co"># Run Function</span>
-<span class="va">df.metval</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df.data</span>, <span class="st">"bugs"</span>, fun.cols2keep<span class="op">=</span><span class="va">myCols</span><span class="op">)</span>
-<span class="co">#&gt; Updated col class; TOLVAL2 to numeric</span>
-<span class="co">#&gt; `mutate_if()` ignored the following grouping variables:</span>
-<span class="co">#&gt; <span style="color: #00BBBB;">•</span> Columns `SAMPLEID`, `INDEX_NAME`</span>
-<span class="co">#&gt; Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span>
-<span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span>
-<span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
-<span class="co"># Metrics of Interest</span>
-<span class="co">## thermal indicator (_ti_)</span>
-<span class="co">#names(df.metval)[grepl("_ti_", names(df.metval))]</span>
-<span class="va">col.met2keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ni_total"</span>, <span class="st">"nt_total"</span>, <span class="st">"nt_ti_corecold"</span>, <span class="st">"nt_ti_cold"</span>
-                  , <span class="st">"nt_ti_cool"</span>, <span class="st">"pi_ti_corecold"</span>, <span class="st">"pi_ti_cold"</span>, <span class="st">"pi_ti_cool"</span><span class="op">)</span>
-<span class="va">col.ID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAMPLEID"</span>, <span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">toupper</a></span><span class="op">(</span><span class="va">myCols</span><span class="op">)</span>, <span class="st">"INDEX_NAME"</span>, <span class="st">"INDEX_REGION"</span><span class="op">)</span>
-<span class="co"># Ouput</span>
-<span class="va">df.metval.ci</span> <span class="op">&lt;-</span> <span class="va">df.metval</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">col.ID</span>, <span class="va">col.met2keep</span><span class="op">)</span><span class="op">]</span>
-<span class="co"># RMD table</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df.metval.ci</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Metric Calculation, select metrics"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Packages</span></span>
+<span><span class="co"># library(readxl)</span></span>
+<span><span class="co"># library(knitr)</span></span>
+<span><span class="co"># library(BioMonTools)</span></span>
+<span><span class="co"># library(dplyr)</span></span>
+<span></span>
+<span><span class="co"># Load Data</span></span>
+<span><span class="va">df_data</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"./extdata/Data_Benthos.xlsx"</span></span>
+<span>                                       , package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span>
+<span>                      , guess_max <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="co"># Columns to keep</span></span>
+<span><span class="va">myCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Area_mi2"</span>, <span class="st">"SurfaceArea"</span>, <span class="st">"Density_m2"</span>, <span class="st">"Density_ft2"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Run Function</span></span>
+<span><span class="va">df_metval</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df_data</span>, <span class="st">"bugs"</span>, fun.cols2keep <span class="op">=</span> <span class="va">myCols</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Updated col class; TOLVAL2 to numeric</span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span></span>
+<span><span class="co">#&gt; Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">dplyr</span> package.</span></span>
+<span><span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/tidyverse/dplyr/issues&gt;</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
+<span><span class="co"># Metrics of Interest</span></span>
+<span><span class="co">## thermal indicator (_ti_)</span></span>
+<span><span class="co">#names(df.metval)[grepl("_ti_", names(df.metval))]</span></span>
+<span><span class="va">col_met2keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ni_total"</span></span>
+<span>                  , <span class="st">"nt_total"</span></span>
+<span>                  , <span class="st">"nt_ti_stenocold"</span> <span class="co"># renamed from corecold</span></span>
+<span>                  , <span class="st">"nt_ti_cold"</span></span>
+<span>                  , <span class="st">"nt_ti_cool"</span></span>
+<span>                  , <span class="st">"pi_ti_stenocold"</span> <span class="co"># renamed from corecold</span></span>
+<span>                  , <span class="st">"pi_ti_cold"</span></span>
+<span>                  , <span class="st">"pi_ti_cool"</span><span class="op">)</span></span>
+<span><span class="va">col_ID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAMPLEID"</span></span>
+<span>            , <span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">toupper</a></span><span class="op">(</span><span class="va">myCols</span><span class="op">)</span></span>
+<span>            , <span class="st">"INDEX_NAME"</span></span>
+<span>            , <span class="st">"INDEX_CLASS"</span><span class="op">)</span></span>
+<span><span class="co"># Ouput</span></span>
+<span><span class="va">df_metval_ci</span> <span class="op">&lt;-</span> <span class="va">df_metval</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">col_ID</span>, <span class="va">col_met2keep</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co"># RMD table</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_metval_ci</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Metric Calculation, select metrics"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Metric Calculation, select metrics</caption>
 <colgroup>
@@ -328,10 +386,10 @@
 <col width="6%">
 <col width="4%">
 <col width="4%">
-<col width="7%">
+<col width="8%">
 <col width="5%">
 <col width="5%">
-<col width="7%">
+<col width="8%">
 <col width="5%">
 <col width="5%">
 </colgroup>
@@ -342,13 +400,13 @@
 <th align="left">DENSITY_M2</th>
 <th align="left">DENSITY_FT2</th>
 <th align="left">INDEX_NAME</th>
-<th align="left">INDEX_REGION</th>
+<th align="left">INDEX_CLASS</th>
 <th align="right">ni_total</th>
 <th align="right">nt_total</th>
-<th align="right">nt_ti_corecold</th>
+<th align="right">nt_ti_stenocold</th>
 <th align="right">nt_ti_cold</th>
 <th align="right">nt_ti_cool</th>
-<th align="right">pi_ti_corecold</th>
+<th align="right">pi_ti_stenocold</th>
 <th align="right">pi_ti_cold</th>
 <th align="right">pi_ti_cool</th>
 </tr></thead>
@@ -462,110 +520,124 @@
 <div class="section level3">
 <h3 id="markexcluded">markExcluded<a class="anchor" aria-label="anchor" href="#markexcluded"></a>
 </h3>
-<p>Takes as an input data frame with Sample ID, Taxa ID, and phlogenetic name fields and returns a similar dataframe with a column for “excluded” taxa (TRUE or FALSE).</p>
-<p>Excluded taxa are refered to by multiple names; ambiguous, non-distinct, and non-unique. The “excluded” name was chosen so as to be consistent with “non-target” taxa. That is, taxa marked as “TRUE” are treated as undesireables. Excluded taxa are those that are present in a sample when taxa of the same group are present in the same sample are identified finer level. That is, the parent is marked as excluded when child taxa are present in the same sample.</p>
-<p>The excluded taxa are referenced in the metric values function. These taxa are removed from the taxa richness metrics. This is because these are coarser level taxa.</p>
-<p>Exceptions is a 2 column data frame of synonyms or other exceptions. Column 1 is the name used in the TaxaID column the input data frame (df_samptax). Column 2 is the name used in the TaxaLevels columns of the input data frame (df_samptax). The phylogenetic columns (TaxaLevels) will be modified from Column 2 of the Exceptions data frame to match Column 1 of the Exceptions data frame. This ensures that the algorithm for markExcluded works properly. The changes will not be stored and the original names provided in the input data frame (df_samptax) will be returned in the final result. The function example below includes a practical case.</p>
-<p>Taxa Levels are phylogenetic names that are to be checked. They should be listed in order from course (kingdom) to fine (species). Names not appearing in the data will be skipped.</p>
-<p>The spelling of names must be consistent (including case) for this function to produce the intended output.</p>
-<p>Returns a data frame of df_samptax with an additional column, ExcludedTaxa.</p>
+<p>Takes as an input data frame with Sample ID, Taxa ID, and phlogenetic
+name fields and returns a similar dataframe with a column for “exclude”
+taxa (TRUE or FALSE).</p>
+<p>Exclude taxa are refered to by multiple names; ambiguous,
+non-distinct, and non-unique. The “exclude” name was chosen so as to be
+consistent with “non-target” taxa. That is, taxa marked as “TRUE” are
+treated as undesirables. Exclude taxa are those that are present in a
+sample when taxa of the same group are present in the same sample are
+identified at a finer level. That is, the parent is marked as exclude
+when child taxa are present in the same sample.</p>
+<p>The exclude taxa are referenced in the metric values function. These
+taxa are removed from the taxa richness metrics. This is because these
+are coarser level taxa.</p>
+<p>Exceptions is a 2 column data frame of synonyms or other exceptions.
+Column 1 is the name used in the TaxaID column the input data frame
+(df_samptax). Column 2 is the name used in the TaxaLevels columns of the
+input data frame (df_samptax). The phylogenetic columns (TaxaLevels)
+will be modified from Column 2 of the Exceptions data frame to match
+Column 1 of the Exceptions data frame. This ensures that the algorithm
+for markExcluded works properly. The changes will not be stored and the
+original names provided in the input data frame (df_samptax) will be
+returned in the final result. The function example below includes a
+practical case.</p>
+<p>Taxa Levels are phylogenetic names that are to be checked. They
+should be listed in order from course (kingdom) to fine (species). Names
+not appearing in the data will be skipped.</p>
+<p>The spelling of names must be consistent (including case) for this
+function to produce the intended output.</p>
+<p>Returns a data frame of df_samptax with an additional column,
+Exclude.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Packages</span>
-<span class="co">#library(readxl)</span>
-<span class="co">#library(dplyr)</span>
-<span class="co">#library(lazyeval)</span>
-<span class="co">#library(knitr)</span>
-
-<span class="co"># Define pipe</span>
-<span class="va">`%&gt;%`</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va">`%&gt;%`</span>
-
-<span class="co"># Data</span>
-<span class="va">df_samps_bugs</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"./extdata/Data_Benthos.xlsx"</span>
-                                        , package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span>
-                            , guess_max<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span>
-
-<span class="co"># Variables</span>
-<span class="va">SampID</span>     <span class="op">&lt;-</span> <span class="st">"SampleID"</span>
-<span class="va">TaxaID</span>     <span class="op">&lt;-</span> <span class="st">"TaxaID"</span>
-<span class="va">TaxaCount</span>  <span class="op">&lt;-</span> <span class="st">"N_Taxa"</span>
-<span class="va">Exclude</span>    <span class="op">&lt;-</span> <span class="st">"Exclude_New"</span>
-<span class="va">TaxaLevels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Kingdom"</span>
-                , <span class="st">"Phylum"</span>
-                , <span class="st">"SubPhylum"</span>
-                , <span class="st">"Class"</span>
-                , <span class="st">"SubClass"</span>
-                , <span class="st">"Order"</span>
-                , <span class="st">"SubOrder"</span>
-                , <span class="st">"SuperFamily"</span>
-                , <span class="st">"Family"</span>
-                , <span class="st">"SubFamily"</span>
-                , <span class="st">"Tribe"</span>
-                , <span class="st">"Genus"</span>
-                , <span class="st">"SubGenus"</span>
-                , <span class="st">"Species"</span>
-                , <span class="st">"Variety"</span><span class="op">)</span>
-<span class="co"># Taxa that should be treated as equivalent</span>
-<span class="va">Exceptions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"TaxaID"</span> <span class="op">=</span> <span class="st">"Sphaeriidae"</span>, <span class="st">"PhyloID"</span><span class="op">=</span> <span class="st">"Pisidiidae"</span><span class="op">)</span>
-
-<span class="co"># Filter Data</span>
-<span class="co"># df_samptax &lt;- filter(df_samps_bugs, !!as.name(SampID) == </span>
-<span class="co"># "08BEA3478__2013-08-21_0")</span>
-<span class="co"># df_tst_small &lt;- markExcluded(df_samptax, SampID, TaxaID, TaxaCount, TaxaLevels</span>
-<span class="co">#, Exceptions, Exclude)</span>
-
-<span class="co"># EXAMPLE 1</span>
-<span class="va">df_tst</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/markExcluded.html">markExcluded</a></span><span class="op">(</span><span class="va">df_samps_bugs</span>
-                                    , SampID<span class="op">=</span><span class="st">"SampleID"</span>
-                                    , TaxaID<span class="op">=</span><span class="st">"TaxaID"</span>
-                                    , TaxaCount <span class="op">=</span> <span class="st">"N_Taxa"</span>
-                                    , Exclude<span class="op">=</span><span class="st">"Exclude_New"</span>
-                                    , TaxaLevels<span class="op">=</span><span class="va">TaxaLevels</span>
-                                    , Exceptions<span class="op">=</span><span class="va">Exceptions</span><span class="op">)</span>
-<span class="co">#&gt; *WARNING*, 3 taxa levels missing from input data frame; </span>
-<span class="co">#&gt;  KINGDOM, SUBORDER, VARIETY</span>
-<span class="co">#&gt; [1] "Working on item (1/12); PHYLUM"</span>
-<span class="co">#&gt; Warning: `summarise_()` was deprecated in dplyr 0.7.0.</span>
-<span class="co">#&gt; Please use `summarise()` instead.</span>
-<span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span>
-<span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
-<span class="co">#&gt; Warning: `group_by_()` was deprecated in dplyr 0.7.0.</span>
-<span class="co">#&gt; Please use `group_by()` instead.</span>
-<span class="co">#&gt; See vignette('programming') for more help</span>
-<span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span>
-<span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span>
-<span class="co">#&gt; [1] "Working on item (2/12); SUBPHYLUM"</span>
-<span class="co">#&gt; [1] "Working on item (3/12); CLASS"</span>
-<span class="co">#&gt; [1] "Working on item (4/12); SUBCLASS"</span>
-<span class="co">#&gt; [1] "Working on item (5/12); ORDER"</span>
-<span class="co">#&gt; [1] "Working on item (6/12); SUPERFAMILY"</span>
-<span class="co">#&gt; [1] "Working on item (7/12); FAMILY"</span>
-<span class="co">#&gt; [1] "Working on item (8/12); SUBFAMILY"</span>
-<span class="co">#&gt; [1] "Working on item (9/12); TRIBE"</span>
-<span class="co">#&gt; [1] "Working on item (10/12); GENUS"</span>
-<span class="co">#&gt; [1] "Working on item (11/12); SUBGENUS"</span>
-<span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span>
-
-<span class="co"># Compare</span>
-<span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">df_tst</span>, <span class="va">SampleID</span><span class="op">)</span>
-                               , Exclude_Import<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Exclude</span><span class="op">)</span>
-                               , Exclude_R<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Exclude_New</span><span class="op">)</span><span class="op">)</span>
-<span class="va">df_compare</span><span class="op">$</span><span class="va">Diff</span> <span class="op">&lt;-</span> <span class="va">df_compare</span><span class="op">$</span><span class="va">Exclude_Import</span> <span class="op">-</span> <span class="va">df_compare</span><span class="op">$</span><span class="va">Exclude_R</span>
-<span class="co">#</span>
-<span class="va">tbl_diff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">$</span><span class="va">Diff</span><span class="op">)</span>
-<span class="co">#kable(tbl_diff)</span>
-<span class="co"># sort</span>
-<span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="va">df_compare</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Number with issues</span>
-<span class="co">#sum(abs(df_compare$Diff))</span>
-<span class="co"># total samples</span>
-<span class="co">#nrow(df_compare)</span>
-
-<span class="co"># confusion matrix</span>
-<span class="va">tbl_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_tst</span><span class="op">$</span><span class="va">Exclude</span>, <span class="va">df_tst</span><span class="op">$</span><span class="va">Exclude_New</span>, useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span>
-<span class="co">#</span>
-<span class="co"># Show differences</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl_results</span>, caption<span class="op">=</span><span class="st">"Confusion Matrix"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Packages</span></span>
+<span><span class="co">#library(readxl)</span></span>
+<span><span class="co">#library(dplyr)</span></span>
+<span><span class="co">#library(lazyeval)</span></span>
+<span><span class="co">#library(knitr)</span></span>
+<span></span>
+<span><span class="co"># Define pipe</span></span>
+<span><span class="va">`%&gt;%`</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va">`%&gt;%`</span></span>
+<span></span>
+<span><span class="co"># Data</span></span>
+<span><span class="va">df_samps_bugs</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"./extdata/Data_Benthos.xlsx"</span></span>
+<span>                                        , package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span>
+<span>                            , guess_max <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Variables</span></span>
+<span><span class="va">SampID</span>     <span class="op">&lt;-</span> <span class="st">"SampleID"</span></span>
+<span><span class="va">TaxaID</span>     <span class="op">&lt;-</span> <span class="st">"TaxaID"</span></span>
+<span><span class="va">TaxaCount</span>  <span class="op">&lt;-</span> <span class="st">"N_Taxa"</span></span>
+<span><span class="va">Exclude</span>    <span class="op">&lt;-</span> <span class="st">"Exclude_New"</span></span>
+<span><span class="va">TaxaLevels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Kingdom"</span></span>
+<span>                , <span class="st">"Phylum"</span></span>
+<span>                , <span class="st">"SubPhylum"</span></span>
+<span>                , <span class="st">"Class"</span></span>
+<span>                , <span class="st">"SubClass"</span></span>
+<span>                , <span class="st">"Order"</span></span>
+<span>                , <span class="st">"SubOrder"</span></span>
+<span>                , <span class="st">"SuperFamily"</span></span>
+<span>                , <span class="st">"Family"</span></span>
+<span>                , <span class="st">"SubFamily"</span></span>
+<span>                , <span class="st">"Tribe"</span></span>
+<span>                , <span class="st">"Genus"</span></span>
+<span>                , <span class="st">"SubGenus"</span></span>
+<span>                , <span class="st">"Species"</span></span>
+<span>                , <span class="st">"Variety"</span><span class="op">)</span></span>
+<span><span class="co"># Taxa that should be treated as equivalent</span></span>
+<span><span class="va">Exceptions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"TaxaID"</span> <span class="op">=</span> <span class="st">"Sphaeriidae"</span>, <span class="st">"PhyloID"</span> <span class="op">=</span> <span class="st">"Pisidiidae"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Filter Data</span></span>
+<span><span class="co"># df_samptax &lt;- filter(df_samps_bugs, !!as.name(SampID) == </span></span>
+<span><span class="co"># "08BEA3478__2013-08-21_0")</span></span>
+<span><span class="co"># df_tst_small &lt;- markExcluded(df_samptax, SampID, TaxaID, TaxaCount, TaxaLevels</span></span>
+<span><span class="co">#, Exceptions, Exclude)</span></span>
+<span></span>
+<span><span class="co"># EXAMPLE 1</span></span>
+<span><span class="va">df_tst</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/markExcluded.html">markExcluded</a></span><span class="op">(</span><span class="va">df_samps_bugs</span></span>
+<span>                                    , SampID <span class="op">=</span> <span class="st">"SampleID"</span></span>
+<span>                                    , TaxaID <span class="op">=</span> <span class="st">"TaxaID"</span></span>
+<span>                                    , TaxaCount <span class="op">=</span> <span class="st">"N_Taxa"</span></span>
+<span>                                    , Exclude <span class="op">=</span> <span class="st">"Exclude_New"</span></span>
+<span>                                    , TaxaLevels <span class="op">=</span> <span class="va">TaxaLevels</span></span>
+<span>                                    , Exceptions <span class="op">=</span> <span class="va">Exceptions</span><span class="op">)</span></span>
+<span><span class="co">#&gt; *WARNING*, 3 taxa levels missing from input data frame; </span></span>
+<span><span class="co">#&gt;  KINGDOM, SUBORDER, VARIETY</span></span>
+<span><span class="co">#&gt; [1] "Working on item (1/12); PHYLUM"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (2/12); SUBPHYLUM"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (3/12); CLASS"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (4/12); SUBCLASS"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (5/12); ORDER"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (6/12); SUPERFAMILY"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (7/12); FAMILY"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (8/12); SUBFAMILY"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (9/12); TRIBE"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (10/12); GENUS"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (11/12); SUBGENUS"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span></span>
+<span></span>
+<span><span class="co"># Compare</span></span>
+<span><span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">df_tst</span>, <span class="va">SampleID</span><span class="op">)</span></span>
+<span>                               , Exclude_Import <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Exclude</span><span class="op">)</span></span>
+<span>                               , Exclude_R <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Exclude_New</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df_compare</span><span class="op">$</span><span class="va">Diff</span> <span class="op">&lt;-</span> <span class="va">df_compare</span><span class="op">$</span><span class="va">Exclude_Import</span> <span class="op">-</span> <span class="va">df_compare</span><span class="op">$</span><span class="va">Exclude_R</span></span>
+<span><span class="co">#</span></span>
+<span><span class="va">tbl_diff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">$</span><span class="va">Diff</span><span class="op">)</span></span>
+<span><span class="co">#kable(tbl_diff)</span></span>
+<span><span class="co"># sort</span></span>
+<span><span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="va">df_compare</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Number with issues</span></span>
+<span><span class="co">#sum(abs(df_compare$Diff))</span></span>
+<span><span class="co"># total samples</span></span>
+<span><span class="co">#nrow(df_compare)</span></span>
+<span></span>
+<span><span class="co"># confusion matrix</span></span>
+<span><span class="va">tbl_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_tst</span><span class="op">$</span><span class="va">Exclude</span>, <span class="va">df_tst</span><span class="op">$</span><span class="va">Exclude_New</span>, useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Show differences</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl_results</span>, caption <span class="op">=</span> <span class="st">"Confusion Matrix"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Confusion Matrix</caption>
 <thead><tr class="header">
@@ -587,46 +659,46 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># samples with differences</span>
-<span class="va">samp_diff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">[</span><span class="va">df_compare</span><span class="op">[</span>,<span class="st">"Diff"</span><span class="op">]</span><span class="op">!=</span><span class="fl">0</span>, <span class="st">"SampleID"</span><span class="op">]</span><span class="op">)</span>
-<span class="co"># results for only those with differences</span>
-<span class="va">df_tst_diff</span> <span class="op">&lt;-</span> <span class="va">df_tst</span><span class="op">[</span><span class="va">df_tst</span><span class="op">[</span>,<span class="st">"SampleID"</span><span class="op">]</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">samp_diff</span><span class="op">$</span><span class="va">SampleID</span>, <span class="op">]</span>
-<span class="co"># add diff field</span>
-<span class="va">df_tst_diff</span><span class="op">$</span><span class="va">Exclude_Diff</span> <span class="op">&lt;-</span> <span class="va">df_tst_diff</span><span class="op">$</span><span class="va">Exclude</span> <span class="op">-</span> <span class="va">df_tst_diff</span><span class="op">$</span><span class="va">Exclude_New</span>
-
-<span class="co"># Classification Performance Metrics</span>
-<span class="va">class_TP</span> <span class="op">&lt;-</span> <span class="va">tbl_results</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span> <span class="co"># True Positive</span>
-<span class="va">class_FN</span> <span class="op">&lt;-</span> <span class="va">tbl_results</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">]</span> <span class="co"># False Negative</span>
-<span class="va">class_FP</span> <span class="op">&lt;-</span> <span class="va">tbl_results</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span> <span class="co"># False Positive</span>
-<span class="va">class_TN</span> <span class="op">&lt;-</span> <span class="va">tbl_results</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span> <span class="co"># True Negative</span>
-<span class="va">class_n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">tbl_results</span><span class="op">)</span>  <span class="co"># total</span>
-<span class="co">#</span>
-<span class="co"># sensitivity (recall); TP / (TP+FN); measure model to ID true positives</span>
-<span class="va">class_sens</span> <span class="op">&lt;-</span> <span class="va">class_TP</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_TP</span> <span class="op">+</span> <span class="va">class_FN</span><span class="op">)</span>
-<span class="co"># precision; TP / (TP+FP); accuracy of model positives</span>
-<span class="va">class_prec</span> <span class="op">&lt;-</span> <span class="va">class_TP</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_TP</span> <span class="op">+</span> <span class="va">class_FP</span><span class="op">)</span>
-<span class="co"># specifity; TN / (TN + FP); measure model to ID true negatives</span>
-<span class="va">class_spec</span> <span class="op">&lt;-</span> <span class="va">class_TN</span>  <span class="op">/</span> <span class="op">(</span><span class="va">class_TN</span> <span class="op">+</span> <span class="va">class_FP</span><span class="op">)</span>
-<span class="co"># overall accuracy; (TP + TN) / all cases; accuracy of all classifications</span>
-<span class="va">class_acc</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">class_TP</span> <span class="op">+</span> <span class="va">class_TN</span><span class="op">)</span> <span class="op">/</span> <span class="va">class_n</span>
-<span class="co"># F1; 2 * (class_prec*class_sens) / (class_prec+class_sens)</span>
-<span class="co">## balance of precision and recall</span>
-<span class="va">class_F1</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="va">class_prec</span> <span class="op">*</span> <span class="va">class_sens</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_prec</span> <span class="op">+</span> <span class="va">class_sens</span><span class="op">)</span>
-<span class="co">#</span>
-<span class="va">results_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sensitivity (Recall)"</span>
-                   , <span class="st">"Precision"</span>, <span class="st">"Specificity"</span>
-                   , <span class="st">"OVerall Accuracy"</span>
-                   , <span class="st">"F1"</span><span class="op">)</span>
-<span class="va">results_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">class_sens</span>
-                    , <span class="va">class_prec</span>
-                    , <span class="va">class_spec</span>
-                    , <span class="va">class_acc</span>
-                    , <span class="va">class_F1</span><span class="op">)</span>
-<span class="co">#</span>
-<span class="va">tbl_class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">results_names</span>, <span class="va">results_values</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">tbl_class</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Performance Metrics"</span>, <span class="st">"Percent"</span><span class="op">)</span>
-<span class="va">tbl_class</span><span class="op">$</span><span class="va">Percent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">tbl_class</span><span class="op">$</span><span class="va">Percent</span> <span class="op">*</span><span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl_class</span>, caption<span class="op">=</span><span class="st">"Classification Performance Metrics"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># samples with differences</span></span>
+<span><span class="va">samp_diff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">[</span><span class="va">df_compare</span><span class="op">[</span>,<span class="st">"Diff"</span><span class="op">]</span> <span class="op">!=</span> <span class="fl">0</span>, <span class="st">"SampleID"</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co"># results for only those with differences</span></span>
+<span><span class="va">df_tst_diff</span> <span class="op">&lt;-</span> <span class="va">df_tst</span><span class="op">[</span><span class="va">df_tst</span><span class="op">[</span>,<span class="st">"SampleID"</span><span class="op">]</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">samp_diff</span><span class="op">$</span><span class="va">SampleID</span>, <span class="op">]</span></span>
+<span><span class="co"># add diff field</span></span>
+<span><span class="va">df_tst_diff</span><span class="op">$</span><span class="va">Exclude_Diff</span> <span class="op">&lt;-</span> <span class="va">df_tst_diff</span><span class="op">$</span><span class="va">Exclude</span> <span class="op">-</span> <span class="va">df_tst_diff</span><span class="op">$</span><span class="va">Exclude_New</span></span>
+<span></span>
+<span><span class="co"># Classification Performance Metrics</span></span>
+<span><span class="va">class_TP</span> <span class="op">&lt;-</span> <span class="va">tbl_results</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span> <span class="co"># True Positive</span></span>
+<span><span class="va">class_FN</span> <span class="op">&lt;-</span> <span class="va">tbl_results</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">]</span> <span class="co"># False Negative</span></span>
+<span><span class="va">class_FP</span> <span class="op">&lt;-</span> <span class="va">tbl_results</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span> <span class="co"># False Positive</span></span>
+<span><span class="va">class_TN</span> <span class="op">&lt;-</span> <span class="va">tbl_results</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span> <span class="co"># True Negative</span></span>
+<span><span class="va">class_n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">tbl_results</span><span class="op">)</span>  <span class="co"># total</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># sensitivity (recall); TP / (TP+FN); measure model to ID true positives</span></span>
+<span><span class="va">class_sens</span> <span class="op">&lt;-</span> <span class="va">class_TP</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_TP</span> <span class="op">+</span> <span class="va">class_FN</span><span class="op">)</span></span>
+<span><span class="co"># precision; TP / (TP+FP); accuracy of model positives</span></span>
+<span><span class="va">class_prec</span> <span class="op">&lt;-</span> <span class="va">class_TP</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_TP</span> <span class="op">+</span> <span class="va">class_FP</span><span class="op">)</span></span>
+<span><span class="co"># specifity; TN / (TN + FP); measure model to ID true negatives</span></span>
+<span><span class="va">class_spec</span> <span class="op">&lt;-</span> <span class="va">class_TN</span>  <span class="op">/</span> <span class="op">(</span><span class="va">class_TN</span> <span class="op">+</span> <span class="va">class_FP</span><span class="op">)</span></span>
+<span><span class="co"># overall accuracy; (TP + TN) / all cases; accuracy of all classifications</span></span>
+<span><span class="va">class_acc</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">class_TP</span> <span class="op">+</span> <span class="va">class_TN</span><span class="op">)</span> <span class="op">/</span> <span class="va">class_n</span></span>
+<span><span class="co"># F1; 2 * (class_prec*class_sens) / (class_prec+class_sens)</span></span>
+<span><span class="co">## balance of precision and recall</span></span>
+<span><span class="va">class_F1</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="va">class_prec</span> <span class="op">*</span> <span class="va">class_sens</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_prec</span> <span class="op">+</span> <span class="va">class_sens</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="va">results_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sensitivity (Recall)"</span></span>
+<span>                   , <span class="st">"Precision"</span>, <span class="st">"Specificity"</span></span>
+<span>                   , <span class="st">"OVerall Accuracy"</span></span>
+<span>                   , <span class="st">"F1"</span><span class="op">)</span></span>
+<span><span class="va">results_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">class_sens</span></span>
+<span>                    , <span class="va">class_prec</span></span>
+<span>                    , <span class="va">class_spec</span></span>
+<span>                    , <span class="va">class_acc</span></span>
+<span>                    , <span class="va">class_F1</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="va">tbl_class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">results_names</span>, <span class="va">results_values</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">tbl_class</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Performance Metrics"</span>, <span class="st">"Percent"</span><span class="op">)</span></span>
+<span><span class="va">tbl_class</span><span class="op">$</span><span class="va">Percent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">tbl_class</span><span class="op">$</span><span class="va">Percent</span> <span class="op">*</span> <span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl_class</span>, caption <span class="op">=</span> <span class="st">"Classification Performance Metrics"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Classification Performance Metrics</caption>
 <thead><tr class="header">
@@ -656,91 +728,92 @@
 </tr>
 </tbody>
 </table>
-<p>The same data with no “exceptions” leaves 8 records misclassified.</p>
+<p>The same data with no “exceptions” leaves 8 records
+misclassified.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Packages</span>
-<span class="co">#library(readxl)</span>
-<span class="co">#library(dplyr)</span>
-<span class="co">#library(lazyeval)</span>
-<span class="co">#library(knitr)</span>
-
-<span class="co"># Define pipe</span>
-<span class="va">`%&gt;%`</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va">`%&gt;%`</span>
-
-<span class="co"># Data</span>
-<span class="va">df_samps_bugs</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"./extdata/Data_Benthos.xlsx"</span>
-                                              , package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span>
-                                  , guess_max<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span>
-
-<span class="co"># Variables</span>
-<span class="va">SampID</span>     <span class="op">&lt;-</span> <span class="st">"SampleID"</span>
-<span class="va">TaxaID</span>     <span class="op">&lt;-</span> <span class="st">"TaxaID"</span>
-<span class="va">TaxaCount</span>  <span class="op">&lt;-</span> <span class="st">"N_Taxa"</span>
-<span class="va">Exclude</span>    <span class="op">&lt;-</span> <span class="st">"Exclude_New"</span>
-<span class="va">TaxaLevels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Kingdom"</span>
-                , <span class="st">"Phylum"</span>
-                , <span class="st">"SubPhylum"</span>
-                , <span class="st">"Class"</span>
-                , <span class="st">"SubClass"</span>
-                , <span class="st">"Order"</span>
-                , <span class="st">"SubOrder"</span>
-                , <span class="st">"SuperFamily"</span>
-                , <span class="st">"Family"</span>
-                , <span class="st">"SubFamily"</span>
-                , <span class="st">"Tribe"</span>
-                , <span class="st">"Genus"</span>
-                , <span class="st">"SubGenus"</span>
-                , <span class="st">"Species"</span>
-                , <span class="st">"Variety"</span><span class="op">)</span>
-<span class="co"># Taxa that should be treated as equivalent</span>
-<span class="va">Exceptions</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
-
-<span class="co"># EXAMPLE 2</span>
-<span class="co">## No Exceptions</span>
-
-<span class="va">df_tst2</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/markExcluded.html">markExcluded</a></span><span class="op">(</span><span class="va">df_samps_bugs</span>
-                                     , SampID <span class="op">=</span> <span class="st">"SampleID"</span>
-                                     , TaxaID <span class="op">=</span> <span class="st">"TaxaID"</span>
-                                     , TaxaCount <span class="op">=</span> <span class="st">"N_Taxa"</span>
-                                     , Exclude <span class="op">=</span> <span class="st">"Exclude_New"</span>
-                                     , TaxaLevels <span class="op">=</span> <span class="va">TaxaLevels</span>
-                                     , Exceptions <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>
-<span class="co">#&gt; *WARNING*, 3 taxa levels missing from input data frame; </span>
-<span class="co">#&gt;  KINGDOM, SUBORDER, VARIETY</span>
-<span class="co">#&gt; [1] "Working on item (1/12); PHYLUM"</span>
-<span class="co">#&gt; [1] "Working on item (2/12); SUBPHYLUM"</span>
-<span class="co">#&gt; [1] "Working on item (3/12); CLASS"</span>
-<span class="co">#&gt; [1] "Working on item (4/12); SUBCLASS"</span>
-<span class="co">#&gt; [1] "Working on item (5/12); ORDER"</span>
-<span class="co">#&gt; [1] "Working on item (6/12); SUPERFAMILY"</span>
-<span class="co">#&gt; [1] "Working on item (7/12); FAMILY"</span>
-<span class="co">#&gt; [1] "Working on item (8/12); SUBFAMILY"</span>
-<span class="co">#&gt; [1] "Working on item (9/12); TRIBE"</span>
-<span class="co">#&gt; [1] "Working on item (10/12); GENUS"</span>
-<span class="co">#&gt; [1] "Working on item (11/12); SUBGENUS"</span>
-<span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span>
-
-<span class="co"># Compare</span>
-<span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">df_tst2</span>, <span class="va">SampleID</span><span class="op">)</span>
-                               , Exclude_Import <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Exclude</span><span class="op">)</span>
-                               , Exclude_R <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Exclude_New</span><span class="op">)</span><span class="op">)</span>
-<span class="va">df_compare2</span><span class="op">$</span><span class="va">Diff</span> <span class="op">&lt;-</span> <span class="va">df_compare2</span><span class="op">$</span><span class="va">Exclude_Import</span> <span class="op">-</span> <span class="va">df_compare2</span><span class="op">$</span><span class="va">Exclude_R</span>
-<span class="co">#</span>
-<span class="va">tbl_diff2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">$</span><span class="va">Diff</span><span class="op">)</span>
-<span class="co">#kable(tbl_diff2)</span>
-<span class="co"># sort</span>
-<span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="va">df_compare2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Number with issues</span>
-<span class="co">#sum(abs(df_compare2$Diff))</span>
-<span class="co"># total samples</span>
-<span class="co">#nrow(df_compare2)</span>
-
-<span class="co"># confusion matrix</span>
-<span class="va">tbl_results2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_tst2</span><span class="op">$</span><span class="va">Exclude</span>, <span class="va">df_tst2</span><span class="op">$</span><span class="va">Exclude_New</span>, useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span>
-<span class="co">#</span>
-<span class="co"># Show differences</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl_results2</span>, caption<span class="op">=</span><span class="st">"Confusion Matrix"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Packages</span></span>
+<span><span class="co">#library(readxl)</span></span>
+<span><span class="co">#library(dplyr)</span></span>
+<span><span class="co">#library(lazyeval)</span></span>
+<span><span class="co">#library(knitr)</span></span>
+<span></span>
+<span><span class="co"># Define pipe</span></span>
+<span><span class="va">`%&gt;%`</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="va">`%&gt;%`</span></span>
+<span></span>
+<span><span class="co"># Data</span></span>
+<span><span class="va">df_samps_bugs</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"./extdata/Data_Benthos.xlsx"</span></span>
+<span>                                              , package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span>
+<span>                                  , guess_max <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Variables</span></span>
+<span><span class="va">SampID</span>     <span class="op">&lt;-</span> <span class="st">"SampleID"</span></span>
+<span><span class="va">TaxaID</span>     <span class="op">&lt;-</span> <span class="st">"TaxaID"</span></span>
+<span><span class="va">TaxaCount</span>  <span class="op">&lt;-</span> <span class="st">"N_Taxa"</span></span>
+<span><span class="va">Exclude</span>    <span class="op">&lt;-</span> <span class="st">"Exclude_New"</span></span>
+<span><span class="va">TaxaLevels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Kingdom"</span></span>
+<span>                , <span class="st">"Phylum"</span></span>
+<span>                , <span class="st">"SubPhylum"</span></span>
+<span>                , <span class="st">"Class"</span></span>
+<span>                , <span class="st">"SubClass"</span></span>
+<span>                , <span class="st">"Order"</span></span>
+<span>                , <span class="st">"SubOrder"</span></span>
+<span>                , <span class="st">"SuperFamily"</span></span>
+<span>                , <span class="st">"Family"</span></span>
+<span>                , <span class="st">"SubFamily"</span></span>
+<span>                , <span class="st">"Tribe"</span></span>
+<span>                , <span class="st">"Genus"</span></span>
+<span>                , <span class="st">"SubGenus"</span></span>
+<span>                , <span class="st">"Species"</span></span>
+<span>                , <span class="st">"Variety"</span><span class="op">)</span></span>
+<span><span class="co"># Taxa that should be treated as equivalent</span></span>
+<span><span class="va">Exceptions</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span><span class="co"># EXAMPLE 2</span></span>
+<span><span class="co">## No Exceptions</span></span>
+<span></span>
+<span><span class="va">df_tst2</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/markExcluded.html">markExcluded</a></span><span class="op">(</span><span class="va">df_samps_bugs</span></span>
+<span>                                     , SampID <span class="op">=</span> <span class="st">"SampleID"</span></span>
+<span>                                     , TaxaID <span class="op">=</span> <span class="st">"TaxaID"</span></span>
+<span>                                     , TaxaCount <span class="op">=</span> <span class="st">"N_Taxa"</span></span>
+<span>                                     , Exclude <span class="op">=</span> <span class="st">"Exclude_New"</span></span>
+<span>                                     , TaxaLevels <span class="op">=</span> <span class="va">TaxaLevels</span></span>
+<span>                                     , Exceptions <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
+<span><span class="co">#&gt; *WARNING*, 3 taxa levels missing from input data frame; </span></span>
+<span><span class="co">#&gt;  KINGDOM, SUBORDER, VARIETY</span></span>
+<span><span class="co">#&gt; [1] "Working on item (1/12); PHYLUM"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (2/12); SUBPHYLUM"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (3/12); CLASS"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (4/12); SUBCLASS"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (5/12); ORDER"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (6/12); SUPERFAMILY"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (7/12); FAMILY"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (8/12); SUBFAMILY"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (9/12); TRIBE"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (10/12); GENUS"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (11/12); SUBGENUS"</span></span>
+<span><span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span></span>
+<span></span>
+<span><span class="co"># Compare</span></span>
+<span><span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">df_tst2</span>, <span class="va">SampleID</span><span class="op">)</span></span>
+<span>                               , Exclude_Import <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Exclude</span><span class="op">)</span></span>
+<span>                               , Exclude_R <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Exclude_New</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df_compare2</span><span class="op">$</span><span class="va">Diff</span> <span class="op">&lt;-</span> <span class="va">df_compare2</span><span class="op">$</span><span class="va">Exclude_Import</span> <span class="op">-</span> <span class="va">df_compare2</span><span class="op">$</span><span class="va">Exclude_R</span></span>
+<span><span class="co">#</span></span>
+<span><span class="va">tbl_diff2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">$</span><span class="va">Diff</span><span class="op">)</span></span>
+<span><span class="co">#kable(tbl_diff2)</span></span>
+<span><span class="co"># sort</span></span>
+<span><span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="va">df_compare2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Number with issues</span></span>
+<span><span class="co">#sum(abs(df_compare2$Diff))</span></span>
+<span><span class="co"># total samples</span></span>
+<span><span class="co">#nrow(df_compare2)</span></span>
+<span></span>
+<span><span class="co"># confusion matrix</span></span>
+<span><span class="va">tbl_results2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_tst2</span><span class="op">$</span><span class="va">Exclude</span>, <span class="va">df_tst2</span><span class="op">$</span><span class="va">Exclude_New</span>, useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Show differences</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl_results2</span>, caption <span class="op">=</span> <span class="st">"Confusion Matrix"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Confusion Matrix</caption>
 <thead><tr class="header">
@@ -762,7 +835,7 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">SampleID</th>
@@ -834,7 +907,7 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">SampleID</th>
@@ -844,27 +917,27 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">WOODS298__2010-08-09_0</td>
-<td align="right">7</td>
-<td align="right">7</td>
+<td align="left">silvr192__2012-08-24_0</td>
+<td align="right">3</td>
+<td align="right">3</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td align="left">WOODS298__2013-09-03_0</td>
-<td align="right">7</td>
-<td align="right">7</td>
+<td align="left">skytrmann__2010-08-12_0</td>
+<td align="right">6</td>
+<td align="right">6</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
-<td align="left">Woods446__2010-08-19_0</td>
-<td align="right">6</td>
-<td align="right">6</td>
+<td align="left">skytrmann__2013-08-28_0</td>
+<td align="right">8</td>
+<td align="right">8</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td align="left">Woodscres__2010-08-05_0</td>
-<td align="right">11</td>
-<td align="right">11</td>
+<td align="left">swampcart__2012-08-20_0</td>
+<td align="right">6</td>
+<td align="right">6</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
@@ -882,56 +955,56 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># samples with differences</span>
-<span class="op">(</span><span class="va">samp_diff2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">[</span><span class="va">df_compare2</span><span class="op">[</span>,<span class="st">"Diff"</span><span class="op">]</span><span class="op">!=</span><span class="fl">0</span>, <span class="st">"SampleID"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;                  SampleID</span>
-<span class="co">#&gt; 1 08BEA3478__2013-08-21_0</span>
-<span class="co">#&gt; 2 08BEA3571__2014-09-03_0</span>
-<span class="co">#&gt; 3 08LIT2692__2012-09-10_0</span>
-<span class="co">#&gt; 4 08SAM0000__2012-07-11_0</span>
-<span class="co">#&gt; 5 08SAM0000__2013-07-25_0</span>
-<span class="co">#&gt; 6 09BLA0716__2014-08-14_0</span>
-<span class="co">#&gt; 7       95C__2012-10-02_0</span>
-<span class="co">#&gt; 8       95T__2012-10-03_0</span>
-<span class="co"># results for only those with differences</span>
-<span class="va">df_tst_diff2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">df_tst2</span>, <span class="va">SampleID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">samp_diff2</span><span class="op">$</span><span class="va">SampleID</span><span class="op">)</span>
-<span class="co"># add diff field</span>
-<span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude_Diff</span> <span class="op">&lt;-</span> <span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude</span> <span class="op">-</span> <span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude_New</span>
-
-<span class="co"># Classification Performance Metrics</span>
-<span class="va">class_TP2</span> <span class="op">&lt;-</span> <span class="va">tbl_results2</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span> <span class="co"># True Positive</span>
-<span class="va">class_FN2</span> <span class="op">&lt;-</span> <span class="va">tbl_results2</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">]</span> <span class="co"># False Negative</span>
-<span class="va">class_FP2</span> <span class="op">&lt;-</span> <span class="va">tbl_results2</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span> <span class="co"># False Positive</span>
-<span class="va">class_TN2</span> <span class="op">&lt;-</span> <span class="va">tbl_results2</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span> <span class="co"># True Negative</span>
-<span class="va">class_n2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">tbl_results2</span><span class="op">)</span>  <span class="co"># total</span>
-<span class="co">#</span>
-<span class="co"># sensitivity (recall); TP / (TP+FN); measure model to ID true positives</span>
-<span class="va">class_sens2</span> <span class="op">&lt;-</span> <span class="va">class_TP2</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_TP2</span> <span class="op">+</span> <span class="va">class_FN2</span><span class="op">)</span>
-<span class="co"># precision; TP / (TP+FP); accuracy of model positives</span>
-<span class="va">class_prec2</span> <span class="op">&lt;-</span> <span class="va">class_TP2</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_TP2</span> <span class="op">+</span> <span class="va">class_FP2</span><span class="op">)</span>
-<span class="co"># specifity; TN / (TN + FP); measure model to ID true negatives</span>
-<span class="va">class_spec2</span> <span class="op">&lt;-</span> <span class="va">class_TN2</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_TN2</span> <span class="op">+</span> <span class="va">class_FP2</span><span class="op">)</span>
-<span class="co"># overall accuracy; (TP + TN) / all cases; accuracy of all classifications</span>
-<span class="va">class_acc2</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">class_TP2</span> <span class="op">+</span> <span class="va">class_TN2</span><span class="op">)</span> <span class="op">/</span> <span class="va">class_n2</span>
-<span class="co"># F1; 2 * (class_prec*class_sens) / (class_prec+class_sens)</span>
-<span class="co">## balance of precision and recall</span>
-<span class="va">class_F12</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="va">class_prec2</span> <span class="op">*</span> <span class="va">class_sens2</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_prec2</span> <span class="op">+</span> <span class="va">class_sens2</span><span class="op">)</span>
-<span class="co">#</span>
-<span class="va">results_names2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sensitivity (Recall)"</span>
-                    , <span class="st">"Precision"</span>
-                    , <span class="st">"Specificity"</span>
-                    , <span class="st">"OVerall Accuracy"</span>
-                    , <span class="st">"F1"</span><span class="op">)</span>
-<span class="va">results_values2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">class_sens2</span>
-                     , <span class="va">class_prec2</span>
-                     , <span class="va">class_spec2</span>
-                     , <span class="va">class_acc2</span>
-                     , <span class="va">class_F12</span><span class="op">)</span>
-<span class="co">#</span>
-<span class="va">tbl_class2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">results_names2</span>, <span class="va">results_values2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">tbl_class2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Performance Metrics"</span>, <span class="st">"Percent"</span><span class="op">)</span>
-<span class="va">tbl_class2</span><span class="op">$</span><span class="va">Percent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">tbl_class2</span><span class="op">$</span><span class="va">Percent</span> <span class="op">*</span><span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl_class2</span>, caption<span class="op">=</span><span class="st">"Classification Performance Metrics"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># samples with differences</span></span>
+<span><span class="op">(</span><span class="va">samp_diff2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">[</span><span class="va">df_compare2</span><span class="op">[</span>,<span class="st">"Diff"</span><span class="op">]</span> <span class="op">!=</span> <span class="fl">0</span>, <span class="st">"SampleID"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                  SampleID</span></span>
+<span><span class="co">#&gt; 1 08BEA3478__2013-08-21_0</span></span>
+<span><span class="co">#&gt; 2 08BEA3571__2014-09-03_0</span></span>
+<span><span class="co">#&gt; 3 08LIT2692__2012-09-10_0</span></span>
+<span><span class="co">#&gt; 4 08SAM0000__2012-07-11_0</span></span>
+<span><span class="co">#&gt; 5 08SAM0000__2013-07-25_0</span></span>
+<span><span class="co">#&gt; 6 09BLA0716__2014-08-14_0</span></span>
+<span><span class="co">#&gt; 7       95C__2012-10-02_0</span></span>
+<span><span class="co">#&gt; 8       95T__2012-10-03_0</span></span>
+<span><span class="co"># results for only those with differences</span></span>
+<span><span class="va">df_tst_diff2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">df_tst2</span>, <span class="va">SampleID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">samp_diff2</span><span class="op">$</span><span class="va">SampleID</span><span class="op">)</span></span>
+<span><span class="co"># add diff field</span></span>
+<span><span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude_Diff</span> <span class="op">&lt;-</span> <span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude</span> <span class="op">-</span> <span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude_New</span></span>
+<span></span>
+<span><span class="co"># Classification Performance Metrics</span></span>
+<span><span class="va">class_TP2</span> <span class="op">&lt;-</span> <span class="va">tbl_results2</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">]</span> <span class="co"># True Positive</span></span>
+<span><span class="va">class_FN2</span> <span class="op">&lt;-</span> <span class="va">tbl_results2</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">]</span> <span class="co"># False Negative</span></span>
+<span><span class="va">class_FP2</span> <span class="op">&lt;-</span> <span class="va">tbl_results2</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span> <span class="co"># False Positive</span></span>
+<span><span class="va">class_TN2</span> <span class="op">&lt;-</span> <span class="va">tbl_results2</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span> <span class="co"># True Negative</span></span>
+<span><span class="va">class_n2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">tbl_results2</span><span class="op">)</span>  <span class="co"># total</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># sensitivity (recall); TP / (TP+FN); measure model to ID true positives</span></span>
+<span><span class="va">class_sens2</span> <span class="op">&lt;-</span> <span class="va">class_TP2</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_TP2</span> <span class="op">+</span> <span class="va">class_FN2</span><span class="op">)</span></span>
+<span><span class="co"># precision; TP / (TP+FP); accuracy of model positives</span></span>
+<span><span class="va">class_prec2</span> <span class="op">&lt;-</span> <span class="va">class_TP2</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_TP2</span> <span class="op">+</span> <span class="va">class_FP2</span><span class="op">)</span></span>
+<span><span class="co"># specifity; TN / (TN + FP); measure model to ID true negatives</span></span>
+<span><span class="va">class_spec2</span> <span class="op">&lt;-</span> <span class="va">class_TN2</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_TN2</span> <span class="op">+</span> <span class="va">class_FP2</span><span class="op">)</span></span>
+<span><span class="co"># overall accuracy; (TP + TN) / all cases; accuracy of all classifications</span></span>
+<span><span class="va">class_acc2</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">class_TP2</span> <span class="op">+</span> <span class="va">class_TN2</span><span class="op">)</span> <span class="op">/</span> <span class="va">class_n2</span></span>
+<span><span class="co"># F1; 2 * (class_prec*class_sens) / (class_prec+class_sens)</span></span>
+<span><span class="co">## balance of precision and recall</span></span>
+<span><span class="va">class_F12</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op">*</span> <span class="op">(</span><span class="va">class_prec2</span> <span class="op">*</span> <span class="va">class_sens2</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">class_prec2</span> <span class="op">+</span> <span class="va">class_sens2</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="va">results_names2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sensitivity (Recall)"</span></span>
+<span>                    , <span class="st">"Precision"</span></span>
+<span>                    , <span class="st">"Specificity"</span></span>
+<span>                    , <span class="st">"OVerall Accuracy"</span></span>
+<span>                    , <span class="st">"F1"</span><span class="op">)</span></span>
+<span><span class="va">results_values2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">class_sens2</span></span>
+<span>                     , <span class="va">class_prec2</span></span>
+<span>                     , <span class="va">class_spec2</span></span>
+<span>                     , <span class="va">class_acc2</span></span>
+<span>                     , <span class="va">class_F12</span><span class="op">)</span></span>
+<span><span class="co">#</span></span>
+<span><span class="va">tbl_class2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">results_names2</span>, <span class="va">results_values2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">tbl_class2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Performance Metrics"</span>, <span class="st">"Percent"</span><span class="op">)</span></span>
+<span><span class="va">tbl_class2</span><span class="op">$</span><span class="va">Percent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">tbl_class2</span><span class="op">$</span><span class="va">Percent</span> <span class="op">*</span> <span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tbl_class2</span>, caption <span class="op">=</span> <span class="st">"Classification Performance Metrics"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Classification Performance Metrics</caption>
 <thead><tr class="header">
@@ -965,46 +1038,64 @@
 <div class="section level3">
 <h3 id="rarify">rarify<a class="anchor" aria-label="anchor" href="#rarify"></a>
 </h3>
-<p>The rarify function subsamples count data to a fixed count per sample. It takes as an input a 3 column data frame (SampleID, TaxonID, Count) and returns a similar dataframe with revised Counts. The names of the columns does not matter as they are specified in the code. Any non-count taxa (e.g., fish in a bug sample) should be removed prior to using the <code>rarify</code> function. The function code is from USEPA Corvallis John Van Sickle’s R code for RIVPACS (v1.0, 2005-06-10) and was tweaked for the addition of a user provided seed so repeatable results can be obtained.</p>
-<p>The other function inputs are subsample size (target number of organisms in each sample) and seed. The seed is given so the results can be reproduced from the same input file. If no seed is given a random seed is used. An example seed is the date of admission to the Union for each state where the data is collected (e.g., Washington is 18891111). These values can be found on Wikipedia on the right sidebar for each State.</p>
-<p>If you are running the 500-count BCG model and any of your samples have more than 600 organisms (the upper limit for the model), you should randomly subsample your data to 600 (600 is +20% of the 500-count target). This is done to make richness metrics comparable across the 500-count samples. You can do this with the Rarify routine.</p>
+<p>The rarify function subsamples count data to a fixed count per
+sample. It takes as an input a 3 column data frame (SampleID, TaxonID,
+Count) and returns a similar dataframe with revised Counts. The names of
+the columns does not matter as they are specified in the code. Any
+non-count taxa (e.g., fish in a bug sample) should be removed prior to
+using the <code>rarify</code> function. The function code is from USEPA
+Corvallis John Van Sickle’s R code for RIVPACS (v1.0, 2005-06-10) and
+was tweaked for the addition of a user provided seed so repeatable
+results can be obtained.</p>
+<p>The other function inputs are subsample size (target number of
+organisms in each sample) and seed. The seed is given so the results can
+be reproduced from the same input file. If no seed is given a random
+seed is used. An example seed is the date of admission to the Union for
+each state where the data is collected (e.g., Washington is 18891111).
+These values can be found on Wikipedia on the right sidebar for each
+State.</p>
+<p>If you are running the 500-count BCG model and any of your samples
+have more than 600 organisms (the upper limit for the model), you should
+randomly subsample your data to 600 (600 is +20% of the 500-count
+target). This is done to make richness metrics comparable across the
+500-count samples. You can do this with the Rarify routine.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Subsample to 500 organisms (from over 500 organisms) for 12 samples.</span>
-
-<span class="co"># Packages</span>
-<span class="co">#library(BioMonTools)</span>
-<span class="co">#library(knitr)</span>
-
-<span class="co"># load bio data</span>
-<span class="va">df_biodata</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="va"><a href="../reference/data_bio2rarify.html">data_bio2rarify</a></span>
-<span class="co">#dim(df_biodata)</span>
-<span class="co">#kable(head(df_biodata))</span>
-
-<span class="co"># subsample</span>
-<span class="va">mySize</span> <span class="op">&lt;-</span> <span class="fl">500</span>
-<span class="va">Seed_OR</span> <span class="op">&lt;-</span> <span class="fl">18590214</span>
-<span class="va">Seed_WA</span> <span class="op">&lt;-</span> <span class="fl">18891111</span>
-<span class="va">Seed_US</span> <span class="op">&lt;-</span> <span class="fl">17760704</span>
-<span class="va">bugs_mysize</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/rarify.html">rarify</a></span><span class="op">(</span>inbug <span class="op">=</span> <span class="va">df_biodata</span>
-                                   , sample.ID <span class="op">=</span> <span class="st">"SampleID"</span>
-                                   , abund <span class="op">=</span> <span class="st">"N_Taxa"</span>
-                                   , subsiz <span class="op">=</span> <span class="va">mySize</span>
-                                   , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span>
-<span class="co">#&gt; Rarify of samples complete. </span>
-<span class="co">#&gt;  Number of samples =  12 </span>
-<span class="co">#&gt;  Execution time (sec) =  0.0140000000000029</span>
-
-<span class="co"># view results</span>
-<span class="co">#dim(bugs_mysize)</span>
-<span class="co">#kable(head(bugs_mysize))</span>
-
-<span class="co"># Compare pre- and post- subsample counts</span>
-<span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">df_biodata</span>
-                    , <span class="va">bugs_mysize</span>
-                    , by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SampleID"</span>, <span class="st">"TaxaID"</span><span class="op">)</span>
-                    , suffixes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"_Orig"</span>,<span class="st">"_500"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="va">df_compare</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SampleID"</span>, <span class="st">"TaxaID"</span>, <span class="st">"N_Taxa_Orig"</span>, <span class="st">"N_Taxa_500"</span><span class="op">)</span><span class="op">]</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Comparison, by Sample"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Subsample to 500 organisms (from over 500 organisms) for 12 samples.</span></span>
+<span></span>
+<span><span class="co"># Packages</span></span>
+<span><span class="co">#library(BioMonTools)</span></span>
+<span><span class="co">#library(knitr)</span></span>
+<span></span>
+<span><span class="co"># load bio data</span></span>
+<span><span class="va">df_biodata</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="va"><a href="../reference/data_bio2rarify.html">data_bio2rarify</a></span></span>
+<span><span class="co">#dim(df_biodata)</span></span>
+<span><span class="co">#kable(head(df_biodata))</span></span>
+<span></span>
+<span><span class="co"># subsample</span></span>
+<span><span class="va">mySize</span> <span class="op">&lt;-</span> <span class="fl">500</span></span>
+<span><span class="va">Seed_OR</span> <span class="op">&lt;-</span> <span class="fl">18590214</span></span>
+<span><span class="va">Seed_WA</span> <span class="op">&lt;-</span> <span class="fl">18891111</span></span>
+<span><span class="va">Seed_US</span> <span class="op">&lt;-</span> <span class="fl">17760704</span></span>
+<span><span class="va">bugs_mysize</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/rarify.html">rarify</a></span><span class="op">(</span>inbug <span class="op">=</span> <span class="va">df_biodata</span></span>
+<span>                                   , sample.ID <span class="op">=</span> <span class="st">"SampleID"</span></span>
+<span>                                   , abund <span class="op">=</span> <span class="st">"N_Taxa"</span></span>
+<span>                                   , subsiz <span class="op">=</span> <span class="va">mySize</span></span>
+<span>                                   , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rarify of samples complete. </span></span>
+<span><span class="co">#&gt;  Number of samples =  12 </span></span>
+<span><span class="co">#&gt;  Execution time (sec) =  0.0180000000000007</span></span>
+<span></span>
+<span><span class="co"># view results</span></span>
+<span><span class="co">#dim(bugs_mysize)</span></span>
+<span><span class="co">#kable(head(bugs_mysize))</span></span>
+<span></span>
+<span><span class="co"># Compare pre- and post- subsample counts</span></span>
+<span><span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">df_biodata</span></span>
+<span>                    , <span class="va">bugs_mysize</span></span>
+<span>                    , by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SampleID"</span>, <span class="st">"TaxaID"</span><span class="op">)</span></span>
+<span>                    , suffixes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"_Orig"</span>,<span class="st">"_500"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="va">df_compare</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SampleID"</span>, <span class="st">"TaxaID"</span>, <span class="st">"N_Taxa_Orig"</span>, <span class="st">"N_Taxa_500"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Comparison, by Sample"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Comparison, by Sample</caption>
 <thead><tr class="header">
@@ -1053,12 +1144,12 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># compare totals</span>
-<span class="va">tbl_totals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">N_Taxa_Orig</span>, <span class="va">N_Taxa_500</span><span class="op">)</span> <span class="op">~</span> <span class="va">SampleID</span>
-                        , <span class="va">df_compare</span>
-                        , <span class="va">sum</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl_totals</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Comparison, sample totals"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="co"># compare totals</span></span>
+<span><span class="va">tbl_totals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">N_Taxa_Orig</span>, <span class="va">N_Taxa_500</span><span class="op">)</span> <span class="op">~</span> <span class="va">SampleID</span></span>
+<span>                        , <span class="va">df_compare</span></span>
+<span>                        , <span class="va">sum</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl_totals</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Comparison, sample totals"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Comparison, sample totals</caption>
 <thead><tr class="header">
@@ -1100,60 +1191,63 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co">## Not run: </span>
-<span class="co"># save the data</span>
-<span class="co">#write.table(bugs_mysize, paste("bugs",mySize,"txt",sep="."),sep="\t")</span>
-<span class="co">## End(Not run)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="co">## Not run: </span></span>
+<span><span class="co"># save the data</span></span>
+<span><span class="co">#write.table(bugs_mysize, paste("bugs",mySize,"txt",sep="."),sep="\t")</span></span>
+<span><span class="co">## End(Not run)</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="flags">Flags<a class="anchor" aria-label="anchor" href="#flags"></a>
 </h4>
-<p>Results should be interpreted with caution if they are flagged for any of the criteria listed below. It is up to the user’s discretion as to how to handled flagged samples.</p>
+<p>Results should be interpreted with caution if they are flagged for
+any of the criteria listed below. It is up to the user’s discretion as
+to how to handled flagged samples.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Packages</span>
-<span class="co">#library(readxl)</span>
-<span class="co">#library(reshape2)</span>
-<span class="co">#library(knitr)</span>
-<span class="co">#library(BioMonTools)</span>
-
-<span class="co"># Import</span>
-<span class="va">df.samps.bugs</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/Data_Benthos.xlsx"</span>
-                                                , package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span>
-                           , guess_max <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span>
-
-<span class="co"># Calculate Metrics</span>
-<span class="co"># Extra columns to keep in results</span>
-<span class="va">keep.cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Area_mi2"</span>, <span class="st">"SurfaceArea"</span>, <span class="st">"Density_m2"</span>, <span class="st">"Density_ft2"</span><span class="op">)</span>
-<span class="co"># Run Function</span>
-<span class="va">df.metrics</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df.samps.bugs</span>
-                                         , <span class="st">"bugs"</span>
-                                         , fun.cols2keep <span class="op">=</span> <span class="va">keep.cols</span><span class="op">)</span>
-<span class="co">#&gt; Updated col class; TOLVAL2 to numeric</span>
-<span class="co">#&gt; `mutate_if()` ignored the following grouping variables:</span>
-<span class="co">#&gt; <span style="color: #00BBBB;">•</span> Columns `SAMPLEID`, `INDEX_NAME`</span>
-
-<span class="co"># Flags</span>
-<span class="co"># Import QC Checks</span>
-<span class="va">df.checks</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/MetricFlags.xlsx"</span>
-                                          , package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span>
-                                , sheet<span class="op">=</span><span class="st">"Flags"</span><span class="op">)</span> 
-<span class="co"># Run Function</span>
-<span class="va">df.flags</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/qc.checks.html">qc.checks</a></span><span class="op">(</span><span class="va">df.metrics</span>, <span class="va">df.checks</span><span class="op">)</span>
-
-<span class="co"># Change terminology; PASS/FAIL to NA/flag</span>
-<span class="va">df.flags</span><span class="op">[</span>,<span class="st">"FLAG"</span><span class="op">]</span><span class="op">[</span><span class="va">df.flags</span><span class="op">[</span>,<span class="st">"FLAG"</span><span class="op">]</span><span class="op">==</span><span class="st">"FAIL"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"flag"</span>
-<span class="va">df.flags</span><span class="op">[</span>, <span class="st">"FLAG"</span><span class="op">]</span><span class="op">[</span><span class="va">df.flags</span><span class="op">[</span>,<span class="st">"FLAG"</span><span class="op">]</span><span class="op">==</span><span class="st">"PASS"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
-<span class="co"># long to wide format</span>
-<span class="va">df.flags.wide</span> <span class="op">&lt;-</span> <span class="fu">reshape2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/cast.html" class="external-link">dcast</a></span><span class="op">(</span><span class="va">df.flags</span>, <span class="va">SAMPLEID</span> <span class="op">~</span> <span class="va">CHECKNAME</span>, value.var<span class="op">=</span><span class="st">"FLAG"</span><span class="op">)</span>
-<span class="co"># Calc number of "flag"s by row.</span>
-<span class="va">df.flags.wide</span><span class="op">$</span><span class="va">NumFlags</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">df.flags.wide</span><span class="op">==</span><span class="st">"flag"</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="co"># Rearrange columns</span>
-<span class="va">NumCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">df.flags.wide</span><span class="op">)</span>
-<span class="va">df.flags.wide</span> <span class="op">&lt;-</span> <span class="va">df.flags.wide</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">NumCols</span>, <span class="fl">2</span><span class="op">:</span><span class="op">(</span><span class="va">NumCols</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
-<span class="co"># View(df.flags.wide)</span>
-
-<span class="co"># Summarize Results</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df.flags</span><span class="op">[</span>,<span class="st">"CHECKNAME"</span><span class="op">]</span>, <span class="va">df.flags</span><span class="op">[</span>,<span class="st">"FLAG"</span><span class="op">]</span>, useNA<span class="op">=</span><span class="st">"ifany"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Packages</span></span>
+<span><span class="co">#library(readxl)</span></span>
+<span><span class="co">#library(reshape2)</span></span>
+<span><span class="co">#library(knitr)</span></span>
+<span><span class="co">#library(BioMonTools)</span></span>
+<span></span>
+<span><span class="co"># Import</span></span>
+<span><span class="va">df.samps.bugs</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/Data_Benthos.xlsx"</span></span>
+<span>                                                , package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span>
+<span>                           , guess_max <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculate Metrics</span></span>
+<span><span class="co"># Extra columns to keep in results</span></span>
+<span><span class="va">keep.cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Area_mi2"</span>, <span class="st">"SurfaceArea"</span>, <span class="st">"Density_m2"</span>, <span class="st">"Density_ft2"</span><span class="op">)</span></span>
+<span><span class="co"># Run Function</span></span>
+<span><span class="va">df.metrics</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df.samps.bugs</span></span>
+<span>                                         , <span class="st">"bugs"</span></span>
+<span>                                         , fun.cols2keep <span class="op">=</span> <span class="va">keep.cols</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Updated col class; TOLVAL2 to numeric</span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span></span>
+<span></span>
+<span><span class="co"># Flags</span></span>
+<span><span class="co"># Import QC Checks</span></span>
+<span><span class="va">df.checks</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/MetricFlags.xlsx"</span></span>
+<span>                                          , package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span>
+<span>                                , sheet <span class="op">=</span> <span class="st">"Flags"</span><span class="op">)</span> </span>
+<span><span class="co"># Run Function</span></span>
+<span><span class="va">df.flags</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/qc.checks.html">qc.checks</a></span><span class="op">(</span><span class="va">df.metrics</span>, <span class="va">df.checks</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Change terminology; PASS/FAIL to NA/flag</span></span>
+<span><span class="va">df.flags</span><span class="op">[</span>,<span class="st">"FLAG"</span><span class="op">]</span><span class="op">[</span><span class="va">df.flags</span><span class="op">[</span>,<span class="st">"FLAG"</span><span class="op">]</span> <span class="op">==</span> <span class="st">"FAIL"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"flag"</span></span>
+<span><span class="va">df.flags</span><span class="op">[</span>, <span class="st">"FLAG"</span><span class="op">]</span><span class="op">[</span><span class="va">df.flags</span><span class="op">[</span>,<span class="st">"FLAG"</span><span class="op">]</span> <span class="op">==</span> <span class="st">"PASS"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span><span class="co"># long to wide format</span></span>
+<span><span class="va">df.flags.wide</span> <span class="op">&lt;-</span> <span class="fu">reshape2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/cast.html" class="external-link">dcast</a></span><span class="op">(</span><span class="va">df.flags</span></span>
+<span>                                 , <span class="va">SAMPLEID</span> <span class="op">~</span> <span class="va">CHECKNAME</span></span>
+<span>                                 , value.var <span class="op">=</span> <span class="st">"FLAG"</span><span class="op">)</span></span>
+<span><span class="co"># Calc number of "flag"s by row.</span></span>
+<span><span class="va">df.flags.wide</span><span class="op">$</span><span class="va">NumFlags</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">df.flags.wide</span> <span class="op">==</span> <span class="st">"flag"</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># Rearrange columns</span></span>
+<span><span class="va">NumCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">df.flags.wide</span><span class="op">)</span></span>
+<span><span class="va">df.flags.wide</span> <span class="op">&lt;-</span> <span class="va">df.flags.wide</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">NumCols</span>, <span class="fl">2</span><span class="op">:</span><span class="op">(</span><span class="va">NumCols</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co"># View(df.flags.wide)</span></span>
+<span></span>
+<span><span class="co"># Summarize Results</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df.flags</span><span class="op">[</span>,<span class="st">"CHECKNAME"</span><span class="op">]</span>, <span class="va">df.flags</span><span class="op">[</span>,<span class="st">"FLAG"</span><span class="op">]</span>, useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left"></th>
@@ -1235,7 +1329,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

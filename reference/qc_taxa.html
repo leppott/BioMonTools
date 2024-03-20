@@ -18,7 +18,7 @@ official (or user supplied) master taxa list (benthic macroinvertebrates)."><met
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9111</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9002</span>
       </span>
     </div>
 
@@ -37,6 +37,9 @@ official (or user supplied) master taxa list (benthic macroinvertebrates)."><met
     </li>
     <li>
       <a href="../articles/vignette_MapTaxaObs.html">Taxa Maps</a>
+    </li>
+    <li>
+      <a href="../articles/vignette_NewIndex.html">Vignette, Adding a New Index</a>
     </li>
   </ul></li>
 <li>
@@ -68,34 +71,43 @@ official (or user supplied) master taxa list (benthic macroinvertebrates).</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">qc_taxa</span><span class="op">(</span>
-  <span class="va">DF_User</span>,
-  DF_Official <span class="op">=</span> <span class="cn">NULL</span>,
-  fun.Community <span class="op">=</span> <span class="cn">NULL</span>,
-  useOfficialTaxaInfo <span class="op">=</span> <span class="st">"only_Official"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">qc_taxa</span><span class="op">(</span></span>
+<span>  <span class="va">DF_User</span>,</span>
+<span>  DF_Official <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fun.Community <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  useOfficialTaxaInfo <span class="op">=</span> <span class="st">"only_Official"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>DF_User</dt>
 <dd><p>User taxa data.</p></dd>
+
+
 <dt>DF_Official</dt>
 <dd><p>Official master taxa list.  Can be a local file or
 from a URL.
 Default is NULL.  A NULL value will use the official online files.</p></dd>
+
+
 <dt>fun.Community</dt>
 <dd><p>Community name for which to compare the master taxa list
 (bugs or fish).</p></dd>
+
+
 <dt>useOfficialTaxaInfo</dt>
 <dd><p>Select how to handle new/different taxa.
 See 'Details' for more information.
 Valid values are "only_Official", "only_user", "add_new".
 Default = "only_Official".</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>input data frame with master taxa information added to it.</p>
+    
+
+<p>input data frame with master taxa information added to it.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -135,28 +147,28 @@ logged on the GitHub repository.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co"># Example 1, Master Taxa List, Bugs</span></span>
-<span class="r-in"><span class="va">url_mt_bugs</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"</span></span>
-<span class="r-in"><span class="va">df_mt_bugs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">url_mt_bugs</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># User data</span></span>
-<span class="r-in"><span class="va">DF_User</span> <span class="op">&lt;-</span> <span class="va">data_benthos_MBSS</span></span>
-<span class="r-in"><span class="va">DF_Official</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>   <span class="co"># NULL df_mt_bugs</span></span>
-<span class="r-in"><span class="va">fun.Community</span> <span class="op">&lt;-</span> <span class="st">"bugs"</span></span>
-<span class="r-in"><span class="va">useOfficialTaxaInfo</span> <span class="op">&lt;-</span> <span class="st">"only_Official"</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">df_qc_taxa_bugs</span> <span class="op">&lt;-</span> <span class="fu">qc_taxa</span><span class="op">(</span><span class="va">DF_User</span></span>
-<span class="r-in">                          , <span class="va">DF_Official</span></span>
-<span class="r-in">                          , <span class="va">fun.Community</span></span>
-<span class="r-in">                          , <span class="va">useOfficialTaxaInfo</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># QC input/output</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">DF_User</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">df_qc_taxa_bugs</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">DF_User</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_qc_taxa_bugs</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Example 1, Master Taxa List, Bugs</span></span></span>
+<span class="r-in"><span><span class="va">url_mt_bugs</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"</span></span></span>
+<span class="r-in"><span><span class="va">df_mt_bugs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">url_mt_bugs</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># User data</span></span></span>
+<span class="r-in"><span><span class="va">DF_User</span> <span class="op">&lt;-</span> <span class="va">data_benthos_MBSS</span></span></span>
+<span class="r-in"><span><span class="va">DF_Official</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>   <span class="co"># NULL df_mt_bugs</span></span></span>
+<span class="r-in"><span><span class="va">fun.Community</span> <span class="op">&lt;-</span> <span class="st">"bugs"</span></span></span>
+<span class="r-in"><span><span class="va">useOfficialTaxaInfo</span> <span class="op">&lt;-</span> <span class="st">"only_Official"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df_qc_taxa_bugs</span> <span class="op">&lt;-</span> <span class="fu">qc_taxa</span><span class="op">(</span><span class="va">DF_User</span></span></span>
+<span class="r-in"><span>                          , <span class="va">DF_Official</span></span></span>
+<span class="r-in"><span>                          , <span class="va">fun.Community</span></span></span>
+<span class="r-in"><span>                          , <span class="va">useOfficialTaxaInfo</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># QC input/output</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">DF_User</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">df_qc_taxa_bugs</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">DF_User</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_qc_taxa_bugs</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -171,7 +183,7 @@ logged on the GitHub repository.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

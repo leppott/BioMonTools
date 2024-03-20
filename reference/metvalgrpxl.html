@@ -18,7 +18,7 @@ groups of metrics on different worksheets."><meta property="og:image" content="/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.0.9111</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9002</span>
       </span>
     </div>
 
@@ -37,6 +37,9 @@ groups of metrics on different worksheets."><meta property="og:image" content="/
     </li>
     <li>
       <a href="../articles/vignette_MapTaxaObs.html">Taxa Maps</a>
+    </li>
+    <li>
+      <a href="../articles/vignette_NewIndex.html">Vignette, Adding a New Index</a>
     </li>
   </ul></li>
 <li>
@@ -68,40 +71,53 @@ groups of metrics on different worksheets.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">metvalgrpxl</span><span class="op">(</span>
-  <span class="va">fun.DF.MetVal</span>,
-  fun.DF.xlMetNames <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">fun.Community</span>,
-  fun.MetVal.Col2Keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAMPLEID"</span>, <span class="st">"INDEX_NAME"</span>, <span class="st">"INDEX_REGION"</span><span class="op">)</span>,
-  fun.xlGrpCol <span class="op">=</span> <span class="st">"Sort_Group"</span>,
-  file.out <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">metvalgrpxl</span><span class="op">(</span></span>
+<span>  <span class="va">fun.DF.MetVal</span>,</span>
+<span>  fun.DF.xlMetNames <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">fun.Community</span>,</span>
+<span>  fun.MetVal.Col2Keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAMPLEID"</span>, <span class="st">"INDEX_NAME"</span>, <span class="st">"INDEX_CLASS"</span><span class="op">)</span>,</span>
+<span>  fun.xlGrpCol <span class="op">=</span> <span class="st">"Sort_Group"</span>,</span>
+<span>  file.out <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>fun.DF.MetVal</dt>
 <dd><p>Data frame of metric values.</p></dd>
+
+
 <dt>fun.DF.xlMetNames</dt>
 <dd><p>Data frame of metric names and groups.
 Default (NULL) will use the verion of MetricNames.xlsx that is in the
 BioMonTools package.</p></dd>
+
+
 <dt>fun.Community</dt>
 <dd><p>Community name of calculated metric values
 (bugs, fish, or algae)</p></dd>
+
+
 <dt>fun.MetVal.Col2Keep</dt>
 <dd><p>Column names in metric values to keep.
-Default = c("SAMPLEID", "INDEX_NAME", "INDEX_REGION")</p></dd>
+Default = c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")</p></dd>
+
+
 <dt>fun.xlGrpCol</dt>
 <dd><p>Column name from Excel metric names to use for Groupings.
 Default = Sort_Group</p></dd>
+
+
 <dt>file.out</dt>
 <dd><p>Output file name.  Default (NULL) will generate a file name
 based on the data and time (e.g., MetricValuesGroups_bugs_20220201.xlsx)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Saves Excel file with metrics grouped by worksheet</p>
+    
+
+<p>Saves Excel file with metrics grouped by worksheet</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -121,34 +137,33 @@ output from metric.values() (i.e., in fun.DF).</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Example 1, bugs</span></span>
-<span class="r-in"><span class="co">## Community</span></span>
-<span class="r-in"><span class="va">comm</span> <span class="op">&lt;-</span> <span class="st">"bugs"</span></span>
-<span class="r-in"><span class="co">## Calculate Metrics</span></span>
-<span class="r-in"><span class="va">df_metval</span> <span class="op">&lt;-</span> <span class="fu"><a href="metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">data_benthos_PacNW</span>, <span class="va">comm</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `mutate_if()` ignored the following grouping variables:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> Columns `SAMPLEID`, `INDEX_NAME`</span>
-<span class="r-in"><span class="co">## Metric Names and Groups</span></span>
-<span class="r-in"><span class="va">df_metnames</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/MetricNames.xlsx"</span></span>
-<span class="r-in">                                                  , package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span></span>
-<span class="r-in">                                      , guess_max <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span></span>
-<span class="r-in">                                      , sheet <span class="op">=</span> <span class="st">"MetricMetadata"</span></span>
-<span class="r-in">                                      , skip <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"><span class="co">## Columns to Keep</span></span>
-<span class="r-in"><span class="va">col2keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAMPLEID"</span>, <span class="st">"INDEX_NAME"</span>, <span class="st">"INDEX_REGION"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co">## Grouping Column</span></span>
-<span class="r-in"><span class="va">col_Grp</span> <span class="op">&lt;-</span> <span class="st">"Sort_Group"</span></span>
-<span class="r-in"><span class="co">## File Name</span></span>
-<span class="r-in"><span class="va">file_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"MetValGrps_"</span>, <span class="va">comm</span>, <span class="st">".xlsx"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="co">## Run Function</span></span>
-<span class="r-in"><span class="fu">metvalgrpxl</span><span class="op">(</span><span class="va">df_metval</span>, <span class="va">df_metnames</span>, <span class="va">comm</span>, <span class="va">col2keep</span>, <span class="va">col_Grp</span>, <span class="va">file_out</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
-<span class="r-in"><span class="co"># Example 2, fish</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span>
-<span class="r-in"><span class="co"># Example 2, periphyton (algae)</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example 1, bugs</span></span></span>
+<span class="r-in"><span><span class="co">## Community</span></span></span>
+<span class="r-in"><span><span class="va">comm</span> <span class="op">&lt;-</span> <span class="st">"bugs"</span></span></span>
+<span class="r-in"><span><span class="co">## Calculate Metrics</span></span></span>
+<span class="r-in"><span><span class="va">df_metval</span> <span class="op">&lt;-</span> <span class="fu"><a href="metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">data_benthos_PacNW</span>, <span class="va">comm</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span>
+<span class="r-in"><span><span class="co">## Metric Names and Groups</span></span></span>
+<span class="r-in"><span><span class="va">df_metnames</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/MetricNames.xlsx"</span></span></span>
+<span class="r-in"><span>                                                  , package<span class="op">=</span><span class="st">"BioMonTools"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                                      , guess_max <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span></span></span>
+<span class="r-in"><span>                                      , sheet <span class="op">=</span> <span class="st">"MetricMetadata"</span></span></span>
+<span class="r-in"><span>                                      , skip <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## Columns to Keep</span></span></span>
+<span class="r-in"><span><span class="va">col2keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAMPLEID"</span>, <span class="st">"INDEX_NAME"</span>, <span class="st">"INDEX_CLASS"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## Grouping Column</span></span></span>
+<span class="r-in"><span><span class="va">col_Grp</span> <span class="op">&lt;-</span> <span class="st">"Sort_Group"</span></span></span>
+<span class="r-in"><span><span class="co">## File Name</span></span></span>
+<span class="r-in"><span><span class="va">file_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"MetValGrps_"</span>, <span class="va">comm</span>, <span class="st">".xlsx"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## Run Function</span></span></span>
+<span class="r-in"><span><span class="fu">metvalgrpxl</span><span class="op">(</span><span class="va">df_metval</span>, <span class="va">df_metnames</span>, <span class="va">comm</span>, <span class="va">col2keep</span>, <span class="va">col_Grp</span>, <span class="va">file_out</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span></span>
+<span class="r-in"><span><span class="co"># Example 2, fish</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span></span>
+<span class="r-in"><span><span class="co"># Example 2, periphyton (algae)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -163,7 +178,7 @@ output from metric.values() (i.e., in fun.DF).</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

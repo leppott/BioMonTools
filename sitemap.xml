@@ -16,6 +16,9 @@
     <loc>/articles/vignette_MapTaxaObs.html</loc>
   </url>
   <url>
+    <loc>/articles/vignette_NewIndex.html</loc>
+  </url>
+  <url>
     <loc>/authors.html</loc>
   </url>
   <url>
@@ -28,6 +31,9 @@
     <loc>/reference/MapTaxaObs.html</loc>
   </url>
   <url>
+    <loc>/reference/assign_IndexClass.html</loc>
+  </url>
+  <url>
     <loc>/reference/data_Taxa_MA.html</loc>
   </url>
   <url>
@@ -38,6 +44,12 @@
   </url>
   <url>
     <loc>/reference/data_bio2rarify.html</loc>
+  </url>
+  <url>
+    <loc>/reference/data_coral_bcg_metric_dev.html</loc>
+  </url>
+  <url>
+    <loc>/reference/data_coral_bcg_metric_qc.html</loc>
   </url>
   <url>
     <loc>/reference/data_diatom_mmi_dev.html</loc>
@@ -73,6 +85,9 @@
     <loc>/reference/metric.values.bugs.html</loc>
   </url>
   <url>
+    <loc>/reference/metric.values.coral.html</loc>
+  </url>
+  <url>
     <loc>/reference/metric.values.fish.html</loc>
   </url>
   <url>
@@ -92,5 +107,8 @@
   </url>
   <url>
     <loc>/reference/runShiny.html</loc>
+  </url>
+  <url>
+    <loc>/reference/taxa_translate.html</loc>
   </url>
 </urlset>
