@@ -1,8 +1,8 @@
 #' @title Calculate metric values
 #'
-#' @description This function calculates metric values for bugs and fish.
-#' Inputs are a data frame with SampleID and taxa with phylogenetic and
-#' autecological information (see below for required fields by community).
+#' @description This function calculates metric values for bugs, fish, algae
+#' , and coral. Inputs are a data frame with SampleID and taxa with phylogenetic
+#' and autecological information (see below for required fields by community).
 #' The dplyr package is used to generate the metric values.
 #'
 #' @details All percent metric results are 0-100.
@@ -145,7 +145,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param fun.DF Data frame of taxa (list required fields)
 #' @param fun.Community Community name for which to calculate metric values
-#' (bugs, fish, or algae)
+#' (bugs, fish, algae, or coral)
 #' @param fun.MetricNames Optional vector of metric names to be returned.
 #' If none are supplied then all will be returned.  Default=NULL
 #' @param boo.Adjust Optional boolean value on whether to perform adjustments of
@@ -557,7 +557,11 @@ metric.values <- function(fun.DF
     message(msg)
   }## IF ~ boo_debug_main
   #QC, Add required fields for this part of the code
-  col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "INDEX_NAME", "INDEX_CLASS")
+  if (toupper(fun.Community) == "CORAL") {
+    col.req <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS")
+  } else {
+    col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "INDEX_NAME", "INDEX_CLASS")
+  } # end if/else
   col.req.missing <- col.req[!(col.req %in% toupper(names(fun.DF)))]
   num.col.req.missing <- length(col.req.missing)
 
@@ -660,7 +664,9 @@ metric.values <- function(fun.DF
     message(msg)
   }## IF ~ verbose
   #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
-  fun.DF <- fun.DF %>% dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
+  if (toupper(fun.Community) != "CORAL") {
+    fun.DF <- fun.DF %>% dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
+  }
   # non-target taxa removed in community function, if appropriate
   #
   # SiteType to upper case
@@ -714,6 +720,14 @@ metric.values <- function(fun.DF
                        , verbose = verbose)
   } else if (fun.Community == "ALGAE") {
     metric.values.algae(myDF = fun.DF
+                        , MetricNames = fun.MetricNames
+                        , boo.Adjust = boo.Adjust
+                        , cols2keep = fun.cols2keep
+                        , MetricSort = NA
+                        , boo.Shiny = boo.Shiny
+                        , verbose = verbose)
+  } else if (fun.Community == "CORAL") {
+    metric.values.coral(myDF = fun.DF
                         , MetricNames = fun.MetricNames
                         , boo.Adjust = boo.Adjust
                         , cols2keep = fun.cols2keep
@@ -5750,3 +5764,425 @@ metric.values.algae <- function(myDF
     return(df.return)
 
 }##FUNCTION.metric.values.algae.END
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' @title Calculate metric values, coral
+#'
+#' @description Subfunction of metric.values for use with coral
+#'
+#' @details For internal use only.  Called from metric.values().
+#'
+#' @param myDF Data frame of taxa.
+#' @param MetricNames Optional vector of metric names to be returned.
+#' @param boo.Adjust Optional boolean value on whether to perform adjustments of
+#' values prior to scoring.  Default = FALSE but may be TRUE for certain
+#' metrics.
+#' @param cols2keep Column names of fun.DF to retain in the output.  Uses
+#' column names.
+#' @param MetricSort How metric names should be sort; NA = as is
+#' , AZ = alphabetical.  Default = NULL.
+#' @param boo.Shiny Boolean value for if the function is accessed via Shiny.
+#' Default = FALSE.
+#' @param verbose Include messages to track progress.  Default = FALSE
+#'
+#' @return Data frame
+#'
+#' @keywords internal
+#'
+#' @export
+metric.values.coral <- function(myDF
+                                , MetricNames = NULL
+                                , boo.Adjust = FALSE
+                                , cols2keep = NULL
+                                , MetricSort = NA
+                                , boo.Shiny = FALSE
+                                , verbose) {
+
+  # define pipe
+  `%>%` <- dplyr::`%>%`
+
+  time_start <- Sys.time()
+
+  # not carrying over from previous
+  names(myDF) <- toupper(names(myDF))
+
+  debug_sub_community <- "CORAL"
+  boo_debug_bugs <- FALSE
+  debug_sub_num <- 0
+  debug_sub_num_total <- 18
+
+  # global variable bindings ----
+  INDEX_NAME <- INDEX_CLASS <- SAMPLEID <- TAXAID <- BCG_ATTR <- WEEDY <- PHYLUM <-
+    CLASS <- SUBCLASS <- ORDER <- FAMILY <- GENUS <- SUBGENUS <- SPECIES <- JUVENILE <-
+    LRBC <- TOTTRANLNGTH_M <- DIAMMAX_CM <- DIAMPERP_CM <- HEIGHT_CM <- MORPHCONVFACT <-
+    TOTMORT_PCT <- WEEDY_CONFIRMED <- DIAM_CM <- R2 <- CSA <- LIVETISSUE_PCT <-
+    LCSA <- LCSA3D_samp_m2 <- LCSA3D_BCG_att1234_m2 <- LCSA3D_LRBC_m2 <-
+    ncol_AcroOrbi_m2 <- nt_BCG_att123 <- nt_BCG_att1234 <- nt_total <- pcol_Acropora <-
+    pcol_SmallWeedy <- pt_BCG_att5 <- ncol_Acropora <- ncol_SmallWeedy <-
+    nt_BCG_att5 <- NULL
+
+  # QC----
+  ## QC, Missing Cols ----
+  if (verbose == TRUE) {
+    debug_topic <- "QC, missing cols"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  # QC, Required Fields
+  col.req_character <- c("SAMPLEID", "TAXAID", "BCG_ATTR", "WEEDY", "PHYLUM"
+                         , "CLASS", "SUBCLASS", "ORDER", "FAMILY"
+                         , "GENUS", "SUBGENUS", "SPECIES")
+
+  col.req_logical <- c("JUVENILE", "LRBC")
+  col.req_numeric <- c("TOTTRANLNGTH_M", "DIAMMAX_CM", "DIAMPERP_CM"
+                       , "HEIGHT_CM", "MORPHCONVFACT", "TOTMORT_PCT")
+  col.req <- c(col.req_character, col.req_logical, col.req_numeric)
+
+  col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
+  col.req.missing_char <- col.req_character[!(col.req_character %in% toupper(names(myDF)))]
+  col.req.missing_log <- col.req_logical[!(col.req_logical %in% toupper(names(myDF)))]
+  col.req.missing_num <- col.req_numeric[!(col.req_numeric %in% toupper(names(myDF)))]
+
+  num.col.req.missing <- length(col.req.missing)
+  num.col.req.missing_char <- length(col.req.missing_char)
+  num.col.req.missing_log <- length(col.req.missing_log)
+  num.col.req.missing_num <- length(col.req.missing_num)
+
+  # Trigger prompt if any missing fields (and session is interactive)
+  if (num.col.req.missing != 0) {
+
+    # Create prompt for missing columns
+    myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
+    myPrompt.02 <- paste(col.req.missing, collapse = ", ")
+    myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
+    myPrompt.04 <- "For example, if the BCG_ATTR field is missing all BCG-related metrics will not be correct."
+    myPrompt.05 <- "Do you wish to continue (YES or NO)?"
+
+    myPrompt <- paste(" "
+                      , myPrompt.01
+                      , myPrompt.02
+                      , " "
+                      , myPrompt.03
+                      , myPrompt.04
+                      , myPrompt.05
+                      , sep = "\n")
+    user.input <- NA
+
+    if (interactive() == TRUE & boo.Shiny == FALSE) {
+      #user.input <- readline(prompt=myPrompt)
+      user.input <- utils::menu(c("YES", "NO"), title = myPrompt)
+    } else {
+      message(myPrompt)
+      message("boo.Shiny == TRUE and interactive == FALSE
+               so prompt skipped and value set to '1'.")
+      user.input <- 1
+    }## IF ~ interactive & boo.Shiny
+
+    # any answer other than "YES" will stop the function.
+    if (user.input != 1) {
+      stop(paste("The user chose *not* to continue due to missing fields: "
+                 , paste(paste0("   ",col.req.missing), collapse = "\n"), sep = "\n"))
+    }##IF.user.input.END
+
+    # Add missing fields
+    #myDF[, col.req.missing] <- NA
+    if (num.col.req.missing_char > 0) {
+      myDF[, col.req.missing_char] <- NA_character_
+    }
+    if (num.col.req.missing_log > 0) {
+      myDF[, col.req.missing_log] <- NA
+    }
+    if (num.col.req.missing_num > 0) {
+      myDF[, col.req.missing_num] <- NA_real_
+    }
+    warning(paste("Metrics related to the following fields are invalid:"
+                  , paste(paste0("   ", col.req.missing)
+                          , collapse = "\n")
+                  , sep = "\n"))
+  }##IF.num.col.req.missing.END
+
+  # message col names
+  if (verbose == TRUE) {
+    debug_topic <- "colnames"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    msg <- paste(msg
+                 , paste("    ", names(myDF), collapse = "\n")
+                 , sep = "\n")
+    message(msg)
+  }## IF ~ verbose
+
+  ## QC, Cols2Keep ----
+  # remove duplicates with required so no errors, e.g., SAMPLEID
+  cols2keep <- cols2keep[!cols2keep %in% col.req]
+
+  ## QC, LRBC----
+  # ensure TRUE/FALSE
+  if (verbose == TRUE) {
+    debug_topic <- "QC, cols, values, LRBC"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+    myCol <- "LRBC"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
+    message(msg)
+  }## IF ~ verbose
+  LRBC.T <- sum(myDF$LRBC == TRUE, na.rm = TRUE)
+  if (LRBC.T == 0) {
+    warning("LRBC column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
+  }##IF.LRBC.T.END
+
+  ## QC, Juvenile----
+  # ensure as TRUE/FALSE
+  if (verbose == TRUE) {
+    debug_topic <- "QC, cols, values, Juvenile"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+    myCol <- "JUVENILE"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
+    message(msg)
+  }## IF ~ verbose
+
+  JUVENILE.T <- sum(myDF$JUVENILE == TRUE, na.rm = TRUE)
+  if (JUVENILE.T == 0) {
+    warning("JUVENILE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
+  }##IF.JUVENILE.T.END
+
+  ## QC, Weedy----
+  # ensure as TRUE/FALSE
+  if (verbose == TRUE) {
+    debug_topic <- "QC, cols, values, Weedy"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+    myCol <- "WEEDY"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
+    message(msg)
+  }## IF ~ verbose
+
+  weedy_values <- c("Never", "Sometimes")
+
+  # Extract the "Weedy" column
+  weedy_column <- unique(myDF[, "WEEDY"])
+
+  # Check if there are any values not in the acceptable list
+  if (any(!weedy_column %in% weedy_values)) {
+    warning("WEEDY column contains unrecognized values. \n  Valid values are 'Never', 'Sometimes', or'Always'.  \n  Other values are not recognized.")
+  }##IF.WEEDY.END
+
+  ## QC, Mortality ----
+  if (any(myDF$TOTMORT_PCT > 100)) {
+    warning("TOTMORT_PCT column contains values outside the normal range of 0-100. \n Fix invalid values before proceeding because LCSA-based metrics will not be calculated correctly.")
+  }##IF.Mort.END
+
+  ## QC, BCG_Attr ----
+  # need as character, if complex all values fail
+  if (verbose == TRUE) {
+    debug_topic <- "QC, cols, complex, BCG_Attr"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+    myCol <- "BCG_ATTR"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
+    message(msg)
+  }## IF ~ verbose
+
+  BCG_Complex <- is.complex(myDF[, "BCG_ATTR"])
+  # only tigger if have a complex field
+  if (BCG_Complex == TRUE) {
+    if (interactive() & boo.Shiny == FALSE) {
+      msg <- "**BCG_ATTR is complex!**"
+      msg2 <- "BCG metrics will not calculate properly."
+      msg3 <- "Reimport data with column class defined."
+      msg4 <- "Use either Fix1 or Fix2.  Replace 'foo.csv' with your file."
+      msg5 <- ""
+      msg6 <- "# Fix 1, base R"
+      msg7 <- "df_data <- read.csv('foo.csv', colClass=c('BCG_Attr'='character'))"
+      msg8 <- ""
+      msg9 <- "# Fix 2, tidyverse"
+      msg10 <- "# install package if needed and load it"
+      msg11 <- "if(!require(readr)) {install.packages('readr')}"
+      msg12 <- "# import file and convert from tibble to data frame"
+      msg13 <- "df_data <- as.data.frame(read_csv('foo.csv'))"
+      msg14 <- ""
+      #
+      message(paste(msg, msg2, msg3, msg4, msg5, msg6, msg7, msg8, msg9, msg10
+                    , msg11, msg12, msg13, msg14, sep = "\n"))
+    }## IF ~ interactive & boo.Shiny == FALSE
+
+    if (interactive() == FALSE | boo.Shiny == TRUE) {
+      # > df$BCG_Attr_char <- as.character(df$BCG_Attr)
+      # > df$BCG_Attr_char <- sub("^0\\+", "", df$BCG_Attr_char)
+      # > df$BCG_Attr_char <- sub("\\+0i$", "", df$BCG_Attr_char)
+      # > table(df$BCG_Attr, df$BCG_Attr_char)
+      myDF[, "BCG_ATTR"] <- as.character(myDF[, "BCG_ATTR"])
+      myDF[, "BCG_ATTR"] <- sub("^0\\+", "", myDF[, "BCG_ATTR"])
+      myDF[, "BCG_ATTR"] <- sub("\\+0i$", "", myDF[, "BCG_ATTR"])
+    }## IF ~ interactive() == FALSE | boo.Shiny == TRUE
+
+  }##IF ~ BCG_Attr ~ END
+
+  # Data Munging----
+  # Convert columns to upper case
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, text cols, toupper"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  col2upper <- col.req_character[!(col.req_character %in%
+                                     c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"))]
+  for (i in col2upper) {
+    myDF[, i] <- toupper(myDF[, i])
+  }## FOR ~ i ~ END
+
+  # Do some calcs
+  myDF  <- myDF %>%
+    dplyr::mutate(WEEDY_CONFIRMED = dplyr::case_when((WEEDY == "NEVER") ~ FALSE
+                                                     , (WEEDY == "SOMETIMES"
+                                                        & TAXAID != "SIDERASTREA SIDEREA"
+                                                        & TAXAID != "STEPHANOCOENIA INTERSEPTA"
+                                                        & DIAMMAX_CM < 75) ~ TRUE
+                                                     , ((TAXAID == "SIDERASTREA SIDEREA"
+                                                         | TAXAID == "STEPHANOCOENIA INTERSEPTA")
+                                                         & DIAMMAX_CM <= 30
+                                                         & HEIGHT_CM <= 10) ~ TRUE
+                                                     , ((TAXAID == "SIDERASTREA SIDEREA"
+                                                         | TAXAID == "STEPHANOCOENIA INTERSEPTA")
+                                                        & DIAMMAX_CM > 30
+                                                        & HEIGHT_CM > 10) ~ FALSE
+                                                     , TRUE ~ FALSE)
+                  , DIAM_CM = dplyr::case_when((!is.na(DIAMPERP_CM)
+                                                & !is.na(DIAMMAX_CM))
+                                               ~ as.numeric((DIAMPERP_CM + DIAMMAX_CM)/2)
+                                               , TRUE ~ as.numeric(DIAMMAX_CM))
+                  , R2 = ((HEIGHT_CM + (DIAM_CM/2))/2)^2
+                  , CSA = R2*MORPHCONVFACT*pi
+                  , LIVETISSUE_PCT = 100 - TOTMORT_PCT
+                  , LCSA = CSA * (LIVETISSUE_PCT/100)) %>%
+    dplyr::select(-c(R2, LIVETISSUE_PCT))
+
+  # Metric Calc----
+
+  # Calculate Metrics (could have used pipe, %>%)
+  met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME
+                                              , INDEX_CLASS)
+              # Transect width 1m
+              , transect_area_m2 = max(TOTTRANLNGTH_M, na.rm = TRUE)
+
+              ## Individuals ----
+              , ncol_total = dplyr::n()
+              , lcol_total = log(ncol_total)
+
+              ## Number of Taxa ----
+              , nt_total = dplyr::n_distinct(TAXAID, na.rm = TRUE)
+
+              ## Percent of Taxa ----
+
+              ## Number of Individuals ----
+              , ncol_Acropora = sum(GENUS == "ACROPORA", na.rm = TRUE)
+              , ncol_AcroOrbi_m2 = sum((GENUS == "ACROPORA"| GENUS == "ORBICELLA")
+                                       , na.rm = TRUE) / transect_area_m2
+
+              ## Percent of Individuals ----
+              , pcol_Acropora =   100 * ncol_Acropora / ncol_total
+
+              ## BCG ----
+              ### BCG, nt ####
+              , nt_BCG_att123 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                                                          | BCG_ATTR == "2"
+                                                          | BCG_ATTR == "3")]
+                                                  , na.rm = TRUE)
+
+              , nt_BCG_att1234 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
+                                                           | BCG_ATTR == "2"
+                                                           | BCG_ATTR == "3"
+                                                           | BCG_ATTR == "4")]
+                                                   , na.rm = TRUE)
+
+              , nt_BCG_att5 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "5")]
+                                                , na.rm = TRUE)
+
+              ### BCG, pt ####
+              , pt_BCG_att5 =   100 * nt_BCG_att5 / nt_total
+
+              ## Surface Area ----
+              , LCSA3D_samp_m2 = sum(LCSA, na.rm = TRUE) / transect_area_m2
+
+              , LCSA3D_BCG_att1234_m2 = sum(LCSA[(BCG_ATTR == "1"
+                                                  | BCG_ATTR == "2"
+                                                  | BCG_ATTR == "3"
+                                                  | BCG_ATTR == "4")]
+                                            , na.rm = TRUE) / transect_area_m2
+              , LCSA3D_LRBC_m2 = sum(LCSA[(LRBC == TRUE)]
+                                     , na.rm = TRUE) / transect_area_m2
+
+              ## Weedy ----
+              ### Weedy, ncol ####
+              , ncol_SmallWeedy = sum(WEEDY_CONFIRMED == TRUE, na.rm = TRUE)
+
+
+              ### Weedy, pcol ####
+              , pcol_SmallWeedy =   100 * ncol_SmallWeedy / ncol_total
+
+
+  )##met.val.END
+
+
+}##FUNCTION.metric.values.coral.END

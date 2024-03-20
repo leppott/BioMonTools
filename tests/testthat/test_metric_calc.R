@@ -1670,3 +1670,23 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
 #
 # })## Test - met val_sc, SCMB_IBI
 
+# Coral ####
+  ### _Metric.Values ----
+  data(data_coral_bcg_metric_dev) #added via data.R
+  df_corals <- data_coral_bcg_metric_dev
+
+  # metric values
+  # df_corals$N_TAXA <- 10
+  df_metval_calc <- metric.values(fun.DF = df_corals
+                                  , fun.Community = "CORAL"
+                                  , boo.Shiny = FALSE)
+
+  df_metval_calc <- as.data.frame(df_metval_calc)
+
+  # df, calc
+  data(data_coral_bcg_metric_qc)
+
+  df_metval_qc <- data_coral_bcg_metric_qc
+
+  # test
+  testthat::expect_equal(df_metval_calc, df_metval_qc)

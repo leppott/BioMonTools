@@ -567,3 +567,73 @@
 #'   }
 #' @source example metric value data from IDEM
 "data_diatom_mmi_qc"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_coral_bcg_metric_dev" ####
+#' @title Coral taxa data; Florida BCG.
+#' @description A data set with example coral data.
+#' Calculate metrics.  Data from Florida BCG providers.
+#'
+#' @format A data frame with 2138 observations on the following 23 variables.
+#'
+#'   \describe{
+#'   \item{\code{DataSource}}{a character vector}
+#'   \item{\code{SampleID}}{a character vector}
+#'   \item{\code{TotTranLngth_m}}{a numeric vector}
+#'   \item{\code{SampDate}}{a Date}
+#'   \item{\code{TAXAID}}{a character vector}
+#'   \item{\code{CommonName}}{a character vector}
+#'   \item{\code{Juvenile}}{a logical vector}
+#'   \item{\code{DiamMax_cm}}{a numeric vector}
+#'   \item{\code{DiamPerp_cm}}{a numeric vector}
+#'   \item{\code{Height_cm}}{a numeric vector}
+#'   \item{\code{TotMort_pct}}{a numeric vector}
+#'   \item{\code{BCG_ATTR}}{a character vector}
+#'   \item{\code{Weedy}}{a character vector}
+#'   \item{\code{LRBC}}{a logical vector}
+#'   \item{\code{MorphConvFact}}{a numeric vector}
+#'   \item{\code{Phylum}}{a character vector}
+#'   \item{\code{Class}}{a character vector}
+#'   \item{\code{SubClass}}{a character vector}
+#'   \item{\code{Order}}{a character vector}
+#'   \item{\code{Family}}{a character vector}
+#'   \item{\code{Genus}}{a character vector}
+#'   \item{\code{SubGenus}}{a character vector}
+#'   \item{\code{Species}}{a character vector}
+#' }
+#' @source example coral data from Florida BCG
+"data_coral_bcg_metric_dev"
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_coral_bcg_metric_qc" ####
+#' @title Coral metric value data; Florida BCG.
+#' @description A data set with coral metric value data.
+#' Used to compare to metric value calculations.  Data from Florida BCG providers.
+#'
+#' @format A data frame with 100 observations on the following 19 variables.
+#'
+#'   \describe{
+#'   \item{\code{SAMPLEID}}{a character vector}
+#'   \item{\code{INDEX_NAME}}{a character vector}
+#'   \item{\code{INDEX_CLASS}}{a character vector}
+#'   \item{\code{transect_area_m2}}{a numeric vector}
+#'   \item{\code{ncol_total}}{a numeric vector}
+#'   \item{\code{lcol_total}}{a numeric vector}
+#'   \item{\code{nt_total}}{a numeric vector}
+#'   \item{\code{ncol_Acropora}}{a numeric vector}
+#'   \item{\code{ncol_AcroOrbi_m2}}{a numeric vector}
+#'   \item{\code{pcol_Acropora}}{a numeric vector}
+#'   \item{\code{nt_BCG_att123}}{a numeric vector}
+#'   \item{\code{nt_BCG_att1234}}{a numeric vector}
+#'   \item{\code{nt_BCG_att5}}{a numeric vector}
+#'   \item{\code{pt_BCG_att5}}{a numeric vector}
+#'   \item{\code{LCSA3D_samp_m2}}{a numeric vector}
+#'   \item{\code{LCSA3D_BCG_att1234_m2}}{a numeric vector}
+#'   \item{\code{LCSA3D_LRBC_m2}}{a numeric vector}
+#'   \item{\code{ncol_SmallWeedy}}{a numeric vector}
+#'   \item{\code{pcol_SmallWeedy}}{a numeric vector}
+
+#' }
+#' @source example coral metric results from Florida BCG
+"data_coral_bcg_metric_qc"
+

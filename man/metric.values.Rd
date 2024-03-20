@@ -21,7 +21,7 @@ metric.values(
 \item{fun.DF}{Data frame of taxa (list required fields)}
 
 \item{fun.Community}{Community name for which to calculate metric values
-(bugs, fish, or algae)}
+(bugs, fish, algae, or coral)}
 
 \item{fun.MetricNames}{Optional vector of metric names to be returned.
 If none are supplied then all will be returned.  Default=NULL}
@@ -52,9 +52,9 @@ Default = NULL}
 data frame of SampleID and metric values
 }
 \description{
-This function calculates metric values for bugs and fish.
-Inputs are a data frame with SampleID and taxa with phylogenetic and
-autecological information (see below for required fields by community).
+This function calculates metric values for bugs, fish, algae
+, and coral. Inputs are a data frame with SampleID and taxa with phylogenetic
+and autecological information (see below for required fields by community).
 The dplyr package is used to generate the metric values.
 }
 \details{
