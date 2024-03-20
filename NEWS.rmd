@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9003
+
+* refactor: Update Excel files for MN IBI
+    + MetricFlags.xlsx
+    + MetricNames.xlsx
+    + MetricScoring.xlsx
+
 ## Changes in version 1.0.2.9002
 
 * refactor: Update GitHub Actions with usethis::use_github_action()

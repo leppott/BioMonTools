@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-03-20 11:39:37.506813
+    #> Last Update: 2024-03-20 12:00:19.086709
 
 # Version History
+
+## Changes in version 1.0.2.9003
+
+- refactor: Update Excel files for MN IBI
+  - MetricFlags.xlsx
+  - MetricNames.xlsx
+  - MetricScoring.xlsx
 
 ## Changes in version 1.0.2.9002
 
