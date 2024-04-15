@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-03-20 14:28:20.556348
+    #> Last Update: 2024-04-15 17:48:09.155149
 
 # Version History
+
+## Changes in version 1.0.2.9006
+
+- fix: Update `metric.values` pi_dom01_BCG\* metrics
+  - Add zero to max function to avoid max returning -Inf
+- refactor: Update `metric.values` debug steps for fish
+  - Was 10 and changed to 12
 
 ## Changes in version 1.0.2.9005
 

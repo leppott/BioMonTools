@@ -3028,8 +3028,12 @@ metric.values.bugs <- function(myDF
                                 , pt_EPT_BCG_att1i23 = 100 * nt_EPT_BCG_att1i23 / nt_total
 
                                 #### BCG_pi_dom ----
-                                , pi_dom01_BCG_att4 = 100 * max(ni_dom01_BCG_att4, na.rm = TRUE) / ni_total
-                                , pi_dom01_BCG_att5 = 100 * max(ni_dom01_BCG_att5, na.rm = TRUE) / ni_total
+                                , pi_dom01_BCG_att4 = 100 * max(0
+                                                                , ni_dom01_BCG_att4
+                                                                , na.rm = TRUE) / ni_total
+                                , pi_dom01_BCG_att5 = 100 * max(0
+                                                                , ni_dom01_BCG_att5
+                                                                , na.rm = TRUE) / ni_total
 
                                 # domX_BCG
                                 # pi_dom01_att 4, 5, 56
@@ -3499,7 +3503,7 @@ metric.values.fish <- function(myDF
   debug_sub_community <- "FISH"
   boo_debug_sub <- FALSE
   debug_sub_num <- 0
-  debug_sub_num_total <- 10
+  debug_sub_num_total <- 12
 
   # global variable bindings ----
   SAMPLEID <- INDEX_NAME <- INDEX_CLASS <- TAXAID <- N_TAXA <- NATIVE <-
@@ -4510,29 +4514,28 @@ metric.values.fish <- function(myDF
 
                   ### BCG, pi_dom----
 
-                  , pi_dom01_BCG_att4 = 100 * max(0, max(N_TAXA[(BCG_ATTR == "4")]
-                                                        , na.rm = TRUE)
+                  , pi_dom01_BCG_att4 = 100 * max(0
+                                                  , N_TAXA[(BCG_ATTR == "4")]
                                                   , na.rm = TRUE) / ni_total
-                 , pi_dom01_BCG_att45 = 100 * max(0, max(N_TAXA[(BCG_ATTR == "4"
-                                                                   | BCG_ATTR == "5")]
-                                                           , na.rm = TRUE)
-                                                    , na.rm = TRUE) / ni_total
+                 , pi_dom01_BCG_att45 = 100 * max(0
+                                                  , N_TAXA[(BCG_ATTR == "4"
+                                                            | BCG_ATTR == "5")]
+                                                  , na.rm = TRUE) / ni_total
 
-                  , pi_dom01_BCG_att5 = 100 * max(0, max(N_TAXA[(BCG_ATTR == "5")]
-                                                        , na.rm = TRUE)
+                  , pi_dom01_BCG_att5 = 100 * max(0
+                                                  , N_TAXA[(BCG_ATTR == "5")]
                                                   , na.rm = TRUE) / ni_total
-                 , pi_dom01_BCG_att5a = 100 * max(0, max(N_TAXA[(BCG_ATTR == "5A")]
-                                                        , na.rm = TRUE)
+                 , pi_dom01_BCG_att5a = 100 * max(0
+                                                  , N_TAXA[(BCG_ATTR == "5A")]
                                                  , na.rm = TRUE) / ni_total
-                 , pi_dom01_BCG_att5a6a = 100 * max(0, max(N_TAXA[(BCG_ATTR == "5A"
-                                                                   | BCG_ATTR == "6A")]
-                                                           , na.rm = TRUE)
+                 , pi_dom01_BCG_att5a6a = 100 * max(0
+                                                    , N_TAXA[(BCG_ATTR == "5A"
+                                                            | BCG_ATTR == "6A")]
                                                     , na.rm = TRUE) / ni_total
-                  , pi_dom01_BCG_att566a = 100 * max(0, max(N_TAXA[(BCG_ATTR == "5"
+                  , pi_dom01_BCG_att566a = 100 * max(0, N_TAXA[(BCG_ATTR == "5"
                                                           | BCG_ATTR == "6"
                                                           | BCG_ATTR == "6A")]
-                                                          , na.rm = TRUE)
-                                                , na.rm = TRUE) / ni_total
+                                                     , na.rm = TRUE) / ni_total
 
                   ## Thermal Indicators ####
                   ## nt_ti
