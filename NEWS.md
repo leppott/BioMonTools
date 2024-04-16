@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-04-15 17:48:09.155149
+    #> Last Update: 2024-04-16 15:17:04.278045
 
 # Version History
+
+## Changes in version 1.0.2.9007
+
+- refactor: Update MN IBI Fish metrics in MetricScoring.xlsx
 
 ## Changes in version 1.0.2.9006
 
