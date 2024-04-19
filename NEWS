@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-04-17 17:41:15.418051
+    #> Last Update: 2024-04-19 16:55:45.175106
 
 # Version History
+
+## Changes in version 1.0.2.9011
+
+- fix: Update MN IBI Fish thresholds in MetricScoring.xlsx
+- test: Update thresholds for extra digits in MetricScoring.xlsx
+  - Adjust from 11 to 13 digits for one index (WY)
 
 ## Changes in version 1.0.2.9010
 

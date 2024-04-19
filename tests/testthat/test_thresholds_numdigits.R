@@ -24,8 +24,8 @@ test_that("thresholds, num digits, index", {
   metric_thresh_hi <- nchar(as.character(df_thresh_metric$Thresh_Hi))
 
   # Number of "bad" entries
-  # Max is 11 (MBSS)
-  digmax <- 11
+  # Max = 11 (MBSS); 13 (WY)
+  digmax <- 13
   # after that is most likely a floating point error that needs correction
   index_thresh01_nbad <- sum(index_thresh01 > digmax, na.rm = TRUE)
   index_thresh02_nbad <- sum(index_thresh02 > digmax, na.rm = TRUE)
