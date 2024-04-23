@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-04-19 16:55:45.175106
+    #> Last Update: 2024-04-23 13:14:17.417653
 
 # Version History
+
+## Changes in version 1.0.2.9012
+
+- refactor: Update MetricScoring.xlsx
+  - New scoring regime, AVERAGE_100_M10
+  - Change MN_Bug_IBI scoring regime
+- refactor: Add new scoring regime calculation to `metric.values`
 
 ## Changes in version 1.0.2.9011
 

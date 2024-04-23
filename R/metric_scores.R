@@ -325,7 +325,7 @@ metric.scores <- function(DF_Metrics
         fun.Result <- fun.Value * NA  #default value of NA
         #
         if (fun.ScoreRegime == "CONT_0100") {
-          # Cont_0100 ####
+          ## Cont_0100 ####
           score_max <- 100
           if (fun.Direction == "DECREASE") {
             fun.calc <- score_max*((fun.Value - fun.Lo) / (fun.Hi - fun.Lo))
@@ -334,7 +334,7 @@ metric.scores <- function(DF_Metrics
           }
           fun.Result <- sapply(fun.calc, function(x) {stats::median(c(0, score_max, x))})
         } else if (fun.ScoreRegime == "CONT_0010") {
-          # Cont_0010 ####
+          ## Cont_0010 ####
           score_max <- 10
           if (fun.Direction == "DECREASE") {
             fun.calc <- score_max*((fun.Value - fun.Lo) / (fun.Hi - fun.Lo))
@@ -343,7 +343,7 @@ metric.scores <- function(DF_Metrics
           }
           fun.Result <- sapply(fun.calc, function(x) {stats::median(c(0, score_max, x))})
         } else if (fun.ScoreRegime == "CAT_135") {
-          # Cat_135 ####
+          ## Cat_135 ####
           if (fun.Direction == "DECREASE") {
             fun.Result <- ifelse(fun.Value >= fun.Hi
                                  , 5
@@ -363,7 +363,7 @@ metric.scores <- function(DF_Metrics
                                  , ifelse(fun.Value > fun.Hi, 1, 3))
           }##IF~fun.Direction~END
         } else if (fun.ScoreRegime == "CAT_0246" | fun.ScoreRegime == "CAT_0123") {
-          # Cat_0246 ####
+          ## Cat_0246 ####
           if (fun.Direction == "DECREASE") {
             fun.Result <- ifelse(fun.Value >= fun.Hi
                                  , 6
@@ -386,13 +386,13 @@ metric.scores <- function(DF_Metrics
             fun.Result <- fun.Value
           }##SCOREVALUE.END
         } else if (fun.ScoreRegime == "NORMDIST_135") {
-          # NormDist_135 ####
+          ## NormDist_135 ####
           fun.Result <- ifelse(fun.Value < fun.ND_Lo | fun.Value > fun.ND_Hi, 1
                                , ifelse(fun.Value >= fun.ND_Lo & fun.Value < fun.Lo, 3
                                         , ifelse(fun.Value <= fun.ND_Hi & fun.Value > fun.Hi, 3
                                                  , ifelse(fun.Value >= fun.Lo & fun.Value <= fun.Hi, 5, NA))))
         } else if (fun.ScoreRegime == "SINGLEVALUE") {
-          # SingleValue ####
+          ## SingleValue ####
           if (!is.na(fun.Hi)) {
             fun.Result <- ifelse(fun.Value > fun.Hi, fun.SV_Add, 0)
           }##SingleValue_Hi
@@ -401,7 +401,7 @@ metric.scores <- function(DF_Metrics
             fun.Result <- ifelse(fun.Value < fun.Lo, fun.SV_Add, 0)
           }##SingleValue_Lo
         } else if (fun.ScoreRegime == "CATGRAD_135") {
-          # ContGrad135 ####
+          ## ContGrad135 ####
           #
           # get xvar and calc Expected Score
           # QC to ensure xvar is present in data
@@ -444,7 +444,7 @@ metric.scores <- function(DF_Metrics
           #~~~~~~~~~~
 
         } else if (fun.ScoreRegime == "CAT_135_SELMET") {
-          # Cat_135_SelMet ####
+          ## Cat_135_SelMet ####
           #
           # QC, check for name
           c_master_boo <- fun.SelMet_Name %in% col_MetricNames
@@ -507,7 +507,7 @@ metric.scores <- function(DF_Metrics
           }##IF~fun.direction~END
           #
         } else if (fun.ScoreRegime == "CAT_135_SCMET") {
-          # Cat_135_ScMet ####
+          ## Cat_135_ScMet ####
           #
           # QC, check for name
           c_master_boo <- fun.ScMet_Name %in% col_MetricNames
@@ -576,7 +576,7 @@ metric.scores <- function(DF_Metrics
           }##IF~SelMetMaster~END
 
         } else if (fun.ScoreRegime == "Cat_101") {
-          # Cat_101 ----
+          ## Cat_101 ----
           fun.Result <- ifelse(fun.Value > fun.Hi
                                , 1
                                , ifelse(fun.Value < fun.Lo, 1, 0))
@@ -590,10 +590,10 @@ metric.scores <- function(DF_Metrics
             #utils::flush.console()
           }##IF.boo.QC.END
         } else if (is.na(fun.ScoreRegime)) {
-          # No Score Regime ####
+          ## No Score Regime ####
           fun.Result <- NA
         } else {
-          # OTHER ####
+          ## OTHER ####
           fun.Result <- NA
         }##IF.scoring.END
         #
@@ -605,17 +605,17 @@ metric.scores <- function(DF_Metrics
   }##FOR.b.END
   #
 
-  # INDEX ####
+  # INDEX----
   DF_Metrics[,"sum_Index"] <- NA_real_
   DF_Metrics[,"Index"]     <- NA_real_
   DF_Metrics[,"Index_Nar"] <- NA_character_
 
-  # Index, Sum
+  ## INDEX, Sum----
   # sum all metrics
   DF_Metrics[,"sum_Index"] <- rowSums(DF_Metrics[, Score.MetricNames]
                                       , na.rm = TRUE)
 
-  # Index, Value
+  ## INDEX, Value----
   # Need to cycle based on Index (aa) and Region (bb)
   for (aa in unique(as.matrix(DF_Metrics[,col_IndexName]))) {
     for (bb in unique(as.matrix(DF_Metrics[,col_IndexClass]))) {
@@ -646,8 +646,8 @@ metric.scores <- function(DF_Metrics
       # default value
       fun.Value <- DF_Metrics[, "sum_Index"]
       fun.Result <- fun.Value * NA  #default value of NA
-      #
-      # Score Regime, INDEX ####
+
+      ## INDEX, Score Regime ----
       # Scoring
       if (fun.ScoreRegime == "AVERAGE") {
         fun.Result <- DF_Metrics[, "sum_Index"] / fun.NumMetrics
@@ -663,6 +663,12 @@ metric.scores <- function(DF_Metrics
       } else if (fun.ScoreRegime == "AVERAGESCALE_100") {
         sr_mult    <- 100 / fun.NumMetrics / fun.Scale
         fun.Result <- sr_mult * DF_Metrics[, "sum_Index"]
+      } else if (fun.ScoreRegime == "AVERAGE_010") {
+        sr_mult    <- 10 / fun.NumMetrics
+        fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
+      } else if (fun.ScoreRegime == "AVERAGE_100_M10") {
+        sr_mult    <- 10 #/ fun.NumMetrics
+        fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
       } else {
         # SUM
         fun.Result <- DF_Metrics[, "sum_Index"]
