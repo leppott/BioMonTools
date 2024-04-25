@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9014
+
+* refactor: New index scoring regimes
+    + MetricScoring.xlsx
+    + AVERAGE_100_M10_R2 for MN_IBI_Bugs
+    + AVERAGE_100_M10_R3 for MN_IBI_Fish
+
 ## Changes in version 1.0.2.9013
 
 * refactor: Modify scoring regime (AVERAGE_100_M10)

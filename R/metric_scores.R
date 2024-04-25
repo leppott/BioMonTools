@@ -673,6 +673,7 @@ metric.scores <- function(DF_Metrics
       ## INDEX, Score Regime ----
       # Scoring
       if (fun.ScoreRegime == "AVERAGE") {
+        ### AVERAGE ----
         fun.Result <- DF_Metrics[, "sum_Index"] / fun.NumMetrics
         # } else if (fun.ScoreRegime == "AVERAGE_10") {
         #   sr_mult    <- 10
@@ -681,20 +682,29 @@ metric.scores <- function(DF_Metrics
         #   sr_mult    <- 20
         #   fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
       } else if (fun.ScoreRegime == "AVERAGE_100") {
+        ### AVERAGE_100 ----
         sr_mult    <- 100 / fun.NumMetrics
         fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
       } else if (fun.ScoreRegime == "AVERAGESCALE_100") {
+        ### AVERAGESCALE_100 ----
         sr_mult    <- 100 / fun.NumMetrics / fun.Scale
         fun.Result <- sr_mult * DF_Metrics[, "sum_Index"]
       } else if (fun.ScoreRegime == "AVERAGE_010") {
+        ### AVERAGE_010 ----
         sr_mult    <- 10 / fun.NumMetrics
         fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
-      } else if (fun.ScoreRegime == "AVERAGE_100_M10") {
+      } else if (fun.ScoreRegime == "AVERAGE_100_M10_R2") {
+        ### AVERAGE_100_M10_R2 ----
         # MPCA (MN)
         sr_mult    <- round(10 / fun.NumMetrics, 2)
         fun.Result <- sr_mult * DF_Metrics[, "sum_Index"]
+      } else if (fun.ScoreRegime == "AVERAGE_100_M10_R3") {
+        ### AVERAGE_100_M10_R3 ----
+        # MPCA (MN)
+        sr_mult    <- round(10 / fun.NumMetrics, 3)
+        fun.Result <- sr_mult * DF_Metrics[, "sum_Index"]
       } else {
-        # SUM
+        ### SUM ----
         fun.Result <- DF_Metrics[, "sum_Index"]
       }##IF.scoring.END
       #

@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-04-25 14:49:08.214479
+    #> Last Update: 2024-04-25 16:41:19.747228
 
 # Version History
+
+## Changes in version 1.0.2.9014
+
+- refactor: New index scoring regimes
+  - MetricScoring.xlsx
+  - AVERAGE_100_M10_R2 for MN_IBI_Bugs
+  - AVERAGE_100_M10_R3 for MN_IBI_Fish
 
 ## Changes in version 1.0.2.9013
 
