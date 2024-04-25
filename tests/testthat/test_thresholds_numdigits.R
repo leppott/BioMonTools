@@ -43,6 +43,7 @@ test_that("thresholds, num digits, index", {
   which(metric_thresh_lo  %in% metric_thresh_lo[metric_thresh_lo > digmax])
   which(metric_thresh_mid %in% metric_thresh_mid[metric_thresh_mid > digmax])
   which(metric_thresh_hi  %in% metric_thresh_hi[metric_thresh_hi > digmax])
+  # View(df_thresh_metric)
 
   # test
   testthat::expect_true(index_thresh01_nbad == 0)

@@ -589,6 +589,29 @@ metric.scores <- function(DF_Metrics
                            , fun.Result))
             #utils::flush.console()
           }##IF.boo.QC.END
+
+        } else if (fun.ScoreRegime == "CAT_0510") {
+          ## Cat_0510----
+          # MN IBI Fish
+          if (fun.Direction == "INCREASE") {
+            fun.Result <- ifelse(fun.Value >= fun.Hi
+                                 , 0
+                                 ,ifelse(fun.Value < fun.Lo, 10, 5))
+            if (boo.QC == TRUE) {
+              message(paste0("\nMetric="
+                             , c
+                             , ", Value="
+                             , fun.Value
+                             , ", Result="
+                             , fun.Result))
+              #utils::flush.console()
+            }##IF.boo.QC.END
+          } else if (fun.Direction == "DECREASE") {
+            fun.Result <- ifelse(fun.Value < fun.Lo
+                                 , 0
+                                 , ifelse(fun.Value >= fun.Hi, 10, 5))
+          }##IF~fun.Direction~END
+
         } else if (is.na(fun.ScoreRegime)) {
           ## No Score Regime ####
           fun.Result <- NA
@@ -667,8 +690,9 @@ metric.scores <- function(DF_Metrics
         sr_mult    <- 10 / fun.NumMetrics
         fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
       } else if (fun.ScoreRegime == "AVERAGE_100_M10") {
-        sr_mult    <- 10 #/ fun.NumMetrics
-        fun.Result <- sr_mult * DF_Metrics[, "sum_Index"] / fun.NumMetrics
+        # MPCA (MN)
+        sr_mult    <- round(10 / fun.NumMetrics, 2)
+        fun.Result <- sr_mult * DF_Metrics[, "sum_Index"]
       } else {
         # SUM
         fun.Result <- DF_Metrics[, "sum_Index"]
