@@ -3564,7 +3564,8 @@ metric.values.fish <- function(myDF
                          , "BCG_ATTR", "THERMAL_INDICATOR"
                          , "HABITAT", "ELEVATION_ATTR"
                          , "GRADIENT_ATTR", "WSAREA_ATTR"
-                         , "REPRODUCTION", "HABITAT", "CONNECTIVITY", "SCC")
+                         , "REPRODUCTION", "HABITAT", "CONNECTIVITY", "SCC"
+                         , "BCG_ATTR2")
   col.req_logical <- c("EXCLUDE", "HYBRID")
   col.req_numeric <- c("N_TAXA", "N_ANOMALIES",  "SAMP_BIOMASS", "DA_MI2"
                        , "SAMP_WIDTH_M", "SAMP_LENGTH_M"
@@ -3783,12 +3784,14 @@ metric.values.fish <- function(myDF
   myDF[, "REPRO_NC"]     <- grepl("COMPLEX NEST", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_BEAR"]     <- grepl("BEARER", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_MIG"]     <- grepl("MIGRATORY", myDF[,"REPRODUCTION"])
+  myDF[, "REPRO_LITH"]     <- grepl("LITHOPHIL", myDF[,"REPRODUCTION"])
 
   if (!"HABITAT" %in% names(myDF)) {
     myDF[, "HABITAT"] <- NA
   }## IF ~ HABITAT
   myDF[, "HABITAT_B"]     <- grepl("B", myDF[,"HABITAT"])
   myDF[, "HABITAT_W"]     <- grepl("W", myDF[,"HABITAT"])
+  myDF[, "HABITAT_F"]     <- grepl("F", myDF[,"HABITAT"]) # Fluvial
 
   # exact matches only
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])
@@ -4117,6 +4120,7 @@ metric.values.fish <- function(myDF
                        , nt_natCent = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & FAMILY == "CENTRARCHIDAE"], na.rm = TRUE)
                        , nt_Cott = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "COTTIDAE"], na.rm = TRUE)
                        , nt_Cyprin = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
+                       , nt_natCyprin = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
                        , nt_Lepomis = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "LEPOMIS"], na.rm = TRUE)
                        , nt_native = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & N_TAXA > 0], na.rm = TRUE)
                        , nt_nonnative = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (is.na(NATIVE) | NATIVE != "NATIVE")
@@ -4188,10 +4192,16 @@ metric.values.fish <- function(myDF
                        , nt_piscivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                  & TROPHIC_PI == TRUE]
                                                           , na.rm = TRUE)
+                       , nt_benthicInvertivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                 & TROPHIC_IV == TRUE
+                                                                 & HABITAT_B == TRUE]
+                                                          , na.rm = TRUE)
 
                        ### Trophic, pi----
                         # % Lithophilic spawners
                        , pi_lithophil = 100 * sum(N_TAXA[SILT == TRUE], na.rm = TRUE) / ni_total
+                       , pi_benthicInvertivore = 100 * sum(N_TAXA[TROPHIC_IV == TRUE
+                                                                  & HABITAT_B == TRUE], na.rm = TRUE) / ni_total
                        , pi_detritivore = 100 * sum(N_TAXA[TROPHIC_DE == TRUE], na.rm = TRUE) / ni_total
                        # % gen, omn, invert
                        , pi_genomninvrt = 100 * sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_OM == TRUE | TROPHIC_IV == TRUE], na.rm = TRUE) / ni_total
@@ -4210,6 +4220,7 @@ metric.values.fish <- function(myDF
                                                             | is.na(TAXAID))], na.rm = TRUE) / ni_total
                        #
                        ### Trophic, pt ----
+                       , pt_benthicInvertivore = 100 * nt_benthicInvertivore / nt_total
                        , pt_detritivore = 100 * nt_detritivore / nt_total
                        , pt_herbivore = 100 * nt_herbivore / nt_total
                        , pt_omnivore = 100 * nt_omnivore / nt_total
@@ -4279,12 +4290,23 @@ metric.values.fish <- function(myDF
                                                                   | BCG_ATTR == "2"
                                                                   | BCG_ATTR == "3")]
                                                         , na.rm = TRUE)
+                  , nt_BCG2_att123b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                               & (BCG_ATTR == "1"
+                                                                  | BCG_ATTR == "2"
+                                                                  | BCG_ATTR2 == "3_BETTER")]
+                                                        , na.rm = TRUE)
                  , nt_BCG_att1234 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                              & (BCG_ATTR == "1"
                                                               | BCG_ATTR == "2"
                                                               | BCG_ATTR == "3"
                                                               | BCG_ATTR == "4")]
                                                       , na.rm = TRUE)
+                 , nt_BCG2_att1234b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                     & (BCG_ATTR == "1"
+                                                                        | BCG_ATTR == "2"
+                                                                        | BCG_ATTR == "3"
+                                                                        | BCG_ATTR2 == "4_BETTER")]
+                                                              , na.rm = TRUE)
                  , nt_BCG_att1236 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                              & (BCG_ATTR == "1"
                                                                | BCG_ATTR == "2"
@@ -4487,7 +4509,10 @@ metric.values.fish <- function(myDF
                   ### BCG, pt----
                   , pt_BCG_att12 = 100 * nt_BCG_att12 / nt_total
                   , pt_BCG_att123 = 100 * nt_BCG_att123 / nt_total
+                  , pt_BCG2_att123b = 100 * nt_BCG2_att123b / nt_total
                   , pt_BCG_att1234 = 100 * nt_BCG_att1234 / nt_total
+                  , pt_BCG2_att1234b = 100 * nt_BCG2_att1234b / nt_total
+
                   , pt_BCG_att1236 = 100 * nt_BCG_att1236 / nt_total
                   , pt_BCG_att1236b = 100 * nt_BCG_att1236b / nt_total
 
@@ -4623,6 +4648,7 @@ metric.values.fish <- function(myDF
                                                          , na.rm = TRUE)
 
                   ## Reproduction ----
+                  ### Repro, nt ----
                   , nt_repro_broadcaster = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & REPRO_BCAST == TRUE]
                                                         , na.rm = TRUE)
                   , nt_repro_nestsimp = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & REPRO_NS == TRUE]
@@ -4633,26 +4659,42 @@ metric.values.fish <- function(myDF
                                                          , na.rm = TRUE)
                   , nt_repro_migratory = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & REPRO_MIG == TRUE]
                                                         , na.rm = TRUE)
+                  , nt_repro_lithophil = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & REPRO_LITH == TRUE]
+                                                          , na.rm = TRUE)
+
+                  ### Repro, pi ----
+                  , pi_repro_lithophil = 100 * sum(N_TAXA[REPRO_LITH == TRUE]
+                                        , na.rm = TRUE) / ni_total
+
+                  ### Repro, pt ----
+                  , pt_repro_lithophil = 100 * nt_repro_lithophil / nt_total
 
 
                   ## Habitat ####
                   # BCG Great Plains 2021
                   # W = water column
                   # B = benthic
+                  # F = fluvial
                   #
                   # nt_habitat
                   , nt_habitat_b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_B == TRUE]
                                                         , na.rm = TRUE)
                   , nt_habitat_w = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_W == TRUE]
                                                         , na.rm = TRUE)
+                  , nt_habitat_f = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & HABITAT_F == TRUE]
+                                                        , na.rm = TRUE)
+
                   ## pi_habitat
                   , pi_habitat_b = 100 * sum(N_TAXA[HABITAT_B == TRUE]
                                               , na.rm = TRUE) / ni_total
                   , pi_habitat_w = 100 * sum(N_TAXA[HABITAT_W == TRUE]
                                               , na.rm = TRUE) / ni_total
+                  , pi_habitat_f = 100 * sum(N_TAXA[HABITAT_F == TRUE]
+                                              , na.rm = TRUE) / ni_total
                   ## pt_habitat
                   , pt_habitat_b = 100 * nt_habitat_b / nt_total
                   , pt_habitat_w = 100 * nt_habitat_w / nt_total
+                  , pt_habitat_f = 100 * nt_habitat_f / nt_total
 
                  ## SPECIAL ----
                  # New Mexico Fish BCG
@@ -4675,6 +4717,9 @@ metric.values.fish <- function(myDF
                  , ni_Hybognathus_amarus = sum(N_TAXA[TAXAID == "HYBOGNATHUS AMARUS"]
                                                , na.rm = TRUE)
                  , x_TrophicCats = dplyr::n_distinct(TROPHIC, na.rm = TRUE)
+
+                 # Great Plains BCG 04/25/2024
+                 , x_BCG_Mean = mean(TOLVAL2, na.rm = TRUE)
 
                        #
                        # name changes ####
