@@ -219,6 +219,9 @@ testthat::test_that("metric.values, names, fish, Function, xlNames", {
 
   # fish data
   df_fish <- BioMonTools::data_fish_MBSS
+  # Munge (v1.0.2.9015, 2024-04-29)
+  df_fish$TOLVAL2 <- NA_integer_
+  df_fish$BCG_ATTR2 <- NA_character_
 
   # Function
   df_metval <- BioMonTools::metric.values(df_fish
@@ -304,6 +307,9 @@ testthat::test_that("metric.values, names, fish, Function, xlScoring", {
   # Fish Data
   df_fish <- BioMonTools::data_fish_MBSS
   #df_benthos$SUBCLASS <- NA
+  # Munge (v1.0.2.9015, 2024-04-29)
+  df_fish$TOLVAL2 <- NA_integer_
+  df_fish$BCG_ATTR2 <- NA_character_
 
   # Function
   df_metval <- BioMonTools::metric.values(df_fish

@@ -18,6 +18,23 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9016
+
+* refactor: Post merge updates
+    + Reconcile names for same calculation but different programs and columns
+        - benthicInvertivore in merge to habitat_beninvert
+        - MetricNames.xlsx
+        - metric_values.R
+* tests: Update fish metric names for new metrics
+* refactor: Add MN_IBI_Fish metrics to MetricNames.xlsx
+
+## Changes in version 1.0.2.9015
+
+* refactor: Merge pull request 110
+    + New metrics for NM BCG Fish
+        - MetricNames.xlsx
+        - metric_values.R
+
 ## Changes in version 1.0.2.9014
 
 * refactor: New index scoring regimes

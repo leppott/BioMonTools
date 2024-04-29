@@ -4128,7 +4128,6 @@ metric.values.fish <- function(myDF
                        , nt_nativenonhybrid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" &
                                                                          (HYBRID != TRUE | is.na(HYBRID))], na.rm = TRUE)
                        , nt_Notur = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "NOTURUS"], na.rm = TRUE)
-                       , nt_beninvert = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TYPE == "BENTHIC" & TROPHIC_IV == TRUE], na.rm = TRUE)
                        , nt_Ictal = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "ICTALURIDAE"], na.rm = TRUE)
                        , nt_natsunfish = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & TYPE == "SUNFISH"], na.rm = TRUE)
                        , nt_natCent_sunfish = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" &
@@ -4174,6 +4173,14 @@ metric.values.fish <- function(myDF
 
                        ## Trophic ####
                        ### Trophic, nt----
+                       , nt_beninvert = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                 & TYPE == "BENTHIC"
+                                                                 & TROPHIC_IV == TRUE]
+                                                          , na.rm = TRUE)
+                       , nt_habitat_beninvert = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                 & TROPHIC_IV == TRUE
+                                                                 & HABITAT_B == TRUE]
+                                                          , na.rm = TRUE)
                        , nt_detritivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                    & TROPHIC_DE == TRUE]
                                                             , na.rm = TRUE)
@@ -4192,15 +4199,11 @@ metric.values.fish <- function(myDF
                        , nt_piscivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                  & TROPHIC_PI == TRUE]
                                                           , na.rm = TRUE)
-                       , nt_benthicInvertivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                 & TROPHIC_IV == TRUE
-                                                                 & HABITAT_B == TRUE]
-                                                          , na.rm = TRUE)
 
                        ### Trophic, pi----
                         # % Lithophilic spawners
                        , pi_lithophil = 100 * sum(N_TAXA[SILT == TRUE], na.rm = TRUE) / ni_total
-                       , pi_benthicInvertivore = 100 * sum(N_TAXA[TROPHIC_IV == TRUE
+                       , pi_habitat_beninvert = 100 * sum(N_TAXA[TROPHIC_IV == TRUE
                                                                   & HABITAT_B == TRUE], na.rm = TRUE) / ni_total
                        , pi_detritivore = 100 * sum(N_TAXA[TROPHIC_DE == TRUE], na.rm = TRUE) / ni_total
                        # % gen, omn, invert
@@ -4220,7 +4223,7 @@ metric.values.fish <- function(myDF
                                                             | is.na(TAXAID))], na.rm = TRUE) / ni_total
                        #
                        ### Trophic, pt ----
-                       , pt_benthicInvertivore = 100 * nt_benthicInvertivore / nt_total
+                       , pt_habitat_beninvert = 100 * nt_habitat_beninvert / nt_total
                        , pt_detritivore = 100 * nt_detritivore / nt_total
                        , pt_herbivore = 100 * nt_herbivore / nt_total
                        , pt_omnivore = 100 * nt_omnivore / nt_total

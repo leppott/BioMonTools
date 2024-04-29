@@ -4,9 +4,27 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-04-25 16:41:19.747228
+    #> Last Update: 2024-04-29 10:06:44.582835
 
 # Version History
+
+## Changes in version 1.0.2.9016
+
+- refactor: Post merge updates
+  - Reconcile names for same calculation but different programs and
+    columns
+    - benthicInvertivore in merge to habitat_beninvert
+    - MetricNames.xlsx
+    - metric_values.R
+- tests: Update fish metric names for new metrics
+- refactor: Add MN_IBI_Fish metrics to MetricNames.xlsx
+
+## Changes in version 1.0.2.9015
+
+- refactor: Merge pull request 110
+  - New metrics for NM BCG Fish
+    - MetricNames.xlsx
+    - metric_values.R
 
 ## Changes in version 1.0.2.9014
 
