@@ -15,7 +15,9 @@ taxa_translate(
   col_drop = NULL,
   sum_n_taxa_boo = FALSE,
   sum_n_taxa_col = NULL,
-  sum_n_taxa_group_by = NULL
+  sum_n_taxa_group_by = NULL,
+  clean = FALSE,
+  match_caps = FALSE
 )
 }
 \arguments{
@@ -50,6 +52,12 @@ Default = NULL (suggestion = N_TAXA)}
 \item{sum_n_taxa_group_by}{Column names for user data to use for grouping the
 data when summarizing the user data.  Suggestions are SAMPID and TAXA_ID.
 Default = NULL}
+
+\item{clean}{Should the taxa have leading and trailing white space removed.
+Non-braking spaces (e.g., from ITIS) also removed. Default = FALSE}
+
+\item{match_caps}{Should the matching be performed using ALL CAPS.
+Default = FALSE}
 }
 \value{
 A list with four elements.  The first (merge) is the user data frame
@@ -88,6 +96,13 @@ The parameter `taxaid_drop` is used to drop records that matched to a new
 name that should not be included in the results.  Examples include "999" or
 "DNI" (Do Not Include).  Default is NULL so no action is taken.  "NA"s are
 always removed.
+
+Optional parameter to `clean` the data of leading and trailing white
+space.   Default is FALSE (no action).  Not fully implemented.
+
+The optional parameter `match_caps` matches on all upper case (input and
+official lists).  The default  is FALSE and matches will be performed without
+any additional steps for case.  Not fully implemented.
 
 The taxa list and metadata file names will be added to the results as two
 new columns.

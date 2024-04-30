@@ -27,6 +27,13 @@
 #' "DNI" (Do Not Include).  Default is NULL so no action is taken.  "NA"s are
 #' always removed.
 #'
+#' Optional parameter to `clean` the data of leading and trailing white
+#' space.   Default is FALSE (no action).  Not fully implemented.
+#'
+#' The optional parameter `match_caps` matches on all upper case (input and
+#' official lists).  The default  is FALSE and matches will be performed without
+#' any additional steps for case.  Not fully implemented.
+#'
 #' The taxa list and metadata file names will be added to the results as two
 #' new columns.
 #'
@@ -53,6 +60,10 @@
 #' @param sum_n_taxa_group_by Column names for user data to use for grouping the
 #' data when summarizing the user data.  Suggestions are SAMPID and TAXA_ID.
 #' Default = NULL
+#' @param clean Should the taxa have leading and trailing white space removed.
+#' Non-braking spaces (e.g., from ITIS) also removed. Default = FALSE
+#' @param match_caps Should the matching be performed using ALL CAPS.
+#' Default = FALSE
 #'
 #' @return A list with four elements.  The first (merge) is the user data frame
 #' with additional columns from the official data appended to it.  Names from
@@ -158,7 +169,9 @@ taxa_translate <- function(df_user = NULL
                            , col_drop = NULL
                            , sum_n_taxa_boo = FALSE
                            , sum_n_taxa_col = NULL
-                           , sum_n_taxa_group_by = NULL) {
+                           , sum_n_taxa_group_by = NULL
+                           , clean = FALSE
+                           , match_caps = FALSE) {
 
   # DEBUG ----
   boo_DEBUG_tt <- FALSE
@@ -298,12 +311,35 @@ taxa_translate <- function(df_user = NULL
 
 
   # Merge ----
+  # 20240430, v1.0.2.9017, partial
+  # if (match_caps & clean) {
+  #   # Munge, CAPS
+  #   df_official[, taxaid_official_match] <- toupper(df_official[, taxaid_official_match])
+  #   df_user[, taxaid_user] <- toupper(df_user[, taxaid_user])
+  # }## IF ~ match_caps
+  #
+  # if (clean) {
+  #   # Munge, clean
+  #   df_user[, taxaid_user] <- trimws(df_user[, taxaid_user])
+  #   df_user[, taxaid_user] <- trimws(df_user[, taxaid_user]
+  #                                    , whitespace = "[\\h\\v]")
+  # }## IF ~ clean
+
+  ## MERGE
   df_merge <- merge(df_official, df_user
                     , by.x = taxaid_official_match
                     , by.y = taxaid_user
                     , all.y = TRUE
                     , suffixes = c("", "_USER")
                     , sort = FALSE)
+
+
+
+
+
+
+
+
 
   if (boo_DEBUG_tt == TRUE) {
     testthat::expect_equal(nrow(df_user), nrow(df_merge))

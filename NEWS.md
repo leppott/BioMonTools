@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-04-29 10:06:44.582835
+    #> Last Update: 2024-04-30 15:22:51.441091
 
 # Version History
+
+## Changes in version 1.0.2.9017
+
+- feature: Options added to taxa_translate, Issue \#111
+  - Match on ALL CAPS
+  - Clean input names
+  - Not fully implemented
 
 ## Changes in version 1.0.2.9016
 
@@ -17,7 +24,7 @@ NEWS
     - MetricNames.xlsx
     - metric_values.R
 - tests: Update fish metric names for new metrics
-- refactor: Add MN_IBI_Fish metrics to MetricNames.xlsx
+- refactor: Add MN_IBI_Fish metrics to MetricNames.xlsx, Issue \#92
 
 ## Changes in version 1.0.2.9015
 
@@ -28,48 +35,51 @@ NEWS
 
 ## Changes in version 1.0.2.9014
 
-- refactor: New index scoring regimes
+- refactor: New index scoring regimes, Issue \#92
   - MetricScoring.xlsx
   - AVERAGE_100_M10_R2 for MN_IBI_Bugs
   - AVERAGE_100_M10_R3 for MN_IBI_Fish
 
 ## Changes in version 1.0.2.9013
 
-- refactor: Modify scoring regime (AVERAGE_100_M10)
+- refactor: Modify scoring regime (AVERAGE_100_M10), Issue \#92
   - Round scaling to 2 decimals
   - Modify MetricScoring.xlsx
   - `metric.scores`
-- refactor: Add new scoring regime (CAT_0510) to `metric.scores`
-- fix: Update MN_IBI_Fish thresholds, MetricScoring.xlsx
+- refactor: Add new scoring regime (CAT_0510) to `metric.scores`, Issue
+  \#92
+- fix: Update MN_IBI_Fish thresholds, MetricScoring.xlsx, Issue \#92
 
 ## Changes in version 1.0.2.9012
 
-- refactor: Update MetricScoring.xlsx
+- refactor: Update MetricScoring.xlsx, Issue \#92
   - New scoring regime, AVERAGE_100_M10
   - Change MN_Bug_IBI scoring regime
-- refactor: Add new scoring regime calculation to `metric.scores`
+- refactor: Add new scoring regime calculation to `metric.scores` ,
+  Issue \#92
 
 ## Changes in version 1.0.2.9011
 
-- fix: Update MN IBI Fish thresholds in MetricScoring.xlsx
-- test: Update thresholds for extra digits in MetricScoring.xlsx
+- fix: Update MN IBI Fish thresholds in MetricScoring.xlsx, Issue \#92
+- test: Update thresholds for extra digits in MetricScoring.xlsx, Issue
+  \#101
   - Adjust from 11 to 13 digits for one index (WY)
 
 ## Changes in version 1.0.2.9010
 
-- fix: Update MN IBI Bugs thresholds in MetricScoring.xlsx
+- fix: Update MN IBI Bugs thresholds in MetricScoring.xlsx, Issue \#92
 
 ## Changes in version 1.0.2.9009
 
-- refactor: Update MN IBI Fish metrics in MetricScoring.xlsx
+- refactor: Update MN IBI Fish metrics in MetricScoring.xlsx, Issue \#92
 
 ## Changes in version 1.0.2.9008
 
-- refactor: Update MN IBI Fish metrics in MetricScoring.xlsx
+- refactor: Update MN IBI Fish metrics in MetricScoring.xlsx, Issue \#92
 
 ## Changes in version 1.0.2.9007
 
-- refactor: Update MN IBI Fish metrics in MetricScoring.xlsx
+- refactor: Update MN IBI Fish metrics in MetricScoring.xlsx, Issue \#92
 
 ## Changes in version 1.0.2.9006
 
