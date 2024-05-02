@@ -4293,11 +4293,23 @@ metric.values.fish <- function(myDF
                                                                   | BCG_ATTR == "2"
                                                                   | BCG_ATTR == "3")]
                                                         , na.rm = TRUE)
+                  , nt_BCG_att123native = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE &
+                                                                     (BCG_ATTR == "1"
+                                                                      | BCG_ATTR == "2"
+                                                                      | BCG_ATTR == "3")
+                                                                   & NATIVE == "NATIVE"]
+                                                     , na.rm = TRUE)
                   , nt_BCG2_att123b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                & (BCG_ATTR == "1"
                                                                   | BCG_ATTR == "2"
                                                                   | BCG_ATTR2 == "3_BETTER")]
                                                         , na.rm = TRUE)
+                 , nt_BCG2_att123bnative = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                              & (BCG_ATTR == "1"
+                                                                 | BCG_ATTR == "2"
+                                                                 | BCG_ATTR2 == "3_BETTER")
+                                                              & NATIVE == "NATIVE"]
+                                                       , na.rm = TRUE)
                  , nt_BCG_att1234 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                              & (BCG_ATTR == "1"
                                                               | BCG_ATTR == "2"
@@ -4310,6 +4322,13 @@ metric.values.fish <- function(myDF
                                                                         | BCG_ATTR == "3"
                                                                         | BCG_ATTR2 == "4_BETTER")]
                                                               , na.rm = TRUE)
+                 , nt_BCG2_att1234bnative = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                               & (BCG_ATTR == "1"
+                                                                  | BCG_ATTR == "2"
+                                                                  | BCG_ATTR == "3"
+                                                                  | BCG_ATTR2 == "4_BETTER")
+                                                               & NATIVE == "NATIVE"]
+                                                        , na.rm = TRUE)
                  , nt_BCG_att1236 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                              & (BCG_ATTR == "1"
                                                                | BCG_ATTR == "2"
@@ -4412,6 +4431,11 @@ metric.values.fish <- function(myDF
                                                        | BCG_ATTR == "2"
                                                        | BCG_ATTR == "3")]
                                                , na.rm = TRUE) / ni_total
+                  , pi_BCG_att123native = 100 * sum(N_TAXA[(BCG_ATTR == "1"
+                                                     | BCG_ATTR == "2"
+                                                     | BCG_ATTR == "3")
+                                                     & NATIVE == "NATIVE"]
+                                             , na.rm = TRUE) / ni_total
                   , pi_BCG_att1234 = 100 * sum(N_TAXA[(BCG_ATTR == "1"
                                                      | BCG_ATTR == "2"
                                                      | BCG_ATTR == "3"
@@ -4513,9 +4537,10 @@ metric.values.fish <- function(myDF
                   , pt_BCG_att12 = 100 * nt_BCG_att12 / nt_total
                   , pt_BCG_att123 = 100 * nt_BCG_att123 / nt_total
                   , pt_BCG2_att123b = 100 * nt_BCG2_att123b / nt_total
+                  , pt_BCG2_att123bnative = 100 * nt_BCG2_att123bnative / nt_total
                   , pt_BCG_att1234 = 100 * nt_BCG_att1234 / nt_total
                   , pt_BCG2_att1234b = 100 * nt_BCG2_att1234b / nt_total
-
+                  , pt_BCG2_att1234bnative = 100 * nt_BCG2_att1234bnative / nt_total
                   , pt_BCG_att1236 = 100 * nt_BCG_att1236 / nt_total
                   , pt_BCG_att1236b = 100 * nt_BCG_att1236b / nt_total
 
