@@ -18,6 +18,15 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9019
+
+* refactor: Update MetricNames.xlsx for Great Plains BCG
+
+## Changes in version 1.0.2.9018
+
+* refactor: Merge pull request 114
+    + Add metrics (bugs and fish) for Great Plains BCG
+
 ## Changes in version 1.0.2.9017
 
 * feature: Options added to taxa_translate, Issue #111

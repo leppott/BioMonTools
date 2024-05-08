@@ -4,9 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-04-30 15:22:51.441091
+    #> Last Update: 2024-05-08 10:51:30.201469
 
 # Version History
+
+## Changes in version 1.0.2.9019
+
+- refactor: Update MetricNames.xlsx for Great Plains BCG
+
+## Changes in version 1.0.2.9018
+
+- refactor: Merge pull request 114
+  - Add metrics (bugs and fish) for Great Plains BCG
 
 ## Changes in version 1.0.2.9017
 
