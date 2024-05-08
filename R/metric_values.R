@@ -1863,6 +1863,10 @@ metric.values.bugs <- function(myDF
                                                        , na.rm = TRUE) / ni_total
                                 , pi_Cheu =  100 * sum(N_TAXA[GENUS == "CHEUMATOPSYCHE"]
                                                        , na.rm = TRUE) / ni_total
+                                , pi_CheuSimHyalella =  100 * sum(N_TAXA[GENUS == "CHEUMATOPSYCHE"
+                                                                         | GENUS == "SIMULIUM"
+                                                                         | GENUS == "HYALELLA"]
+                                                                  , na.rm = TRUE) / ni_total
                                 , pi_Cirra = 100 * sum(N_TAXA[FAMILY == "CIRRATULIDAE"]
                                                        , na.rm = TRUE) / ni_total
                                 , pi_Clite = 100 * sum(N_TAXA[CLASS == "CLITELLATA"]
@@ -1998,6 +2002,11 @@ metric.values.bugs <- function(myDF
                                                      , na.rm = TRUE) / ni_total
                                 , pi_Oligo = 100 * sum(N_TAXA[CLASS == "OLIGOCHAETA"
                                                               | SUBCLASS == "OLIGOCHAETA"]
+                                                       , na.rm = TRUE) / ni_total
+                                , pi_OligoChiroHydro = 100 * sum(N_TAXA[CLASS == "OLIGOCHAETA"
+                                                              | SUBCLASS == "OLIGOCHAETA"
+                                                              | FAMILY == "CHIRONOMIDAE"
+                                                              | FAMILY == "HYDROPSYCHIDAE"]
                                                        , na.rm = TRUE) / ni_total
                                 , pi_Orbin = 100 * sum(N_TAXA[FAMILY == "ORBINIIDAE"]
                                                        , na.rm = TRUE) / ni_total
@@ -4136,6 +4145,7 @@ metric.values.fish <- function(myDF
                        , nt_natinsctCypr = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" &
                                                                       TROPHIC_IS == TRUE & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
                        , nt_natrbs = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & TYPE == "RBS"], na.rm = TRUE)
+                       , nt_Petro  = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "PETROMYZONTIDAE"], na.rm = TRUE)
                        , nt_Salm = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "SALMONIDAE"], na.rm = TRUE)
                        , nt_connect = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CONNECTIVITY == TRUE], na.rm = TRUE)
                        , nt_scc = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & SCC == TRUE], na.rm = TRUE)
@@ -4515,7 +4525,6 @@ metric.values.fish <- function(myDF
                   , pt_BCG2_att123b = 100 * nt_BCG2_att123b / nt_total
                   , pt_BCG_att1234 = 100 * nt_BCG_att1234 / nt_total
                   , pt_BCG2_att1234b = 100 * nt_BCG2_att1234b / nt_total
-
                   , pt_BCG_att1236 = 100 * nt_BCG_att1236 / nt_total
                   , pt_BCG_att1236b = 100 * nt_BCG_att1236b / nt_total
 
@@ -4723,6 +4732,11 @@ metric.values.fish <- function(myDF
 
                  # Great Plains BCG 04/25/2024
                  , x_BCG_Mean = mean(TOLVAL2, na.rm = TRUE)
+                 , nt_PupKilli = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & (TAXAID == "CYPRINODON RUBROFLUVIATILIS" #RED RIVER PUPFISH
+                                                              | TAXAID == "FUNDULUS KANSAE" #NORTHERN PLAINS KILLIFISH
+                                                              | TAXAID == "FUNDULUS ZEBRINUS")] #PLAINS KILLIFISH
+                                                    , na.rm = TRUE)
 
                        #
                        # name changes ####
