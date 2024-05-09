@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9020
+
+* refactor: Update pi_Cheu text in MetricNames.xlsx
+
 ## Changes in version 1.0.2.9019
 
 * refactor: Update MetricNames.xlsx for Great Plains BCG

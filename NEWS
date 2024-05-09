@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-05-08 10:51:30.201469
+    #> Last Update: 2024-05-09 13:24:33.901145
 
 # Version History
+
+## Changes in version 1.0.2.9020
+
+- refactor: Update pi_Cheu text in MetricNames.xlsx
 
 ## Changes in version 1.0.2.9019
 
