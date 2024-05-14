@@ -55,6 +55,14 @@ if(!require(remotes)){install.packages("remotes")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
 ```
 
+If having issues with install (e.g., 'cannot open URL') it could be a latency 
+issue with GitHub.  
+
+Use the code below before retrying the above install commands.
+
+```{r, eval=FALSE}
+options(timeout=400)
+```
 
 # Status
 In development. 

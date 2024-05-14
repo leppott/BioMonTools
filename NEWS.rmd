@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9021
+
+* refactor: Update MetricScoring.xlsx for MN_Fish_IBI, Issue #92
+* refactor: Update MetricNames.xlsx for MN_Fish_IBI, Issue #92
+* docs: Edit README for timeout issue
+
 ## Changes in version 1.0.2.9020
 
 * refactor: Update pi_Cheu text in MetricNames.xlsx

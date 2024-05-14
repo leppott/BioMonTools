@@ -3,7 +3,7 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2022-01-21 15:00:16
+    #> Last Update: 2024-05-13 19:40:31.237479
 
 # BioMonTools <img src="man/figures/logo.png" align="right" height="139" />
 
@@ -11,8 +11,7 @@ Functions to aid the data analysis of bioassessment and biomonitoring
 data. Suite of functions and tools for metric calculation and scoring
 for mult-metric indices and related data manipulation.
 
-# Badges
-
+<!-- badges: start --> \# Badges
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/leppott/BioMonTools/graphs/commit-activity)
 [![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![GitHub
@@ -20,7 +19,7 @@ license](https://img.shields.io/github/license/leppott/BioMonTools.svg)](https:/
 
 [![CodeFactor](https://www.codefactor.io/repository/github/leppott/BioMonTools/badge)](https://www.codefactor.io/repository/github/leppott/BioMonTools)
 [![codecov](https://codecov.io/gh/leppott/BioMonTools/branch/master/graph/badge.svg)](https://codecov.io/gh/leppott/BioMonTools)
-[![R-CMD-check](https://github.com/leppott/BioMonTools/workflows/R-CMD-check/badge.svg)](https://github.com/leppott/BioMonTools/actions)
+[![R-CMD-check](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml)
 
 [![GitHub
 issues](https://img.shields.io/github/issues/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/issues/)
@@ -29,6 +28,7 @@ issues](https://img.shields.io/github/issues/leppott/BioMonTools.svg)](https://G
 release](https://img.shields.io/github/release/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
 [![Github all
 releases](https://img.shields.io/github/downloads/leppott/BioMonTools/total.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
+<!-- badges: end -->
 
 # Installation
 
@@ -48,6 +48,15 @@ documentation (recommended) then use this version of the code.
 ``` r
 if(!require(remotes)){install.packages("remotes")}  #install if needed
 install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+```
+
+If having issues with install (e.g., ‘cannot open URL’) it could be a
+latency issue with GitHub.
+
+Use the code below before retrying the above install commands.
+
+``` r
+options(timeout=400)
 ```
 
 # Status
@@ -73,11 +82,11 @@ Vignette and install guide updates are planned for the future.
 
 # Planned Updates
 
--   None at this time.
+- None at this time.
 
 # Future Possible Updates
 
--   Periphyton metrics.
--   Coral and Fish metrics (Puerto Rico and US Virgin Islands)
--   TaxaList Check
--   Map taxon observations
+- Periphyton metrics.
+- Coral and Fish metrics (Puerto Rico and US Virgin Islands)
+- TaxaList Check
+- Map taxon observations
