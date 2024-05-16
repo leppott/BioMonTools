@@ -3767,7 +3767,7 @@ metric.values.fish <- function(myDF
     myDF[, "TROPHIC"] <- NA
   }## IF ~ TROPHIC
   myDF[, "TROPHIC_GE"] <- grepl("GE", myDF[, "TROPHIC"]) # Generalist
-  myDF[, "TROPHIC_HB"] <- grepl("HB", myDF[, "TROPHIC"]) # Herbivore
+  myDF[, "TROPHIC_HB"] <- grepl("HB|HE", myDF[, "TROPHIC"]) # Herbivore
   myDF[, "TROPHIC_IS"] <- grepl("IS", myDF[, "TROPHIC"]) # Insectivore
   myDF[, "TROPHIC_IV"] <- grepl("IV", myDF[, "TROPHIC"]) # Invertivore
   myDF[, "TROPHIC_OM"] <- grepl("OM", myDF[, "TROPHIC"]) # Omnivore
@@ -3775,6 +3775,10 @@ metric.values.fish <- function(myDF
   myDF[, "TROPHIC_DE"] <- grepl("DE", myDF[, "TROPHIC"]) # Detritivore
   myDF[, "TROPHIC_PL"] <- grepl("PL", myDF[, "TROPHIC"]) # Planktivore
   myDF[, "TROPHIC_PI"] <- grepl("PI", myDF[, "TROPHIC"]) # Piscivore
+  # MN
+  myDF[, "TROPHIC_BI_noT"] <- grepl("BI-T", myDF[, "TROPHIC"]) # Insectivore, no Tolerant
+  myDF[, "TROPHIC_IS_noT"] <- grepl("IN-T", myDF[, "TROPHIC"]) # Insectivore, no Tolerant
+
 
   if (!"THERMAL_INDICATOR" %in% names(myDF)) {
     myDF[, "THERMAL_INDICATOR"] <- NA
