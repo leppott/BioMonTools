@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-05-15 21:07:03.726719
+    #> Last Update: 2024-05-22 12:40:28.839985
 
 # Version History
+
+## Changes in version 1.0.2.9023
+
+- refactor: Update MetricScoring.xlsx for MN_Bug_IBI, Issue \#92
 
 ## Changes in version 1.0.2.9022
 
