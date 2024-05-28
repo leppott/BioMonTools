@@ -16,8 +16,7 @@ taxa_translate(
   sum_n_taxa_boo = FALSE,
   sum_n_taxa_col = NULL,
   sum_n_taxa_group_by = NULL,
-  clean = FALSE,
-  match_caps = FALSE
+  trim_ws = FALSE
 )
 }
 \arguments{
@@ -53,11 +52,8 @@ Default = NULL (suggestion = N_TAXA)}
 data when summarizing the user data.  Suggestions are SAMPID and TAXA_ID.
 Default = NULL}
 
-\item{clean}{Should the taxa have leading and trailing white space removed.
+\item{trim_ws}{Should the taxa have leading and trailing white space removed.
 Non-braking spaces (e.g., from ITIS) also removed. Default = FALSE}
-
-\item{match_caps}{Should the matching be performed using ALL CAPS.
-Default = FALSE}
 }
 \value{
 A list with four elements.  The first (merge) is the user data frame
@@ -97,12 +93,10 @@ name that should not be included in the results.  Examples include "999" or
 "DNI" (Do Not Include).  Default is NULL so no action is taken.  "NA"s are
 always removed.
 
-Optional parameter to `clean` the data of leading and trailing white
-space.   Default is FALSE (no action).  Not fully implemented.
-
-The optional parameter `match_caps` matches on all upper case (input and
-official lists).  The default  is FALSE and matches will be performed without
-any additional steps for case.  Not fully implemented.
+Optional parameter `trim_ws` is inused to invoke the function `trimws` to
+remove from the taxa matching field any leading and trailing white space.
+Default is FALSE (no action).  All horizontal and vertical white space
+characters are removed.  See ?trimws for additional information.
 
 The taxa list and metadata file names will be added to the results as two
 new columns.

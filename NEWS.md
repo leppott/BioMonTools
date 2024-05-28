@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-05-28 12:56:43.166859
+    #> Last Update: 2024-05-28 15:37:51.773636
 
 # Version History
+
+## Changes in version 1.0.2.9026
+
+- refactor: Remove match_caps parameter from taxa_translate function,
+  Issue \#111
+- tests: Remove taxa_translate match_caps test, Issue \#111
 
 ## Changes in version 1.0.2.9025
 

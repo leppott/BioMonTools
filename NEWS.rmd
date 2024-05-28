@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9026
+
+* refactor: Remove match_caps parameter from taxa_translate function, Issue #111
+* tests: Remove taxa_translate match_caps test, Issue #111
+
 ## Changes in version 1.0.2.9025
 
 * tests: Add tests for removing white space, Issue #111
