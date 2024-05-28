@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-05-28 15:37:51.773636
+    #> Last Update: 2024-05-28 17:03:13.610274
 
 # Version History
+
+## Changes in version 1.0.2.9027
+
+- refactor: Update MetricNames.xlsx to mark bug metrics to use for Large
+  Rare metric calculations
 
 ## Changes in version 1.0.2.9026
 

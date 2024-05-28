@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9027
+
+* refactor: Update MetricNames.xlsx to mark bug metrics to use for Large Rare
+metric calculations
+
 ## Changes in version 1.0.2.9026
 
 * refactor: Remove match_caps parameter from taxa_translate function, Issue #111
