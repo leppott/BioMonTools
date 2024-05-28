@@ -3776,8 +3776,9 @@ metric.values.fish <- function(myDF
   myDF[, "TROPHIC_PL"] <- grepl("PL", myDF[, "TROPHIC"]) # Planktivore
   myDF[, "TROPHIC_PI"] <- grepl("PI", myDF[, "TROPHIC"]) # Piscivore
   # MN
-  myDF[, "TROPHIC_BI_noT"] <- grepl("BI-T", myDF[, "TROPHIC"]) # Insectivore, no Tolerant
+  myDF[, "TROPHIC_BI_noT"] <- grepl("BI-T", myDF[, "TROPHIC"]) # Benthic Insectivore, no Tolerant
   myDF[, "TROPHIC_IS_noT"] <- grepl("IN-T", myDF[, "TROPHIC"]) # Insectivore, no Tolerant
+  myDF[, "TROPHIC_IS_CYP"] <- grepl("INCYP", myDF[, "TROPHIC"]) # Insectivorous Cyprinidae
 
 
   if (!"THERMAL_INDICATOR" %in% names(myDF)) {
@@ -3792,19 +3793,35 @@ metric.values.fish <- function(myDF
   if (!"REPRODUCTION" %in% names(myDF)) {
     myDF[, "REPRODUCTION"] <- NA
   }## IF ~ REPRODUCTION
-  myDF[, "REPRO_BCAST"]     <- grepl("BROADCASTER", myDF[,"REPRODUCTION"])
-  myDF[, "REPRO_NS"]     <- grepl("SIMPLE NEST", myDF[,"REPRODUCTION"])
-  myDF[, "REPRO_NC"]     <- grepl("COMPLEX NEST", myDF[,"REPRODUCTION"])
-  myDF[, "REPRO_BEAR"]     <- grepl("BEARER", myDF[,"REPRODUCTION"])
-  myDF[, "REPRO_MIG"]     <- grepl("MIGRATORY", myDF[,"REPRODUCTION"])
-  myDF[, "REPRO_LITH"]     <- grepl("LITHOPHIL", myDF[,"REPRODUCTION"])
+  myDF[, "REPRO_BCAST"] <- grepl("BROADCASTER", myDF[,"REPRODUCTION"])
+  myDF[, "REPRO_NS"]    <- grepl("SIMPLE NEST", myDF[,"REPRODUCTION"])
+  myDF[, "REPRO_NC"]    <- grepl("COMPLEX NEST", myDF[,"REPRODUCTION"])
+  myDF[, "REPRO_BEAR"]  <- grepl("BEARER", myDF[,"REPRODUCTION"])
+  myDF[, "REPRO_MIG"]   <- grepl("MIGRATORY", myDF[,"REPRODUCTION"])
+  myDF[, "REPRO_LITH"]  <- grepl("LITHOPHIL", myDF[,"REPRODUCTION"])
+  # MN
+  myDF[, "REPRO_MA2"]     <- grepl("MA<2", myDF[,"REPRODUCTION"]) # Mature Age < 2
+  myDF[, "REPRO_MA3_noT"] <- grepl("MA>3-T", myDF[,"REPRODUCTION"]) # Mature Age > 3, no Tolerant
+  myDF[, "REPRO_NE"]      <- grepl("NE", myDF[,"REPRODUCTION"]) # NonLithophilic Nester
+  myDF[, "REPRO_SER"]     <- grepl("SER", myDF[,"REPRODUCTION"]) # Serial Spawner
+  myDF[, "REPRO_SILI"]    <- grepl("SILI", myDF[,"REPRODUCTION"]) # Simple Lithophil
 
   if (!"HABITAT" %in% names(myDF)) {
     myDF[, "HABITAT"] <- NA
   }## IF ~ HABITAT
-  myDF[, "HABITAT_B"]     <- grepl("B", myDF[,"HABITAT"])
-  myDF[, "HABITAT_W"]     <- grepl("W", myDF[,"HABITAT"])
-  myDF[, "HABITAT_F"]     <- grepl("F", myDF[,"HABITAT"]) # Fluvial
+  myDF[, "HABITAT_B"] <- grepl("B", myDF[,"HABITAT"])
+  myDF[, "HABITAT_F"] <- grepl("F", myDF[,"HABITAT"]) # Fluvial
+
+  # CONFLICT WITH "CW", "CWN", "HW-T", and "WE-T"
+  myDF[, "HABITAT_W"] <- grepl("^W$", myDF[,"HABITAT"]) # W only by itself
+  # not sure
+  myDF[, "HABITAT_CW"] <- grepl("CW[^N]", myDF[,"HABITAT"]) # Coldwater, CW but not CWN
+
+  # MN
+  myDF[, "HABITAT_CWN"] <- grepl("CWN", myDF[,"HABITAT"]) # Coldwater, Native
+  myDF[, "HABITAT_HW_noT"] <- grepl("HW-T", myDF[,"HABITAT"]) # Headwater Specialist, no Tolerant
+  myDF[, "HABITAT_WE_noT"] <- grepl("WE-T", myDF[,"HABITAT"]) # Wetland, no Tolerant
+
 
   # exact matches only
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])

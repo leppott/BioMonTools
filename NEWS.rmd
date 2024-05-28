@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9024
+
+* refactor: Update for MN_Fish_IBI, Issue #92
+    + MetricNames.xlsx 
+    + metric_values.R
+        - Updates to data munging prior to metric calculation
+
 ## Changes in version 1.0.2.9023
 
 * refactor: Update MetricScoring.xlsx for MN_Bug_IBI, Issue #92
