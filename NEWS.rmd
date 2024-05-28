@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9025
+
+* tests: Add tests for removing white space, Issue #111
+* feature: Update taxa_translate with clean parameters, Issue #111
+
 ## Changes in version 1.0.2.9024
 
 * refactor: Update for MN_Fish_IBI, Issue #92

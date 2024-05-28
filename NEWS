@@ -4,9 +4,21 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-05-22 12:40:28.839985
+    #> Last Update: 2024-05-28 12:56:43.166859
 
 # Version History
+
+## Changes in version 1.0.2.9025
+
+- tests: Add tests for removing white space, Issue \#111
+- feature: Update taxa_translate with clean parameters, Issue \#111
+
+## Changes in version 1.0.2.9024
+
+- refactor: Update for MN_Fish_IBI, Issue \#92
+  - MetricNames.xlsx
+  - metric_values.R
+    - Updates to data munging prior to metric calculation
 
 ## Changes in version 1.0.2.9023
 

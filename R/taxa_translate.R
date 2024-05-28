@@ -310,22 +310,23 @@ taxa_translate <- function(df_user = NULL
 
 
 
-  # Merge ----
+  # Match_caps, Clean ----
   # 20240430, v1.0.2.9017, partial
-  # if (match_caps & clean) {
-  #   # Munge, CAPS
-  #   df_official[, taxaid_official_match] <- toupper(df_official[, taxaid_official_match])
-  #   df_user[, taxaid_user] <- toupper(df_user[, taxaid_user])
-  # }## IF ~ match_caps
-  #
-  # if (clean) {
-  #   # Munge, clean
-  #   df_user[, taxaid_user] <- trimws(df_user[, taxaid_user])
-  #   df_user[, taxaid_user] <- trimws(df_user[, taxaid_user]
-  #                                    , whitespace = "[\\h\\v]")
-  # }## IF ~ clean
+  # 20240528, v1.0.2.9025
+  if (match_caps & clean) {
+    # Munge, CAPS
+    df_official[, taxaid_official_match] <- toupper(df_official[, taxaid_official_match])
+    df_user[, taxaid_user] <- toupper(df_user[, taxaid_user])
+  }## IF ~ match_caps
 
-  ## MERGE
+  if (clean) {
+    # Munge, clean
+    df_user[, taxaid_user] <- trimws(df_user[, taxaid_user])
+    df_user[, taxaid_user] <- trimws(df_user[, taxaid_user]
+                                     , whitespace = "[\\h\\v]")
+  }## IF ~ clean
+
+  # MERGE----
   df_merge <- merge(df_official, df_user
                     , by.x = taxaid_official_match
                     , by.y = taxaid_user

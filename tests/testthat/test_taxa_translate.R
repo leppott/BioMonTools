@@ -112,3 +112,142 @@ test_that("taxa_translate_multistage", {
   testthat::expect_identical(ntaxa_calc, ntaxa_qc)
 
 })## Test ~ taxa_translate_multistage
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+test_that("taxa_translate_clean_basic", {
+  # "clean" white space and non-breaking spaces (Unicode "\u00A0")
+  # see ?trimws
+  demo_txt <- c("x", "x ", "x\u00A0")
+  remove_ws_allcombos <- trimws(x, whitespace = "[\\h\\v]") #try all combos
+  # test
+  testthat::expect_identical(unique(remove_ws_allcombos), "x")
+
+})## TEST ~ taxa_translate_clean_basic
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+test_that("taxa_translate_clean_function", {
+  # ensure "clean" parameter works
+  ## Calc 1 ----
+  # use example code
+  df_user1 <- data_benthos_PacNW
+  fn_official <- file.path(system.file("extdata", package = "BioMonTools")
+                           , "taxa_official"
+                           , "ORWA_TAXATRANSLATOR_20221219.csv")
+  df_official <- read.csv(fn_official)
+  fn_official_metadata <- file.path(system.file("extdata"
+                                                , package = "BioMonTools")
+                                    , "taxa_official"
+                                    , "ORWA_ATTRIBUTES_METADATA_20221117.csv")
+  df_official_metadata <- read.csv(fn_official_metadata)
+  taxaid_user <- "TaxaID"
+  taxaid_official_match <- "Taxon_orig"
+  taxaid_official_project <- "OTU_MTTI"
+  taxaid_drop <- "DNI"
+  col_drop <- c("Taxon_v2", "OTU_BCG_MariNW") # non desired ID cols in Official
+  sum_n_taxa_boo <- TRUE
+  sum_n_taxa_col <- "N_TAXA"
+  sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
+  ## Run Function
+  taxatrans1 <- taxa_translate(df_user1
+                              , df_official
+                              , df_official_metadata
+                              , taxaid_user
+                              , taxaid_official_match
+                              , taxaid_official_project
+                              , taxaid_drop
+                              , col_drop
+                              , sum_n_taxa_boo
+                              , sum_n_taxa_col
+                              , sum_n_taxa_group_by)
+  ## View Results
+  taxatrans1$nonmatch
+
+  ## Calc 2----
+  # data with spaces
+  df_user2 <- df_user1
+  df_user2[, taxaid_user] <- paste0(df_user2[, taxaid_user], " ")
+  taxatrans2 <- taxa_translate(df_user2
+                              , df_official
+                              , df_official_metadata
+                              , taxaid_user
+                              , taxaid_official_match
+                              , taxaid_official_project
+                              , taxaid_drop
+                              , col_drop
+                              , sum_n_taxa_boo
+                              , sum_n_taxa_col
+                              , sum_n_taxa_group_by
+                              , clean = TRUE)
+  ## View Results
+  taxatrans2$nonmatch
+
+  ## Test ----
+  testthat::expect_identical(taxatrans2$nonmatch, taxatrans1$nonmatch)
+
+})## TEST ~ taxa_translate_clean_function
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+test_that("taxa_translate_match_CAPS", {
+  # ensure "clean" parameter works
+  ## Calc 1 ----
+  # use example code
+  df_user1 <- data_benthos_PacNW
+  fn_official <- file.path(system.file("extdata", package = "BioMonTools")
+                           , "taxa_official"
+                           , "ORWA_TAXATRANSLATOR_20221219.csv")
+  df_official <- read.csv(fn_official)
+  fn_official_metadata <- file.path(system.file("extdata"
+                                                , package = "BioMonTools")
+                                    , "taxa_official"
+                                    , "ORWA_ATTRIBUTES_METADATA_20221117.csv")
+  df_official_metadata <- read.csv(fn_official_metadata)
+  taxaid_user <- "TaxaID"
+  taxaid_official_match <- "Taxon_orig"
+  taxaid_official_project <- "OTU_MTTI"
+  taxaid_drop <- "DNI"
+  col_drop <- c("Taxon_v2", "OTU_BCG_MariNW") # non desired ID cols in Official
+  sum_n_taxa_boo <- TRUE
+  sum_n_taxa_col <- "N_TAXA"
+  sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
+  ## Run Function
+  taxatrans1 <- taxa_translate(df_user1
+                               , df_official
+                               , df_official_metadata
+                               , taxaid_user
+                               , taxaid_official_match
+                               , taxaid_official_project
+                               , taxaid_drop
+                               , col_drop
+                               , sum_n_taxa_boo
+                               , sum_n_taxa_col
+                               , sum_n_taxa_group_by)
+  ## View Results
+  taxatrans1$nonmatch
+
+  ## Calc 3----
+  # data with spaces
+  df_user3 <- df_user1
+  df_user3[, taxaid_user] <- toupper(df_user3[, taxaid_user])
+  taxatrans2 <- taxa_translate(df_user3
+                               , df_official
+                               , df_official_metadata
+                               , taxaid_user
+                               , taxaid_official_match
+                               , taxaid_official_project
+                               , taxaid_drop
+                               , col_drop
+                               , sum_n_taxa_boo
+                               , sum_n_taxa_col
+                               , sum_n_taxa_group_by
+                               , clean = TRUE)
+  ## View Results
+  taxatrans2$nonmatch
+
+  ## Test ----
+  testthat::expect_identical(taxatrans2$nonmatch, taxatrans1$nonmatch)
+
+})## TEST ~ taxa_translate_clean_function
