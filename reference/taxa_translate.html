@@ -18,7 +18,7 @@ name list."><meta property="og:image" content="/logo.png"><!-- mathjax --><scrip
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9025</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9026</span>
       </span>
     </div>
 
@@ -83,8 +83,7 @@ name list.</p>
 <span>  sum_n_taxa_boo <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  sum_n_taxa_col <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  sum_n_taxa_group_by <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  clean <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  match_caps <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  trim_ws <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -144,14 +143,9 @@ data when summarizing the user data.  Suggestions are SAMPID and TAXA_ID.
 Default = NULL</p></dd>
 
 
-<dt>clean</dt>
+<dt>trim_ws</dt>
 <dd><p>Should the taxa have leading and trailing white space removed.
 Non-braking spaces (e.g., from ITIS) also removed. Default = FALSE</p></dd>
-
-
-<dt>match_caps</dt>
-<dd><p>Should the matching be performed using ALL CAPS.
-Default = FALSE</p></dd>
 
 </dl></div>
     <div id="value">
@@ -185,11 +179,10 @@ using one field over another and is more generic.</p>
 name that should not be included in the results.  Examples include "999" or
 "DNI" (Do Not Include).  Default is NULL so no action is taken.  "NA"s are
 always removed.</p>
-<p>Optional parameter to `clean` the data of leading and trailing white
-space.   Default is FALSE (no action).  Not fully implemented.</p>
-<p>The optional parameter `match_caps` matches on all upper case (input and
-official lists).  The default  is FALSE and matches will be performed without
-any additional steps for case.  Not fully implemented.</p>
+<p>Optional parameter `trim_ws` is inused to invoke the function `trimws` to
+remove from the taxa matching field any leading and trailing white space.
+Default is FALSE (no action).  All horizontal and vertical white space
+characters are removed.  See ?trimws for additional information.</p>
 <p>The taxa list and metadata file names will be added to the results as two
 new columns.</p>
 <p>Another output is the unique taxa with old and new names.</p>
