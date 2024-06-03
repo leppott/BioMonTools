@@ -1267,7 +1267,20 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
 
-  # match, any
+
+
+  # Remove white space
+  myDF[, "HABIT"] <- gsub(" ","", myDF[, "HABIT"])
+  myDF[, "FFG"] <- gsub(" ","", myDF[, "FFG"])
+  myDF[, "LIFE_CYCLE"] <- gsub(" ","", myDF[, "LIFE_CYCLE"])
+  myDF[, "FFG2"] <- gsub(" ","", myDF[, "FFG2"])
+  myDF[, "THERMAL_INDICATOR"] <- gsub(" ","", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "HABSTRUCT"] <- gsub(" ","", myDF[, "HABSTRUCT"])
+  myDF[, "ELEVATION_ATTR"] <- gsub(" ","", myDF[, "ELEVATION_ATTR"])
+  myDF[, "GRADIENT_ATTR"] <- gsub(" ","", myDF[, "GRADIENT_ATTR"])
+  myDF[, "WSAREA_ATTR"] <- gsub(" ","", myDF[, "WSAREA_ATTR"])
+  # code new columns
+  ## match, any
   myDF[, "HABIT_BU"]     <- grepl("BU", myDF[, "HABIT"])
   myDF[, "HABIT_CB"]     <- grepl("CB", myDF[, "HABIT"])
   myDF[, "HABIT_CN"]     <- grepl("CN", myDF[, "HABIT"])
@@ -1298,7 +1311,7 @@ metric.values.bugs <- function(myDF
   myDF[, "HS_NF"]        <- grepl("NF", myDF[, "HABSTRUCT"])
   myDF[, "HS_RM"]        <- grepl("RM", myDF[, "HABSTRUCT"])
   myDF[, "HS_SG"]        <- grepl("SG", myDF[, "HABSTRUCT"])
-  # match, exact only
+  ## match, exact only
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"]) |
                                   myDF[, "THERMAL_INDICATOR"] == ""
   myDF[, "HABITAT_BRAC"]   <- "BRAC" == myDF[, "HABITAT"]
@@ -3541,6 +3554,10 @@ metric.values.fish <- function(myDF
     WSAREA_L <- WSAREA_XL <- REPRO_BCAST <- REPRO_NS <- REPRO_NC <-
     REPRO_BEAR <- REPRO_MIG <- HABITAT_B <- HABITAT_W <- nt_habitat_b <-
     nt_habitat_w <- NULL
+  nt_natcoldwater <- nt_serialspawner <- nt_simplelithophil <- nt_tv_sens <-
+    nt_tv_senscoldwater <- nt_tv_toler <- nt_tv_vtoler <- nt_beninsct_notoler <-
+    pt_gen <- nt_gen <- nt_insectivore_notoler <- nt_darterscultpinsucker <-
+    nt_pioneer <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -3763,36 +3780,51 @@ metric.values.fish <- function(myDF
   # each will be TRUE or FALSE
   # finds any match so "GE, IV" is both "GE" and "IV"
 
-  if (!"TROPHIC" %in% names(myDF)) {
-    myDF[, "TROPHIC"] <- NA
-  }## IF ~ TROPHIC
-  myDF[, "TROPHIC_GE"] <- grepl("GE", myDF[, "TROPHIC"]) # Generalist
-  myDF[, "TROPHIC_HB"] <- grepl("HB|HE", myDF[, "TROPHIC"]) # Herbivore
-  myDF[, "TROPHIC_IS"] <- grepl("IS", myDF[, "TROPHIC"]) # Insectivore
-  myDF[, "TROPHIC_IV"] <- grepl("IV", myDF[, "TROPHIC"]) # Invertivore
-  myDF[, "TROPHIC_OM"] <- grepl("OM", myDF[, "TROPHIC"]) # Omnivore
-  myDF[, "TROPHIC_TC"] <- grepl("TC", myDF[, "TROPHIC"]) # Top Carnivore
-  myDF[, "TROPHIC_DE"] <- grepl("DE", myDF[, "TROPHIC"]) # Detritivore
-  myDF[, "TROPHIC_PL"] <- grepl("PL", myDF[, "TROPHIC"]) # Planktivore
-  myDF[, "TROPHIC_PI"] <- grepl("PI", myDF[, "TROPHIC"]) # Piscivore
+
+  if (!"ELEVATION_ATTR" %in% names(myDF)) {
+    myDF[, "ELEVATION_ATTR"] <- NA
+  }## IF ~ ELEVATION_ATTR
+  # Remove white space
+  myDF[, "ELEVATION_ATTR"] <- gsub(" ", "", myDF[, "ELEVATION_ATTR"])
+  # code new columns
+  myDF[, "ELEVATION_LOW"]  <- "LOW" == myDF[, "ELEVATION_ATTR"]
+  myDF[, "ELEVATION_HIGH"] <- "HIGH" == myDF[, "ELEVATION_ATTR"]
+
+
+  if (!"GRADIENT_ATTR" %in% names(myDF)) {
+    myDF[, "GRADIENT_ATTR"] <- NA
+  }## IF ~ GRADIENT_ATTR
+  # Remove white space
+  myDF[, "GRADIENT_ATTR"] <- gsub(" ", "", myDF[, "GRADIENT_ATTR"])
+  # code new columns
+  myDF[, "GRADIENT_LOW"]   <- "LOW" == myDF[, "GRADIENT_ATTR"]
+  myDF[, "GRADIENT_MOD"]   <- "MOD" == myDF[, "GRADIENT_ATTR"]
+  myDF[, "GRADIENT_HIGH"]  <- "HIGH" == myDF[, "GRADIENT_ATTR"]
+
+
+  if (!"HABITAT" %in% names(myDF)) {
+    myDF[, "HABITAT"] <- NA
+  }## IF ~ HABITAT
+  # Remove white space
+  myDF[, "HABITAT"] <- gsub(" ", "", myDF[, "HABITAT"])
+  # code new columns
+  myDF[, "HABITAT_B"] <- grepl("B", myDF[,"HABITAT"])
+  myDF[, "HABITAT_F"] <- grepl("F", myDF[,"HABITAT"]) # Fluvial
+  # W (MOD b/c of MN CW and CWN)
+  myDF[, "HABITAT_W"] <- grepl("^W$|^W,|,W$|,W,", myDF[,"HABITAT"])
   # MN
-  myDF[, "TROPHIC_BI_noT"] <- grepl("BI-T", myDF[, "TROPHIC"]) # Benthic Insectivore, no Tolerant
-  myDF[, "TROPHIC_IS_noT"] <- grepl("IN-T", myDF[, "TROPHIC"]) # Insectivore, no Tolerant
-  myDF[, "TROPHIC_IS_CYP"] <- grepl("INCYP", myDF[, "TROPHIC"]) # Insectivorous Cyprinidae
+  myDF[, "HABITAT_CW"] <- grepl("^CW$|^CW,|CW$|,CW,", myDF[,"HABITAT"]) # CW
+  myDF[, "HABITAT_CWN"] <- grepl("CWN", myDF[,"HABITAT"]) # Coldwater, Native
+  myDF[, "HABITAT_HW_noT"] <- grepl("HW-T", myDF[,"HABITAT"]) # Headwater Specialist, no Tolerant
+  myDF[, "HABITAT_WE_noT"] <- grepl("WE-T", myDF[,"HABITAT"]) # Wetland, no Tolerant
 
-
-  if (!"THERMAL_INDICATOR" %in% names(myDF)) {
-    myDF[, "THERMAL_INDICATOR"] <- NA
-  }## IF ~ THERMAL_INDICATOR
-  myDF[, "TI_CORECOLD"] <- grepl("COREC", myDF[,"THERMAL_INDICATOR"])
-  myDF[, "TI_COLD"]     <- grepl("COLD", myDF[,"THERMAL_INDICATOR"])
-  myDF[, "TI_COOL"]     <- grepl("COOL", myDF[,"THERMAL_INDICATOR"])
-  myDF[, "TI_WARM"]     <- grepl("WARM", myDF[,"THERMAL_INDICATOR"])
-  myDF[, "TI_EURY"]     <- grepl("EURYTHERMAL", myDF[,"THERMAL_INDICATOR"])
 
   if (!"REPRODUCTION" %in% names(myDF)) {
     myDF[, "REPRODUCTION"] <- NA
   }## IF ~ REPRODUCTION
+  # Remove white space
+  myDF[, "REPRODUCTION"] <- gsub(" ", "", myDF[, "REPRODUCTION"])
+  # code new columns
   myDF[, "REPRO_BCAST"] <- grepl("BROADCASTER", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_NS"]    <- grepl("SIMPLE NEST", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_NC"]    <- grepl("COMPLEX NEST", myDF[,"REPRODUCTION"])
@@ -3806,46 +3838,94 @@ metric.values.fish <- function(myDF
   myDF[, "REPRO_SER"]     <- grepl("SER", myDF[,"REPRODUCTION"]) # Serial Spawner
   myDF[, "REPRO_SILI"]    <- grepl("SILI", myDF[,"REPRODUCTION"]) # Simple Lithophil
 
-  if (!"HABITAT" %in% names(myDF)) {
-    myDF[, "HABITAT"] <- NA
-  }## IF ~ HABITAT
-  myDF[, "HABITAT_B"] <- grepl("B", myDF[,"HABITAT"])
-  myDF[, "HABITAT_F"] <- grepl("F", myDF[,"HABITAT"]) # Fluvial
 
-  # CONFLICT WITH "CW", "CWN", "HW-T", and "WE-T"
-  myDF[, "HABITAT_W"] <- grepl("^W$", myDF[,"HABITAT"]) # W only by itself
-  # not sure
-  myDF[, "HABITAT_CW"] <- grepl("CW[^N]", myDF[,"HABITAT"]) # Coldwater, CW but not CWN
-
-  # MN
-  myDF[, "HABITAT_CWN"] <- grepl("CWN", myDF[,"HABITAT"]) # Coldwater, Native
-  myDF[, "HABITAT_HW_noT"] <- grepl("HW-T", myDF[,"HABITAT"]) # Headwater Specialist, no Tolerant
-  myDF[, "HABITAT_WE_noT"] <- grepl("WE-T", myDF[,"HABITAT"]) # Wetland, no Tolerant
-
-
+  if (!"THERMAL_INDICATOR" %in% names(myDF)) {
+    myDF[, "THERMAL_INDICATOR"] <- NA
+  }## IF ~ THERMAL_INDICATOR
+  # Remove white space
+  myDF[, "THERMAL_INDICATOR"] <- gsub(" ", "", myDF[, "THERMAL_INDICATOR"])
+  # code new columns
+  myDF[, "TI_CORECOLD"] <- grepl("COREC", myDF[,"THERMAL_INDICATOR"])
+  myDF[, "TI_COLD"]     <- grepl("COLD", myDF[,"THERMAL_INDICATOR"])
+  myDF[, "TI_COOL"]     <- grepl("COOL", myDF[,"THERMAL_INDICATOR"])
+  myDF[, "TI_WARM"]     <- grepl("WARM", myDF[,"THERMAL_INDICATOR"])
+  myDF[, "TI_EURY"]     <- grepl("EURYTHERMAL", myDF[,"THERMAL_INDICATOR"])
   # exact matches only
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])
 
-  if (!"ELEVATION_ATTR" %in% names(myDF)) {
-    myDF[, "ELEVATION_ATTR"] <- NA
-  }## IF ~ ELEVATION_ATTR
-  myDF[, "ELEVATION_LOW"]  <- "LOW" == myDF[, "ELEVATION_ATTR"]
-  myDF[, "ELEVATION_HIGH"] <- "HIGH" == myDF[, "ELEVATION_ATTR"]
 
-  if (!"GRADIENT_ATTR" %in% names(myDF)) {
-    myDF[, "GRADIENT_ATTR"] <- NA
-  }## IF ~ GRADIENT_ATTR
-  myDF[, "GRADIENT_LOW"]   <- "LOW" == myDF[, "GRADIENT_ATTR"]
-  myDF[, "GRADIENT_MOD"]   <- "MOD" == myDF[, "GRADIENT_ATTR"]
-  myDF[, "GRADIENT_HIGH"]  <- "HIGH" == myDF[, "GRADIENT_ATTR"]
+  if (!"TOLER" %in% names(myDF)) {
+    myDF[, "TOLER"] <- NA
+  }## IF ~ TOLER
+  # Remove white space
+  myDF[, "TOLER"] <- gsub(" ", "", myDF[, "TOLER"])
+  # code new columns
+  myDF[, "TOLER_TOLERANT"] <- grepl("TOLERANT", myDF[, "TOLER"])     # NOT USED
+  myDF[, "TOLER_INTOLERANT"] <- grepl("INTOLERANT", myDF[,"TOLER"])  # NOT USED
+  # MN
+  myDF[, "TOLER_ICW"] <- grepl("ICW", myDF[,"TOLER"])
+  myDF[, "TOLER_I"] <- grepl("^I$|^I,|,I$|,I,", myDF[,"TOLER"])
+  myDF[, "TOLER_ICW"] <- grepl("ICW", myDF[,"TOLER"])
+  myDF[, "TOLER_S"] <- grepl("^S$|^S,|,S$|,S,", myDF[,"TOLER"])
+  myDF[, "TOLER_SCW"] <- grepl("SCW", myDF[,"TOLER"])
+  myDF[, "TOLER_T"] <- grepl("^T$|^T,|,T$|,T,", myDF[,"TOLER"])
+  myDF[, "TOLER_TCW"] <- grepl("TCW", myDF[,"TOLER"])
+  myDF[, "TOLER_VT"] <- grepl("VT", myDF[,"TOLER"])
+
+
+  if (!"TROPHIC" %in% names(myDF)) {
+    myDF[, "TROPHIC"] <- NA
+  }## IF ~ TROPHIC
+  # Remove white space
+  myDF[, "TROPHIC"] <- gsub(" ", "", myDF[, "TROPHIC"])
+  # code new columns
+  myDF[, "TROPHIC_GE"] <- grepl("GE", myDF[, "TROPHIC"]) # Generalist
+  myDF[, "TROPHIC_HB"] <- grepl("HB|HE", myDF[, "TROPHIC"]) # Herbivore
+  myDF[, "TROPHIC_IS"] <- grepl("IS", myDF[, "TROPHIC"]) # Insectivore
+  myDF[, "TROPHIC_IV"] <- grepl("IV", myDF[, "TROPHIC"]) # Invertivore
+  myDF[, "TROPHIC_OM"] <- grepl("OM", myDF[, "TROPHIC"]) # Omnivore
+  myDF[, "TROPHIC_TC"] <- grepl("TC", myDF[, "TROPHIC"]) # Top Carnivore
+  myDF[, "TROPHIC_DE"] <- grepl("^DE$|^DE,|DE$|,DE,", myDF[, "TROPHIC"]) # Detritivore (mod for DEM)
+  myDF[, "TROPHIC_PL"] <- grepl("PL", myDF[, "TROPHIC"]) # Planktivore
+  myDF[, "TROPHIC_PI"] <- grepl("PI", myDF[, "TROPHIC"]) # Piscivore
+  # MN
+  myDF[, "TROPHIC_BI_noT"] <- grepl("BI-T", myDF[, "TROPHIC"]) # Benthic Insectivore, no Tolerant
+  myDF[, "TROPHIC_IN_noT"] <- grepl("IN-T", myDF[, "TROPHIC"]) # Insectivore, no Tolerant
+  myDF[, "TROPHIC_IN_CYP"] <- grepl("INCYP", myDF[, "TROPHIC"]) # Insectivorous Cyprinidae
+  myDF[, "TROPHIC_DEM"] <- grepl("DEM", myDF[, "TROPHIC"]) # Detritivore Minor
+
+
+  if (!"TYPE" %in% names(myDF)) {
+    myDF[, "TYPE"] <- NA
+  }## IF ~ TYPE
+  # Remove white space
+  myDF[, "TYPE"] <- gsub(" ", "", myDF[, "TYPE"])
+  # code new columns
+  # Type is a catch all column so need to be specific in pattern match
+  # MN, Composition
+  myDF[, "TYPE_DSS"] <- grepl("^DSS$|^DSS,|,DSS$|,DSS,", myDF[,"TYPE"])
+  myDF[, "TYPE_DS"] <- grepl("^DS$|^DS,|,DS$|,DS,", myDF[,"TYPE"])
+  myDF[, "TYPE_EX"] <- grepl("^EX$|^EX,|,EX$|,EX,", myDF[,"TYPE"])
+  myDF[, "TYPE_MIN_noT"] <- grepl("^MIN-T$|^MIN-T,|,MIN-T$|,MIN-T,", myDF[,"TYPE"])
+  myDF[, "TYPE_PERC"] <- grepl("^PERC$|^PERC,|,PERC$|,PERC,", myDF[,"TYPE"])
+  # MN, Life History
+  myDF[, "TYPE_PI"] <- grepl("^PI$|^PI,|,PI$|,PI,", myDF[,"TYPE"])
+  myDF[, "TYPE_SL"] <- grepl("^SL$|^SL,|,SL$|,SL,", myDF[,"TYPE"])
+  # MN, Schooling
+  myDF[, "TYPE_SCHOOL"] <- grepl("SCHOOLING", myDF[,"TYPE"])
+
 
   if (!"WSAREA_ATTR" %in% names(myDF)) {
     myDF[, "WSAREA_ATTR"] <- NA
   }## IF ~ WSAREA_ATTR
+  # Remove white space
+  myDF[, "WSAREA_ATTR"] <- gsub(" ", "", myDF[, "WSAREA_ATTR"])
+  # code new columns
   myDF[, "WSAREA_S"]       <- "SMALL" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_M"]       <- "MEDIUM" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_L"]       <- "LARGE" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_XL"]      <- "XLARGE" == myDF[, "WSAREA_ATTR"]
+
 
   # Create Dominant N ####
 
@@ -3865,10 +3945,15 @@ metric.values.fish <- function(myDF
   }## IF ~ verbose
 
   # DF for dom so same taxa get combined
-  myDF_dom <- dplyr::summarise(dplyr::group_by(myDF, INDEX_NAME, INDEX_CLASS
-                                               , SAMPLEID, TAXAID)
+  myDF_dom <- dplyr::summarise(dplyr::group_by(myDF
+                                               , INDEX_NAME
+                                               , INDEX_CLASS
+                                               , SAMPLEID
+                                               , TAXAID
+                                               , TYPE_SCHOOL)
                                , N_TAXA = sum(N_TAXA, na.rm = TRUE)
                                , .groups = "drop_last")
+  # MN, add TYPE_SCHOOL, 20240601
 
 
   # Create df for Top N (without ties)
@@ -3903,6 +3988,15 @@ metric.values.fish <- function(myDF
   df.dom10 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(dplyr::row_number() <= 10)
+  # MN
+  df_dom01_ExclSchool <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID)  %>%
+    dplyr::filter(TYPE_SCHOOL != TRUE) %>%
+    dplyr::filter(dplyr::row_number() <= 1)
+  df_dom02_ExclSchool <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID)  %>%
+    dplyr::filter(TYPE_SCHOOL != TRUE) %>%
+    dplyr::filter(dplyr::row_number() <= 2)
 
   # Summarise Top N
   df.dom01.sum <- dplyr::summarise(dplyr::group_by(df.dom01
@@ -3965,6 +4059,19 @@ metric.values.fish <- function(myDF
                                                    , INDEX_CLASS)
                                    , ni_dom10 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
+  # MN
+  df_dom01_ExclSchool_sum <- dplyr::summarise(dplyr::group_by(df_dom01_ExclSchool
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom01_ExclSchool = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df_dom02_ExclSchool_sum <- dplyr::summarise(dplyr::group_by(df_dom02_ExclSchool
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom02_ExclSchool = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
 
   # Add column of domN to main DF
   myDF <- merge(myDF, df.dom01.sum, all.x = TRUE)
@@ -3977,6 +4084,8 @@ metric.values.fish <- function(myDF
   myDF <- merge(myDF, df.dom08.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom09.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom10.sum, all.x = TRUE)
+  myDF <- merge(myDF, df_dom01_ExclSchool_sum, all.x = TRUE)
+  myDF <- merge(myDF, df_dom02_ExclSchool_sum, all.x = TRUE)
 
   # Clean up extra Dom data frames
   rm(myDF_dom)
@@ -3990,6 +4099,8 @@ metric.values.fish <- function(myDF
   rm(df.dom08)
   rm(df.dom09)
   rm(df.dom10)
+  rm(df_dom01_ExclSchool)
+  rm(df_dom02_ExclSchool)
   rm(df.dom01.sum)
   rm(df.dom02.sum)
   rm(df.dom03.sum)
@@ -4000,6 +4111,8 @@ metric.values.fish <- function(myDF
   rm(df.dom08.sum)
   rm(df.dom09.sum)
   rm(df.dom10.sum)
+  rm(df_dom01_ExclSchool_sum)
+  rm(df_dom02_ExclSchool_sum)
 
   # N_Anomalies ----
 
@@ -4281,18 +4394,18 @@ metric.values.fish <- function(myDF
                        , x_Evenness = x_Shan_e/log(nt_total)
                        , x_Evenness100_ni99gt = ifelse(ni_total < 100, 1, x_Evenness * 100)
                        #
-                      #  ## Other ####
+                      ## Other ----
                         , length_m = max(SAMP_LENGTH_M, na.rm = TRUE)
                         , area_m2 = max(SAMP_WIDTH_M, na.rm = TRUE) * length_m
 
-                        # Abund / sq meter
+                        ### Abund / sq meter
                         , ni_m2 = ni_total / area_m2 #/(StWidAvg*StLength)
                         , ni_200m = 200 * ni_total / length_m
                         , ni_natnonhybridnonmf_200m = 200 * ni_natnonhybridnonmf / length_m
                         , ni_natnonhybridnonmfnonLepomis_200m = 200 * ni_natnonhybridnonmfnonLepomis / length_m
                         # biomass per square meter (assumes sample not individual biomass)
                        , biomass_m2 = max(SAMP_BIOMASS, na.rm = TRUE) / area_m2 #/(StWidAvg*StLength)
-                      #Anomalies
+                      ### Anomalies
                      , pi_anomalies = 100 * sum(N_ANOMALIES, na.rm = TRUE) / ni_total
                      , pi_delt = 100 * sum(N_ANOMALIES, na.rm = TRUE) / ni_total
 
@@ -4730,7 +4843,10 @@ metric.values.fish <- function(myDF
                   , pt_habitat_f = 100 * nt_habitat_f / nt_total
 
                  ## SPECIAL ----
-                 # New Mexico Fish BCG
+                 # odd ball metrics that don't fit the above groupings
+                 #   OR are really different and probably only applicable
+                 #   to a specific entity
+                 #### New Mexico Fish BCG
                  , nt_piscivore_BCG_att66s6t = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                         & TROPHIC_PI == TRUE
                                                                         & (BCG_ATTR == "6"
@@ -4751,13 +4867,188 @@ metric.values.fish <- function(myDF
                                                , na.rm = TRUE)
                  , x_TrophicCats = dplyr::n_distinct(TROPHIC, na.rm = TRUE)
 
-                 # Great Plains BCG 04/25/2024
+                 ### Great Plains BCG, 2024-04-25
                  , x_BCG_Mean = mean(TOLVAL2, na.rm = TRUE)
                  , nt_PupKilli = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                            & (TAXAID == "CYPRINODON RUBROFLUVIATILIS" #RED RIVER PUPFISH
                                                               | TAXAID == "FUNDULUS KANSAE" #NORTHERN PLAINS KILLIFISH
                                                               | TAXAID == "FUNDULUS ZEBRINUS")] #PLAINS KILLIFISH
                                                     , na.rm = TRUE)
+
+                 ### Minnesota (Red Lakes) FIBI, 2024-06-01----
+                 #### MN, ni
+                 , ni_total_ExclSchool = sum(N_TAXA[TYPE_SCHOOL != TRUE]
+                                             , na.rm = TRUE)
+                 , ni_total_notoler_mn = sum(N_TAXA[TOLER_T != TRUE]
+                                             , na.rm = TRUE)
+                 #### MN, nt, HABITAT
+                 , nt_coldwater = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & HABITAT_CW == TRUE]
+                                                     , na.rm = TRUE)
+                 , nt_natcoldwater = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                               & HABITAT_CWN == TRUE]
+                                                        , na.rm = TRUE) # MN, nt for pt
+                 , nt_hw_notoler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                             & HABITAT_HW_noT == TRUE]
+                                                      , na.rm = TRUE)
+                 #### MN, nt, REPRO
+                 , nt_serialspawner = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                & REPRO_SER == TRUE]
+                                                         , na.rm = TRUE) # MN, nt for pt
+                 , nt_simplelithophil = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                  & REPRO_SILI == TRUE]
+                                                           , na.rm = TRUE)
+                 #### MN, nt, TOLER
+                 , nt_tv_sens = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & TOLER_S == TRUE]
+                                                   , na.rm = TRUE)
+                 , nt_tv_senscoldwater = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                   & TOLER_SCW == TRUE]
+                                                            , na.rm = TRUE)
+                 , nt_tv_tolercoldwater = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                    & TOLER_TCW == TRUE]
+                                                             , na.rm = TRUE)
+                 , nt_tv_toler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & TOLER_T == TRUE]
+                                                    , na.rm = TRUE) # MN, nt for pt
+                 , nt_tv_vtoler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & TOLER_VT == TRUE]
+                                                     , na.rm = TRUE)
+                 #### MN, nt, TROPHIC
+                 , nt_beninsct_notoler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                   & TROPHIC_BI_noT == TRUE]
+                                                            , na.rm = TRUE) # MN, nt for pt
+                 , nt_detritivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                              & TROPHIC_DE == TRUE]
+                                                       , na.rm = TRUE) # MN, nt for pt
+                 , nt_gen = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & TROPHIC_GE == TRUE]
+                                               , na.rm = TRUE)
+                 , nt_insectivore_notoler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                      & TROPHIC_IN_noT == TRUE]
+                                                               , na.rm = TRUE) # MN, nt for pt
+                 , nt_omnivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & TROPHIC_OM == TRUE]
+                                                    , na.rm = TRUE) # MN, nt for pt
+                 #### MN, nt, TYPE
+                 , nt_dartersculpin = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                & TYPE_DS == TRUE]
+                                                         , na.rm = TRUE)
+                 , nt_darterscultpinsucker = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                       & TYPE_DSS == TRUE]
+                                                                , na.rm = TRUE) # MN, nt for pt
+                 , nt_pioneer = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & TYPE_PI == TRUE]
+                                                   , na.rm = TRUE) # MN, nt for pt
+                 , nt_shortlived = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                             & TYPE_SL == TRUE]
+                                                      , na.rm = TRUE)
+                 ### MN, pi, HABITAT
+                 , pi_hw_notoler_ExclSchool = 100 * sum(N_TAXA[HABITAT_HW_noT == TRUE
+                                                                & TYPE_SCHOOL == FALSE]
+                                                         , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_wetland_notoler_ExclSchool = 100 * sum(N_TAXA[HABITAT_WE_noT == TRUE
+                                                                     & TYPE_SCHOOL == FALSE]
+                                                              , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_natcoldwater_ExclSchool = 100 * sum(N_TAXA[HABITAT_CWN == TRUE
+                                                                  & TYPE_SCHOOL == FALSE]
+                                                           , na.rm = TRUE) / ni_total_ExclSchool
+                 #### MN, pi, REPRO
+                 , pi_ma2_ExclShool = 100 * sum(N_TAXA[REPRO_MA2 == TRUE
+                                                        & TYPE_SCHOOL == FALSE]
+                                                 , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_ma3_notoler_ExclSchool = 100 * sum(N_TAXA[REPRO_MA3_noT == TRUE
+                                                                 & TYPE_SCHOOL == FALSE]
+                                                          , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_nonlithophil_ExclSchool = 100 * sum(N_TAXA[REPRO_NE == TRUE
+                                                                  & TYPE_SCHOOL == FALSE]
+                                                           , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_serialspawner_ExclSchool = 100 * sum(N_TAXA[REPRO_SER == TRUE
+                                                                   & TYPE_SCHOOL == FALSE]
+                                                            , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_simplelithophil_ExclSchool = 100 * sum(N_TAXA[REPRO_SILI == TRUE
+                                                                     & TYPE_SCHOOL == FALSE]
+                                                              , na.rm = TRUE) / ni_total_ExclSchool
+                 #### MN, pi, TROPHIC
+                 , pi_detritivore_ExclSchool = 100 * sum(N_TAXA[TROPHIC_DE == TRUE
+                                                                 & TYPE_SCHOOL == FALSE]
+                                                          , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_gen_ExclSchool = 100 * sum(N_TAXA[TROPHIC_GE == TRUE
+                                                         & TYPE_SCHOOL == FALSE]
+                                                  , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_herbivore_ExclSchool = 100 * sum(N_TAXA[TROPHIC_HB == TRUE
+                                                               & TYPE_SCHOOL == FALSE]
+                                                        , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_insctCypr_ExclSchool = 100 * sum(N_TAXA[TROPHIC_IN_CYP == TRUE
+                                                               & TYPE_SCHOOL == FALSE]
+                                                        , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_insectivore_notoler_ExclSchool = 100 * sum(N_TAXA[TROPHIC_IN_noT == TRUE
+                                                                         & TYPE_SCHOOL == FALSE]
+                                                                  , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_piscivore_ExclSchool = 100 * sum(N_TAXA[TROPHIC_PI == TRUE
+                                                               & TYPE_SCHOOL == FALSE]
+                                                        , na.rm = TRUE) / ni_total_ExclSchool
+                 #### MN, pi, TOLER
+                 , pi_tv_intol_ExclSchool = 100 * sum(N_TAXA[TOLER_I == TRUE
+                                                              & TYPE_SCHOOL == FALSE]
+                                                       , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_tv_intolcoldwater_ExclSchool = 100 * sum(N_TAXA[TOLER_ICW == TRUE
+                                                                       & TYPE_SCHOOL == FALSE]
+                                                                , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_tv_sens_ExclSchool = 100 * sum(N_TAXA[TOLER_S == TRUE
+                                                             & TYPE_SCHOOL == FALSE]
+                                                      , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_tv_senscoldwater_ExclSchool = 100 * sum(N_TAXA[TOLER_SCW == TRUE
+                                                                      & TYPE_SCHOOL == FALSE]
+                                                               , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_tv_toler_ExclSchool = 100 * sum(N_TAXA[TOLER_T == TRUE
+                                                              & TYPE_SCHOOL == FALSE]
+                                                       , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_tv_tolercoldwater_ExclSchool = 100 * sum(N_TAXA[TOLER_TCW == TRUE
+                                                                       & TYPE_SCHOOL == FALSE]
+                                                                , na.rm = TRUE) / ni_total_ExclSchool
+                 #### MN, pi, TYPE
+                 , pi_exotic_ExclSchool = 100 * sum(N_TAXA[TYPE_EX == TRUE
+                                                            & TYPE_SCHOOL == FALSE]
+                                                     , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_minnow_notoler_ExclSchool = 100 * sum(N_TAXA[TYPE_MIN_noT == TRUE
+                                                                    & TYPE_SCHOOL == FALSE]
+                                                             , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_Perciformes_ExclSchool = 100 * sum(N_TAXA[TYPE_PERC == TRUE
+                                                                 & TYPE_SCHOOL == FALSE]
+                                                          , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_pioneer_ExclShool = 100 * sum(N_TAXA[TYPE_PI == TRUE
+                                                            & TYPE_SCHOOL == FALSE]
+                                                     , na.rm = TRUE) / ni_total_ExclSchool
+                 , pi_shortlived_ExclSchool = 100 * sum(N_TAXA[TYPE_SL == TRUE
+                                                                & TYPE_SCHOOL == FALSE]
+                                                         , na.rm = TRUE) / ni_total_ExclSchool
+                 #### MN, pi, other
+                 , pi_dom02_ExclSchool = 100 * max(ni_dom02_ExclSchool, na.rm = TRUE) / ni_total_ExclSchool
+                 #### MN, pt, HABITAT
+                 , pt_natcoldwater         = 100 * nt_natcoldwater / nt_total
+                 #### MN, pt, REPRO
+                 , pt_serialspawner        = 100 * nt_serialspawner / nt_total
+                 , pt_simplelithophil      = 100 * nt_simplelithophil / nt_total
+                 #### MN, pt, TOLER
+                 , pt_tv_sens              = 100 * nt_tv_sens / nt_total
+                 , pt_tv_senscoldwater     = 100 * nt_tv_senscoldwater / nt_total
+                 , pt_tv_toler             = 100 * nt_tv_toler / nt_total
+                 , pt_tv_vtoler            = 100 * nt_tv_vtoler / nt_total
+                 #### MN, pt, TROPHIC
+                 , pt_beninsct_notoler     = 100 * nt_beninsct_notoler / nt_total
+                 , pt_detritivore          = 100 * nt_detritivore / nt_total
+                 , pt_gen                  = 100 * nt_gen / nt_total
+                 , pt_insectivore_notoler  = 100 * nt_insectivore_notoler / nt_total
+                 , pt_omnivore             = 100 * nt_omnivore / nt_total
+                 #### MN, pt, TYPE
+                 , pt_darterscultpinsucker = 100 * nt_darterscultpinsucker / nt_total
+                 , pt_pioneer              = 100 * nt_pioneer / nt_total
+                 #### MN, x
+                 , ni_m2_notoler = ni_total_notoler_mn / area_m2
+                 #### MN, DELT
+                 , pi_delt_ExclSchool = 100 * sum(N_ANOMALIES[TYPE_SCHOOL != TRUE]
+                                                  , na.rm = TRUE) / ni_total_ExclSchool
 
                        #
                        # name changes ####
@@ -5850,9 +6141,11 @@ metric.values.algae <- function(myDF
     }##IF.is.null.cols2keep.END
 
     # Run Time
-    time_end <- Sys.time()
-    msg <- difftime(time_end, time_start)
-    message(msg)
+    if (verbose) {
+      time_end <- Sys.time()
+      msg <- difftime(time_end, time_start)
+      message(msg)
+    }## IF ~ verbose
 
     # df to report back
     return(df.return)

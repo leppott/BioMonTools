@@ -4,7 +4,7 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-05-28 17:03:13.610274
+    #> Last Update: 2024-06-02 20:08:10.153805
 
 # Version History
 
@@ -12,6 +12,21 @@ NEWS
 
 - refactor: Update MetricNames.xlsx to mark bug metrics to use for Large
   Rare metric calculations
+- refactor: Add remove spaces to columns for metric calculation
+  - Bugs
+    - HABIT, FFG, LIFE_CYCLE, FFG2, THERMAL_INDICATOR, HABSTRUCT ,
+      ELEVATION_ATTR, GRADIENT_ATTR, WSAREA_ATTR
+  - Fish
+    - TROPHIC, THERMAL_INDICATOR, REPRODUCTION, HABITAT, ELEVATION_ATTR
+      , GRADIENT_ATTR, WSAREA_ATTR
+- refactor: Add new fish metrics for MN_Fish_IBI, Issue \#111
+  - metric.values
+  - MetricNames.xlsx
+  - MetricScoring.xlsx
+- style: Reorder some metrics in fish section of metric.values
+  - Organize Munge section by column name
+- tests: metric.values() move time inside verbose to avoid warning
+  message
 
 ## Changes in version 1.0.2.9026
 
