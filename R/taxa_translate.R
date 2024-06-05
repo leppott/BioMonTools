@@ -27,10 +27,14 @@
 #' "DNI" (Do Not Include).  Default is NULL so no action is taken.  "NA"s are
 #' always removed.
 #'
-#' Optional parameter `trim_ws` is inused to invoke the function `trimws` to
+#' Optional parameter `trim_ws` is used to invoke the function `trimws` to
 #' remove from the taxa matching field any leading and trailing white space.
 #' Default is FALSE (no action).  All horizontal and vertical white space
 #' characters are removed.  See ?trimws for additional information.
+#' Additionally, non-breaking spaces (nbsp) inside the text string will be
+#' replaced with a normal space.  This cuts down on the number of permutations
+#' need to be added to the translation table.
+#'
 #'
 #' The taxa list and metadata file names will be added to the results as two
 #' new columns.
@@ -59,7 +63,8 @@
 #' data when summarizing the user data.  Suggestions are SAMPID and TAXA_ID.
 #' Default = NULL
 #' @param trim_ws Should the taxa have leading and trailing white space removed.
-#' Non-braking spaces (e.g., from ITIS) also removed. Default = FALSE
+#' Non-braking spaces (e.g., from ITIS) also removed (including inside text).
+#' Default = FALSE
 #'
 #' @return A list with four elements.  The first (merge) is the user data frame
 #' with additional columns from the official data appended to it.  Names from
@@ -311,7 +316,9 @@ taxa_translate <- function(df_user = NULL
   # 20240430, v1.0.2.9017, partial
   # 20240528, v1.0.2.9025 and 9026
   if (trim_ws) {
-    # Munge, clean
+    # Munge, replace internal nbsp
+    df_user[, taxaid_user] <- gsub("\u00a0", " ", df_user[, taxaid_user])
+    # Munge, trim leading and trailing spaces (all)
     df_user[, taxaid_user] <- trimws(df_user[, taxaid_user]
                                      , whitespace = "[\\h\\v]")
   }## IF ~ clean

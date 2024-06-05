@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9029
+
+* feature: Update taxa.translate trimws feature to replace interal nbsp
+
 ## Changes in version 1.0.2.9028
 
 * feature: Update metric.scores() to account for MN_IBI_Fish, Issue #111

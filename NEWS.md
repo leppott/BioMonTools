@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-04 21:13:42.13919
+    #> Last Update: 2024-06-05 11:16:26.186018
 
 # Version History
+
+## Changes in version 1.0.2.9029
+
+- feature: Update taxa.translate trimws feature to replace interal nbsp
 
 ## Changes in version 1.0.2.9028
 
