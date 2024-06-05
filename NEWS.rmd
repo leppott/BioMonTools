@@ -18,9 +18,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9030
+
+* test: Add taxa.translate triws test
+    + Add white space (leading, trailing, both) and internal nbsp to test data
+
 ## Changes in version 1.0.2.9029
 
-* feature: Update taxa.translate trimws feature to replace interal nbsp
+* feature: Update taxa.translate trimws feature to replace internal
 
 ## Changes in version 1.0.2.9028
 

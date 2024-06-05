@@ -167,7 +167,40 @@ test_that("taxa_translate_trimws_function", {
   ## Calc 1B----
   # data with spaces
   df_user1B <- df_user1A
-  df_user1B[, taxaid_user] <- paste0(df_user1B[, taxaid_user], " ")
+  df_user1B[, "Mod_Group"] <- cut(seq_len(nrow(df_user1B))
+                                  , 4
+                                  , labels = c("lead"
+                                               , "trail"
+                                               , "both"
+                                               , "mid_nbsp"))
+
+  # df_user1B <- dplyr::mutate(df_user1B
+  #                            , .data[[taxaid_user]] = dplyr::case_when(
+  #                              Mod_Group == "lead" ~ paste0(" ", .data[[taxaid_user]])
+  #                              , Mod_Group == "trail" ~ paste0(.data[[taxaid_user]], " ")
+  #                              , Mod_Group == "both" ~ paste0(" ", .data[[taxaid_user]], " ")
+  #                              , Mod_Group == "mid_nbsp" ~ gsub(" ", "\u00a0", .data[[taxaid_user]])
+  #                              , .default == .data[[taxaid_user]])
+  # )
+
+
+  # add spaces to start
+  df_user1B[df_user1B[, "Mod_Group"] == "lead", taxaid_user] <-
+    paste0(" ", df_user1B[df_user1B[, "Mod_Group"] == "lead", taxaid_user])
+  # add spaces to end
+  df_user1B[df_user1B[, "Mod_Group"] == "trail", taxaid_user] <-
+    paste0(df_user1B[df_user1B[, "Mod_Group"] == "trail", taxaid_user], " ")
+  # add spaces to both
+  df_user1B[df_user1B[, "Mod_Group"] == "both", taxaid_user] <-
+    paste0(" ", df_user1B[df_user1B[, "Mod_Group"] == "both", taxaid_user], " ")
+  # add mid nbsp
+  df_user1B[df_user1B[, "Mod_Group"] == "mid_nbsp", taxaid_user] <-
+    gsub(" ", "\u00a0", df_user1B[df_user1B[, "Mod_Group"] == "mid_nbsp", taxaid_user])
+
+  # should be mostly FALSE (only true if in last 1/4 and no spaces)
+  df_user1A$TaxaID == df_user1B$TaxaID
+
+
   taxatrans1B <- taxa_translate(df_user1B
                               , df_official
                               , df_official_metadata

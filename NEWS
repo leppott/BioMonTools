@@ -4,13 +4,19 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-05 11:16:26.186018
+    #> Last Update: 2024-06-05 12:09:30.805044
 
 # Version History
 
+## Changes in version 1.0.2.9030
+
+- test: Add taxa.translate triws test
+  - Add white space (leading, trailing, both) and internal nbsp to test
+    data
+
 ## Changes in version 1.0.2.9029
 
-- feature: Update taxa.translate trimws feature to replace interal nbsp
+- feature: Update taxa.translate trimws feature to replace internal
 
 ## Changes in version 1.0.2.9028
 
