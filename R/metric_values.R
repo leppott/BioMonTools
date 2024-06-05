@@ -666,7 +666,7 @@ metric.values <- function(fun.DF
   #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
   if (toupper(fun.Community) != "CORAL") {
     fun.DF <- fun.DF %>% dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
-  }
+  }## IF ~ taxa not zero
   # non-target taxa removed in community function, if appropriate
   #
   # SiteType to upper case

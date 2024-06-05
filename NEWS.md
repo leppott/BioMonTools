@@ -4,9 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-02 20:08:10.153805
+    #> Last Update: 2024-06-04 21:13:42.13919
 
 # Version History
+
+## Changes in version 1.0.2.9028
+
+- feature: Update metric.scores() to account for MN_IBI_Fish, Issue
+  \#111
+  - If another metric is below a threshold then score as zero
+- refactor: Add hooks in metric.scores() for score zero modifications,
+  Issue \#111
+- refactor: Update help example for metric.scores()
 
 ## Changes in version 1.0.2.9027
 
