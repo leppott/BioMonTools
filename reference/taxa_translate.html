@@ -18,7 +18,7 @@ name list."><meta property="og:image" content="/logo.png"><!-- mathjax --><scrip
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9028</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9029</span>
       </span>
     </div>
 
@@ -145,7 +145,8 @@ Default = NULL</p></dd>
 
 <dt>trim_ws</dt>
 <dd><p>Should the taxa have leading and trailing white space removed.
-Non-braking spaces (e.g., from ITIS) also removed. Default = FALSE</p></dd>
+Non-braking spaces (e.g., from ITIS) also removed (including inside text).
+Default = FALSE</p></dd>
 
 </dl></div>
     <div id="value">
@@ -179,10 +180,14 @@ using one field over another and is more generic.</p>
 name that should not be included in the results.  Examples include "999" or
 "DNI" (Do Not Include).  Default is NULL so no action is taken.  "NA"s are
 always removed.</p>
-<p>Optional parameter `trim_ws` is inused to invoke the function `trimws` to
+<p>Optional parameter `trim_ws` is used to invoke the function `trimws` to
 remove from the taxa matching field any leading and trailing white space.
 Default is FALSE (no action).  All horizontal and vertical white space
-characters are removed.  See ?trimws for additional information.</p>
+characters are removed.  See ?trimws for additional information.
+Additionally, non-breaking spaces (nbsp) inside the text string will be
+replaced with a normal space.  This cuts down on the number of permutations
+need to be added to the translation table.</p>
+
 <p>The taxa list and metadata file names will be added to the results as two
 new columns.</p>
 <p>Another output is the unique taxa with old and new names.</p>
