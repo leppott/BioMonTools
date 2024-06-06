@@ -16,7 +16,8 @@ taxa_translate(
   sum_n_taxa_boo = FALSE,
   sum_n_taxa_col = NULL,
   sum_n_taxa_group_by = NULL,
-  trim_ws = FALSE
+  trim_ws = FALSE,
+  match_caps
 )
 }
 \arguments{
@@ -52,9 +53,12 @@ Default = NULL (suggestion = N_TAXA)}
 data when summarizing the user data.  Suggestions are SAMPID and TAXA_ID.
 Default = NULL}
 
-\item{trim_ws}{Should the taxa have leading and trailing white space removed.
-Non-braking spaces (e.g., from ITIS) also removed (including inside text).
-Default = FALSE}
+\item{trim_ws}{Boolean value for taxaid to have leading and trailing white
+space removed.  Non-braking spaces (e.g., from ITIS) also removed (including
+inside text).  Default = FALSE}
+
+\item{match_caps}{Boolean value to match user and official TaxaIDs after
+converting to ALL CAPS.  Default = FALSE}
 }
 \value{
 A list with four elements.  The first (merge) is the user data frame
@@ -102,6 +106,12 @@ Additionally, non-breaking spaces (nbsp) inside the text string will be
 replaced with a normal space.  This cuts down on the number of permutations
 need to be added to the translation table.
 
+Optional parameter `match_caps` is used to convert user and official taxaid
+values to ALL CAPS before matching.  Any non-ascii characters will cause this
+to fail.  A message is output to the console for any taxaid values that
+contain non-ascii characters.  In the event that `match_caps` is set to TRUE
+and non-ascii characters are present the matching will be done without
+converting to upper case as this would cause the function to fail.#'
 
 The taxa list and metadata file names will be added to the results as two
 new columns.

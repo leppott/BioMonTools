@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9031
+
+* fix: Add TolVal2 as required field for fish metrics in `metric.values`
+
 ## Changes in version 1.0.2.9030
 
 * test: Add taxa.translate triws test

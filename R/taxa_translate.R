@@ -35,6 +35,12 @@
 #' replaced with a normal space.  This cuts down on the number of permutations
 #' need to be added to the translation table.
 #'
+#' Optional parameter `match_caps` is used to convert user and official taxaid
+#' values to ALL CAPS before matching.  Any non-ascii characters will cause this
+#' to fail.  A message is output to the console for any taxaid values that
+#' contain non-ascii characters.  In the event that `match_caps` is set to TRUE
+#' and non-ascii characters are present the matching will be done without
+#' converting to upper case as this would cause the function to fail.#'
 #'
 #' The taxa list and metadata file names will be added to the results as two
 #' new columns.
@@ -62,9 +68,11 @@
 #' @param sum_n_taxa_group_by Column names for user data to use for grouping the
 #' data when summarizing the user data.  Suggestions are SAMPID and TAXA_ID.
 #' Default = NULL
-#' @param trim_ws Should the taxa have leading and trailing white space removed.
-#' Non-braking spaces (e.g., from ITIS) also removed (including inside text).
-#' Default = FALSE
+#' @param trim_ws Boolean value for taxaid to have leading and trailing white
+#' space removed.  Non-braking spaces (e.g., from ITIS) also removed (including
+#' inside text).  Default = FALSE
+#' @param match_caps Boolean value to match user and official TaxaIDs after
+#' converting to ALL CAPS.  Default = FALSE
 #'
 #' @return A list with four elements.  The first (merge) is the user data frame
 #' with additional columns from the official data appended to it.  Names from
@@ -171,7 +179,8 @@ taxa_translate <- function(df_user = NULL
                            , sum_n_taxa_boo = FALSE
                            , sum_n_taxa_col = NULL
                            , sum_n_taxa_group_by = NULL
-                           , trim_ws = FALSE) {
+                           , trim_ws = FALSE
+                           , match_caps) {
 
   # DEBUG ----
   boo_DEBUG_tt <- FALSE
@@ -309,6 +318,54 @@ taxa_translate <- function(df_user = NULL
     msg <- "'taxaid_official_project' not found in 'df_official'.  Unable to process."
     stop(msg)
   }## IF ~ taxaid_official_match == FALSE
+
+  ## QC, taxaid non-ascii ----
+  # check for non-ascii, official
+  # warning only
+  # 20240605
+  #
+  # official, match
+  taxaid_official_iconv <- iconv(df_official[, taxaid_official_match])
+  boo_iconv_official <- is.na(taxaid_official_iconv) |
+    taxaid_official_iconv != df_official[, taxaid_official_match]
+  sum_boo_iconv_official <- sum(boo_iconv_official, na.rm = TRUE)
+  if (sum_boo_iconv_official != 0) {
+    non_ascii_official <- paste(df_official[boo_iconv_official, taxaid_official_match]
+                                , collapse = ", ")
+    msg <- paste("Taxa_ID (Official) with non-ASCII characters could cause issues.\n"
+                 , "Please update the following taxa:\n\n"
+                 , paste(non_ascii_official, collapse = "\n"))
+    message(msg)
+  }## IF ~ sum_boo_iconv_official
+
+  # official, project
+  taxaid_project_iconv <- iconv(df_official[, taxaid_official_project])
+  boo_iconv_project <- is.na(taxaid_project_iconv) |
+    taxaid_project_iconv != df_official[, taxaid_official_project]
+  sum_boo_iconv_project <- sum(boo_iconv_project, na.rm = TRUE)
+  if (sum_boo_iconv_project != 0) {
+    non_ascii_project <- paste(df_official[boo_iconv_project, taxaid_official_project]
+                                , collapse = ", ")
+    msg <- paste("Taxa_ID (project) with non-ASCII characters could cause issues.\n"
+                 , "Please update the following taxa:\n\n"
+                 , paste(non_ascii_project, collapse = "\n"))
+    message(msg)
+  }## IF ~ sum_boo_iconv_project
+
+  # user
+  taxaid_user_iconv <- iconv(df_user[, taxaid_user])
+  boo_iconv_user <- is.na(taxaid_user_iconv) |
+    taxaid_user_iconv != df_user[, taxaid_user]
+  sum_boo_iconv_user<- sum(boo_iconv_user, na.rm = TRUE)
+  if (sum_boo_iconv_user != 0) {
+    non_ascii_user <- paste(df_user[boo_iconv_user, taxaid_user]
+                                , collapse = ", ")
+    msg <- paste("Taxa_ID (user) with non-ASCII characters could cause issues.\n"
+                 , "Please update the following taxa:\n\n"
+                 , paste(non_ascii_user, collapse = "\n"))
+    message(msg)
+  }## IF ~ sum_non_ascii_user
+
 
 
 

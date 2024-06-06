@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-05 12:09:30.805044
+    #> Last Update: 2024-06-05 20:13:47.706543
 
 # Version History
+
+## Changes in version 1.0.2.9031
+
+- fix: Add TolVal2 as required field for fish metrics in `metric.values`
 
 ## Changes in version 1.0.2.9030
 

@@ -3594,7 +3594,7 @@ metric.values.fish <- function(myDF
                          , "BCG_ATTR2")
   col.req_logical <- c("EXCLUDE", "HYBRID")
   col.req_numeric <- c("N_TAXA", "N_ANOMALIES",  "SAMP_BIOMASS", "DA_MI2"
-                       , "SAMP_WIDTH_M", "SAMP_LENGTH_M"
+                       , "SAMP_WIDTH_M", "SAMP_LENGTH_M", "TOLVAL2"
                        )
   col.req <- c(col.req_character, col.req_logical, col.req_numeric)
   # col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE"
