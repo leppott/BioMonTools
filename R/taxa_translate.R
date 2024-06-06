@@ -441,6 +441,12 @@ taxa_translate <- function(df_user = NULL
                                          , Modified
                                          , .after = Match_Official)
 
+  # Add CAPS column
+  df_taxatrans_unique[, paste(taxaid_user, "_CAPS")] <- toupper(df_taxatrans_unique[, taxaid_user])
+  df_taxatrans_unique[, "Modified_CAPS"] <-
+    df_taxatrans_unique[, paste(taxaid_user, "_CAPS")] !=
+    df_taxatrans_unique[, taxaid_official_project]
+
   ## Drop the "matching" column----
   col_drop_idmatch <- names(df_merge)[!names(df_merge) %in% taxaid_official_match]
   df_merge <- df_merge[, col_drop_idmatch]

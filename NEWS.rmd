@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9032
+
+* refactor: Update taxa_translate taxatrax_unique ouput
+   + Add match with CAPS
+
 ## Changes in version 1.0.2.9031
 
 * fix: Add TolVal2 as required field for fish metrics in `metric.values`

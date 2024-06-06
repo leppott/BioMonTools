@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-05 20:13:47.706543
+    #> Last Update: 2024-06-06 10:56:06.782799
 
 # Version History
+
+## Changes in version 1.0.2.9032
+
+- refactor: Update taxa_translate taxatrax_unique ouput
+  - Add match with CAPS
 
 ## Changes in version 1.0.2.9031
 
