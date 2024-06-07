@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9034
+
+* refactor: Add pi_OligoHiru to `metric.values`
+
 ## Changes in version 1.0.2.9033
 
 * refactor: Update MetricScoring.xlsx for MN_Fish_IBI, Issue #111

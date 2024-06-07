@@ -2021,6 +2021,10 @@ metric.values.bugs <- function(myDF
                                                               | FAMILY == "CHIRONOMIDAE"
                                                               | FAMILY == "HYDROPSYCHIDAE"]
                                                        , na.rm = TRUE) / ni_total
+                                , pi_OligoHiru = 100 * sum(N_TAXA[CLASS == "OLIGOCHAETA"
+                                                                        | SUBCLASS == "OLIGOCHAETA"
+                                                                        | SUBCLASS == "HIRUDINEA"]
+                                                                 , na.rm = TRUE) / ni_total
                                 , pi_Orbin = 100 * sum(N_TAXA[FAMILY == "ORBINIIDAE"]
                                                        , na.rm = TRUE) / ni_total
                                 , pi_Pleco = 100 * sum(N_TAXA[ORDER == "PLECOPTERA"]

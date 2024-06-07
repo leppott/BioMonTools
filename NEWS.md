@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-06 20:29:57.89065
+    #> Last Update: 2024-06-07 13:46:51.419814
 
 # Version History
+
+## Changes in version 1.0.2.9034
+
+- refactor: Add pi_OligoHiru to `metric.values`
 
 ## Changes in version 1.0.2.9033
 
