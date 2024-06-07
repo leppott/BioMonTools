@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9033
+
+* refactor: Update MetricScoring.xlsx for MN_Fish_IBI, Issue #111
+
 ## Changes in version 1.0.2.9032
 
 * refactor: Update taxa_translate taxatrax_unique ouput
