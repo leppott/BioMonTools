@@ -180,7 +180,7 @@ taxa_translate <- function(df_user = NULL
                            , sum_n_taxa_col = NULL
                            , sum_n_taxa_group_by = NULL
                            , trim_ws = FALSE
-                           , match_caps) {
+                           , match_caps = FALSE) {
 
   # DEBUG ----
   boo_DEBUG_tt <- FALSE

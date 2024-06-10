@@ -4989,9 +4989,12 @@ metric.values.fish <- function(myDF
                  , pi_insctCypr_ExclSchool = 100 * sum(N_TAXA[TROPHIC_IN_CYP == TRUE
                                                                & TYPE_SCHOOL == FALSE]
                                                         , na.rm = TRUE) / ni_total_ExclSchool
+                 # , ni_insectivore_notoler_ExclSchool = sum(N_TAXA[TROPHIC_IN_noT == TRUE
+                 #                                                        & TYPE_SCHOOL == FALSE]
+                 #                                                 , na.rm = TRUE)
                  , pi_insectivore_notoler_ExclSchool = 100 * sum(N_TAXA[TROPHIC_IN_noT == TRUE
-                                                                         & TYPE_SCHOOL == FALSE]
-                                                                  , na.rm = TRUE) / ni_total_ExclSchool
+                                                                        & TYPE_SCHOOL == FALSE]
+                                                                 , na.rm = TRUE) / ni_total_ExclSchool
                  , pi_piscivore_ExclSchool = 100 * sum(N_TAXA[TROPHIC_PI == TRUE
                                                                & TYPE_SCHOOL == FALSE]
                                                         , na.rm = TRUE) / ni_total_ExclSchool

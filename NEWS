@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-10 07:30:26.008644
+    #> Last Update: 2024-06-10 14:51:43.923667
 
 # Version History
+
+## Changes in version 1.0.2.9036
+
+- refactor: Add default value for match_caps in `taxa_translate`
 
 ## Changes in version 1.0.2.9035
 
