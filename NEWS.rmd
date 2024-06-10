@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9037
+
+* refactor: Update match_caps code in `taxa_translate`
+
 ## Changes in version 1.0.2.9036
 
 * refactor: Add default value for match_caps in `taxa_translate`

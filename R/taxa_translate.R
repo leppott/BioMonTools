@@ -40,7 +40,7 @@
 #' to fail.  A message is output to the console for any taxaid values that
 #' contain non-ascii characters.  In the event that `match_caps` is set to TRUE
 #' and non-ascii characters are present the matching will be done without
-#' converting to upper case as this would cause the function to fail.#'
+#' converting to upper case as this would cause the function to fail.
 #'
 #' The taxa list and metadata file names will be added to the results as two
 #' new columns.
@@ -303,13 +303,17 @@ taxa_translate <- function(df_user = NULL
 
   boo_taxaid_user <- taxaid_user %in% names(df_user)
   if (boo_taxaid_user == FALSE) {
-    msg <- "'taxaid_user' not found in 'df_user'.  Unable to process."
+    msg <- paste0("'taxaid_user' ("
+                  , taxaid_user
+                  ,") not found in 'df_user'.  Unable to process.")
     stop(msg)
   }## IF ~ boo_taxaid_user == FALSE
 
   boo_taxaid_official_match <- taxaid_official_match %in% names(df_official)
   if (boo_taxaid_official_match == FALSE) {
-    msg <- "'taxaid_official_match' not found in 'df_official'.  Unable to process."
+    msg <- paste0("'taxaid_official_match' ("
+                 , taxaid_official_match
+                 , ") not found in 'df_official'.  Unable to process.")
     stop(msg)
   }## IF ~ taxaid_official_match == FALSE
 
@@ -366,9 +370,6 @@ taxa_translate <- function(df_user = NULL
     message(msg)
   }## IF ~ sum_non_ascii_user
 
-
-
-
   # Munge1, trim_ws ----
   # 20240430, v1.0.2.9017, partial
   # 20240528, v1.0.2.9025 and 9026
@@ -378,10 +379,27 @@ taxa_translate <- function(df_user = NULL
     # Munge, trim leading and trailing spaces (all)
     df_user[, taxaid_user] <- trimws(df_user[, taxaid_user]
                                      , whitespace = "[\\h\\v]")
-  }## IF ~ clean
+  }## IF ~ trim_ws
+
+  # Munge, match_caps
+  # 20240610, add back from 20240430, v1.0.2.9017
+  # (20240430, v1.0.2.9017, partial)
+  sum_boo_iconv_both <- sum_boo_iconv_project + sum_boo_iconv_user
+  # if any non-ascii toupper() fails
+  if (match_caps & sum_boo_iconv_both == 0) {
+    # add extra column to retain ORIGINAL taxaid
+    taxaid_user_orig <- paste0(taxaid_user, "_ORIG")
+    taxaid_official_match_orig <- paste0(taxaid_official_match, "_ORIG")
+    df_user[, taxaid_user_orig] <- df_user[, taxaid_user]
+    df_official[, taxaid_official_match_orig] <- df_official[, taxaid_official_match]
+    # Munge, CAPS
+    df_official[, taxaid_official_match] <- toupper(df_official[, taxaid_official_match])
+    df_user[, taxaid_user] <- toupper(df_user[, taxaid_user])
+  }## IF ~ match_caps
 
   # MERGE----
-  df_merge <- merge(df_official, df_user
+  df_merge <- merge(df_official
+                    , df_user
                     , by.x = taxaid_official_match
                     , by.y = taxaid_user
                     , all.y = TRUE
@@ -410,6 +428,7 @@ taxa_translate <- function(df_user = NULL
   if (sum_n_taxa_boo == TRUE) {
     df_taxatrans_unique <- dplyr::summarise(
       dplyr::group_by(df_merge
+                      , !!as.name(taxaid_user_orig)
                       , !!as.name(taxaid_official_match)
                       , !!as.name(taxaid_official_project)
                       , Match_Official)
@@ -419,7 +438,8 @@ taxa_translate <- function(df_user = NULL
       , .groups = "drop_last")
     df_taxatrans_unique <- data.frame(df_taxatrans_unique)
   } else {
-     df_taxatrans_unique <- unique(df_merge[, c(taxaid_official_match
+     df_taxatrans_unique <- unique(df_merge[, c(taxaid_user_orig
+                                                , taxaid_official_match
                                             , taxaid_official_project
                                             , "Match_Official"
                                             )])
@@ -427,25 +447,33 @@ taxa_translate <- function(df_user = NULL
   }## IF ~ sum_n_taxa_boo
 
   # rename column
-  names(df_taxatrans_unique)[1] <- taxaid_user
+  names(df_taxatrans_unique)[2] <- taxaid_user #taxaid_official_match
   # sort
   df_taxatrans_unique <- df_taxatrans_unique[order(df_taxatrans_unique[
-    , taxaid_user]), ]
+    , 1]), ]
+
+  # Add CAPS column
+  df_taxatrans_unique[, "Modified_ORIG"] <-
+    df_taxatrans_unique[, taxaid_user_orig] !=
+    df_taxatrans_unique[, taxaid_official_project]
 
   # add "modified" column
-  df_taxatrans_unique[, "Modified"] <-
+  df_taxatrans_unique[, "Modified_CAPS"] <-
     df_taxatrans_unique[, taxaid_user] !=
     df_taxatrans_unique[, taxaid_official_project]
   # move to new position
-  df_taxatrans_unique <- dplyr::relocate(df_taxatrans_unique
-                                         , Modified
-                                         , .after = Match_Official)
+  # df_taxatrans_unique <- dplyr::relocate(df_taxatrans_unique
+  #                                        , Modified_CAPS
+  #                                        , .after = Match_Official)
+
+
 
   # Add CAPS column
-  df_taxatrans_unique[, paste(taxaid_user, "_CAPS")] <- toupper(df_taxatrans_unique[, taxaid_user])
-  df_taxatrans_unique[, "Modified_CAPS"] <-
-    df_taxatrans_unique[, paste(taxaid_user, "_CAPS")] !=
-    df_taxatrans_unique[, taxaid_official_project]
+  # df_taxatrans_unique[, paste(taxaid_user, "_CAPS")] <- toupper(df_taxatrans_unique[, taxaid_user])
+  # df_taxatrans_unique[, "Modified_CAPS"] <-
+  #   df_taxatrans_unique[, paste(taxaid_user, "_CAPS")] !=
+  #   df_taxatrans_unique[, taxaid_official_project]
+  # 20240610, remove section
 
   ## Drop the "matching" column----
   col_drop_idmatch <- names(df_merge)[!names(df_merge) %in% taxaid_official_match]
@@ -523,7 +551,7 @@ taxa_translate <- function(df_user = NULL
     } ## IF ~ boo_DEBUG_tt
     df_merge <- df_summ_merge
   }## IF ~ boo_combine
-
+  # 20240610, TRUE doesn't seem to be working with test data
 
   # QC, NA or DNI taxa names----
 

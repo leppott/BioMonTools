@@ -111,7 +111,7 @@ values to ALL CAPS before matching.  Any non-ascii characters will cause this
 to fail.  A message is output to the console for any taxaid values that
 contain non-ascii characters.  In the event that `match_caps` is set to TRUE
 and non-ascii characters are present the matching will be done without
-converting to upper case as this would cause the function to fail.#'
+converting to upper case as this would cause the function to fail.
 
 The taxa list and metadata file names will be added to the results as two
 new columns.
