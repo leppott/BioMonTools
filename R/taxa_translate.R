@@ -447,33 +447,30 @@ taxa_translate <- function(df_user = NULL
   }## IF ~ sum_n_taxa_boo
 
   # rename column
-  names(df_taxatrans_unique)[2] <- taxaid_user #taxaid_official_match
+  ## taxaid_official_match to user name + "_CAPS"
+  names(df_taxatrans_unique)[2] <- paste0(taxaid_user, "_CAPS")
+  ## Original ID to user name
+  names(df_taxatrans_unique)[1] <- taxaid_user
   # sort
-  df_taxatrans_unique <- df_taxatrans_unique[order(df_taxatrans_unique[
-    , 1]), ]
-
-  # Add CAPS column
-  df_taxatrans_unique[, "Modified_ORIG"] <-
-    df_taxatrans_unique[, taxaid_user_orig] !=
-    df_taxatrans_unique[, taxaid_official_project]
+  df_taxatrans_unique <- df_taxatrans_unique[order(df_taxatrans_unique[, 1]), ]
 
   # add "modified" column
-  df_taxatrans_unique[, "Modified_CAPS"] <-
-    df_taxatrans_unique[, taxaid_user] !=
+  ## user ID to project
+  df_taxatrans_unique[, "Modified_woCAPS"] <-
+    df_taxatrans_unique[, 1] !=
     df_taxatrans_unique[, taxaid_official_project]
-  # move to new position
-  # df_taxatrans_unique <- dplyr::relocate(df_taxatrans_unique
-  #                                        , Modified_CAPS
-  #                                        , .after = Match_Official)
+  # user ID CAPS to project
+  df_taxatrans_unique[, "Modified_wCAPS"] <-
+    df_taxatrans_unique[, 2] !=
+    df_taxatrans_unique[, taxaid_official_project]
 
+  # move sum count to end position
+  if ("N_Taxa_Sum" %in% names(df_taxatrans_unique)) {
+    df_taxatrans_unique <- dplyr::relocate(df_taxatrans_unique
+                                           , N_Taxa_Sum
+                                           , .after = last_col())
+  }## IF ~ N_Taxa_Sum
 
-
-  # Add CAPS column
-  # df_taxatrans_unique[, paste(taxaid_user, "_CAPS")] <- toupper(df_taxatrans_unique[, taxaid_user])
-  # df_taxatrans_unique[, "Modified_CAPS"] <-
-  #   df_taxatrans_unique[, paste(taxaid_user, "_CAPS")] !=
-  #   df_taxatrans_unique[, taxaid_official_project]
-  # 20240610, remove section
 
   ## Drop the "matching" column----
   col_drop_idmatch <- names(df_merge)[!names(df_merge) %in% taxaid_official_match]
