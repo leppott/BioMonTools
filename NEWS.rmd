@@ -18,6 +18,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9035
+
+* refactor: Update MN_Fish_IBI metrics, Issue #111
+    + pi_wetland_notoler_ExclSchool to nt_wetland_notoler
+        - MetricScoring.xlsx
+        - MetricNames.xlsx
+        - `metric.values`
+
 ## Changes in version 1.0.2.9034
 
 * refactor: Add pi_OligoHiru to `metric.values`

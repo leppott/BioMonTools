@@ -4887,13 +4887,16 @@ metric.values.fish <- function(myDF
                                              , na.rm = TRUE)
                  #### MN, nt, HABITAT
                  , nt_coldwater = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                            & HABITAT_CW == TRUE]
+                                                          & HABITAT_CW == TRUE]
                                                      , na.rm = TRUE)
                  , nt_natcoldwater = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                               & HABITAT_CWN == TRUE]
+                                                          & HABITAT_CWN == TRUE]
                                                         , na.rm = TRUE) # MN, nt for pt
                  , nt_hw_notoler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                             & HABITAT_HW_noT == TRUE]
+                                                      & HABITAT_HW_noT == TRUE]
+                                                      , na.rm = TRUE)
+                 , nt_wetland_notoler =  dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                      & HABITAT_WE_noT == TRUE]
                                                       , na.rm = TRUE)
                  #### MN, nt, REPRO
                  , nt_serialspawner = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE

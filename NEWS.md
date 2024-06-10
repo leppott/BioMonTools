@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-07 13:46:51.419814
+    #> Last Update: 2024-06-10 07:30:26.008644
 
 # Version History
+
+## Changes in version 1.0.2.9035
+
+- refactor: Update MN_Fish_IBI metrics, Issue \#111
+  - pi_wetland_notoler_ExclSchool to nt_wetland_notoler
+    - MetricScoring.xlsx
+    - MetricNames.xlsx
+    - `metric.values`
 
 ## Changes in version 1.0.2.9034
 
