@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-10 18:24:37.421777
+    #> Last Update: 2024-06-11 19:35:32.858073
 
 # Version History
+
+## Changes in version 1.0.2.9039
+
+- refactor: Update zeroind scoring for MN Bugs and Fish IBI, Issue \#111
+  - MetricScoring.xlsx
 
 ## Changes in version 1.0.2.9038
 

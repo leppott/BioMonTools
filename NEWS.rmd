@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9039
+
+* refactor: Update zeroind scoring for MN Bugs and Fish IBI, Issue #111
+    + MetricScoring.xlsx
+
 ## Changes in version 1.0.2.9038
 
 * refactor: Update `taxa_translate` columns for unique taxa output
