@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9040
+
+* BREAKING: Deprecate sum_n_taxa in `taxa_translate`
+    + Leave in code so if fix can re-enable
+    + Doesn't work all the time with match_caps and non-ascii character code
+
 ## Changes in version 1.0.2.9039
 
 * refactor: Update zeroind scoring for MN Bugs and Fish IBI, Issue #111

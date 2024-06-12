@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-11 19:35:32.858073
+    #> Last Update: 2024-06-12 19:42:24.626121
 
 # Version History
+
+## Changes in version 1.0.2.9040
+
+- BREAKING: Deprecate sum_n_taxa in `taxa_translate`
+  - Leave in code so if fix can re-enable
+  - Doesn’t work all the time with match_caps and non-ascii character
+    code
 
 ## Changes in version 1.0.2.9039
 

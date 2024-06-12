@@ -18,6 +18,8 @@
 #' multiple taxa in a sample have the same name the rows will not be combined.
 #' If collapsing is desired set the parameter `sum_n_taxa_boo` to TRUE.
 #' Will also need to provide `sum_n_taxa_col` and `sum_n_taxa_group_by`.
+#' This feature was DEPRECATED in v1.0.2.9040 (2024-06-12).  The parameters
+#' will remain and could be reinstituted in a future version.
 #'
 #' Slightly different than `qc_taxa` since no options in `taxa_translate` for
 #' using one field over another and is more generic.
@@ -61,13 +63,15 @@
 #' should be dropped; e.g., DNI (Do Not Include) or -999.  Default = NULL
 #' @param col_drop Columns to remove in output.  Default = NULL
 #' @param sum_n_taxa_boo Boolean value for if the results should be summarized
-#' Default = FALSE
+#' Default = FALSE  DEPRECATED, values will be ignored
 #' @param sum_n_taxa_col Column name for number of individuals for user data
 #' when summarizing.  This column will be summed.
 #' Default = NULL (suggestion = N_TAXA)
+#' DEPRECATED, values will be ignored
 #' @param sum_n_taxa_group_by Column names for user data to use for grouping the
 #' data when summarizing the user data.  Suggestions are SAMPID and TAXA_ID.
 #' Default = NULL
+#' DEPRECATED, values will be ignored
 #' @param trim_ws Boolean value for taxaid to have leading and trailing white
 #' space removed.  Non-braking spaces (e.g., from ITIS) also removed (including
 #' inside text).  Default = FALSE
@@ -205,7 +209,7 @@ taxa_translate <- function(df_user = NULL
     sum_n_taxa_boo <- TRUE
     sum_n_taxa_col <- "N_TAXA"
     sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
-    clean <- TRUE
+    trim_ws <- TRUE
     match_caps <- TRUE
 
         ## OLD ----
@@ -263,6 +267,13 @@ taxa_translate <- function(df_user = NULL
     #                          , taxaid_official_project)
 
   }##IF ~ boo_DEBUG_tt
+
+  # DEPRECATE, sum_n_taxa ----
+  # 2024-06-12
+  sum_n_taxa_boo <- FALSE
+  sum_n_taxa_col <- NULL
+  sum_n_taxa_group_by <- NULL
+
 
   # QC ----
   ## QC, df type----
@@ -384,7 +395,7 @@ taxa_translate <- function(df_user = NULL
   # Munge, match_caps
   # 20240610, add back from 20240430, v1.0.2.9017
   # (20240430, v1.0.2.9017, partial)
-  sum_boo_iconv_both <- sum_boo_iconv_project + sum_boo_iconv_user
+  sum_boo_iconv_both <- sum_boo_iconv_project + sum_boo_iconv_user + sum_boo_iconv_official
   # if any non-ascii toupper() fails
   if (match_caps & sum_boo_iconv_both == 0) {
     # add extra column to retain ORIGINAL taxaid
@@ -424,25 +435,51 @@ taxa_translate <- function(df_user = NULL
     df_merge[, taxaid_official_project]
 
   ## Element 4, unique taxa translate ----
+  # 20240612, sum_n_taxa not working, DEPRECATE
+  # dups in original user taxaid so can't use to group_by!
   # run here to get "raw" version with all rows
   if (sum_n_taxa_boo == TRUE) {
-    df_taxatrans_unique <- dplyr::summarise(
-      dplyr::group_by(df_merge
-                      , !!as.name(taxaid_user_orig)
-                      , !!as.name(taxaid_official_match)
-                      , !!as.name(taxaid_official_project)
-                      , Match_Official)
-      , N_Taxa_Sum = sum(!!as.name(sum_n_taxa_col), na.rm = TRUE)
-      # , N_Taxa_Count = dplyr::n_distinct(!!as.name(taxaid_official_match)
-      #                                    , na.rm = TRUE)
-      , .groups = "drop_last")
-    df_taxatrans_unique <- data.frame(df_taxatrans_unique)
+    if (match_caps & sum_boo_iconv_both == 0) {
+      df_taxatrans_unique <- dplyr::summarise(
+        dplyr::group_by(df_merge
+                        , !!as.name(taxaid_user_orig)
+                        , !!as.name(taxaid_official_match)
+                        , !!as.name(taxaid_official_project)
+                        , Match_Official)
+        , N_Taxa_Sum = sum(!!as.name(sum_n_taxa_col), na.rm = TRUE)
+        # , N_Taxa_Count = dplyr::n_distinct(!!as.name(taxaid_official_match)
+        #                                    , na.rm = TRUE)
+        , .groups = "drop_last")
+      df_taxatrans_unique <- data.frame(df_taxatrans_unique)
+    } else {
+      df_taxatrans_unique <- dplyr::summarise(
+        dplyr::group_by(df_merge
+                        , !!as.name(taxaid_official_match)
+                        , !!as.name(taxaid_official_match)
+                        , !!as.name(taxaid_official_project)
+                        , Match_Official)
+        , N_Taxa_Sum = sum(!!as.name(sum_n_taxa_col), na.rm = TRUE)
+        # , N_Taxa_Count = dplyr::n_distinct(!!as.name(taxaid_official_match)
+        #                                    , na.rm = TRUE)
+        , .groups = "drop_last")
+      df_taxatrans_unique <- data.frame(df_taxatrans_unique)
+    }## IF ~ caps and iconv
+
   } else {
-     df_taxatrans_unique <- unique(df_merge[, c(taxaid_user_orig
-                                                , taxaid_official_match
-                                            , taxaid_official_project
-                                            , "Match_Official"
-                                            )])
+    if (match_caps & sum_boo_iconv_both == 0) {
+      df_taxatrans_unique <- unique(df_merge[, c(taxaid_user_orig
+                                                 , taxaid_official_match
+                                                 , taxaid_official_project
+                                                 , "Match_Official"
+      )])
+    } else {
+      df_taxatrans_unique <- unique(df_merge[, c(taxaid_official_match
+                                                 , taxaid_official_match
+                                                 , taxaid_official_project
+                                                 , "Match_Official"
+      )])
+    }## IF ~ caps and iconv
+
 
   }## IF ~ sum_n_taxa_boo
 
@@ -562,12 +599,26 @@ taxa_translate <- function(df_user = NULL
   #
   df_user_nonmatch <- df_user[df_user[, taxaid_user] %in% taxa_nonmatch, ]
   #
-  df_nonmatch <- dplyr::summarise(
-    dplyr::group_by(df_user_nonmatch, !!as.name(taxaid_user))
+  if (sum_n_taxa_boo == TRUE) {
+    df_nonmatch <- dplyr::summarise(
+    dplyr::group_by(df_user_nonmatch
+                    , !!as.name(taxaid_user))
     , N_Taxa_Sum = sum(!!as.name(sum_n_taxa_col), na.rm = TRUE)
     , N_Taxa_Count = dplyr::n_distinct(!!as.name(taxaid_user), na.rm = TRUE)
     , .groups = "drop_last")
-  df_nonmatch <- data.frame(df_nonmatch)
+
+    df_nonmatch <- data.frame(df_nonmatch)
+  } else {
+    df_nonmatch <- dplyr::summarise(
+      dplyr::group_by(df_user_nonmatch
+                      , !!as.name(taxaid_user))
+      , N_Taxa_Sum = NA
+      , N_Taxa_Count = dplyr::n_distinct(!!as.name(taxaid_user), na.rm = TRUE)
+      , .groups = "drop_last")
+
+    df_nonmatch <- data.frame(df_nonmatch)
+  }## sum_n_taxa_boo
+
 
   # Console Output ----
 
@@ -587,7 +638,7 @@ taxa_translate <- function(df_user = NULL
                     , taxa_nonmatch_n
                     , "/"
                     , taxa_user_n
-                    , ") did not match the official taxa list:\n")
+                    , ") did not match the official taxa list:\n\n")
     msg_2 <- paste0(taxa_nonmatch, collapse = "\n")
     message(paste0(msg_1, msg_2))
   }## IF ~ non-matches message

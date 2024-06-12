@@ -43,15 +43,17 @@ should be dropped; e.g., DNI (Do Not Include) or -999.  Default = NULL}
 \item{col_drop}{Columns to remove in output.  Default = NULL}
 
 \item{sum_n_taxa_boo}{Boolean value for if the results should be summarized
-Default = FALSE}
+Default = FALSE  DEPRECATED, values will be ignored}
 
 \item{sum_n_taxa_col}{Column name for number of individuals for user data
 when summarizing.  This column will be summed.
-Default = NULL (suggestion = N_TAXA)}
+Default = NULL (suggestion = N_TAXA)
+DEPRECATED, values will be ignored}
 
 \item{sum_n_taxa_group_by}{Column names for user data to use for grouping the
 data when summarizing the user data.  Suggestions are SAMPID and TAXA_ID.
-Default = NULL}
+Default = NULL
+DEPRECATED, values will be ignored}
 
 \item{trim_ws}{Boolean value for taxaid to have leading and trailing white
 space removed.  Non-braking spaces (e.g., from ITIS) also removed (including
@@ -89,6 +91,8 @@ By default, taxa are not collapsed to the official taxaid.  That is, if
 multiple taxa in a sample have the same name the rows will not be combined.
 If collapsing is desired set the parameter `sum_n_taxa_boo` to TRUE.
 Will also need to provide `sum_n_taxa_col` and `sum_n_taxa_group_by`.
+This feature was DEPRECATED in v1.0.2.9040 (2024-06-12).  The parameters
+will remain and could be reinstituted in a future version.
 
 Slightly different than `qc_taxa` since no options in `taxa_translate` for
 using one field over another and is more generic.
