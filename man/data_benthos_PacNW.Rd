@@ -53,7 +53,9 @@ example data
 data_benthos_PacNW
 }
 \description{
-A dataset with example taxa data and attributes for calculating
-metric values.
+A dataset with example (demonstration only) taxa data and
+attributes for calculating metric values.
+
+This dataset is an example only.  DO NOT USE for any analyses.
 }
 \keyword{datasets}

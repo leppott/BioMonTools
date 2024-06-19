@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-12 19:42:24.626121
+    #> Last Update: 2024-06-19 07:47:28.989399
 
 # Version History
+
+## Changes in version 1.0.2.9041
+
+- docs: Add “demo only” language to ORWA example data
 
 ## Changes in version 1.0.2.9040
 
