@@ -3917,7 +3917,8 @@ metric.values.fish <- function(myDF
   myDF[, "TYPE_SL"] <- grepl("^SL$|^SL,|,SL$|,SL,", myDF[,"TYPE"])
   # MN, Schooling
   myDF[, "TYPE_SCHOOL"] <- grepl("SCHOOLING", myDF[,"TYPE"])
-
+  # MN, Brook Trout
+  myDF[, "TYPE_BROOKTROUT"] <- grepl("BROOKTROUT", myDF[,"TYPE"])
 
   if (!"WSAREA_ATTR" %in% names(myDF)) {
     myDF[, "WSAREA_ATTR"] <- NA
@@ -4220,7 +4221,7 @@ metric.values.fish <- function(myDF
                                                                 , na.rm = TRUE) / ni_total
                        # % Round-Bodied Suckers
                        , pi_rbs = 100 * sum(N_TAXA[TYPE == "RBS"], na.rm = TRUE) / ni_total
-                       , pi_brooktrout = 100 * sum(N_TAXA[TYPE == "BROOK TROUT"], na.rm = TRUE) / ni_total
+                       , pi_brooktrout = 100 * sum(N_TAXA[TYPE_BROOKTROUT == TRUE], na.rm = TRUE) / ni_total
                        , pi_brooktrout_wild = 100 * sum(N_TAXA[TAXAID == "BROOK TROUT, WILD"], na.rm = TRUE) / ni_total
                        , pi_Cato = 100 * sum(N_TAXA[FAMILY == "CATOSTOMIDAE"], na.rm = TRUE) / ni_total
                        , pi_Cent = 100 * sum(N_TAXA[FAMILY == "CENTRARCHIDAE"], na.rm = TRUE) / ni_total
@@ -4235,13 +4236,13 @@ metric.values.fish <- function(myDF
                        , pi_Lepomis = 100 * sum(N_TAXA[GENUS == "LEPOMIS"], na.rm = TRUE) / ni_total
                        , pi_Salm = 100 * sum(N_TAXA[FAMILY == "SALMONIDAE"], na.rm = TRUE) / ni_total
                        , pi_trout = 100 * sum(N_TAXA["TROUT" %in% TYPE], na.rm = TRUE) / ni_total
-                       , pi_brooktrout_BCG_att6 = 100 * (sum(N_TAXA[TYPE == "BROOK TROUT"], na.rm = TRUE) +
+                       , pi_brooktrout_BCG_att6 = 100 * (sum(N_TAXA[TYPE_BROOKTROUT == TRUE], na.rm = TRUE) +
                                                            sum(N_TAXA[BCG_ATTR == "6"], na.rm = TRUE)) / ni_total
                        , pi_connect = 100 * sum(N_TAXA[CONNECTIVITY == TRUE], na.rm = TRUE) / ni_total
                        , pi_scc = 100 * sum(N_TAXA[SCC == TRUE], na.rm = TRUE) / ni_total
                        , pi_brooktrout2brooktrout_BCG_att6 = 100 *
-                          sum(N_TAXA[TYPE == "BROOK TROUT"], na.rm = TRUE) /
-                            (sum(N_TAXA[TYPE == "BROOK TROUT"], na.rm = TRUE) +
+                          sum(N_TAXA[TYPE_BROOKTROUT == TRUE], na.rm = TRUE) /
+                            (sum(N_TAXA[TYPE_BROOKTROUT == TRUE], na.rm = TRUE) +
                                sum(N_TAXA[BCG_ATTR == "6"], na.rm = TRUE))
 
                        # benthic fluvial specialist

@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9042
+
+* fix: Update fish metrics brook trout code
+    + Change for MN to replace space invalidated code
+    + Added TYPE_BROOKTROUT to make metric simpler
+
 ## Changes in version 1.0.2.9041
 
 * docs: Add "demo only" language to ORWA example data

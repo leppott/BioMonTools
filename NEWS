@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-06-19 07:47:28.989399
+    #> Last Update: 2024-07-01 16:28:48.499137
 
 # Version History
+
+## Changes in version 1.0.2.9042
+
+- fix: Update fish metrics brook trout code
+  - Change for MN to replace space invalidated code
+  - Added TYPE_BROOKTROUT to make metric simpler
 
 ## Changes in version 1.0.2.9041
 
