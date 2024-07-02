@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-07-01 16:28:48.499137
+    #> Last Update: 2024-07-02 14:14:36.132065
 
 # Version History
+
+## Changes in version 1.0.2.9043
+
+- refactor: Change MN Bugs Index_Class from 8 and 9 to 10 and 11
+  - MetricScoring.xlsx
 
 ## Changes in version 1.0.2.9042
 
