@@ -5056,7 +5056,7 @@ metric.values.fish <- function(myDF
                  , pt_darterscultpinsucker = 100 * nt_darterscultpinsucker / nt_total
                  , pt_pioneer              = 100 * nt_pioneer / nt_total
                  #### MN, x
-                 , ni_m2_notoler = ni_total_notoler_mn / area_m2
+                 , ni_m_notoler = ni_total_notoler_mn / length_m
                  #### MN, DELT
                  , pi_delt_ExclSchool = 100 * sum(N_ANOMALIES[TYPE_SCHOOL != TRUE]
                                                   , na.rm = TRUE) / ni_total_ExclSchool

@@ -18,14 +18,22 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9044
+
+* refactor: Update MN fish metric ni_m2_notoler to ni_m_notoler
+    + Length (m) not area (m2)
+    + metric.values.R
+    + MetricScoring.xlsx
+    + MetricNames.xlsx
+
 ## Changes in version 1.0.2.9043
 
-* refactor: Change MN Bugs Index_Class from 8 and 9 to 10 and 11
+* refactor: Change MN Bugs Index_Class from 8 and 9 to 10 and 11, Issue #92
     + MetricScoring.xlsx
 
 ## Changes in version 1.0.2.9042
 
-* fix: Update fish metrics brook trout code
+* fix: Update fish metrics brook trout code, Issue #92
     + Change for MN to replace space invalidated code
     + Added TYPE_BROOKTROUT to make metric simpler
 
