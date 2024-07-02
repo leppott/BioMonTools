@@ -18,9 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9045
+
+* refactor: Update MN Fish and Bug IBI index scoring, Issue #92
+
 ## Changes in version 1.0.2.9044
 
-* refactor: Update MN fish metric ni_m2_notoler to ni_m_notoler
+* refactor: Update MN fish metric ni_m2_notoler to ni_m_notoler, Issue #92
     + Length (m) not area (m2)
     + metric.values.R
     + MetricScoring.xlsx

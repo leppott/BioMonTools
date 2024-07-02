@@ -4,13 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-07-02 14:24:13.256331
+    #> Last Update: 2024-07-02 14:45:52.806131
 
 # Version History
 
+## Changes in version 1.0.2.9045
+
+- refactor: Update MN Fish and Bug IBI index scoring, Issue \#92
+
 ## Changes in version 1.0.2.9044
 
-- refactor: Update MN fish metric ni_m2_notoler to ni_m_notoler
+- refactor: Update MN fish metric ni_m2_notoler to ni_m_notoler, Issue
+  \#92
   - Length (m) not area (m2)
   - metric.values.R
   - MetricScoring.xlsx
