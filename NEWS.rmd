@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9046
+
+* refactor: Update MN IBI (bugs and fish), Issue #92
+    + Drop "modified" narrative
+    + MetricScoring.xlsx
+
 ## Changes in version 1.0.2.9045
 
 * refactor: Update MN Fish and Bug IBI index scoring, Issue #92
