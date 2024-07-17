@@ -175,7 +175,9 @@ testthat::test_that("metric.scores, index, number metrics", {
                          , "SUM"
                          , "AVERAGE_100"
                          , "AVERAGE_010"
-                         , "AVERAGESCALE_100")
+                         , "AVERAGESCALE_100"
+                         , "AVERAGE_100_M10_R2"
+                         , "AVERAGE_100_M10_R3")
   df_indsc_cnt_met <- df_indsc %>%
     dplyr::filter(ScoreRegime %in% valid_ScoreRegime) %>%
     dplyr::select(INDEX_NAME, INDEX_CLASS, NumMetrics)

@@ -4,14 +4,132 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-05-28 17:03:13.610274
+    #> Last Update: 2024-07-03 08:59:04.564936
 
 # Version History
+
+## Changes in version 1.0.2.9046
+
+- refactor: Update MN IBI (bugs and fish), Issue \#92
+  - Drop “modified” narrative
+  - MetricScoring.xlsx
+
+## Changes in version 1.0.2.9045
+
+- refactor: Update MN Fish and Bug IBI index scoring, Issue \#92
+
+## Changes in version 1.0.2.9044
+
+- refactor: Update MN fish metric ni_m2_notoler to ni_m_notoler, Issue
+  \#92
+  - Length (m) not area (m2)
+  - metric.values.R
+  - MetricScoring.xlsx
+  - MetricNames.xlsx
+
+## Changes in version 1.0.2.9043
+
+- refactor: Change MN Bugs Index_Class from 8 and 9 to 10 and 11, Issue
+  \#92
+  - MetricScoring.xlsx
+
+## Changes in version 1.0.2.9042
+
+- fix: Update fish metrics brook trout code, Issue \#92
+  - Change for MN to replace space invalidated code
+  - Added TYPE_BROOKTROUT to make metric simpler
+
+## Changes in version 1.0.2.9041
+
+- docs: Add “demo only” language to ORWA example data
+
+## Changes in version 1.0.2.9040
+
+- BREAKING: Deprecate sum_n_taxa in `taxa_translate`
+  - Leave in code so if fix can re-enable
+  - Doesn’t work all the time with match_caps and non-ascii character
+    code
+
+## Changes in version 1.0.2.9039
+
+- refactor: Update zeroind scoring for MN Bugs and Fish IBI, Issue \#111
+  - MetricScoring.xlsx
+
+## Changes in version 1.0.2.9038
+
+- refactor: Update `taxa_translate` columns for unique taxa output
+
+## Changes in version 1.0.2.9037
+
+- refactor: Update match_caps code in `taxa_translate`
+
+## Changes in version 1.0.2.9036
+
+- refactor: Add default value for match_caps in `taxa_translate`
+
+## Changes in version 1.0.2.9035
+
+- refactor: Update MN_Fish_IBI metrics, Issue \#111
+  - pi_wetland_notoler_ExclSchool to nt_wetland_notoler
+    - MetricScoring.xlsx
+    - MetricNames.xlsx
+    - `metric.values`
+
+## Changes in version 1.0.2.9034
+
+- refactor: Add pi_OligoHiru to `metric.values`
+
+## Changes in version 1.0.2.9033
+
+- refactor: Update MetricScoring.xlsx for MN_Fish_IBI, Issue \#111
+
+## Changes in version 1.0.2.9032
+
+- refactor: Update taxa_translate taxatrax_unique ouput
+  - Add match with CAPS
+
+## Changes in version 1.0.2.9031
+
+- fix: Add TolVal2 as required field for fish metrics in `metric.values`
+
+## Changes in version 1.0.2.9030
+
+- test: Add taxa.translate triws test
+  - Add white space (leading, trailing, both) and internal nbsp to test
+    data
+
+## Changes in version 1.0.2.9029
+
+- feature: Update taxa.translate trimws feature to replace internal
+
+## Changes in version 1.0.2.9028
+
+- feature: Update metric.scores() to account for MN_IBI_Fish, Issue
+  \#111
+  - If another metric is below a threshold then score as zero
+- refactor: Add hooks in metric.scores() for score zero modifications,
+  Issue \#111
+- refactor: Update help example for metric.scores()
 
 ## Changes in version 1.0.2.9027
 
 - refactor: Update MetricNames.xlsx to mark bug metrics to use for Large
   Rare metric calculations
+- refactor: Add remove spaces to columns for metric calculation
+  - Bugs
+    - HABIT, FFG, LIFE_CYCLE, FFG2, THERMAL_INDICATOR, HABSTRUCT ,
+      ELEVATION_ATTR, GRADIENT_ATTR, WSAREA_ATTR
+  - Fish
+    - TROPHIC, THERMAL_INDICATOR, REPRODUCTION, HABITAT, ELEVATION_ATTR
+      , GRADIENT_ATTR, WSAREA_ATTR
+- refactor: Add new fish metrics for MN_Fish_IBI, Issue \#111
+  - metric.values
+  - MetricNames.xlsx
+  - MetricScoring.xlsx
+- style: Reorder some metrics in fish section of metric.values
+  - Organize Munge section by column name
+- tests: metric.values() move time inside verbose to avoid warning
+  message
 
 ## Changes in version 1.0.2.9026
 

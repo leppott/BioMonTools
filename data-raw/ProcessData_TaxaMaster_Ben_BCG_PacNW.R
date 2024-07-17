@@ -4,6 +4,9 @@
 # Erik.Leppo@tetratech.com
 # 20180314
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# DEMO DATA ONLY!
+# DO NOT USE FOR ANALYSIS!
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 0. Prep####
 wd <- file.path(system.file(package="BCGcalc"), "extdata") # assume is package directory

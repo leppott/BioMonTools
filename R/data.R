@@ -112,8 +112,10 @@
 # "data_benthos_PacNW" ####
 #' @title Benthic macroinvertebrate taxa data; Pacific Northwest
 #'
-#' @description A dataset with example taxa data and attributes for calculating
-#' metric values.
+#' @description A dataset with example (demonstration only) taxa data and
+#' attributes for calculating metric values.
+#'
+#' This dataset is an example only.  DO NOT USE for any analyses.
 #'
 #' @format A data frame with 598 observations on the following 38 variables.
 #' \describe{

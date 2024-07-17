@@ -93,7 +93,7 @@ df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx"
 
 myIndex <- "BCG_PacNW_L1"
 df_samps_bugs$Index_Name   <- myIndex
-df_samps_bugs$INDEX_CLASS <- "ALL"
+df_samps_bugs$Index_Class <- "ALL"
 (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
                           , "INDEX_NAME"] == myIndex, "METRIC_NAME"]))
 # Run Function

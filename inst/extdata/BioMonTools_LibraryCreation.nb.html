@@ -1750,7 +1750,7 @@ display: none;
 <h1 class="title toc-ignore">Library Creation</h1>
 <h3 class="subtitle">BioMonTools</h3>
 <h4 class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
-<h4 class="date">2023-12-08 13:51:21.826569</h4>
+<h4 class="date">2024-06-02 10:20:03.568935</h4>
 
 </div>
 
@@ -1762,21 +1762,15 @@ display: none;
 <li><a href="#create-package" id="toc-create-package">Create
 Package</a></li>
 </ul></li>
-<li><a href="#package-down" id="toc-package-down">Package Down</a></li>
-<li><a href="#other-good-stuff" id="toc-other-good-stuff">other good
-stuff</a>
+<li><a href="#package-down" id="toc-package-down">Package Down</a>
 <ul>
-<li><a href="#run-all-examples" id="toc-run-all-examples">Run All
-Examples</a></li>
 <li><a href="#data-documentation" id="toc-data-documentation">Data
 Documentation</a></li>
-<li><a href="#check" id="toc-check">Check</a></li>
 <li><a href="#test" id="toc-test">Test</a></li>
 </ul></li>
 <li><a href="#ci-badges-code-coverage-etc" id="toc-ci-badges-code-coverage-etc">CI, Badges, Code Coverage,
 etc</a></li>
 <li><a href="#issues" id="toc-issues">issues</a></li>
-<li><a href="#other-stuff" id="toc-other-stuff">Other Stuff</a></li>
 </ul>
 </div>
 
@@ -1883,67 +1877,122 @@ citation(myPkg)</code></pre>
 <p>Create pkgdown website.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGtnZG93bjo6YnVpbGRfc2l0ZSgpXG5gYGAifQ== -->
-<pre class="r"><code>pkgdown::build_site()</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p><strong>code coverage</strong></p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2xpYnJhcnkoY292cilcbmNvdnI6OnJlcG9ydCgpXG5gYGAifQ== -->
-<pre class="r"><code>#library(covr)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucGtnZG93bjo6YnVpbGRfc2l0ZSgpXG5gYGBcbmBgYCJ9 -->
+<pre class="r"><code>```r
+pkgdown::build_site()</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+**code coverage**
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuI2xpYnJhcnkoY292cilcbmNvdnI6OnJlcG9ydCgpXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+#library(covr)
 covr::report()</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="other-good-stuff" class="section level1">
-<h1>other good stuff</h1>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZyA8LSBnb29kcHJhY3RpY2U6OmdwKClcblxuc19jaGVjayA8LSBkZXZ0b29sczo6c3BlbGxfY2hlY2soKVxuXG5gYGAifQ== -->
-<pre class="r"><code>g &lt;- goodpractice::gp()
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+# other good stuff
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZyA8LSBnb29kcHJhY3RpY2U6OmdwKClcblxuc19jaGVjayA8LSBkZXZ0b29sczo6c3BlbGxfY2hlY2soKVxuXG5gYGBcbmBgYCJ9 --&gt;
+
+```r
+```r
+g &lt;- goodpractice::gp()
 
 s_check &lt;- devtools::spell_check()
 </code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="run-all-examples" class="section level3">
-<h3>Run All Examples</h3>
-<p>Run all examples at once rather than going to each function
-individually.</p>
-<p>Add “/_test” to gitignore</p>
-<p>(Needs tweaking to get it working properly)</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiNwa2cgPC0gXCJCaW9Nb25Ub29sc1wiICMgZnJvbSByb290IGRpcmVjdG9yeSBvZiBwa2ciLCIjc2V0d2QoXCIuL190ZXN0XCIpIiwiZGV2dG9vbHM6OnJ1bl9leGFtcGxlcygpIl19 -->
-<pre class="r"><code>#pkg &lt;- &quot;BioMonTools&quot; # from root directory of pkg
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+### Run All Examples
+Run all examples at once rather than going to each function individually.
+
+Add &quot;/_test&quot; to gitignore
+
+(Needs tweaking to get it working properly)
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjpbIiNwa2cgPC0gXCJCaW9Nb25Ub29sc1wiICMgZnJvbSByb290IGRpcmVjdG9yeSBvZiBwa2ciLCIjc2V0d2QoXCIuL190ZXN0XCIpIiwiZGV2dG9vbHM6OnJ1bl9leGFtcGxlcygpIl19 --&gt;
+
+``` r
+#pkg &lt;- &quot;BioMonTools&quot; # from root directory of pkg
 #setwd(&quot;./_test&quot;)
 devtools::run_examples()</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="data-documentation" class="section level3">
 <h3>Data Documentation</h3>
 <p>Use promptData to get data.r listing for columns. Short cuts creating
 documentation.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJvbXB0RGF0YShkYXRhX2RpYXRvbV9tbWlfcWMpXG5gYGAifQ== -->
-<pre class="r"><code>promptData(data_diatom_mmi_qc)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="check" class="section level2">
-<h2>Check</h2>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiMgQ2hlY2sgZm9yIGVycm9ycyAob3IgcHJlc3MgQ21kICsgU2hpZnQgKyBFIGluIFJTdHVkaW8pIiwiI2h0dHA6Ly9yLXBrZ3MuaGFkLmNvLm56L2NoZWNrLmh0bWwiLCJkZXZ0b29sczo6Y2hlY2soKSJdfQ== -->
-<pre class="r"><code># Check for errors (or press Cmd + Shift + E in RStudio)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucHJvbXB0RGF0YShkYXRhX2RpYXRvbV9tbWlfcWMpXG5gYGBcbmBgYCJ9 -->
+<pre class="r"><code>```r
+promptData(data_diatom_mmi_qc)</code></pre>
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+## Check
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjpbIiMgQ2hlY2sgZm9yIGVycm9ycyAob3IgcHJlc3MgQ21kICsgU2hpZnQgKyBFIGluIFJTdHVkaW8pIiwiI2h0dHA6Ly9yLXBrZ3MuaGFkLmNvLm56L2NoZWNrLmh0bWwiLCJkZXZ0b29sczo6Y2hlY2soKSJdfQ== --&gt;
+
+``` r
+# Check for errors (or press Cmd + Shift + E in RStudio)
 #http://r-pkgs.had.co.nz/check.html
 devtools::check()</code></pre>
 <!-- rnb-source-end -->
@@ -1998,12 +2047,13 @@ dynamic, static ones below</p>
 </div>
 <div id="issues" class="section level1">
 <h1>issues</h1>
-<p><a href="https://GitHub.com/leppott/MBSStools/issues/"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iOTAiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWVzOiA3IG9wZW4iPjx0aXRsZT5pc3N1ZXM6IDcgb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iOTAiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI0MyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjQzIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIGZpbGw9IiNkZmIzMTciLz48cmVjdCB3aWR0aD0iOTAiIGhlaWdodD0iMjAiIGZpbGw9InVybCgjcykiLz48L2c+PGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IlZlcmRhbmEsR2VuZXZhLERlamFWdSBTYW5zLHNhbnMtc2VyaWYiIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIGZvbnQtc2l6ZT0iMTEwIj48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iMjI1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIzMzAiPmlzc3VlczwvdGV4dD48dGV4dCB4PSIyMjUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9IjMzMCI+aXNzdWVzPC90ZXh0Pjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSI2NTUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjM3MCI+NyBvcGVuPC90ZXh0Pjx0ZXh0IHg9IjY1NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMzcwIj43IG9wZW48L3RleHQ+PC9nPjwvc3ZnPg==" alt="GitHub issues" /></a> # release <a href="https://GitHub.com/leppott/MBSStools/releases/"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iODQiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0icmVsZWFzZTogdjEuMSI+PHRpdGxlPnJlbGVhc2U6IHYxLjE8L3RpdGxlPjxsaW5lYXJHcmFkaWVudCBpZD0icyIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iciI+PHJlY3Qgd2lkdGg9Ijg0IiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNDkiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI0OSIgd2lkdGg9IjM1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA3ZWM2Ii8+PHJlY3Qgd2lkdGg9Ijg0IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjI1NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMzkwIj5yZWxlYXNlPC90ZXh0Pjx0ZXh0IHg9IjI1NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMzkwIj5yZWxlYXNlPC90ZXh0Pjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSI2NTUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjI1MCI+djEuMTwvdGV4dD48dGV4dCB4PSI2NTUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9IjI1MCI+djEuMTwvdGV4dD48L2c+PC9zdmc+" alt="GitHub release" /></a> # downloads <a href="https://GitHub.com/leppott/MBSStools/releases/"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iODYiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iZG93bmxvYWRzOiAwIj48dGl0bGU+ZG93bmxvYWRzOiAwPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSI4NiIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiNmZmYiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjY5IiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iNjkiIHdpZHRoPSIxNyIgaGVpZ2h0PSIyMCIgZmlsbD0iI2UwNWQ0NCIvPjxyZWN0IHdpZHRoPSI4NiIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzNTUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjU5MCI+ZG93bmxvYWRzPC90ZXh0Pjx0ZXh0IHg9IjM1NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTkwIj5kb3dubG9hZHM8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9Ijc2NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNzAiPjA8L3RleHQ+PHRleHQgeD0iNzY1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSI3MCI+MDwvdGV4dD48L2c+PC9zdmc+" alt="Github all releases" /></a></p>
+<p><a href="https://GitHub.com/leppott/MBSStools/issues/"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iOTAiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iaXNzdWVzOiA5IG9wZW4iPjx0aXRsZT5pc3N1ZXM6IDkgb3BlbjwvdGl0bGU+PGxpbmVhckdyYWRpZW50IGlkPSJzIiB4Mj0iMCIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2JiYiIgc3RvcC1vcGFjaXR5PSIuMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1vcGFjaXR5PSIuMSIvPjwvbGluZWFyR3JhZGllbnQ+PGNsaXBQYXRoIGlkPSJyIj48cmVjdCB3aWR0aD0iOTAiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjZmZmIi8+PC9jbGlwUGF0aD48ZyBjbGlwLXBhdGg9InVybCgjcikiPjxyZWN0IHdpZHRoPSI0MyIgaGVpZ2h0PSIyMCIgZmlsbD0iIzU1NSIvPjxyZWN0IHg9IjQzIiB3aWR0aD0iNDciIGhlaWdodD0iMjAiIGZpbGw9IiNkZmIzMTciLz48cmVjdCB3aWR0aD0iOTAiIGhlaWdodD0iMjAiIGZpbGw9InVybCgjcykiLz48L2c+PGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IlZlcmRhbmEsR2VuZXZhLERlamFWdSBTYW5zLHNhbnMtc2VyaWYiIHRleHQtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iIGZvbnQtc2l6ZT0iMTEwIj48dGV4dCBhcmlhLWhpZGRlbj0idHJ1ZSIgeD0iMjI1IiB5PSIxNTAiIGZpbGw9IiMwMTAxMDEiIGZpbGwtb3BhY2l0eT0iLjMiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiB0ZXh0TGVuZ3RoPSIzMzAiPmlzc3VlczwvdGV4dD48dGV4dCB4PSIyMjUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9IjMzMCI+aXNzdWVzPC90ZXh0Pjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSI2NTUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjM3MCI+OSBvcGVuPC90ZXh0Pjx0ZXh0IHg9IjY1NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMzcwIj45IG9wZW48L3RleHQ+PC9nPjwvc3ZnPg==" alt="GitHub issues" /></a> # release <a href="https://GitHub.com/leppott/MBSStools/releases/"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iODQiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0icmVsZWFzZTogdjEuMiI+PHRpdGxlPnJlbGVhc2U6IHYxLjI8L3RpdGxlPjxsaW5lYXJHcmFkaWVudCBpZD0icyIgeDI9IjAiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3Atb3BhY2l0eT0iLjEiLz48L2xpbmVhckdyYWRpZW50PjxjbGlwUGF0aCBpZD0iciI+PHJlY3Qgd2lkdGg9Ijg0IiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIvPjwvY2xpcFBhdGg+PGcgY2xpcC1wYXRoPSJ1cmwoI3IpIj48cmVjdCB3aWR0aD0iNDkiIGhlaWdodD0iMjAiIGZpbGw9IiM1NTUiLz48cmVjdCB4PSI0OSIgd2lkdGg9IjM1IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA3ZWM2Ii8+PHJlY3Qgd2lkdGg9Ijg0IiBoZWlnaHQ9IjIwIiBmaWxsPSJ1cmwoI3MpIi8+PC9nPjxnIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJWZXJkYW5hLEdlbmV2YSxEZWphVnUgU2FucyxzYW5zLXNlcmlmIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBmb250LXNpemU9IjExMCI+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9IjI1NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iMzkwIj5yZWxlYXNlPC90ZXh0Pjx0ZXh0IHg9IjI1NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iMzkwIj5yZWxlYXNlPC90ZXh0Pjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSI2NTUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjI1MCI+djEuMjwvdGV4dD48dGV4dCB4PSI2NTUiIHk9IjE0MCIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIGZpbGw9IiNmZmYiIHRleHRMZW5ndGg9IjI1MCI+djEuMjwvdGV4dD48L2c+PC9zdmc+" alt="GitHub release" /></a> # downloads <a href="https://GitHub.com/leppott/MBSStools/releases/"><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iODYiIGhlaWdodD0iMjAiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iZG93bmxvYWRzOiAwIj48dGl0bGU+ZG93bmxvYWRzOiAwPC90aXRsZT48bGluZWFyR3JhZGllbnQgaWQ9InMiIHgyPSIwIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYmJiIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIi8+PC9saW5lYXJHcmFkaWVudD48Y2xpcFBhdGggaWQ9InIiPjxyZWN0IHdpZHRoPSI4NiIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiNmZmYiLz48L2NsaXBQYXRoPjxnIGNsaXAtcGF0aD0idXJsKCNyKSI+PHJlY3Qgd2lkdGg9IjY5IiBoZWlnaHQ9IjIwIiBmaWxsPSIjNTU1Ii8+PHJlY3QgeD0iNjkiIHdpZHRoPSIxNyIgaGVpZ2h0PSIyMCIgZmlsbD0iI2UwNWQ0NCIvPjxyZWN0IHdpZHRoPSI4NiIgaGVpZ2h0PSIyMCIgZmlsbD0idXJsKCNzKSIvPjwvZz48ZyBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iVmVyZGFuYSxHZW5ldmEsRGVqYVZ1IFNhbnMsc2Fucy1zZXJpZiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgZm9udC1zaXplPSIxMTAiPjx0ZXh0IGFyaWEtaGlkZGVuPSJ0cnVlIiB4PSIzNTUiIHk9IjE1MCIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyIgdHJhbnNmb3JtPSJzY2FsZSguMSkiIHRleHRMZW5ndGg9IjU5MCI+ZG93bmxvYWRzPC90ZXh0Pjx0ZXh0IHg9IjM1NSIgeT0iMTQwIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgZmlsbD0iI2ZmZiIgdGV4dExlbmd0aD0iNTkwIj5kb3dubG9hZHM8L3RleHQ+PHRleHQgYXJpYS1oaWRkZW49InRydWUiIHg9Ijc2NSIgeT0iMTUwIiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIiB0cmFuc2Zvcm09InNjYWxlKC4xKSIgdGV4dExlbmd0aD0iNzAiPjA8L3RleHQ+PHRleHQgeD0iNzY1IiB5PSIxNDAiIHRyYW5zZm9ybT0ic2NhbGUoLjEpIiBmaWxsPSIjZmZmIiB0ZXh0TGVuZ3RoPSI3MCI+MDwvdGV4dD48L2c+PC9zdmc+" alt="Github all releases" /></a></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGtnX0dIIDwtIFwibGVwcG90dC9CaW9Nb25Ub29sc1wiXG5wa2dfbGljIDwtIFwiTUlUXCJcblxuIyBHaXRIdWIgQWN0aW9uLCBDSVxudXNldGhpczo6dXNlX2dpdGh1Yl9hY3Rpb25zKClcbnVzZXRoaXM6OnVzZV9naXRodWJfYWN0aW9uc19iYWRnZSgpXG4jIGJhZGdlcjo6YmFkZ2VfZ2l0aHViX2FjdGlvbnMocGtnX0dIKVxuXG4jIGNvZGUgY292ZXJhZ2VcbnVzZXRoaXM6OnVzZV9naXRodWJfYWN0aW9uKFwidGVzdC1jb3ZlcmFnZVwiKVxuXG4jIEdpdEh1YiBBY3Rpb24sIHBrZ2Rvd25cbnVzZXRoaXM6OnVzZV9naXRodWJfYWN0aW9uKFwicGtnZG93blwiKVxuXG4jIEJhZGdlc1xuIyBsaWZlY3ljbGVcbmJhZGdlcjo6YmFkZ2VfbGlmZWN5Y2xlKFwic3RhYmxlXCIsIFwiZ3JlZW5cIikgIyBzdGFibGUvZ3JlZW4sIG1hdHVyaW5nL2Rvcm1hbnQvYmx1ZVxuIyBtYWludGFpbmVkXG4jIGxpY2Vuc2VcbmJhZGdlcjo6YmFkZ2VfbGljZW5zZShwa2dfbGljKVxuIyBjb2RlIHF1YWxpdHlcbmJhZGdlcjo6YmFkZ2VfY29kZWZhY3Rvcihwa2dfR0gpXG4jIGNvZGUgdGVzdGluZyBjb3ZlcmFnZVxuYmFkZ2VyOjpiYWRnZV9jb2RlY292KHBrZ19HSClcbiMgY21kIGNoZWNrXG5iYWRnZXI6OmJhZGdlX2dpdGh1Yl9hY3Rpb25zKHBrZ19HSClcblxuXG5gYGAifQ== -->
-<pre class="r"><code>pkg_GH &lt;- &quot;leppott/BioMonTools&quot;
-pkg_lic &lt;- &quot;MIT&quot;
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucGtnX0dIIDwtIFxcbGVwcG90dC9CaW9Nb25Ub29sc1xcXG5wa2dfbGljIDwtIFxcTUlUXFxcblxuIyBHaXRIdWIgQWN0aW9uLCBDSVxudXNldGhpczo6dXNlX2dpdGh1Yl9hY3Rpb25zKClcbnVzZXRoaXM6OnVzZV9naXRodWJfYWN0aW9uc19iYWRnZSgpXG4jIGJhZGdlcjo6YmFkZ2VfZ2l0aHViX2FjdGlvbnMocGtnX0dIKVxuXG4jIGNvZGUgY292ZXJhZ2VcbnVzZXRoaXM6OnVzZV9naXRodWJfYWN0aW9uKFxcdGVzdC1jb3ZlcmFnZVxcKVxuXG4jIEdpdEh1YiBBY3Rpb24sIHBrZ2Rvd25cbnVzZXRoaXM6OnVzZV9naXRodWJfYWN0aW9uKFxccGtnZG93blxcKVxuXG4jIEJhZGdlc1xuIyBsaWZlY3ljbGVcbmJhZGdlcjo6YmFkZ2VfbGlmZWN5Y2xlKFxcc3RhYmxlXFwsIFxcZ3JlZW5cXCkgIyBzdGFibGUvZ3JlZW4sIG1hdHVyaW5nL2Rvcm1hbnQvYmx1ZVxuIyBtYWludGFpbmVkXG4jIGxpY2Vuc2VcbmJhZGdlcjo6YmFkZ2VfbGljZW5zZShwa2dfbGljKVxuIyBjb2RlIHF1YWxpdHlcbmJhZGdlcjo6YmFkZ2VfY29kZWZhY3Rvcihwa2dfR0gpXG4jIGNvZGUgdGVzdGluZyBjb3ZlcmFnZVxuYmFkZ2VyOjpiYWRnZV9jb2RlY292KHBrZ19HSClcbiMgY21kIGNoZWNrXG5iYWRnZXI6OmJhZGdlX2dpdGh1Yl9hY3Rpb25zKHBrZ19HSClcblxuXG5gYGBcbmBgYCJ9 -->
+<pre class="r"><code>```r
+pkg_GH &lt;- \leppott/BioMonTools\
+pkg_lic &lt;- \MIT\
 
 # GitHub Action, CI
 usethis::use_github_actions()
@@ -2011,14 +2061,14 @@ usethis::use_github_actions_badge()
 # badger::badge_github_actions(pkg_GH)
 
 # code coverage
-usethis::use_github_action(&quot;test-coverage&quot;)
+usethis::use_github_action(\test-coverage\)
 
 # GitHub Action, pkgdown
-usethis::use_github_action(&quot;pkgdown&quot;)
+usethis::use_github_action(\pkgdown\)
 
 # Badges
 # lifecycle
-badger::badge_lifecycle(&quot;stable&quot;, &quot;green&quot;) # stable/green, maturing/dormant/blue
+badger::badge_lifecycle(\stable\, \green\) # stable/green, maturing/dormant/blue
 # maintained
 # license
 badger::badge_license(pkg_lic)
@@ -2029,16 +2079,31 @@ badger::badge_codecov(pkg_GH)
 # cmd check
 badger::badge_github_actions(pkg_GH)
 </code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="other-stuff" class="section level1">
-<h1>Other Stuff</h1>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiN+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+IiwiIyBVcGxvYWQgdG8gR2l0aHViIHZpYSBHaXRIdWIgRGVza3RvcCB1dGlsaXR5IiwiIyAwLiBkb3dubG9hZCBmcm9tIHdlYiB2aWEgXCJjbG9uZSBvciBkb3dubG9hZFwiIHZpYSBcIk9wZW4gaW4gRGVza3RvcFwiIChHaXRIdWIgRGVza3RvcCkgaWYgbm90IGFscmVhZHkgaW4gR2l0SHViIERlc2t0b3AiLCIjIDEuIE1ha2UgY2hhbmdlcyBpbiBkb3dubG9hZC9jbG9uZSBmb2xkZXIuIChkb25lIGFib3ZlKSIsIiMgMy4gT3BlbiBHSCBEZXNrdG9wIGNvbW1pdCBjaGFuZ2VzIHRoZW4gc3luYy4iLCIjfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fiIsIiMgaW5zdGFsbCBmcm9tIEdpdEh1YiAodmlhIGRldnRvb2xzKSIsImRldnRvb2xzOjppbnN0YWxsX2dpdGh1YihwYXN0ZTAoXCJsZXBwb3R0L1wiLG15TGlicmFyeSkpIiwiIyIsIiIsIiIsIiIsIiN+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+IiwiIyByZW1vdmUgaW5zdGFsbGVkIHBhY2thZ2VzIChpZiBuZWVkZWQgZm9yIHRyb3VibGVzaG9vdGluZykiLCJzZWFyY2goKSAjIGZpbmQiLCIjZGV0YWNoKDMpICMgcmVtb3ZlIGJ5IG51bWJlciIsIiN+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+IiwiIiwiIiwiIyB0byBidWlsZCBwYWNrYWdlIiwiI2h0dHBzOi8vdGhlcG9saXRpY2FsbWV0aG9kb2xvZ2lzdC5jb20vMjAxNC8wOC8xNC9idWlsZGluZy1hbmQtbWFpbnRhaW5pbmctci1wYWNrYWdlcy13aXRoLWRldnRvb2xzLWFuZC1yb3h5Z2VuMi8iLCIjIFRvIGJ1aWxkIHRoZSBwYWNrYWdlIGFzIGEgY29tcHJlc3NlZCBmaWxlIGluIHlvdXIgd29ya2luZyBkaXJlY3RvcnksIHJ1biBidWlsZChjdXJyZW50LmNvZGUsIHBhdGg9Z2V0d2QoKSkuIiwiIiwiIyB0byBzYXZlIGludGVybmFsIGRhdGEgZm9yIGV4YW1wbGVzIiwiIyBleGFtcGxlIiwiI2h0dHA6Ly9yLXBrZ3MuaGFkLmNvLm56L2RhdGEuaHRtbCNkYXRhLXN5c2RhdGEiLCIjIGhhdmUgdG8gYmUgYXQgcm9vdCBkaXJlY3RvcnkgKGFib3ZlIHBhY2thZ2UpIiwiI2RldnRvb2xzOjp1c2VfZGF0YShOVi5wcmVkaWN0b3JzLE5WLmJ1Z3MscGtnPVwiTU1JY2FsY05WXCIsaW50ZXJuYWw9VFJVRSxvdmVyd3JpdGU9VFJVRSkiLCIjIyB2ZXJpZnkgd2l0aCBkYXRhKCkiLCIiLCIjIFRvIHNhdmUgUk1EIGZpbGVzIiwiIyBodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zLzMwMzc3MjEzL2hvdy10by1pbmNsdWRlLXJtYXJrZG93bi1maWxlLWluLXItcGFja2FnZSIsIiMgL3BrZy9pbnN0L3JtZC8iLCIjIHN5c3RlbS5maWxlKFwicm1kL2ZpbGUuUm1kXCIsIHBhY2thZ2U9XCJwYWNrYWdlbmFtZVwiKSIsIiMiLCIjfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fiIsIiNodHRwczovL2hpbGFyeXBhcmtlci5jb20vMjAxNC8wNC8yOS93cml0aW5nLWFuLXItcGFja2FnZS1mcm9tLXNjcmF0Y2gvIiwiIyBDcmVhdGUgUGFja2FnZSIsIiMgY3JlYXRlKG15TGlicmFyeSkiXX0= -->
-<pre class="r"><code>#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+
+
+
+# Other Stuff
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjpbIiN+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+IiwiIyBVcGxvYWQgdG8gR2l0aHViIHZpYSBHaXRIdWIgRGVza3RvcCB1dGlsaXR5IiwiIyAwLiBkb3dubG9hZCBmcm9tIHdlYiB2aWEgXCJjbG9uZSBvciBkb3dubG9hZFwiIHZpYSBcIk9wZW4gaW4gRGVza3RvcFwiIChHaXRIdWIgRGVza3RvcCkgaWYgbm90IGFscmVhZHkgaW4gR2l0SHViIERlc2t0b3AiLCIjIDEuIE1ha2UgY2hhbmdlcyBpbiBkb3dubG9hZC9jbG9uZSBmb2xkZXIuIChkb25lIGFib3ZlKSIsIiMgMy4gT3BlbiBHSCBEZXNrdG9wIGNvbW1pdCBjaGFuZ2VzIHRoZW4gc3luYy4iLCIjfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fiIsIiMgaW5zdGFsbCBmcm9tIEdpdEh1YiAodmlhIGRldnRvb2xzKSIsImRldnRvb2xzOjppbnN0YWxsX2dpdGh1YihwYXN0ZTAoXCJsZXBwb3R0L1wiLG15TGlicmFyeSkpIiwiIyIsIiIsIiIsIiIsIiN+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+IiwiIyByZW1vdmUgaW5zdGFsbGVkIHBhY2thZ2VzIChpZiBuZWVkZWQgZm9yIHRyb3VibGVzaG9vdGluZykiLCJzZWFyY2goKSAjIGZpbmQiLCIjZGV0YWNoKDMpICMgcmVtb3ZlIGJ5IG51bWJlciIsIiN+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+IiwiIiwiIiwiIyB0byBidWlsZCBwYWNrYWdlIiwiI2h0dHBzOi8vdGhlcG9saXRpY2FsbWV0aG9kb2xvZ2lzdC5jb20vMjAxNC8wOC8xNC9idWlsZGluZy1hbmQtbWFpbnRhaW5pbmctci1wYWNrYWdlcy13aXRoLWRldnRvb2xzLWFuZC1yb3h5Z2VuMi8iLCIjIFRvIGJ1aWxkIHRoZSBwYWNrYWdlIGFzIGEgY29tcHJlc3NlZCBmaWxlIGluIHlvdXIgd29ya2luZyBkaXJlY3RvcnksIHJ1biBidWlsZChjdXJyZW50LmNvZGUsIHBhdGg9Z2V0d2QoKSkuIiwiIiwiIyB0byBzYXZlIGludGVybmFsIGRhdGEgZm9yIGV4YW1wbGVzIiwiIyBleGFtcGxlIiwiI2h0dHA6Ly9yLXBrZ3MuaGFkLmNvLm56L2RhdGEuaHRtbCNkYXRhLXN5c2RhdGEiLCIjIGhhdmUgdG8gYmUgYXQgcm9vdCBkaXJlY3RvcnkgKGFib3ZlIHBhY2thZ2UpIiwiI2RldnRvb2xzOjp1c2VfZGF0YShOVi5wcmVkaWN0b3JzLE5WLmJ1Z3MscGtnPVwiTU1JY2FsY05WXCIsaW50ZXJuYWw9VFJVRSxvdmVyd3JpdGU9VFJVRSkiLCIjIyB2ZXJpZnkgd2l0aCBkYXRhKCkiLCIiLCIjIFRvIHNhdmUgUk1EIGZpbGVzIiwiIyBodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zLzMwMzc3MjEzL2hvdy10by1pbmNsdWRlLXJtYXJrZG93bi1maWxlLWluLXItcGFja2FnZSIsIiMgL3BrZy9pbnN0L3JtZC8iLCIjIHN5c3RlbS5maWxlKFwicm1kL2ZpbGUuUm1kXCIsIHBhY2thZ2U9XCJwYWNrYWdlbmFtZVwiKSIsIiMiLCIjfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fiIsIiNodHRwczovL2hpbGFyeXBhcmtlci5jb20vMjAxNC8wNC8yOS93cml0aW5nLWFuLXItcGFja2FnZS1mcm9tLXNjcmF0Y2gvIiwiIyBDcmVhdGUgUGFja2FnZSIsIiMgY3JlYXRlKG15TGlicmFyeSkiXX0= --&gt;
+
+``` r
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Upload to Github via GitHub Desktop utility
 # 0. download from web via &quot;clone or download&quot; via &quot;Open in Desktop&quot; (GitHub Desktop) if not already in GitHub Desktop
 # 1. Make changes in download/clone folder. (done above)

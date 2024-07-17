@@ -69,7 +69,7 @@
 #'
 #' myIndex <- "BCG_PacNW_L1"
 #' df_samps_bugs$Index_Name   <- myIndex
-#' df_samps_bugs$INDEX_CLASS <- "ALL"
+#' df_samps_bugs$Index_Class <- "ALL"
 #' (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
 #'                           , "INDEX_NAME"] == myIndex, "METRIC_NAME"]))
 #' # Run Function
@@ -320,12 +320,17 @@ metric.scores <- function(DF_Metrics
         fun.ScMet_Cond  <- suppressWarnings(fun.Thresh.myMetric[, "ScMet_Master_Condition", drop = TRUE])
         fun.ScMet_ScMet <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "ScMet_Score", drop = TRUE]))
         #
+        fun.S0_Met <- suppressWarnings(fun.Thresh.myMetric[, "ScoreZero_Metric", drop = TRUE])
+        fun.S0_Thr <- suppressWarnings(as.numeric(fun.Thresh.myMetric[, "ScoreZero_Thresh", drop = TRUE]))
+        fun.S0_Dir <- suppressWarnings(toupper(fun.Thresh.myMetric[, "ScoreZero_Direction", drop = TRUE]))
+        #
         # default value
         fun.Value <- DF_Metrics[, c]
         fun.Result <- fun.Value * NA  #default value of NA
         #
         if (fun.ScoreRegime == "CONT_0100") {
           ## Cont_0100 ####
+          fun.Result_Mult <- 1 # multiplier
           score_max <- 100
           if (fun.Direction == "DECREASE") {
             fun.calc <- score_max*((fun.Value - fun.Lo) / (fun.Hi - fun.Lo))
@@ -342,6 +347,53 @@ metric.scores <- function(DF_Metrics
             fun.calc <- score_max*((fun.Hi - fun.Value) / (fun.Hi - fun.Lo))
           }
           fun.Result <- sapply(fun.calc, function(x) {stats::median(c(0, score_max, x))})
+        } else if (fun.ScoreRegime == "CONT_0010_SC0") {
+          ## Cont_0010_Sc0----
+          # leave as Cont_0010
+          score_max <- 10
+          if (fun.Direction == "DECREASE") {
+            fun.calc <- score_max*((fun.Value - fun.Lo) / (fun.Hi - fun.Lo))
+          }else if (fun.Direction == "INCREASE") {
+            fun.calc <- score_max*((fun.Hi - fun.Value) / (fun.Hi - fun.Lo))
+          }
+          fun.Result <- sapply(fun.calc, function(x) {stats::median(c(0, score_max, x))})
+
+       #   S0 <- fun.S0_Met[1]
+        #  if (!is.na(S0)) {
+            # Add other metric
+            # fun.Thresh.myMetric <- dplyr::filter(DF_Thresh_Metric
+            #                                      , INDEX_NAME == a
+            #                                      & INDEX_CLASS == b
+            #                                      & METRIC_NAME %in% c(c, S0)) %>%
+            #   tidyr::pivot_wider(DF_Thresh_Metric
+            #                      , id_cols = c(INDEX_NAME, INDEX_CLASS)
+            #                      , names_from = METRIC_NAME) %>%
+            #   as.data.frame()
+            # # direction
+            # if (fun.S0_Dir == "LESSTHAN") {
+            #   # check if less than
+            #
+            # } else if (fun.S0_Dir == "GREATERTHAN") {
+            #   fun.Result <- NA
+            # } else {
+            #   fun.Result <- NA
+            # }## IF ~ fun.S0_Dir
+            #
+            #
+            # # fun.S0_Met
+            # # fun.S0_thr
+            # # fun.S0_dir
+            #
+
+         # # } else {
+         #    score_max <- 10
+         #    if (fun.Direction == "DECREASE") {
+         #      fun.calc <- score_max*((fun.Value - fun.Lo) / (fun.Hi - fun.Lo))
+         #    }else if (fun.Direction == "INCREASE") {
+         #      fun.calc <- score_max*((fun.Hi - fun.Value) / (fun.Hi - fun.Lo))
+         #    }
+         #    fun.Result <- fun.Result_Mult * sapply(fun.calc, function(x) {stats::median(c(0, score_max, x))})
+         #  }## IF ~ ScoreZero
         } else if (fun.ScoreRegime == "CAT_135") {
           ## Cat_135 ####
           if (fun.Direction == "DECREASE") {
@@ -612,6 +664,28 @@ metric.scores <- function(DF_Metrics
                                  , ifelse(fun.Value >= fun.Hi, 10, 5))
           }##IF~fun.Direction~END
 
+        } else if (fun.ScoreRegime == "CAT_0510_SC0") {
+          ## Cat_0510_Sc0----
+          # leave as Cat_0510
+          # MN IBI Fish
+          if (fun.Direction == "INCREASE") {
+            fun.Result <- ifelse(fun.Value >= fun.Hi
+                                 , 0
+                                 ,ifelse(fun.Value < fun.Lo, 10, 5))
+            if (boo.QC == TRUE) {
+              message(paste0("\nMetric="
+                             , c
+                             , ", Value="
+                             , fun.Value
+                             , ", Result="
+                             , fun.Result))
+              #utils::flush.console()
+            }##IF.boo.QC.END
+          } else if (fun.Direction == "DECREASE") {
+            fun.Result <- ifelse(fun.Value < fun.Lo
+                                 , 0
+                                 , ifelse(fun.Value >= fun.Hi, 10, 5))
+          }##IF~fun.Direction~END
         } else if (is.na(fun.ScoreRegime)) {
           ## No Score Regime ####
           fun.Result <- NA
