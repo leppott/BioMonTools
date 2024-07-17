@@ -4814,10 +4814,25 @@ metric.values.fish <- function(myDF
                                                           , na.rm = TRUE)
 
                   ### Repro, pi ----
+                 , pi_repro_broadcaster = 100 * sum(N_TAXA[REPRO_BCAST == TRUE]
+                                                  , na.rm = TRUE) / ni_total
+                 , pi_repro_nestsimp = 100 * sum(N_TAXA[REPRO_NS == TRUE]
+                                                  , na.rm = TRUE) / ni_total
+                 , pi_repro_nestcomp = 100 * sum(N_TAXA[REPRO_NC == TRUE]
+                                                  , na.rm = TRUE) / ni_total
+                 , pi_repro_bearer = 100 * sum(N_TAXA[REPRO_BEAR == TRUE]
+                                                  , na.rm = TRUE) / ni_total
+                 , pi_repro_migratory = 100 * sum(N_TAXA[REPRO_MIG == TRUE]
+                                                  , na.rm = TRUE) / ni_total
                   , pi_repro_lithophil = 100 * sum(N_TAXA[REPRO_LITH == TRUE]
                                         , na.rm = TRUE) / ni_total
 
                   ### Repro, pt ----
+                 , pt_repro_broadcaster = 100 * nt_repro_broadcaster / nt_total
+                 , pt_repro_nestsimp = 100 * nt_repro_nestsimp / nt_total
+                 , pt_repro_nestcomp = 100 * nt_repro_nestcomp / nt_total
+                 , pt_repro_bearer = 100 * nt_repro_bearer / nt_total
+                 , pt_repro_migratory = 100 * nt_repro_migratory / nt_total
                   , pt_repro_lithophil = 100 * nt_repro_lithophil / nt_total
 
 
