@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9047
+
+* refactor: MetricScoring.xlsx change MN IBI classes
+    + Flip Bugs and Fish for 8/9 and 10/11
+
 ## Changes in version 1.0.2.9046
 
 * refactor: Update MN IBI (bugs and fish), Issue #92

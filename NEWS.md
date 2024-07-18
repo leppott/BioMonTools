@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-07-03 08:59:04.564936
+    #> Last Update: 2024-07-18 14:27:55.975623
 
 # Version History
+
+## Changes in version 1.0.2.9047
+
+- refactor: MetricScoring.xlsx change MN IBI classes
+  - Flip Bugs and Fish for 8/9 and 10/11
 
 ## Changes in version 1.0.2.9046
 
