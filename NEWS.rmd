@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9048
+
+* refactor: Added Great Plains fish metrics (pi_NPL and pi_SALT)
+
 ## Changes in version 1.0.2.9047
 
 * refactor: MetricScoring.xlsx change MN IBI classes

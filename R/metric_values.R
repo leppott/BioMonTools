@@ -3923,6 +3923,13 @@ metric.values.fish <- function(myDF
   if (!"WSAREA_ATTR" %in% names(myDF)) {
     myDF[, "WSAREA_ATTR"] <- NA
   }## IF ~ WSAREA_ATTR
+  # GP, Salt
+  myDF[, "TYPE_SALT"] <- grepl("SALT", myDF[, "TYPE"])
+
+  # GP, NPL
+  myDF[, "TYPE_NPL"] <- grepl("NPL", myDF[, "TYPE"])
+
+
   # Remove white space
   myDF[, "WSAREA_ATTR"] <- gsub(" ", "", myDF[, "WSAREA_ATTR"])
   # code new columns
@@ -5075,6 +5082,17 @@ metric.values.fish <- function(myDF
                  #### MN, DELT
                  , pi_delt_ExclSchool = 100 * sum(N_ANOMALIES[TYPE_SCHOOL != TRUE]
                                                   , na.rm = TRUE) / ni_total_ExclSchool
+
+                 ### Great Plains ####
+
+                 #### GP, SALT
+                 , pi_salt = 100 * sum(N_TAXA[TYPE_SALT == TRUE]
+                                       , na.rm = TRUE) / ni_total
+                 #### GP, NPL
+                 , pi_NPL = 100 * sum(N_TAXA[TYPE_NPL == TRUE]
+                                      , na.rm = TRUE) / ni_total
+
+
 
                        #
                        # name changes ####

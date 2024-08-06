@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-07-18 14:27:55.975623
+    #> Last Update: 2024-08-06 15:24:57.180498
 
 # Version History
+
+## Changes in version 1.0.2.9048
+
+- refactor: Added Great Plains fish metrics (pi_NPL and pi_SALT)
 
 ## Changes in version 1.0.2.9047
 
