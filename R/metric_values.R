@@ -3784,28 +3784,7 @@ metric.values.fish <- function(myDF
   # each will be TRUE or FALSE
   # finds any match so "GE, IV" is both "GE" and "IV"
 
-
-  if (!"ELEVATION_ATTR" %in% names(myDF)) {
-    myDF[, "ELEVATION_ATTR"] <- NA
-  }## IF ~ ELEVATION_ATTR
-  # Remove white space
-  myDF[, "ELEVATION_ATTR"] <- gsub(" ", "", myDF[, "ELEVATION_ATTR"])
-  # code new columns
-  myDF[, "ELEVATION_LOW"]  <- "LOW" == myDF[, "ELEVATION_ATTR"]
-  myDF[, "ELEVATION_HIGH"] <- "HIGH" == myDF[, "ELEVATION_ATTR"]
-
-
-  if (!"GRADIENT_ATTR" %in% names(myDF)) {
-    myDF[, "GRADIENT_ATTR"] <- NA
-  }## IF ~ GRADIENT_ATTR
-  # Remove white space
-  myDF[, "GRADIENT_ATTR"] <- gsub(" ", "", myDF[, "GRADIENT_ATTR"])
-  # code new columns
-  myDF[, "GRADIENT_LOW"]   <- "LOW" == myDF[, "GRADIENT_ATTR"]
-  myDF[, "GRADIENT_MOD"]   <- "MOD" == myDF[, "GRADIENT_ATTR"]
-  myDF[, "GRADIENT_HIGH"]  <- "HIGH" == myDF[, "GRADIENT_ATTR"]
-
-
+  ## HABITAT ----
   if (!"HABITAT" %in% names(myDF)) {
     myDF[, "HABITAT"] <- NA
   }## IF ~ HABITAT
@@ -3822,7 +3801,7 @@ metric.values.fish <- function(myDF
   myDF[, "HABITAT_HW_noT"] <- grepl("HW-T", myDF[,"HABITAT"]) # Headwater Specialist, no Tolerant
   myDF[, "HABITAT_WE_noT"] <- grepl("WE-T", myDF[,"HABITAT"]) # Wetland, no Tolerant
 
-
+  ## REPRODUCTION ----
   if (!"REPRODUCTION" %in% names(myDF)) {
     myDF[, "REPRODUCTION"] <- NA
   }## IF ~ REPRODUCTION
@@ -3842,7 +3821,7 @@ metric.values.fish <- function(myDF
   myDF[, "REPRO_SER"]     <- grepl("SER", myDF[,"REPRODUCTION"]) # Serial Spawner
   myDF[, "REPRO_SILI"]    <- grepl("SILI", myDF[,"REPRODUCTION"]) # Simple Lithophil
 
-
+  ## THERMAL_INDICATOR----
   if (!"THERMAL_INDICATOR" %in% names(myDF)) {
     myDF[, "THERMAL_INDICATOR"] <- NA
   }## IF ~ THERMAL_INDICATOR
@@ -3857,7 +3836,7 @@ metric.values.fish <- function(myDF
   # exact matches only
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])
 
-
+  ## TOLER ----
   if (!"TOLER" %in% names(myDF)) {
     myDF[, "TOLER"] <- NA
   }## IF ~ TOLER
@@ -3876,7 +3855,7 @@ metric.values.fish <- function(myDF
   myDF[, "TOLER_TCW"] <- grepl("TCW", myDF[,"TOLER"])
   myDF[, "TOLER_VT"] <- grepl("VT", myDF[,"TOLER"])
 
-
+  ## TROPHIC ----
   if (!"TROPHIC" %in% names(myDF)) {
     myDF[, "TROPHIC"] <- NA
   }## IF ~ TROPHIC
@@ -3898,7 +3877,7 @@ metric.values.fish <- function(myDF
   myDF[, "TROPHIC_IN_CYP"] <- grepl("INCYP", myDF[, "TROPHIC"]) # Insectivorous Cyprinidae
   myDF[, "TROPHIC_DEM"] <- grepl("DEM", myDF[, "TROPHIC"]) # Detritivore Minor
 
-
+  ## TYPE ----
   if (!"TYPE" %in% names(myDF)) {
     myDF[, "TYPE"] <- NA
   }## IF ~ TYPE
@@ -3919,17 +3898,36 @@ metric.values.fish <- function(myDF
   myDF[, "TYPE_SCHOOL"] <- grepl("SCHOOLING", myDF[,"TYPE"])
   # MN, Brook Trout
   myDF[, "TYPE_BROOKTROUT"] <- grepl("BROOKTROUT", myDF[,"TYPE"])
-
-  if (!"WSAREA_ATTR" %in% names(myDF)) {
-    myDF[, "WSAREA_ATTR"] <- NA
-  }## IF ~ WSAREA_ATTR
   # GP, Salt
   myDF[, "TYPE_SALT"] <- grepl("SALT", myDF[, "TYPE"])
-
   # GP, NPL
   myDF[, "TYPE_NPL"] <- grepl("NPL", myDF[, "TYPE"])
 
+  ## ELEVATION_ATTR ----
+  if (!"ELEVATION_ATTR" %in% names(myDF)) {
+    myDF[, "ELEVATION_ATTR"] <- NA
+  }## IF ~ ELEVATION_ATTR
+  # Remove white space
+  myDF[, "ELEVATION_ATTR"] <- gsub(" ", "", myDF[, "ELEVATION_ATTR"])
+  # code new columns
+  myDF[, "ELEVATION_LOW"]  <- "LOW" == myDF[, "ELEVATION_ATTR"]
+  myDF[, "ELEVATION_HIGH"] <- "HIGH" == myDF[, "ELEVATION_ATTR"]
 
+  ## GRADIENT_ATTR----
+  if (!"GRADIENT_ATTR" %in% names(myDF)) {
+    myDF[, "GRADIENT_ATTR"] <- NA
+  }## IF ~ GRADIENT_ATTR
+  # Remove white space
+  myDF[, "GRADIENT_ATTR"] <- gsub(" ", "", myDF[, "GRADIENT_ATTR"])
+  # code new columns
+  myDF[, "GRADIENT_LOW"]   <- "LOW" == myDF[, "GRADIENT_ATTR"]
+  myDF[, "GRADIENT_MOD"]   <- "MOD" == myDF[, "GRADIENT_ATTR"]
+  myDF[, "GRADIENT_HIGH"]  <- "HIGH" == myDF[, "GRADIENT_ATTR"]
+
+  ## WSAREA_ATTR ----
+  if (!"WSAREA_ATTR" %in% names(myDF)) {
+    myDF[, "WSAREA_ATTR"] <- NA
+  }## IF ~ WSAREA_ATTR
   # Remove white space
   myDF[, "WSAREA_ATTR"] <- gsub(" ", "", myDF[, "WSAREA_ATTR"])
   # code new columns
@@ -3939,8 +3937,7 @@ metric.values.fish <- function(myDF
   myDF[, "WSAREA_XL"]      <- "XLARGE" == myDF[, "WSAREA_ATTR"]
 
 
-  # Create Dominant N ####
-
+  ## Create Dominant N ####
   if (verbose == TRUE) {
     # 4
     debug_topic <- "Munge, Dom"
@@ -4126,8 +4123,7 @@ metric.values.fish <- function(myDF
   rm(df_dom01_ExclSchool_sum)
   rm(df_dom02_ExclSchool_sum)
 
-  # N_Anomalies ----
-
+  ## N_Anomalies ----
   if (verbose == TRUE) {
     # 5
     debug_topic <- "Munge, anomalies"
@@ -4901,6 +4897,13 @@ metric.values.fish <- function(myDF
                                                               | TAXAID == "FUNDULUS KANSAE" #NORTHERN PLAINS KILLIFISH
                                                               | TAXAID == "FUNDULUS ZEBRINUS")] #PLAINS KILLIFISH
                                                     , na.rm = TRUE)
+                 # Great Plains 2024-08-06
+                 #### GP, SALT
+                 , pi_salt = 100 * sum(N_TAXA[TYPE_SALT == TRUE]
+                                       , na.rm = TRUE) / ni_total
+                 #### GP, NPL
+                 , pi_NPL = 100 * sum(N_TAXA[TYPE_NPL == TRUE]
+                                      , na.rm = TRUE) / ni_total
 
                  ### Minnesota (Red Lakes) FIBI, 2024-06-01----
                  #### MN, ni
@@ -5082,15 +5085,6 @@ metric.values.fish <- function(myDF
                  #### MN, DELT
                  , pi_delt_ExclSchool = 100 * sum(N_ANOMALIES[TYPE_SCHOOL != TRUE]
                                                   , na.rm = TRUE) / ni_total_ExclSchool
-
-                 ### Great Plains ####
-
-                 #### GP, SALT
-                 , pi_salt = 100 * sum(N_TAXA[TYPE_SALT == TRUE]
-                                       , na.rm = TRUE) / ni_total
-                 #### GP, NPL
-                 , pi_NPL = 100 * sum(N_TAXA[TYPE_NPL == TRUE]
-                                      , na.rm = TRUE) / ni_total
 
 
 

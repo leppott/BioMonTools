@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9049
+
+* style: Clean up new additions to metric_values.R
+    + Move new metrics for GP to alongside previous GP metrics
+    + Move munging for new metrics to alongside previous munging for TYPE
+
 ## Changes in version 1.0.2.9048
 
 * refactor: Added Great Plains fish metrics (pi_NPL and pi_SALT)

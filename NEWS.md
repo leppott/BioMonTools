@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-08-06 15:24:57.180498
+    #> Last Update: 2024-08-07 07:40:11.938594
 
 # Version History
+
+## Changes in version 1.0.2.9049
+
+- style: Clean up new additions to metric_values.R
+  - Move new metrics for GP to alongside previous GP metrics
+  - Move munging for new metrics to alongside previous munging for TYPE
 
 ## Changes in version 1.0.2.9048
 
