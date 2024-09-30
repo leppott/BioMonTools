@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-09-30 16:08:01.651587
+    #> Last Update: 2024-09-30 16:40:27.824537
 
 # Version History
+
+## Changes in version 1.0.2.9051
+
+- fix: Update MetricScoring.xlsx
 
 ## Changes in version 1.0.2.9050
 
