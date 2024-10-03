@@ -18,9 +18,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
-## Changes in version 1.0.2.9051
+## Changes in version 1.0.2.9052
 
 * fix: Update MetricScoring.xlsx
+    + MN, narratives
+
+## Changes in version 1.0.2.9051
+
+* fix: Update MetricScoring.xlsx (MN)
 
 ## Changes in version 1.0.2.9050
 
