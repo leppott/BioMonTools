@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-10-03 10:20:28.618337
+    #> Last Update: 2024-10-07 07:05:36.903175
 
 # Version History
+
+## Changes in version 1.0.2.9053
+
+- refactor: Update MetricScoring.xlsx
+  - MN, pi_TrichNoHydro scoring formula text
 
 ## Changes in version 1.0.2.9052
 
