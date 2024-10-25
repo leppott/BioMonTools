@@ -18,6 +18,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9054
+
+* refactor: Add new metrics for MN_IBI_Bugs
+    + nfam_Baetidae
+    + nt_POETNoBae
+    + nt_POETfamBae
+* docs: Update Excel files for new metrics for MN_IBI_Bugs
+    + MetricNames
+    + MetricScoring
+
 ## Changes in version 1.0.2.9053
 
 * refactor: Update MetricScoring.xlsx

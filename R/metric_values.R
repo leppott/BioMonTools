@@ -1291,7 +1291,7 @@ metric.values.bugs <- function(myDF
   myDF[, "FFG_PRE"]      <- grepl("PR", myDF[, "FFG"])
   myDF[, "FFG_SCR"]      <- grepl("SC", myDF[, "FFG"])
   myDF[, "FFG_SHR"]      <- grepl("SH", myDF[, "FFG"])
-  myDF[, "FFG_MAH"]      <- grepl("MH", myDF[, "FFG"])
+  myDF[, "FFG_MAH"]      <- grepl("MH", myDF[, "FFG"]) # macrophyte herbivore
   myDF[, "FFG_OMN"]      <- grepl("OM", myDF[, "FFG"])
   myDF[, "FFG_PAR"]      <- grepl("PA", myDF[, "FFG"])
   myDF[, "FFG_PIH"]      <- grepl("PH", myDF[, "FFG"])
@@ -1821,6 +1821,19 @@ metric.values.bugs <- function(myDF
                                                                         | ORDER == "TRICHOPTERA"
                                                                         | ORDER == "ODONATA")]
                                                               , na.rm = TRUE)
+                                , nt_POETNoBae = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                     & (ORDER == "EPHEMEROPTERA"
+                                                                        | ORDER == "PLECOPTERA"
+                                                                        | ORDER == "TRICHOPTERA"
+                                                                        | ORDER == "ODONATA")
+                                                                     & (is.na(FAMILY) == TRUE
+                                                                        | FAMILY != "BAETIDAE")]
+                                                              , na.rm = TRUE)
+
+                                , nfam_Baetidae = dplyr::n_distinct(FAMILY[EXCLUDE != TRUE
+                                                                           & FAMILY == "BAETIDAE"]
+                                                                    , na.rm = TRUE)
+                                , nt_POETfamBae = nt_POETNoBae + nfam_Baetidae
                                 , nt_Poly = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                      & CLASS == "POLYCHAETA"]
                                                               , na.rm = TRUE)
@@ -3168,6 +3181,13 @@ metric.values.bugs <- function(myDF
                                                                  , na.rm = TRUE)
                                 , ngen_Trich = dplyr::n_distinct(GENUS[ORDER == "TRICHOPTERA"]
                                                                  , na.rm = TRUE)
+                                #### nfam_Family ----
+                                # added next to nt_POET above for use with nt_POET_famBae
+                                # so only code once
+                                # , nfam_Baetidae = dplyr::n_distinct(FAMILY[EXCLUDE != TRUE
+                                #                                            & FAMILY == "BAETIDAE"]
+                                #                                     , na.rm = TRUE)
+
                                 #### ngen_Family----
                                 , ngen_Elmid = dplyr::n_distinct(GENUS[FAMILY == "ELMIDAE"]
                                                                  , na.rm = TRUE)

@@ -1,5 +1,5 @@
 # metric_stats and metric_stats2 ####
-test_that("metric_stats & metric_stats2", {
+testthat::test_that("metric_stats & metric_stats2", {
 
   #' # data, benthos
   df_bugs <- BioMonTools::data_mmi_dev

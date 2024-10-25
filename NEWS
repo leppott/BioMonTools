@@ -4,9 +4,19 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-10-07 07:05:36.903175
+    #> Last Update: 2024-10-25 09:04:58.461765
 
 # Version History
+
+## Changes in version 1.0.2.9054
+
+- refactor: Add new metrics for MN_IBI_Bugs
+  - nfam_Baetidae
+  - nt_POETNoBae
+  - nt_POETfamBae
+- docs: Update Excel files for new metrics for MN_IBI_Bugs
+  - MetricNames
+  - MetricScoring
 
 ## Changes in version 1.0.2.9053
 
