@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-10-25 09:04:58.461765
+    #> Last Update: 2024-10-25 09:53:54.140003
 
 # Version History
+
+## Changes in version 1.0.2.9055
+
+- docs: Update Excel files for MN_IBI_Fish Index_Class 1
+  - pi_piscivore_ExclSchool to nt_piscivore
 
 ## Changes in version 1.0.2.9054
 

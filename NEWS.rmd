@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9055
+
+* docs: Update Excel files for MN_IBI_Fish Index_Class 1
+    + pi_piscivore_ExclSchool to nt_piscivore
+
 ## Changes in version 1.0.2.9054
 
 * refactor: Add new metrics for MN_IBI_Bugs
