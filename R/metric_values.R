@@ -3915,9 +3915,9 @@ metric.values.fish <- function(myDF
   myDF[, "TYPE_PI"] <- grepl("^PI$|^PI,|,PI$|,PI,", myDF[,"TYPE"])
   myDF[, "TYPE_SL"] <- grepl("^SL$|^SL,|,SL$|,SL,", myDF[,"TYPE"])
   # MN, Schooling
-  myDF[, "TYPE_SCHOOL"] <- grepl("SCHOOLING", myDF[,"TYPE"])
+  myDF[, "TYPE_SCHOOL"] <- grepl("^SCH$|^SCH,|,SCH$|,SCH,", myDF[,"TYPE"])
   # MN, Brook Trout
-  myDF[, "TYPE_BROOKTROUT"] <- grepl("BROOKTROUT", myDF[,"TYPE"])
+  myDF[, "TYPE_BROOKTROUT"] <- grepl("^BKT$|^BKT,|,BKT$|,BKT,", myDF[,"TYPE"])
   # GP, Salt
   myDF[, "TYPE_SALT"] <- grepl("SALT", myDF[, "TYPE"])
   # GP, NPL

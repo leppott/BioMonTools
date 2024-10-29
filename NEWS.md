@@ -4,9 +4,19 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-10-25 09:53:54.140003
+    #> Last Update: 2024-10-29 08:15:16.121304
 
 # Version History
+
+## Changes in version 1.0.2.9056 (2024-10-29)
+
+- refactor: Modify code for schooling fish in TYPE for MN metrics
+  - SCHOOLING to SCH
+- refactor: Modify code for brook trout fish in TYPE for MN metrics
+  - BROOKTROUT to BKT
+- docs: Update notes for MN metrics above in MetricNames.xlsx
+- docs: Add date to version number in NEWS
+  - Current entry only
 
 ## Changes in version 1.0.2.9055
 

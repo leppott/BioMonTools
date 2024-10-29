@@ -18,6 +18,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9056 (2024-10-29)
+
+* refactor: Modify code for schooling fish in TYPE for MN metrics
+    + SCHOOLING to SCH
+* refactor: Modify code for brook trout fish in TYPE for MN metrics
+    + BROOKTROUT to BKT
+* docs: Update notes for MN metrics above in MetricNames.xlsx
+* docs: Add date to version number in NEWS
+    + Current entry only
+
 ## Changes in version 1.0.2.9055
 
 * docs: Update Excel files for MN_IBI_Fish Index_Class 1
