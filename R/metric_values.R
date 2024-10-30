@@ -4926,6 +4926,11 @@ metric.values.fish <- function(myDF
                                       , na.rm = TRUE) / ni_total
 
                  ### Minnesota (Red Lakes) FIBI, 2024-06-01----
+                 #### MN, nt
+                 , nt_total_ExclSchool = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                  & N_TAXA > 0
+                                                                  & TYPE_SCHOOL != TRUE]
+                                                           , na.rm = TRUE)
                  #### MN, ni
                  , ni_total_ExclSchool = sum(N_TAXA[TYPE_SCHOOL != TRUE]
                                              , na.rm = TRUE)

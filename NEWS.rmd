@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9057 (2024-10-30)
+
+* refactor: Add new metric for MN, nt_total_ExclSchool
+    + metric_values.R
+    + MetricNames.xlsx
+
 ## Changes in version 1.0.2.9056 (2024-10-29)
 
 * refactor: Modify code for schooling fish in TYPE for MN metrics

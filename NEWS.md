@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-10-29 08:15:16.121304
+    #> Last Update: 2024-10-30 09:57:51.333791
 
 # Version History
+
+## Changes in version 1.0.2.9057 (2024-10-30)
+
+- refactor: Add new metric for MN, nt_total_ExclSchool
+  - metric_values.R
+  - MetricNames.xlsx
 
 ## Changes in version 1.0.2.9056 (2024-10-29)
 
