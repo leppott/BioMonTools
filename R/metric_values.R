@@ -3885,12 +3885,13 @@ metric.values.fish <- function(myDF
   myDF[, "TROPHIC_GE"] <- grepl("GE", myDF[, "TROPHIC"]) # Generalist
   myDF[, "TROPHIC_HB"] <- grepl("HB|HE", myDF[, "TROPHIC"]) # Herbivore
   myDF[, "TROPHIC_IS"] <- grepl("IS", myDF[, "TROPHIC"]) # Insectivore
-  myDF[, "TROPHIC_IV"] <- grepl("IV", myDF[, "TROPHIC"]) # Invertivore
+  myDF[, "TROPHIC_IV"] <- grepl("^IV$|^IV,|IV$|,IV,", myDF[, "TROPHIC"]) # Invertivore
   myDF[, "TROPHIC_OM"] <- grepl("OM", myDF[, "TROPHIC"]) # Omnivore
   myDF[, "TROPHIC_TC"] <- grepl("TC", myDF[, "TROPHIC"]) # Top Carnivore
   myDF[, "TROPHIC_DE"] <- grepl("^DE$|^DE,|DE$|,DE,", myDF[, "TROPHIC"]) # Detritivore (mod for DEM)
   myDF[, "TROPHIC_PL"] <- grepl("PL", myDF[, "TROPHIC"]) # Planktivore
   myDF[, "TROPHIC_PI"] <- grepl("PI", myDF[, "TROPHIC"]) # Piscivore
+  myDF[, "TROPHIC_IV_TC"] <- grepl("IV_TC", myDF[, "TROPHIC"]) # Invertivore and Top Carnivore
   # MN
   myDF[, "TROPHIC_BI_noT"] <- grepl("BI-T", myDF[, "TROPHIC"]) # Benthic Insectivore, no Tolerant
   myDF[, "TROPHIC_IN_noT"] <- grepl("IN-T", myDF[, "TROPHIC"]) # Insectivore, no Tolerant
@@ -4359,6 +4360,9 @@ metric.values.fish <- function(myDF
                        , nt_herbivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                  & TROPHIC_HB == TRUE]
                                                           , na.rm = TRUE)
+                       , nt_inverttopcarn = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                      & TROPHIC_IV_TC == TRUE]
+                                                               , na.rm = TRUE)
                        , nt_omnivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                 & TROPHIC_OM == TRUE]
                                                          , na.rm = TRUE)
@@ -4379,13 +4383,14 @@ metric.values.fish <- function(myDF
                                                                   & HABITAT_B == TRUE], na.rm = TRUE) / ni_total
                        , pi_detritivore = 100 * sum(N_TAXA[TROPHIC_DE == TRUE], na.rm = TRUE) / ni_total
                        # % gen, omn, invert
+                       , pi_gen = 100 * sum(N_TAXA[TROPHIC_GE == TRUE], na.rm = TRUE) / ni_total
+                       , pi_genherb = 100 * sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_HB == TRUE], na.rm = TRUE) / ni_total
                        , pi_genomninvrt = 100 * sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_OM == TRUE | TROPHIC_IV == TRUE], na.rm = TRUE) / ni_total
                        , pi_herbivore = 100 * sum(N_TAXA[TROPHIC_HB == TRUE], na.rm = TRUE) / ni_total
                        , pi_insectivore = 100 * sum(N_TAXA[TROPHIC_IS == TRUE], na.rm = TRUE) / ni_total
                        , pi_insctCypr = 100 * sum(N_TAXA[TROPHIC_IS == TRUE &
                                                          FAMILY == "CYPRINIDAE"], na.rm = TRUE) / ni_total
-                       , pi_gen = 100 * sum(N_TAXA[TROPHIC_GE == TRUE], na.rm = TRUE) / ni_total
-                       , pi_genherb = 100 * sum(N_TAXA[TROPHIC_GE == TRUE | TROPHIC_HB == TRUE], na.rm = TRUE) / ni_total
+                       , pi_inverttopcarn = 100 * sum(N_TAXA[TROPHIC_IV_TC == TRUE], na.rm = TRUE) / ni_total
                        , pi_omnivore = 100 * sum(N_TAXA[TROPHIC_OM == TRUE], na.rm = TRUE) / ni_total
                        , pi_planktivore = 100 * sum(N_TAXA[TROPHIC_PL == TRUE], na.rm = TRUE) / ni_total
                        , pi_topcarn = 100 * sum(N_TAXA[TROPHIC_TC == TRUE], na.rm = TRUE) / ni_total
@@ -4393,11 +4398,12 @@ metric.values.fish <- function(myDF
                        , pi_pisc_noae = 100 * sum(N_TAXA[TYPE == "PISCIVORE"
                                                          & (TAXAID != "ANGUILLA ROSTRATA"
                                                             | is.na(TAXAID))], na.rm = TRUE) / ni_total
-                       #
+
                        ### Trophic, pt ----
                        , pt_habitat_beninvert = 100 * nt_habitat_beninvert / nt_total
                        , pt_detritivore = 100 * nt_detritivore / nt_total
                        , pt_herbivore = 100 * nt_herbivore / nt_total
+                       , pt_inverttopcarn = 100 * nt_inverttopcarn / nt_total
                        , pt_omnivore = 100 * nt_omnivore / nt_total
                        , pt_planktivore = 100 * nt_planktivore / nt_total
                        , pt_topcarn = 100 * nt_topcarn / nt_total

@@ -4,9 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-10-30 09:57:51.333791
+    #> Last Update: 2024-11-01 10:19:43.76223
 
 # Version History
+
+## Changes in version 1.0.2.9058 (2024-11-01)
+
+- refactor: Add new fish metric for Idaho, trophic invertivore top
+  carnivore
+  - metric_values.R
+    - Add “IV_TC”
+    - Modify “IV” to check for specific cases
+  - MetricNames.xlsx
 
 ## Changes in version 1.0.2.9057 (2024-10-30)
 
