@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-11-01 10:19:43.76223
+    #> Last Update: 2024-11-01 10:30:11.862667
 
 # Version History
+
+## Changes in version 1.0.2.9059 (2024-11-01)
+
+- refactor: Update search patterns for some fish trophic metrics
+  - IV
+  - TC
 
 ## Changes in version 1.0.2.9058 (2024-11-01)
 

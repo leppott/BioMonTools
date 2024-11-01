@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9059 (2024-11-01)
+
+* refactor: Update search patterns for some fish trophic metrics
+    + IV
+    + TC
+
 ## Changes in version 1.0.2.9058 (2024-11-01)
 
 * refactor: Add new fish metric for Idaho, trophic invertivore top carnivore

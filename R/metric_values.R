@@ -3885,10 +3885,10 @@ metric.values.fish <- function(myDF
   myDF[, "TROPHIC_GE"] <- grepl("GE", myDF[, "TROPHIC"]) # Generalist
   myDF[, "TROPHIC_HB"] <- grepl("HB|HE", myDF[, "TROPHIC"]) # Herbivore
   myDF[, "TROPHIC_IS"] <- grepl("IS", myDF[, "TROPHIC"]) # Insectivore
-  myDF[, "TROPHIC_IV"] <- grepl("^IV$|^IV,|IV$|,IV,", myDF[, "TROPHIC"]) # Invertivore
+  myDF[, "TROPHIC_IV"] <- grepl("^IV$|^IV,|,IV$|,IV,", myDF[, "TROPHIC"]) # Invertivore
   myDF[, "TROPHIC_OM"] <- grepl("OM", myDF[, "TROPHIC"]) # Omnivore
-  myDF[, "TROPHIC_TC"] <- grepl("TC", myDF[, "TROPHIC"]) # Top Carnivore
-  myDF[, "TROPHIC_DE"] <- grepl("^DE$|^DE,|DE$|,DE,", myDF[, "TROPHIC"]) # Detritivore (mod for DEM)
+  myDF[, "TROPHIC_TC"] <- grepl("^TC$|^TC,|,TC$|,TC,", myDF[, "TROPHIC"]) # Top Carnivore
+  myDF[, "TROPHIC_DE"] <- grepl("^DE$|^DE,|,DE$|,DE,", myDF[, "TROPHIC"]) # Detritivore (mod for DEM)
   myDF[, "TROPHIC_PL"] <- grepl("PL", myDF[, "TROPHIC"]) # Planktivore
   myDF[, "TROPHIC_PI"] <- grepl("PI", myDF[, "TROPHIC"]) # Piscivore
   myDF[, "TROPHIC_IV_TC"] <- grepl("IV_TC", myDF[, "TROPHIC"]) # Invertivore and Top Carnivore
