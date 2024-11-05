@@ -4360,6 +4360,9 @@ metric.values.fish <- function(myDF
                        , nt_herbivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                  & TROPHIC_HB == TRUE]
                                                           , na.rm = TRUE)
+                       , nt_invertivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                 & TROPHIC_IV == TRUE]
+                                                          , na.rm = TRUE)
                        , nt_inverttopcarn = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                       & TROPHIC_IV_TC == TRUE]
                                                                , na.rm = TRUE)
@@ -4390,6 +4393,7 @@ metric.values.fish <- function(myDF
                        , pi_insectivore = 100 * sum(N_TAXA[TROPHIC_IS == TRUE], na.rm = TRUE) / ni_total
                        , pi_insctCypr = 100 * sum(N_TAXA[TROPHIC_IS == TRUE &
                                                          FAMILY == "CYPRINIDAE"], na.rm = TRUE) / ni_total
+                       , pi_invertivore = 100 * sum(N_TAXA[TROPHIC_IV == TRUE], na.rm = TRUE) / ni_total
                        , pi_inverttopcarn = 100 * sum(N_TAXA[TROPHIC_IV_TC == TRUE], na.rm = TRUE) / ni_total
                        , pi_omnivore = 100 * sum(N_TAXA[TROPHIC_OM == TRUE], na.rm = TRUE) / ni_total
                        , pi_planktivore = 100 * sum(N_TAXA[TROPHIC_PL == TRUE], na.rm = TRUE) / ni_total
@@ -4403,6 +4407,7 @@ metric.values.fish <- function(myDF
                        , pt_habitat_beninvert = 100 * nt_habitat_beninvert / nt_total
                        , pt_detritivore = 100 * nt_detritivore / nt_total
                        , pt_herbivore = 100 * nt_herbivore / nt_total
+                       , pt_invertivore = 100 * nt_invertivore / nt_total
                        , pt_inverttopcarn = 100 * nt_inverttopcarn / nt_total
                        , pt_omnivore = 100 * nt_omnivore / nt_total
                        , pt_planktivore = 100 * nt_planktivore / nt_total

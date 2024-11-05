@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9060 (2024-11-05)
+
+* refactor: Add new fish metrics (nt_, pi_, and pt_) for invertivore
+    * MetricNames.xlsx
+    * metric_values.R
+
 ## Changes in version 1.0.2.9059 (2024-11-01)
 
 * refactor: Update search patterns for some fish trophic metrics

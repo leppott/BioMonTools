@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-11-01 10:30:11.862667
+    #> Last Update: 2024-11-05 15:45:57.178726
 
 # Version History
+
+## Changes in version 1.0.2.9060 (2024-11-05)
+
+- refactor: Add new fish metrics (nt\_, pi\_, and pt\_) for invertivore
+  - MetricNames.xlsx
+  - metric_values.R
 
 ## Changes in version 1.0.2.9059 (2024-11-01)
 
