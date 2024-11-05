@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-11-05 15:45:57.178726
+    #> Last Update: 2024-11-05 15:56:31.945306
 
 # Version History
+
+## Changes in version 1.0.2.9061 (2024-11-05)
+
+- refactor: Update MetricNames.xlsx for test
+  - New field is mostly blank so imports as logical and causes error
 
 ## Changes in version 1.0.2.9060 (2024-11-05)
 
