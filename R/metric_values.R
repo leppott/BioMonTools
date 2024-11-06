@@ -70,7 +70,9 @@
 #' * SAMP_BIOMASS (biomass total for sample, funciton uses max in case entered
 #' for all taxa in sample)
 #'
-#' * DA_MI2, SAMP_WIDTH_M, SAMP_LENGTH_M, , TYPE, TOLER, NATIVE, TROPHIC, SILT,
+#' * NATIVE: NATIVE or other text values
+#'
+#' * DA_MI2, SAMP_WIDTH_M, SAMP_LENGTH_M, , TYPE, TOLER, TROPHIC, SILT,
 #' FAMILY, GENUS, HYBRID, BCG_ATTR, THERMAL_INDICATOR, ELEVATION_ATTR,
 #' GRADIENT_ATTR, WSAREA_ATTR, REPRODUCTION, HABITAT, CONNECTIVITY, SCC
 #'

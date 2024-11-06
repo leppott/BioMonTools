@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-11-06 08:16:07.575276
+    #> Last Update: 2024-11-06 08:28:24.319915
 
 # Version History
+
+## Changes in version 1.0.2.9063 (2024-11-06)
+
+- docs: Update comment about NATIVE in metric.values help
 
 ## Changes in version 1.0.2.9062 (2024-11-06)
 
