@@ -4608,6 +4608,13 @@ metric.values.fish <- function(myDF
                                                      | BCG_ATTR == "3"
                                                      | BCG_ATTR == "4")]
                                              , na.rm = TRUE) / ni_total
+                  , pi_BCG2_att1234b = 100 * (sum(N_TAXA[(BCG_ATTR == "1"
+                                                          | BCG_ATTR == "2"
+                                                          | BCG_ATTR == "3"
+                                                          | BCG_ATTR == "4")]
+                                                  , na.rm = TRUE) +
+                                              sum(N_TAXA[BCG_ATTR2 == "4_BETTER"]
+                                                  , na.rm = TRUE)) / ni_total
                   , pi_BCG_att1236 = 100 * sum(N_TAXA[(BCG_ATTR == "1"
                                                      | BCG_ATTR == "2"
                                                      | BCG_ATTR == "3"

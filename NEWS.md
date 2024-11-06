@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-11-06 08:28:24.319915
+    #> Last Update: 2024-11-06 10:12:51.279687
 
 # Version History
+
+## Changes in version 1.0.2.9064 (2024-11-06)
+
+- refactor: Add new fish metric (pi_BCG2_att1234b)
+  - MetricNames.xlsx
+  - metric_values.R
 
 ## Changes in version 1.0.2.9063 (2024-11-06)
 
