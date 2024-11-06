@@ -3777,7 +3777,7 @@ metric.values.fish <- function(myDF
   col2upper <- c("TAXAID" ,"FAMILY", "GENUS", "TYPE", "TOLER", "NATIVE"
                  , "TROPHIC", "THERMAL_INDICATOR", "ELEVATION_ATTR"
                  , "GRADIENT_ATTR", "WSAREA_ATTR", "REPRODUCTION", "HABITAT"
-                 , "CONNECTIVITY", "SCC", "BCG_ATTR")
+                 , "CONNECTIVITY", "SCC", "BCG_ATTR", "BCG_ATTR2")
   for (i in col2upper) {
     if (i %in% names(myDF)) {
       myDF[, i] <- toupper(myDF[, i])
@@ -4472,11 +4472,12 @@ metric.values.fish <- function(myDF
                                                     , na.rm = TRUE)
                   , nt_BCG_att12 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                             & (BCG_ATTR == "1"
-                                                                  | BCG_ATTR == "2")]
+                                                               | BCG_ATTR == "2")]
                                                         , na.rm = TRUE)
-                  , nt_BCG_att123 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (BCG_ATTR == "1"
-                                                                  | BCG_ATTR == "2"
-                                                                  | BCG_ATTR == "3")]
+                  , nt_BCG_att123 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                             & (BCG_ATTR == "1"
+                                                                | BCG_ATTR == "2"
+                                                                | BCG_ATTR == "3")]
                                                         , na.rm = TRUE)
                   , nt_BCG2_att123b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                & (BCG_ATTR == "1"
@@ -4608,13 +4609,11 @@ metric.values.fish <- function(myDF
                                                      | BCG_ATTR == "3"
                                                      | BCG_ATTR == "4")]
                                              , na.rm = TRUE) / ni_total
-                  , pi_BCG2_att1234b = 100 * (sum(N_TAXA[(BCG_ATTR == "1"
+                  , pi_BCG2_att1234b = 100 * sum(N_TAXA[(BCG_ATTR == "1"
                                                           | BCG_ATTR == "2"
                                                           | BCG_ATTR == "3"
-                                                          | BCG_ATTR == "4")]
-                                                  , na.rm = TRUE) +
-                                              sum(N_TAXA[BCG_ATTR2 == "4_BETTER"]
-                                                  , na.rm = TRUE)) / ni_total
+                                                          | BCG_ATTR2 == "4_BETTER")]
+                                                  , na.rm = TRUE) / ni_total
                   , pi_BCG_att1236 = 100 * sum(N_TAXA[(BCG_ATTR == "1"
                                                      | BCG_ATTR == "2"
                                                      | BCG_ATTR == "3"

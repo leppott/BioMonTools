@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9065 (2024-11-06)
+
+* fix: Modify fish metrics BCG_ATTR2 to convert to upper case
+    + metric_values.R
+* fix: Update fish metrics BCG2_att1234b (nt_, pi_, and pt_)
+    + metric_values.R
+
 ## Changes in version 1.0.2.9064 (2024-11-06)
 
 * refactor: Add new fish metric (pi_BCG2_att1234b)

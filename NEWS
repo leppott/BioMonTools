@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-11-06 10:12:51.279687
+    #> Last Update: 2024-11-06 16:56:01.846738
 
 # Version History
+
+## Changes in version 1.0.2.9065 (2024-11-06)
+
+- fix: Modify fish metrics BCG_ATTR2 to convert to upper case
+  - metric_values.R
+- fix: Update fish metrics BCG2_att1234b (nt\_, pi\_, and pt\_)
+  - metric_values.R
 
 ## Changes in version 1.0.2.9064 (2024-11-06)
 
