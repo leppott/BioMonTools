@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-11-05 15:56:31.945306
+    #> Last Update: 2024-11-06 08:16:07.575276
 
 # Version History
+
+## Changes in version 1.0.2.9062 (2024-11-06)
+
+- refactor: Add new fish metrics (BCG_att4w5); same as bugs
+  - MetricNames.xlsx
+  - metric_values.R
+- docs: Start to populate values column in MetricNames.xlsx
 
 ## Changes in version 1.0.2.9061 (2024-11-05)
 

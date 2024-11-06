@@ -4551,7 +4551,13 @@ metric.values.fish <- function(myDF
                                                                  & BCG_ATTR == "4"
                                                                  & NATIVE == "NATIVE"]
                                                           , na.rm = TRUE)
-                  , nt_BCG_att5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                 , nt_BCG_att4w5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & BCG_ATTR2 == "4_WORSE"]
+                                                     , na.rm = TRUE) +
+                                   dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & (BCG_ATTR == "5")]
+                                                     , na.rm = TRUE)
+                 , nt_BCG_att5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                            & BCG_ATTR == "5"]
                                                     , na.rm = TRUE)
                   , nt_BCG_att5native = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -4652,6 +4658,10 @@ metric.values.fish <- function(myDF
                   , pi_BCG_att4native = 100 * sum(N_TAXA[BCG_ATTR == "4"
                                                          & NATIVE == "NATIVE"]
                                                   , na.rm = TRUE) / ni_total
+                 , pi_BCG_att4w5 = 100 * (sum(N_TAXA[BCG_ATTR2 == "4_WORSE"]
+                                              , na.rm = TRUE) +
+                                            sum(N_TAXA[BCG_ATTR == "5"]
+                                                , na.rm = TRUE)) / ni_total
                   , pi_BCG_att5 =  100 * sum(N_TAXA[BCG_ATTR == "5"]
                                              , na.rm = TRUE) / ni_total
                   , pi_BCG_att5native = 100 * sum(N_TAXA[BCG_ATTR == "5"
@@ -4713,6 +4723,7 @@ metric.values.fish <- function(myDF
                   , pt_BCG_att3native = 100 * nt_BCG_att3native / nt_total
                   , pt_BCG_att4 = 100 * nt_BCG_att4 / nt_total
                   , pt_BCG_att4native = 100 * nt_BCG_att4native / nt_total
+                  , pt_BCG_att4w5 = 100 * nt_BCG_att4w5 / nt_total
                   , pt_BCG_att5 = 100 * nt_BCG_att5 / nt_total
                   , pt_BCG_att5native = 100 * nt_BCG_att5native / nt_total
                   , pt_BCG_att55a6a = 100 * nt_BCG_att55a6 / nt_total
