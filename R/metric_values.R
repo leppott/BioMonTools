@@ -4257,6 +4257,8 @@ metric.values.fish <- function(myDF
                        , pi_Ictal = 100 * sum(N_TAXA[FAMILY == "ICTALURIDAE"], na.rm = TRUE) / ni_total
                        , pi_native = 100 * sum(N_TAXA[NATIVE == "NATIVE"], na.rm = TRUE) / ni_total
                        , pi_nonnative = 100 * sum(N_TAXA[is.na(NATIVE) | NATIVE != "NATIVE"], na.rm = TRUE) / ni_total
+                       , pi_nonnative_NotNativeNotNA = 100 * sum(N_TAXA[NATIVE != "NATIVE"], na.rm = TRUE) / ni_total
+                       , pi_nonnative_OnlyNonNative = 100 * sum(N_TAXA[NATIVE == "NON-NATIVE"], na.rm = TRUE) / ni_total
                        , pi_Notur = 100 * sum(N_TAXA[GENUS == "NOTURUS"], na.rm = TRUE) / ni_total
                        , pi_sculpin = 100 * sum(N_TAXA[TYPE == "SCULPIN"], na.rm = TRUE) / ni_total
                        , pi_Lepomis = 100 * sum(N_TAXA[GENUS == "LEPOMIS"], na.rm = TRUE) / ni_total
@@ -4297,7 +4299,14 @@ metric.values.fish <- function(myDF
                        , nt_natCyprin = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
                        , nt_Lepomis = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "LEPOMIS"], na.rm = TRUE)
                        , nt_native = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & N_TAXA > 0], na.rm = TRUE)
-                       , nt_nonnative = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (is.na(NATIVE) | NATIVE != "NATIVE")
+                       , nt_nonnative = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                 & (is.na(NATIVE) | NATIVE != "NATIVE")
+                                                                 & N_TAXA > 0], na.rm = TRUE)
+                       , nt_nonnative_NotNativeNotNA = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                 & (NATIVE != "NATIVE")
+                                                                 & N_TAXA > 0], na.rm = TRUE)
+                       , nt_nonnative_OnlyNonNative = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                 & (NATIVE == "NON-NATIVE")
                                                                  & N_TAXA > 0], na.rm = TRUE)
                        , nt_nativenonhybrid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" &
                                                                          (HYBRID != TRUE | is.na(HYBRID))], na.rm = TRUE)
@@ -4341,6 +4350,8 @@ metric.values.fish <- function(myDF
                        , pt_Lepomis = 100 * nt_Lepomis / nt_total
                        , pt_native = 100 * nt_native / nt_total
                        , pt_nonnative = 100 * nt_nonnative / nt_total
+                       , pt_nonnative_NotNativeNotNA = 100 * nt_nonnative_NotNativeNotNA / nt_total
+                       , pt_nonnative_OnlyNonNative = 100 * nt_nonnative_OnlyNonNative / nt_total
                        , pt_Notur = 100 * nt_Notur / nt_total
                        , pt_Salm = 100 * nt_Salm / nt_total
                        , pt_connect = 100 * nt_connect / nt_total

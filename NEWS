@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-11-06 16:56:01.846738
+    #> Last Update: 2024-11-07 08:37:32.794045
 
 # Version History
+
+## Changes in version 1.0.2.9066 (2024-11-07)
+
+- refactor: Add fish metric permutations of non-native
+  - MetricNames.xlsx
+  - metric_values.R
 
 ## Changes in version 1.0.2.9065 (2024-11-06)
 
