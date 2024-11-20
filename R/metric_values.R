@@ -4565,6 +4565,15 @@ metric.values.fish <- function(myDF
                                                                  & BCG_ATTR == "4"
                                                                  & NATIVE == "NATIVE"]
                                                           , na.rm = TRUE)
+                 , nt_BCG_att4b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & (BCG_ATTR2 == "4_BETTER")]
+                                                    , na.rm = TRUE)
+                 , nt_BCG_att4m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & (BCG_ATTR2 == "4_MIDDLE")]
+                                                    , na.rm = TRUE)
+                 , nt_BCG_att4w = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & (BCG_ATTR2 == "4_WORSE")]
+                                                    , na.rm = TRUE)
                  , nt_BCG_att4w5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                             & BCG_ATTR2 == "4_WORSE"]
                                                      , na.rm = TRUE) +
@@ -4677,6 +4686,12 @@ metric.values.fish <- function(myDF
                   , pi_BCG_att4native = 100 * sum(N_TAXA[BCG_ATTR == "4"
                                                          & NATIVE == "NATIVE"]
                                                   , na.rm = TRUE) / ni_total
+                 , pi_BCG_att4b = 100 * sum(N_TAXA[(BCG_ATTR2 == "4_BETTER")]
+                                            , na.rm = TRUE) / ni_total
+                 , pi_BCG_att4m = 100 * sum(N_TAXA[(BCG_ATTR2 == "4_MIDDLE")]
+                                            , na.rm = TRUE) / ni_total
+                 , pi_BCG_att4w = 100 * sum(N_TAXA[(BCG_ATTR2 == "4_WORSE")]
+                                            , na.rm = TRUE) / ni_total
                  , pi_BCG_att4w5 = 100 * (sum(N_TAXA[BCG_ATTR2 == "4_WORSE"]
                                               , na.rm = TRUE) +
                                             sum(N_TAXA[BCG_ATTR == "5"]
@@ -4742,6 +4757,9 @@ metric.values.fish <- function(myDF
                   , pt_BCG_att3native = 100 * nt_BCG_att3native / nt_total
                   , pt_BCG_att4 = 100 * nt_BCG_att4 / nt_total
                   , pt_BCG_att4native = 100 * nt_BCG_att4native / nt_total
+                  , pt_BCG_att4b =  100 * nt_BCG_att4b / nt_total
+                  , pt_BCG_att4m =  100 * nt_BCG_att4m / nt_total
+                  , pt_BCG_att4w =  100 * nt_BCG_att4w / nt_total
                   , pt_BCG_att4w5 = 100 * nt_BCG_att4w5 / nt_total
                   , pt_BCG_att5 = 100 * nt_BCG_att5 / nt_total
                   , pt_BCG_att5native = 100 * nt_BCG_att5native / nt_total

@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9067 (2024-11-20)
+
+* refactor: Add fish metrics; nt/pi/pt BCG_att4 b/m/2 
+    + MetricNames.xlsx
+    + metric_values.R
+
 ## Changes in version 1.0.2.9066 (2024-11-07)
 
 * refactor: Add fish metric permutations of non-native
