@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-11-20 08:24:14.42573
+    #> Last Update: 2025-02-10 16:58:34.640424
 
 # Version History
+
+## Changes in version 1.0.2.9068 (2025-02-10)
+
+- refactor: Add metrics, bugs
+  - MS, Issue \#116
+  - habit and habitat, Issue \#117
 
 ## Changes in version 1.0.2.9067 (2024-11-20)
 

@@ -1286,6 +1286,7 @@ metric.values.bugs <- function(myDF
   myDF[, "HABIT_BU"]     <- grepl("BU", myDF[, "HABIT"])
   myDF[, "HABIT_CB"]     <- grepl("CB", myDF[, "HABIT"])
   myDF[, "HABIT_CN"]     <- grepl("CN", myDF[, "HABIT"])
+  myDF[, "HABIT_SK"]     <- grepl("SK", myDF[, "HABIT"])
   myDF[, "HABIT_SP"]     <- grepl("SP", myDF[, "HABIT"])
   myDF[, "HABIT_SW"]     <- grepl("SW", myDF[, "HABIT"])
   myDF[, "FFG_COL"]      <- grepl("(CG|GC)", myDF[, "FFG"])
@@ -1320,9 +1321,12 @@ metric.values.bugs <- function(myDF
   myDF[, "HABITAT_DEPO"]   <- "DEPO" == myDF[, "HABITAT"]
   myDF[, "HABITAT_GENE"]   <- "GENE" == myDF[, "HABITAT"]
   myDF[, "HABITAT_HEAD"]   <- "HEAD" == myDF[, "HABITAT"]
+  myDF[, "HABITAT_LENT"]   <- "LENT" == myDF[, "HABITAT"]
+  myDF[, "HABITAT_LOTI"]   <- "LOTI" == myDF[, "HABITAT"]
   myDF[, "HABITAT_RHEO"]   <- "RHEO" == myDF[, "HABITAT"]
   myDF[, "HABITAT_RIVE"]   <- "RIVE" == myDF[, "HABITAT"]
   myDF[, "HABITAT_SPEC"]   <- "SPEC" == myDF[, "HABITAT"]
+  myDF[, "HABITAT_TERR"]   <- "TERR" == myDF[, "HABITAT"]
   myDF[, "HABITAT_UNKN"]   <- "UNKN" == myDF[, "HABITAT"]
   myDF[, "ELEVATION_LOW"]  <- "LOW" == myDF[, "ELEVATION_ATTR"]
   myDF[, "ELEVATION_HIGH"] <- "HIGH" == myDF[, "ELEVATION_ATTR"]
@@ -2535,6 +2539,9 @@ metric.values.bugs <- function(myDF
                                 , nt_habit_cling = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                             & HABIT_CN == TRUE]
                                                                      , na.rm = TRUE)
+                                , nt_habit_skate = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                             & HABIT_SK == TRUE]
+                                                                      , na.rm = TRUE)
                                 , nt_habit_sprawl = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                              & HABIT_SP == TRUE]
                                                                       , na.rm = TRUE)
@@ -2552,6 +2559,8 @@ metric.values.bugs <- function(myDF
                                                                   , na.rm = TRUE) / ni_total
                                 , pi_habit_cling = 100 * sum(N_TAXA[HABIT_CN == TRUE]
                                                              , na.rm = TRUE) / ni_total
+                                , pi_habit_skate = 100 * sum(N_TAXA[HABIT_SK == TRUE]
+                                                              , na.rm = TRUE) / ni_total
                                 , pi_habit_sprawl = 100 * sum(N_TAXA[HABIT_SP == TRUE]
                                                               , na.rm = TRUE) / ni_total
                                 , pi_habit_swim = 100 * sum(N_TAXA[HABIT_SW == TRUE]
@@ -2561,6 +2570,7 @@ metric.values.bugs <- function(myDF
                                 , pt_habit_climb =      100 * nt_habit_climb / nt_total
                                 , pt_habit_climbcling = 100 * nt_habit_climbcling / nt_total
                                 , pt_habit_cling =      100 * nt_habit_cling / nt_total
+                                , pt_habit_skate =     100 * nt_habit_sprawl / nt_total
                                 , pt_habit_sprawl =     100 * nt_habit_sprawl / nt_total
                                 , pt_habit_swim =       100 * nt_habit_swim / nt_total
                                 ## Oddball
@@ -2703,6 +2713,12 @@ metric.values.bugs <- function(myDF
                                 , nt_habitat_head = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                              & HABITAT_HEAD == TRUE]
                                                                       , na.rm = TRUE)
+                                , nt_habitat_lent = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                             & HABITAT_LENT == TRUE]
+                                                                      , na.rm = TRUE)
+                                , nt_habitat_loti = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                             & HABITAT_LOTI == TRUE]
+                                                                      , na.rm = TRUE)
                                 , nt_habitat_rheo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                              & HABITAT_RHEO == TRUE]
                                                                       , na.rm = TRUE)
@@ -2711,6 +2727,9 @@ metric.values.bugs <- function(myDF
                                                                       , na.rm = TRUE)
                                 , nt_habitat_spec = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                              & HABITAT_SPEC == TRUE]
+                                                                      , na.rm = TRUE)
+                                , nt_habitat_terr = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                             & HABITAT_TERR == TRUE]
                                                                       , na.rm = TRUE)
                                 , nt_habitat_unkn = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                              & HABITAT_UNKN == TRUE]
@@ -2724,12 +2743,18 @@ metric.values.bugs <- function(myDF
                                                               , na.rm = TRUE) / ni_total
                                 , pi_habitat_head = 100 * sum(N_TAXA[HABITAT_HEAD == TRUE]
                                                               , na.rm = TRUE) / ni_total
+                                , pi_habitat_lent = 100 * sum(N_TAXA[HABITAT_LENT == TRUE]
+                                                              , na.rm = TRUE) / ni_total
+                                , pi_habitat_loti = 100 * sum(N_TAXA[HABITAT_LOTI == TRUE]
+                                                              , na.rm = TRUE) / ni_total
                                 , pi_habitat_rheo = 100 * sum(N_TAXA[HABITAT_RHEO == TRUE]
                                                               , na.rm = TRUE) / ni_total
                                 , pi_habitat_rive = 100 * sum(N_TAXA[HABITAT_RIVE == TRUE]
                                                               , na.rm = TRUE) / ni_total
                                 , pi_habitat_spec = 100 * sum(N_TAXA[HABITAT_SPEC == TRUE]
+                                                              , na.rm = TRUE) / ni_total
 
+                                , pi_habitat_terr = 100 * sum(N_TAXA[HABITAT_TERR == TRUE]
                                                               , na.rm = TRUE) / ni_total
                                 , pi_habitat_unkn = 100 * sum(N_TAXA[HABITAT_UNKN == TRUE]
                                                               , na.rm = TRUE) / ni_total
@@ -2738,9 +2763,12 @@ metric.values.bugs <- function(myDF
                                 , pt_habitat_depo = 100 * nt_habitat_depo / nt_total
                                 , pt_habitat_gene = 100 * nt_habitat_gene / nt_total
                                 , pt_habitat_head = 100 * nt_habitat_head / nt_total
+                                , pt_habitat_lent = 100 * nt_habitat_lent / nt_total
+                                , pt_habitat_loti = 100 * nt_habitat_loti / nt_total
                                 , pt_habitat_rheo = 100 * nt_habitat_rheo / nt_total
                                 , pt_habitat_rive = 100 * nt_habitat_rive / nt_total
                                 , pt_habitat_spec = 100 * nt_habitat_spec / nt_total
+                                , pt_habitat_terr = 100 * nt_habitat_terr / nt_total
                                 , pt_habitat_unkn = 100 * nt_habitat_unkn / nt_total
 
                                 ### BCG ####

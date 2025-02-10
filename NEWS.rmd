@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9068 (2025-02-10)
+
+* refactor: Add metrics, bugs
+    + MS, Issue #116
+    + habit and habitat, Issue #117
+
 ## Changes in version 1.0.2.9067 (2024-11-20)
 
 * refactor: Add fish metrics; nt/pi/pt BCG_att4 b/m/2 
