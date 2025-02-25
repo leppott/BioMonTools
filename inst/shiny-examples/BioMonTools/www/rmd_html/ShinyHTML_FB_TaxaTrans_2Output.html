@@ -1,0 +1,108 @@
+
+
+
+<p>A single zip file will be available for download. It will include all
+result files along the the original data file. All result data files
+will be CSV format.</p>
+<p>The zip file will included the base name of the original file along
+with the date and time.</p>
+<p>The individual files will include the same basename along with a
+suffix to represent each step of the calculation process.</p>
+<p>As an example if the input file was “xxx.csv” the result files will
+look like those in the table below.</p>
+<table>
+<caption>
+File Builder, Taxa Trans, zip file contents.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Output file
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+xxx
+</td>
+<td style="text-align:left;">
+Original input file
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+xxx_taxatrans_0fileversions
+</td>
+<td style="text-align:left;">
+Provides documentation of the Operational Taxonomic Unit (OTU) and
+source files that were used
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+xxx_taxatrans_1attributes
+</td>
+<td style="text-align:left;">
+Regional attribute table (can be downloaded from the GitHub link on the
+webpage)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+xxx_taxatrans_1metadata
+</td>
+<td style="text-align:left;">
+Metadata for the regional attribute table (can be downloaded from the
+GitHub link on the webpage)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+xxx_taxatrans_1official
+</td>
+<td style="text-align:left;">
+Regional taxa translator table (can be downloaded from the GitHub link
+on the webpage)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+xxx_taxatrans_2taxamatch
+</td>
+<td style="text-align:left;">
+Lists the taxa that occur in the input file, plus: 1) original TaxonID;
+2) ‘translated’ TaxonID (OTU that will be used for the calculation); 3)
+whether the original TaxonID occurs in the regional taxa translator
+table (TRUE/FALSE); 4) whether the original TaxonID was changed during
+the ‘translation’ process (YES/NO); 5) total count in the input file (#
+individuals summed across samples)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+xxx_taxatrans_3nonmatch
+</td>
+<td style="text-align:left;">
+Lists taxa in the input file that don’t occur in the regional taxa
+translator table (if the file is blank, all are ‘matches’)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+xxx_taxatrans_MERGED
+</td>
+<td style="text-align:left;">
+Final output, with ‘translated’ TaxonID, NonTarget designations,
+attributes and phylogeny; the file is almost ready to be run through the
+BCG calculator (just needs Index_Name and Index_Class; see Assign Index
+Name and Class function)
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Last updated 2025-02-25</em></p>

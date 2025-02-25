@@ -4,6 +4,8 @@ function(id) {
     tabItems(
       tabItem(tabName = "tab_about", tab_code_about())
       , tabItem(tabName = "tab_import", tab_code_import())
+      , tabItem(tabName = "tab_filebuilder_taxatrans",
+                tab_code_filebuilder_taxatrans())
       , tabItem(tabName = "tab_subsample", tab_code_subsample())
       , tabItem(tabName = "tab_markexcl", tab_code_markexcl())
       , tabItem(tabName = "tab_taxamaps", tab_code_taxamaps())

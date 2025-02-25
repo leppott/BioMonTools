@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-02-10 16:58:34.640424
+    #> Last Update: 2025-02-25 17:08:40.676346
 
 # Version History
+
+## Changes in version 1.0.2.9069 (2025-02-25)
+
+- refactor: Add taxa translation for RMN to Shiny
+- docs: Add shinyalert to DESCRIPTION Suggests
 
 ## Changes in version 1.0.2.9068 (2025-02-10)
 

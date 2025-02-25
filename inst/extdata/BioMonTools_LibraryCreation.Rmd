@@ -48,6 +48,20 @@ Use the code below to create the package.  Assumes you are in the development pa
 
 ```{r, eval=FALSE}
 # Library Name
+# Remove all files in "Results" folder
+# Triggered here so can run different files
+path_results <- file.path("inst", "shiny-examples", "BioMonTools", "results")
+fn_results <- list.files(path_results
+                         , full.names = TRUE
+                         , include.dirs = TRUE
+                         , recursive = TRUE)
+unlink(fn_results, recursive = TRUE) # to include dir use unlink instead of file.remove
+# Copy file to ensure directory not empty
+path_shiny <- file.path("inst", "shiny-examples", "BioMonTools")
+fn_copy    <- "remove.txt"
+path_from  <- file.path(path_shiny, "data", fn_copy)
+path_to    <- file.path(path_shiny, "results", fn_copy)
+file.copy(path_from, path_to)
 # NEWS
 # Render then Copy NEWS so picked up in help
 rmarkdown::render("NEWS.rmd", "all")

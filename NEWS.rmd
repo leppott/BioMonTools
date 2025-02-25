@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9069 (2025-02-25)
+
+* refactor: Add taxa translation for RMN to Shiny
+* docs: Add shinyalert to DESCRIPTION Suggests
+
 ## Changes in version 1.0.2.9068 (2025-02-10)
 
 * refactor: Add metrics, bugs

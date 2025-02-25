@@ -19,6 +19,9 @@ function(id) {
                  # , menuSubItem("Taxa List Check"
                  #               , tabName = "tab_taxalistcheck"
                  #               , icon = icon("check-square"))
+                 , menuSubItem("Translate Taxa and Assign Attributes"
+                               , tabName = "tab_filebuilder_taxatrans"
+                               , icon = icon("language"))
                  , menuSubItem("Subsample"
                                , tabName = "tab_subsample"
                                , icon = icon("microscope"))
