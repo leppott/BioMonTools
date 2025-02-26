@@ -10,6 +10,10 @@ function(id) {
       , tabItem(tabName = "tab_markexcl", tab_code_markexcl())
       , tabItem(tabName = "tab_taxamaps", tab_code_taxamaps())
       , tabItem(tabName = "tab_calcmet", tab_code_calcmet())
+      # , tabItem(tabName = "tab_rep_single"
+      #           , tab_code_rep_single())
+      # , tabItem(tabName = "tab_rep_multi"
+      #           , tab_code_rep_multi())
     )## tabItems
 }## FUNCTION ~ END
 

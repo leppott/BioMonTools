@@ -486,9 +486,8 @@ shinyServer(function(input, output) {
                       , "\n\n"
                       , "Imported file record numbers:"
                       , "\n"
-                      , "R doesn't count the title row so add one to get the row number in Excel."
-                      , "\n\n"
-                      , paste(tnames_recnum, collapse = "\n")
+                      , "\n"
+                      , paste(tnames_recnum + 1, collapse = "\n")
         )
         shinyalert::shinyalert(title = "Taxa Translate"
                                , text = msg
@@ -531,7 +530,9 @@ shinyServer(function(input, output) {
                                                        , col_drop
                                                        , sum_n_taxa_boo
                                                        , sum_n_taxa_col
-                                                       , sum_n_taxa_group_by)
+                                                       , sum_n_taxa_group_by
+                                                       , trim_ws = TRUE
+                                                       , match_caps = TRUE)
 
       ## Munge ----
 
@@ -1432,5 +1433,6 @@ shinyServer(function(input, output) {
     }##content~END
     #, contentType = "application/zip"
   )##downloadData~END
+
 
 })## shinyServer ~ END

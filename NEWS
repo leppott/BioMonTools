@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-02-26 09:43:56.509265
+    #> Last Update: 2025-02-26 16:37:35.357549
 
 # Version History
+
+## Changes in version 1.0.2.9071 (2025-02-26)
+
+- refactor: Add parameters to BioMonTools::taxa_translation in Shiny
+  - trim_ws = TRUE
+  - match_caps = TRUE
 
 ## Changes in version 1.0.2.9070 (2025-02-26)
 

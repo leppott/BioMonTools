@@ -29,10 +29,10 @@ function(id) {
                                , tabName = "tab_markexcl"
                                , icon = icon("clone"))
                  )## menuItem ~ Data Preparation ~ END
-      , menuItem(text = "Analysis"
+      , menuItem(text = "Calculation"
                  , icon = icon("cogs") # laptop
-                 , menuSubItem("Taxa Maps", tabName = "tab_taxamaps"
-                               , icon = icon("map"))
+                 # , menuSubItem("Taxa Maps", tabName = "tab_taxamaps"
+                 #               , icon = icon("map"))
                  , menuSubItem("Calculate Metrics", tabName = "tab_calcmet"
                                , icon = icon("calculator"))
                  # , menuSubItem("Data Summary"
@@ -41,6 +41,19 @@ function(id) {
                  #, menuSubItem("Export"
                  #               , tabName = "tab_export")
                  )## menuItem ~ Analysis ~ END
+      , menuItem(text = "Map"
+                 , tabName = "tab_taxamaps"
+                 , icon = icon("map"))## menuItem ~ Map
+      # , menuItem(text = "Reports"
+      #            , icon = icon("clipboard-check")
+      #            , menuSubItem("Single Site"
+      #                          , tabName = "tab_rep_single"
+      #                          , icon = icon("pen")
+      #            )
+                 # , menuSubItem("Multiple Sites"
+                 #               , tabName = "tab_rep_multi"
+                 #               , icon = icon("pen-to-square"))
+      )## menuItem ~ Reports ~ END
       # , menuItem(text = "Summary"
       #            , icon = icon("flag-checkered")
       #            , menuSubItem("X", tabName = "tab_X")

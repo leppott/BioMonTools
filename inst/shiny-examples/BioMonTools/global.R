@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_version <- "1.0.2.9069"
+pkg_version <- "1.0.2.9071"
 
 # Packages----
 library(BioMonTools)
@@ -35,6 +35,10 @@ tab_code_subsample <- source("external/tab_subsample.R", local = TRUE)$value
 tab_code_markexcl  <- source("external/tab_markexcl.R", local = TRUE)$value
 tab_code_taxamaps  <- source("external/tab_taxamaps.R", local = TRUE)$value
 tab_code_calcmet   <- source("external/tab_calcmet.R", local = TRUE)$value
+# tab_code_rep_single            <- source("external/tab_report_single.R"
+#                                          , local = TRUE)$value
+# tab_code_rep_multi             <- source("external/tab_report_multi.R"
+#                                          , local = TRUE)$value
 
 # File Size ----
 # By default, the file size limit is 5MB.

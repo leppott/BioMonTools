@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9071 (2025-02-26)
+
+* refactor: Add parameters to BioMonTools::taxa_translation in Shiny
+    + trim_ws = TRUE
+    + match_caps = TRUE
+
 ## Changes in version 1.0.2.9070 (2025-02-26)
 
 * refactor: Shiny updates
