@@ -113,6 +113,18 @@ shinyServer(function(input, output) {
     # file.copy(input$fn_input$datapath, file.path(path_results, "data_input"
     #                                              , input$fn_input$name))
     #
+
+    ## button, enable, calc ----
+    shinyjs::enable("b_calc_taxatrans")
+    # shinyjs::enable("b_calc_indexclass")
+    # shinyjs::enable("b_calc_indexclassparam")
+    # shinyjs::enable("b_calc_bcg")
+    # shinyjs::enable("b_calc_ibi")
+    # shinyjs::enable("b_calc_met_therm")
+    # shinyjs::enable("b_calc_modtherm")
+    # shinyjs::enable("b_calc_mtti")
+    # shinyjs::enable("b_calc_bdi")
+
     return(df_input)
     #
   })##df_import~END
@@ -376,6 +388,39 @@ shinyServer(function(input, output) {
         dir.create(file.path(path_results_sub))
       }
 
+      if (is.null(sel_user_taxaid)) {
+        # end process with pop up
+        msg <- "'SampID' column name is required and is missing!"
+        shinyalert::shinyalert(title = "Taxa Translate"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+        validate(msg)
+      }## IF ~ sampid
+
+      if (is.null(sel_user_taxaid)) {
+        # end process with pop up
+        msg <- "'TaxaID' column name is required and is missing!"
+        shinyalert::shinyalert(title = "Taxa Translate"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+        validate(msg)
+      }## IF ~ taxaid
+
+      if (is.null(sel_user_ntaxa)) {
+        # end process with pop up
+        msg <- "'N_Taxa' column name is required and is missing!"
+        shinyalert::shinyalert(title = "Taxa Translate"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+        validate(msg)
+      }## IF ~ n_taxa
+
       ## Calc, 03, Import Official Data (and Metadata)  ----
       prog_detail <- "Import Data, Official and Metadata"
       message(paste0("\n", prog_detail))
@@ -429,6 +474,29 @@ shinyServer(function(input, output) {
         df_taxoff_attr_meta <- read.csv(temp_taxoff_attr_meta)
       }## IF ~ fn_taxaoff_meta
 
+      ### Check TaxaID for bad characters----
+      tnames_user <- sort(unique(df_input[, sel_user_taxaid]))
+      tnames_iconv <- iconv(tnames_user)
+      tnames_bad <- tnames_user[is.na(tnames_iconv) |
+                                  tnames_user != tnames_iconv]
+      tnames_recnum <- which(df_input[, sel_user_taxaid] %in% tnames_bad)
+      if (length(tnames_bad) != 0) {
+        # end process with pop up
+        msg <- paste0("Bad (non-ASCII) characters in taxa names!"
+                      , "\n\n"
+                      , "Imported file record numbers:"
+                      , "\n"
+                      , "R doesn't count the title row so add one to get the row number in Excel."
+                      , "\n\n"
+                      , paste(tnames_recnum, collapse = "\n")
+        )
+        shinyalert::shinyalert(title = "Taxa Translate"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+        validate(msg)
+      }## IF ~ sel_user_taxaid ~ non-ASCII
 
       ## Calc, 03, Run Function ----
       prog_detail <- "Calculate, Taxa Trans"

@@ -53,7 +53,8 @@ function() {
 
             , h4("D. Run Operation")
             , p("This button will merge the user file with the official taxa file")
-            , shinyBS::bsButton("b_calc_taxatrans", label = "Run Operation")
+            , shinyjs::disabled(shinyBS::bsButton("b_calc_taxatrans"
+                                                  , label = "Run Operation"))
 
             , h4("E. Download Output")
             , p("All input and output files will be available in a single zip file.")

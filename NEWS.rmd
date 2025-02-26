@@ -18,6 +18,14 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9070 (2025-02-26)
+
+* refactor: Shiny updates
+    + Add shinyalerts to Shiny app for taxa translation
+        - From MNcalc
+    + disable taxa trans button on startup and enable on upload file
+        - From MNcalc
+
 ## Changes in version 1.0.2.9069 (2025-02-25)
 
 * refactor: Add taxa translation for RMN to Shiny

@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-02-25 17:08:40.676346
+    #> Last Update: 2025-02-26 09:43:56.509265
 
 # Version History
+
+## Changes in version 1.0.2.9070 (2025-02-26)
+
+- refactor: Shiny updates
+  - Add shinyalerts to Shiny app for taxa translation
+    - From MNcalc
+  - disable taxa trans button on startup and enable on upload file
+    - From MNcalc
 
 ## Changes in version 1.0.2.9069 (2025-02-25)
 
