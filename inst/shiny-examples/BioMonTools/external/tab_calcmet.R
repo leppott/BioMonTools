@@ -16,6 +16,13 @@ function() {
                      , label = "Community"
                      , choices = sel_community
                      , selected = "bugs")
+
+       , p("3. Mark Redundant (Non-Distinct) Taxa")
+       , includeHTML(file.path("www", "rmd_html", "ShinyHTML_RedundantTaxa.html"))
+       , checkboxInput("ExclTaxa"
+                       , "Generate Redundant Taxa Column"
+                       , TRUE)
+
        #, p("3. Columns.")
        # , p("Required Columns:")
        # , p("SAMPLEID, TAXAID, N_TAXA, EXCLUDE, INDEX_NAME, INDEX_CLASS
@@ -28,7 +35,7 @@ function() {
        #     , NOTEWORTHY, HABITAT, UFC, ELEVATION_ATTR
        #     , GRADIENT_ATTR, WSAREA_ATTR, REPRODUCTION
        #     , CONNECTIVITY, SCC")
-       , p("3. Extra columns to keep in output")
+       , p("4. Extra columns to keep in output")
        , p("Required columns will not be available for selection.")
        , uiOutput("UI_col_calcmet_Cols2Keep")
        #, p("4. Run Function")

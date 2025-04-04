@@ -53,7 +53,7 @@ function(id) {
                  # , menuSubItem("Multiple Sites"
                  #               , tabName = "tab_rep_multi"
                  #               , icon = icon("pen-to-square"))
-      )## menuItem ~ Reports ~ END
+      #)## menuItem ~ Reports ~ END
       # , menuItem(text = "Summary"
       #            , icon = icon("flag-checkered")
       #            , menuSubItem("X", tabName = "tab_X")

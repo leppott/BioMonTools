@@ -1318,7 +1318,7 @@ shinyServer(function(input, output) {
     shiny::withProgress({
       #
       # Number of increments
-      n_inc <- 6
+      n_inc <- 7 # plus one for Excl Taxa
       sleep_num <- 0.33 #0.33
 
       # Increment the progress bar, and update the detail text.
@@ -1335,7 +1335,65 @@ shinyServer(function(input, output) {
 
       # QC
 
-      # Function, Run
+
+
+      ### Excl Taxa----
+      # add in  2025-04-03
+      prog_detail <- "Calculate, Exclude Taxa"
+      message(paste0("\n", prog_detail))
+      # Increment the progress bar, and update the detail text.
+      incProgress(1/n_inc, detail = prog_detail)
+      Sys.sleep(sleep_num)
+      # Calc
+
+      message(paste0("User response to generate ExclTaxa = ", input$ExclTaxa))
+
+      if (input$ExclTaxa) {
+        ## Get TaxaLevel names present in user file
+        phylo_all <- c("Kingdom"
+                       , "Phylum"
+                       , "SubPhylum"
+                       , "Class"
+                       , "SubClass"
+                       , "Order"
+                       , "SubOrder"
+                       , "InfraOrder"
+                       , "SuperFamily"
+                       , "Family"
+                       , "SubFamily"
+                       , "Tribe"
+                       , "Genus"
+                       , "SubGenus"
+                       , "Species"
+                       , "Variety")
+        phylo_all <- toupper(phylo_all) # so matches rest of file
+
+        # case and matching of taxa levels handled inside of markExluded
+
+        # overwrite current data frame
+        fun_fun.DF <- BioMonTools::markExcluded(df_samptax = fun_fun.DF
+                                              , SampID = "SAMPLEID"
+                                              , TaxaID = "TAXAID"
+                                              , TaxaCount = "N_TAXA"
+                                              , Exclude = "EXCLUDE"
+                                              , TaxaLevels = phylo_all
+                                              , Exceptions = NA)
+
+        # Save Results
+        # fn_excl <- paste0(fn_abr_save, "1markexcl.csv")
+        # dn_excl <- path_results_sub
+        # pn_excl <- file.path(dn_excl, fn_excl)
+        # from below
+        fn_results <- file.path("results", "calcmet", "results_calcmet_1markexcl.csv")
+        write.csv(fun_fun.DF, fn_results, row.names = FALSE)
+
+      }## IF ~ input$ExclTaxa
+
+
+
+
+
+      ## Function, Run----
       #
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Run Function")
