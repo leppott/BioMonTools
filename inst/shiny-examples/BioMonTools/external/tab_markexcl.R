@@ -22,7 +22,7 @@ function() {
       #, p("Current version uses all phylogenetic names present in file.")
       #, p("4. Run Function")
       , hr()
-      , bsButton("b_markexcl_run", label = "Run Function")
+      , shinyjs::disabled(bsButton("b_markexcl_run", label = "Run Function"))
       #, p("5. Download Results")
       , useShinyjs()
       , shinyjs::disabled(downloadButton("b_markexcl_download"

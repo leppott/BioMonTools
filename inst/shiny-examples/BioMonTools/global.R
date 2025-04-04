@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_version <- "1.0.2.9072"
+pkg_version <- "1.0.2.9073"
 
 # Packages----
 library(BioMonTools)
@@ -51,14 +51,15 @@ path_results <- file.path("results")
 
 # create results subfolders
 dir_results_sub <- c("subsample", "markexcl", "taxamaps", "calcmet", "taxatrans")
-for (i in dir_results_sub) {
-  dir_new <- file.path("results", i)
-  if (dir.exists(dir_new) == FALSE) {
-    dir.create(dir_new)
-  } else {
-    message(paste0("Directory already exists; ", i))
-  }## IF ~ dir.exists
-}## FOR ~ i
+# for (i in dir_results_sub) {
+#   dir_new <- file.path("results", i)
+#   if (dir.exists(dir_new) == FALSE) {
+#     dir.create(dir_new)
+#   } else {
+#     message(paste0("Directory already exists; ", i))
+#   }## IF ~ dir.exists
+# }## FOR ~ i
+create_results_subfolders()
 
 # File and Folder Names ----
 abr_filebuilder <- "FB"

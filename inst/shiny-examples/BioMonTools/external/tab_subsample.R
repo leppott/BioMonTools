@@ -17,7 +17,8 @@ function() {
         , p("See text to right for more explanation.")
          #, p("4. Run Function")
         , hr()
-         , bsButton("b_subsample_run", label = "Run Function")
+         , shinyjs::disabled(bsButton("b_subsample_run"
+                                      , label = "Run Function"))
          #, p("5. Download Results")
          , useShinyjs()
          , shinyjs::disabled(downloadButton("b_subsample_download"

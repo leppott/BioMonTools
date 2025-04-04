@@ -23,6 +23,11 @@ function() {
                        , "Generate Redundant Taxa Column"
                        , TRUE)
 
+       , p("4. Define columns (Sample ID, Taxa ID, Count).")
+       , uiOutput("UI_col_calcmet_SampID")
+       , uiOutput("UI_col_calcmet_TaxaID")
+       , uiOutput("UI_col_calcmet_Count")
+
        #, p("3. Columns.")
        # , p("Required Columns:")
        # , p("SAMPLEID, TAXAID, N_TAXA, EXCLUDE, INDEX_NAME, INDEX_CLASS
@@ -35,12 +40,12 @@ function() {
        #     , NOTEWORTHY, HABITAT, UFC, ELEVATION_ATTR
        #     , GRADIENT_ATTR, WSAREA_ATTR, REPRODUCTION
        #     , CONNECTIVITY, SCC")
-       , p("4. Extra columns to keep in output")
+       , p("5. Extra columns to keep in output")
        , p("Required columns will not be available for selection.")
        , uiOutput("UI_col_calcmet_Cols2Keep")
        #, p("4. Run Function")
        , hr()
-       , bsButton("b_calcmet_run", label = "Run Function")
+       , shinyjs::disabled(bsButton("b_calcmet_run", label = "Run Function"))
        #, p("5. Download Results")
        , useShinyjs()
        , shinyjs::disabled(downloadButton("b_calcmet_download"

@@ -4,12 +4,25 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-04-04 08:45:09.594675
+    #> Last Update: 2025-04-04 11:59:20.386241
 
 # Version History
 
+## Changes in version 1.0.2.9073 (2025-04-04)
+
+- refactor: Update Shiny
+  - Make button enable/disable consistent
+  - Make results folder cleand up consistent
+    - Could lead to errors if don’t refresh app between files and
+      operations
+  - Make selection box defaults consistent
+  - Metric Calculation
+    - Create select boxes
+    - Modify columns for metric.values() input
+
 ## Changes in version 1.0.2.9072 (2025-04-04)
 
+- feature: Added Exclude feature to metric calculation in Shiny
 
 ## Changes in version 1.0.2.9071 (2025-02-26)
 

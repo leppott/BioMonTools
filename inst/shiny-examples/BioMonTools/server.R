@@ -116,6 +116,11 @@ shinyServer(function(input, output) {
 
     ## button, enable, calc ----
     shinyjs::enable("b_calc_taxatrans")
+    shinyjs::enable("b_markexcl_run")
+    shinyjs::enable("b_subsample_run")
+    shinyjs::enable("b_calcmet_run")
+    shinyjs::enable("b_taxamaps_run")
+
     # shinyjs::enable("b_calc_indexclass")
     # shinyjs::enable("b_calc_indexclassparam")
     # shinyjs::enable("b_calc_bcg")
@@ -154,7 +159,7 @@ shinyServer(function(input, output) {
   })## col_input
 
   # FB, TAXATRANS ----
-  ## TaxaTrans, UI ----
+  ### TaxaTrans, UI ----
 
   output$fn_input_display_taxatrans <- renderText({
     inFile <- input$fn_input
@@ -227,7 +232,7 @@ shinyServer(function(input, output) {
   })## UI_colnames
 
 
-  # ## TaxaTrans, combine ----
+  ### TaxaTrans, combine ----
   # observeEvent(input$cb_TaxaTrans_Summ, {
   #   # turn on/off extra selection boxes based on checkbox
   #   if(input$cb_TaxaTrans_Summ == TRUE) {
@@ -243,11 +248,11 @@ shinyServer(function(input, output) {
   # #})
 
 
-  ## b_Calc_TaxaTrans ----
+  ### b_Calc_TaxaTrans ----
   observeEvent(input$b_calc_taxatrans, {
     shiny::withProgress({
 
-      ### Calc, 00, Initialize ----
+      #### Calc, 00, Initialize ----
       prog_detail <- "Calculation, Taxa Translator..."
       message(paste0("\n", prog_detail))
 
@@ -255,7 +260,7 @@ shinyServer(function(input, output) {
       prog_n <- 7
       prog_sleep <- 0.25
 
-      ## Calc, 01, Import User Data ----
+      ### Calc, 01, Import User Data ----
       prog_detail <- "Import Data, User"
       message(paste0("\n", prog_detail))
       # Increment the progress bar, and update the detail text.
@@ -304,7 +309,7 @@ shinyServer(function(input, output) {
         return(NULL)
       }
 
-      ## Calc, 02, Gather and Test Inputs  ----
+      ### Calc, 02, Gather and Test Inputs  ----
       prog_detail <- "QC Inputs"
       message(paste0("\n", prog_detail))
       # Increment the progress bar, and update the detail text.
@@ -421,14 +426,14 @@ shinyServer(function(input, output) {
         validate(msg)
       }## IF ~ n_taxa
 
-      ## Calc, 03, Import Official Data (and Metadata)  ----
+      ### Calc, 03, Import Official Data (and Metadata)  ----
       prog_detail <- "Import Data, Official and Metadata"
       message(paste0("\n", prog_detail))
       # Increment the progress bar, and update the detail text.
       incProgress(1/prog_n, detail = prog_detail)
       Sys.sleep(prog_sleep)
 
-      ## Data,  Official Taxa----
+      ### Data,  Official Taxa----
       url_taxoff <- file.path(url_bmt_base
                               , "taxa_official"
                               , "RMN"
@@ -438,7 +443,7 @@ shinyServer(function(input, output) {
 
       df_taxoff <- read.csv(temp_taxoff)
 
-      ## Data, Official Taxa, Meta Data----
+      ### Data, Official Taxa, Meta Data----
       if (!is.null(fn_taxoff_meta)) {
         url_taxoff_meta <- file.path(url_bmt_base
                                      , "taxa_official"
@@ -450,7 +455,7 @@ shinyServer(function(input, output) {
         df_taxoff_meta <- read.csv(temp_taxoff_meta)
       }## IF ~ fn_taxaoff_meta
 
-      ## Data, Official Attributes----
+      ### Data, Official Attributes----
       if (!is.null(fn_taxoff_attr)) {
         url_taxoff_attr <- file.path(url_bmt_base
                                      , "taxa_official"
@@ -462,7 +467,7 @@ shinyServer(function(input, output) {
         df_taxoff_attr <- read.csv(temp_taxoff_attr)
       }## IF ~ fn_taxoff_attr
 
-      ## Data, Official Attributes, Meta Data----
+      ### Data, Official Attributes, Meta Data----
       if (!is.null(fn_taxoff_meta)) {
         url_taxoff_attr_meta <- file.path(url_bmt_base
                                           , "taxa_official"
@@ -497,7 +502,7 @@ shinyServer(function(input, output) {
         validate(msg)
       }## IF ~ sel_user_taxaid ~ non-ASCII
 
-      ## Calc, 03, Run Function ----
+      ### Calc, 03, Run Function ----
       prog_detail <- "Calculate, Taxa Trans"
       message(paste0("\n", prog_detail))
       # Increment the progress bar, and update the detail text.
@@ -519,7 +524,7 @@ shinyServer(function(input, output) {
                                    , sel_user_taxaid
                                    , sel_user_groupby)
 
-      ## run the function ----
+      ### run the function ----
       taxatrans_results <- BioMonTools::taxa_translate(df_user
                                                        , df_official
                                                        , df_official_metadata
@@ -534,7 +539,7 @@ shinyServer(function(input, output) {
                                                        , trim_ws = TRUE
                                                        , match_caps = TRUE)
 
-      ## Munge ----
+      ### Munge ----
 
       # Remove non-project taxaID cols
       # Specific to shiny project, not a part of the taxa_translate function
@@ -641,7 +646,7 @@ shinyServer(function(input, output) {
       }## IF ~ Noteworthy
 
 
-      ## Calc, 04, Save Results ----
+      #### Calc, 04, Save Results ----
       prog_detail <- "Save Results"
       message(paste0("\n", prog_detail))
       # Increment the progress bar, and update the detail text.
@@ -731,7 +736,7 @@ shinyServer(function(input, output) {
                 , row.names = FALSE)
       rm(df_save, fn_part)
 
-      ## Calc, 05, Create Zip ----
+      ### Calc, 05, Create Zip ----
       prog_detail <- "Create Zip File For Download"
       message(paste0("\n", prog_detail))
       # Increment the progress bar, and update the detail text.
@@ -743,7 +748,7 @@ shinyServer(function(input, output) {
                             , full.names = TRUE)
       zip::zip(file.path(path_results, "results.zip"), fn_4zip)
 
-      ## Calc, 06, Info Pop Up ----
+      ### Calc, 06, Info Pop Up ----
       prog_detail <- "Calculate, Info"
       message(paste0("\n", prog_detail))
       # Increment the progress bar, and update the detail text.
@@ -763,7 +768,7 @@ shinyServer(function(input, output) {
                              , closeOnClickOutside = TRUE)
       #validate(msg)
 
-      ## Calc, 07, Clean Up ----
+      ### Calc, 07, Clean Up ----
       prog_detail <- "Calculate, Clean Up"
       message(paste0("\n", prog_detail))
       # Increment the progress bar, and update the detail text.
@@ -806,12 +811,13 @@ shinyServer(function(input, output) {
 
   # SUBSAMPLE ----
 
-  ## Subsample, ColNames ----
+  ### Subsample, UI, ColNames ----
   output$UI_col_subsamp_SampID <- renderUI({
     str_col <- "SampID"
     selectInput("subsamp_col_SampID"
                 , label = str_col
-                , choices = names(df_import())
+                , choices = c("", names(df_import()))
+                , selected = "SampleID"
                 , multiple = FALSE)
   })## UI_colnames
 
@@ -819,7 +825,8 @@ shinyServer(function(input, output) {
     str_col <- "TaxaID"
     selectInput("subsamp_col_TaxaID"
                 , label = str_col
-                , choices = names(df_import())
+                , choices = c("", names(df_import()))
+                , selected = "TaxaID"
                 , multiple = FALSE)
   })## UI_colnames
 
@@ -827,11 +834,12 @@ shinyServer(function(input, output) {
     str_col <- "Count"
     selectInput("subsamp_col_Count"
                 , label = str_col
-                , choices = names(df_import())
+                , choices = c("", names(df_import()))
+                , selected = "N_Taxa"
                 , multiple = FALSE)
   })## UI_colnames
 
-  ## Subsample, B Run ----
+  ### Subsample, B Run ----
   observeEvent(input$b_subsample_run, {
     shiny::withProgress({
       #
@@ -919,7 +927,7 @@ shinyServer(function(input, output) {
   }##expr~ObserveEvent~END
   )##observeEvent~END
 
-  ## Subsample, B Download ----
+  ### Subsample, B Download ----
   output$b_subsample_download <- downloadHandler(
     # use index and date time as file name
     #myDateTime <- format(Sys.time(), "%Y%m%d_%H%M%S")
@@ -956,12 +964,13 @@ shinyServer(function(input, output) {
 
   # MARKEXCL ----
 
-  ## MarkExcl, ColNames ----
+  ### MarkExcl, UI, ColNames ----
   output$UI_col_markexcl_SampID <- renderUI({
     str_col <- "SampID"
     selectInput("markexcl_col_SampID"
                 , label = str_col
-                , choices = names(df_import())
+                , choices = c("", names(df_import()))
+                , selected = "SampleID"
                 , multiple = FALSE)
   })## UI_colnames
 
@@ -969,7 +978,8 @@ shinyServer(function(input, output) {
     str_col <- "TaxaID"
     selectInput("markexcl_col_TaxaID"
                 , label = str_col
-                , choices = names(df_import())
+                , choices = c("", names(df_import()))
+                , selected = "TaxaID"
                 , multiple = FALSE)
   })## UI_colnames
 
@@ -977,7 +987,8 @@ shinyServer(function(input, output) {
     str_col <- "Count"
     selectInput("markexcl_col_Count"
                 , label = str_col
-                , choices = names(df_import())
+                , choices = c("", names(df_import()))
+                , selected = "N_Taxa"
                 , multiple = FALSE)
   })## UI_colnames
 
@@ -1013,7 +1024,7 @@ shinyServer(function(input, output) {
   })## UI_colnames
 
 
-  ## MarkExcl, B Run -----
+  ### MarkExcl, B Run -----
   observeEvent(input$b_markexcl_run, {
     shiny::withProgress({
       #
@@ -1090,7 +1101,7 @@ shinyServer(function(input, output) {
   }##expr~ObserveEvent~END
   )##observeEvent~ b_markexcl
 
-  ## MarkExcl, B Download ----
+  ### MarkExcl, B Download ----
   output$b_markexcl_download <- downloadHandler(
     # use index and date time as file name
     #myDateTime <- format(Sys.time(), "%Y%m%d_%H%M%S")
@@ -1127,12 +1138,13 @@ shinyServer(function(input, output) {
 
   # TAXAMAPS ----
 
-  ## TaxaMaps, ColNames ----
+  ### TaxaMaps, UI, ColNames ----
   output$UI_col_taxamaps_SampID <- renderUI({
     str_col <- "SampID"
     selectInput("taxamaps_col_SampID"
                 , label = str_col
-                , choices = names(df_import())
+                , choices = c("", names(df_import()))
+                , selected = "SampleID"
                 , multiple = FALSE)
   })## UI_colnames
 
@@ -1140,7 +1152,8 @@ shinyServer(function(input, output) {
     str_col <- "TaxaID"
     selectInput("taxamaps_col_TaxaID"
                 , label = str_col
-                , choices = names(df_import())
+                , choices = c("", names(df_import()))
+                , selected = "TaxaID"
                 , multiple = FALSE)
   })## UI_colnames
 
@@ -1148,15 +1161,17 @@ shinyServer(function(input, output) {
     str_col <- "Count"
     selectInput("taxamaps_col_Count"
                 , label = str_col
-                , choices = names(df_import())
+                , choices = c("", names(df_import()))
+                , selected = "N_Taxa"
                 , multiple = FALSE)
   })## UI_colnames
 
   output$UI_col_taxamaps_Lat <- renderUI({
-    str_col <- "Lat"
+    str_col <- "Latitude"
     selectInput("taxamaps_col_Lat"
-                , label = "Latitude" #str_col
-                , choices = names(df_import())
+                , label = str_col
+                , choices = c("", names(df_import()))
+                , selected = "Latitude"
                 , multiple = FALSE)
   })## UI_colnames
 
@@ -1164,7 +1179,8 @@ shinyServer(function(input, output) {
     str_col <- "Longitude"
     selectInput("taxamaps_col_Long"
                 , label = str_col
-                , choices = names(df_import())
+                , choices = c("", names(df_import()))
+                , selected = "Longitude"
                 , multiple = FALSE)
   })## UI_colnames
 
@@ -1172,11 +1188,11 @@ shinyServer(function(input, output) {
     str_col <- "Group"
     selectInput("taxamaps_col_Group"
                 , label = "(OPTIONAL) Grouping Variable" #str_col
-                , choices = names(df_import())
+                , choices = c("", names(df_import()))
                 , multiple = FALSE)
   })## UI_colnames
 
-  ## TaxaMaps, B Run ----
+  ### TaxaMaps, B Run ----
   observeEvent(input$b_taxamaps_run, {
     shiny::withProgress({
 
@@ -1234,7 +1250,7 @@ shinyServer(function(input, output) {
   }##expr~ObserveEvent~END
   )##observeEvent~b_CalcIBI~END
 
-  ## TaxaMaps, B Download ----
+  ### TaxaMaps, B Download ----
   output$b_taxamaps_download <- downloadHandler(
     # use index and date time as file name
     #myDateTime <- format(Sys.time(), "%Y%m%d_%H%M%S")
@@ -1295,7 +1311,7 @@ shinyServer(function(input, output) {
   #               , paste0("ERROR\nRequired columns missing from the data:\n"
   #                        , paste("* ", col_missing, collapse = "\n"))))
 
-  ## calcmet, ColNames ----
+  ### calcmet, UI, ColNames ----
   output$UI_col_calcmet_Cols2Keep <- renderUI({
     str_col <- "Columns to keep"
     col_req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
@@ -1313,7 +1329,37 @@ shinyServer(function(input, output) {
                 , multiple = TRUE)
   })## UI_colnames
 
-  ## calcmet, B Run ----
+  ### added in case want drop downs like other routines
+  # 20250404
+
+  output$UI_col_calcmet_SampID <- renderUI({
+    str_col <- "SampID"
+    selectInput("calcmet_user_col_SampID"
+                , label = str_col
+                , choices = c("", names(df_import()))
+                , selected = "SampleID"
+                , multiple = FALSE)
+  })## UI_colnames
+
+  output$UI_col_calcmet_TaxaID <- renderUI({
+    str_col <- "TaxaID"
+    selectInput("calcmet_user_col_TaxaID"
+                , label = str_col
+                , choices = c("", names(df_import()))
+                , selected = "TaxaID"
+                , multiple = FALSE)
+  })## UI_colnames
+
+  output$UI_col_calcmet_Count <- renderUI({
+    str_col <- "Count"
+    selectInput("calcmet_user_col_Count"
+                , label = str_col
+                , choices = c("", names(df_import()))
+                , selected = "N_Taxa"
+                , multiple = FALSE)
+  })## UI_colnames
+
+  ### calcmet, B Run ----
   observeEvent(input$b_calcmet_run, {
     shiny::withProgress({
       #
@@ -1328,16 +1374,25 @@ shinyServer(function(input, output) {
       # enable download button
       shinyjs::disable("b_calcmet_download")
 
+      # missing, add 2025-04-04
+      # Remove existing files in "results"
+      # clean_results()
+      create_results_subfolders()
+
       # Function, Parameters
       fun_fun.DF <- df_import()
       fun_fun.Community <- input$calcmet_community
       fun_fun.cols2keep <- unlist(input$calcmet_Cols2Keep)
+      # 2025-04-04
+      sel_user_taxaid <- input$calcmet_user_col_TaxaID
+      sel_user_ntaxa  <- input$calcmet_user_col_Count
+      sel_user_sampid <- input$calcmet_user_col_SampID
 
       # QC
+browser()
 
 
-
-      ### Excl Taxa----
+      #### Excl Taxa----
       # add in  2025-04-03
       prog_detail <- "Calculate, Exclude Taxa"
       message(paste0("\n", prog_detail))
@@ -1372,9 +1427,9 @@ shinyServer(function(input, output) {
 
         # overwrite current data frame
         fun_fun.DF <- BioMonTools::markExcluded(df_samptax = fun_fun.DF
-                                              , SampID = "SAMPLEID"
-                                              , TaxaID = "TAXAID"
-                                              , TaxaCount = "N_TAXA"
+                                              , SampID = sel_user_sampid
+                                              , TaxaID = sel_user_taxaid
+                                              , TaxaCount = sel_user_ntaxa
                                               , Exclude = "EXCLUDE"
                                               , TaxaLevels = phylo_all
                                               , Exceptions = NA)
@@ -1390,10 +1445,15 @@ shinyServer(function(input, output) {
       }## IF ~ input$ExclTaxa
 
 
+      # QC, 2025-04-04
+      # Convert colnames to what metric.values() requires
+      names(fun_fun.DF)[names(fun_fun.DF) %in% sel_user_sampid] <- "SAMPLEID"
+      names(fun_fun.DF)[names(fun_fun.DF) %in% sel_user_taxaid] <- "TAXAID"
+      names(fun_fun.DF)[names(fun_fun.DF) %in% sel_user_ntaxa] <- "N_TAXA"
+      names(fun_fun.DF) <- toupper(names(fun_fun.DF))
 
 
-
-      ## Function, Run----
+      ### Function, Run----
       #
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Run Function")
@@ -1458,7 +1518,7 @@ shinyServer(function(input, output) {
   }##expr~ObserveEvent~END
   )##observeEvent~b_calcmet~END
 
-  ## calcmet, B Download ----
+  ### calcmet, B Download ----
   output$b_calcmet_download <- downloadHandler(
     # use index and date time as file name
     #myDateTime <- format(Sys.time(), "%Y%m%d_%H%M%S")

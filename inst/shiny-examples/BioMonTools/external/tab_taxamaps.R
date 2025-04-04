@@ -31,7 +31,8 @@ function() {
                        #               , selected = "bottomleft")
                        #, p("4. Run Function")
                        , hr()
-                       , bsButton("b_taxamaps_run", label = "Run Function")
+                       , shinyjs::disabled(bsButton("b_taxamaps_run"
+                                                    , label = "Run Function"))
                        #, p("5. Download Results")
                        , useShinyjs()
                      , shinyjs::disabled(downloadButton("b_taxamaps_download"
