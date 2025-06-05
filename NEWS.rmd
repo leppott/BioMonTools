@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9074 (2025-06-05)
+
+* refactor: Update MetricScoring.xlsx to fix metric scoring directionality for MIEGLE
+
 ## Changes in version 1.0.2.9073 (2025-04-04)
 
 * refactor: Update Shiny

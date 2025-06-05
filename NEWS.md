@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-04-04 11:59:20.386241
+    #> Last Update: 2025-06-05 16:35:24.050562
 
 # Version History
+
+## Changes in version 1.0.2.9074 (2025-06-05)
+
+- refactor: Update MetricScoring.xlsx to fix metric scoring
+  directionality for MIEGLE
 
 ## Changes in version 1.0.2.9073 (2025-04-04)
 
