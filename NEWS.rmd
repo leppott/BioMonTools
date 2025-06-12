@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9075 (2025-06-12)
+
+* refactor: Add new metrics for GP, Issue #18
+
 ## Changes in version 1.0.2.9074 (2025-06-05)
 
 * refactor: Update MetricScoring.xlsx to fix metric scoring directionality for MIEGLE

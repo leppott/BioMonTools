@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-06-05 16:35:24.050562
+    #> Last Update: 2025-06-12 11:53:34.208377
 
 # Version History
+
+## Changes in version 1.0.2.9075 (2025-06-12)
+
+- refactor: Add new metrics for GP, Issue \#18
 
 ## Changes in version 1.0.2.9074 (2025-06-05)
 

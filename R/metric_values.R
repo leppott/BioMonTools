@@ -1899,6 +1899,11 @@ metric.values.bugs <- function(myDF
                                                                          | GENUS == "SIMULIUM"
                                                                          | GENUS == "HYALELLA"]
                                                                   , na.rm = TRUE) / ni_total
+                                , pi_ChiroOligoHiru = 100 * sum(N_TAXA[CLASS == "OLIGOCHAETA"
+                                                                        | SUBCLASS == "OLIGOCHAETA"
+                                                                        | FAMILY == "CHIRONOMIDAE"
+                                                                        | SUBCLASS == "HIRUDINEA"]
+                                                                 , na.rm = TRUE) / ni_total
                                 , pi_Cirra = 100 * sum(N_TAXA[FAMILY == "CIRRATULIDAE"]
                                                        , na.rm = TRUE) / ni_total
                                 , pi_Clite = 100 * sum(N_TAXA[CLASS == "CLITELLATA"]
@@ -3189,6 +3194,10 @@ metric.values.bugs <- function(myDF
                                 , nord_COET = dplyr::n_distinct(ORDER[ORDER == "COLEOPTERA"
                                                                       | ORDER == "ODONATA"
                                                                       | ORDER == "EPHEMEROPTERA"
+                                                                      | ORDER == "TRICHOPTERA"]
+                                                                , na.rm = TRUE)
+
+                                , nord_ET = dplyr::n_distinct(ORDER[ORDER == "EPHEMEROPTERA"
                                                                       | ORDER == "TRICHOPTERA"]
                                                                 , na.rm = TRUE)
 
