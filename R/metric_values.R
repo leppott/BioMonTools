@@ -1197,6 +1197,21 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
 
+  # Logical Columns to Logical
+  # Ensure in correct format, Access converts sometimes to 0, -1
+  # 2025-06-13
+  for (i in col.req_logical) {
+    if(class(myDF[, i]) == "character") {
+      myDF[, i] <- toupper(myDF[, i])
+      myDF[, i] <- gsub("YES", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("NO", "FALSE", myDF[, i])
+      myDF[, i] <- gsub("1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("-1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("0", "FALSE", myDF[, i])
+    }## IF ~ character
+    myDF[, i] <- as.logical(myDF[, i])
+  }## FOR ~ i ~ logical
+
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
   if (verbose == TRUE) {
@@ -2230,6 +2245,11 @@ metric.values.bugs <- function(myDF
                                      | BCG_ATTR == "6")]
                                   , na.rm = TRUE) / ni_total
                                 , pt_NonInsJugaRiss_BCG_att456 = 100 * nt_NonInsJugaRiss_BCG_att456 / nt_total
+                                # 20250613                                l
+                                , pi_SimBbiBtri = 100 * (sum(N_TAXA[FAMILY == "SIMULIIDAE"], na.rm = TRUE)
+                                                      + sum(N_TAXA[TAXAID == "BAETIS BICAUDATUS COMPLEX"], na.rm = TRUE)
+                                                      + sum(N_TAXA[TAXAID == "BAETIS TRICAUDATUS COMPLEX"], na.rm = TRUE)
+                                                      ) / ni_total
                                 # 20180815, Percent BAETIS TRICAUDATUS COMPLEX + SIMULIIDAE individual
                                 , pi_SimBtri = 100 * (sum(N_TAXA[FAMILY == "SIMULIIDAE"], na.rm = TRUE)
                                                       + sum(N_TAXA[TAXAID == "BAETIS TRICAUDATUS COMPLEX"]
@@ -2902,6 +2922,11 @@ metric.values.bugs <- function(myDF
                                                     , na.rm = TRUE)
 
                                 #### BCG_nt_Phylo----
+                                , nt_Chiro_BCG_att45 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                                 & FAMILY == "CHIRONOMIDAE"
+                                                                                 & (BCG_ATTR == "4"
+                                                                                    | BCG_ATTR == "5")]
+                                                                          , na.rm = TRUE)
                                 , nt_Ephem_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                                  & ORDER == "EPHEMEROPTERA"
                                                                                  & (BCG_ATTR == "1I"
@@ -3050,6 +3075,10 @@ metric.values.bugs <- function(myDF
                                                                , na.rm = TRUE)) / ni_total
 
                                 #### BCG_pi_Phylo----
+                                , pi_Chiro_BCG_att45 = 100 * sum(N_TAXA[(FAMILY == "CHIRONOMIDAE")
+                                                                       & (BCG_ATTR == "4"
+                                                                          | BCG_ATTR == "5")]
+                                                                , na.rm = TRUE) / ni_total
                                 , pi_EPT_BCG_att123 = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
                                                                         | ORDER == "TRICHOPTERA"
                                                                         | ORDER == "PLECOPTERA")
@@ -3098,6 +3127,7 @@ metric.values.bugs <- function(myDF
 
                                 #### BCG_special ----
                                 # BCG_pt_Phylo
+                                , pt_Chiro_BCG_att45 =  100 * nt_Chiro_BCG_att45 / nt_total
                                 , pt_EPT_BCG_att123 =  100 * nt_EPT_BCG_att123 / nt_total
                                 , pt_EPT_BCG_att1i23 = 100 * nt_EPT_BCG_att1i23 / nt_total
 
@@ -3794,6 +3824,21 @@ metric.values.fish <- function(myDF
   }##IF ~ BCG_Attr ~ END
 
   # Data Munging ----
+
+  # Logical Columns to Logical
+  # Ensure in correct format, Access converts sometimes to 0, -1
+  # 2025-06-13
+  for (i in col.req_logical) {
+    if(class(myDF[, i]) == "character") {
+      myDF[, i] <- toupper(myDF[, i])
+      myDF[, i] <- gsub("YES", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("NO", "FALSE", myDF[, i])
+      myDF[, i] <- gsub("1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("-1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("0", "FALSE", myDF[, i])
+    }## IF ~ character
+    myDF[, i] <- as.logical(myDF[, i])
+  }## FOR ~ i ~ logical
 
   if (verbose == TRUE) {
     # 2
@@ -6617,6 +6662,23 @@ metric.values.coral <- function(myDF
   }##IF ~ BCG_Attr ~ END
 
   # Data Munging----
+
+  # Logical Columns to Logical
+  # Ensure in correct format, Access converts sometimes to 0, -1
+  # 2025-06-13
+  for (i in col.req_logical) {
+    if(class(myDF[, i]) == "character") {
+      myDF[, i] <- toupper(myDF[, i])
+      myDF[, i] <- gsub("YES", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("NO", "FALSE", myDF[, i])
+      myDF[, i] <- gsub("1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("-1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("0", "FALSE", myDF[, i])
+    }## IF ~ character
+    myDF[, i] <- as.logical(myDF[, i])
+  }## FOR ~ i ~ logical
+
+
   # Convert columns to upper case
   if (verbose == TRUE) {
     debug_topic <- "Munging, text cols, toupper"

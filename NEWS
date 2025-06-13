@@ -4,13 +4,21 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-06-12 11:53:34.208377
+    #> Last Update: 2025-06-13 15:54:49.259563
 
 # Version History
 
+## Changes in version 1.0.2.9076 (2025-06-13)
+
+- refactor: Add new metrics for ORWA, Issue \#120
+- refactor: Convert required logical columns to logical in
+  `metric.values`
+  - bugs, fish, and coral
+  - no logical required columns for algae
+
 ## Changes in version 1.0.2.9075 (2025-06-12)
 
-- refactor: Add new metrics for GP, Issue \#18
+- refactor: Add new metrics for GP, Issue \#118
 
 ## Changes in version 1.0.2.9074 (2025-06-05)
 

@@ -1389,8 +1389,6 @@ shinyServer(function(input, output) {
       sel_user_sampid <- input$calcmet_user_col_SampID
 
       # QC
-browser()
-
 
       #### Excl Taxa----
       # add in  2025-04-03
