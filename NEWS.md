@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-06-13 15:54:49.259563
+    #> Last Update: 2025-06-19 11:17:53.567277
 
 # Version History
+
+## Changes in version 1.0.2.9077 (2025-06-19)
+
+- refactor: Add new metrics for ORWA, Issue \#121
 
 ## Changes in version 1.0.2.9076 (2025-06-13)
 

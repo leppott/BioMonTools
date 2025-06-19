@@ -2254,6 +2254,10 @@ metric.values.bugs <- function(myDF
                                 , pi_SimBtri = 100 * (sum(N_TAXA[FAMILY == "SIMULIIDAE"], na.rm = TRUE)
                                                       + sum(N_TAXA[TAXAID == "BAETIS TRICAUDATUS COMPLEX"]
                                                             , na.rm = TRUE)) / ni_total
+                                # 20250619, ORWA
+                                , pi_SimBae = 100 * (sum(N_TAXA[FAMILY == "SIMULIIDAE"], na.rm = TRUE)
+                                                      + sum(N_TAXA[GENUS == "BAETIS"]
+                                                            , na.rm = TRUE)) / ni_total
                                 # 20181018, MS, sensitive COLEOPTERA & (Family is Null or not Hydrophyilidae)
                                 , pi_Colesens = 100 * sum(N_TAXA[ORDER == "COLEOPTERA"
                                                                  & (FAMILY != "HYDROPHILIDAE"
