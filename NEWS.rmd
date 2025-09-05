@@ -18,6 +18,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9079 (2025-09-05)
+
+* fix: Add extra columns to example fish data
+* docs: Update documentation for example fish data
+* fix: Update examples
+    + metric.values()
+    + metric.stats(), Issue #122
+    + metric.stats2(), Issue #122
+* refactor: Update group_by .dots statements in metric.values(), Issue #84
+
 ## Changes in version 1.0.2.9078 (2025-09-05)
 
 * refactor: Update metric.values() for global variables, Issue #49

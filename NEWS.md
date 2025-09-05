@@ -4,9 +4,20 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-05 12:24:45.011112
+    #> Last Update: 2025-09-05 14:25:28.072179
 
 # Version History
+
+## Changes in version 1.0.2.9079 (2025-09-05)
+
+- fix: Add extra columns to example fish data
+- docs: Update documentation for example fish data
+- fix: Update examples
+  - metric.values()
+  - metric.stats(), Issue \#122
+  - metric.stats2(), Issue \#122
+- refactor: Update group_by .dots statements in metric.values(), Issue
+  \#84
 
 ## Changes in version 1.0.2.9078 (2025-09-05)
 

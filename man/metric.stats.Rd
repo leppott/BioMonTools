@@ -129,6 +129,15 @@ names(df_bugs)[names(df_bugs) \%in\% "Exclude"] <- "EXCLUDE"
 names(df_bugs)[names(df_bugs) \%in\% "Class"] <- "INDEX_CLASS"
 names(df_bugs)[names(df_bugs) \%in\% "Unique_ID"] <- "SITEID"
 
+# Add Missing Columns
+df_bugs$ELEVATION_ATTR <- NA_character_
+df_bugs$GRADIENT_ATTR <- NA_character_
+df_bugs$WSAREA_ATTR <- NA_character_
+df_bugs$HABSTRUCT <- NA_character_
+df_bugs$BCG_ATTR2 <- NA_character_
+df_bugs$AIRBREATHER <- NA
+df_bugs$UFC <- NA_real_
+
 # Calc Metrics
 cols_keep <- c("Ref_v1", "CalVal_Class4", "SITEID", "CollDate", "CollMeth")
 # INDEX_NAME and INDEX_CLASS kept by default
@@ -145,7 +154,7 @@ col_DataType  <- "CALVAL_CLASS4"
 DataType_Cal  <- "cal"
 DataType_Ver  <- "verif"
 col_Subset    <- "INDEX_CLASS"
-Subset_Value  <- "CENTRALHILLS"
+Subset_Value  <- "CentralHills"
 df_stats <- metric.stats(df_metval
                          , col_metrics
                          , col_SampID

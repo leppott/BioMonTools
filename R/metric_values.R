@@ -182,7 +182,7 @@
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' # Example 2, data from Excel
-#'\dontrun{
+#'
 #' # Packages
 #' library(readxl)
 #' library(reshape2)
@@ -198,7 +198,7 @@
 #' df_metric_values_bugs <- metric.values(df_samps_bugs[1:100, ]
 #'                                        , "bugs"
 #'                                        , fun.cols2keep = myCols)
-#'
+#'\dontrun{
 #' # View Results
 #' View(df_metric_values_bugs)
 #' }
@@ -667,7 +667,8 @@ metric.values <- function(fun.DF
   }## IF ~ verbose
   #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
   if (toupper(fun.Community) != "CORAL") {
-    fun.DF <- fun.DF %>% dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
+    fun.DF <- fun.DF %>%
+      dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
   }## IF ~ taxa not zero
   # non-target taxa removed in community function, if appropriate
   #
@@ -1235,7 +1236,8 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
 
-  myDF <- dplyr::filter(myDF, NONTARGET != TRUE | is.na(NONTARGET))
+  myDF <- dplyr::filter(myDF,
+                        NONTARGET != TRUE | is.na(NONTARGET))
 
   # # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
   if (verbose == TRUE) {
@@ -3550,7 +3552,8 @@ metric.values.bugs <- function(myDF
   } else {
     # create df with grouped fields
     myDF.cols2keep <- myDF %>%
-      dplyr::group_by(.dots = c("SAMPLEID", cols2keep)) %>%
+      # dplyr::group_by(.dots = c("SAMPLEID", cols2keep)) %>%
+      dplyr::group_by(!!!rlang::syms(c("SAMPLEID", cols2keep))) %>%
       dplyr::summarize(col.drop = sum(N_TAXA))
     col.drop <- ncol(myDF.cols2keep)
     myDF.cols2keep <- myDF.cols2keep[,-col.drop]
@@ -5366,7 +5369,8 @@ metric.values.fish <- function(myDF
   } else {
     # create df with grouped fields
     myDF.cols2keep <- myDF %>%
-      dplyr::group_by(.dots = c("SAMPLEID", cols2keep)) %>%
+      # dplyr::group_by(.dots = c("SAMPLEID", cols2keep)) %>%
+      dplyr::group_by(!!!rlang::syms(c("SAMPLEID", cols2keep))) %>%
       dplyr::summarize(col.drop = sum(N_TAXA))
     col.drop <- ncol(myDF.cols2keep)
     myDF.cols2keep <- myDF.cols2keep[,-col.drop]
@@ -6341,8 +6345,9 @@ metric.values.algae <- function(myDF
       df.return <- as.data.frame(met.val)
     } else {
       # create df with grouped fields
-      myDF.cols2keep <- myDF %>% dplyr::group_by(.dots = c("SAMPLEID"
-                                                         , cols2keep)) %>%
+      myDF.cols2keep <- myDF %>%
+        # dplyr::group_by(.dots = c("SAMPLEID", cols2keep)) %>%
+        dplyr::group_by(!!!rlang::syms(c("SAMPLEID", cols2keep))) %>%
         dplyr::summarize(col.drop = sum(N_TAXA))
       col.drop <- ncol(myDF.cols2keep)
       myDF.cols2keep <- myDF.cols2keep[,-col.drop]

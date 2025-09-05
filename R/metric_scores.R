@@ -116,13 +116,7 @@
 #' myDF_Bugs_MBSS <- data_benthos_MBSS
 #' myDF_Bugs_MBSS$NONTARGET <- FALSE
 #' myDF_Bugs_MBSS$INDEX_CLASS <- toupper(myDF_Bugs_MBSS$INDEX_CLASS)
-#' myDF_Bugs_MBSS$SAMPLEID <- myDF_Bugs_MBSS$SITE
 #' myDF_Bugs_MBSS$INDEX_NAME <- myIndex
-#' myDF_Bugs_MBSS$TAXAID <- myDF_Bugs_MBSS$TAXON
-#' myDF_Bugs_MBSS$SubPhylum <- NA
-#' myDF_Bugs_MBSS$SubFamily <- NA
-#' myDF_Bugs_MBSS$TOLVAL <- myDF_Bugs_MBSS$FinalTolVal07
-#' myDF_Bugs_MBSS$TOLVAL2 <- myDF_Bugs_MBSS$FinalTolVal08
 #' myDF_Bugs_MBSS$EXCLUDE <- myDF_Bugs_MBSS$EXCLUDE=="Y"
 #'
 #' myMetric_Values_Bugs_MBSS <- metric.values(myDF_Bugs_MBSS

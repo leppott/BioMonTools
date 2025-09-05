@@ -8,6 +8,7 @@
 # 20211210, copied from MBSStools package
 # 2022-11-15 (EWL) update for INDEX_CLASS
 # 2023-12-11, EXCLUDE to logical not character
+# 2025-09-05, add new required columns
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 0. Prep ####
@@ -83,6 +84,9 @@ col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "N_ANOMALIES", "SAMP_BIOMASS"
 ## both should be character(0)
 col.req[!col.req %in% names(data.import)]
 names(data.import)[!names(data.import) %in% col.req]
+
+data.import$BCG_ATTR2 <- NA_character_
+data.import$TOLVAL2 <- NA_real_
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 2. Save as RDA for Use in Package ####

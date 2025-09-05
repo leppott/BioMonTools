@@ -210,7 +210,7 @@ View(df_metric_values_bugs)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Example 2, data from Excel
-\dontrun{
+
 # Packages
 library(readxl)
 library(reshape2)
@@ -226,7 +226,7 @@ myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
 df_metric_values_bugs <- metric.values(df_samps_bugs[1:100, ]
                                        , "bugs"
                                        , fun.cols2keep = myCols)
-
+\dontrun{
 # View Results
 View(df_metric_values_bugs)
 }

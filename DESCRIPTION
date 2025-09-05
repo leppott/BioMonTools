@@ -1,7 +1,7 @@
 Package: BioMonTools
 Type: Package
 Title: Tools for Biomonitoring and Bioassessment
-Version: 1.0.2.9078
+Version: 1.0.2.9079
 Author: c(
 	person("Erik W.", "Leppo", email="Erik.Leppo@tetratech.com", role=c("aut","cre")), 
 	person("Jen", "Stamp", role="ctb"),
@@ -15,7 +15,8 @@ Description: Tools for manipulating data associated with biomonitoring and
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 3.3.3)
+Depends: 
+    R (>= 3.5)
 Imports:
     dplyr,
     maps,

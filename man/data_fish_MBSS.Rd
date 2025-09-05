@@ -5,7 +5,7 @@
 \alias{data_fish_MBSS}
 \title{Fish data, MBSS}
 \format{
-{ A data frame with 1694 observations on the following 28 variables.
+{ A data frame with 1694 observations on the following 30 variables.
 \describe{
   \item{\code{SAMPLEID}}{a character vector}
   \item{\code{TAXAID}}{a character vector}
@@ -35,6 +35,8 @@
   \item{\code{CONNECTIVITY}}{a logical vector}
   \item{\code{SCC}}{a logical vector}
   \item{\code{HYBRID}}{a logical vector}
+  \item{\code{BCGATTR2}}{a character vector}
+  \item{\code{TOLVAL2}}{a numeric vector}
 }
 }
 }
