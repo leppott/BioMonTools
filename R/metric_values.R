@@ -858,6 +858,9 @@ metric.values.bugs <- function(myDF
   nt_Hemipt <- nt_dni <- pi_dni <- pt_dni <- NULL
   pi_EphemNoBaeTri <- nt_EphemNoBaeTri <- nt_COETNoBraBaeHydTri <- x_BCICTQa <-
     NULL
+  nt_POETNoBae <- nfam_Baetidae <- nt_TrichNoHydro <- ni_Dipt <- nt_longlived <-
+    TI_STENOCOLD <- TI_STENOWARM <- TI_COWA <- nt_ti_stenocold <-
+    nt_ti_stenowarm <- nt_ti_cowa <- nt_ti_stenocold_cold <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`

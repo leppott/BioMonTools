@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.0.2.9078 (2025-09-05)
+
+* refactor: Update metric.values() for global variables, Issue #49
+
 ## Changes in version 1.0.2.9077 (2025-06-19)
 
 * refactor: Add new metrics for ORWA, Issue #121
