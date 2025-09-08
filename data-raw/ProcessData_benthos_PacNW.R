@@ -5,6 +5,7 @@
 # Benthic macroinvertebrate data to use with new Habitat and BCG_attNA metrics
 # 2022-05-18, add HabStruct
 # 2022-11-15 (EWL) update for INDEX_CLASS
+# 2025-09-05, non ASCII, Mesenchytraeus*
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 0. Prep####

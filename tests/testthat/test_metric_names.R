@@ -354,6 +354,12 @@ testthat::test_that("metric.values, names, algae, Function, xlNames", {
   # Algae data
   df_diatoms <- BioMonTools::data_diatom_mmi_dev
 
+  # 20250908
+  # Add Exclude = TRUE to avoid warning
+  # checking names only not values
+  # ok if data not correct
+  df_diatoms[1, "EXCLUDE"] <- TRUE
+
   # Function
   df_metval <- BioMonTools::metric.values(df_diatoms
                                           , "algae"
@@ -439,6 +445,12 @@ testthat::test_that("metric.values, names, algae, xlScoring, Function", {
 
   # Algae data
   df_diatoms <- BioMonTools::data_diatom_mmi_dev
+
+  # 20250908
+  # Add Exclude = TRUE to avoid warning
+  # checking names only not values
+  # ok if data not correct
+  df_diatoms[1, "EXCLUDE"] <- TRUE
 
   # Function
   df_metval <- BioMonTools::metric.values(df_diatoms

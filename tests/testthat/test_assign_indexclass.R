@@ -19,7 +19,9 @@ testthat::test_that("assign_indexclass, MBSS, normal", {
                                     , sheet = "Index_Class")
 
   # Run Function
-  df_results <- assign_IndexClass(data, df_criteria, "INDEX_CLASS")
+  df_results <- BioMonTools::assign_IndexClass(data,
+                                               df_criteria,
+                                               "INDEX_CLASS")
 
   # QC
   ic_qc <- c("COASTAL"
@@ -31,7 +33,7 @@ testthat::test_that("assign_indexclass, MBSS, normal", {
   ic_calc <- df_results$INDEX_CLASS
 
   # Test
-  expect_equal(ic_calc, ic_qc)
+  testthat::expect_equal(ic_calc, ic_qc)
 
 })## test 1
 
@@ -54,7 +56,7 @@ testthat::test_that("assign_indexclass, PacNW, normal", {
                             , sheet = "Index_Class")
 
   # Run Function
-  df_results <- assign_IndexClass(data, df_criteria, name_indexclass)
+  df_results <- BioMonTools::assign_IndexClass(data, df_criteria, name_indexclass)
 
   # QC
   ic_qc <- c("LoGrad-LoElev"
@@ -70,7 +72,7 @@ testthat::test_that("assign_indexclass, PacNW, normal", {
   ic_calc <- df_results[, name_indexclass]
 
   # Test
-  expect_equal(ic_calc, ic_qc)
+  testthat::expect_equal(ic_calc, ic_qc)
 
 })## test 2
 
@@ -93,7 +95,7 @@ testthat::test_that("assign_indexclass, PacNW, normal wIC", {
                                     , sheet = "Index_Class")
 
   # Run Function
-  df_results <- assign_IndexClass(data
+  df_results <- BioMonTools::assign_IndexClass(data
                                   , criteria = df_criteria
                                   , name_indexclass = name_indexclass)
 
@@ -111,7 +113,7 @@ testthat::test_that("assign_indexclass, PacNW, normal wIC", {
   ic_calc <- df_results[, name_indexclass]
 
   # Test
-  expect_equal(ic_calc, ic_qc)
+  testthat::expect_equal(ic_calc, ic_qc)
 
 })## test 2b
 
@@ -137,7 +139,7 @@ testthat::test_that("assign_indexclass, PacNW, NA", {
                                     , sheet = "Index_Class")
 
   # Run Function
-  df_results <- assign_IndexClass(data
+  df_results <- BioMonTools::assign_IndexClass(data
                                   , criteria = df_criteria
                                   , name_indexclass = name_indexclass
                                   , name_indexname = name_indexname
@@ -158,7 +160,7 @@ testthat::test_that("assign_indexclass, PacNW, NA", {
   ic_calc <- df_results[, name_indexclass]
 
   # Test
-  expect_equal(ic_calc, ic_qc)
+  testthat::expect_equal(ic_calc, ic_qc)
 
 })## test 3
 
@@ -183,7 +185,7 @@ testthat::test_that("assign_indexclass, PacNW, IC diff case", {
                                     , sheet = "Index_Class")
 
   # Run Function
-  df_results <- assign_IndexClass(data
+  df_results <- BioMonTools::assign_IndexClass(data
                                   , criteria = df_criteria
                                   , name_indexclass = name_indexclass
                                   , name_indexname = name_indexname
@@ -201,6 +203,7 @@ testthat::test_that("assign_indexclass, PacNW, IC diff case", {
   ic_calc <- df_results[, name_indexclass]
 
   # Test
-  expect_equal(ic_calc, ic_qc)
+  testthat::expect_equal(ic_calc, ic_qc)
 
 })## test 4
+

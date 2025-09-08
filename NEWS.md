@@ -4,9 +4,28 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-05 14:25:28.072179
+    #> Last Update: 2025-09-08 16:43:35.89234
 
 # Version History
+
+## Changes in version 1.0.2.9080 (2025-09-08)
+
+- tests: Update metric.calc, Issue \#113
+  - PA
+  - Algae, Issue \#108
+    - disable until update QC data
+  - Coral
+    - Fix syntax of test
+- tests: Update taxa_translate, Issue \#113
+- tests: Update metric_stats, Issue \#113
+- tests: Update metric_names, Issue \#113
+  - Algae
+- fix: Update assign_indexclass, Issue \#113
+  - Add TYPE for multi and single
+- tests: Update assign_indexclass, Issue \#113
+- tests: Update taxa_translate, Issue \#113
+- tests: Remove coral test from metric.values, Issue \#113
+- refactor: Suppress filter warning in metric.scores, Issue \#122
 
 ## Changes in version 1.0.2.9079 (2025-09-05)
 

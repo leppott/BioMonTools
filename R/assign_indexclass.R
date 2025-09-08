@@ -58,12 +58,12 @@ assign_IndexClass <- function(data
                               , data_shape = "WIDE") {
   #
   # global variable bindings ----
-  #`%>%` <- dplyr::`%>%`
+  `%>%` <- dplyr::`%>%`
 
   # QC ----
   boo_DEBUG <- FALSE
   if(boo_DEBUG == TRUE){
-    Ex <- 3
+    Ex <- 1
     if(Ex == 1) {
       data <- data.frame(SITEID = paste0("Site_", LETTERS[1:6])
                          , INDEX_NAME = "MBSS_2005_Bugs"
@@ -200,17 +200,48 @@ assign_IndexClass <- function(data
 
   # summarize
   ## INDEX_CLASS from criteria
-  df_eval <- dplyr::summarize(dplyr::group_by(df_merge
-                                              , .data[[name_indexname_u]]
-                                              , .data[[name_siteid_u]]
-                                              , INDEX_CLASS)
-                              , EVAL_SUM = sum(EVAL, na.rm=TRUE)
-                              , EVAL_N = dplyr::n()
-                              , EVAL_EVAL = EVAL_SUM == EVAL_N
-                              , .groups = "drop_last")
-  df_eval <- df_eval[df_eval$EVAL_EVAL == TRUE, ]
+  # df_eval <- dplyr::summarize(dplyr::group_by(df_merge
+  #                                             , .data[[name_indexname_u]]
+  #                                             , .data[[name_siteid_u]]
+  #                                             , INDEX_CLASS)
+  #                             , EVAL_SUM = sum(EVAL, na.rm=TRUE)
+  #                             , EVAL_N = dplyr::n()
+  #                             , EVAL_EVAL = EVAL_SUM == EVAL_N
+  #                             , .groups = "drop_last")
+  # df_eval <- df_eval[df_eval$EVAL_EVAL == TRUE, ]
+  # 20250908, move eval = true to first
+  # Create 2 evaluations then merge
+
+  df_eval_multi <- df_merge %>%
+    dplyr::filter(TYPE == "multi") %>%
+    dplyr::group_by(.data[[name_indexname_u]],
+                    .data[[name_siteid_u]],
+                    INDEX_CLASS) %>%
+    dplyr::summarize(EVAL_SUM = sum(EVAL, na.rm=TRUE),
+                     EVAL_N = dplyr::n(),
+                     EVAL_EVAL = EVAL_SUM == EVAL_N,
+                     .groups = "drop_last") %>%
+    dplyr::filter(EVAL_EVAL == TRUE)
+
+  df_eval_single <- df_merge %>%
+    dplyr::filter(TYPE == "single") %>%
+    dplyr::filter(EVAL == TRUE) %>%
+    dplyr::group_by(.data[[name_indexname_u]],
+                    .data[[name_siteid_u]],
+                    INDEX_CLASS) %>%
+    dplyr::summarize(EVAL_SUM = sum(EVAL, na.rm=TRUE),
+                     EVAL_N = dplyr::n(),
+                     EVAL_EVAL = EVAL_SUM == EVAL_N,
+                     .groups = "drop_last") %>%
+    dplyr::filter(EVAL_EVAL == TRUE)
+
+  df_eval <- dplyr::bind_rows(df_eval_multi, df_eval_single)
+  # what to do if blank
+
+
 
   # Above doesn't work for MBSS (single equals criteria)
+  # becomes a 1 to many merge
   # but does for PacNW for 2 criteria for every index_class
 
 

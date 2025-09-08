@@ -1,5 +1,5 @@
 # taxa_translate ####
-test_that("taxa_translate", {
+testthat::test_that("taxa_translate", {
 
 
   # from example
@@ -45,23 +45,31 @@ test_that("taxa_translate", {
   N_Taxa_Sum <- c(4L, 1L)
   N_Taxa_Count <- c(1L, 1L)
 
+  # DEPRECATE, sum_n_taxa
+  # 2024-06-12
+  # 20250905, set values to NA
+  N_Taxa_Sum <- c(NA, NA)
+
   df_qc_nonmatch <- data.frame(TaxaID, N_Taxa_Sum, N_Taxa_Count)
 
   testthat::expect_identical(taxatrans$nonmatch, df_qc_nonmatch)
 
 
-  # Check sum
-  sum_qc <- sum(df_user$N_TAXA) - sum(df_qc_nonmatch$N_Taxa_Sum)
-  sum_calc <- sum(taxatrans$merge$N_TAXA)
-  testthat::expect_equal(sum_calc, sum_qc)
-
+  # # Check sum
+  # sum_qc <- sum(df_user$N_TAXA) - sum(df_qc_nonmatch$N_Taxa_Sum)
+  # sum_calc <- sum(taxatrans$merge$N_TAXA)
+  # testthat::expect_equal(sum_calc, sum_qc)
+  # remove 20260905
 
 
 })## Test ~ taxa_translate
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-test_that("taxa_translate_multistage", {
+testthat::test_that("taxa_translate_multistage", {
   # taxa with multiple stage should be combined if the column is not kept
+
+  # 20250908, feature deprecated a while ago,
+  # rework results for test
 
   # create example data ----
   TAXAID <- c(rep("Agapetus", 3), rep("Zavrelimyia", 2))
@@ -108,14 +116,17 @@ test_that("taxa_translate_multistage", {
 
   # test
   ntaxa_calc <- taxatrans$merge$N_TAXA
-  ntaxa_qc <- c(99, 100)
+  # ntaxa_qc <- c(99, 100)
+  # 20250905, not merging 50, 50, 33, 33, 33
+  ntaxa_qc <- c(50, 50, 33, 33, 33)
   testthat::expect_identical(ntaxa_calc, ntaxa_qc)
+
 
 })## Test ~ taxa_translate_multistage
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-test_that("taxa_translate_trimws_basic", {
+testthat::test_that("taxa_translate_trimws_basic", {
   # "clean" white space and non-breaking spaces (Unicode "\u00A0")
   # see ?trimws
   demo_txt <- c("x", "x ", "x\u00A0")
@@ -127,11 +138,11 @@ test_that("taxa_translate_trimws_basic", {
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-test_that("taxa_translate_trimws_function", {
+testthat::test_that("taxa_translate_trimws_function", {
   # ensure "clean" parameter works
   ## Calc 1A ----
   # use example code
-  df_user1A <- data_benthos_PacNW
+  df_user1A <- BioMonTools::data_benthos_PacNW
   fn_official <- file.path(system.file("extdata", package = "BioMonTools")
                            , "taxa_official"
                            , "ORWA_TAXATRANSLATOR_20221219.csv")

@@ -265,12 +265,17 @@ metric.scores <- function(DF_Metrics
   for (a in unique(as.matrix(DF_Metrics[, col_IndexName]))) {
     for (b in unique(as.matrix(DF_Metrics[, col_IndexClass]))) {
       for (c in col_MetricNames) {
-        #
+
+        if (boo.QC == TRUE) {
+          msg <- paste(a, b, c, sep = "~")
+          message(msg)
+        }
+
         # Thresholds (filter with dplyr)
-        fun.Thresh.myMetric <- as.data.frame(dplyr::filter(DF_Thresh_Metric
+        fun.Thresh.myMetric <- suppressWarnings(as.data.frame(dplyr::filter(DF_Thresh_Metric
                                                            , INDEX_NAME == a
                                                            & INDEX_CLASS == b
-                                                           & METRIC_NAME == c))
+                                                           & METRIC_NAME == c)))
         # QC
         #stopifnot(nrow(fun.Thresh.myMetric)==1)
         if (nrow(fun.Thresh.myMetric) != 1) {
@@ -711,10 +716,15 @@ metric.scores <- function(DF_Metrics
   for (aa in unique(as.matrix(DF_Metrics[,col_IndexName]))) {
     for (bb in unique(as.matrix(DF_Metrics[,col_IndexClass]))) {
 
+      if (boo.QC == TRUE) {
+        msg <- paste(aa, bb, sep = "~")
+        message(msg)
+      }
+
       # Thresholds (filter with dplyr)
-      fun.Thresh.myIndex <- as.data.frame(dplyr::filter(DF_Thresh_Index
+      fun.Thresh.myIndex <- suppressWarnings(as.data.frame(dplyr::filter(DF_Thresh_Index
                                                         , INDEX_NAME == aa
-                                                          & INDEX_CLASS == bb))
+                                                          & INDEX_CLASS == bb)))
       # QC
       if (nrow(fun.Thresh.myIndex) != 1) {
         #return(0)

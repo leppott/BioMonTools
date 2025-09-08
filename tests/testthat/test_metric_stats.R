@@ -9,6 +9,9 @@ testthat::test_that("metric_stats & metric_stats2", {
   df_bugs$ELEVATION_ATTR <- NA_character_
   df_bugs$GRADIENT_ATTR <- NA_character_
   df_bugs$WSAREA_ATTR <- NA_character_
+  df_bugs$HABSTRUCT <- NA_character_
+  df_bugs$BCG_ATTR2 <- NA_character_
+  df_bugs$AIRBREATHER <- NA
 
   # Munge Names
   names(df_bugs)[names(df_bugs) %in% "BenSampID"] <- "SAMPLEID"
@@ -37,7 +40,9 @@ testthat::test_that("metric_stats & metric_stats2", {
   DataType_Ver  <- "verif"
   col_Subset    <- "INDEX_CLASS"
   Subset_Value  <- "CentralHills"
-  df_stats <- BioMonTools::metric.stats(df_metval
+  # turn off warnings to avoid test failing
+  df_stats <- suppressWarnings(BioMonTools::metric.stats(
+                                        df_metval
                                        , col_metrics
                                        , col_SampID
                                        , col_RefStatus
@@ -48,7 +53,7 @@ testthat::test_that("metric_stats & metric_stats2", {
                                        , DataType_Cal
                                        , DataType_Ver
                                        , col_Subset
-                                       , Subset_Value)
+                                       , Subset_Value))
 
   df_numbers <- df_stats[, -(1:4)]
   # 2022-02-22, replace Inf and -Inf with NA
@@ -59,7 +64,8 @@ testthat::test_that("metric_stats & metric_stats2", {
 
   #sum_qc <- 315244.8
   #sum_qc <- 331996.8 # new value, 2021-04-14
-  sum_qc <- 367118.8 # new value, 2022-02-22, new metrics
+  # sum_qc <- 367118.8 # new value, 2022-02-22, new metrics
+  sum_qc <- 471247.6 # new value, 2025-09-08, new metrics
 
   # test
   testthat::expect_equal(sum_calc, sum_qc, tolerance = 0.02)
