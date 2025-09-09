@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-09 09:56:44.737472
+    #> Last Update: 2025-09-09 11:04:19.284139
 
 # Version History
+
+## Changes in version 1.1.0.9001 (2025-09-09)
+
+- breaking: Move Shiny app to a different repo, BioMonTools_Shiny
+- breaking: Remove run shiny function
+- version: Bump minor version number to reflect change in Shiny app
+  location
 
 ## Changes in version 1.0.2.9081 (2025-09-09)
 

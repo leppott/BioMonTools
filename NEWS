@@ -4,20 +4,28 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-09 09:54:53.142073
+    #> Last Update: 2025-09-09 11:04:19.284139
 
 # Version History
 
+## Changes in version 1.1.0.9001 (2025-09-09)
+
+- breaking: Move Shiny app to a different repo, BioMonTools_Shiny
+- breaking: Remove run shiny function
+- version: Bump minor version number to reflect change in Shiny app
+  location
+
 ## Changes in version 1.0.2.9081 (2025-09-09)
 
-- refactor: Add missing package references to function calls
-- refactor: Add missing global variable bindings
+- refactor: Add missing package references to function calls, Issue \#49
+- refactor: Add missing global variable bindings, Issue \#49
   - assign_IndexClass
   - metric.values.bugs
   - metric.values.fish
   - metric.values.coral
   - taxa_translate
-- refactor: Change if/then statement for checking class in metric.values
+- refactor: Change if/then statement for checking class in
+  metric.values, Issue \#49
 
 ## Changes in version 1.0.2.9080 (2025-09-08)
 

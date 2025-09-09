@@ -27,7 +27,7 @@ be installed using the following lines of code. It is necessary to install the
 
 ```{r Pkg_Install, eval=FALSE}
 # Installing the BioMonTools library (with the vignette) from GitHub
-library(devtools) 
+library(remotes) 
 install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
 ```
 
