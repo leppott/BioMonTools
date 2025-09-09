@@ -6,27 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vignette, BioMonTools • BioMonTools</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Vignette, BioMonTools">
-<meta property="og:description" content="BioMonTools">
-<meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -40,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.2.9030</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0.9004</span>
       </span>
     </div>
 
@@ -52,7 +44,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -75,7 +67,7 @@
 <li>
   <a href="https://github.com/leppott/BioMonTools/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -86,7 +78,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
@@ -94,9 +86,9 @@
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 data-toc-skip class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 data-toc-skip class="date">2024-06-05</h4>
+            <h4 data-toc-skip class="date">2025-09-09</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/HEAD/vignettes/vignette_BioMonTools.Rmd" class="external-link"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/main/vignettes/vignette_BioMonTools.Rmd" class="external-link"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
 
     </div>
@@ -118,7 +110,7 @@ installed using the following lines of code. It is necessary to install
 the <code>devtools</code> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Installing the BioMonTools library (with the vignette) from GitHub</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span> </span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span> </span>
 <span><span class="fu">install_github</span><span class="op">(</span><span class="st">"leppott/BioMonTools"</span>, force<span class="op">=</span><span class="cn">TRUE</span>, build_vignettes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -349,14 +341,7 @@ below).</p>
 <span><span class="va">df_metval</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df_data</span>, <span class="st">"bugs"</span>, fun.cols2keep <span class="op">=</span> <span class="va">myCols</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Updated col class; TOLVAL2 to numeric</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span></span>
-<span><span class="co">#&gt; Warning: The `.dots` argument of `group_by()` is deprecated as of dplyr 1.0.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">dplyr</span> package.</span></span>
-<span><span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/tidyverse/dplyr/issues&gt;</span>.</span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Metrics of Interest</span></span>
+<span><span class="co"># Metrics of Interest</span></span>
 <span><span class="co">## thermal indicator (_ti_)</span></span>
 <span><span class="co">#names(df.metval)[grepl("_ti_", names(df.metval))]</span></span>
 <span><span class="va">col_met2keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ni_total"</span></span>
@@ -413,23 +398,6 @@ below).</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">01103CSR_Bug_2001-08-27_0</td>
-<td align="right">44.084184</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">BCG_PacNW_v1_500ct</td>
-<td align="left">Lo</td>
-<td align="right">589</td>
-<td align="right">27</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">10</td>
-<td align="right">0</td>
-<td align="right">40.237691</td>
-<td align="right">60.95076</td>
-</tr>
-<tr class="even">
 <td align="left">02087REF_Bug_2002-08-22_0</td>
 <td align="right">1.791475</td>
 <td align="left">NA</td>
@@ -437,50 +405,16 @@ below).</p>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
 <td align="left">Hi</td>
-<td align="right">542</td>
-<td align="right">38</td>
+<td align="right">6</td>
+<td align="right">4</td>
 <td align="right">0</td>
-<td align="right">23</td>
-<td align="right">28</td>
+<td align="right">2</td>
+<td align="right">2</td>
 <td align="right">0</td>
-<td align="right">18.265683</td>
-<td align="right">20.66421</td>
-</tr>
-<tr class="odd">
-<td align="left">03013CSR_Bug_2003-07-01_0</td>
-<td align="right">9.613734</td>
-<td align="left">8</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">BCG_PacNW_v1_500ct</td>
-<td align="left">Hi</td>
-<td align="right">507</td>
-<td align="right">16</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">5</td>
-<td align="right">0</td>
-<td align="right">2.958580</td>
-<td align="right">13.21499</td>
+<td align="right">66.66667</td>
+<td align="right">33.33333</td>
 </tr>
 <tr class="even">
-<td align="left">03053CSR_Bug_2003-08-14_0</td>
-<td align="right">3.061723</td>
-<td align="left">8</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">BCG_PacNW_v1_500ct</td>
-<td align="left">Hi</td>
-<td align="right">573</td>
-<td align="right">36</td>
-<td align="right">0</td>
-<td align="right">19</td>
-<td align="right">24</td>
-<td align="right">0</td>
-<td align="right">46.073298</td>
-<td align="right">58.46422</td>
-</tr>
-<tr class="odd">
 <td align="left">03054CSR_Bug_2003-08-18_0</td>
 <td align="right">71.249741</td>
 <td align="left">8</td>
@@ -488,16 +422,16 @@ below).</p>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
 <td align="left">Lo</td>
-<td align="right">558</td>
-<td align="right">13</td>
+<td align="right">3</td>
+<td align="right">1</td>
 <td align="right">0</td>
-<td align="right">4</td>
-<td align="right">4</td>
+<td align="right">1</td>
 <td align="right">0</td>
-<td align="right">6.989247</td>
-<td align="right">11.82796</td>
+<td align="right">0</td>
+<td align="right">100.00000</td>
+<td align="right">0.00000</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">06012CSR_Bug_2006-09-05_0</td>
 <td align="right">82.338353</td>
 <td align="left">8</td>
@@ -505,14 +439,65 @@ below).</p>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
 <td align="left">Hi</td>
-<td align="right">545</td>
-<td align="right">40</td>
+<td align="right">25</td>
+<td align="right">4</td>
 <td align="right">0</td>
-<td align="right">18</td>
-<td align="right">28</td>
+<td align="right">3</td>
+<td align="right">3</td>
 <td align="right">0</td>
-<td align="right">33.944954</td>
-<td align="right">75.96330</td>
+<td align="right">80.00000</td>
+<td align="right">76.00000</td>
+</tr>
+<tr class="even">
+<td align="left">06021CSR_Bug_2006-08-01_0</td>
+<td align="right">1.478739</td>
+<td align="left">8</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">BCG_PacNW_v1_500ct</td>
+<td align="left">Hi</td>
+<td align="right">6</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">16.66667</td>
+<td align="right">33.33333</td>
+</tr>
+<tr class="odd">
+<td align="left">06027CSR_Bug_2006-07-17_0</td>
+<td align="right">33.632627</td>
+<td align="left">8</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">BCG_PacNW_v1_500ct</td>
+<td align="left">Lo</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0.00000</td>
+<td align="right">100.00000</td>
+</tr>
+<tr class="even">
+<td align="left">06029CSR_Bug_2006-09-27_0</td>
+<td align="right">48.091837</td>
+<td align="left">8</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">BCG_PacNW_v1_500ct</td>
+<td align="left">Lo</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0.00000</td>
+<td align="right">100.00000</td>
 </tr>
 </tbody>
 </table>
@@ -551,7 +536,7 @@ not appearing in the data will be skipped.</p>
 function to produce the intended output.</p>
 <p>Returns a data frame of df_samptax with an additional column,
 Exclude.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Packages</span></span>
 <span><span class="co">#library(readxl)</span></span>
 <span><span class="co">#library(dplyr)</span></span>
@@ -616,9 +601,8 @@ Exclude.</p>
 <span><span class="co">#&gt; [1] "Working on item (9/12); TRIBE"</span></span>
 <span><span class="co">#&gt; [1] "Working on item (10/12); GENUS"</span></span>
 <span><span class="co">#&gt; [1] "Working on item (11/12); SUBGENUS"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span></span>
+<span></span>
 <span><span class="co"># Compare</span></span>
 <span><span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">df_tst</span>, <span class="va">SampleID</span><span class="op">)</span></span>
 <span>                               , Exclude_Import <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Exclude</span><span class="op">)</span></span>
@@ -650,17 +634,17 @@ Exclude.</p>
 <tbody>
 <tr class="odd">
 <td align="left">FALSE</td>
-<td align="right">24653</td>
+<td align="right">322</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="left">TRUE</td>
 <td align="right">0</td>
-<td align="right">2350</td>
+<td align="right">4</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># samples with differences</span></span>
 <span><span class="va">samp_diff</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">[</span><span class="va">df_compare</span><span class="op">[</span>,<span class="st">"Diff"</span><span class="op">]</span> <span class="op">!=</span> <span class="fl">0</span>, <span class="st">"SampleID"</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># results for only those with differences</span></span>
@@ -732,7 +716,7 @@ Exclude.</p>
 </table>
 <p>The same data with no “exceptions” leaves 8 records
 misclassified.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Packages</span></span>
 <span><span class="co">#library(readxl)</span></span>
 <span><span class="co">#library(dplyr)</span></span>
@@ -793,9 +777,8 @@ misclassified.</p>
 <span><span class="co">#&gt; [1] "Working on item (9/12); TRIBE"</span></span>
 <span><span class="co">#&gt; [1] "Working on item (10/12); GENUS"</span></span>
 <span><span class="co">#&gt; [1] "Working on item (11/12); SUBGENUS"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span></span>
+<span></span>
 <span><span class="co"># Compare</span></span>
 <span><span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">df_tst2</span>, <span class="va">SampleID</span><span class="op">)</span></span>
 <span>                               , Exclude_Import <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Exclude</span><span class="op">)</span></span>
@@ -827,17 +810,17 @@ misclassified.</p>
 <tbody>
 <tr class="odd">
 <td align="left">FALSE</td>
-<td align="right">24653</td>
+<td align="right">322</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="left">TRUE</td>
-<td align="right">8</td>
-<td align="right">2342</td>
+<td align="right">0</td>
+<td align="right">4</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -848,68 +831,68 @@ misclassified.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">08BEA3478__2013-08-21_0</td>
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">08BEA3571__2014-09-03_0</td>
-<td align="right">5</td>
-<td align="right">4</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">08LIT2692__2012-09-10_0</td>
-<td align="right">8</td>
-<td align="right">7</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">08SAM0000__2012-07-11_0</td>
-<td align="right">4</td>
-<td align="right">3</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">08SAM0000__2013-07-25_0</td>
-<td align="right">4</td>
-<td align="right">3</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">09BLA0716__2014-08-14_0</td>
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">95C__2012-10-02_0</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">95T__2012-10-03_0</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">01103CSR_Bug_2001-08-27_0</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
 <td align="left">02087REF_Bug_2002-08-22_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">03054CSR_Bug_2003-08-18_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">06012CSR_Bug_2006-09-05_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">06021CSR_Bug_2006-08-01_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">06027CSR_Bug_2006-07-17_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">06029CSR_Bug_2006-09-27_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">06032CSR_Bug_2006-07-31_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">07006OPR_Bug_2007-07-03_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">07008OPR_Bug_2007-08-27_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">07036OPR_Bug_2007-09-27_0</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">0</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -920,57 +903,49 @@ misclassified.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">silvr192__2012-08-24_0</td>
-<td align="right">3</td>
-<td align="right">3</td>
+<td align="left">dubqcarl__2013-08-30_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td align="left">skytrmann__2010-08-12_0</td>
-<td align="right">6</td>
-<td align="right">6</td>
+<td align="left">elwell__2013-08-28_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
-<td align="left">skytrmann__2013-08-28_0</td>
-<td align="right">8</td>
-<td align="right">8</td>
+<td align="left">lpil66__2010-08-13_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td align="left">swampcart__2012-08-20_0</td>
-<td align="right">6</td>
-<td align="right">6</td>
+<td align="left">olneyfh__2013-09-13_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
-<td align="left">woodshand__2010-08-06_0</td>
-<td align="right">12</td>
-<td align="right">12</td>
+<td align="left">peoples__2013-09-04_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td align="left">woodshand__2013-09-03_0</td>
-<td align="right">4</td>
-<td align="right">4</td>
+<td align="left">purdy__2013-09-10_0</td>
+<td align="right">0</td>
+<td align="right">0</td>
 <td align="right">0</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># samples with differences</span></span>
 <span><span class="op">(</span><span class="va">samp_diff2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">[</span><span class="va">df_compare2</span><span class="op">[</span>,<span class="st">"Diff"</span><span class="op">]</span> <span class="op">!=</span> <span class="fl">0</span>, <span class="st">"SampleID"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                  SampleID</span></span>
-<span><span class="co">#&gt; 1 08BEA3478__2013-08-21_0</span></span>
-<span><span class="co">#&gt; 2 08BEA3571__2014-09-03_0</span></span>
-<span><span class="co">#&gt; 3 08LIT2692__2012-09-10_0</span></span>
-<span><span class="co">#&gt; 4 08SAM0000__2012-07-11_0</span></span>
-<span><span class="co">#&gt; 5 08SAM0000__2013-07-25_0</span></span>
-<span><span class="co">#&gt; 6 09BLA0716__2014-08-14_0</span></span>
-<span><span class="co">#&gt; 7       95C__2012-10-02_0</span></span>
-<span><span class="co">#&gt; 8       95T__2012-10-03_0</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># results for only those with differences</span></span>
+<span><span class="co">#&gt; [1] SampleID</span></span>
+<span><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></span>
+<span><span class="co"># results for only those with differences</span></span>
 <span><span class="va">df_tst_diff2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">df_tst2</span>, <span class="va">SampleID</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">samp_diff2</span><span class="op">$</span><span class="va">SampleID</span><span class="op">)</span></span>
 <span><span class="co"># add diff field</span></span>
 <span><span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude_Diff</span> <span class="op">&lt;-</span> <span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude</span> <span class="op">-</span> <span class="va">df_tst_diff2</span><span class="op">$</span><span class="va">Exclude_New</span></span>
@@ -1018,23 +993,23 @@ misclassified.</p>
 <tbody>
 <tr class="odd">
 <td align="left">Sensitivity (Recall)</td>
-<td align="right">99.66</td>
+<td align="right">100</td>
 </tr>
 <tr class="even">
 <td align="left">Precision</td>
-<td align="right">100.00</td>
+<td align="right">100</td>
 </tr>
 <tr class="odd">
 <td align="left">Specificity</td>
-<td align="right">100.00</td>
+<td align="right">100</td>
 </tr>
 <tr class="even">
 <td align="left">OVerall Accuracy</td>
-<td align="right">99.97</td>
+<td align="right">100</td>
 </tr>
 <tr class="odd">
 <td align="left">F1</td>
-<td align="right">99.83</td>
+<td align="right">100</td>
 </tr>
 </tbody>
 </table>
@@ -1063,7 +1038,7 @@ have more than 600 organisms (the upper limit for the model), you should
 randomly subsample your data to 600 (600 is +20% of the 500-count
 target). This is done to make richness metrics comparable across the
 500-count samples. You can do this with the Rarify routine.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Subsample to 500 organisms (from over 500 organisms) for 12 samples.</span></span>
 <span></span>
 <span><span class="co"># Packages</span></span>
@@ -1087,9 +1062,8 @@ target). This is done to make richness metrics comparable across the
 <span>                                   , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rarify of samples complete. </span></span>
 <span><span class="co">#&gt;  Number of samples =  12 </span></span>
-<span><span class="co">#&gt;  Execution time (sec) =  0.00900000000000034</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt;  Execution time (sec) =  0.0089999999999999</span></span>
+<span></span>
 <span><span class="co"># view results</span></span>
 <span><span class="co">#dim(bugs_mysize)</span></span>
 <span><span class="co">#kable(head(bugs_mysize))</span></span>
@@ -1148,7 +1122,7 @@ target). This is done to make richness metrics comparable across the
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># compare totals</span></span>
 <span><span class="va">tbl_totals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">N_Taxa_Orig</span>, <span class="va">N_Taxa_500</span><span class="op">)</span> <span class="op">~</span> <span class="va">SampleID</span></span>
@@ -1195,7 +1169,7 @@ target). This is done to make richness metrics comparable across the
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">## Not run: </span></span>
 <span><span class="co"># save the data</span></span>
@@ -1207,7 +1181,7 @@ target). This is done to make richness metrics comparable across the
 <p>Results should be interpreted with caution if they are flagged for
 any of the criteria listed below. It is up to the user’s discretion as
 to how to handled flagged samples.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Packages</span></span>
 <span><span class="co">#library(readxl)</span></span>
 <span><span class="co">#library(reshape2)</span></span>
@@ -1227,9 +1201,8 @@ to how to handled flagged samples.</p>
 <span>                                         , <span class="st">"bugs"</span></span>
 <span>                                         , fun.cols2keep <span class="op">=</span> <span class="va">keep.cols</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Updated col class; TOLVAL2 to numeric</span></span>
-<span><span class="co">#&gt; Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span></span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span></span>
+<span></span>
 <span><span class="co"># Flags</span></span>
 <span><span class="co"># Import QC Checks</span></span>
 <span><span class="va">df.checks</span> <span class="op">&lt;-</span> <span class="fu">readxl</span><span class="fu">::</span><span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/MetricFlags.xlsx"</span></span>
@@ -1263,53 +1236,53 @@ to how to handled flagged samples.</p>
 <tbody>
 <tr class="odd">
 <td align="left">brackish organisms present</td>
-<td align="right">7</td>
-<td align="right">671</td>
+<td align="right">0</td>
+<td align="right">94</td>
 </tr>
 <tr class="even">
 <td align="left">catchment, Large</td>
 <td align="right">0</td>
-<td align="right">678</td>
+<td align="right">94</td>
 </tr>
 <tr class="odd">
 <td align="left">catchment, small</td>
-<td align="right">158</td>
-<td align="right">520</td>
+<td align="right">23</td>
+<td align="right">71</td>
 </tr>
 <tr class="even">
 <td align="left">individuals, dominant 02, Large</td>
-<td align="right">204</td>
-<td align="right">474</td>
+<td align="right">93</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">individuals, Large</td>
 <td align="right">0</td>
-<td align="right">678</td>
+<td align="right">94</td>
 </tr>
 <tr class="even">
 <td align="left">individuals, small</td>
-<td align="right">80</td>
-<td align="right">598</td>
+<td align="right">94</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="left">Low density (ft2)</td>
 <td align="right">0</td>
-<td align="right">678</td>
+<td align="right">94</td>
 </tr>
 <tr class="even">
 <td align="left">Low density (m2)</td>
 <td align="right">0</td>
-<td align="right">678</td>
+<td align="right">94</td>
 </tr>
 <tr class="odd">
 <td align="left">Ramellogammarus</td>
-<td align="right">8</td>
-<td align="right">670</td>
+<td align="right">0</td>
+<td align="right">94</td>
 </tr>
 <tr class="even">
 <td align="left">surface area, small</td>
-<td align="right">112</td>
-<td align="right">566</td>
+<td align="right">10</td>
+<td align="right">84</td>
 </tr>
 </tbody>
 </table>
@@ -1320,9 +1293,7 @@ to how to handled flagged samples.</p>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
@@ -1335,16 +1306,16 @@ to how to handled flagged samples.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>

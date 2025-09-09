@@ -1,114 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/vignette_BioMonTools.html</loc>
-  </url>
-  <url>
-    <loc>/articles/vignette_MapTaxaObs.html</loc>
-  </url>
-  <url>
-    <loc>/articles/vignette_NewIndex.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/MapTaxaObs.html</loc>
-  </url>
-  <url>
-    <loc>/reference/assign_IndexClass.html</loc>
-  </url>
-  <url>
-    <loc>/reference/data_Taxa_MA.html</loc>
-  </url>
-  <url>
-    <loc>/reference/data_benthos_MBSS.html</loc>
-  </url>
-  <url>
-    <loc>/reference/data_benthos_PacNW.html</loc>
-  </url>
-  <url>
-    <loc>/reference/data_bio2rarify.html</loc>
-  </url>
-  <url>
-    <loc>/reference/data_coral_bcg_metric_dev.html</loc>
-  </url>
-  <url>
-    <loc>/reference/data_coral_bcg_metric_qc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/data_diatom_mmi_dev.html</loc>
-  </url>
-  <url>
-    <loc>/reference/data_diatom_mmi_qc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/data_fish_MBSS.html</loc>
-  </url>
-  <url>
-    <loc>/reference/data_mmi_dev.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/markExcluded.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric.scores.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric.stats.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric.stats2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric.values.algae.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric.values.bugs.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric.values.coral.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric.values.fish.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metric.values.html</loc>
-  </url>
-  <url>
-    <loc>/reference/metvalgrpxl.html</loc>
-  </url>
-  <url>
-    <loc>/reference/qc.checks.html</loc>
-  </url>
-  <url>
-    <loc>/reference/qc_taxa.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rarify.html</loc>
-  </url>
-  <url>
-    <loc>/reference/runShiny.html</loc>
-  </url>
-  <url>
-    <loc>/reference/taxa_translate.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/vignette_BioMonTools.html</loc></url>
+<url><loc>/articles/vignette_MapTaxaObs.html</loc></url>
+<url><loc>/articles/vignette_NewIndex.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/MapTaxaObs.html</loc></url>
+<url><loc>/reference/TaxaMaster_Ben_BCG_PacNW.html</loc></url>
+<url><loc>/reference/assign_IndexClass.html</loc></url>
+<url><loc>/reference/data_Taxa_MA.html</loc></url>
+<url><loc>/reference/data_benthos_MBSS.html</loc></url>
+<url><loc>/reference/data_benthos_PacNW.html</loc></url>
+<url><loc>/reference/data_bio2rarify.html</loc></url>
+<url><loc>/reference/data_coral_bcg_metric_dev.html</loc></url>
+<url><loc>/reference/data_coral_bcg_metric_qc.html</loc></url>
+<url><loc>/reference/data_diatom_mmi_dev.html</loc></url>
+<url><loc>/reference/data_diatom_mmi_qc.html</loc></url>
+<url><loc>/reference/data_fish_MBSS.html</loc></url>
+<url><loc>/reference/data_metval_scmb_ibi.html</loc></url>
+<url><loc>/reference/data_mmi_dev.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/markExcluded.html</loc></url>
+<url><loc>/reference/metric.scores.html</loc></url>
+<url><loc>/reference/metric.stats.html</loc></url>
+<url><loc>/reference/metric.stats2.html</loc></url>
+<url><loc>/reference/metric.values.algae.html</loc></url>
+<url><loc>/reference/metric.values.bugs.html</loc></url>
+<url><loc>/reference/metric.values.coral.html</loc></url>
+<url><loc>/reference/metric.values.fish.html</loc></url>
+<url><loc>/reference/metric.values.html</loc></url>
+<url><loc>/reference/metvalgrpxl.html</loc></url>
+<url><loc>/reference/qc.checks.html</loc></url>
+<url><loc>/reference/qc_taxa.html</loc></url>
+<url><loc>/reference/rarify.html</loc></url>
+<url><loc>/reference/taxa_translate.html</loc></url>
 </urlset>
+
