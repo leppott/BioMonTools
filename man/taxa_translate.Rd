@@ -125,7 +125,7 @@ Another output is the unique taxa with old and new names.
 \examples{
 # Example 1, PacNW
 ## Input Parameters
-df_user <- data_benthos_PacNW
+df_user <- BioMonTools::data_benthos_PacNW
 fn_official <- file.path(system.file("extdata", package = "BioMonTools")
                          , "taxa_official"
                          , "ORWA_TAXATRANSLATOR_20221219.csv")

@@ -42,7 +42,7 @@
 #' ## Community
 #' comm <- "bugs"
 #' ## Calculate Metrics
-#' df_metval <- metric.values(data_benthos_PacNW, comm)
+#' df_metval <- metric.values(BioMonTools::data_benthos_PacNW, comm)
 #' ## Metric Names and Groups
 #' df_metnames <- readxl::read_excel(system.file("extdata/MetricNames.xlsx"
 #'                                                   , package="BioMonTools")
@@ -76,7 +76,8 @@ metvalgrpxl <- function(fun.DF.MetVal
   boo_debug <- FALSE
   if(boo_debug == TRUE) {
     fun.Community <- "bugs"
-    fun.DF.MetVal <- metric.values(data_benthos_PacNW, fun.Community)
+    fun.DF.MetVal <- metric.values(BioMonTools::data_benthos_PacNW,
+                                   fun.Community)
   fun.DF.xlMetNames <- readxl::read_excel(system.file("extdata/MetricNames.xlsx"
                                                       , package="BioMonTools")
                                           , guess_max = 10^6

@@ -63,7 +63,7 @@ The MetricNames data frame must include the following fields:
 ## Community
 comm <- "bugs"
 ## Calculate Metrics
-df_metval <- metric.values(data_benthos_PacNW, comm)
+df_metval <- metric.values(BioMonTools::data_benthos_PacNW, comm)
 ## Metric Names and Groups
 df_metnames <- readxl::read_excel(system.file("extdata/MetricNames.xlsx"
                                                   , package="BioMonTools")

@@ -34,8 +34,8 @@
 #' # Create Example Data
 #' df_data <- data.frame(SITEID = paste0("Site_", LETTERS[1:10])
 #'                      , INDEX_NAME = "BCG_MariNW_Bugs500ct"
-#'                      , GRADIENT = round(runif(10, 0.5, 1.5), 1)
-#'                      , ELEVATION = round(runif(10, 700, 800), 1))
+#'                      , GRADIENT = round(stats::runif(10, 0.5, 1.5), 1)
+#'                      , ELEVATION = round(stats::runif(10, 700, 800), 1))
 #'
 #' # Import Checks
 #' df_criteria <- read_excel(system.file("extdata/IndexClass.xlsx"
@@ -79,8 +79,8 @@ assign_IndexClass <- function(data
     } else if(Ex == 2) {
       data <- data.frame(SITEID = paste0("Site_", LETTERS[1:10])
                          , INDEX_NAME = "BCG_MariNW_Bugs500ct"
-                         , GRADIENT = round(runif(10, 0.5, 1.5), 1)
-                         , ELEVATION = round(runif(10, 700, 800), 1))
+                         , GRADIENT = round(stats::runif(10, 0.5, 1.5), 1)
+                         , ELEVATION = round(stats::runif(10, 700, 800), 1))
       criteria <- readxl::read_excel(system.file("extdata/IndexClass.xlsx"
                                                  , package = "BioMonTools")
                                      , sheet = "Index_Class")
@@ -92,9 +92,9 @@ assign_IndexClass <- function(data
       badentry <- c(NA, "")
       data <- data.frame(stationcode = paste0("Site_", LETTERS[1:14])
                          , iname = "BCG_MariNW_Bugs500ct"
-                         , GRADIENT = c(round(runif(10, 0.5, 1.5), 1)
+                         , GRADIENT = c(round(stats::runif(10, 0.5, 1.5), 1)
                                         , badentry, 1, NA)
-                         , ELEVATION = c(round(runif(10, 700, 800), 1)
+                         , ELEVATION = c(round(stats::runif(10, 700, 800), 1)
                                          , badentry, NA, 700))
       criteria <- readxl::read_excel(system.file("extdata/IndexClass.xlsx"
                                                  , package = "BioMonTools")
@@ -105,6 +105,12 @@ assign_IndexClass <- function(data
       data_shape <- "WIDE"
     }## IF ~ Ex
   }##IF~boo_DEBUG~END
+
+  # global variable bindings ----
+  TYPE <- INDEX_CLASS <- EVAL <- EVAL_SUM <- EVAL_N <- EVAL_EVAL <- NULL
+
+
+
 
   # Munge ----
   # to data frame (from Tibble)
@@ -146,12 +152,12 @@ assign_IndexClass <- function(data
   # data to long
   if (data_shape == "WIDE") {
     data_long <- tidyr::pivot_longer(
-                                   data[complete.cases(data[, col_criteria]), ]
+                                   data[stats::complete.cases(data[, col_criteria]), ]
                                    , cols = tidyr::all_of(col_criteria)
                                    , names_to = "Data_Criteria_Name"
                                    , values_to = "Data_Criteria_Value")
   } else if (data_shape == "LONG") {
-    df_long <- data[complete.cases(data[, col_criteria]), ]
+    df_long <- data[stats::complete.cases(data[, col_criteria]), ]
   } else {
     msg <- "data_shape must be specified as 'wide' or 'long'."
     stop(msg)

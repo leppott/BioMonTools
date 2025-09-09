@@ -89,7 +89,7 @@
 #' @examples
 #' # Example 1, PacNW
 #' ## Input Parameters
-#' df_user <- data_benthos_PacNW
+#' df_user <- BioMonTools::data_benthos_PacNW
 #' fn_official <- file.path(system.file("extdata", package = "BioMonTools")
 #'                          , "taxa_official"
 #'                          , "ORWA_TAXATRANSLATOR_20221219.csv")
@@ -191,16 +191,16 @@ taxa_translate <- function(df_user = NULL
   if (boo_DEBUG_tt == TRUE) {
     # Example 1, PacNW ----
     ## Input Parameters
-    df_user <- data_benthos_PacNW
+    df_user <- BioMonTools::data_benthos_PacNW
     fn_official <- file.path(system.file("extdata", package = "BioMonTools")
                              , "taxa_official"
                              , "ORWA_TAXATRANSLATOR_20221219.csv")
-    df_official <- read.csv(fn_official)
+    df_official <- utils::read.csv(fn_official)
     fn_official_metadata <- file.path(system.file("extdata"
                                                   , package = "BioMonTools")
                                       , "taxa_official"
                                       , "ORWA_ATTRIBUTES_METADATA_20221117.csv")
-    df_official_metadata <- read.csv(fn_official_metadata)
+    df_official_metadata <- utils::read.csv(fn_official_metadata)
     taxaid_user <- "TaxaID"
     taxaid_official_match <- "Taxon_orig"
     taxaid_official_project <- "OTU_MTTI"
@@ -267,6 +267,9 @@ taxa_translate <- function(df_user = NULL
     #                          , taxaid_official_project)
 
   }##IF ~ boo_DEBUG_tt
+
+  # global variable bindings ----
+  Match_Official <- N_Taxa_Sum <- NULL
 
   # DEPRECATE, sum_n_taxa ----
   # 2024-06-12
@@ -652,7 +655,7 @@ taxa_translate <- function(df_user = NULL
 
 
   if (boo_DEBUG_tt == TRUE) {
-    str(ls_results)
+    utils::str(ls_results)
   } ## IF ~ boo_DEBUG_tt
 
   return(ls_results)

@@ -504,7 +504,7 @@ metric.values <- function(fun.DF
     taxaid_dni <- "DNI"
     fun.DF <- rbind(fun.DF, fun.DF[1, ])
     fun.DF[nrow(fun.DF), "TaxaID"] <- taxaid_dni
-    tail(fun.DF)
+    # utils::tail(fun.DF)
 
   }## boo_QC
 
@@ -862,6 +862,19 @@ metric.values.bugs <- function(myDF
   nt_POETNoBae <- nfam_Baetidae <- nt_TrichNoHydro <- ni_Dipt <- nt_longlived <-
     TI_STENOCOLD <- TI_STENOWARM <- TI_COWA <- nt_ti_stenocold <-
     nt_ti_stenowarm <- nt_ti_cowa <- nt_ti_stenocold_cold <- NULL
+  # 20250908
+  fun.DF <- fun.cols2keep <- nt_ti_stenocold_cold_cool <-
+    nt_ti_cowa_warm_stenowarm <- nt_ti_warm_stenowarm <-
+    pi_ti_stenocold_cold_cool <- pi_ti_warm_stenowarm <- nt_tv_toler6 <-
+    nt_tv_toler8 <- HABIT_SK <- nt_habit_climbcling <- HABITAT_LENT <-
+    HABITAT_LOTI <- HABITAT_TERR <- nt_habitat_lent <- nt_habitat_loti <-
+    nt_habitat_terr <- BCG_ATTR2 <- nt_BCG_att1234 <- nt_BCG_att1i236i <-
+    nt_BCG_att56t <- nt_BCG_att6i <- nt_BCG_att6m <- nt_BCG_att6t <-
+    nt_BCG_att4m <- nt_BCG_att4w <- nt_BCG_att1i234b <- nt_BCG_att4w5 <-
+    nt_Chiro_BCG_att45 <- ni_dom01_BCG_att4 <- ni_dom01_BCG_att5 <- HS_CS <-
+    HS_NF <- HS_RM <- HS_SG <- nt_habstruct_coarsesub <- nt_habstruct_noflow <-
+    nt_habstruct_rootmat <- nt_habstruct_snag <- nt_habstruct_NA <-
+    AIRBREATHER <- nt_airbreath <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -1205,7 +1218,8 @@ metric.values.bugs <- function(myDF
   # Ensure in correct format, Access converts sometimes to 0, -1
   # 2025-06-13
   for (i in col.req_logical) {
-    if(class(myDF[, i]) == "character") {
+    if(is.character(class(myDF[, i]))) {
+    # if(class(myDF[, i]) == "character") {
       myDF[, i] <- toupper(myDF[, i])
       myDF[, i] <- gsub("YES", "TRUE", myDF[, i])
       myDF[, i] <- gsub("NO", "FALSE", myDF[, i])
@@ -3661,6 +3675,23 @@ metric.values.fish <- function(myDF
     nt_tv_senscoldwater <- nt_tv_toler <- nt_tv_vtoler <- nt_beninsct_notoler <-
     pt_gen <- nt_gen <- nt_insectivore_notoler <- nt_darterscultpinsucker <-
     nt_pioneer <- NULL
+  # 20250908
+  TYPE_SCHOOL <- TYPE_BROOKTROUT <- EXCLUDE <- nt_nonnative_NotNativeNotNA <-
+    nt_nonnative_OnlyNonNative <- TROPHIC_IV_TC <- TROPHIC_PI <-
+    nt_habitat_beninvert <- nt_invertivore <- nt_inverttopcarn <- BCG_ATTR2 <-
+    nt_BCG2_att123b <- nt_BCG_att1234 <- nt_BCG2_att1234b <- nt_BCG_att1236 <-
+    nt_BCG_att55a6a <- nt_BCG_att1i236i <- nt_BCG_att4b <- nt_BCG_att4m <-
+    nt_BCG_att4w <- nt_BCG_att4w5 <- nt_BCG_att55a6 <- nt_BCG_att56t <-
+    nt_BCG_att6i <- nt_BCG_att6m <- nt_BCG_att6t <- REPRO_LITH <-
+    nt_repro_broadcaster <- nt_repro_nestsimp <- nt_repro_nestcomp <-
+    nt_repro_bearer <- nt_repro_migratory <- nt_repro_lithophil <- HABITAT_F <-
+    nt_habitat_f <- TOLVAL2 <- TYPE_SALT <- TYPE_NPL <- TOLER_T <- HABITAT_CW <-
+    HABITAT_CWN <- HABITAT_HW_noT <- HABITAT_WE_noT <- REPRO_SER <-
+    REPRO_SILI <- TOLER_S <- TOLER_SCW <- TOLER_TCW <- TOLER_VT <-
+    TROPHIC_BI_noT <- TROPHIC_IN_noT <- TYPE_DS <- TYPE_DSS <- TYPE_PI <-
+    TYPE_SL <- ni_total_ExclSchool <- REPRO_MA2 <- REPRO_MA3_noT <- REPRO_NE <-
+    TROPHIC_IN_CYP <- TOLER_I <- TOLER_ICW <- TYPE_EX <- TYPE_MIN_noT <-
+    TYPE_PERC <- ni_dom02_ExclSchool <- ni_total_notoler_mn <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -3839,7 +3870,8 @@ metric.values.fish <- function(myDF
   # Ensure in correct format, Access converts sometimes to 0, -1
   # 2025-06-13
   for (i in col.req_logical) {
-    if(class(myDF[, i]) == "character") {
+    if(is.character(class(myDF[, i]))) {
+    # if(class(myDF[, i]) == "character") {
       myDF[, i] <- toupper(myDF[, i])
       myDF[, i] <- gsub("YES", "TRUE", myDF[, i])
       myDF[, i] <- gsub("NO", "FALSE", myDF[, i])
@@ -6422,6 +6454,8 @@ metric.values.coral <- function(myDF
     ncol_AcroOrbi_m2 <- nt_BCG_att123 <- nt_BCG_att1234 <- nt_total <- pcol_Acropora <-
     pcol_SmallWeedy <- pt_BCG_att5 <- ncol_Acropora <- ncol_SmallWeedy <-
     nt_BCG_att5 <- NULL
+  # 20250908
+  ncol_total <- transect_area_m2 <- NULL
 
   # QC----
   ## QC, Missing Cols ----
@@ -6679,7 +6713,8 @@ metric.values.coral <- function(myDF
   # Ensure in correct format, Access converts sometimes to 0, -1
   # 2025-06-13
   for (i in col.req_logical) {
-    if(class(myDF[, i]) == "character") {
+    if(is.character(class(myDF[, i]))) {
+    # if(class(myDF[, i]) == "character") {
       myDF[, i] <- toupper(myDF[, i])
       myDF[, i] <- gsub("YES", "TRUE", myDF[, i])
       myDF[, i] <- gsub("NO", "FALSE", myDF[, i])

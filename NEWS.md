@@ -4,9 +4,21 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-08 16:43:35.89234
+    #> Last Update: 2025-09-09 09:56:44.737472
 
 # Version History
+
+## Changes in version 1.0.2.9081 (2025-09-09)
+
+- refactor: Add missing package references to function calls, Issue \#49
+- refactor: Add missing global variable bindings, Issue \#49
+  - assign_IndexClass
+  - metric.values.bugs
+  - metric.values.fish
+  - metric.values.coral
+  - taxa_translate
+- refactor: Change if/then statement for checking class in
+  metric.values, Issue \#49
 
 ## Changes in version 1.0.2.9080 (2025-09-08)
 
@@ -516,7 +528,7 @@ NEWS
 - fix: Update to minor version number 1.0.2
   - Incorrect version numbers from pull request
 
-## Changes in pull request \#107
+## Changes in pull request number 107
 
 - refactor: Coral metrics from Blocktt
 

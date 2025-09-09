@@ -56,8 +56,8 @@ library(readxl)
 # Create Example Data
 df_data <- data.frame(SITEID = paste0("Site_", LETTERS[1:10])
                      , INDEX_NAME = "BCG_MariNW_Bugs500ct"
-                     , GRADIENT = round(runif(10, 0.5, 1.5), 1)
-                     , ELEVATION = round(runif(10, 700, 800), 1))
+                     , GRADIENT = round(stats::runif(10, 0.5, 1.5), 1)
+                     , ELEVATION = round(stats::runif(10, 700, 800), 1))
 
 # Import Checks
 df_criteria <- read_excel(system.file("extdata/IndexClass.xlsx"
