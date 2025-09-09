@@ -5,13 +5,13 @@
 \alias{data_benthos_MBSS}
 \title{Benthic macroinvertebrate taxa data; MBSS}
 \format{
-A data frame with 50,664 observations on the following 31 variables.
+A data frame with 5,666 observations on the following 40 variables.
 
  \describe{
   \item{\code{INDEX_NAME}}{a character vector}
-  \item{\code{SITEID}}{a character vector}
+  \item{\code{SAMPLEID}}{a character vector}
   \item{\code{DATE}}{a character vector}
-  \item{\code{TAXON}}{a character vector}
+  \item{\code{TAXAID}}{a character vector}
   \item{\code{N_TAXA}}{a numeric vector, count}
   \item{\code{N_GRIDS}}{a numeric vector, number of grids in subsample
   (max = 30)}
@@ -28,12 +28,14 @@ A data frame with 50,664 observations on the following 31 variables.
   \item{\code{FFG}}{a character vector}
   \item{\code{FAM_TV}}{a numeric vector}
   \item{\code{Habit}}{a character vector}
-  \item{\code{FinalTolVal07}}{a numeric vector}
-  \item{\code{FinalTolVal08}}{a numeric vector}
+  \item{\code{TOLVAL}}{a numeric vector}
+  \item{\code{TOLVAL2}}{a numeric vector}
   \item{\code{UFC}}{a numeric vector}
   \item{\code{UFC_Comment}}{a character vector}
+  \item{\code{SUBPHYLUM}}{a character vector}
   \item{\code{SUBCLASS}}{a character vector}
   \item{\code{INFRAORDER}}{a character vector}
+  \item{\code{SUBFAMILY}}{a character vector}
   \item{\code{LIFE_CYCLE}}{a character vector}
   \item{\code{BCG_ATTR}}{a character vector}
   \item{\code{THERMAL_INDICATOR}}{a character vector}
@@ -41,6 +43,13 @@ A data frame with 50,664 observations on the following 31 variables.
   \item{\code{NOTEWORTHY}}{a character vector}
   \item{\code{FFG2}}{a character vector}
   \item{\code{HABITAT}}{a character vector}
+  \item{\code{ELEVATION_ATTR}}{a character vector}
+  \item{\code{GRADIENT_ATTR}}{a character vector}
+  \item{\code{WSAREA_ATTR }}{a character vector}
+  \item{\code{HABSTRUCT}}{a character vector}
+  \item{\code{BCG_ATTR2}}{a character vector}
+  \item{\code{NONTARGET}}{a logical vector}
+  \item{\code{AIRBREATHER}}{a logical vector}
  }
 }
 \source{

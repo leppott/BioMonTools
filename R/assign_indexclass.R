@@ -24,6 +24,8 @@
 #' Default = SITEID
 #' @param data_shape Shape of data; wide or long.  Default is 'wide'
 #'
+#' @importFrom rlang .data
+#'
 #' @return Returns a data frame with new column added.
 #'
 #' @examples

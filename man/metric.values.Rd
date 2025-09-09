@@ -201,7 +201,7 @@ Breaking change from 0.5 to 0.6 with change from Index_Name to Index_Class.
 \examples{
 # Example 1, data already in R
 
-df_metric_values_bugs <- metric.values(data_benthos_PacNW, "bugs")
+df_metric_values_bugs <- metric.values(BioMonTools::data_benthos_PacNW, "bugs")
 
 \dontrun{
 # View Results

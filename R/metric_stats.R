@@ -326,7 +326,8 @@ metric.stats <- function(fun.DF
     rownames(df_i_stats) <- NULL # c()
     # reorder columns
     col_ordered <- c((length(col_StatNames)+1):length(colnames(df_i_stats))
-                     , seq_len(length(col_StatNames)))
+                     # , seq_len(length(col_StatNames)))
+                     , seq_along(col_StatNames))
     df_i_stats <- df_i_stats[, col_ordered]
 
     # Create DF to hold results

@@ -5,7 +5,7 @@
 \alias{data_mmi_dev}
 \title{Metric data for metric stats for mmi development}
 \format{
-A data frame with 10,574 observations on the following 36 variables.
+A data frame with 10,574 observations on the following 34 variables.
 
  \describe{
    \item{\code{Class}}{a character vector}
@@ -41,9 +41,7 @@ A data frame with 10,574 observations on the following 36 variables.
    \item{\code{NOTEWORTHY}}{a character vector}
    \item{\code{FFG2}}{a character vector}
    \item{\code{TOLVAL2}}{a character vector}
-   \item{\code{HABITAT}}{a character vector}
-   \item{\code{UFC}}{a numeric vector}
-   \item{\code{UFC_Comment}}{a character vector}
+   \item{\code{HABITAT}}{a numeric vector}
  }
 }
 \source{

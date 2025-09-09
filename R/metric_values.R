@@ -173,7 +173,7 @@
 #' @examples
 #' # Example 1, data already in R
 #'
-#' df_metric_values_bugs <- metric.values(data_benthos_PacNW, "bugs")
+#' df_metric_values_bugs <- metric.values(BioMonTools::data_benthos_PacNW, "bugs")
 #'
 #' \dontrun{
 #' # View Results
@@ -488,7 +488,7 @@ metric.values <- function(fun.DF
 
   # QC
   if (boo_QC) {
-    fun.DF <- data_benthos_PacNW#[, 1:32] # 598, 37
+    fun.DF <- BioMonTools::data_benthos_PacNW#[, 1:32] # 598, 37
     #fun.DF <- data_benthos_MBSS # 5066, 37
     fun.Community <- "bugs"
     fun.MetricNames <- NULL

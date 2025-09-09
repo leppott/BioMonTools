@@ -168,7 +168,7 @@
 #' @description A data set with example benthic macroinvertebrate data.
 #' Calculate metrics then statistics.
 #'
-#' @format A data frame with 10,574 observations on the following 36 variables.
+#' @format A data frame with 10,574 observations on the following 34 variables.
 #'
 #'  \describe{
 #'    \item{\code{Class}}{a character vector}
@@ -204,9 +204,7 @@
 #'    \item{\code{NOTEWORTHY}}{a character vector}
 #'    \item{\code{FFG2}}{a character vector}
 #'    \item{\code{TOLVAL2}}{a character vector}
-#'    \item{\code{HABITAT}}{a character vector}
-#'    \item{\code{UFC}}{a numeric vector}
-#'    \item{\code{UFC_Comment}}{a character vector}
+#'    \item{\code{HABITAT}}{a numeric vector}
 #'  }
 #' @source example data
 "data_mmi_dev"
@@ -217,13 +215,13 @@
 #' @description A data set with example benthic macroinvertebrate data.
 #' Calculate metrics then statistics.  Data from MBSS.
 #'
-#' @format A data frame with 50,664 observations on the following 31 variables.
+#' @format A data frame with 5,666 observations on the following 40 variables.
 #'
 #'  \describe{
 #'   \item{\code{INDEX_NAME}}{a character vector}
-#'   \item{\code{SITEID}}{a character vector}
+#'   \item{\code{SAMPLEID}}{a character vector}
 #'   \item{\code{DATE}}{a character vector}
-#'   \item{\code{TAXON}}{a character vector}
+#'   \item{\code{TAXAID}}{a character vector}
 #'   \item{\code{N_TAXA}}{a numeric vector, count}
 #'   \item{\code{N_GRIDS}}{a numeric vector, number of grids in subsample
 #'   (max = 30)}
@@ -240,12 +238,14 @@
 #'   \item{\code{FFG}}{a character vector}
 #'   \item{\code{FAM_TV}}{a numeric vector}
 #'   \item{\code{Habit}}{a character vector}
-#'   \item{\code{FinalTolVal07}}{a numeric vector}
-#'   \item{\code{FinalTolVal08}}{a numeric vector}
+#'   \item{\code{TOLVAL}}{a numeric vector}
+#'   \item{\code{TOLVAL2}}{a numeric vector}
 #'   \item{\code{UFC}}{a numeric vector}
 #'   \item{\code{UFC_Comment}}{a character vector}
+#'   \item{\code{SUBPHYLUM}}{a character vector}
 #'   \item{\code{SUBCLASS}}{a character vector}
 #'   \item{\code{INFRAORDER}}{a character vector}
+#'   \item{\code{SUBFAMILY}}{a character vector}
 #'   \item{\code{LIFE_CYCLE}}{a character vector}
 #'   \item{\code{BCG_ATTR}}{a character vector}
 #'   \item{\code{THERMAL_INDICATOR}}{a character vector}
@@ -253,6 +253,13 @@
 #'   \item{\code{NOTEWORTHY}}{a character vector}
 #'   \item{\code{FFG2}}{a character vector}
 #'   \item{\code{HABITAT}}{a character vector}
+#'   \item{\code{ELEVATION_ATTR}}{a character vector}
+#'   \item{\code{GRADIENT_ATTR}}{a character vector}
+#'   \item{\code{WSAREA_ATTR }}{a character vector}
+#'   \item{\code{HABSTRUCT}}{a character vector}
+#'   \item{\code{BCG_ATTR2}}{a character vector}
+#'   \item{\code{NONTARGET}}{a logical vector}
+#'   \item{\code{AIRBREATHER}}{a logical vector}
 #'  }
 #' @source example data from MBSS
 "data_benthos_MBSS"
@@ -578,7 +585,7 @@
 #' @description A data set with example coral data.
 #' Calculate metrics.  Data from Florida BCG providers.
 #'
-#' @format A data frame with 2138 observations on the following 23 variables.
+#' @format A data frame with 2138 observations on the following 25 variables.
 #'
 #'   \describe{
 #'   \item{\code{DataSource}}{a character vector}
@@ -604,6 +611,8 @@
 #'   \item{\code{Genus}}{a character vector}
 #'   \item{\code{SubGenus}}{a character vector}
 #'   \item{\code{Species}}{a character vector}
+#'   \item{\code{INDEX_NAME}}{a character vector}
+#'   \item{\code{INDEX_CLASS}}{a character vector}
 #' }
 #' @source example coral data from Florida BCG
 "data_coral_bcg_metric_dev"
@@ -636,8 +645,61 @@
 #'   \item{\code{LCSA3D_LRBC_m2}}{a numeric vector}
 #'   \item{\code{ncol_SmallWeedy}}{a numeric vector}
 #'   \item{\code{pcol_SmallWeedy}}{a numeric vector}
-
 #' }
 #' @source example coral metric results from Florida BCG
 "data_coral_bcg_metric_qc"
-
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "TaxaMaster_Ben_BCG_PacNW" ----
+#' @title TaxaMaster_Ben_BCG_PacNW
+#' @description Example data
+#'
+#' @format A data frame with 684 observations on the following 20 variables.
+#'
+#'   \describe{
+#'     \item{\code{TaxaID}}{a character vector}
+#'     \item{\code{Phylum}}{a character vector}
+#'     \item{\code{SubPhylum}}{a character vector}
+#'     \item{\code{Class}}{a character vector}
+#'     \item{\code{SubClass}}{a character vector}
+#'     \item{\code{Order}}{a character vector}
+#'     \item{\code{SuperFamily}}{a character vector}
+#'     \item{\code{Family}}{a character vector}
+#'     \item{\code{Tribe}}{a character vector}
+#'     \item{\code{Genus}}{a character vector}
+#'     \item{\code{SubGenus}}{a character vector}
+#'     \item{\code{Species}}{a character vector}
+#'     \item{\code{BCG_Attr}}{a character vector}
+#'     \item{\code{NonTarget}}{a logical vector}
+#'     \item{\code{Thermal_Indicator}}{a character vector}
+#'     \item{\code{Long_Lived}}{a character vector}
+#'     \item{\code{FFG}}{a character vector}
+#'     \item{\code{Habit}}{a character vector}
+#'     \item{\code{Life_Cycle}}{a character vector}
+#'     \item{\code{TolVal}}{a numeric vector}
+#'   }
+#' @source example master taxa from BCG Pacific Northwest
+"TaxaMaster_Ben_BCG_PacNW"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_metval_scmb_ibi" ----
+#' @title data_metval_scmb_ibi
+#' @description Example data metrics
+#'
+#'  @format A data frame with 20 observations on the following 13 variables.
+#'
+#'   \describe{
+#'     \item{\code{INDEX_NAME}}{a character vector}
+#'     \item{\code{INDEX_REGION}}{a character vector}
+#'     \item{\code{SampID}}{a character vector}
+#'     \item{\code{nt_total}}{a numeric vector}
+#'     \item{\code{nt_Mol}}{a numeric vector}
+#'     \item{\code{ni_Noto}}{a numeric vector}
+#'     \item{\code{pi_intol}}{a numeric vector}
+#'     \item{\code{qc_nt_total}}{a numeric vector}
+#'     \item{\code{qc_nt_Mol}}{a numeric vector}
+#'     \item{\code{qc_ni_Noto}}{a numeric vector}
+#'     \item{\code{qc_pi_intol}}{a numeric vector}
+#'     \item{\code{qc_sum}}{a numeric vector}
+#'     \item{\code{qc_nar}}{a character vector}
+#'   }
+#' @source example data
+"data_metval_scmb_ibi"

@@ -4,9 +4,21 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-09 11:29:38.256342
+    #> Last Update: 2025-09-09 13:44:39.13894
 
 # Version History
+
+## Changes in version 1.1.0.9003 (2025-09-09)
+
+- docs: Update license file, Issue \#49
+  - Split files per SO article
+    - <https://stackoverflow.com/questions/43550479/how-to-satisfy-both-cran-and-github-license-file-naming-requirements>
+- refactor: Update example data for shorter run times, Issue \#49
+  - ext/Data_Benthos.xlsx
+- docs: Update columns for some datasets in data.R
+- docs: Add missing dataset documentation to data.R
+- docs: Update a few missing imports and global bindings
+- refactor: Modify seq statement in metric.stats per CodeFactor
 
 ## Changes in version 1.1.0.9002 (2025-09-09)
 
@@ -539,8 +551,9 @@ NEWS
 - fix: Update to minor version number 1.0.2
   - Incorrect version numbers from pull request
 
-## Changes in pull request number 107
+## Changes in version 1.0.1.9551
 
+- pull request 107
 - refactor: Coral metrics from Blocktt
 
 ## Changes in version 1.0.1.9550 (2024-03-18)

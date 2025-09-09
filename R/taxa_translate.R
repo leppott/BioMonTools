@@ -508,7 +508,7 @@ taxa_translate <- function(df_user = NULL
   if ("N_Taxa_Sum" %in% names(df_taxatrans_unique)) {
     df_taxatrans_unique <- dplyr::relocate(df_taxatrans_unique
                                            , N_Taxa_Sum
-                                           , .after = last_col())
+                                           , .after = tidyselect::last_col())
   }## IF ~ N_Taxa_Sum
 
 

@@ -5,7 +5,7 @@
 \alias{data_coral_bcg_metric_dev}
 \title{Coral taxa data; Florida BCG.}
 \format{
-A data frame with 2138 observations on the following 23 variables.
+A data frame with 2138 observations on the following 25 variables.
 
   \describe{
   \item{\code{DataSource}}{a character vector}
@@ -31,6 +31,8 @@ A data frame with 2138 observations on the following 23 variables.
   \item{\code{Genus}}{a character vector}
   \item{\code{SubGenus}}{a character vector}
   \item{\code{Species}}{a character vector}
+  \item{\code{INDEX_NAME}}{a character vector}
+  \item{\code{INDEX_CLASS}}{a character vector}
 }
 }
 \source{
