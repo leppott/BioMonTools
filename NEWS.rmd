@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.1.0.9002 (2025-09-09)
+
+* refactor: Remove large file, Issue #49
+
 ## Changes in version 1.1.0.9001 (2025-09-09)
 
 * breaking: Move Shiny app to a different repo, BioMonTools_Shiny
