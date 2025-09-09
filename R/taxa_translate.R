@@ -51,8 +51,7 @@
 #'
 #' @param df_user User taxa data
 #' @param df_official Official project taxa data (master taxa list).
-#' @param df_official_metadata Metadata for offiical project taxa data.
-#' Included
+#' @param df_official_metadata Metadata for official project taxa data.
 #' Default is NULL
 #' @param taxaid_user Taxonomic identifier in user data.  Default is "TAXAID".
 #' @param taxaid_official_match Taxonomic identifier in official data user to
@@ -108,6 +107,7 @@
 #' sum_n_taxa_col <- "N_TAXA"
 #' sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
 #' ## Run Function
+#' \dontrun{
 #' taxatrans <- taxa_translate(df_user
 #'                                , df_official
 #'                                , df_official_metadata
@@ -123,6 +123,7 @@
 #' # View(taxatrans$merge)
 #' taxatrans$nonmatch
 #' # View(taxatrans$official_metadata)
+#' }
 #'
 #' #~~~~~
 #' # Example 2, Multiple Stages
@@ -156,6 +157,7 @@
 #' sum_n_taxa_col <- "N_TAXA"
 #' sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SAMPLEID", "TAXAID")
 #' ## Run Function
+#' \dontrun{
 #' taxatrans <- BioMonTools::taxa_translate(df_user
 #'                                          , df_official
 #'                                          , df_official_metadata
@@ -170,6 +172,7 @@
 #' ## View Results (before and after)
 #' df_user
 #' taxatrans$merge
+#' }
 #
 #'@export
 taxa_translate <- function(df_user = NULL

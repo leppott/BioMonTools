@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.1.0.9004 (2025-09-09)
+
+* style: Convert = to <- in metric_values_excel.R
+* docs: Don't run examples for taxa.translate to avoid issues with pkgdown
+
 ## Changes in version 1.1.0.9003 (2025-09-09)
 
 * docs: Update license file, Issue #49

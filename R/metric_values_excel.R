@@ -84,8 +84,8 @@ metvalgrpxl <- function(fun.DF.MetVal
                                           , sheet = "MetricMetadata"
                                           , skip = 4)
     fun.Community <- "bugs"
-    fun.MetVal.Col2Keep = c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
-    fun.xlGrpCol = "Sort_Group"
+    fun.MetVal.Col2Keep <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
+    fun.xlGrpCol <- "Sort_Group"
     file.out <- file.path(tempdir(), paste0("MetValGrps_"
                                             , fun.Community
                                             , ".xlsx"))

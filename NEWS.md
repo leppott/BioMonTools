@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-09 13:44:39.13894
+    #> Last Update: 2025-09-09 15:18:38.227049
 
 # Version History
+
+## Changes in version 1.1.0.9004 (2025-09-09)
+
+- style: Convert = to \<- in metric_values_excel.R
+- docs: Don’t run examples for taxa.translate to avoid issues with
+  pkgdown
 
 ## Changes in version 1.1.0.9003 (2025-09-09)
 
