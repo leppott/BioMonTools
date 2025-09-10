@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.2 (2025-09-10)
+
+* docs: Bump version for CRAN submission
+
 ## Changes in version 1.2.1.9001 (2025-09-10)
 
 * refactor: Update example for metric.stats for speed
