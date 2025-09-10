@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-10 08:22:17.100365
+    #> Last Update: 2025-09-10 08:57:11.784735
 
 # Version History
+
+## Changes in version 1.2.0 (2025-09-10)
+
+- docs: Bump version number for submission to CRAN, Issue \#49
+- docs: Update README for install from CRAN
 
 ## Changes in version 1.1.0.9005 (2025-09-10)
 

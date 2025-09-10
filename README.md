@@ -3,7 +3,7 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-10 08:05:59.524492
+    #> Last Update: 2025-09-10 08:52:11.772796
 
 # BioMonTools <img src="man/figures/logo.png" align="right" height="139" />
 
@@ -11,7 +11,10 @@ Functions to aid the data analysis of bioassessment and biomonitoring
 data. Suite of functions and tools for metric calculation and scoring
 for mult-metric indices and related data manipulation.
 
-<!-- badges: start --> \# Badges
+<!-- badges: start -->
+
+# Badges
+
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/leppott/BioMonTools/graphs/commit-activity)
 [![Life
 Cycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
@@ -33,10 +36,20 @@ releases](https://img.shields.io/github/downloads/leppott/BioMonTools/total.svg)
 
 # Installation
 
-To install the current version use the code below to install from
-GitHub. The use of “force = TRUE” ensures the package is installed even
-if already present. If the package `remotes` is missing the code below
-will install it.
+## CRAN
+
+To install from CRAN use the code below.
+
+``` r
+install.packages("BioMonTools")
+```
+
+## GitHub
+
+To install the most current version on GitHub use the code below. The
+use of “force = TRUE” ensures the package is installed even if already
+present. If the package `remotes` is missing the code below will install
+it.
 
 ``` r
 if(!require(remotes)){install.packages("remotes")}  #install if needed
@@ -83,11 +96,8 @@ Vignette and install guide updates are planned for the future.
 
 # Planned Updates
 
-- None at this time.
+- Fixes (if any).
 
-# Future Possible Updates
+- New metrics (add needed).
 
-- Periphyton metrics.
-- Coral and Fish metrics (Puerto Rico and US Virgin Islands)
-- TaxaList Check
-- Map taxon observations
+- New index scoring (as needed).

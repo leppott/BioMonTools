@@ -23,7 +23,10 @@ zero
 zero
 
 ## NOTE
-zero
+On WinBuilder get the following Note:
+* checking top-level files ... NOTE
+Non-standard file/directory found at top level:
+  'cran-comments.md'
 
 # Downstream dependencies
 
@@ -34,3 +37,5 @@ tools::dependsOnPkgs("BioMonTools")
 "BCGcalc"
 
 There are currently no downstream CRAN dependencies for this package.
+
+This is a new release

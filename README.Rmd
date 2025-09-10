@@ -22,6 +22,7 @@ Suite of functions and tools for metric calculation and scoring for mult-metric
 indices and related data manipulation.
 
  <!-- badges: start -->
+ 
 # Badges
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/leppott/BioMonTools/graphs/commit-activity)
 [![Life Cycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
@@ -38,7 +39,14 @@ indices and related data manipulation.
 <!-- badges: end -->
 
 # Installation
-To install the current version use the code below to install from GitHub.  The
+## CRAN
+To install from CRAN use the code below.
+```{r, eval=FALSE}
+install.packages("BioMonTools")
+```
+
+## GitHub
+To install the most current version on GitHub use the code below.  The
 use of "force = TRUE" ensures the package is installed even if already present.
 If the package `remotes` is missing the code below will install it.
 
