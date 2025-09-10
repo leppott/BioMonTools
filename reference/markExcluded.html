@@ -26,7 +26,7 @@ present in the same sample.'><meta property="og:image" content="/logo.png"><!-- 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0.9001</span>
       </span>
     </div>
 
@@ -257,7 +257,7 @@ to produce the intended output.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |Var1 | Freq|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |:----|----:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |0    |   94|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |0    |   47|</span>
 <span class="r-in"><span><span class="co"># sort</span></span></span>
 <span class="r-in"><span><span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="va">df_compare</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -266,7 +266,7 @@ to produce the intended output.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-in"><span><span class="co"># total samples</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 47</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># confusion matrix</span></span></span>
 <span class="r-in"><span><span class="va">tbl_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_tst</span><span class="op">$</span><span class="va">Exclude</span>, <span class="va">df_tst</span><span class="op">$</span><span class="va">Exclude_New</span>, useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span></span></span>
@@ -277,8 +277,8 @@ to produce the intended output.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |      | FALSE| TRUE|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |:-----|-----:|----:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |FALSE |   322|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |TRUE  |     0|    4|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |FALSE |   144|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |TRUE  |     0|    1|</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -287,13 +287,13 @@ to produce the intended output.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |02087REF_Bug_2002-08-22_0 |              0|         0|    0|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |03054CSR_Bug_2003-08-18_0 |              0|         0|    0|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |06012CSR_Bug_2006-09-05_0 |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |06021CSR_Bug_2006-08-01_0 |              0|         0|    0|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |06027CSR_Bug_2006-07-17_0 |              0|         0|    0|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |06029CSR_Bug_2006-09-27_0 |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |06032CSR_Bug_2006-07-31_0 |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |07006OPR_Bug_2007-07-03_0 |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |07008OPR_Bug_2007-08-27_0 |              0|         0|    0|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |07036OPR_Bug_2007-09-27_0 |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |08CED2518__2015-08-13_0   |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |08ISS4294__2015-08-26_0   |              1|         1|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |08LAK3627__2015-08-10_0   |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |09JEN1318__2015-08-24_0   |              0|         0|    0|</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">df_compare</span><span class="op">[</span><span class="fl">672</span><span class="op">:</span><span class="fl">678</span>, <span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -396,7 +396,7 @@ to produce the intended output.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |Var1 | Freq|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |:----|----:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |0    |   94|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |0    |   47|</span>
 <span class="r-in"><span><span class="co"># sort</span></span></span>
 <span class="r-in"><span><span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="va">df_compare2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">Diff</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -405,7 +405,7 @@ to produce the intended output.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-in"><span><span class="co"># total samples</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 47</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># confusion matrix</span></span></span>
 <span class="r-in"><span><span class="va">tbl_results2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_tst2</span><span class="op">$</span><span class="va">Exclude</span>, <span class="va">df_tst2</span><span class="op">$</span><span class="va">Exclude_New</span>, useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span></span></span>
@@ -416,8 +416,8 @@ to produce the intended output.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |      | FALSE| TRUE|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |:-----|-----:|----:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |FALSE |   322|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |TRUE  |     0|    4|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |FALSE |   144|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |TRUE  |     0|    1|</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -426,24 +426,24 @@ to produce the intended output.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |02087REF_Bug_2002-08-22_0 |              0|         0|    0|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |03054CSR_Bug_2003-08-18_0 |              0|         0|    0|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |06012CSR_Bug_2006-09-05_0 |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |06021CSR_Bug_2006-08-01_0 |              0|         0|    0|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |06027CSR_Bug_2006-07-17_0 |              0|         0|    0|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |06029CSR_Bug_2006-09-27_0 |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |06032CSR_Bug_2006-07-31_0 |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |07006OPR_Bug_2007-07-03_0 |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |07008OPR_Bug_2007-08-27_0 |              0|         0|    0|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |07036OPR_Bug_2007-09-27_0 |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |08CED2518__2015-08-13_0   |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |08ISS4294__2015-08-26_0   |              1|         1|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |08LAK3627__2015-08-10_0   |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |09JEN1318__2015-08-24_0   |              0|         0|    0|</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |SampleID               | Exclude_Import| Exclude_R| Diff|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |:----------------------|--------------:|---------:|----:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |dubqcarl__2013-08-30_0 |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |elwell__2013-08-28_0   |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |lpil66__2010-08-13_0   |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |olneyfh__2013-09-13_0  |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |peoples__2013-09-04_0  |              0|         0|    0|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |purdy__2013-09-10_0    |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |SampleID                         | Exclude_Import| Exclude_R| Diff|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |:--------------------------------|--------------:|---------:|----:|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |WAM06600-011609_Bug_2014-07-07_0 |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |WAM06600-122423__2015-09-17_0    |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |WCFA__2010-08-19_0               |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |lpil66__2010-08-13_0             |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |olneyfh__2013-09-13_0            |              0|         0|    0|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |purdy__2013-09-10_0              |              0|         0|    0|</span>
 <span class="r-in"><span><span class="co"># samples with differences</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">samp_diff2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">df_compare2</span><span class="op">[</span><span class="va">df_compare2</span><span class="op">[</span>,<span class="st">"Diff"</span><span class="op">]</span><span class="op">!=</span><span class="fl">0</span></span></span>
 <span class="r-in"><span>                                                  , <span class="st">"SampleID"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
