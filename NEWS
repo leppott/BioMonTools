@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-10 12:32:28.882413
+    #> Last Update: 2025-09-10 13:07:30.890634
 
 # Version History
+
+## Changes in version 1.2.2.9001 (2025-09-10)
+
+- refactor: Add entire example for metric.stats to don’t run
+  - Fails (\< 5 seconds) on Debian when submit to CRAN
+- docs: Bump version for CRAN submission
 
 ## Changes in version 1.2.2 (2025-09-10)
 

@@ -86,6 +86,7 @@
 #' DataType.
 #'
 #' @examples
+#' \dontrun{
 #' # data, benthos
 #' df_bugs <- data_mmi_dev
 #'
@@ -123,8 +124,8 @@
 #' DataType_Ver  <- "verif"
 #' col_Subset    <- "INDEX_CLASS"
 #' Subset_Value  <- "CentralHills"
-#' # run fewer records for speed of example
-#' df_stats <- metric.stats(df_metval[1:100, ]
+#'
+#' df_stats <- metric.stats(df_metval
 #'                          , col_metrics
 #'                          , col_SampID
 #'                          , col_RefStatus
@@ -137,7 +138,6 @@
 #'                          , col_Subset
 #'                          , Subset_Value)
 #'
-#' \dontrun{
 #' # Save Results
 #' write.table(df_stats
 #'             , file.path(tempdir(), "metric.stats.tsv")
