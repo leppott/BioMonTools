@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-10 10:49:07.341675
+    #> Last Update: 2025-09-10 12:17:02.534183
 
 # Version History
+
+## Changes in version 1.2.1.9001 (2025-09-10)
+
+- refactor: Update example for metric.stats for speed
+  - Reduce number of rows input rather than reduce the file size
 
 ## Changes in version 1.2.1 (2025-09-10)
 

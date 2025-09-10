@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.1.9001 (2025-09-10)
+
+* refactor: Update example for metric.stats for speed
+    + Reduce number of rows input rather than reduce the file size
+
 ## Changes in version 1.2.1 (2025-09-10)
 
 * docs: Bump version number for submission to CRAN

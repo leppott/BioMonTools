@@ -123,7 +123,8 @@
 #' DataType_Ver  <- "verif"
 #' col_Subset    <- "INDEX_CLASS"
 #' Subset_Value  <- "CentralHills"
-#' df_stats <- metric.stats(df_metval
+#' # run fewer records for speed of example
+#' df_stats <- metric.stats(df_metval[1:100, ]
 #'                          , col_metrics
 #'                          , col_SampID
 #'                          , col_RefStatus
