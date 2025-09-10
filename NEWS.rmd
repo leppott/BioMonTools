@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.1.0.9005 (2025-09-10)
+
+* docs: Update authors in DESCRIPTION, per CRAN check, Issue #49
+* docs: Update URLS in README, per CRAN check, Issue #49
+* docs: Add cran-comments file
+
 ## Changes in version 1.1.0.9004 (2025-09-09)
 
 * style: Convert = to <- in metric_values_excel.R

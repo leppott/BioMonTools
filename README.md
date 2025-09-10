@@ -3,7 +3,7 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-05-13 19:40:31.237479
+    #> Last Update: 2025-09-10 08:05:59.524492
 
 # BioMonTools <img src="man/figures/logo.png" align="right" height="139" />
 
@@ -13,12 +13,13 @@ for mult-metric indices and related data manipulation.
 
 <!-- badges: start --> \# Badges
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/leppott/BioMonTools/graphs/commit-activity)
-[![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Life
+Cycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![GitHub
 license](https://img.shields.io/github/license/leppott/BioMonTools.svg)](https://github.com/leppott/BioMonTools/blob/master/LICENSE)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/leppott/BioMonTools/badge)](https://www.codefactor.io/repository/github/leppott/BioMonTools)
-[![codecov](https://codecov.io/gh/leppott/BioMonTools/branch/master/graph/badge.svg)](https://codecov.io/gh/leppott/BioMonTools)
+[![codecov](https://codecov.io/gh/leppott/BioMonTools/branch/master/graph/badge.svg)](https://app.codecov.io/gh/leppott/BioMonTools)
 [![R-CMD-check](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml)
 
 [![GitHub

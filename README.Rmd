@@ -24,11 +24,11 @@ indices and related data manipulation.
  <!-- badges: start -->
 # Badges
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/leppott/BioMonTools/graphs/commit-activity)
-[![](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Life Cycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![GitHub license](https://img.shields.io/github/license/leppott/BioMonTools.svg)](https://github.com/leppott/BioMonTools/blob/master/LICENSE)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/leppott/BioMonTools/badge)](https://www.codefactor.io/repository/github/leppott/BioMonTools)
-[![codecov](https://codecov.io/gh/leppott/BioMonTools/branch/master/graph/badge.svg)](https://codecov.io/gh/leppott/BioMonTools)
+[![codecov](https://codecov.io/gh/leppott/BioMonTools/branch/master/graph/badge.svg)](https://app.codecov.io/gh/leppott/BioMonTools)
 [![R-CMD-check](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml)
 
 [![GitHub issues](https://img.shields.io/github/issues/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/issues/)
@@ -81,11 +81,8 @@ https://github.com/leppott/BioMonTools/issues
 
 # Planned Updates
 
-* None at this time.
+* Fixes (if any).
 
-# Future Possible Updates
+* New metrics (add needed).
 
-* Periphyton metrics.
-* Coral and Fish metrics (Puerto Rico and US Virgin Islands)
-* TaxaList Check
-* Map taxon observations
+* New index scoring (as needed).
