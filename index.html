@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.0.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
       </span>
     </div>
 
@@ -89,14 +89,18 @@
 <div class="page-header"><h1 id="readme-biomontools">README-BioMonTools<a class="anchor" aria-label="anchor" href="#readme-biomontools"></a>
 </h1></div>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#&gt; Last Update: 2025-09-10 08:05:59.524492</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#&gt; Last Update: 2025-09-10 08:52:11.772796</span></span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="biomontools-">BioMonTools <img src="reference/figures/logo.png" align="right" height="139"><a class="anchor" aria-label="anchor" href="#biomontools-"></a>
 </h1>
 <p>Functions to aid the data analysis of bioassessment and biomonitoring data. Suite of functions and tools for metric calculation and scoring for mult-metric indices and related data manipulation.</p>
 <!-- badges: start -->
-
+</div>
+<div class="section level1">
+<h1 id="badges">Badges<a class="anchor" aria-label="anchor" href="#badges"></a>
+</h1>
+<p><a href="https://GitHub.com/leppott/BioMonTools/graphs/commit-activity" class="external-link"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="Life Cycle"></a> <a href="https://github.com/leppott/BioMonTools/blob/master/LICENSE" class="external-link"><img src="https://img.shields.io/github/license/leppott/BioMonTools.svg" alt="GitHub license"></a></p>
 <p><a href="https://www.codefactor.io/repository/github/leppott/BioMonTools" class="external-link"><img src="https://www.codefactor.io/repository/github/leppott/BioMonTools/badge" alt="CodeFactor"></a> <a href="https://app.codecov.io/gh/leppott/BioMonTools" class="external-link"><img src="https://codecov.io/gh/leppott/BioMonTools/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></p>
 <p><a href="https://GitHub.com/leppott/BioMonTools/issues/" class="external-link"><img src="https://img.shields.io/github/issues/leppott/BioMonTools.svg" alt="GitHub issues"></a></p>
 <p><a href="https://GitHub.com/leppott/BioMonTools/releases/" class="external-link"><img src="https://img.shields.io/github/release/leppott/BioMonTools.svg" alt="GitHub release"></a> <a href="https://GitHub.com/leppott/BioMonTools/releases/" class="external-link"><img src="https://img.shields.io/github/downloads/leppott/BioMonTools/total.svg" alt="Github all releases"></a> <!-- badges: end --></p>
@@ -104,18 +108,29 @@
 <div class="section level1">
 <h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h1>
-<p>To install the current version use the code below to install from GitHub. The use of “force = TRUE” ensures the package is installed even if already present. If the package <code>remotes</code> is missing the code below will install it.</p>
+<div class="section level2">
+<h2 id="cran">CRAN<a class="anchor" aria-label="anchor" href="#cran"></a>
+</h2>
+<p>To install from CRAN use the code below.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BioMonTools"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="github">GitHub<a class="anchor" aria-label="anchor" href="#github"></a>
+</h2>
+<p>To install the most current version on GitHub use the code below. The use of “force = TRUE” ensures the package is installed even if already present. If the package <code>remotes</code> is missing the code below will install it.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">}</span>  <span class="co">#install if needed</span></span>
 <span><span class="fu">install_github</span><span class="op">(</span><span class="st">"leppott/BioMonTools"</span>, force<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Vignettes are not installed by default. If you want the additional documentation (recommended) then use this version of the code.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">}</span>  <span class="co">#install if needed</span></span>
 <span><span class="fu">install_github</span><span class="op">(</span><span class="st">"leppott/BioMonTools"</span>, force<span class="op">=</span><span class="cn">TRUE</span>, build_vignettes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>If having issues with install (e.g., ‘cannot open URL’) it could be a latency issue with GitHub.</p>
 <p>Use the code below before retrying the above install commands.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>timeout<span class="op">=</span><span class="fl">400</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level1">
 <h1 id="status">Status<a class="anchor" aria-label="anchor" href="#status"></a>
@@ -142,17 +157,9 @@
 <h1 id="planned-updates">Planned Updates<a class="anchor" aria-label="anchor" href="#planned-updates"></a>
 </h1>
 <ul>
-<li>None at this time.</li>
-</ul>
-</div>
-<div class="section level1">
-<h1 id="future-possible-updates">Future Possible Updates<a class="anchor" aria-label="anchor" href="#future-possible-updates"></a>
-</h1>
-<ul>
-<li>Periphyton metrics.</li>
-<li>Coral and Fish metrics (Puerto Rico and US Virgin Islands)</li>
-<li>TaxaList Check</li>
-<li>Map taxon observations</li>
+<li><p>Fixes (if any).</p></li>
+<li><p>New metrics (add needed).</p></li>
+<li><p>New index scoring (as needed).</p></li>
 </ul>
 </div>
 
@@ -192,14 +199,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://GitHub.com/leppott/BioMonTools/graphs/commit-activity" class="external-link"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a></li>
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="Life Cycle"></a></li>
-<li><a href="https://github.com/leppott/BioMonTools/blob/master/LICENSE" class="external-link"><img src="https://img.shields.io/github/license/leppott/BioMonTools.svg" alt="GitHub license"></a></li>
-</ul>
-</div>
+
 
   </div>
 </div>
