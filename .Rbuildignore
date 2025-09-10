@@ -11,3 +11,4 @@ _tests/
 NEWS.rmd
 README.rmd
 ^data-raw$
+cran-comments.md

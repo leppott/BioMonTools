@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-10 08:57:11.784735
+    #> Last Update: 2025-09-10 10:27:59.374956
 
 # Version History
+
+## Changes in version 1.2.0.9001 (2025-09-10)
+
+- refactor: Reduce size of example file in metric.stats
+  - Failed time check (\< 5 seconds) for one OS
+- docs: Update cran-comments
+- docs: Add cran-comments.md to .Rbuildignore
 
 ## Changes in version 1.2.0 (2025-09-10)
 
