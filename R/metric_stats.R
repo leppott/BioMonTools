@@ -86,9 +86,8 @@
 #' DataType.
 #'
 #' @examples
-#' \dontrun{
 #' # data, benthos
-#' df_bugs <- data_mmi_dev
+#' df_bugs <- data_mmi_dev_small
 #'
 #' # Munge Names
 #' names(df_bugs)[names(df_bugs) %in% "BenSampID"] <- "SAMPLEID"
@@ -138,6 +137,7 @@
 #'                          , col_Subset
 #'                          , Subset_Value)
 #'
+#' \dontrun{
 #' # Save Results
 #' write.table(df_stats
 #'             , file.path(tempdir(), "metric.stats.tsv")

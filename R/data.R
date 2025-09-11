@@ -703,3 +703,50 @@
 #'   }
 #' @source example data
 "data_metval_scmb_ibi"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_mmi_dev_small" ####
+#' @title Metric data for metric stats for mmi development
+#'
+#' @description A data set with example benthic macroinvertebrate data.
+#' Calculate metrics then statistics.
+#'
+#' @format A data frame with 1,374 observations on the following 34 variables.
+#'
+#'  \describe{
+#'    \item{\code{Class}}{a character vector}
+#'    \item{\code{Ref_v1}}{a character vector}
+#'    \item{\code{CalVal_Class4}}{a character vector}
+#'    \item{\code{Unique_ID}}{a character vector}
+#'    \item{\code{BenSampID}}{a character vector}
+#'    \item{\code{CollDate}}{a character vector}
+#'    \item{\code{CollMeth}}{a character vector}
+#'    \item{\code{TaxaID}}{a character vector}
+#'    \item{\code{Individuals}}{a numeric vector}
+#'    \item{\code{Exclude}}{a logical vector}
+#'    \item{\code{NonTarget}}{a character vector}
+#'    \item{\code{Phylum}}{a character vector}
+#'    \item{\code{Benthic_MasterTaxa.Class}}{a character vector}
+#'    \item{\code{Order}}{a character vector}
+#'    \item{\code{Family}}{a character vector}
+#'    \item{\code{Subfamily}}{a character vector}
+#'    \item{\code{Tribe}}{a character vector}
+#'    \item{\code{Genus}}{a character vector}
+#'    \item{\code{TolVal}}{a character vector}
+#'    \item{\code{FFG}}{a character vector}
+#'    \item{\code{Habit}}{a character vector}
+#'    \item{\code{INDEX_NAME}}{a character vector}
+#'    \item{\code{SUBPHYLUM}}{a character vector}
+#'    \item{\code{CLASS}}{a character vector}
+#'    \item{\code{SUBCLASS}}{a character vector}
+#'    \item{\code{INFRAORDER}}{a character vector}
+#'    \item{\code{LIFE_CYCLE}}{a character vector}
+#'    \item{\code{BCG_ATTR}}{a character vector}
+#'    \item{\code{THERMAL_INDICATOR}}{a character vector}
+#'    \item{\code{LONGLIVED}}{a character vector}
+#'    \item{\code{NOTEWORTHY}}{a character vector}
+#'    \item{\code{FFG2}}{a character vector}
+#'    \item{\code{TOLVAL2}}{a character vector}
+#'    \item{\code{HABITAT}}{a numeric vector}
+#'  }
+#' @source example data
+"data_mmi_dev_small"

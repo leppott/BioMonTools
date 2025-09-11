@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-10 13:59:29.217122
+    #> Last Update: 2025-09-11 15:08:05.355082
 
 # Version History
+
+## Changes in version 1.2.3.9001 (2025-09-11)
+
+- refactor: Create smaller data set for data_mmi_dev_small
+- refactor: Use smaller data set for metric.stats and metric.stats2
 
 ## Changes in version 1.2.3 (2025-09-10)
 

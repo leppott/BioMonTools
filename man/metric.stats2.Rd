@@ -102,7 +102,7 @@ where Ref_Status is labeled as Stressed.
 }
 \examples{
 # data, benthos
-df_bugs <- data_mmi_dev
+df_bugs <- data_mmi_dev_small
 
 # Munge Names
 names(df_bugs)[names(df_bugs) \%in\% "BenSampID"] <- "SAMPLEID"

@@ -118,9 +118,8 @@ The following statistics are generated with na.rm = TRUE.
 * q95 = quantile, 95%
 }
 \examples{
-\dontrun{
 # data, benthos
-df_bugs <- data_mmi_dev
+df_bugs <- data_mmi_dev_small
 
 # Munge Names
 names(df_bugs)[names(df_bugs) \%in\% "BenSampID"] <- "SAMPLEID"
@@ -170,6 +169,7 @@ df_stats <- metric.stats(df_metval
                          , col_Subset
                          , Subset_Value)
 
+\dontrun{
 # Save Results
 write.table(df_stats
             , file.path(tempdir(), "metric.stats.tsv")

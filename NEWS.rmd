@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+
+## Changes in version 1.2.3.9001 (2025-09-11)
+
+* refactor: Create smaller data set for data_mmi_dev_small
+* refactor: Use smaller data set for metric.stats and metric.stats2
+
 ## Changes in version 1.2.3 (2025-09-10)
 
 * docs: Bump version for CRAN submission

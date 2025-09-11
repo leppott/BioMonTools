@@ -66,7 +66,7 @@
 #'
 #' @examples
 #' # data, benthos
-#' df_bugs <- data_mmi_dev
+#' df_bugs <- data_mmi_dev_small
 #'
 #' # Munge Names
 #' names(df_bugs)[names(df_bugs) %in% "BenSampID"] <- "SAMPLEID"
@@ -202,11 +202,18 @@ metric.stats2 <- function(data_metval
     DataType_Ver <- "verif"
     col_Subset <- "INDEX_CLASS"
     Subset_Value <- "CENTRALHILLS"
-    df_stats <- metric.stats(df_metval, col_metrics, col_SampID
-                             , col_RefStatus, RefStatus_Ref, RefStatus_Str
-                             , RefStatus_Oth
-                             , col_DataType, DataType_Cal, DataType_Ver
-                             , col_Subset, Subset_Value)
+    df_stats <- metric.stats(df_metval,
+                             col_metrics,
+                             col_SampID,
+                             col_RefStatus,
+                             RefStatus_Ref,
+                             RefStatus_Str,
+                             RefStatus_Oth,
+                             col_DataType,
+                             DataType_Cal,
+                             DataType_Ver,
+                             col_Subset,
+                             Subset_Value)
 
     # Stats2
     data_metval <- df_metval
