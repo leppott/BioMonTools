@@ -4,9 +4,30 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-11 15:08:05.355082
+    #> Last Update: 2025-09-22 09:58:47.521272
 
 # Version History
+
+## Changes in version 1.2.3.9002 (2025-09-22)
+
+- docs: Update title and description per CRAN review
+- refactor: Uncomment or remove lines of code in examples
+  - markExcluded
+  - metric_values_excel
+  - metric.values
+  - qc.checks
+- refactor: Replace dontrun with donttest in examples
+  - metric.scores
+  - metrics.stats
+  - qc.taxa
+  - MapTaxaObs
+- style: Format function inputs with ending commas and separate lines
+  for each input
+- fix: Remove a write location that wasn’t tempdir from vignette
+- refactor: Reduce records and runtime for MapTaxaObs
+- fix: Add error condition in qc_taxa for when required field is missing
+- fix: Update example for qc_taxa to avoid error with missing column
+  name
 
 ## Changes in version 1.2.3.9001 (2025-09-11)
 

@@ -175,10 +175,6 @@
 #'
 #' df_metric_values_bugs <- metric.values(BioMonTools::data_benthos_PacNW, "bugs")
 #'
-#' \dontrun{
-#' # View Results
-#' View(df_metric_values_bugs)
-#' }
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' # Example 2, data from Excel
@@ -471,16 +467,16 @@
 # cols2keep <- fun.cols2keep
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
-metric.values <- function(fun.DF
-                          , fun.Community
-                          , fun.MetricNames = NULL
-                          , boo.Adjust = FALSE
-                          , fun.cols2keep = NULL
-                          , boo.marine = FALSE
-                          , boo.Shiny = FALSE
-                          , verbose = FALSE
-                          , metric_subset = NULL
-                          , taxaid_dni = NULL) {
+metric.values <- function(fun.DF,
+                          fun.Community,
+                          fun.MetricNames = NULL,
+                          boo.Adjust = FALSE,
+                          fun.cols2keep = NULL,
+                          boo.marine = FALSE,
+                          boo.Shiny = FALSE,
+                          verbose = FALSE,
+                          metric_subset = NULL,
+                          taxaid_dni = NULL) {
   boo_debug_main <- FALSE
   debug_main_num <- 0
   debug_main_num_total <- 7

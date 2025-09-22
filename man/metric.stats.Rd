@@ -169,7 +169,7 @@ df_stats <- metric.stats(df_metval
                          , col_Subset
                          , Subset_Value)
 
-\dontrun{
+\donttest{
 # Save Results
 write.table(df_stats
             , file.path(tempdir(), "metric.stats.tsv")

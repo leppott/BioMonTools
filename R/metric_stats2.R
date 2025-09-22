@@ -145,7 +145,7 @@
 #'                            , DataType_Ver
 #'                            , Subset_Value)
 #'
-#' \dontrun{
+#' \donttest{
 #' # Save Results
 #' write.table(df_stats2
 #'             , file.path(tempdir(), "metric.stats2.tsv")
@@ -155,21 +155,21 @@
 #' }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
-metric.stats2 <- function(data_metval
-                          , data_metstat
-                          , col_metval_RefStatus = "RefStatus"
-                          , col_metval_DataType = "DataType"
-                          , col_metval_Subset = "INDEX_CLASS"
-                          , col_metstat_RefStatus = "RefStatus"
-                          , col_metstat_DataType = "DataType"
-                          , col_metstat_Subset = "INDEX_CLASS"
-                          , RefStatus_Ref = "Ref"
-                          , RefStatus_Str = "Str"
-                          , RefStatus_Oth = "Oth"
-                          , DataType_Cal = "Cal"
-                          , DataType_Ver = "Ver"
-                          , Subset_Value = NULL
-                         ){##FUNCTION.metric.values.START
+metric.stats2 <- function(data_metval,
+                          data_metstat,
+                          col_metval_RefStatus = "RefStatus",
+                          col_metval_DataType = "DataType",
+                          col_metval_Subset = "INDEX_CLASS",
+                          col_metstat_RefStatus = "RefStatus",
+                          col_metstat_DataType = "DataType",
+                          col_metstat_Subset = "INDEX_CLASS",
+                          RefStatus_Ref = "Ref",
+                          RefStatus_Str = "Str",
+                          RefStatus_Oth = "Oth",
+                          DataType_Cal = "Cal",
+                          DataType_Ver = "Ver",
+                          Subset_Value = NULL
+                          ){
   # debug ----
   boo_debug <- FALSE
   if (boo_debug == TRUE){

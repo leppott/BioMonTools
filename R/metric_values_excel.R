@@ -58,19 +58,21 @@
 #' ## Run Function
 #' metvalgrpxl(df_metval, df_metnames, comm, col2keep, col_Grp, file_out)
 #'
-#' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' # Example 2, fish
-#'
-#' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' # Example 2, periphyton (algae)
-#'
+# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# # Example 2, fish
+#
+# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# # Example 2, periphyton (algae)
+#
 #' @export
-metvalgrpxl <- function(fun.DF.MetVal
-            , fun.DF.xlMetNames = NULL
-            , fun.Community
-            , fun.MetVal.Col2Keep = c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
-            , fun.xlGrpCol = "Sort_Group"
-            , file.out = NULL) {
+metvalgrpxl <- function(fun.DF.MetVal,
+                        fun.DF.xlMetNames = NULL,
+                        fun.Community,
+                        fun.MetVal.Col2Keep = c("SAMPLEID",
+                                                "INDEX_NAME",
+                                                "INDEX_CLASS"),
+                        fun.xlGrpCol = "Sort_Group",
+                        file.out = NULL) {
 
   # DEBUG
   boo_debug <- FALSE

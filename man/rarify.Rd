@@ -45,9 +45,6 @@ rarify function:
 # load bio data
 df_biodata <- data_bio2rarify
 dim(df_biodata)
-\dontrun{
-View(df_biodata)
-}
 
 # subsample
 mySize <- 500
@@ -59,9 +56,6 @@ bugs_mysize <- rarify(inbug=df_biodata, sample.ID="SampleID"
 
 # view results
 dim(bugs_mysize)
-\dontrun{
-View(bugs_mysize)
-}
 
 # Compare pre- and post- subsample counts
 df_compare <- merge(df_biodata, bugs_mysize, by=c("SampleID", "TaxaID")
@@ -71,17 +65,11 @@ df_compare <- df_compare[, c("SampleID"
                              , "N_Taxa_Orig"
                              , "N_Taxa_500")]
 
-\dontrun{
-View(df_compare)
-}
-
 # compare totals
 tbl_totals <- aggregate(cbind(N_Taxa_Orig, N_Taxa_500) ~ SampleID
                                                      , df_compare, sum)
 
-\dontrun{
-View(tbl_totals)
-
+\donttest{
 # save the data
 write.table(bugs_mysize
             , file.path(tempdir(), paste("bugs", mySize, "txt", sep = "."))

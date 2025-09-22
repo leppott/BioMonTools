@@ -92,17 +92,6 @@
 #' Exceptions <- data.frame("TaxaID"=c("Sphaeriidae")
 #'                                     , "PhyloID"=c("Pisidiidae"))
 #'
-#' # Filter Data
-#' # df_samptax <- filter(df_samps_bugs
-#' #                       , !!as.name(SampID) == "08BEA3478__2013-08-21_0")
-#' # df_tst_small <- markExcluded(df_samptax
-#' #                              , SampID
-#' #                              , TaxaID
-#' #                              , TaxaCount
-#' #                              , TaxaLevels
-#' #                              , Exceptions
-#' #                              , Exclude)
-#'
 #' # EXAMPLE 1
 #' df_tst <- markExcluded(df_samps_bugs
 #'                        , SampID = "SampleID"
@@ -257,14 +246,14 @@
 #' kable(tbl_class2)
 #
 #' @export
-markExcluded <- function(df_samptax
-                         , SampID = "SAMPLEID"
-                         , TaxaID = "TAXAID"
-                         , TaxaCount = "N_TAXA"
-                         , Exclude = "EXCLUDE"
-                         , TaxaLevels
-                         , Exceptions = NA) {
-  ##FUNCTION.markExcluded.START
+markExcluded <- function(df_samptax,
+                         SampID = "SAMPLEID",
+                         TaxaID = "TAXAID",
+                         TaxaCount = "N_TAXA",
+                         Exclude = "EXCLUDE",
+                         TaxaLevels,
+                         Exceptions = NA) {
+
   #
   boo_QC <- FALSE
   if(isTRUE(boo_QC)){

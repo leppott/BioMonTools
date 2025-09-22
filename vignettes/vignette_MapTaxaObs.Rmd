@@ -115,7 +115,7 @@ TaxaID <- "TaxaName"
 TaxaCount <- "Count"
 Lat <- "Latitude"
 Long <- "Longitude"
-output_dir <- getwd()
+output_dir <- tempdir()
 output_prefix <- "maps.taxa."
 output_type <- "pdf"
 
@@ -125,9 +125,18 @@ myXlim     <- c(-(73 + (30/60)), -(69 + (56/60)))
 myYlim     <- c((41 + (14/60)), (42 + (53/60)))
 
 # Run function with extra arguments for map
-BioMonTools::MapTaxaObs(df_obs, SampID, TaxaID, TaxaCount, Lat, Long
-                        , output_dir, output_prefix, output_type
-                        , database="state", regions="massachusetts"
-                        , xlim=myXlim, ylim=myYlim)
+BioMonTools::MapTaxaObs(df_obs, 
+                        SampID, 
+                        TaxaID, 
+                        TaxaCount, 
+                        Lat,
+                        Long, 
+                        output_dir, 
+                        output_prefix, 
+                        output_type,
+                        database = "state", 
+                        regions = "massachusetts",
+                        xlim = myXlim, 
+                        ylim = myYlim)
 
 ```

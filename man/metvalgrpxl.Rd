@@ -79,10 +79,4 @@ file_out <- file.path(tempdir(), paste0("MetValGrps_", comm, ".xlsx"))
 ## Run Function
 metvalgrpxl(df_metval, df_metnames, comm, col2keep, col_Grp, file_out)
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Example 2, fish
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Example 2, periphyton (algae)
-
 }

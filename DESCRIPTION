@@ -1,7 +1,7 @@
 Package: BioMonTools
 Type: Package
-Title: Tools for Biomonitoring and Bioassessment
-Version: 1.2.3
+Title: Biomonitoring and Bioassessment Calculations
+Version: 1.2.3.9002
 Authors@R: c(
     person("Erik W.", "Leppo", 
            email="Erik.Leppo@tetratech.com", 
@@ -12,10 +12,8 @@ Authors@R: c(
     person("Ben", "Block", role = "ctb")
   )
 Maintainer: Erik W. Leppo <Erik.Leppo@tetratech.com>
-Description: Tools for manipulating data associated with biomonitoring and 
-    bioassessment. Tools include metric calculation, marking of excluded taxa, 
-    subsampling, and multimetric index calculation.  Targeted at benthic 
-    macroinvertebrates, fish, periphyton, and coral.
+Description: An aid for manipulating data associated with biomonitoring and bioassessment. Calculations include metric calculation, marking of excluded taxa, 
+    subsampling, and multimetric index calculation.  Targeted communities are benthic macroinvertebrates, fish, periphyton, and coral.  As described in the Revised Rapid Bioassessment Protocols (Barbour et al. 1999) <https://archive.epa.gov/water/archive/web/html/index-14.html>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

@@ -137,7 +137,7 @@
 #'                          , col_Subset
 #'                          , Subset_Value)
 #'
-#' \dontrun{
+#' \donttest{
 #' # Save Results
 #' write.table(df_stats
 #'             , file.path(tempdir(), "metric.stats.tsv")
@@ -147,19 +147,19 @@
 #' }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
-metric.stats <- function(fun.DF
-                         , col_metrics
-                         , col_SampID = "SAMPLEID"
-                         , col_RefStatus = "Ref_Status"
-                         , RefStatus_Ref = "Ref"
-                         , RefStatus_Str = "Str"
-                         , RefStatus_Oth = "Oth"
-                         , col_DataType = "Data_Type"
-                         , DataType_Cal = "Cal"
-                         , DataType_Ver = "Ver"
-                         , col_Subset = NULL
-                         , Subset_Value = NULL
-                         ){##FUNCTION.metric.values.START
+metric.stats <- function(fun.DF,
+                         col_metrics,
+                         col_SampID = "SAMPLEID",
+                         col_RefStatus = "Ref_Status",
+                         RefStatus_Ref = "Ref",
+                         RefStatus_Str = "Str",
+                         RefStatus_Oth = "Oth",
+                         col_DataType = "Data_Type",
+                         DataType_Cal = "Cal",
+                         DataType_Ver = "Ver",
+                         col_Subset = NULL,
+                         Subset_Value = NULL
+                         ){
   # global variable bindings ----
   data_mmi_dev <- NULL
 

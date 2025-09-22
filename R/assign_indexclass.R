@@ -52,12 +52,12 @@
 #'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
-assign_IndexClass <- function(data
-                              , criteria
-                              , name_indexclass = "INDEX_CLASS"
-                              , name_indexname = "INDEX_NAME"
-                              , name_siteid = "SITEID"
-                              , data_shape = "WIDE") {
+assign_IndexClass <- function(data,
+                              criteria,
+                              name_indexclass = "INDEX_CLASS",
+                              name_indexname = "INDEX_NAME",
+                              name_siteid = "SITEID",
+                              data_shape = "WIDE") {
   #
   # global variable bindings ----
   `%>%` <- dplyr::`%>%`

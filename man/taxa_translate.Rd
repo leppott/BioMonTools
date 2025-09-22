@@ -193,18 +193,18 @@ sum_n_taxa_boo <- TRUE
 sum_n_taxa_col <- "N_TAXA"
 sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SAMPLEID", "TAXAID")
 ## Run Function
-\dontrun{
-taxatrans <- BioMonTools::taxa_translate(df_user
-                                         , df_official
-                                         , df_official_metadata
-                                         , taxaid_user
-                                      , taxaid_official_match
-                                      , taxaid_official_project
-                                      , taxaid_drop
-                                      , col_drop
-                                      , sum_n_taxa_boo
-                                      , sum_n_taxa_col
-                                      , sum_n_taxa_group_by)
+\donttest{
+taxatrans <- BioMonTools::taxa_translate(df_user,
+                                         df_official,
+                                         df_official_metadata,
+                                         taxaid_user,
+                                         taxaid_official_match,
+                                         taxaid_official_project,
+                                         taxaid_drop,
+                                         col_drop,
+                                         sum_n_taxa_boo,
+                                         sum_n_taxa_col,
+                                         sum_n_taxa_group_by)
 ## View Results (before and after)
 df_user
 taxatrans$merge

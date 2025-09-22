@@ -157,37 +157,37 @@
 #' sum_n_taxa_col <- "N_TAXA"
 #' sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SAMPLEID", "TAXAID")
 #' ## Run Function
-#' \dontrun{
-#' taxatrans <- BioMonTools::taxa_translate(df_user
-#'                                          , df_official
-#'                                          , df_official_metadata
-#'                                          , taxaid_user
-#'                                       , taxaid_official_match
-#'                                       , taxaid_official_project
-#'                                       , taxaid_drop
-#'                                       , col_drop
-#'                                       , sum_n_taxa_boo
-#'                                       , sum_n_taxa_col
-#'                                       , sum_n_taxa_group_by)
+#' \donttest{
+#' taxatrans <- BioMonTools::taxa_translate(df_user,
+#'                                          df_official,
+#'                                          df_official_metadata,
+#'                                          taxaid_user,
+#'                                          taxaid_official_match,
+#'                                          taxaid_official_project,
+#'                                          taxaid_drop,
+#'                                          col_drop,
+#'                                          sum_n_taxa_boo,
+#'                                          sum_n_taxa_col,
+#'                                          sum_n_taxa_group_by)
 #' ## View Results (before and after)
 #' df_user
 #' taxatrans$merge
 #' }
 #
 #'@export
-taxa_translate <- function(df_user = NULL
-                           , df_official = NULL
-                           , df_official_metadata = NULL
-                           , taxaid_user = "TAXAID"
-                           , taxaid_official_match = NULL
-                           , taxaid_official_project = NULL
-                           , taxaid_drop = NULL
-                           , col_drop = NULL
-                           , sum_n_taxa_boo = FALSE
-                           , sum_n_taxa_col = NULL
-                           , sum_n_taxa_group_by = NULL
-                           , trim_ws = FALSE
-                           , match_caps = FALSE) {
+taxa_translate <- function(df_user = NULL,
+                           df_official = NULL,
+                           df_official_metadata = NULL,
+                           taxaid_user = "TAXAID",
+                           taxaid_official_match = NULL,
+                           taxaid_official_project = NULL,
+                           taxaid_drop = NULL,
+                           col_drop = NULL,
+                           sum_n_taxa_boo = FALSE,
+                           sum_n_taxa_col = NULL,
+                           sum_n_taxa_group_by = NULL,
+                           trim_ws = FALSE,
+                           match_caps = FALSE) {
 
   # DEBUG ----
   boo_DEBUG_tt <- FALSE

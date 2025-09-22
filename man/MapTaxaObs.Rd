@@ -80,34 +80,35 @@ Jpg file names replace all non-alphanumeric characters with "_".
 The R package maps is required for this function.
 }
 \examples{
-df_obs <- data_Taxa_MA
-SampID <- "estuary"
-TaxaID <- "TaxaName"
-TaxaCount <- "Count"
-Lat <- "Latitude"
-Long <- "Longitude"
+df_obs     <- data_Taxa_MA
+SampID     <- "estuary"
+TaxaID     <- "TaxaName"
+TaxaCount  <- "Count"
+Lat        <- "Latitude"
+Long       <- "Longitude"
 output_dir <- tempdir()
 output_prefix <- "maps.taxa."
-output_type <- "pdf"
+output_type   <- "pdf"
 
-myDB <- "state"
+myDB     <- "state"
 myRegion <- "massachusetts"
-myXlim     <- c(-(73+(30/60)), -(69+(56/60)))
-myYlim     <- c((41+(14/60)),(42+(53/60)))
+myXlim   <- c(-(73+(30/60)), -(69+(56/60)))
+myYlim   <- c((41+(14/60)),(42+(53/60)))
 
 # Run function with extra arguments for map
-\dontrun{
-MapTaxaObs(df_obs
-           , SampID
-           , TaxaID
-           , TaxaCount
-           , Lat
-           , Long
-           , database="state"
-           , regions="massachusetts"
-           , xlim = myXlim
-           , ylim = myYlim
-           , map_grp = "estuary"
-           , leg_loc = "bottomleft")
-}
+MapTaxaObs(df_obs[1:500, ],
+           SampID,
+           TaxaID,
+           TaxaCount,
+           Lat,
+           Long,
+           output_dir,
+           output_prefix,
+           output_type,
+           database = "state",
+           regions = "massachusetts",
+           map_grp = "estuary",
+           leg_loc = "bottomleft",
+           xlim = myXlim,
+           ylim = myYlim,)
 }

@@ -203,10 +203,6 @@ Breaking change from 0.5 to 0.6 with change from Index_Name to Index_Class.
 
 df_metric_values_bugs <- metric.values(BioMonTools::data_benthos_PacNW, "bugs")
 
-\dontrun{
-# View Results
-View(df_metric_values_bugs)
-}
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Example 2, data from Excel

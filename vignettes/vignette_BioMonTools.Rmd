@@ -228,7 +228,8 @@ col_ID <- c("SAMPLEID"
 # Ouput
 df_metval_ci <- df_metval[, c(col_ID, col_met2keep)]
 # RMD table
-knitr::kable(head(df_metval_ci), caption = "Metric Calculation, select metrics")
+knitr::kable(head(df_metval_ci), 
+             caption = "Metric Calculation, select metrics")
 ```
 
 ## markExcluded
@@ -564,7 +565,9 @@ knitr::kable(head(tbl_totals), caption = "Comparison, sample totals")
 
 ## Not run: 
 # save the data
-#write.table(bugs_mysize, paste("bugs",mySize,"txt",sep="."),sep="\t")
+#write.table(bugs_mysize,
+#            file.path(tempdir(), paste("bugs", mySize, "txt", sep = ".")),
+#            sep = "\t")
 ## End(Not run)
 ```
 ### Flags

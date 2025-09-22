@@ -32,10 +32,6 @@
 #' df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
 #'                                           , package="BioMonTools")
 #'                                           , sheet="Flags")
-#'\dontrun{
-#' # View Checks
-#' View(df.checks)
-#'}
 #'
 #' # Run Function
 #' df.flags <- qc.checks(df.metric.values.bugs, df.checks)
@@ -44,7 +40,9 @@
 #' table(df.flags[,"CHECKNAME"], df.flags[,"FLAG"], useNA="ifany")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
-qc.checks <- function(df.metrics, df.checks, input.shape="wide") {
+qc.checks <- function(df.metrics,
+                      df.checks,
+                      input.shape = "wide") {
   ##FUNCTION.START
   #
   # global variable bindings ----

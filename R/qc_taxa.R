@@ -42,8 +42,8 @@
 #' url_mt_bugs <- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"
 #' df_mt_bugs <- read.csv(url_mt_bugs)
 #'
-#' The master taxa files are maintained by xxxx staff.  Update dates will be
-#' logged on the GitHub repository.
+#' The master taxa files are periodically updated.  Update dates will be logged
+#' on the GitHub repository.
 #'
 #' Expected fields include:
 #'
@@ -66,34 +66,34 @@
 #' @return input data frame with master taxa information added to it.
 #'
 #' @examples
-#' \dontrun{
 #' # Example 1, Master Taxa List, Bugs
 #' url_mt_bugs <- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"
-#' df_mt_bugs <- read.csv(url_mt_bugs)
+#' df_mt_bugs  <- read.csv(url_mt_bugs)
 #'
 #' # User data
 #' DF_User <- data_benthos_MBSS
 #' DF_Official <- NULL   # NULL df_mt_bugs
 #' fun.Community <- "bugs"
 #' useOfficialTaxaInfo <- "only_Official"
+#' # modify taxa id column
+#' DF_User[, "TAXON"] <- DF_User[, "TAXAID"]
 #'
-#' df_qc_taxa_bugs <- qc_taxa(DF_User
-#'                           , DF_Official
-#'                           , fun.Community
-#'                           , useOfficialTaxaInfo)
+#' df_qc_taxa_bugs <- qc_taxa(DF_User,
+#'                            DF_Official,
+#'                            fun.Community,
+#'                            useOfficialTaxaInfo)
 #'
 #' # QC input/output
 #' dim(DF_User)
 #' dim(df_qc_taxa_bugs)
 #' names(DF_User)
 #' names(df_qc_taxa_bugs)
-#' }
 #
 #' @export
-qc_taxa <- function(DF_User
-                   , DF_Official = NULL
-                   , fun.Community = NULL
-                   , useOfficialTaxaInfo = "only_Official") {
+qc_taxa <- function(DF_User,
+                    DF_Official = NULL,
+                    fun.Community = NULL,
+                    useOfficialTaxaInfo = "only_Official") {
   ##FUNCTION ~ mastertaxa ~START
   #
   boo_DEBUG <- FALSE
@@ -121,9 +121,19 @@ qc_taxa <- function(DF_User
   # run the proper sub function
   if (fun.Community == "bugs") {##IF.START
     url_mt <- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"
-    col_mt <- c("Taxon", "Phylum", "Class", "Order", "Family", "Genus"
-                , "Other_Taxa", "Tribe", "FFG", "FAM_TV", "Habit"
-                , "FinalTolVal07", "Comment")
+    col_mt <- c("Taxon",
+                "Phylum",
+                "Class",
+                "Order",
+                "Family",
+                "Genus",
+                "Other_Taxa",
+                "Tribe",
+                "FFG",
+                "FAM_TV",
+                "Habit",
+                "FinalTolVal07",
+                "Comment")
     col_taxon <- col_mt[1]
   # } else if(fun.Community == "fish"){
   #   url_mt <- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Fish.csv"
@@ -151,9 +161,14 @@ qc_taxa <- function(DF_User
   names(df_mt) <- toupper(names(df_mt))
   # col_mt <- toupper(col_mt)
   col_taxon <- toupper(col_taxon)
+
+  # QC check for col_taxon
+  if (!col_taxon %in% names(DF_User)) {
+    stop(paste0("DF_User missing column; ", col_taxon))
+  } ## IF, stop
+
   # taxa names to ALL CAPS for bugs and fish
   DF_User[, col_taxon] <- toupper(DF_User[, col_taxon])
-
 
   # Check Numbers
   taxa_user      <- sort(unique(DF_User[, col_taxon]))
@@ -168,13 +183,13 @@ qc_taxa <- function(DF_User
   if(sum_taxa_match != taxa_user_n){
     n_nonmatch <- taxa_user_n - sum_taxa_match
     str_tax <- ifelse(n_nonmatch == 1, "taxon", "taxa")
-    msg_1 <- paste0("The following user "
-                    , str_tax
-                    , " ("
-                    , n_nonmatch
-                    , "/"
-                    , taxa_user_n
-                    , ") did not match the master list.\n")
+    msg_1 <- paste0("The following user ",
+                    str_tax,
+                    " (",
+                    n_nonmatch,
+                    "/",
+                    taxa_user_n,
+                    ") did not match the master list.\n")
     msg_2 <- paste0(taxa_nonmatch, collapse = "\n")
     message(paste0(msg_1, msg_2))
   }##IF ~ non-matches ~ END
@@ -200,10 +215,10 @@ qc_taxa <- function(DF_User
   if(useOfficialTaxaInfo == "only_Official"){
     # Do Nothing
     # leave in "_NonOfficial" columns
-    df_result <- merge(DF_User, df_mt
-                       , by = col_taxon
-                       , all.x = TRUE
-                       , suffixes = c(sfx_NonOfficial, ""))
+    df_result <- merge(DF_User, df_mt,
+                       by = col_taxon,
+                       all.x = TRUE,
+                       suffixes = c(sfx_NonOfficial, ""))
 
     #names(df_result) <- gsub(".x$", "", names(df_result))
 
@@ -219,10 +234,10 @@ qc_taxa <- function(DF_User
     # # Revert "_NonOfficial"
     # names(df_result) <- gsub("_NonOfficial$", "", names(df_result))
 
-    df_result <- merge(DF_User, df_mt
-                       , by = col_taxon
-                       , all.x = TRUE
-                       , suffixes = c("", sfx_Official))
+    df_result <- merge(DF_User, df_mt,
+                       by = col_taxon,
+                       all.x = TRUE,
+                       suffixes = c("", sfx_Official))
 
 
     # df_result <- dplyr::left_join(DF_User, df_mt
@@ -236,10 +251,10 @@ qc_taxa <- function(DF_User
     #   df_merge[df_merge[, col_taxon] == taxa_nonmatch, paste0(col_mod
     # , "_NonOfficial")]
 
-    df_result <- merge(DF_User, df_mt
-                       , by = col_taxon
-                       , all.x = TRUE
-                       , suffixes = c(sfx_NonOfficial, ""))
+    df_result <- merge(DF_User, df_mt,
+                       by = col_taxon,
+                       all.x = TRUE,
+                       suffixes = c(sfx_NonOfficial, ""))
 
     # df_result <- dplyr::left_join(DF_User, df_mt
     #                               , by = col_taxon
@@ -253,8 +268,8 @@ qc_taxa <- function(DF_User
 
   } else {
     # Stop if wrong values
-    msg <- "Valid values for useOfficialTaxaInfo are 'only_Official', 'only_user'
-            , or 'add_new'."
+    msg <- "Valid values for useOfficialTaxaInfo are
+    'only_Official', 'only_user', or 'add_new'."
     stop(msg)
   }
 
