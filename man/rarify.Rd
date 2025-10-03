@@ -59,7 +59,7 @@ bugs_mysize <- rarify(inbug = df_biodata,
                       abund = "N_Taxa",
                       subsiz = mySize,
                       mySeed = Seed_US,
-                      verabose = FALSE)
+                      verbose = FALSE)
 
 # view results
 dim(bugs_mysize)

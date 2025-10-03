@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-10-03 15:44:16.329353
+    #> Last Update: 2025-10-03 16:12:34.658393
 
 # Version History
+
+## Changes in version 1.2.3.9005 (2025-10-03)
+
+- fix: Fix typo in example
+  - rarify
 
 ## Changes in version 1.2.3.9004 (2025-10-03)
 
