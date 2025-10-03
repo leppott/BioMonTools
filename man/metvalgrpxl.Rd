@@ -65,11 +65,11 @@ comm <- "bugs"
 ## Calculate Metrics
 df_metval <- metric.values(BioMonTools::data_benthos_PacNW, comm)
 ## Metric Names and Groups
-df_metnames <- readxl::read_excel(system.file("extdata/MetricNames.xlsx"
-                                                  , package="BioMonTools")
-                                      , guess_max = 10^6
-                                      , sheet = "MetricMetadata"
-                                      , skip = 4)
+df_metnames <- readxl::read_excel(system.file("extdata/MetricNames.xlsx",
+                                              package="BioMonTools"),
+                                  guess_max = 10^6,
+                                  sheet = "MetricMetadata",
+                                  skip = 4)
 ## Columns to Keep
 col2keep <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
 ## Grouping Column

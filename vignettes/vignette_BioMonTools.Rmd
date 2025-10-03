@@ -563,12 +563,6 @@ tbl_totals <- aggregate(cbind(N_Taxa_Orig, N_Taxa_500) ~ SampleID
                         , sum)
 knitr::kable(head(tbl_totals), caption = "Comparison, sample totals")
 
-## Not run: 
-# save the data
-#write.table(bugs_mysize,
-#            file.path(tempdir(), paste("bugs", mySize, "txt", sep = ".")),
-#            sep = "\t")
-## End(Not run)
 ```
 ### Flags
 Results should be interpreted with caution if they are flagged for any of the 
@@ -604,8 +598,8 @@ df.checks <- readxl::read_excel(system.file("extdata/MetricFlags.xlsx"
 df.flags <- BioMonTools::qc.checks(df.metrics, df.checks)
 
 # Change terminology; PASS/FAIL to NA/flag
-df.flags[,"FLAG"][df.flags[,"FLAG"] == "FAIL"] <- "flag"
-df.flags[, "FLAG"][df.flags[,"FLAG"] == "PASS"] <- NA
+df.flags[, "FLAG"][df.flags[, "FLAG"] == "FAIL"] <- "flag"
+df.flags[, "FLAG"][df.flags[, "FLAG"] == "PASS"] <- NA
 # long to wide format
 df.flags.wide <- reshape2::dcast(df.flags
                                  , SAMPLEID ~ CHECKNAME

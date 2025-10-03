@@ -17,27 +17,27 @@
 #' library(readxl)
 #'
 #' # Calculate Metrics
-#' df.samps.bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
-#'                                        , package="BioMonTools")
-#'                            , guess_max = 10^6)
+#' df.samps.bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx",
+#'                                         package="BioMonTools"),
+#'                             guess_max = 10^6)
 #'
 #' # Columns to keep
 #' myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
 #'
 #' # Run Function
 #' myDF <- df.samps.bugs
-#' df.metric.values.bugs <- metric.values(myDF, "bugs", fun.cols2keep=myCols)
+#' df.metric.values.bugs <- metric.values(myDF, "bugs", fun.cols2keep = myCols)
 #'
 #' # Import Checks
-#' df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
-#'                                           , package="BioMonTools")
-#'                                           , sheet="Flags")
+#' df.checks <- read_excel(system.file("./extdata/MetricFlags.xlsx",
+#'                                     package="BioMonTools"),
+#'                         sheet="Flags")
 #'
 #' # Run Function
 #' df.flags <- qc.checks(df.metric.values.bugs, df.checks)
 #'
 #' # Summarize Results
-#' table(df.flags[,"CHECKNAME"], df.flags[,"FLAG"], useNA="ifany")
+#' table(df.flags[, "CHECKNAME"], df.flags[, "FLAG"], useNA = "ifany")
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
 qc.checks <- function(df.metrics,

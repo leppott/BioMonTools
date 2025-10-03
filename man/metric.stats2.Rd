@@ -105,24 +105,28 @@ where Ref_Status is labeled as Stressed.
 df_bugs <- data_mmi_dev_small
 
 # Munge Names
-names(df_bugs)[names(df_bugs) \%in\% "BenSampID"] <- "SAMPLEID"
-names(df_bugs)[names(df_bugs) \%in\% "TaxaID"] <- "TAXAID"
+names(df_bugs)[names(df_bugs) \%in\% "BenSampID"]   <- "SAMPLEID"
+names(df_bugs)[names(df_bugs) \%in\% "TaxaID"]      <- "TAXAID"
 names(df_bugs)[names(df_bugs) \%in\% "Individuals"] <- "N_TAXA"
-names(df_bugs)[names(df_bugs) \%in\% "Exclude"] <- "EXCLUDE"
-names(df_bugs)[names(df_bugs) \%in\% "Class"] <- "INDEX_CLASS"
-names(df_bugs)[names(df_bugs) \%in\% "Unique_ID"] <- "SITEID"
+names(df_bugs)[names(df_bugs) \%in\% "Exclude"]     <- "EXCLUDE"
+names(df_bugs)[names(df_bugs) \%in\% "Class"]       <- "INDEX_CLASS"
+names(df_bugs)[names(df_bugs) \%in\% "Unique_ID"]   <- "SITEID"
 
 # Add Missing Columns
 df_bugs$ELEVATION_ATTR <- NA_character_
-df_bugs$GRADIENT_ATTR <- NA_character_
-df_bugs$WSAREA_ATTR <- NA_character_
-df_bugs$HABSTRUCT <- NA_character_
-df_bugs$BCG_ATTR2 <- NA_character_
-df_bugs$AIRBREATHER <- NA
-df_bugs$UFC <- NA_real_
+df_bugs$GRADIENT_ATTR  <- NA_character_
+df_bugs$WSAREA_ATTR    <- NA_character_
+df_bugs$HABSTRUCT      <- NA_character_
+df_bugs$BCG_ATTR2      <- NA_character_
+df_bugs$AIRBREATHER    <- NA
+df_bugs$UFC            <- NA_real_
 
 # Calc Metrics
-cols_keep <- c("Ref_v1", "CalVal_Class4", "SITEID", "CollDate", "CollMeth")
+cols_keep <- c("Ref_v1",
+               "CalVal_Class4",
+               "SITEID",
+               "CollDate",
+               "CollMeth")
 # INDEX_NAME and INDEX_CLASS kept by default
 df_metval <- metric.values(df_bugs, "bugs", fun.cols2keep = cols_keep)
 
@@ -138,55 +142,55 @@ DataType_Cal  <- "cal"
 DataType_Ver  <- "verif"
 col_Subset    <- "INDEX_CLASS"
 Subset_Value  <- "CentralHills"
-df_stats <- metric.stats(df_metval
-                         , col_metrics
-                         , col_SampID
-                         , col_RefStatus
-                         , RefStatus_Ref
-                         , RefStatus_Str
-                         , RefStatus_Oth
-                         , col_DataType
-                         , DataType_Cal
-                         , DataType_Ver
-                         , col_Subset
-                         , Subset_Value)
+df_stats <- metric.stats(df_metval,
+                         col_metrics,
+                         col_SampID,
+                         col_RefStatus,
+                         RefStatus_Ref,
+                         RefStatus_Str,
+                         RefStatus_Oth,
+                         col_DataType,
+                         DataType_Cal,
+                         DataType_Ver,
+                         col_Subset,
+                         Subset_Value)
 
 # Calc Stats2 (z-scores and DE)
-data_metval <- df_metval
-data_metstat <- df_stats
-col_metval_RefStatus <- "REF_V1"
-col_metval_DataType <- "CALVAL_CLASS4"
-col_metval_Subset <- "INDEX_CLASS"
+data_metval           <- df_metval
+data_metstat          <- df_stats
+col_metval_RefStatus  <- "REF_V1"
+col_metval_DataType   <- "CALVAL_CLASS4"
+col_metval_Subset     <- "INDEX_CLASS"
 col_metstat_RefStatus <- "REF_V1"
-col_metstat_DataType <- "CALVAL_CLASS4"
-col_metstat_Subset <- "INDEX_CLASS"
-RefStatus_Ref = "Ref"
-RefStatus_Str = "Strs"
-RefStatus_Oth = "Other"
-DataType_Cal = "cal"
-DataType_Ver = "verif"
-Subset_Value = "CentralHills"
-df_stats2 <- metric.stats2(data_metval
-                           , data_metstat
-                           , col_metval_RefStatus
-                           , col_metval_DataType
-                           , col_metval_Subset
-                           , col_metstat_RefStatus
-                           , col_metstat_DataType
-                           , col_metstat_Subset
-                           , RefStatus_Ref
-                           , RefStatus_Str
-                           , RefStatus_Oth
-                           , DataType_Cal
-                           , DataType_Ver
-                           , Subset_Value)
+col_metstat_DataType  <- "CALVAL_CLASS4"
+col_metstat_Subset    <- "INDEX_CLASS"
+RefStatus_Ref         <- "Ref"
+RefStatus_Str         <- "Strs"
+RefStatus_Oth         <- "Other"
+DataType_Cal          <- "cal"
+DataType_Ver          <- "verif"
+Subset_Value          <- "CentralHills"
+df_stats2 <- metric.stats2(data_metval,
+                           data_metstat,
+                           col_metval_RefStatus,
+                           col_metval_DataType,
+                           col_metval_Subset,
+                           col_metstat_RefStatus,
+                           col_metstat_DataType,
+                           col_metstat_Subset,
+                           RefStatus_Ref,
+                           RefStatus_Str,
+                           RefStatus_Oth,
+                           DataType_Cal,
+                           DataType_Ver,
+                           Subset_Value)
 
 \donttest{
 # Save Results
-write.table(df_stats2
-            , file.path(tempdir(), "metric.stats2.tsv")
-            , col.names = TRUE
-            , row.names = FALSE
-            , sep = "\t")
+write.table(df_stats2,
+            file.path(tempdir(), "metric.stats2.tsv"),
+            col.names = TRUE,
+            row.names = FALSE,
+            sep = "\t")
 }
 }

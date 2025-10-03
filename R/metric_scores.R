@@ -55,9 +55,9 @@
 #' library(reshape2)
 #'
 #' # Thresholds
-#' fn_thresh <- file.path(system.file(package = "BioMonTools")
-#'                        , "extdata"
-#'                        , "MetricScoring.xlsx")
+#' fn_thresh <- file.path(system.file(package = "BioMonTools"),
+#'                        "extdata",
+#'                        "MetricScoring.xlsx")
 #' df_thresh_metric <- read_excel(fn_thresh, sheet = "metric.scoring")
 #' df_thresh_index <- read_excel(fn_thresh, sheet = "index.scoring")
 #'
@@ -70,32 +70,33 @@
 #' myIndex <- "BCG_PacNW_L1"
 #' df_samps_bugs$Index_Name   <- myIndex
 #' df_samps_bugs$Index_Class <- "ALL"
-#' (myMetrics.Bugs <- unique(as.data.frame(df_thresh_metric)[df_thresh_metric[
-#'                           , "INDEX_NAME"] == myIndex, "METRIC_NAME"]))
+#' (myMetrics.Bugs <- unique(
+#'   as.data.frame(df_thresh_metric)[df_thresh_metric[,
+#'                                   "INDEX_NAME"] == myIndex, "METRIC_NAME"]))
 #' # Run Function
-#' df_metric_values_bugs <- metric.values(df_samps_bugs
-#'                                        , "bugs"
-#'                                        , fun.MetricNames = myMetrics.Bugs)
+#' df_metric_values_bugs <- metric.values(df_samps_bugs,
+#'                                        "bugs",
+#'                                        fun.MetricNames = myMetrics.Bugs)
 #'
 #' # index to BCG.PacNW.L1
 #' df_metric_values_bugs$INDEX_NAME <- myIndex
 #' df_metric_values_bugs$INDEX_CLASS <- "ALL"
 #'
 #' # SCORE Metrics
-#' df_metric_scores_bugs <- metric.scores(df_metric_values_bugs
-#'                                        , myMetrics.Bugs
-#'                                        , "INDEX_NAME"
-#'                                        , "INDEX_CLASS"
-#'                                        , df_thresh_metric
-#'                                        , df_thresh_index)
+#' df_metric_scores_bugs <- metric.scores(df_metric_values_bugs,
+#'                                        myMetrics.Bugs,
+#'                                        "INDEX_NAME",
+#'                                        "INDEX_CLASS",
+#'                                        df_thresh_metric,
+#'                                        df_thresh_index)
 #'
 #' # QC, table
 #' table(df_metric_scores_bugs$Index, df_metric_scores_bugs$Index_Nar)
 #' # QC, plot
-#' hist(df_metric_scores_bugs$Index
-#'      , main = "PacNW BCG Example Data"
-#'      , xlab = "Level 1 Indicator Taxa Index Score")
-#' abline(v=c(21,30), col = "blue")
+#' hist(df_metric_scores_bugs$Index,
+#'      main = "PacNW BCG Example Data",
+#'      xlab = "Level 1 Indicator Taxa Index Score")
+#' abline(v = c(21,30), col = "blue")
 #' text(21 + c(-2, +2), 200, c("Low", "Medium"), col = "blue")
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~
@@ -105,37 +106,41 @@
 #' # Thresholds
 #' # imported above
 #' # get metric names for myIndex
-#' (myMetrics_Bugs_MBSS <- unique(df_thresh_metric[df_thresh_metric[
-#' , "INDEX_NAME"]
-#'                                == myIndex, "METRIC_NAME", TRUE]))
+#' (myMetrics_Bugs_MBSS <- unique(
+#'     df_thresh_metric[df_thresh_metric[, "INDEX_NAME"] == myIndex,
+#'     "METRIC_NAME",
+#'     TRUE]))
 #' # Taxa Data
 #' myDF_Bugs_MBSS <- data_benthos_MBSS
 #' myDF_Bugs_MBSS$NONTARGET <- FALSE
 #' myDF_Bugs_MBSS$INDEX_CLASS <- toupper(myDF_Bugs_MBSS$INDEX_CLASS)
 #' myDF_Bugs_MBSS$INDEX_NAME <- myIndex
-#' myDF_Bugs_MBSS$EXCLUDE <- myDF_Bugs_MBSS$EXCLUDE=="Y"
+#' myDF_Bugs_MBSS$EXCLUDE <- myDF_Bugs_MBSS$EXCLUDE == "Y"
 #'
-#' myMetric_Values_Bugs_MBSS <- metric.values(myDF_Bugs_MBSS
-#'                                            , "bugs"
-#'                                            , myMetrics_Bugs_MBSS)
+#' myMetric_Values_Bugs_MBSS <- metric.values(myDF_Bugs_MBSS,
+#'                                            "bugs",
+#'                                            myMetrics_Bugs_MBSS)
 #'
 #' # SCORE
 #' myMetric_Values_Bugs_MBSS$INDEX_CLASS <- toupper(myMetric_Values_Bugs_MBSS$INDEX_CLASS)
-#' Metrics_Bugs_Scores_MBSS <- metric.scores(myMetric_Values_Bugs_MBSS
-#'                                           , myMetrics_Bugs_MBSS
-#'                                           , "INDEX_NAME"
-#'                                           , "INDEX_CLASS"
-#'                                           , df_thresh_metric
-#'                                           , df_thresh_index)
+#' Metrics_Bugs_Scores_MBSS <- metric.scores(myMetric_Values_Bugs_MBSS,
+#'                                           myMetrics_Bugs_MBSS,
+#'                                           "INDEX_NAME",
+#'                                           "INDEX_CLASS",
+#'                                           df_thresh_metric,
+#'                                           df_thresh_index)
 #'
 #' # QC Index Scores and Narratives
 #' # Set Narrative as Ordered Factor
 #' Nar_MBSS <- c("Very Poor", "Poor", "Fair", "Good")
-#' Metrics_Bugs_Scores_MBSS$Index_Nar <- factor(Metrics_Bugs_Scores_MBSS$Index_Nar
-#'                                             , levels=Nar_MBSS
-#'                                             , labels=Nar_MBSS
-#'                                             , ordered=TRUE)
-#' table(Metrics_Bugs_Scores_MBSS$Index, Metrics_Bugs_Scores_MBSS$Index_Nar, useNA="ifany")
+#' Metrics_Bugs_Scores_MBSS$Index_Nar <- factor(
+#'                                         Metrics_Bugs_Scores_MBSS$Index_Nar,
+#'                                         levels = Nar_MBSS,
+#'                                         labels = Nar_MBSS,
+#'                                         ordered = TRUE)
+#' table(Metrics_Bugs_Scores_MBSS$Index,
+#'       Metrics_Bugs_Scores_MBSS$Index_Nar,
+#'       useNA="ifany")
 #'
 #' # QC bug count (manual)
 #' Metrics_Bugs_Scores_MBSS[Metrics_Bugs_Scores_MBSS[,"ni_total"]>120,
@@ -150,14 +155,15 @@
 #' \donttest{
 #' # QC bug count (with function)
 #' # Import Checks
-#' df_checks <- read_excel(system.file("./extdata/MetricFlags.xlsx"
-#'                                           , package="BioMonTools"), sheet="Flags")
+#' df_checks <- read_excel(system.file("./extdata/MetricFlags.xlsx",
+#'                                     package="BioMonTools"),
+#'                         sheet="Flags")
 #' # Run Function
 #' df_flags <- qc.checks(Metrics_Bugs_Scores_MBSS, df_checks)
 #' # Summarize Results
 #' table(df_flags[,"CHECKNAME"], df_flags[,"FLAG"], useNA="ifany")
 #' }
-#'
+#
 #' @export
 metric.scores <- function(DF_Metrics,
                           col_MetricNames,

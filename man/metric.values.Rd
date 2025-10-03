@@ -201,8 +201,8 @@ Breaking change from 0.5 to 0.6 with change from Index_Name to Index_Class.
 \examples{
 # Example 1, data already in R
 
-df_metric_values_bugs <- metric.values(BioMonTools::data_benthos_PacNW, "bugs")
-
+df_metric_values_bugs <- metric.values(BioMonTools::data_benthos_PacNW,
+                                       "bugs")
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Example 2, data from Excel
@@ -211,43 +211,43 @@ df_metric_values_bugs <- metric.values(BioMonTools::data_benthos_PacNW, "bugs")
 library(readxl)
 library(reshape2)
 
-df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx"
-                                       , package = "BioMonTools")
-                            , guess_max = 10^6)
+df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx",
+                                        package = "BioMonTools"),
+                            guess_max = 10^6)
 
 # Columns to keep
 myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
 
 # Run Function
-df_metric_values_bugs <- metric.values(df_samps_bugs[1:100, ]
-                                       , "bugs"
-                                       , fun.cols2keep = myCols)
-\dontrun{
-# View Results
-View(df_metric_values_bugs)
-}
+df_metric_values_bugs <- metric.values(df_samps_bugs[1:100, ],
+                                       "bugs",
+                                       fun.cols2keep = myCols)
 
 # Get data in long format so can QC results more easily
-df_long <- melt(df_metric_values_bugs, id.vars = c("SAMPLEID"
-                                                 , "INDEX_NAME"
-                                                 , "INDEX_CLASS"
-                                                 , toupper(myCols))
-                          , variable.name = "METRIC_NAME"
-                          , value.name = "METRIC_VALUE")
+df_long <- melt(df_metric_values_bugs,
+                id.vars = c("SAMPLEID",
+                            "INDEX_NAME",
+                            "INDEX_CLASS",
+                            toupper(myCols)),
+                variable.name = "METRIC_NAME",
+                value.name = "METRIC_VALUE")
 
 \dontrun{
 # Save Results
-write.table(df_long, file.path(tempdir(), "metric.values.tsv")
-            , col.names = TRUE, row.names = FALSE, sep = "\t")
+write.table(df_long,
+            file.path(tempdir(), "metric.values.tsv"),
+            col.names = TRUE,
+            row.names = FALSE,
+            sep = "\t")
 
 # DataExplorer Report
 library(DataExplorer)
-create_report(df_metric_values_bugs
-              , output_file = file.path(tempdir()
-                                 , "DataExplorer_Report_MetricValues.html"))
-create_report(df_samps_bugs
-              , output_file = file.path(tempdir()
-                                   , "DataExplorer_Report_BugSamples.html"))
+create_report(df_metric_values_bugs,
+              output_file = file.path(tempdir(),
+                                    "DataExplorer_Report_MetricValues.html"))
+create_report(df_samps_bugs,
+              output_file = file.path(tempdir(),
+                                      "DataExplorer_Report_BugSamples.html"))
 }
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -255,34 +255,22 @@ create_report(df_samps_bugs
 ## reuse df_samps_bugs from above
 
 # metric names to keep (in this order)
-myMetrics <- c("ni_total", "nt_EPT", "nt_Ephem", "pi_tv_intol", "pi_Ephem"
-               , "nt_ffg_scrap", "pi_habit_climb")
+myMetrics <- c("ni_total",
+               "nt_EPT",
+               "nt_Ephem",
+               "pi_tv_intol",
+               "pi_Ephem",
+               "nt_ffg_scrap",
+               "pi_habit_climb")
 
 # Run Function
-df_metric_values_bugs_myMetrics <- metric.values(df_samps_bugs, "bugs"
-                                               , fun.MetricNames = myMetrics)
-\dontrun{
-# View Results
-View(df_metric_values_bugs_myMetrics)
-}
+df_metric_values_bugs_myMetrics <- metric.values(df_samps_bugs,
+                                                 "bugs",
+                                                 fun.MetricNames = myMetrics)
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Example 4, fish metrics
 
 df_metric_values_fish <- metric.values(data_fish_MBSS, "fish")
-
-\dontrun{
-# View Results
-View(df_metric_values_fish)
-}
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Example 5, periphyton (algae) metrics
-
-# df_metric_values_periphyton <- metric.values(data_diatom_mmi_dev, "algae")
-
-\dontrun{
-# View Results
-}
 
 }

@@ -90,24 +90,28 @@
 #' df_bugs <- data_mmi_dev_small
 #'
 #' # Munge Names
-#' names(df_bugs)[names(df_bugs) %in% "BenSampID"] <- "SAMPLEID"
-#' names(df_bugs)[names(df_bugs) %in% "TaxaID"] <- "TAXAID"
+#' names(df_bugs)[names(df_bugs) %in% "BenSampID"]   <- "SAMPLEID"
+#' names(df_bugs)[names(df_bugs) %in% "TaxaID"]      <- "TAXAID"
 #' names(df_bugs)[names(df_bugs) %in% "Individuals"] <- "N_TAXA"
-#' names(df_bugs)[names(df_bugs) %in% "Exclude"] <- "EXCLUDE"
-#' names(df_bugs)[names(df_bugs) %in% "Class"] <- "INDEX_CLASS"
-#' names(df_bugs)[names(df_bugs) %in% "Unique_ID"] <- "SITEID"
+#' names(df_bugs)[names(df_bugs) %in% "Exclude"]     <- "EXCLUDE"
+#' names(df_bugs)[names(df_bugs) %in% "Class"]       <- "INDEX_CLASS"
+#' names(df_bugs)[names(df_bugs) %in% "Unique_ID"]   <- "SITEID"
 #'
 #' # Add Missing Columns
 #' df_bugs$ELEVATION_ATTR <- NA_character_
-#' df_bugs$GRADIENT_ATTR <- NA_character_
-#' df_bugs$WSAREA_ATTR <- NA_character_
-#' df_bugs$HABSTRUCT <- NA_character_
-#' df_bugs$BCG_ATTR2 <- NA_character_
-#' df_bugs$AIRBREATHER <- NA
-#' df_bugs$UFC <- NA_real_
+#' df_bugs$GRADIENT_ATTR  <- NA_character_
+#' df_bugs$WSAREA_ATTR    <- NA_character_
+#' df_bugs$HABSTRUCT      <- NA_character_
+#' df_bugs$BCG_ATTR2      <- NA_character_
+#' df_bugs$AIRBREATHER    <- NA
+#' df_bugs$UFC            <- NA_real_
 #'
 #' # Calc Metrics
-#' cols_keep <- c("Ref_v1", "CalVal_Class4", "SITEID", "CollDate", "CollMeth")
+#' cols_keep <- c("Ref_v1",
+#'                "CalVal_Class4",
+#'                "SITEID",
+#'                "CollDate",
+#'                "CollMeth")
 #' # INDEX_NAME and INDEX_CLASS kept by default
 #' df_metval <- metric.values(df_bugs, "bugs", fun.cols2keep = cols_keep)
 #'
@@ -124,26 +128,26 @@
 #' col_Subset    <- "INDEX_CLASS"
 #' Subset_Value  <- "CentralHills"
 #'
-#' df_stats <- metric.stats(df_metval
-#'                          , col_metrics
-#'                          , col_SampID
-#'                          , col_RefStatus
-#'                          , RefStatus_Ref
-#'                          , RefStatus_Str
-#'                          , RefStatus_Oth
-#'                          , col_DataType
-#'                          , DataType_Cal
-#'                          , DataType_Ver
-#'                          , col_Subset
-#'                          , Subset_Value)
+#' df_stats <- metric.stats(df_metval,
+#'                          col_metrics,
+#'                          col_SampID,
+#'                          col_RefStatus,
+#'                          RefStatus_Ref,
+#'                          RefStatus_Str,
+#'                          RefStatus_Oth,
+#'                          col_DataType,
+#'                          DataType_Cal,
+#'                          DataType_Ver,
+#'                          col_Subset,
+#'                          Subset_Value)
 #'
 #' \donttest{
 #' # Save Results
-#' write.table(df_stats
-#'             , file.path(tempdir(), "metric.stats.tsv")
-#'             , col.names = TRUE
-#'             , row.names = FALSE
-#'             , sep = "\t")
+#' write.table(df_stats,
+#'             file.path(tempdir(), "metric.stats.tsv"),
+#'             col.names = TRUE,
+#'             row.names = FALSE,
+#'             sep = "\t")
 #' }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export

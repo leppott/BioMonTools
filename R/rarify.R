@@ -34,33 +34,39 @@
 #' dim(df_biodata)
 #'
 #' # subsample
-#' mySize <- 500
+#' mySize  <- 500
 #' Seed_OR <- 18590214
 #' Seed_WA <- 18891111
 #' Seed_US <- 17760704
-#' bugs_mysize <- rarify(inbug=df_biodata, sample.ID="SampleID"
-#'                      ,abund="N_Taxa",subsiz=mySize, mySeed=Seed_US)
+#' bugs_mysize <- rarify(inbug = df_biodata,
+#'                       sample.ID = "SampleID",
+#'                       abund = "N_Taxa",
+#'                       subsiz = mySize,
+#'                       mySeed = Seed_US)
 #'
 #' # view results
 #' dim(bugs_mysize)
 #'
 #' # Compare pre- and post- subsample counts
-#' df_compare <- merge(df_biodata, bugs_mysize, by=c("SampleID", "TaxaID")
-#'                     , suffixes = c("_Orig","_500"))
-#' df_compare <- df_compare[, c("SampleID"
-#'                              , "TaxaID"
-#'                              , "N_Taxa_Orig"
-#'                              , "N_Taxa_500")]
+#' df_compare <- merge(df_biodata,
+#'                     bugs_mysize,
+#'                     by = c("SampleID", "TaxaID"),
+#'                     suffixes = c("_Orig","_500"))
+#' df_compare <- df_compare[, c("SampleID",
+#'                              "TaxaID",
+#'                              "N_Taxa_Orig",
+#'                              "N_Taxa_500")]
 #'
 #' # compare totals
-#' tbl_totals <- aggregate(cbind(N_Taxa_Orig, N_Taxa_500) ~ SampleID
-#'                                                      , df_compare, sum)
+#' tbl_totals <- aggregate(cbind(N_Taxa_Orig, N_Taxa_500) ~ SampleID,
+#'                         df_compare,
+#'                         sum)
 #'
 #'\donttest{
 #' # save the data
-#' write.table(bugs_mysize
-#'             , file.path(tempdir(), paste("bugs", mySize, "txt", sep = "."))
-#'                                          , sep = "\t")
+#' write.table(bugs_mysize,
+#'             file.path(tempdir(), paste("bugs", mySize, "txt", sep = ".")),
+#'             sep = "\t")
 #' # Open tempdir (Windows only)
 #' shell.exec(tempdir())
 #' }

@@ -64,47 +64,47 @@
 #' library(knitr)
 #'
 #' # Data
-#' df_samps_bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx"
-#'                                         , package="BioMonTools")
-#'                            , guess_max=10^6)
+#' df_samps_bugs <- read_excel(system.file("./extdata/Data_Benthos.xlsx",
+#'                                         package="BioMonTools"),
+#'                             guess_max=10^6)
 #'
 #' # Variables
 #' SampID     <- "SampleID"
 #' TaxaID     <- "TaxaID"
 #' TaxaCount  <- "N_Taxa"
 #' Exclude    <- "Exclude_New"
-#' TaxaLevels <- c("Kingdom"
-#'                 , "Phylum"
-#'                 , "SubPhylum"
-#'                 , "Class"
-#'                 , "SubClass"
-#'                 , "Order"
-#'                 , "SubOrder"
-#'                 , "SuperFamily"
-#'                 , "Family"
-#'                 , "SubFamily"
-#'                 , "Tribe"
-#'                 , "Genus"
-#'                 , "SubGenus"
-#'                 , "Species"
-#'                 , "Variety")
+#' TaxaLevels <- c("Kingdom",
+#'                 "Phylum",
+#'                 "SubPhylum",
+#'                 "Class",
+#'                 "SubClass",
+#'                 "Order",
+#'                 "SubOrder",
+#'                 "SuperFamily",
+#'                 "Family",
+#'                 "SubFamily",
+#'                 "Tribe",
+#'                 "Genus",
+#'                 "SubGenus",,
+#'                 "Species"
+#'                 "Variety")
 #' # Taxa that should be treated as equivalent
-#' Exceptions <- data.frame("TaxaID"=c("Sphaeriidae")
-#'                                     , "PhyloID"=c("Pisidiidae"))
+#' Exceptions <- data.frame("TaxaID" = "Sphaeriidae",
+#'                          "PhyloID" = "Pisidiidae")
 #'
 #' # EXAMPLE 1
-#' df_tst <- markExcluded(df_samps_bugs
-#'                        , SampID = "SampleID"
-#'                        , TaxaID = "TaxaID"
-#'                        , TaxaCount = "N_Taxa"
-#'                        , Exclude = "Exclude_New"
-#'                        , TaxaLevels = TaxaLevels
-#'                        , Exceptions = Exceptions)
+#' df_tst <- markExcluded(df_samps_bugs,
+#'                        SampID = "SampleID",
+#'                        TaxaID = "TaxaID",
+#'                        TaxaCount = "N_Taxa",
+#'                        Exclude = "Exclude_New",
+#'                        TaxaLevels = TaxaLevels,
+#'                        Exceptions = Exceptions)
 #'
 #' # Compare
-#' df_compare <- dplyr::summarise(dplyr::group_by(df_tst, SampleID)
-#'                                , Exclude_Import = sum(Exclude)
-#'                                , Exclude_R = sum(Exclude_New))
+#' df_compare <- dplyr::summarise(dplyr::group_by(df_tst, SampleID),
+#'                                Exclude_Import = sum(Exclude),
+#'                                Exclude_R = sum(Exclude_New))
 #' df_compare$Diff <- df_compare$Exclude_Import - df_compare$Exclude_R
 #' #
 #' tbl_diff <- table(df_compare$Diff)
@@ -150,16 +150,16 @@
 #' ## balance of precision and recall
 #' class_F1 <- 2 * (class_prec * class_sens) / (class_prec + class_sens)
 #' #
-#' results_names <- c("Sensitivity (Recall)"
-#'                    , "Precision"
-#'                    , "Specificity"
-#'                    , "Overall Accuracy"
-#'                    , "F1")
-#' results_values <- c(class_sens
-#'                    , class_prec
-#'                    , class_spec
-#'                    , class_acc
-#'                    , class_F1)
+#' results_names <- c("Sensitivity (Recall)",
+#'                    "Precision",
+#'                    "Specificity",
+#'                    "Overall Accuracy",
+#'                    "F1")
+#' results_values <- c(class_sens,
+#'                     class_prec,
+#'                     class_spec,
+#'                     class_acc,
+#'                     class_F1)
 #' #
 #' tbl_class <- data.frame(results_names, results_values)
 #' names(tbl_class) <- c("Performance Metrics", "Percent")
@@ -171,18 +171,18 @@
 #' # EXAMPLE 2
 #' ## No Exceptions
 #'
-#' df_tst2 <- markExcluded(df_samps_bugs
-#'                         , SampID = "SampleID"
-#'                         , TaxaID = "TaxaID"
-#'                         , TaxaCount = "N_Taxa"
-#'                         , Exclude = "Exclude_New"
-#'                         , TaxaLevels = TaxaLevels
-#'                         , Exceptions = NA)
+#' df_tst2 <- markExcluded(df_samps_bugs,
+#'                         SampID = "SampleID",
+#'                         TaxaID = "TaxaID",
+#'                         TaxaCount = "N_Taxa",
+#'                         Exclude = "Exclude_New",
+#'                         TaxaLevels = TaxaLevels,
+#'                         Exceptions = NA)
 #'
 #' # Compare
-#' df_compare2 <- dplyr::summarise(dplyr::group_by(df_tst2, SampleID)
-#'                                , Exclude_Import = sum(Exclude)
-#'                                , Exclude_R=sum(Exclude_New))
+#' df_compare2 <- dplyr::summarise(dplyr::group_by(df_tst2, SampleID),
+#'                                 Exclude_Import = sum(Exclude),
+#'                                 Exclude_R = sum(Exclude_New))
 #' df_compare2$Diff <- df_compare2$Exclude_Import - df_compare2$Exclude_R
 #' #
 #' tbl_diff2 <- table(df_compare2$Diff)
@@ -203,8 +203,8 @@
 #' knitr::kable(df_compare2[1:10, ])
 #' knitr::kable(tail(df_compare2))
 #' # samples with differences
-#' (samp_diff2 <- as.data.frame(df_compare2[df_compare2[,"Diff"]!=0
-#'                                                   , "SampleID"]))
+#' (samp_diff2 <- as.data.frame(df_compare2[df_compare2[, "Diff"] != 0,
+#'                                          "SampleID"]))
 #' # results for only those with differences
 #' df_tst_diff2 <- filter(df_tst2, SampleID %in% samp_diff2$SampleID)
 #' # add diff field
@@ -229,16 +229,16 @@
 #' ## balance of precision and recall
 #' class_F12 <- 2 * (class_prec2 * class_sens2) / (class_prec2 + class_sens2)
 #' #
-#' results_names2 <- c("Sensitivity (Recall)"
-#'                     , "Precision"
-#'                     , "Specificity"
-#'                     , "Overall Accuracy"
-#'                     , "F1")
-#' results_values2 <- c(class_sens2
-#'                     , class_prec2
-#'                     , class_spec2
-#'                     , class_acc2
-#'                     , class_F12)
+#' results_names2 <- c("Sensitivity (Recall)",
+#'                     "Precision",
+#'                     "Specificity",
+#'                     "Overall Accuracy",
+#'                     "F1")
+#' results_values2 <- c(class_sens2,
+#'                      class_prec2,
+#'                      class_spec2,
+#'                      class_acc2,
+#'                      class_F12)
 #' #
 #' tbl_class2 <- data.frame(results_names2, results_values2)
 #' names(tbl_class2) <- c("Performance Metrics", "Percent")

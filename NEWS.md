@@ -4,9 +4,26 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-22 09:58:47.521272
+    #> Last Update: 2025-10-03 14:53:22.587886
 
 # Version History
+
+## Changes in version 1.2.3.9003 (2025-09-22)
+
+- style: Use commas at end of wrap lines instead of start of next line
+  - Examples
+    - assign_indexclass.R
+    - markExcluded.R
+    - metric_scores.R
+    - metric_stats.R
+    - metric_stats2.R
+    - metric_values_excel.R
+    - metric_values.R
+    - qc_checks.R
+    - qc_taxa.R
+    - rarify.R
+    - taxa_translate.R
+- refactor: Remove write example in vignette example
 
 ## Changes in version 1.2.3.9002 (2025-09-22)
 
