@@ -11,7 +11,8 @@ markExcluded(
   TaxaCount = "N_TAXA",
   Exclude = "EXCLUDE",
   TaxaLevels,
-  Exceptions = NA
+  Exceptions = NA,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -37,6 +38,9 @@ Need to be in order from coarse to fine (i.e., Phylum to Species).}
 exceptions.  Default = NA
 Column 1 is the name used in the TaxaID column of df_samptax.
 Column 2 is the name used in the TaxaLevels columns of df_samptax.}
+
+\item{verbose}{Boolean value for if status messages are output to the console.
+Default = FALSE}
 }
 \value{
 Returns a data frame of df_samptax with an additional column,
@@ -107,8 +111,8 @@ TaxaLevels <- c("Kingdom",
                 "SubFamily",
                 "Tribe",
                 "Genus",
-                "SubGenus",,
-                "Species"
+                "SubGenus",
+                "Species",
                 "Variety")
 # Taxa that should be treated as equivalent
 Exceptions <- data.frame("TaxaID" = "Sphaeriidae",

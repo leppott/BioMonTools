@@ -18,6 +18,7 @@ MapTaxaObs(
   regions,
   map_grp = NULL,
   leg_loc = "right",
+  verbose = FALSE,
   ...
 )
 }
@@ -50,6 +51,9 @@ color code the points on the map.  Default = NULL}
 
 \item{leg_loc}{Legend location text.  Default = "right"
 Other values may not work properly.}
+
+\item{verbose}{Boolean value for if status messages are output to the console.
+Default = FALSE}
 
 \item{...}{Optional arguments to be passed to methods.}
 }
@@ -110,5 +114,6 @@ MapTaxaObs(df_obs[1:500, ],
            map_grp = "estuary",
            leg_loc = "bottomleft",
            xlim = myXlim,
-           ylim = myYlim,)
+           ylim = myYlim,
+           verbose = FALSE)
 }

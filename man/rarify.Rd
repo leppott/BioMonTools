@@ -4,7 +4,7 @@
 \alias{rarify}
 \title{Rarify (subsample) biological sample to fixed count}
 \usage{
-rarify(inbug, sample.ID, abund, subsiz, mySeed = NA)
+rarify(inbug, sample.ID, abund, subsiz, mySeed = NA, verbose = FALSE)
 }
 \arguments{
 \item{inbug}{Input data frame.  Needs 3 columns (SampleID, taxonomicID
@@ -17,8 +17,11 @@ rarify(inbug, sample.ID, abund, subsiz, mySeed = NA)
 \item{subsiz}{Target subsample size for each sample.}
 
 \item{mySeed}{Seed for random number generator.  If provided the results with
-the same inbug file will produce the same results. Defaut = NA (random seed
+the same inbug file will produce the same results. Default = NA (random seed
 will be used.)}
+
+\item{verbose}{Boolean value for if status messages are output to the console.
+Default = FALSE}
 }
 \value{
 Returns a data frame with the same three columns but the abund field
@@ -55,7 +58,8 @@ bugs_mysize <- rarify(inbug = df_biodata,
                       sample.ID = "SampleID",
                       abund = "N_Taxa",
                       subsiz = mySize,
-                      mySeed = Seed_US)
+                      mySeed = Seed_US,
+                      verabose = FALSE)
 
 # view results
 dim(bugs_mysize)

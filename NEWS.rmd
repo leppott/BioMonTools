@@ -18,7 +18,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
-## Changes in version 1.2.3.9003 (2025-09-22)
+## Changes in version 1.2.3.9004 (2025-10-03)
+
+* refactor: Remove print to console for function defaults
+    + rarify.R
+    + MapTaxaObs.R
+    + markExcluded.R
+* fix: Fix typo in example
+    + markExcluded
+
+## Changes in version 1.2.3.9003 (2025-10-03)
 
 * style: Use commas at end of wrap lines instead of start of next line
     + Examples

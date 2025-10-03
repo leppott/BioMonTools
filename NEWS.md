@@ -4,11 +4,20 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-10-03 14:53:22.587886
+    #> Last Update: 2025-10-03 15:44:16.329353
 
 # Version History
 
-## Changes in version 1.2.3.9003 (2025-09-22)
+## Changes in version 1.2.3.9004 (2025-10-03)
+
+- refactor: Remove print to console for function defaults
+  - rarify.R
+  - MapTaxaObs.R
+  - markExcluded.R
+- fix: Fix typo in example
+  - markExcluded
+
+## Changes in version 1.2.3.9003 (2025-10-03)
 
 - style: Use commas at end of wrap lines instead of start of next line
   - Examples

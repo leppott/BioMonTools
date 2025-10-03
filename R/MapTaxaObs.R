@@ -37,6 +37,8 @@
 #' color code the points on the map.  Default = NULL
 #' @param leg_loc Legend location text.  Default = "right"
 #' Other values may not work properly.
+#' @param verbose Boolean value for if status messages are output to the console.
+#' Default = FALSE
 #' @param ... Optional arguments to be passed to methods.
 # @param map_xlim maps::map function xlim;
 # @param map_ylim maps::map function ylim;
@@ -75,7 +77,8 @@
 #'            map_grp = "estuary",
 #'            leg_loc = "bottomleft",
 #'            xlim = myXlim,
-#'            ylim = myYlim,)
+#'            ylim = myYlim,
+#'            verbose = FALSE)
 #
 #' @export
 MapTaxaObs <- function(df_obs,
@@ -91,6 +94,7 @@ MapTaxaObs <- function(df_obs,
                        regions,
                        map_grp = NULL,
                        leg_loc = "right",
+                       verbose = FALSE,
                        ...) {
 
   # tibble to data frame
@@ -114,10 +118,12 @@ MapTaxaObs <- function(df_obs,
   myCounterStart <- 0 #set at number of columns not used
   myCounterStop <- length(data2process)
   myCounter <- myCounterStart
-  print(paste("Total files to process = "
-              , myCounterStop - myCounterStart
-              , sep = ""))
-  utils::flush.console()
+  if (verbose) {
+    print(paste("Total files to process = "
+                , myCounterStop - myCounterStart
+                , sep = ""))
+    utils::flush.console()
+  }## IF ~ verbose
 
   if(is.null(output_dir)){
     dir_out <- file.path(getwd())
@@ -126,7 +132,7 @@ MapTaxaObs <- function(df_obs,
   }## IF ~ output_dir ~ END
 
   #Define PDF
-  if (output_type=="pdf") {##IF.output_type.START
+  if (output_type=="pdf") {
     grDevices::pdf(file = file.path(dir_out
                                     , paste(output_prefix, "pdf", sep = "."))
                    , width = 10
@@ -134,22 +140,23 @@ MapTaxaObs <- function(df_obs,
   }##IF.output_type.END
 
 
-  while (myCounter < myCounterStop)
-  { #LOOP.START
+  while (myCounter < myCounterStop) {
     # 1.0. Increase the Counter
     myCounter <- myCounter+1
     #
     # define Target Taxa for this iteration of the loop
     myTargetMapCat <- data2process[myCounter]
     # Update User
-    print(paste("Map "
-                , myCounter
-                , " of "
-                , myCounterStop
-                , "; "
-                , myTargetMapCat
-                , sep = ""))
-    utils::flush.console()
+    if (verbose) {
+      print(paste("Map "
+                  , myCounter
+                  , " of "
+                  , myCounterStop
+                  , "; "
+                  , myTargetMapCat
+                  , sep = ""))
+      utils::flush.console()
+    }## IF ~ verbose
 
     # # subset
     #data.TargetMapCat <- subset(df_obs, TaxaID == myTargetMapCat)
@@ -161,7 +168,7 @@ MapTaxaObs <- function(df_obs,
     myDenom <- max(data.TargetMapCat[, TaxaCount])
 
     # jpg
-    if (output_type=="jpg") {##IF.output_type.START
+    if (output_type=="jpg") {
       grDevices::jpeg(filename = file.path(dir_out
                                            , paste(output_prefix
                                       , gsub("[[:punct:]]", "_", myTargetMapCat)
@@ -282,18 +289,15 @@ MapTaxaObs <- function(df_obs,
     grDevices::dev.off() ##PDF.END
   }##IF.output_type.END
   #
-  print(paste("Processing of "
-              , myCounter - myCounterStart
-              , " of "
-              , myCounterStop  -myCounterStart
-              , " files complete."
-              , sep = ""))
-  utils::flush.console()
-  #data2process[myCounter] #use for troubleshooting if get error
-
-
+  if (verbose) {
+    print(paste("Processing of "
+                , myCounter - myCounterStart
+                , " of "
+                , myCounterStop  -myCounterStart
+                , " files complete."
+                , sep = ""))
+    utils::flush.console()
+    #data2process[myCounter] #use for troubleshooting if get error
+  }## IF ~ verbose
   #
-}##FUNCTION.MapTaxaObs.END
-
-
-
+}##FUNCTION ~ END

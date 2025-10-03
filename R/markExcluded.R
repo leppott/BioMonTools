@@ -51,6 +51,8 @@
 #' exceptions.  Default = NA
 #' Column 1 is the name used in the TaxaID column of df_samptax.
 #' Column 2 is the name used in the TaxaLevels columns of df_samptax.
+#' @param verbose Boolean value for if status messages are output to the console.
+#' Default = FALSE
 #'
 #' @return Returns a data frame of df_samptax with an additional column,
 #' Exclude.
@@ -85,8 +87,8 @@
 #'                 "SubFamily",
 #'                 "Tribe",
 #'                 "Genus",
-#'                 "SubGenus",,
-#'                 "Species"
+#'                 "SubGenus",
+#'                 "Species",
 #'                 "Variety")
 #' # Taxa that should be treated as equivalent
 #' Exceptions <- data.frame("TaxaID" = "Sphaeriidae",
@@ -252,7 +254,8 @@ markExcluded <- function(df_samptax,
                          TaxaCount = "N_TAXA",
                          Exclude = "EXCLUDE",
                          TaxaLevels,
-                         Exceptions = NA) {
+                         Exceptions = NA,
+                         verbose = FALSE) {
 
   #
   boo_QC <- FALSE
@@ -260,8 +263,8 @@ markExcluded <- function(df_samptax,
 
     # Data
     df_samps_bugs <- readxl::read_excel(system.file("extdata/Data_Benthos.xlsx"
-                                            , package="BioMonTools")
-                                , guess_max=10^6)
+                                            , package = "BioMonTools")
+                                , guess_max = 10^6)
 
     # Recode to Function Variables
     df_samptax <- df_samps_bugs
@@ -271,24 +274,23 @@ markExcluded <- function(df_samptax,
     TaxaID     <- "TaxaID"
     TaxaCount  <- "N_Taxa"
     Exclude    <- "Exclude_New"
-    TaxaLevels <- c("Kingdom"
-                    , "Phylum"
-                    , "SubPhylum"
-                    , "Class"
-                    , "SubClass"
-                    , "Order"
-                    , "SubOrder"
-                    , "SuperFamily"
-                    , "Family"
-                    , "SubFamily"
-                    , "Tribe"
-                    , "Genus"
-                    , "SubGenus"
-                    , "Species"
-                    , "Variety")
-    Exceptions <- data.frame("TaxaID"="Sphaeriidae"
-                             , "PhyloID"="Pisidiidae")
-
+    TaxaLevels <- c("Kingdom",
+                    "Phylum",
+                    "SubPhylum",
+                    "Class",
+                    "SubClass",
+                    "Order",
+                    "SubOrder",
+                    "SuperFamily",
+                    "Family",
+                    "SubFamily",
+                    "Tribe",
+                    "Genus",
+                    "SubGenus",
+                    "Species",
+                    "Variety")
+    Exceptions <- data.frame("TaxaID" = "Sphaeriidae",
+                             "PhyloID" = "Pisidiidae")
   }## IF ~ isTRUE(boo_QC) ~ END
 
   # global variable bindings ----
@@ -341,19 +343,19 @@ markExcluded <- function(df_samptax,
 
   # QC, check for Exclude field (ask to continue if already present)
   # needs session to be interactive
-  if (sum(Exclude %in% names(df_samptax))==1 & interactive()==TRUE) {
+  if (sum(Exclude %in% names(df_samptax)) == 1 & interactive() == TRUE) {
     ##IF.prompt.START
     #ask to continue
     prompt_01 <- paste0("The user provided name for Exclude ('", Exclude
                         ,"') already exists in the user provided data.")
     prompt_02 <- "Do you wish to overwrite it with the results of this function (YES or NO)?"
-    msg_prompt <- paste(prompt_01, prompt_02, sep="\n")
+    msg_prompt <- paste(prompt_01, prompt_02, sep = "\n")
 
     #user_input <- readline(prompt=myPrompt)
     user_input <- NA
-    user_input <- utils::menu(c("YES", "NO"), title=msg_prompt)
+    user_input <- utils::menu(c("YES", "NO"), title = msg_prompt)
     # any answer other than "YES" will stop the function.
-    if(user_input!=1){##IF.user.input.START
+    if(user_input != 1){##IF.user.input.START
       stop(paste0("\n The user chose *not* to continue due to duplicate field name; "
                   , Exclude))
     }##IF.user_input.END
@@ -379,19 +381,21 @@ markExcluded <- function(df_samptax,
     #
     i_num <- match(i, tl_present)
     i_len <- length(tl_present)
-    msg_progress <- paste0("Working on item (", i_num, "/", i_len,"); ", i)
-    print(msg_progress)
-    utils::flush.console()
+    if (verbose) {
+      msg_progress <- paste0("Working on item (", i_num, "/", i_len,"); ", i)
+      print(msg_progress)
+      utils::flush.console()
+    }## IF ~ verbose
 
     # Exceptions
     # Rename "Exceptions" in TaxaLevels (present) columns
     if(sum(!is.na(Exceptions))!=0){##IF.is.na.START
-      a <-  as.character(Exceptions[,2][1])
-      for (a in Exceptions[,2]){##FOR.a.START
+      a <-  as.character(Exceptions[, 2][1])
+      for (a in Exceptions[, 2]){##FOR.a.START
         a.num <- match(a, Exceptions[,2])
-        df_samptax[, i] <- ifelse(df_samptax[,i]==a
-                                  , as.character(Exceptions[,1][a.num])
-                                  , df_samptax[,i])
+        df_samptax[, i] <- ifelse(df_samptax[, i] == a,
+                                  as.character(Exceptions[, 1][a.num]),
+                                  df_samptax[, i])
       }##FOR.a.END
     }##IF.is.na.END
 
@@ -454,11 +458,11 @@ markExcluded <- function(df_samptax,
     # https://dplyr.tidyverse.org/reference/se-deprecated.html
     # rework without interp
 
-    i_count <- dplyr::summarise(dplyr::group_by(df_samptax
-                                                , !!as.name(SampID)
-                                                , !!as.name(i))
-                              , count_tl = dplyr::n_distinct(!!as.name(TaxaID))
-                              , .groups = "drop_last")
+    i_count <- dplyr::summarise(dplyr::group_by(df_samptax,
+                                                !!as.name(SampID),
+                                                !!as.name(i)),
+                                count_tl = dplyr::n_distinct(!!as.name(TaxaID)),
+                                .groups = "drop_last")
 
 
 
@@ -480,12 +484,13 @@ markExcluded <- function(df_samptax,
 
     # add count_tl with merge
     # (keep all columns)
-    if(i_num==1){##IF.i_num.START
+    if(i_num == 1){
       df_Exclude <- df_samptax
       # # QC, TaxaLevels (present) as character
       # df_Exclude[,tl_present] <- as.character(unlist(df_Exclude[,tl_present]))
       # ## gets undone some how
     }##IF.i_num.START
+
     # (merge where TaxaID==i)
     # df_Exclude <- merge(df_Exclude, i_count_dups, all.x=TRUE, sort=FALSE
     #                     , by.x=c(SampID, TaxaID)
@@ -530,15 +535,15 @@ markExcluded <- function(df_samptax,
     # dplyr::inner_join with variable by
     # https://stackoverflow.com/questions/28399065/dplyr-join-on-by-a-b-where-a-and-b-are-variables-containing-strings/31612991
     # Experiment so by_var is ok
-    by_var <- c(stats::setNames(nm = by_x_1, by_y_1), stats::setNames(nm = by_x_2
-                                                                    , by_y_2))
+    by_var <- c(stats::setNames(nm = by_x_1, by_y_1),
+                stats::setNames(nm = by_x_2, by_y_2))
 
     df_Exclude <- dplyr::left_join(df_Exclude, i_count_dups, by = by_var)
     #dim(df_Exclude)
 
     # Update Exclude (only for TRUE)
-    df_Exclude[is.na(df_Exclude[,"count_tl"]), "count_tl"] <- FALSE
-    df_Exclude[df_Exclude[,"count_tl"] == TRUE, Exclude] <- TRUE
+    df_Exclude[is.na(df_Exclude[, "count_tl"]), "count_tl"] <- FALSE
+    df_Exclude[df_Exclude[, "count_tl"] == TRUE, Exclude] <- TRUE
     # Remove "count_tl"
     col_drop <- match("count_tl", names(df_Exclude))
     df_Exclude <- df_Exclude[, -col_drop]
