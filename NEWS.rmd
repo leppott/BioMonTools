@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.3.9006 (2025-10-03)
+
+* fix: Remove non-portable command from example
+    + rarify
+    
 ## Changes in version 1.2.3.9005 (2025-10-03)
 
 * fix: Fix typo in example

@@ -71,8 +71,6 @@
 #' write.table(bugs_mysize,
 #'             file.path(tempdir(), paste("bugs", mySize, "txt", sep = ".")),
 #'             sep = "\t")
-#' # Open tempdir (Windows only)
-#' shell.exec(tempdir())
 #' }
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export

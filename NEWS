@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-10-03 16:12:34.658393
+    #> Last Update: 2025-10-03 16:45:20.574508
 
 # Version History
+
+## Changes in version 1.2.3.9006 (2025-10-03)
+
+- fix: Remove non-portable command from example
+  - rarify
 
 ## Changes in version 1.2.3.9005 (2025-10-03)
 
