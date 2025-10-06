@@ -173,57 +173,57 @@
 #' @examples
 #' # Example 1, data already in R
 #'
-#' df_metric_values_bugs <- metric.values(BioMonTools::data_benthos_PacNW,
-#'                                        "bugs")
+#' df_metval <- metric.values(BioMonTools::data_benthos_PacNW,
+#'                            "bugs")
 #'
+# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# # Example 2, data from Excel
+#
+# # Packages
+# library(readxl)
+# library(reshape2)
+#
+# df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx",
+#                                         package = "BioMonTools"),
+#                             guess_max = 10^6)
+#
+# # Columns to keep
+# myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
+#
+# # Run Function
+# df_metric_values_bugs <- metric.values(df_samps_bugs[1:100, ],
+#                                        "bugs",
+#                                        fun.cols2keep = myCols)
+#
+## Get data in long format so can QC results more easily
+# df_long <- melt(df_metric_values_bugs,
+#                 id.vars = c("SAMPLEID",
+#                             "INDEX_NAME",
+#                             "INDEX_CLASS",
+#                             toupper(myCols)),
+#                 variable.name = "METRIC_NAME",
+#                 value.name = "METRIC_VALUE")
+#
+#\dontrun{
+# # Save Results
+# write.table(df_long,
+#             file.path(tempdir(), "metric.values.tsv"),
+#             col.names = TRUE,
+#             row.names = FALSE,
+#             sep = "\t")
+#
+# # DataExplorer Report
+# library(DataExplorer)
+# create_report(df_metric_values_bugs,
+#               output_file = file.path(tempdir(),
+#                                     "DataExplorer_Report_MetricValues.html"))
+# create_report(df_samps_bugs,
+#               output_file = file.path(tempdir(),
+#                                       "DataExplorer_Report_BugSamples.html"))
+# }
+#
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' # Example 2, data from Excel
-#'
-#' # Packages
-#' library(readxl)
-#' library(reshape2)
-#'
-#' df_samps_bugs <- read_excel(system.file("extdata/Data_Benthos.xlsx",
-#'                                         package = "BioMonTools"),
-#'                             guess_max = 10^6)
-#'
-#' # Columns to keep
-#' myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
-#'
-#' # Run Function
-#' df_metric_values_bugs <- metric.values(df_samps_bugs[1:100, ],
-#'                                        "bugs",
-#'                                        fun.cols2keep = myCols)
-#'
-#' # Get data in long format so can QC results more easily
-#' df_long <- melt(df_metric_values_bugs,
-#'                 id.vars = c("SAMPLEID",
-#'                             "INDEX_NAME",
-#'                             "INDEX_CLASS",
-#'                             toupper(myCols)),
-#'                 variable.name = "METRIC_NAME",
-#'                 value.name = "METRIC_VALUE")
-#'
-#'\dontrun{
-#' # Save Results
-#' write.table(df_long,
-#'             file.path(tempdir(), "metric.values.tsv"),
-#'             col.names = TRUE,
-#'             row.names = FALSE,
-#'             sep = "\t")
-#'
-#' # DataExplorer Report
-#' library(DataExplorer)
-#' create_report(df_metric_values_bugs,
-#'               output_file = file.path(tempdir(),
-#'                                     "DataExplorer_Report_MetricValues.html"))
-#' create_report(df_samps_bugs,
-#'               output_file = file.path(tempdir(),
-#'                                       "DataExplorer_Report_BugSamples.html"))
-#' }
-#'
-#' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' # Example 3, specific metrics or metrics in a specific order
+#' # Example 2, specific metrics or metrics in a specific order
 #' ## reuse df_samps_bugs from above
 #'
 #' # metric names to keep (in this order)
@@ -236,15 +236,15 @@
 #'                "pi_habit_climb")
 #'
 #' # Run Function
-#' df_metric_values_bugs_myMetrics <- metric.values(df_samps_bugs,
-#'                                                  "bugs",
-#'                                                  fun.MetricNames = myMetrics)
+#' df_metval_myMetrics <- metric.values(BioMonTools::data_benthos_PacNW,
+#'                                      "bugs",
+#'                                      fun.MetricNames = myMetrics)
 #'
-#' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' # Example 4, fish metrics
-#'
-#' df_metric_values_fish <- metric.values(data_fish_MBSS, "fish")
-#'
+# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# # Example 4, fish metrics
+#
+# df_metric_values_fish <- metric.values(data_fish_MBSS, "fish")
+#
 # #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # # Example 5, periphyton (algae) metrics
 #

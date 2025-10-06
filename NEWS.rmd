@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.3.9007 (2025-10-06)
+
+* refactor: Remove or edit examples with errors, warnings, or long run times
+    + metric.scores
+    + metric.values
+
 ## Changes in version 1.2.3.9006 (2025-10-03)
 
 * fix: Remove non-portable command from example
