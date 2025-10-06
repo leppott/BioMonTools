@@ -18,7 +18,7 @@ name list."><meta property="og:image" content="/logo.png"><!-- mathjax --><scrip
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3.9008</span>
       </span>
     </div>
 
@@ -212,14 +212,14 @@ new columns.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example 1, PacNW</span></span></span>
 <span class="r-in"><span><span class="co">## Input Parameters</span></span></span>
 <span class="r-in"><span><span class="va">df_user</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="va"><a href="data_benthos_PacNW.html">data_benthos_PacNW</a></span></span></span>
-<span class="r-in"><span><span class="va">fn_official</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>                         , <span class="st">"taxa_official"</span></span></span>
-<span class="r-in"><span>                         , <span class="st">"ORWA_TAXATRANSLATOR_20221219.csv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fn_official</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                         <span class="st">"taxa_official"</span>,</span></span>
+<span class="r-in"><span>                         <span class="st">"ORWA_TAXATRANSLATOR_20221219b.csv"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df_official</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">fn_official</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">fn_official_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span></span></span>
-<span class="r-in"><span>                                              , package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>                                  , <span class="st">"taxa_official"</span></span></span>
-<span class="r-in"><span>                      , <span class="st">"ORWA_ATTRIBUTES_METADATA_20221117.csv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fn_official_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span></span>
+<span class="r-in"><span>                                              package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                                  <span class="st">"taxa_official"</span>,</span></span>
+<span class="r-in"><span>                                  <span class="st">"ORWA_ATTRIBUTES_METADATA_20221117.csv"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df_official_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">fn_official_metadata</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">taxaid_user</span> <span class="op">&lt;-</span> <span class="st">"TaxaID"</span></span></span>
 <span class="r-in"><span><span class="va">taxaid_official_match</span> <span class="op">&lt;-</span> <span class="st">"Taxon_orig"</span></span></span>
@@ -230,23 +230,29 @@ new columns.</p>
 <span class="r-in"><span><span class="va">sum_n_taxa_col</span> <span class="op">&lt;-</span> <span class="st">"N_TAXA"</span></span></span>
 <span class="r-in"><span><span class="va">sum_n_taxa_group_by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"INDEX_NAME"</span>, <span class="st">"INDEX_CLASS"</span>, <span class="st">"SampleID"</span>, <span class="st">"TaxaID"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co">## Run Function</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">taxatrans</span> <span class="op">&lt;-</span> <span class="fu">taxa_translate</span><span class="op">(</span><span class="va">df_user</span></span></span>
-<span class="r-in"><span>                               , <span class="va">df_official</span></span></span>
-<span class="r-in"><span>                               , <span class="va">df_official_metadata</span></span></span>
-<span class="r-in"><span>                               , <span class="va">taxaid_user</span></span></span>
-<span class="r-in"><span>                               , <span class="va">taxaid_official_match</span></span></span>
-<span class="r-in"><span>                               , <span class="va">taxaid_official_project</span></span></span>
-<span class="r-in"><span>                               , <span class="va">taxaid_drop</span></span></span>
-<span class="r-in"><span>                               , <span class="va">col_drop</span></span></span>
-<span class="r-in"><span>                               , <span class="va">sum_n_taxa_boo</span></span></span>
-<span class="r-in"><span>                               , <span class="va">sum_n_taxa_col</span></span></span>
-<span class="r-in"><span>                               , <span class="va">sum_n_taxa_group_by</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">taxatrans</span> <span class="op">&lt;-</span> <span class="fu">taxa_translate</span><span class="op">(</span><span class="va">df_user</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">df_official</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">df_official_metadata</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">taxaid_user</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">taxaid_official_match</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">taxaid_official_project</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">taxaid_drop</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">col_drop</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">sum_n_taxa_boo</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">sum_n_taxa_col</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">sum_n_taxa_group_by</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> User taxa match, 221 / 223</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following user taxa (2/223) did not match the official taxa list:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Eukiefferiella coerulescens/claripennis groups</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Telmatodrilinae</span>
 <span class="r-in"><span><span class="co">## View Results</span></span></span>
-<span class="r-in"><span><span class="co"># View(taxatrans$merge)</span></span></span>
 <span class="r-in"><span><span class="va">taxatrans</span><span class="op">$</span><span class="va">nonmatch</span></span></span>
-<span class="r-in"><span><span class="co"># View(taxatrans$official_metadata)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                           TaxaID N_Taxa_Sum N_Taxa_Count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Eukiefferiella coerulescens/claripennis groups         NA            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                Telmatodrilinae         NA            1</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#~~~~~</span></span></span>
 <span class="r-in"><span><span class="co"># Example 2, Multiple Stages</span></span></span>
@@ -254,22 +260,22 @@ new columns.</p>
 <span class="r-in"><span><span class="va">TAXAID</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Agapetus"</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Zavrelimyia"</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">N_TAXA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">33</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">STAGE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>,<span class="st">"L"</span>,<span class="st">"P"</span>,<span class="st">"X"</span>,<span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">STAGE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"L"</span>, <span class="st">"P"</span>, <span class="st">"X"</span>, <span class="st">""</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df_user</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">TAXAID</span>, <span class="va">N_TAXA</span>, <span class="va">STAGE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">df_user</span><span class="op">[</span>, <span class="st">"INDEX_NAME"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"BCG_MariNW_Bugs500ct"</span></span></span>
+<span class="r-in"><span><span class="va">df_user</span><span class="op">[</span>, <span class="st">"INDEX_NAME"</span><span class="op">]</span>  <span class="op">&lt;-</span> <span class="st">"BCG_MariNW_Bugs500ct"</span></span></span>
 <span class="r-in"><span><span class="va">df_user</span><span class="op">[</span>, <span class="st">"INDEX_CLASS"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"HiGrad-HiElev"</span></span></span>
-<span class="r-in"><span><span class="va">df_user</span><span class="op">[</span>, <span class="st">"SAMPLEID"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Test2023"</span></span></span>
-<span class="r-in"><span><span class="va">df_user</span><span class="op">[</span>, <span class="st">"STATIONID"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Test"</span></span></span>
-<span class="r-in"><span><span class="va">df_user</span><span class="op">[</span>, <span class="st">"DATE"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"2023-01-16"</span></span></span>
+<span class="r-in"><span><span class="va">df_user</span><span class="op">[</span>, <span class="st">"SAMPLEID"</span><span class="op">]</span>    <span class="op">&lt;-</span> <span class="st">"Test2023"</span></span></span>
+<span class="r-in"><span><span class="va">df_user</span><span class="op">[</span>, <span class="st">"STATIONID"</span><span class="op">]</span>   <span class="op">&lt;-</span> <span class="st">"Test"</span></span></span>
+<span class="r-in"><span><span class="va">df_user</span><span class="op">[</span>, <span class="st">"DATE"</span><span class="op">]</span>        <span class="op">&lt;-</span> <span class="st">"2023-01-16"</span></span></span>
 <span class="r-in"><span><span class="co">## Input Parameters</span></span></span>
-<span class="r-in"><span><span class="va">fn_official</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>                         , <span class="st">"taxa_official"</span></span></span>
-<span class="r-in"><span>                         , <span class="st">"ORWA_TAXATRANSLATOR_20221219.csv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fn_official</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                         <span class="st">"taxa_official"</span>,</span></span>
+<span class="r-in"><span>                         <span class="st">"ORWA_TAXATRANSLATOR_20221219b.csv"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df_official</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">fn_official</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">fn_official_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span></span></span>
-<span class="r-in"><span>                                              , package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>                                  , <span class="st">"taxa_official"</span></span></span>
-<span class="r-in"><span>                                  , <span class="st">"ORWA_ATTRIBUTES_20221212.csv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fn_official_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>,</span></span>
+<span class="r-in"><span>                                              package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                                  <span class="st">"taxa_official"</span>,</span></span>
+<span class="r-in"><span>                                  <span class="st">"ORWA_ATTRIBUTES_20221212.csv"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df_official_metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">fn_official_metadata</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">taxaid_user</span> <span class="op">&lt;-</span> <span class="st">"TAXAID"</span></span></span>
 <span class="r-in"><span><span class="va">taxaid_official_match</span> <span class="op">&lt;-</span> <span class="st">"Taxon_orig"</span></span></span>
@@ -280,22 +286,63 @@ new columns.</p>
 <span class="r-in"><span><span class="va">sum_n_taxa_col</span> <span class="op">&lt;-</span> <span class="st">"N_TAXA"</span></span></span>
 <span class="r-in"><span><span class="va">sum_n_taxa_group_by</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"INDEX_NAME"</span>, <span class="st">"INDEX_CLASS"</span>, <span class="st">"SAMPLEID"</span>, <span class="st">"TAXAID"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co">## Run Function</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">taxatrans</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu">taxa_translate</span><span class="op">(</span><span class="va">df_user</span></span></span>
-<span class="r-in"><span>                                         , <span class="va">df_official</span></span></span>
-<span class="r-in"><span>                                         , <span class="va">df_official_metadata</span></span></span>
-<span class="r-in"><span>                                         , <span class="va">taxaid_user</span></span></span>
-<span class="r-in"><span>                                      , <span class="va">taxaid_official_match</span></span></span>
-<span class="r-in"><span>                                      , <span class="va">taxaid_official_project</span></span></span>
-<span class="r-in"><span>                                      , <span class="va">taxaid_drop</span></span></span>
-<span class="r-in"><span>                                      , <span class="va">col_drop</span></span></span>
-<span class="r-in"><span>                                      , <span class="va">sum_n_taxa_boo</span></span></span>
-<span class="r-in"><span>                                      , <span class="va">sum_n_taxa_col</span></span></span>
-<span class="r-in"><span>                                      , <span class="va">sum_n_taxa_group_by</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">taxatrans</span> <span class="op">&lt;-</span> <span class="fu">taxa_translate</span><span class="op">(</span><span class="va">df_user</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">df_official</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">df_official_metadata</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">taxaid_user</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">taxaid_official_match</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">taxaid_official_project</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">taxaid_drop</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">col_drop</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">sum_n_taxa_boo</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">sum_n_taxa_col</span>,</span></span>
+<span class="r-in"><span>                            <span class="va">sum_n_taxa_group_by</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> User taxa match, 2 / 2</span>
 <span class="r-in"><span><span class="co">## View Results (before and after)</span></span></span>
 <span class="r-in"><span><span class="va">df_user</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        TAXAID N_TAXA STAGE           INDEX_NAME   INDEX_CLASS SAMPLEID</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Agapetus     33     A BCG_MariNW_Bugs500ct HiGrad-HiElev Test2023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Agapetus     33     L BCG_MariNW_Bugs500ct HiGrad-HiElev Test2023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    Agapetus     33     P BCG_MariNW_Bugs500ct HiGrad-HiElev Test2023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 Zavrelimyia     50     X BCG_MariNW_Bugs500ct HiGrad-HiElev Test2023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 Zavrelimyia     50       BCG_MariNW_Bugs500ct HiGrad-HiElev Test2023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   STATIONID       DATE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      Test 2023-01-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      Test 2023-01-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      Test 2023-01-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      Test 2023-01-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      Test 2023-01-16</span>
 <span class="r-in"><span><span class="va">taxatrans</span><span class="op">$</span><span class="va">merge</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        TAXAID Match_Official  Taxon_Group Changed            Rationale</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Zavrelimyia           TRUE Chironomidae    TRUE Current Nomenclature</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Zavrelimyia           TRUE Chironomidae    TRUE Current Nomenclature</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    Agapetus           TRUE  Trichoptera    TRUE                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    Agapetus           TRUE  Trichoptera    TRUE                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    Agapetus           TRUE  Trichoptera    TRUE                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   NonTarget    TSN  Kingdom     Phylum SubPhylum   Class  SubClass       Order</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     FALSE 128259 Animalia Arthropoda  Hexapoda Insecta Pterygota     Diptera</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     FALSE 128259 Animalia Arthropoda  Hexapoda Insecta Pterygota     Diptera</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     FALSE 117121 Animalia Arthropoda  Hexapoda Insecta Pterygota Trichoptera</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     FALSE 117121 Animalia Arthropoda  Hexapoda Insecta Pterygota Trichoptera</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     FALSE 117121 Animalia Arthropoda  Hexapoda Insecta Pterygota Trichoptera</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     SubOrder SuperFamily          Family   SubFamily        Tribe GenusGroup</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Nematocera                Chironomidae Tanypodinae Pentaneurini           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Nematocera                Chironomidae Tanypodinae Pentaneurini           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                        Glossosomatidae  Agapetinae                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                        Glossosomatidae  Agapetinae                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                        Glossosomatidae  Agapetinae                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Genus SubGenus SpeciesGroup SpeciesSubGroup SpeciesComplex Species</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Zavrelimyia                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Zavrelimyia                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    Agapetus                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    Agapetus                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    Agapetus                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   N_TAXA STAGE           INDEX_NAME   INDEX_CLASS SAMPLEID STATIONID       DATE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     50     X BCG_MariNW_Bugs500ct HiGrad-HiElev Test2023      Test 2023-01-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     50       BCG_MariNW_Bugs500ct HiGrad-HiElev Test2023      Test 2023-01-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     33     A BCG_MariNW_Bugs500ct HiGrad-HiElev Test2023      Test 2023-01-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     33     L BCG_MariNW_Bugs500ct HiGrad-HiElev Test2023      Test 2023-01-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     33     P BCG_MariNW_Bugs500ct HiGrad-HiElev Test2023      Test 2023-01-16</span>
 </code></pre></div>
     </div>
   </div>

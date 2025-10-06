@@ -20,7 +20,7 @@ The dplyr package is used to generate the metric values."><meta property="og:ima
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3.9008</span>
       </span>
     </div>
 
@@ -247,102 +247,28 @@ boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example 1, data already in R</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">df_metric_values_bugs</span> <span class="op">&lt;-</span> <span class="fu">metric.values</span><span class="op">(</span><span class="fu">BioMonTools</span><span class="fu">::</span><span class="va"><a href="data_benthos_PacNW.html">data_benthos_PacNW</a></span>, <span class="st">"bugs"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df_metval</span> <span class="op">&lt;-</span> <span class="fu">metric.values</span><span class="op">(</span><span class="fu">BioMonTools</span><span class="fu">::</span><span class="va"><a href="data_benthos_PacNW.html">data_benthos_PacNW</a></span>,</span></span>
+<span class="r-in"><span>                           <span class="st">"bugs"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># View Results</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">df_metric_values_bugs</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span></span>
-<span class="r-in"><span><span class="co"># Example 2, data from Excel</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Packages</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://readxl.tidyverse.org" class="external-link">readxl</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/reshape" class="external-link">reshape2</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">df_samps_bugs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/Data_Benthos.xlsx"</span></span></span>
-<span class="r-in"><span>                                       , package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>                            , guess_max <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Columns to keep</span></span></span>
-<span class="r-in"><span><span class="va">myCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Area_mi2"</span>, <span class="st">"SurfaceArea"</span>, <span class="st">"Density_m2"</span>, <span class="st">"Density_ft2"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Run Function</span></span></span>
-<span class="r-in"><span><span class="va">df_metric_values_bugs</span> <span class="op">&lt;-</span> <span class="fu">metric.values</span><span class="op">(</span><span class="va">df_samps_bugs</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="op">]</span></span></span>
-<span class="r-in"><span>                                       , <span class="st">"bugs"</span></span></span>
-<span class="r-in"><span>                                       , fun.cols2keep <span class="op">=</span> <span class="va">myCols</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Updated col class; TOLVAL2 to numeric</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># View Results</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">df_metric_values_bugs</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Get data in long format so can QC results more easily</span></span></span>
-<span class="r-in"><span><span class="va">df_long</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/melt.html" class="external-link">melt</a></span><span class="op">(</span><span class="va">df_metric_values_bugs</span>, id.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SAMPLEID"</span></span></span>
-<span class="r-in"><span>                                                 , <span class="st">"INDEX_NAME"</span></span></span>
-<span class="r-in"><span>                                                 , <span class="st">"INDEX_CLASS"</span></span></span>
-<span class="r-in"><span>                                                 , <span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">toupper</a></span><span class="op">(</span><span class="va">myCols</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>                          , variable.name <span class="op">=</span> <span class="st">"METRIC_NAME"</span></span></span>
-<span class="r-in"><span>                          , value.name <span class="op">=</span> <span class="st">"METRIC_VALUE"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># Save Results</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">df_long</span>, <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"metric.values.tsv"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>            , col.names <span class="op">=</span> <span class="cn">TRUE</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span>, sep <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># DataExplorer Report</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://boxuancui.github.io/DataExplorer/" class="external-link">DataExplorer</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="http://boxuancui.github.io/DataExplorer/reference/create_report.html" class="external-link">create_report</a></span><span class="op">(</span><span class="va">df_metric_values_bugs</span></span></span>
-<span class="r-in"><span>              , output_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>                                 , <span class="st">"DataExplorer_Report_MetricValues.html"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="http://boxuancui.github.io/DataExplorer/reference/create_report.html" class="external-link">create_report</a></span><span class="op">(</span><span class="va">df_samps_bugs</span></span></span>
-<span class="r-in"><span>              , output_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>                                   , <span class="st">"DataExplorer_Report_BugSamples.html"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span></span>
-<span class="r-in"><span><span class="co"># Example 3, specific metrics or metrics in a specific order</span></span></span>
+<span class="r-in"><span><span class="co"># Example 2, specific metrics or metrics in a specific order</span></span></span>
 <span class="r-in"><span><span class="co">## reuse df_samps_bugs from above</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># metric names to keep (in this order)</span></span></span>
-<span class="r-in"><span><span class="va">myMetrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ni_total"</span>, <span class="st">"nt_EPT"</span>, <span class="st">"nt_Ephem"</span>, <span class="st">"pi_tv_intol"</span>, <span class="st">"pi_Ephem"</span></span></span>
-<span class="r-in"><span>               , <span class="st">"nt_ffg_scrap"</span>, <span class="st">"pi_habit_climb"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">myMetrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ni_total"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"nt_EPT"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"nt_Ephem"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"pi_tv_intol"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"pi_Ephem"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"nt_ffg_scrap"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"pi_habit_climb"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Run Function</span></span></span>
-<span class="r-in"><span><span class="va">df_metric_values_bugs_myMetrics</span> <span class="op">&lt;-</span> <span class="fu">metric.values</span><span class="op">(</span><span class="va">df_samps_bugs</span>, <span class="st">"bugs"</span></span></span>
-<span class="r-in"><span>                                               , fun.MetricNames <span class="op">=</span> <span class="va">myMetrics</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Updated col class; TOLVAL2 to numeric</span>
+<span class="r-in"><span><span class="va">df_metval_myMetrics</span> <span class="op">&lt;-</span> <span class="fu">metric.values</span><span class="op">(</span><span class="fu">BioMonTools</span><span class="fu">::</span><span class="va"><a href="data_benthos_PacNW.html">data_benthos_PacNW</a></span>,</span></span>
+<span class="r-in"><span>                                     <span class="st">"bugs"</span>,</span></span>
+<span class="r-in"><span>                                     fun.MetricNames <span class="op">=</span> <span class="va">myMetrics</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># View Results</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">df_metric_values_bugs_myMetrics</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span></span>
-<span class="r-in"><span><span class="co"># Example 4, fish metrics</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">df_metric_values_fish</span> <span class="op">&lt;-</span> <span class="fu">metric.values</span><span class="op">(</span><span class="va">data_fish_MBSS</span>, <span class="st">"fish"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> EXCLUDE column does not have any TRUE values.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> This is common with fish samples.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Valid values are TRUE or FALSE.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Other values are not recognized</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># View Results</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">df_metric_values_fish</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span></span>
-<span class="r-in"><span><span class="co"># Example 5, periphyton (algae) metrics</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># df_metric_values_periphyton &lt;- metric.values(data_diatom_mmi_dev, "algae")</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># View Results</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

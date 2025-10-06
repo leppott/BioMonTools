@@ -18,7 +18,7 @@ official (or user supplied) master taxa list (benthic macroinvertebrates)."><met
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3.9008</span>
       </span>
     </div>
 
@@ -137,8 +137,8 @@ names match.</p>
 <p>**Benthic Macroinvertebrate**</p>
 <p>url_mt_bugs &lt;- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"
 df_mt_bugs &lt;- read.csv(url_mt_bugs)</p>
-<p>The master taxa files are maintained by xxxx staff.  Update dates will be
-logged on the GitHub repository.</p>
+<p>The master taxa files are periodically updated.  Update dates will be logged
+on the GitHub repository.</p>
 <p>Expected fields include:</p>
 <p>**Benthic Macroinvertebrates**</p>
 <p>+ TAXON, Phylum, Class, Order, Family, Genus, Other_Taxa, Tribe, FFG,
@@ -147,28 +147,63 @@ logged on the GitHub repository.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># Example 1, Master Taxa List, Bugs</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example 1, Master Taxa List, Bugs</span></span></span>
 <span class="r-in"><span><span class="va">url_mt_bugs</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"</span></span></span>
-<span class="r-in"><span><span class="va">df_mt_bugs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">url_mt_bugs</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df_mt_bugs</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">url_mt_bugs</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># User data</span></span></span>
 <span class="r-in"><span><span class="va">DF_User</span> <span class="op">&lt;-</span> <span class="va">data_benthos_MBSS</span></span></span>
 <span class="r-in"><span><span class="va">DF_Official</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>   <span class="co"># NULL df_mt_bugs</span></span></span>
 <span class="r-in"><span><span class="va">fun.Community</span> <span class="op">&lt;-</span> <span class="st">"bugs"</span></span></span>
 <span class="r-in"><span><span class="va">useOfficialTaxaInfo</span> <span class="op">&lt;-</span> <span class="st">"only_Official"</span></span></span>
+<span class="r-in"><span><span class="co"># modify taxa id column</span></span></span>
+<span class="r-in"><span><span class="va">DF_User</span><span class="op">[</span>, <span class="st">"TAXON"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">DF_User</span><span class="op">[</span>, <span class="st">"TAXAID"</span><span class="op">]</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">df_qc_taxa_bugs</span> <span class="op">&lt;-</span> <span class="fu">qc_taxa</span><span class="op">(</span><span class="va">DF_User</span></span></span>
-<span class="r-in"><span>                          , <span class="va">DF_Official</span></span></span>
-<span class="r-in"><span>                          , <span class="va">fun.Community</span></span></span>
-<span class="r-in"><span>                          , <span class="va">useOfficialTaxaInfo</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df_qc_taxa_bugs</span> <span class="op">&lt;-</span> <span class="fu">qc_taxa</span><span class="op">(</span><span class="va">DF_User</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">DF_Official</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">fun.Community</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">useOfficialTaxaInfo</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Taxa match, 313 / 313</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># QC input/output</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">DF_User</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5066   41</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">df_qc_taxa_bugs</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5066   54</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">DF_User</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "INDEX_NAME"        "SAMPLEID"          "DATE"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "TAXAID"            "N_TAXA"            "N_GRIDS"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "EXCLUDE"           "INDEX_CLASS"       "Phylum"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "Class"             "Order"             "Family"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "Genus"             "Other_Taxa"        "Tribe"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "FFG"               "FAM_TV"            "Habit"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "TOLVAL"            "TOLVAL2"           "UFC"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "UFC_Comment"       "SUBPHYLUM"         "SUBCLASS"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "INFRAORDER"        "SUBFAMILY"         "LIFE_CYCLE"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "BCG_ATTR"          "THERMAL_INDICATOR" "LONGLIVED"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "NOTEWORTHY"        "FFG2"              "HABITAT"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "ELEVATION_ATTR"    "GRADIENT_ATTR"     "WSAREA_ATTR"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "HABSTRUCT"         "BCG_ATTR2"         "NONTARGET"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [40] "AIRBREATHER"       "TAXON"            </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_qc_taxa_bugs</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "TAXON"                  "INDEX_NAME"             "SAMPLEID"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "DATE"                   "TAXAID"                 "N_TAXA"                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "N_GRIDS"                "EXCLUDE"                "INDEX_CLASS"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "PHYLUM_NonOfficial"     "CLASS_NonOfficial"      "ORDER_NonOfficial"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "FAMILY_NonOfficial"     "GENUS_NonOfficial"      "OTHER_TAXA_NonOfficial"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "TRIBE_NonOfficial"      "FFG_NonOfficial"        "FAM_TV_NonOfficial"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "HABIT_NonOfficial"      "TOLVAL"                 "TOLVAL2"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "UFC"                    "UFC_COMMENT"            "SUBPHYLUM"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "SUBCLASS"               "INFRAORDER"             "SUBFAMILY"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "LIFE_CYCLE"             "BCG_ATTR"               "THERMAL_INDICATOR"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "LONGLIVED"              "NOTEWORTHY"             "FFG2"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "HABITAT"                "ELEVATION_ATTR"         "GRADIENT_ATTR"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "WSAREA_ATTR"            "HABSTRUCT"              "BCG_ATTR2"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [40] "NONTARGET"              "AIRBREATHER"            "PHYLUM"                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43] "CLASS"                  "ORDER"                  "FAMILY"                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [46] "GENUS"                  "OTHER_TAXA"             "TRIBE"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [49] "FFG"                    "FAM_TV"                 "HABIT"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [52] "FINALTOLVAL07"          "COMMENT"                "YEAR_ADDED"            </span>
 </code></pre></div>
     </div>
   </div>

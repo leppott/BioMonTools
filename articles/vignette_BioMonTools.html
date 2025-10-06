@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3.9008</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 data-toc-skip class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 data-toc-skip class="date">2025-09-11</h4>
+            <h4 data-toc-skip class="date">2025-10-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/main/vignettes/vignette_BioMonTools.Rmd" class="external-link"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -359,7 +359,8 @@ below).</p>
 <span><span class="co"># Ouput</span></span>
 <span><span class="va">df_metval_ci</span> <span class="op">&lt;-</span> <span class="va">df_metval</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">col_ID</span>, <span class="va">col_met2keep</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co"># RMD table</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_metval_ci</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Metric Calculation, select metrics"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_metval_ci</span><span class="op">)</span>, </span>
+<span>             caption <span class="op">=</span> <span class="st">"Metric Calculation, select metrics"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Metric Calculation, select metrics</caption>
 <colgroup>
@@ -590,18 +591,6 @@ Exclude.</p>
 <span>                                    , Exceptions <span class="op">=</span> <span class="va">Exceptions</span><span class="op">)</span></span>
 <span><span class="co">#&gt; *WARNING*, 3 taxa levels missing from input data frame; </span></span>
 <span><span class="co">#&gt;  KINGDOM, SUBORDER, VARIETY</span></span>
-<span><span class="co">#&gt; [1] "Working on item (1/12); PHYLUM"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (2/12); SUBPHYLUM"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (3/12); CLASS"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (4/12); SUBCLASS"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (5/12); ORDER"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (6/12); SUPERFAMILY"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (7/12); FAMILY"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (8/12); SUBFAMILY"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (9/12); TRIBE"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (10/12); GENUS"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (11/12); SUBGENUS"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span></span>
 <span></span>
 <span><span class="co"># Compare</span></span>
 <span><span class="va">df_compare</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">df_tst</span>, <span class="va">SampleID</span><span class="op">)</span></span>
@@ -766,18 +755,6 @@ misclassified.</p>
 <span>                                     , Exceptions <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="co">#&gt; *WARNING*, 3 taxa levels missing from input data frame; </span></span>
 <span><span class="co">#&gt;  KINGDOM, SUBORDER, VARIETY</span></span>
-<span><span class="co">#&gt; [1] "Working on item (1/12); PHYLUM"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (2/12); SUBPHYLUM"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (3/12); CLASS"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (4/12); SUBCLASS"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (5/12); ORDER"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (6/12); SUPERFAMILY"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (7/12); FAMILY"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (8/12); SUBFAMILY"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (9/12); TRIBE"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (10/12); GENUS"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (11/12); SUBGENUS"</span></span>
-<span><span class="co">#&gt; [1] "Working on item (12/12); SPECIES"</span></span>
 <span></span>
 <span><span class="co"># Compare</span></span>
 <span><span class="va">df_compare2</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">df_tst2</span>, <span class="va">SampleID</span><span class="op">)</span></span>
@@ -1060,9 +1037,6 @@ target). This is done to make richness metrics comparable across the
 <span>                                   , abund <span class="op">=</span> <span class="st">"N_Taxa"</span></span>
 <span>                                   , subsiz <span class="op">=</span> <span class="va">mySize</span></span>
 <span>                                   , mySeed <span class="op">=</span> <span class="va">Seed_US</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rarify of samples complete. </span></span>
-<span><span class="co">#&gt;  Number of samples =  12 </span></span>
-<span><span class="co">#&gt;  Execution time (sec) =  0.0089999999999999</span></span>
 <span></span>
 <span><span class="co"># view results</span></span>
 <span><span class="co">#dim(bugs_mysize)</span></span>
@@ -1169,19 +1143,13 @@ target). This is done to make richness metrics comparable across the
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co">## Not run: </span></span>
-<span><span class="co"># save the data</span></span>
-<span><span class="co">#write.table(bugs_mysize, paste("bugs",mySize,"txt",sep="."),sep="\t")</span></span>
-<span><span class="co">## End(Not run)</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="flags">Flags<a class="anchor" aria-label="anchor" href="#flags"></a>
 </h4>
 <p>Results should be interpreted with caution if they are flagged for
 any of the criteria listed below. It is up to the user’s discretion as
 to how to handled flagged samples.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Packages</span></span>
 <span><span class="co">#library(readxl)</span></span>
 <span><span class="co">#library(reshape2)</span></span>
@@ -1212,8 +1180,8 @@ to how to handled flagged samples.</p>
 <span><span class="va">df.flags</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/qc.checks.html">qc.checks</a></span><span class="op">(</span><span class="va">df.metrics</span>, <span class="va">df.checks</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Change terminology; PASS/FAIL to NA/flag</span></span>
-<span><span class="va">df.flags</span><span class="op">[</span>,<span class="st">"FLAG"</span><span class="op">]</span><span class="op">[</span><span class="va">df.flags</span><span class="op">[</span>,<span class="st">"FLAG"</span><span class="op">]</span> <span class="op">==</span> <span class="st">"FAIL"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"flag"</span></span>
-<span><span class="va">df.flags</span><span class="op">[</span>, <span class="st">"FLAG"</span><span class="op">]</span><span class="op">[</span><span class="va">df.flags</span><span class="op">[</span>,<span class="st">"FLAG"</span><span class="op">]</span> <span class="op">==</span> <span class="st">"PASS"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span><span class="va">df.flags</span><span class="op">[</span>, <span class="st">"FLAG"</span><span class="op">]</span><span class="op">[</span><span class="va">df.flags</span><span class="op">[</span>, <span class="st">"FLAG"</span><span class="op">]</span> <span class="op">==</span> <span class="st">"FAIL"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"flag"</span></span>
+<span><span class="va">df.flags</span><span class="op">[</span>, <span class="st">"FLAG"</span><span class="op">]</span><span class="op">[</span><span class="va">df.flags</span><span class="op">[</span>, <span class="st">"FLAG"</span><span class="op">]</span> <span class="op">==</span> <span class="st">"PASS"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
 <span><span class="co"># long to wide format</span></span>
 <span><span class="va">df.flags.wide</span> <span class="op">&lt;-</span> <span class="fu">reshape2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/cast.html" class="external-link">dcast</a></span><span class="op">(</span><span class="va">df.flags</span></span>
 <span>                                 , <span class="va">SAMPLEID</span> <span class="op">~</span> <span class="va">CHECKNAME</span></span>

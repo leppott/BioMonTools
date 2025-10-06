@@ -18,7 +18,7 @@ on metric statistics for use with developing a multi-metric index."><meta proper
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3.9008</span>
       </span>
     </div>
 
@@ -195,24 +195,28 @@ where Ref_Status is labeled as Stressed.</p>
 <span class="r-in"><span><span class="va">df_bugs</span> <span class="op">&lt;-</span> <span class="va">data_mmi_dev_small</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Munge Names</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"BenSampID"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"SAMPLEID"</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"TaxaID"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"TAXAID"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"BenSampID"</span><span class="op">]</span>   <span class="op">&lt;-</span> <span class="st">"SAMPLEID"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"TaxaID"</span><span class="op">]</span>      <span class="op">&lt;-</span> <span class="st">"TAXAID"</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"Individuals"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"N_TAXA"</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"Exclude"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"EXCLUDE"</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"Class"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"INDEX_CLASS"</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"Unique_ID"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"SITEID"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"Exclude"</span><span class="op">]</span>     <span class="op">&lt;-</span> <span class="st">"EXCLUDE"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"Class"</span><span class="op">]</span>       <span class="op">&lt;-</span> <span class="st">"INDEX_CLASS"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">df_bugs</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"Unique_ID"</span><span class="op">]</span>   <span class="op">&lt;-</span> <span class="st">"SITEID"</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Add Missing Columns</span></span></span>
 <span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">ELEVATION_ATTR</span> <span class="op">&lt;-</span> <span class="cn">NA_character_</span></span></span>
-<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">GRADIENT_ATTR</span> <span class="op">&lt;-</span> <span class="cn">NA_character_</span></span></span>
-<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">WSAREA_ATTR</span> <span class="op">&lt;-</span> <span class="cn">NA_character_</span></span></span>
-<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">HABSTRUCT</span> <span class="op">&lt;-</span> <span class="cn">NA_character_</span></span></span>
-<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">BCG_ATTR2</span> <span class="op">&lt;-</span> <span class="cn">NA_character_</span></span></span>
-<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">AIRBREATHER</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></span>
-<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">UFC</span> <span class="op">&lt;-</span> <span class="cn">NA_real_</span></span></span>
+<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">GRADIENT_ATTR</span>  <span class="op">&lt;-</span> <span class="cn">NA_character_</span></span></span>
+<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">WSAREA_ATTR</span>    <span class="op">&lt;-</span> <span class="cn">NA_character_</span></span></span>
+<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">HABSTRUCT</span>      <span class="op">&lt;-</span> <span class="cn">NA_character_</span></span></span>
+<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">BCG_ATTR2</span>      <span class="op">&lt;-</span> <span class="cn">NA_character_</span></span></span>
+<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">AIRBREATHER</span>    <span class="op">&lt;-</span> <span class="cn">NA</span></span></span>
+<span class="r-in"><span><span class="va">df_bugs</span><span class="op">$</span><span class="va">UFC</span>            <span class="op">&lt;-</span> <span class="cn">NA_real_</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Calc Metrics</span></span></span>
-<span class="r-in"><span><span class="va">cols_keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Ref_v1"</span>, <span class="st">"CalVal_Class4"</span>, <span class="st">"SITEID"</span>, <span class="st">"CollDate"</span>, <span class="st">"CollMeth"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cols_keep</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Ref_v1"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"CalVal_Class4"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"SITEID"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"CollDate"</span>,</span></span>
+<span class="r-in"><span>               <span class="st">"CollMeth"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># INDEX_NAME and INDEX_CLASS kept by default</span></span></span>
 <span class="r-in"><span><span class="va">df_metval</span> <span class="op">&lt;-</span> <span class="fu"><a href="metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df_bugs</span>, <span class="st">"bugs"</span>, fun.cols2keep <span class="op">=</span> <span class="va">cols_keep</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span>
@@ -229,18 +233,18 @@ where Ref_Status is labeled as Stressed.</p>
 <span class="r-in"><span><span class="va">DataType_Ver</span>  <span class="op">&lt;-</span> <span class="st">"verif"</span></span></span>
 <span class="r-in"><span><span class="va">col_Subset</span>    <span class="op">&lt;-</span> <span class="st">"INDEX_CLASS"</span></span></span>
 <span class="r-in"><span><span class="va">Subset_Value</span>  <span class="op">&lt;-</span> <span class="st">"CentralHills"</span></span></span>
-<span class="r-in"><span><span class="va">df_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="metric.stats.html">metric.stats</a></span><span class="op">(</span><span class="va">df_metval</span></span></span>
-<span class="r-in"><span>                         , <span class="va">col_metrics</span></span></span>
-<span class="r-in"><span>                         , <span class="va">col_SampID</span></span></span>
-<span class="r-in"><span>                         , <span class="va">col_RefStatus</span></span></span>
-<span class="r-in"><span>                         , <span class="va">RefStatus_Ref</span></span></span>
-<span class="r-in"><span>                         , <span class="va">RefStatus_Str</span></span></span>
-<span class="r-in"><span>                         , <span class="va">RefStatus_Oth</span></span></span>
-<span class="r-in"><span>                         , <span class="va">col_DataType</span></span></span>
-<span class="r-in"><span>                         , <span class="va">DataType_Cal</span></span></span>
-<span class="r-in"><span>                         , <span class="va">DataType_Ver</span></span></span>
-<span class="r-in"><span>                         , <span class="va">col_Subset</span></span></span>
-<span class="r-in"><span>                         , <span class="va">Subset_Value</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="metric.stats.html">metric.stats</a></span><span class="op">(</span><span class="va">df_metval</span>,</span></span>
+<span class="r-in"><span>                         <span class="va">col_metrics</span>,</span></span>
+<span class="r-in"><span>                         <span class="va">col_SampID</span>,</span></span>
+<span class="r-in"><span>                         <span class="va">col_RefStatus</span>,</span></span>
+<span class="r-in"><span>                         <span class="va">RefStatus_Ref</span>,</span></span>
+<span class="r-in"><span>                         <span class="va">RefStatus_Str</span>,</span></span>
+<span class="r-in"><span>                         <span class="va">RefStatus_Oth</span>,</span></span>
+<span class="r-in"><span>                         <span class="va">col_DataType</span>,</span></span>
+<span class="r-in"><span>                         <span class="va">DataType_Cal</span>,</span></span>
+<span class="r-in"><span>                         <span class="va">DataType_Ver</span>,</span></span>
+<span class="r-in"><span>                         <span class="va">col_Subset</span>,</span></span>
+<span class="r-in"><span>                         <span class="va">Subset_Value</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Working on item 1/6; Ref___cal</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to min; returning Inf</span>
@@ -345,44 +349,45 @@ where Ref_Status is labeled as Stressed.</p>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Calc Stats2 (z-scores and DE)</span></span></span>
-<span class="r-in"><span><span class="va">data_metval</span> <span class="op">&lt;-</span> <span class="va">df_metval</span></span></span>
-<span class="r-in"><span><span class="va">data_metstat</span> <span class="op">&lt;-</span> <span class="va">df_stats</span></span></span>
-<span class="r-in"><span><span class="va">col_metval_RefStatus</span> <span class="op">&lt;-</span> <span class="st">"REF_V1"</span></span></span>
-<span class="r-in"><span><span class="va">col_metval_DataType</span> <span class="op">&lt;-</span> <span class="st">"CALVAL_CLASS4"</span></span></span>
-<span class="r-in"><span><span class="va">col_metval_Subset</span> <span class="op">&lt;-</span> <span class="st">"INDEX_CLASS"</span></span></span>
+<span class="r-in"><span><span class="va">data_metval</span>           <span class="op">&lt;-</span> <span class="va">df_metval</span></span></span>
+<span class="r-in"><span><span class="va">data_metstat</span>          <span class="op">&lt;-</span> <span class="va">df_stats</span></span></span>
+<span class="r-in"><span><span class="va">col_metval_RefStatus</span>  <span class="op">&lt;-</span> <span class="st">"REF_V1"</span></span></span>
+<span class="r-in"><span><span class="va">col_metval_DataType</span>   <span class="op">&lt;-</span> <span class="st">"CALVAL_CLASS4"</span></span></span>
+<span class="r-in"><span><span class="va">col_metval_Subset</span>     <span class="op">&lt;-</span> <span class="st">"INDEX_CLASS"</span></span></span>
 <span class="r-in"><span><span class="va">col_metstat_RefStatus</span> <span class="op">&lt;-</span> <span class="st">"REF_V1"</span></span></span>
-<span class="r-in"><span><span class="va">col_metstat_DataType</span> <span class="op">&lt;-</span> <span class="st">"CALVAL_CLASS4"</span></span></span>
-<span class="r-in"><span><span class="va">col_metstat_Subset</span> <span class="op">&lt;-</span> <span class="st">"INDEX_CLASS"</span></span></span>
-<span class="r-in"><span><span class="va">RefStatus_Ref</span> <span class="op">=</span> <span class="st">"Ref"</span></span></span>
-<span class="r-in"><span><span class="va">RefStatus_Str</span> <span class="op">=</span> <span class="st">"Strs"</span></span></span>
-<span class="r-in"><span><span class="va">RefStatus_Oth</span> <span class="op">=</span> <span class="st">"Other"</span></span></span>
-<span class="r-in"><span><span class="va">DataType_Cal</span> <span class="op">=</span> <span class="st">"cal"</span></span></span>
-<span class="r-in"><span><span class="va">DataType_Ver</span> <span class="op">=</span> <span class="st">"verif"</span></span></span>
-<span class="r-in"><span><span class="va">Subset_Value</span> <span class="op">=</span> <span class="st">"CentralHills"</span></span></span>
-<span class="r-in"><span><span class="va">df_stats2</span> <span class="op">&lt;-</span> <span class="fu">metric.stats2</span><span class="op">(</span><span class="va">data_metval</span></span></span>
-<span class="r-in"><span>                           , <span class="va">data_metstat</span></span></span>
-<span class="r-in"><span>                           , <span class="va">col_metval_RefStatus</span></span></span>
-<span class="r-in"><span>                           , <span class="va">col_metval_DataType</span></span></span>
-<span class="r-in"><span>                           , <span class="va">col_metval_Subset</span></span></span>
-<span class="r-in"><span>                           , <span class="va">col_metstat_RefStatus</span></span></span>
-<span class="r-in"><span>                           , <span class="va">col_metstat_DataType</span></span></span>
-<span class="r-in"><span>                           , <span class="va">col_metstat_Subset</span></span></span>
-<span class="r-in"><span>                           , <span class="va">RefStatus_Ref</span></span></span>
-<span class="r-in"><span>                           , <span class="va">RefStatus_Str</span></span></span>
-<span class="r-in"><span>                           , <span class="va">RefStatus_Oth</span></span></span>
-<span class="r-in"><span>                           , <span class="va">DataType_Cal</span></span></span>
-<span class="r-in"><span>                           , <span class="va">DataType_Ver</span></span></span>
-<span class="r-in"><span>                           , <span class="va">Subset_Value</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">col_metstat_DataType</span>  <span class="op">&lt;-</span> <span class="st">"CALVAL_CLASS4"</span></span></span>
+<span class="r-in"><span><span class="va">col_metstat_Subset</span>    <span class="op">&lt;-</span> <span class="st">"INDEX_CLASS"</span></span></span>
+<span class="r-in"><span><span class="va">RefStatus_Ref</span>         <span class="op">&lt;-</span> <span class="st">"Ref"</span></span></span>
+<span class="r-in"><span><span class="va">RefStatus_Str</span>         <span class="op">&lt;-</span> <span class="st">"Strs"</span></span></span>
+<span class="r-in"><span><span class="va">RefStatus_Oth</span>         <span class="op">&lt;-</span> <span class="st">"Other"</span></span></span>
+<span class="r-in"><span><span class="va">DataType_Cal</span>          <span class="op">&lt;-</span> <span class="st">"cal"</span></span></span>
+<span class="r-in"><span><span class="va">DataType_Ver</span>          <span class="op">&lt;-</span> <span class="st">"verif"</span></span></span>
+<span class="r-in"><span><span class="va">Subset_Value</span>          <span class="op">&lt;-</span> <span class="st">"CentralHills"</span></span></span>
+<span class="r-in"><span><span class="va">df_stats2</span> <span class="op">&lt;-</span> <span class="fu">metric.stats2</span><span class="op">(</span><span class="va">data_metval</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">data_metstat</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">col_metval_RefStatus</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">col_metval_DataType</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">col_metval_Subset</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">col_metstat_RefStatus</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">col_metstat_DataType</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">col_metstat_Subset</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">RefStatus_Ref</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">RefStatus_Str</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">RefStatus_Oth</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">DataType_Cal</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">DataType_Ver</span>,</span></span>
+<span class="r-in"><span>                           <span class="va">Subset_Value</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in metric.stats2(data_metval, data_metstat, col_metval_RefStatus,     col_metval_DataType, col_metval_Subset, col_metstat_RefStatus,     col_metstat_DataType, col_metstat_Subset, RefStatus_Ref,     RefStatus_Str, RefStatus_Oth, DataType_Cal, DataType_Ver,     Subset_Value):</span> object 'col_Subset' not found</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Save Results</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">df_stats2</span></span></span>
-<span class="r-in"><span>            , <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"metric.stats2.tsv"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>            , col.names <span class="op">=</span> <span class="cn">TRUE</span></span></span>
-<span class="r-in"><span>            , row.names <span class="op">=</span> <span class="cn">FALSE</span></span></span>
-<span class="r-in"><span>            , sep <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">df_stats2</span>,</span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"metric.stats2.tsv"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            col.names <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>            row.names <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>            sep <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'df_stats2' not found</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>

@@ -20,7 +20,7 @@ or continuous (e.g., 0-100, ScoreRegime="Cont_0100").'><meta property="og:image"
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.3.9008</span>
       </span>
     </div>
 
@@ -163,9 +163,9 @@ Later remove it as an input variable but add code in the function to accept</p>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/reshape" class="external-link">reshape2</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Thresholds</span></span></span>
-<span class="r-in"><span><span class="va">fn_thresh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>                       , <span class="st">"extdata"</span></span></span>
-<span class="r-in"><span>                       , <span class="st">"MetricScoring.xlsx"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fn_thresh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                       <span class="st">"extdata"</span>,</span></span>
+<span class="r-in"><span>                       <span class="st">"MetricScoring.xlsx"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df_thresh_metric</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="va">fn_thresh</span>, sheet <span class="op">=</span> <span class="st">"metric.scoring"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df_thresh_index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readxl.tidyverse.org/reference/read_excel.html" class="external-link">read_excel</a></span><span class="op">(</span><span class="va">fn_thresh</span>, sheet <span class="op">=</span> <span class="st">"index.scoring"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -178,15 +178,16 @@ Later remove it as an input variable but add code in the function to accept</p>
 <span class="r-in"><span><span class="va">myIndex</span> <span class="op">&lt;-</span> <span class="st">"BCG_PacNW_L1"</span></span></span>
 <span class="r-in"><span><span class="va">df_samps_bugs</span><span class="op">$</span><span class="va">Index_Name</span>   <span class="op">&lt;-</span> <span class="va">myIndex</span></span></span>
 <span class="r-in"><span><span class="va">df_samps_bugs</span><span class="op">$</span><span class="va">Index_Class</span> <span class="op">&lt;-</span> <span class="st">"ALL"</span></span></span>
-<span class="r-in"><span><span class="op">(</span><span class="va">myMetrics.Bugs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">df_thresh_metric</span><span class="op">)</span><span class="op">[</span><span class="va">df_thresh_metric</span><span class="op">[</span></span></span>
-<span class="r-in"><span>                          , <span class="st">"INDEX_NAME"</span><span class="op">]</span> <span class="op">==</span> <span class="va">myIndex</span>, <span class="st">"METRIC_NAME"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">myMetrics.Bugs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">df_thresh_metric</span><span class="op">)</span><span class="op">[</span><span class="va">df_thresh_metric</span><span class="op">[</span>,</span></span>
+<span class="r-in"><span>                                  <span class="st">"INDEX_NAME"</span><span class="op">]</span> <span class="op">==</span> <span class="va">myIndex</span>, <span class="st">"METRIC_NAME"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "nt_total"        "nt_EPT"          "nt_BCG_att1i2"   "x_Shan_e"       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "nt_longlived"    "nt_Ephemerellid" "nt_Hepta"        "nt_Nemour"      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "nt_Perlid"       "nt_Rhya"         "nt_ffg_pred"     "nt_noteworthy"  </span>
 <span class="r-in"><span><span class="co"># Run Function</span></span></span>
-<span class="r-in"><span><span class="va">df_metric_values_bugs</span> <span class="op">&lt;-</span> <span class="fu"><a href="metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df_samps_bugs</span></span></span>
-<span class="r-in"><span>                                       , <span class="st">"bugs"</span></span></span>
-<span class="r-in"><span>                                       , fun.MetricNames <span class="op">=</span> <span class="va">myMetrics.Bugs</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df_metric_values_bugs</span> <span class="op">&lt;-</span> <span class="fu"><a href="metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df_samps_bugs</span>,</span></span>
+<span class="r-in"><span>                                       <span class="st">"bugs"</span>,</span></span>
+<span class="r-in"><span>                                       fun.MetricNames <span class="op">=</span> <span class="va">myMetrics.Bugs</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Updated col class; TOLVAL2 to numeric</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span>
 <span class="r-in"><span></span></span>
@@ -195,17 +196,13 @@ Later remove it as an input variable but add code in the function to accept</p>
 <span class="r-in"><span><span class="va">df_metric_values_bugs</span><span class="op">$</span><span class="va">INDEX_CLASS</span> <span class="op">&lt;-</span> <span class="st">"ALL"</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># SCORE Metrics</span></span></span>
-<span class="r-in"><span><span class="va">df_metric_scores_bugs</span> <span class="op">&lt;-</span> <span class="fu">metric.scores</span><span class="op">(</span><span class="va">df_metric_values_bugs</span></span></span>
-<span class="r-in"><span>                                       , <span class="va">myMetrics.Bugs</span></span></span>
-<span class="r-in"><span>                                       , <span class="st">"INDEX_NAME"</span></span></span>
-<span class="r-in"><span>                                       , <span class="st">"INDEX_CLASS"</span></span></span>
-<span class="r-in"><span>                                       , <span class="va">df_thresh_metric</span></span></span>
-<span class="r-in"><span>                                       , <span class="va">df_thresh_index</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df_metric_scores_bugs</span> <span class="op">&lt;-</span> <span class="fu">metric.scores</span><span class="op">(</span><span class="va">df_metric_values_bugs</span>,</span></span>
+<span class="r-in"><span>                                       <span class="va">myMetrics.Bugs</span>,</span></span>
+<span class="r-in"><span>                                       <span class="st">"INDEX_NAME"</span>,</span></span>
+<span class="r-in"><span>                                       <span class="st">"INDEX_CLASS"</span>,</span></span>
+<span class="r-in"><span>                                       <span class="va">df_thresh_metric</span>,</span></span>
+<span class="r-in"><span>                                       <span class="va">df_thresh_index</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># View Results</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">df_metric_scores_bugs</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="co"># QC, table</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">df_metric_scores_bugs</span><span class="op">$</span><span class="va">Index</span>, <span class="va">df_metric_scores_bugs</span><span class="op">$</span><span class="va">Index_Nar</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    </span>
@@ -216,123 +213,12 @@ Later remove it as an input variable but add code in the function to accept</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   3   5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   4   2</span>
 <span class="r-in"><span><span class="co"># QC, plot</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">df_metric_scores_bugs</span><span class="op">$</span><span class="va">Index</span></span></span>
-<span class="r-in"><span>     , main <span class="op">=</span> <span class="st">"PacNW BCG Example Data"</span></span></span>
-<span class="r-in"><span>     , xlab <span class="op">=</span> <span class="st">"Level 1 Indicator Taxa Index Score"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21</span>,<span class="fl">30</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">df_metric_scores_bugs</span><span class="op">$</span><span class="va">Index</span>,</span></span>
+<span class="r-in"><span>     main <span class="op">=</span> <span class="st">"PacNW BCG Example Data"</span>,</span></span>
+<span class="r-in"><span>     xlab <span class="op">=</span> <span class="st">"Level 1 Indicator Taxa Index Score"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">21</span>,<span class="fl">30</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">21</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="op">+</span><span class="fl">2</span><span class="op">)</span>, <span class="fl">200</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Low"</span>, <span class="st">"Medium"</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="metric.scores-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~</span></span></span>
-<span class="r-in"><span><span class="co"># Metrics, Index, Benthic Macroinvertebrates, genus</span></span></span>
-<span class="r-in"><span><span class="co"># (generate values then scores)</span></span></span>
-<span class="r-in"><span><span class="va">myIndex</span> <span class="op">&lt;-</span> <span class="st">"MBSS_2005_Bugs"</span></span></span>
-<span class="r-in"><span><span class="co"># Thresholds</span></span></span>
-<span class="r-in"><span><span class="co"># imported above</span></span></span>
-<span class="r-in"><span><span class="co"># get metric names for myIndex</span></span></span>
-<span class="r-in"><span><span class="op">(</span><span class="va">myMetrics_Bugs_MBSS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">df_thresh_metric</span><span class="op">[</span><span class="va">df_thresh_metric</span><span class="op">[</span></span></span>
-<span class="r-in"><span>, <span class="st">"INDEX_NAME"</span><span class="op">]</span></span></span>
-<span class="r-in"><span>                               <span class="op">==</span> <span class="va">myIndex</span>, <span class="st">"METRIC_NAME"</span>, <span class="cn">TRUE</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "nt_total"       "nt_EPT"         "nt_Ephem"       "pi_tv2_intol"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "pi_Ephem"       "nt_ffg_scrap"   "pi_habit_climb" "pi_Chiro"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "pi_habit_cling" "pi_Tanyt"       "pi_ffg_scrap"   "pi_habit_swim" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "pi_Dipt"       </span>
-<span class="r-in"><span><span class="co"># Taxa Data</span></span></span>
-<span class="r-in"><span><span class="va">myDF_Bugs_MBSS</span> <span class="op">&lt;-</span> <span class="va">data_benthos_MBSS</span></span></span>
-<span class="r-in"><span><span class="va">myDF_Bugs_MBSS</span><span class="op">$</span><span class="va">NONTARGET</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span></span></span>
-<span class="r-in"><span><span class="va">myDF_Bugs_MBSS</span><span class="op">$</span><span class="va">INDEX_CLASS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">toupper</a></span><span class="op">(</span><span class="va">myDF_Bugs_MBSS</span><span class="op">$</span><span class="va">INDEX_CLASS</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">myDF_Bugs_MBSS</span><span class="op">$</span><span class="va">INDEX_NAME</span> <span class="op">&lt;-</span> <span class="va">myIndex</span></span></span>
-<span class="r-in"><span><span class="va">myDF_Bugs_MBSS</span><span class="op">$</span><span class="va">EXCLUDE</span> <span class="op">&lt;-</span> <span class="va">myDF_Bugs_MBSS</span><span class="op">$</span><span class="va">EXCLUDE</span><span class="op">==</span><span class="st">"Y"</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">myMetric_Values_Bugs_MBSS</span> <span class="op">&lt;-</span> <span class="fu"><a href="metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">myDF_Bugs_MBSS</span></span></span>
-<span class="r-in"><span>                                           , <span class="st">"bugs"</span></span></span>
-<span class="r-in"><span>                                           , <span class="va">myMetrics_Bugs_MBSS</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>EXCLUDE column does not have any TRUE values. </span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Valid values are TRUE or FALSE.  </span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Other values are not recognized.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">myMetric_Values_Bugs_MBSS</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
-<span class="r-in"><span><span class="co"># SCORE</span></span></span>
-<span class="r-in"><span><span class="va">myMetric_Values_Bugs_MBSS</span><span class="op">$</span><span class="va">INDEX_CLASS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">toupper</a></span><span class="op">(</span><span class="va">myMetric_Values_Bugs_MBSS</span><span class="op">$</span><span class="va">INDEX_CLASS</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">Metrics_Bugs_Scores_MBSS</span> <span class="op">&lt;-</span> <span class="fu">metric.scores</span><span class="op">(</span><span class="va">myMetric_Values_Bugs_MBSS</span></span></span>
-<span class="r-in"><span>                                          , <span class="va">myMetrics_Bugs_MBSS</span></span></span>
-<span class="r-in"><span>                                          , <span class="st">"INDEX_NAME"</span></span></span>
-<span class="r-in"><span>                                          , <span class="st">"INDEX_CLASS"</span></span></span>
-<span class="r-in"><span>                                          , <span class="va">df_thresh_metric</span></span></span>
-<span class="r-in"><span>                                          , <span class="va">df_thresh_index</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="co"># View Results</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/View.html" class="external-link">View</a></span><span class="op">(</span><span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># QC Index Scores and Narratives</span></span></span>
-<span class="r-in"><span><span class="co"># Set Narrative as Ordered Factor</span></span></span>
-<span class="r-in"><span><span class="va">Nar_MBSS</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Very Poor"</span>, <span class="st">"Poor"</span>, <span class="st">"Fair"</span>, <span class="st">"Good"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">$</span><span class="va">Index_Nar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">$</span><span class="va">Index_Nar</span></span></span>
-<span class="r-in"><span>                                            , levels<span class="op">=</span><span class="va">Nar_MBSS</span></span></span>
-<span class="r-in"><span>                                            , labels<span class="op">=</span><span class="va">Nar_MBSS</span></span></span>
-<span class="r-in"><span>                                            , ordered<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">$</span><span class="va">Index</span>, <span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">$</span><span class="va">Index_Nar</span>, useNA<span class="op">=</span><span class="st">"ifany"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                    Very Poor Poor Fair Good</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1                        4    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.28571428571429         3    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.33333333333333         8    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.5                      6    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.57142857142857         3    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.66666666666667        11    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.75                     7    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.85714285714286         6    0    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2                        0   14    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.14285714285714         0    6    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.25                     0    5    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.33333333333333         0    9    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.42857142857143         0    6    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.5                      0    3    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.66666666666667         0   13    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.71428571428571         0    5    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.75                     0    3    0    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3                        0    0   18    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3.25                     0    0    6    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3.28571428571429         0    0    2    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3.33333333333333         0    0   13    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3.5                      0    0    5    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3.57142857142857         0    0    2    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3.66666666666667         0    0   12    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3.75                     0    0    6    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3.85714285714286         0    0    6    0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4                        0    0    0    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4.14285714285714         0    0    0   10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4.25                     0    0    0    5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4.33333333333333         0    0    0    6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4.42857142857143         0    0    0    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4.5                      0    0    0    1</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># QC bug count (manual)</span></span></span>
-<span class="r-in"><span><span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">[</span><span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">[</span>,<span class="st">"ni_total"</span><span class="op">]</span><span class="op">&gt;</span><span class="fl">120</span>,</span></span>
-<span class="r-in"><span><span class="st">"QC_Count"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"LARGE"</span></span></span>
-<span class="r-in"><span><span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">[</span><span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">[</span>,<span class="st">"ni_total"</span><span class="op">]</span><span class="op">&lt;</span><span class="fl">60</span>,</span></span>
-<span class="r-in"><span><span class="st">"QC_Count"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"SMALL"</span></span></span>
-<span class="r-in"><span><span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">[</span>,<span class="st">"QC_Count"</span><span class="op">]</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span><span class="st">"QC_Count"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"OK"</span></span></span>
-<span class="r-in"><span><span class="co"># table of QC_Count</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Metrics_Bugs_Scores_MBSS</span><span class="op">$</span><span class="va">QC_Count</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LARGE    OK </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    90   121 </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># QC bug count (with function)</span></span></span>
-<span class="r-in"><span><span class="co"># Import Checks</span></span></span>
-<span class="r-in"><span><span class="co">#df_checks &lt;- read_excel(system.file("./extdata/MetricFlags.xlsx"</span></span></span>
-<span class="r-in"><span><span class="co">#                                           , package="BioMonTools"), sheet="Flags")</span></span></span>
-<span class="r-in"><span><span class="co"># Run Function</span></span></span>
-<span class="r-in"><span><span class="co">#df_flags &lt;- qc.checks(Metrics_Bugs_Scores_MBSS, df_checks)</span></span></span>
-<span class="r-in"><span><span class="co"># Summarize Results</span></span></span>
-<span class="r-in"><span><span class="co"># table(df_flags[,"CHECKNAME"], df_flags[,"FLAG"], useNA="ifany")</span></span></span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
