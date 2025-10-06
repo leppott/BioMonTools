@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4 (2025-10-06)
+
+* refactor: Bump version number for CRAN
+
 ## Changes in version 1.2.3.9008 (2025-10-06)
 
 * refactor: Remove or edit examples with errors, warnings, or long run times
