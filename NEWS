@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-10-06 12:21:41.539978
+    #> Last Update: 2025-10-06 13:43:09.224272
 
 # Version History
+
+## Changes in version 1.2.3.9008 (2025-10-06)
+
+- refactor: Remove or edit examples with errors, warnings, or long run
+  times
+  - taxa_translate
+    - Non-ASCII character in translation file
 
 ## Changes in version 1.2.3.9007 (2025-10-06)
 

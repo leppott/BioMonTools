@@ -127,7 +127,7 @@ Another output is the unique taxa with old and new names.
 df_user <- BioMonTools::data_benthos_PacNW
 fn_official <- file.path(system.file("extdata", package = "BioMonTools"),
                          "taxa_official",
-                         "ORWA_TAXATRANSLATOR_20221219.csv")
+                         "ORWA_TAXATRANSLATOR_20221219b.csv")
 df_official <- read.csv(fn_official)
 fn_official_metadata <- file.path(system.file("extdata",
                                               package = "BioMonTools"),
@@ -143,7 +143,7 @@ sum_n_taxa_boo <- TRUE
 sum_n_taxa_col <- "N_TAXA"
 sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SampleID", "TaxaID")
 ## Run Function
-\donttest{
+
 taxatrans <- taxa_translate(df_user,
                             df_official,
                             df_official_metadata,
@@ -157,7 +157,7 @@ taxatrans <- taxa_translate(df_user,
                             sum_n_taxa_group_by)
 ## View Results
 taxatrans$nonmatch
-}
+
 
 #~~~~~
 # Example 2, Multiple Stages
@@ -175,7 +175,7 @@ df_user[, "DATE"]        <- "2023-01-16"
 ## Input Parameters
 fn_official <- file.path(system.file("extdata", package = "BioMonTools"),
                          "taxa_official",
-                         "ORWA_TAXATRANSLATOR_20221219.csv")
+                         "ORWA_TAXATRANSLATOR_20221219b.csv")
 df_official <- read.csv(fn_official)
 fn_official_metadata <- file.path(system.file("extdata",
                                               package = "BioMonTools"),
@@ -191,7 +191,6 @@ sum_n_taxa_boo <- TRUE
 sum_n_taxa_col <- "N_TAXA"
 sum_n_taxa_group_by <- c("INDEX_NAME", "INDEX_CLASS", "SAMPLEID", "TAXAID")
 ## Run Function
-\donttest{
 taxatrans <- taxa_translate(df_user,
                             df_official,
                             df_official_metadata,
@@ -206,5 +205,4 @@ taxatrans <- taxa_translate(df_user,
 ## View Results (before and after)
 df_user
 taxatrans$merge
-}
 }
