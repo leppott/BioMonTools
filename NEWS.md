@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-10-06 14:15:45.452906
+    #> Last Update: 2025-10-17 09:59:40.326787
 
 # Version History
+
+## Changes in version 1.2.4.9001 (2025-10-17)
+
+- fix: Convert input to dataframe in rarify, Issue \#123
 
 ## Changes in version 1.2.4 (2025-10-06)
 

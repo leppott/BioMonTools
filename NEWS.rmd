@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9001 (2025-10-17)
+
+* fix: Convert input to dataframe in rarify, Issue #123
+
 ## Changes in version 1.2.4 (2025-10-06)
 
 * refactor: Bump version number for CRAN

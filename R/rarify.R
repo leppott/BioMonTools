@@ -10,7 +10,7 @@
 #' @details rarify function:
 #'  R function to rarify (subsample) a macroinvertebrate sample down to a fixed
 #'  count; by John Van Sickle, USEPA. email: VanSickle.John@epa.gov ;
-#'  Version 1.0, 06/10/05;
+#'  Version 1.0, 06/10/05 (2005-06-10).
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Erik.Leppo@tetratech.com (EWL)
 # 20170912
@@ -80,6 +80,9 @@ rarify <- function(inbug,
                    subsiz,
                    mySeed = NA,
                    verbose = FALSE) {
+
+  # QC, remove tibble from data frame
+  inbug <- as.data.frame(inbug)
 
   start.time <- proc.time()
   outbug <- inbug
