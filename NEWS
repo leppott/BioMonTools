@@ -4,9 +4,19 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-10-17 09:59:40.326787
+    #> Last Update: 2025-11-03 14:14:47.196593
 
 # Version History
+
+## Changes in version 1.2.4.9002 (2025-11-03)
+
+- style: Updates to code style, metric.values
+- fix: Correct for missing EXCLUDE column to all FALSE, Issue \#126
+  - Bugs and Fish metrics
+- tests: Add tests for metric.values for NA values in EXCLUDE column,
+  Issues \#126
+  - Bugs and Fish
+  - Missing column and any NA values
 
 ## Changes in version 1.2.4.9001 (2025-10-17)
 

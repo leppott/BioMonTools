@@ -76,6 +76,7 @@ testthat::test_that("metrics, bugs, sum of parts", {
 
 ## met val_sc, PA Freestone IBI ----
 testthat::test_that("metric values_scores, PA Freestone IBI", {
+  # Example from 2012 document
   ### _Metric.Values ----
   SAMPLEID <- c(rep("DriftwoodBr", 31), rep("WestBr", 15))
   STRAHLER <- c(rep(5, 31), rep(1, 15))
@@ -1549,6 +1550,31 @@ testthat::test_that("metrics, bugs, nt_COETNoBraBaeHydTri", {
 
 })## Test - met val, WY, nt_COETNoBraBaeHydTri
 
+## EXCLUDE, Missing ----
+testthat::test_that("metrics, bugs, Exclude, missing", {
+  df_data <- BioMonTools::data_benthos_PacNW[1:100, ]
+  df_data[, "Exclude"] <- NULL
+  # df_metval <- metric.values(df_data,
+  #                            "bugs",
+  #                            boo.Shiny = TRUE)
+  # Test
+  testthat::expect_warning(metric.values(df_data,
+                                        "bugs",
+                                        boo.Shiny = TRUE))
+})## Test - Exclude - missing
+
+
+## EXCLUDE, Some NA ----
+testthat::test_that("metrics, bugs, Exclude, some NA", {
+  df_data <- BioMonTools::data_benthos_PacNW[1:100, ]
+  df_data[1:10, "Exclude"] <- NA
+  # df_metval <- metric.values(df_data,
+  #                            "bugs")
+  # Test
+  testthat::expect_warning(metric.values(df_data,
+                                         "bugs"))
+})## Test - Exclude - some NA
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Fish ----
@@ -1557,6 +1583,33 @@ testthat::test_that("metrics, bugs, nt_COETNoBraBaeHydTri", {
 # Sum components
 # some phylo
 # BCG
+
+## EXCLUDE, Missing ----
+testthat::test_that("metrics, fish, Exclude, missing", {
+  df_data <- BioMonTools::data_fish_MBSS[1:100, ]
+  df_data[, "EXCLUDE"] <- NULL
+  # df_metval <- metric.values(df_data,
+  #                            "fish",
+  #                            boo.Shiny = TRUE)
+  # Test
+  testthat::expect_warning(metric.values(df_data,
+                                         "fish",
+                                         boo.Shiny = TRUE))
+})## Test - Exclude - missing
+
+
+## EXCLUDE, Some NA ----
+testthat::test_that("metrics, fish, Exclude, some NA", {
+  df_data <- BioMonTools::data_fish_MBSS[1:100, ]
+  df_data[1:10, "EXCLUDE"] <- NA
+  # df_metval <- metric.values(df_data,
+  #                            "fish")
+  # Test
+  testthat::expect_warning(metric.values(df_data,
+                                         "fish"))
+})## Test - Exclude - some NA
+
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Algae----

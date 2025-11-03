@@ -889,18 +889,44 @@ metric.values.bugs <- function(myDF
   }## IF ~ verbose
 
   # QC, Required Fields
-  col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS"
-                    , "PHYLUM", "SUBPHYLUM", "CLASS", "SUBCLASS", "INFRAORDER"
-                    , "ORDER", "FAMILY", "SUBFAMILY", "TRIBE", "GENUS"
-                    , "FFG", "HABIT", "LIFE_CYCLE"
-                    , "BCG_ATTR", "THERMAL_INDICATOR"
-                    , "FFG2", "HABITAT", "ELEVATION_ATTR"
-                    , "GRADIENT_ATTR", "WSAREA_ATTR", "HABSTRUCT"
-                    , "BCG_ATTR2")
-  col.req_logical <- c("EXCLUDE", "NONTARGET"
-                       , "LONGLIVED", "NOTEWORTHY", "AIRBREATHER")
-  col.req_numeric <- c("N_TAXA", "TOLVAL", "TOLVAL2", "UFC")
-  col.req <- c(col.req_character, col.req_logical, col.req_numeric)
+  col.req_character <- c("SAMPLEID",
+                         "TAXAID",
+                         "INDEX_NAME",
+                         "INDEX_CLASS",
+                         "PHYLUM",
+                         "SUBPHYLUM",
+                         "CLASS",
+                         "SUBCLASS",
+                         "INFRAORDER",
+                         "ORDER",
+                         "FAMILY",
+                         "SUBFAMILY",
+                         "TRIBE",
+                         "GENUS",
+                         "FFG",
+                         "HABIT",
+                         "LIFE_CYCLE",
+                         "BCG_ATTR",
+                         "THERMAL_INDICATOR",
+                         "FFG2",
+                         "HABITAT",
+                         "ELEVATION_ATTR",
+                         "GRADIENT_ATTR",
+                         "WSAREA_ATTR",
+                         "HABSTRUCT",
+                         "BCG_ATTR2")
+  col.req_logical <- c("EXCLUDE",
+                       "NONTARGET",
+                       "LONGLIVED",
+                       "NOTEWORTHY",
+                       "AIRBREATHER")
+  col.req_numeric <- c("N_TAXA",
+                       "TOLVAL",
+                       "TOLVAL2",
+                       "UFC")
+  col.req <- c(col.req_character,
+               col.req_logical,
+               col.req_numeric)
   # col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
   #             , "INDEX_CLASS", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS"
   #             , "SUBCLASS", "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY"
@@ -1025,8 +1051,19 @@ metric.values.bugs <- function(myDF
   }## IF ~ verbose
   Exclude.T <- sum(myDF$EXCLUDE == TRUE, na.rm = TRUE)
   if (Exclude.T == 0) {
-    warning("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
-  }##IF.Exclude.T.END
+    warning(paste0("EXCLUDE column does not have any TRUE values. \n",
+                   "  Valid values are TRUE or FALSE.  \n",
+                   "  Other values are not recognized."))
+  }##IF ~ Exclude.T.END
+  # All NA
+  Exclude.NA <- any(is.na(myDF$EXCLUDE))
+  if (Exclude.NA) {
+    warning(paste0("EXLUDE column has 'NA' values. \n",
+                   "  Valid values are TRUE or FALSE.  \n",
+                   "  Other values are not recognized. \n",
+                   "  Taxa richness and percent taxa metrics ",
+                   "will not calculate properly"))
+  }## IF ~ Exclude.NA
 
   ## QC, NonTarget----
   # ensure as TRUE/FALSE
@@ -3800,7 +3837,16 @@ metric.values.fish <- function(myDF
     warn4 <- "Other values are not recognized"
     msg <- paste(warn1, warn2, warn3, warn4, sep = "\n")
     message(msg)
-  }##IF.Exclude.T.END
+  }## IF ~ Exclude.T
+  # All NA
+  Exclude.NA <- any(is.na(myDF$EXCLUDE))
+  if (Exclude.NA) {
+    warning(paste0("EXLUDE column has 'NA' values. \n",
+                   "  Valid values are TRUE or FALSE.  \n",
+                   "  Other values are not recognized. \n",
+                   "  Taxa richness and percent taxa metrics ",
+                   "will not calculate properly"))
+  }## IF ~ Exclude.NA
 
   ## QC, BCG_Attr ----
   # need as character, if complex all values fail

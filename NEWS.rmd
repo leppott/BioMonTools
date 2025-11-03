@@ -18,6 +18,15 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9002 (2025-11-03)
+
+* style: Updates to code style, metric.values
+* fix: Correct for missing EXCLUDE column to all FALSE, Issue #126
+    + Bugs and Fish metrics
+* tests: Add tests for metric.values for NA values in EXCLUDE column, Issues #126
+    + Bugs and Fish
+    + Missing column and any NA values
+
 ## Changes in version 1.2.4.9001 (2025-10-17)
 
 * fix: Convert input to dataframe in rarify, Issue #123
