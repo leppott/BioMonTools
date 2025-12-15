@@ -72,50 +72,54 @@ testthat::test_that("metric_stats & metric_stats2", {
 
 
 
-  # # metricstats2
-  #
-  # # Calc Stats2 (z-scores and DE)
-  # data_metval <- df_metval
-  # data_metstat <- df_stats
-  # col_metval_RefStatus <- "REF_V1"
-  # col_metval_DataType <- "CALVAL_CLASS4"
-  # col_metval_Subset <- "INDEX_CLASS"
-  # col_metstat_RefStatus <- "REF_V1"
-  # col_metstat_DataType <- "CALVAL_CLASS4"
-  # col_metstat_Subset <- "INDEX_CLASS"
-  # RefStatus_Ref = "Ref"
-  # RefStatus_Str = "Strs"
-  # RefStatus_Oth = "Other"
-  # DataType_Cal = "cal"
-  # DataType_Ver = "verif"
-  # Subset_Value = "CENTRALHILLS"
-  # df_stats2 <- BioMonTools::metric.stats2(data_metval
-  #                                  , data_metstat
-  #                                  , col_metval_RefStatus
-  #                                  , col_metval_DataType
-  #                                  , col_metval_Subset
-  #                                  , col_metstat_RefStatus
-  #                                  , col_metstat_DataType
-  #                                  , col_metstat_Subset
-  #                                  , RefStatus_Ref
-  #                                  , RefStatus_Str
-  #                                  , RefStatus_Oth
-  #                                  , DataType_Cal
-  #                                  , DataType_Ver
-  #                                  , Subset_Value)
-  #
-  #
-  # df_numbers2 <- df_stats2[, -(1:4)]
-  # # -Inf in CV column, replace with NA
-  # df_numbers2[df_numbers2 == -Inf] <- NA
-  # df_numbers2 <- df_numbers2[, 1:15]
-  #
-  # sum2_calc <- sum(df_numbers2, na.rm = TRUE)
-  #
-  # sum2_qc <- 315376
-  #
-  # # test
-  # testthat::expect_equal(sum2_calc, sum2_qc, tolerance = 0.02)
+  # metricstats2
+
+  # Calc Stats2 (z-scores and DE)
+  data_metval <- df_metval
+  data_metstat <- df_stats
+  col_metval_RefStatus <- "REF_V1"
+  col_metval_DataType <- "CALVAL_CLASS4"
+  col_metval_Subset <- "INDEX_CLASS"
+  col_metstat_RefStatus <- "REF_V1"
+  col_metstat_DataType <- "CALVAL_CLASS4"
+  col_metstat_Subset <- "INDEX_CLASS"
+  RefStatus_Ref = "Ref"
+  RefStatus_Str = "Strs"
+  RefStatus_Oth = "Other"
+  DataType_Cal = "cal"
+  DataType_Ver = "verif"
+  Subset_Value = "CENTRALHILLS"
+  df_stats2 <- metric.stats2(data_metval
+                                   , data_metstat
+                                   , col_metval_RefStatus
+                                   , col_metval_DataType
+                                   , col_metval_Subset
+                                   , col_metstat_RefStatus
+                                   , col_metstat_DataType
+                                   , col_metstat_Subset
+                                   , RefStatus_Ref
+                                   , RefStatus_Str
+                                   , RefStatus_Oth
+                                   , DataType_Cal
+                                   , DataType_Ver
+                                   , Subset_Value)
+
+  # Error in data.frame(col_metval_DataType = DataType_Cal,
+  #                     col_metval_Subset = Subset_Value,  :
+  #                       arguments imply differing number of rows: 1, 0
+
+
+  df_numbers2 <- df_stats2[, -(1:4)]
+  # -Inf in CV column, replace with NA
+  df_numbers2[df_numbers2 == -Inf] <- NA
+  df_numbers2 <- df_numbers2[, 1:15]
+
+  sum2_calc <- sum(df_numbers2, na.rm = TRUE)
+
+  sum2_qc <- 315376
+
+  # test
+  testthat::expect_equal(sum2_calc, sum2_qc, tolerance = 0.02)
 
 })## Test ~ qc_checks ~ END
 

@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-11-03 14:14:47.196593
+    #> Last Update: 2025-12-15 12:16:15.035087
 
 # Version History
+
+## Changes in version 1.2.4.9003 (2025-12-15)
+
+- refactor: Update MetricScoring.xlsx for EGLE_2025 (MI)
 
 ## Changes in version 1.2.4.9002 (2025-11-03)
 

@@ -78,8 +78,7 @@ in a single column.
 Assumes only a single Subset.
 
 Required fields are RefStatus, DataType, and INDEX_CLASS.  The user is
-allowed to enter their own
-values for these fields for each input file.
+allowed to enter their own values for these fields for each input file.
 
 The two statistics calculated are z-score and discrimination efficiency (DE)
 for each metric within each DataType (cal / val).
@@ -96,9 +95,8 @@ metric for a given INDEX_CLASS (or Site Class).  DE is the percentage
 (for increaser metrics, e.g., HBI) of the **reference** samples.
 
 A data frame of the metric.stats input is returned with new columns
-(z_score, DE25 and DE75).  The z-score is added for each Ref_Status.  DE25
-and DE75 are only added
-where Ref_Status is labeled as Stressed.
+(z_score, DE25 and DE75).  The z-score is added for each Ref_Status.
+DE25 and DE75 are only added where Ref_Status is labeled as Stressed.
 }
 \examples{
 # data, benthos

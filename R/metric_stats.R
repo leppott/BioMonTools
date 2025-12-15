@@ -232,8 +232,8 @@ metric.stats <- function(fun.DF,
   #
   ## Values
   ### RefStatus
-  qc_val_col <- col_RefStatus
-  qc_val     <- c(RefStatus_Ref, RefStatus_Str, RefStatus_Oth)
+  qc_val_col   <- col_RefStatus
+  qc_val       <- c(RefStatus_Ref, RefStatus_Str, RefStatus_Oth)
   qc_val_check <- qc_val %in% unique(fun.DF[, qc_val_col])
   if(length(qc_val) != sum(qc_val_check)){
     vals_missing <- qc_val[!qc_val_check]
@@ -243,8 +243,8 @@ metric.stats <- function(fun.DF,
   }##IF ~ check columns ~ END
   #
   ### DataType
-  qc_val_col <- col_DataType
-  qc_val     <- c(DataType_Cal, DataType_Ver)
+  qc_val_col   <- col_DataType
+  qc_val       <- c(DataType_Cal, DataType_Ver)
   qc_val_check <- qc_val %in% unique(fun.DF[, qc_val_col])
   if(length(qc_val) != sum(qc_val_check)){
     vals_missing <- qc_val[!qc_val_check]
@@ -254,8 +254,8 @@ metric.stats <- function(fun.DF,
   }##IF ~ check columns ~ END
   #
   ### Subset
-  qc_val_col <- col_Subset
-  qc_val     <- Subset_Value
+  qc_val_col   <- col_Subset
+  qc_val       <- Subset_Value
   qc_val_check <- qc_val %in% unique(fun.DF[, qc_val_col])
   if(length(qc_val) != sum(qc_val_check)){
     vals_missing <- qc_val[!qc_val_check]
@@ -274,7 +274,7 @@ metric.stats <- function(fun.DF,
   # Create further subsets and calc stats
   combos <- c(t(outer(c(RefStatus_Ref, RefStatus_Str, RefStatus_Oth)
                       , c(DataType_Cal, DataType_Ver)
-                      , FUN=paste, sep = "___")))
+                      , FUN = paste, sep = "___")))
           # "___" just so not likely to be in the data
   n_combos <- length(combos)
   # Should be 6 (RefStatus = 3 * DataType = 2) but might have fewer
@@ -292,27 +292,40 @@ metric.stats <- function(fun.DF,
                         df_subset[, col_DataType] == combo_DataType, ]
 
     # calc
-    metrics_n     <- sapply(df_i[, col_metrics], length)
-    metrics_min   <- sapply(df_i[, col_metrics], min, na.rm = TRUE)
-    metrics_max   <- sapply(df_i[, col_metrics], max, na.rm = TRUE)
-    metrics_mean  <- sapply(df_i[, col_metrics], mean, na.rm = TRUE)
+    metrics_n       <- sapply(df_i[, col_metrics], length)
+    metrics_min     <- sapply(df_i[, col_metrics], min, na.rm = TRUE)
+    metrics_max     <- sapply(df_i[, col_metrics], max, na.rm = TRUE)
+    metrics_mean    <- sapply(df_i[, col_metrics], mean, na.rm = TRUE)
     metrics_median  <- sapply(df_i[, col_metrics], stats::median, na.rm = TRUE)
-    metrics_range <- metrics_max - metrics_min
-    metrics_sd    <- sapply(df_i[, col_metrics], stats::sd, na.rm = TRUE)
-    metrics_cv    <- metrics_sd / metrics_mean
+    metrics_range   <- metrics_max - metrics_min
+    metrics_sd      <- sapply(df_i[, col_metrics], stats::sd, na.rm = TRUE)
+    metrics_cv      <- metrics_sd / metrics_mean
     #
     # percentiles to run
-    p <- c(5, 10, 25, 50, 75, 90, 95)/100
+    p <- c(5, 10, 25, 50, 75, 90, 95) / 100
     # percentiles
-    metrics_quantiles <- sapply(df_i[, col_metrics], stats::quantile, probs = p
-                                , na.rm = TRUE)
+    metrics_quantiles <- sapply(df_i[, col_metrics],
+                                stats::quantile,
+                                probs = p,
+                                na.rm = TRUE)
     #
-    metrics_all <- rbind(metrics_n, metrics_min, metrics_max, metrics_mean
-                         , metrics_range, metrics_sd, metrics_cv
-                         , metrics_quantiles)
+    metrics_all <- rbind(metrics_n,
+                         metrics_min,
+                         metrics_max,
+                         metrics_mean,
+                         metrics_range,
+                         metrics_sd,
+                         metrics_cv,
+                         metrics_quantiles)
     # rename
-    col_StatNames <- c("n", "min", "max", "mean", "range", "sd", "cv"
-                       , paste0("q", sprintf("%02d", p*100)))
+    col_StatNames <- c("n",
+                       "min",
+                       "max",
+                       "mean",
+                       "range",
+                       "sd",
+                       "cv",
+                       paste0("q", sprintf("%02d", p * 100)))
     rownames(metrics_all) <- col_StatNames
     # transpose
     df_i_stats <- data.frame(t(metrics_all))
@@ -326,7 +339,7 @@ metric.stats <- function(fun.DF,
       df_i_stats[, "Subset"] <- NULL
     }##IF ~ !is.null(col_Subset) ~ END
     df_i_stats[, col_RefStatus] <- combo_RefStatus
-    df_i_stats[, col_DataType] <- combo_DataType
+    df_i_stats[, col_DataType]  <- combo_DataType
     df_i_stats[, "Metric_Name"] <- rownames(df_i_stats)
     rownames(df_i_stats) <- NULL # c()
     # reorder columns
@@ -347,4 +360,4 @@ metric.stats <- function(fun.DF,
   return(df_results)
 
 }##FUNCTION ~ metric.stats ~ END
-#
+

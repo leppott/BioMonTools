@@ -3,7 +3,6 @@
 #' @description This function calculates secondary statistics (DE and z-score)
 #' on metric statistics for use with developing a multi-metric index.
 #'
-#'
 #' @details Secondary metrics statistics for the data are calculated.
 #'
 #' Inputs are metric values and metric stats outputs.
@@ -16,8 +15,7 @@
 #' Assumes only a single Subset.
 #'
 #' Required fields are RefStatus, DataType, and INDEX_CLASS.  The user is
-#' allowed to enter their own
-#' values for these fields for each input file.
+#' allowed to enter their own values for these fields for each input file.
 #'
 #' The two statistics calculated are z-score and discrimination efficiency (DE)
 #' for each metric within each DataType (cal / val).
@@ -34,9 +32,8 @@
 #' (for increaser metrics, e.g., HBI) of the **reference** samples.
 #'
 #' A data frame of the metric.stats input is returned with new columns
-#' (z_score, DE25 and DE75).  The z-score is added for each Ref_Status.  DE25
-#' and DE75 are only added
-#' where Ref_Status is labeled as Stressed.
+#' (z_score, DE25 and DE75).  The z-score is added for each Ref_Status.
+#' DE25 and DE75 are only added where Ref_Status is labeled as Stressed.
 #'
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @param data_metval Data frame of metric values.
@@ -306,12 +303,12 @@ metric.stats2 <- function(data_metval,
 
 
   # Filter for user specified subset
-  if (is.null(col_Subset)){
+  if (is.null(Subset_Value)){
     data_metval  <- data_metval
     data_metstat <- data_metstat
   } else {
-    data_metval <- data_metval[data_metval[, col_Subset] == Subset_Value, ]
-    data_metstat <- data_metstat[data_metstat[, col_Subset] == Subset_Value, ]
+    data_metval <- data_metval[data_metval[, col_metval_Subset] == Subset_Value, ]
+    data_metstat <- data_metstat[data_metstat[, col_metstat_Subset] == Subset_Value, ]
   }##IF ~ is.null(col_subset) ~ END
 
 
@@ -434,7 +431,10 @@ metric.stats2 <- function(data_metval,
 
   # summarize
   # Needed to change group_by (https://stackoverflow.com/questions/34487641/dplyr-groupby-on-multiple-columns-using-variable-names)
-  cols_groupby <- c(col_metval_Subset, col_metval_DataType, col_metval_RefStatus, "Metric_Name")
+  cols_groupby <- c(col_metval_Subset,
+                    col_metval_DataType,
+                    col_metval_RefStatus,
+                    "Metric_Name")
 
   df_de <- df_merge4de %>%
     dplyr::group_by(dplyr::across(tidyselect::all_of(cols_groupby))) %>%
