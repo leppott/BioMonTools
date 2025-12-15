@@ -18,7 +18,7 @@ on metric statistics for use with developing a multi-metric index."><meta proper
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.4.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.4.903</span>
       </span>
     </div>
 
@@ -171,8 +171,7 @@ Assumes only a single Subset.</p>
 in a single column.
 Assumes only a single Subset.</p>
 <p>Required fields are RefStatus, DataType, and INDEX_CLASS.  The user is
-allowed to enter their own
-values for these fields for each input file.</p>
+allowed to enter their own values for these fields for each input file.</p>
 <p>The two statistics calculated are z-score and discrimination efficiency (DE)
 for each metric within each DataType (cal / val).</p>
 <p>Z-scores are calculated using the calibration (or development) data set
@@ -184,9 +183,8 @@ metric for a given INDEX_CLASS (or Site Class).  DE is the percentage
 (for decreaser metrics, e.g., total taxa) or **above** the **75th** quantile
 (for increaser metrics, e.g., HBI) of the **reference** samples.</p>
 <p>A data frame of the metric.stats input is returned with new columns
-(z_score, DE25 and DE75).  The z-score is added for each Ref_Status.  DE25
-and DE75 are only added
-where Ref_Status is labeled as Stressed.</p>
+(z_score, DE25 and DE75).  The z-score is added for each Ref_Status.
+DE25 and DE75 are only added where Ref_Status is labeled as Stressed.</p>
     </div>
 
     <div id="ref-examples">
@@ -377,7 +375,7 @@ where Ref_Status is labeled as Stressed.</p>
 <span class="r-in"><span>                           <span class="va">DataType_Cal</span>,</span></span>
 <span class="r-in"><span>                           <span class="va">DataType_Ver</span>,</span></span>
 <span class="r-in"><span>                           <span class="va">Subset_Value</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in metric.stats2(data_metval, data_metstat, col_metval_RefStatus,     col_metval_DataType, col_metval_Subset, col_metstat_RefStatus,     col_metstat_DataType, col_metstat_Subset, RefStatus_Ref,     RefStatus_Str, RefStatus_Oth, DataType_Cal, DataType_Ver,     Subset_Value):</span> object 'col_Subset' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in metric.stats2(data_metval, data_metstat, col_metval_RefStatus,     col_metval_DataType, col_metval_Subset, col_metstat_RefStatus,     col_metstat_DataType, col_metstat_Subset, RefStatus_Ref,     RefStatus_Str, RefStatus_Oth, DataType_Cal, DataType_Ver,     Subset_Value):</span> object 'col_RefStatus' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Save Results</span></span></span>
@@ -402,7 +400,7 @@ where Ref_Status is labeled as Stressed.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>
