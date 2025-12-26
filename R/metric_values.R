@@ -3758,7 +3758,7 @@ metric.values.fish <- function(myDF
                          , "BCG_ATTR2")
   col.req_logical <- c("EXCLUDE", "HYBRID")
   col.req_numeric <- c("N_TAXA", "N_ANOMALIES",  "SAMP_BIOMASS", "DA_MI2"
-                       , "SAMP_WIDTH_M", "SAMP_LENGTH_M", "TOLVAL2"
+                       , "SAMP_WIDTH_M", "SAMP_LENGTH_M", "TOLVAL2", "AGECLASS"
                        )
   col.req <- c(col.req_character, col.req_logical, col.req_numeric)
   # col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE"
@@ -4481,6 +4481,7 @@ metric.values.fish <- function(myDF
                        , nt_natCent = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & FAMILY == "CENTRARCHIDAE"], na.rm = TRUE)
                        , nt_natinsctCypr = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" &
                                                                       TROPHIC_IS == TRUE & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
+                       , nt_natLeuc = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & FAMILY == "LEUCISCIDAE"], na.rm = TRUE)
                        , nt_natrbs = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & TYPE == "RBS"], na.rm = TRUE)
                        , nt_Petro  = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "PETROMYZONTIDAE"], na.rm = TRUE)
                        , nt_Salm = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "SALMONIDAE"], na.rm = TRUE)
@@ -4539,6 +4540,10 @@ metric.values.fish <- function(myDF
                        , nt_invertivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                  & TROPHIC_IV == TRUE]
                                                           , na.rm = TRUE)
+                       , nt_invert_native = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                   & TROPHIC_IV == TRUE
+                                                                   & NATIVE == "NATIVE"]
+                                                            , na.rm = TRUE)
                        , nt_inverttopcarn = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                       & TROPHIC_IV_TC == TRUE]
                                                                , na.rm = TRUE)
@@ -4570,6 +4575,7 @@ metric.values.fish <- function(myDF
                        , pi_insctCypr = 100 * sum(N_TAXA[TROPHIC_IS == TRUE &
                                                          FAMILY == "CYPRINIDAE"], na.rm = TRUE) / ni_total
                        , pi_invertivore = 100 * sum(N_TAXA[TROPHIC_IV == TRUE], na.rm = TRUE) / ni_total
+                       , pi_invert_native = 100 * sum(N_TAXA[TROPHIC_IV == TRUE & NATIVE == "NATIVE"], na.rm = TRUE) / ni_total
                        , pi_inverttopcarn = 100 * sum(N_TAXA[TROPHIC_IV_TC == TRUE], na.rm = TRUE) / ni_total
                        , pi_omnivore = 100 * sum(N_TAXA[TROPHIC_OM == TRUE], na.rm = TRUE) / ni_total
                        , pi_planktivore = 100 * sum(N_TAXA[TROPHIC_PL == TRUE], na.rm = TRUE) / ni_total
@@ -4584,6 +4590,7 @@ metric.values.fish <- function(myDF
                        , pt_detritivore = 100 * nt_detritivore / nt_total
                        , pt_herbivore = 100 * nt_herbivore / nt_total
                        , pt_invertivore = 100 * nt_invertivore / nt_total
+                       , pt_invert_native = 100 * nt_invert_native / nt_total
                        , pt_inverttopcarn = 100 * nt_inverttopcarn / nt_total
                        , pt_omnivore = 100 * nt_omnivore / nt_total
                        , pt_planktivore = 100 * nt_planktivore / nt_total
@@ -4591,10 +4598,16 @@ metric.values.fish <- function(myDF
 
                        #
                        ## Tolerance ####
-                       , nt_tv_intol = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TOLER == "INTOLERANT"], na.rm = TRUE)
-                       , nt_tv_intolhwi = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & (TOLER == "INTOLERANT" |
-                                                                     TOLER == "HWI")], na.rm = TRUE)
-                       , pi_tv_toler = 100 * sum(N_TAXA[TOLER == "TOLERANT"], na.rm = TRUE) / ni_total
+                       , nt_tv_intol = dplyr::n_distinct(
+                         TAXAID[EXCLUDE != TRUE & TOLER == "INTOLERANT"],
+                         na.rm = TRUE)
+                       , nt_tv_intolhwi = dplyr::n_distinct(
+                         TAXAID[EXCLUDE != TRUE &
+                                  (TOLER == "INTOLERANT" | TOLER == "HWI")],
+                         na.rm = TRUE)
+                       , pi_tv_toler = 100 *
+                         sum(N_TAXA[TOLER == "TOLERANT"], na.rm = TRUE) /
+                         ni_total
                        #
 
 
@@ -5069,7 +5082,7 @@ metric.values.fish <- function(myDF
                                                   , na.rm = TRUE) / ni_total
                  , pi_repro_migratory = 100 * sum(N_TAXA[REPRO_MIG == TRUE]
                                                   , na.rm = TRUE) / ni_total
-                  , pi_repro_lithophil = 100 * sum(N_TAXA[REPRO_LITH == TRUE]
+                 , pi_repro_lithophil = 100 * sum(N_TAXA[REPRO_LITH == TRUE]
                                         , na.rm = TRUE) / ni_total
 
                   ### Repro, pt ----
@@ -5106,6 +5119,35 @@ metric.values.fish <- function(myDF
                   , pt_habitat_b = 100 * nt_habitat_b / nt_total
                   , pt_habitat_w = 100 * nt_habitat_w / nt_total
                   , pt_habitat_f = 100 * nt_habitat_f / nt_total
+
+                 ## Age Class ----
+                 # Young of Year, YOY is ageclass 1 or 2
+                 , d_ac_yoy_Cott = max(0,
+                                        min(1,
+                                            dplyr::n_distinct(
+                                              TAXAID[(EXCLUDE != TRUE &
+                                                      FAMILY == "COTTIDAE") &
+                                                       (AGECLASS == 1 |
+                                                          AGECLASS == 2)],
+                                              na.rm = TRUE),
+                                            na.rm = TRUE),
+                                        na.rm = TRUE)
+                 , d_ac_yoy_rbt = max(0,
+                                       min(1,
+                                           dplyr::n_distinct(
+                                             TAXAID[(EXCLUDE != TRUE &
+                                                      TAXAID == "ONCORHYNCHUS MYKISS") &
+                                                      (AGECLASS == 1 |
+                                                         AGECLASS == 2)],
+                                             na.rm = TRUE),
+                                           na.rm = TRUE),
+                                       na.rm = TRUE)
+                 , n_ac_Cott = dplyr::n_distinct(AGECLASS[EXCLUDE != TRUE &
+                                                             FAMILY == "COTTIDAE"],
+                                                  na.rm = TRUE)
+                 , n_ac_rbt = dplyr::n_distinct(AGECLASS[EXCLUDE != TRUE &
+                                                            TAXAID == "ONCORHYNCHUS MYKISS"],
+                                                 na.rm = TRUE)
 
                  ## SPECIAL ----
                  # odd ball metrics that don't fit the above groupings

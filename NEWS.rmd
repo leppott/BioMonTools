@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9004 (2025-12-26)
+
+* refactor: Add new fish ageclass metrics, Issue #129
+* tests: Update fish tests with new column, ageclass
+
 ## Changes in version 1.2.4.9003 (2025-12-15)
 
 * refactor: Update MetricScoring.xlsx for EGLE_2025 (MI)

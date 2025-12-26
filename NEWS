@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-12-15 12:16:15.035087
+    #> Last Update: 2025-12-26 15:31:28.075211
 
 # Version History
+
+## Changes in version 1.2.4.9004 (2025-12-26)
+
+- refactor: Add new fish ageclass metrics, Issue \#129
+- tests: Update fish tests with new column, ageclass
 
 ## Changes in version 1.2.4.9003 (2025-12-15)
 
