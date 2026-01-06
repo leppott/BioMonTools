@@ -18,6 +18,19 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9005 (2025-12-26)
+
+* docs: Update README, Issue #127
+    + Citation
+    + Badges, add
+        - Project status
+        - CRAN release
+        - CRAN downloads
+    + Badges, remove
+        - GitHub release
+        - GitHub downloads
+* docs: Add help file for package, Issue #128
+
 ## Changes in version 1.2.4.9004 (2025-12-26)
 
 * refactor: Add new fish ageclass metrics, Issue #129

@@ -4,9 +4,22 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-12-26 15:31:28.075211
+    #> Last Update: 2026-01-06 13:43:43.930047
 
 # Version History
+
+## Changes in version 1.2.4.9005 (2025-12-26)
+
+- docs: Update README, Issue \#127
+  - Citation
+  - Badges, add
+    - Project status
+    - CRAN release
+    - CRAN downloads
+  - Badges, remove
+    - GitHub release
+    - GitHub downloads
+- docs: Add help file for package, Issue \#128
 
 ## Changes in version 1.2.4.9004 (2025-12-26)
 

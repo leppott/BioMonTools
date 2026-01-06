@@ -3,7 +3,7 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-09-10 08:52:11.772796
+    #> Last Update: 2026-01-06 13:42:46.059798
 
 # BioMonTools <img src="man/figures/logo.png" align="right" height="139" />
 
@@ -16,6 +16,9 @@ for mult-metric indices and related data manipulation.
 # Badges
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/leppott/BioMonTools/graphs/commit-activity)
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Life
 Cycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![GitHub
@@ -25,13 +28,13 @@ license](https://img.shields.io/github/license/leppott/BioMonTools.svg)](https:/
 [![codecov](https://codecov.io/gh/leppott/BioMonTools/branch/master/graph/badge.svg)](https://app.codecov.io/gh/leppott/BioMonTools)
 [![R-CMD-check](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml)
 
-[![GitHub
-issues](https://img.shields.io/github/issues/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/issues/)
+[![CRAN
+release](https://www.r-pkg.org/badges/version/badger?color=orange)](https://cran.r-project.org/package=badger)
+[![CRAN
+downloads](http://cranlogs.r-pkg.org/badges/grand-total/BioMonTools?color=blue)](https://cran.r-project.org/package=BioMonTools)
 
 [![GitHub
-release](https://img.shields.io/github/release/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
-[![Github all
-releases](https://img.shields.io/github/downloads/leppott/BioMonTools/total.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
+issues](https://img.shields.io/github/issues/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/issues/)
 <!-- badges: end -->
 
 # Installation
@@ -73,9 +76,9 @@ Use the code below before retrying the above install commands.
 options(timeout=400)
 ```
 
-# Status
+# Life Cycle Status
 
-In development.
+Stable and mature.
 
 # Usage
 
@@ -90,14 +93,17 @@ data for use with these tools.
 
 Vignette and install guide updates are planned for the future.
 
+Leppo, E.W., J. Stamp, and B. Block. 2025. BioMonTools: Tools for
+Biomonitoring and Bioassessment. R package version 1.2.4.9004.
+<https://github.com/leppott/BioMonTools>
+
 # Issues
 
 <https://github.com/leppott/BioMonTools/issues>
 
 # Planned Updates
 
-- Fixes (if any).
+Add as issues for tracking purposes. Will add metrics and indices as
+needed.
 
-- New metrics (add needed).
-
-- New index scoring (as needed).
+Updates to CRAN as have time.
