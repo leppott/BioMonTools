@@ -2687,7 +2687,7 @@ metric.values.bugs <- function(myDF
 
                                 ### Dominant N ####
                                 ## uses previously defined values added to myDF
-                                , pi_dom01 = 100 * max(N_TAXA, na.rm = TRUE) / ni_total
+                                , pi_dom01 = 100 * max(ni_dom01, na.rm = TRUE) / ni_total
                                 , pi_dom02 = 100 * max(ni_dom02, na.rm = TRUE) / ni_total
                                 , pi_dom03 = 100 * max(ni_dom03, na.rm = TRUE) / ni_total
                                 , pi_dom04 = 100 * max(ni_dom04, na.rm = TRUE) / ni_total
@@ -4640,7 +4640,7 @@ metric.values.fish <- function(myDF
 
                  ## Dominant N ####
                  ## uses previously defined values added to myDF
-                 , pi_dom01 = 100 * max(N_TAXA, na.rm = TRUE) / ni_total
+                 , pi_dom01 = 100 * max(ni_dom01, na.rm = TRUE) / ni_total
                  , pi_dom02 = 100 * max(ni_dom02, na.rm = TRUE) / ni_total
                  , pi_dom03 = 100 * max(ni_dom03, na.rm = TRUE) / ni_total
                  , pi_dom04 = 100 * max(ni_dom04, na.rm = TRUE) / ni_total

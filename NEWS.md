@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-01-06 13:43:43.930047
+    #> Last Update: 2026-01-12 09:29:53.560202
 
 # Version History
+
+## Changes in version 1.2.4.9006 (2026-01-12)
+
+- fix: Update dominance metrics (fish and bugs)
+  - Dom01 used max original data not dom dataset
+  - Other dom numbers unaffected
 
 ## Changes in version 1.2.4.9005 (2025-12-26)
 

@@ -1,7 +1,7 @@
 Package: BioMonTools
 Type: Package
 Title: Biomonitoring and Bioassessment Calculations
-Version: 1.2.4.9005
+Version: 1.2.4.9006
 Authors@R: c(
     person("Erik W.", "Leppo", 
            email="Erik.Leppo@tetratech.com", 

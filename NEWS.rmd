@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9006 (2026-01-12)
+
+* fix: Update dominance metrics (fish and bugs)
+    + Dom01 used max original data not dom dataset
+    + Other dom numbers unaffected
+    
 ## Changes in version 1.2.4.9005 (2025-12-26)
 
 * docs: Update README, Issue #127
