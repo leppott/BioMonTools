@@ -4471,6 +4471,7 @@ metric.values.fish <- function(myDF
                        , nt_nonnative_OnlyNonNative = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                  & (NATIVE == "NON-NATIVE")
                                                                  & N_TAXA > 0], na.rm = TRUE)
+                       , nt_hybrid = dplyr::n_distinct(TAXAID[HYBRID == TRUE], na.rm = TRUE)
                        , nt_nativenonhybrid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" &
                                                                          (HYBRID != TRUE | is.na(HYBRID))], na.rm = TRUE)
                        , nt_Notur = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "NOTURUS"], na.rm = TRUE)
@@ -4483,6 +4484,7 @@ metric.values.fish <- function(myDF
                                                                       TROPHIC_IS == TRUE & FAMILY == "CYPRINIDAE"], na.rm = TRUE)
                        , nt_natLeuc = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & FAMILY == "LEUCISCIDAE"], na.rm = TRUE)
                        , nt_natrbs = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & NATIVE == "NATIVE" & TYPE == "RBS"], na.rm = TRUE)
+                       , nt_Rhin = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & GENUS == "RHINICHTHYS"], na.rm = TRUE)
                        , nt_Petro  = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "PETROMYZONTIDAE"], na.rm = TRUE)
                        , nt_Salm = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & FAMILY == "SALMONIDAE"], na.rm = TRUE)
                        , nt_connect = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & CONNECTIVITY == TRUE], na.rm = TRUE)
@@ -5153,6 +5155,13 @@ metric.values.fish <- function(myDF
                  # odd ball metrics that don't fit the above groupings
                  #   OR are really different and probably only applicable
                  #   to a specific entity
+                 #### Boise BCG
+                 , x_Obs_CatoRhin <- as.integer(min(1, dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                        & GENUS  == "RHINICHTHYS"]
+                                                                        ,  na.rm = TRUE)) +
+                                                  min(1, dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                        & FAMILY == "CATOSTOMIDAE"]
+                                                                        , na.rm = TRUE)))
                  #### New Mexico Fish BCG
                  , nt_piscivore_BCG_att66s6t = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                         & TROPHIC_PI == TRUE

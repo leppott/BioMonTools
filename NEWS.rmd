@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9007 (2026-03-05)
+
+* refactor: Add new fish metrics
+
 ## Changes in version 1.2.4.9006 (2026-01-12)
 
 * fix: Update dominance metrics (fish and bugs)
