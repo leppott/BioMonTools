@@ -14,7 +14,7 @@
 #' accepted in metric.values().
 #'
 #' @param df_data A data frame containing taxa data.
-#' @param col_ffg The column containing FFG values (unquoted tidyselect style).
+#' @param col_ffg The column containing FFG values.  Default = "FFG"
 #' @param valid_vals Accepted values.
 #' Default = c(CF, CG, MH, OM ,PA, PH, PI, PR, SC, SH, XY)
 #'
@@ -23,10 +23,11 @@
 #'
 #' @examples
 #' # Values, Default
-#' qc_taxa_values_ffg(data_benthos_PacNW, "FFG")
+#' qc_taxa_values_ffg(data_benthos_PacNW)
 #'
 #' # Values, User (full names)
-#' qc_taxa_values_ffg(data_benthos_MBSS, "FFG",
+#' qc_taxa_values_ffg(data_benthos_MBSS,
+#'                    "FFG",
 #'                    valid_vals = c("Collector",
 #'                                   "Filterer",
 #'                                   "Predator",
@@ -35,7 +36,7 @@
 #'
 #' @export
 qc_taxa_values_ffg <- function(df_data,
-                               col_ffg,
+                               col_ffg = "FFG",
                                valid_vals = c("CF",
                                               "CG",
                                               "MH",

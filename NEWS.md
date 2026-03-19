@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-03-18 21:58:25.742973
+    #> Last Update: 2026-03-18 22:19:01.612552
 
 # Version History
+
+## Changes in version 1.2.4.9011 (2026-03-18)
+
+- refactor: Add default column name to qc_taxa_values_ffg
+- feature: Add qc_taxa_values_habit function
 
 ## Changes in version 1.2.4.9010 (2026-03-18)
 
