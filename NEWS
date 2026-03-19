@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-03-18 20:26:19.353336
+    #> Last Update: 2026-03-18 20:55:43.088572
 
 # Version History
+
+## Changes in version 1.2.4.9009 (2026-03-18)
+
+- deprecate: Change qc_taxa to qc_taxa_match_official
+  - Will be removed in a future version
+- refactor: Add qc_taxa_match_official and update with new name
 
 ## Changes in version 1.2.4.9008 (2026-03-18)
 

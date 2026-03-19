@@ -30,58 +30,12 @@ Default = "only_Official".}
 input data frame with master taxa information added to it.
 }
 \description{
-This function compares the user's data frame to a data frame with the
-official (or user supplied) master taxa list (benthic macroinvertebrates).
+This function has been deprecated (March 2026).
 }
 \details{
-Output is a data frame with matches.
+The new function is qc_taxa_match_official.
 
-Messages are output to the console with the number of matches and which user
-taxa did not match the official list.
-
-The official list is stored online but the user can input their own saved
-copy.
-
-Any columns in the user input file that match the official master taxa list
-will be renamed with the "_NonOfficial" suffix.
-
-New/different taxa in the user data are handled by the 'useOfficialTaxaInfo'
-parameter.  For taxa that did not match the master taxa list the user has
-options on how to handle the differences for the phylogeny (e.g., columns for
-phylum, class, family, etc.) and autecology (e.g., columns for FFG, habit,
-tolerance value, etc.).  The options are below.
-
-* only_official = use only official master taxa information.  Any
-non-matching taxa will not have any master taxa information.
-
-* only_user = only use the information provided by the user.  Information
-from the 'Official' will not be used.  This should only be used for
-non-official calculations.
-
-* add_new = hybrid approach that uses official master taxa information, when
-present, but includes user information for non-matching taxa if the column
-names match.
-
-Default master taxa lists are saved as CSV files online at:
-
-https://github.com/leppott/MBSStools_SupportFiles
-
-The files can be downloaded with the following code.
-
-**Benthic Macroinvertebrate**
-
-url_mt_bugs <- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"
-df_mt_bugs <- read.csv(url_mt_bugs)
-
-The master taxa files are periodically updated.  Update dates will be logged
-on the GitHub repository.
-
-Expected fields include:
-
-**Benthic Macroinvertebrates**
-
-    + TAXON, Phylum, Class, Order, Family, Genus, Other_Taxa, Tribe, FFG,
-      FAM_TV, Habit, FinalTolVal07, Comment
+This function exists only as a wrapper to avoid breaking older code.
 }
 \examples{
 # Example 1, Master Taxa List, Bugs
