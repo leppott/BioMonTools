@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-03-18 20:55:43.088572
+    #> Last Update: 2026-03-18 21:58:25.742973
 
 # Version History
+
+## Changes in version 1.2.4.9010 (2026-03-18)
+
+- feature: Add qc_taxa_values_ffg function
 
 ## Changes in version 1.2.4.9009 (2026-03-18)
 
