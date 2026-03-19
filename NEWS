@@ -4,13 +4,22 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-01-12 09:29:53.560202
+    #> Last Update: 2026-03-18 20:26:19.353336
 
 # Version History
 
+## Changes in version 1.2.4.9008 (2026-03-18)
+
+- test: Add test for metric.values for collapsing, bugs and fish, Issue
+  \#131
+
+## Changes in version 1.2.4.9007 (2026-03-05)
+
+- refactor: Add new fish metrics
+
 ## Changes in version 1.2.4.9006 (2026-01-12)
 
-- fix: Update dominance metrics (fish and bugs)
+- fix: Update dominance metrics (fish and bugs), Issue \#131
   - Dom01 used max original data not dom dataset
   - Other dom numbers unaffected
 
