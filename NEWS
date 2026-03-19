@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-03-18 22:19:01.612552
+    #> Last Update: 2026-03-18 22:51:30.206983
 
 # Version History
+
+## Changes in version 1.2.4.9012 (2026-03-18)
+
+- feature: Add qc_taxa_values_tolval function
 
 ## Changes in version 1.2.4.9011 (2026-03-18)
 

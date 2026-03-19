@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9012 (2026-03-18)
+
+* feature: Add qc_taxa_values_tolval function
+
 ## Changes in version 1.2.4.9011 (2026-03-18)
 
 * refactor: Add default column name to qc_taxa_values_ffg

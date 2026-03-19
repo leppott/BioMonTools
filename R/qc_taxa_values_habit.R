@@ -39,7 +39,7 @@ qc_taxa_values_habit <- function(df_data,
                                                 "SP",
                                                 "SW")) {
 
-  # QC
+  # QC----
   if (!rlang::as_string(col_habit) %in% names(df_data)) {
     stop("Column '",
          rlang::as_string(col_habit),
@@ -50,7 +50,7 @@ qc_taxa_values_habit <- function(df_data,
   df_valid_vals <- as.data.frame(valid_vals)
   names(df_valid_vals) <- col_habit
 
-  # occurrence
+  # occurrence----
   df_match <- df_data |>
     # get all values, split on comma with optional surrounding spaces
     tidyr::separate_rows(.data[[col_habit]], sep = "\\s*,\\s*") |>
@@ -68,7 +68,7 @@ qc_taxa_values_habit <- function(df_data,
     dplyr::mutate(valid = dplyr::case_when(is.na(valid) ~ TRUE,
                                            .default = valid))
 
-  # Result
+  # Result----
   return(df_match)
 
 }## FUNCTION ~ END

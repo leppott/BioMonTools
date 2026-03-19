@@ -49,7 +49,7 @@ qc_taxa_values_ffg <- function(df_data,
                                               "SH",
                                               "XY")) {
 
-  # QC
+  # QC----
   if (!rlang::as_string(col_ffg) %in% names(df_data)) {
     stop("Column '",
          rlang::as_string(col_ffg),
@@ -60,7 +60,7 @@ qc_taxa_values_ffg <- function(df_data,
   df_valid_vals <- as.data.frame(valid_vals)
   names(df_valid_vals) <- col_ffg
 
-  # occurrence
+  # occurrence----
   df_match <- df_data |>
     # occurrence
     dplyr::count(.data[[col_ffg]], name = "n") |>
@@ -74,7 +74,7 @@ qc_taxa_values_ffg <- function(df_data,
     dplyr::mutate(valid = dplyr::case_when(is.na(valid) ~ TRUE,
                                            .default = valid))
 
-  # Result
+  # Result----
   return(df_match)
 
 }## FUNCTION ~ END

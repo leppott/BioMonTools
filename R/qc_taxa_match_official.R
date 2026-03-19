@@ -98,7 +98,7 @@ qc_taxa_match_official <- function(DF_User,
                                    DF_Official = NULL,
                                    fun.Community = NULL,
                                    useOfficialTaxaInfo = "only_Official") {
-  #
+  # DEBUG ----
   boo_DEBUG <- FALSE
   if(boo_DEBUG==TRUE){##IF~boo_DEBUG~START
     # # # Bugs
@@ -109,18 +109,18 @@ qc_taxa_match_official <- function(DF_User,
     # #
   }##IF~boo_DEBUG~END
 
-  # Col Suffixes
+  # Col Suffixes----
   sfx_Official <- "_Official"
   sfx_NonOfficial <- "_NonOfficial"
 
-  # QC
+  # QC----
   ## inputs as data frames (just in case have a tibble)
   DF_User <- data.frame(DF_User)
   # DF_Official handled when checking URL
   ## Community, convert community to lowercase
   fun.Community <- tolower(fun.Community)
 
-  # Taxa list, official
+  # Taxa list, official----
   # run the proper sub function
   if (fun.Community == "bugs") {##IF.START
     url_mt <- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"
@@ -150,7 +150,7 @@ qc_taxa_match_official <- function(DF_User,
     stop(msg)
   }##IF ~ fun.community ~ END
 
-  # Master Taxa
+  # Master Taxa----
   # Download "official" list if none provided
   if(is.null(DF_Official)){
     # 404 Error if file not found
@@ -159,21 +159,21 @@ qc_taxa_match_official <- function(DF_User,
     df_mt <- data.frame(DF_Official)
   }## IF ~ is.null(DF_Official) ~ END
 
-  # Names to upper case
+  # Names to upper case----
   names(DF_User) <- toupper(names(DF_User))
   names(df_mt) <- toupper(names(df_mt))
   # col_mt <- toupper(col_mt)
   col_taxon <- toupper(col_taxon)
 
-  # QC check for col_taxon
+  # QC check for col_taxon----
   if (!col_taxon %in% names(DF_User)) {
     stop(paste0("DF_User missing column; ", col_taxon))
   } ## IF, stop
 
-  # taxa names to ALL CAPS for bugs and fish
+  # taxa names to ALL CAPS for bugs and fish----
   DF_User[, col_taxon] <- toupper(DF_User[, col_taxon])
 
-  # Check Numbers
+  # Check Numbers----
   taxa_user      <- sort(unique(DF_User[, col_taxon]))
   taxa_user_n    <- length(taxa_user)
   boo_taxa_match <- taxa_user %in% df_mt[, col_taxon]
@@ -199,7 +199,7 @@ qc_taxa_match_official <- function(DF_User,
 
 
 
-  # Merge and Munge Columns
+  # Merge and Munge Columns----
   ## Columns
   # col_mt_nonTaxon <- col_mt[!(col_mt %in% col_taxon)]
   # col_mt_nonOfficial <- paste0(col_mt_nonTaxon, sfx_NonOfficial)
@@ -276,7 +276,7 @@ qc_taxa_match_official <- function(DF_User,
     stop(msg)
   }
 
-  # QC
+  # QC----
   ## Missing Columns
 
   ## Valid values
@@ -288,7 +288,7 @@ qc_taxa_match_official <- function(DF_User,
   # Fish =
 
 
-  # Output
+  # Output----
   return(df_result)
   #
 }##FUNCTION ~ qc_taxa ~ END
