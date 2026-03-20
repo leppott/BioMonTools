@@ -4,9 +4,28 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-03-18 20:26:19.353336
+    #> Last Update: 2026-03-18 22:51:30.206983
 
 # Version History
+
+## Changes in version 1.2.4.9012 (2026-03-18)
+
+- feature: Add qc_taxa_values_tolval function
+
+## Changes in version 1.2.4.9011 (2026-03-18)
+
+- refactor: Add default column name to qc_taxa_values_ffg
+- feature: Add qc_taxa_values_habit function
+
+## Changes in version 1.2.4.9010 (2026-03-18)
+
+- feature: Add qc_taxa_values_ffg function
+
+## Changes in version 1.2.4.9009 (2026-03-18)
+
+- deprecate: Change qc_taxa to qc_taxa_match_official
+  - Will be removed in a future version
+- refactor: Add qc_taxa_match_official and update with new name
 
 ## Changes in version 1.2.4.9008 (2026-03-18)
 
