@@ -1244,6 +1244,7 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
 
+  ## Logical ----
   # Logical Columns to Logical
   # Ensure in correct format, Access converts sometimes to 0, -1
   # 2025-06-13
@@ -1260,6 +1261,7 @@ metric.values.bugs <- function(myDF
     myDF[, i] <- as.logical(myDF[, i])
   }## FOR ~ i ~ logical
 
+  ## NonTarget ----
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
   if (verbose == TRUE) {
@@ -1283,6 +1285,7 @@ metric.values.bugs <- function(myDF
   myDF <- dplyr::filter(myDF,
                         NONTARGET != TRUE | is.na(NONTARGET))
 
+  ## ColNames to Upper ----
   # # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
   if (verbose == TRUE) {
     debug_topic <- "Munging, text cols, toupper"
@@ -1334,7 +1337,7 @@ metric.values.bugs <- function(myDF
   }## IF ~ verbose
 
 
-
+  ## White Space ----
   # Remove white space
   myDF[, "HABIT"] <- gsub(" ","", myDF[, "HABIT"])
   myDF[, "FFG"] <- gsub(" ","", myDF[, "FFG"])
@@ -1345,6 +1348,7 @@ metric.values.bugs <- function(myDF
   myDF[, "ELEVATION_ATTR"] <- gsub(" ","", myDF[, "ELEVATION_ATTR"])
   myDF[, "GRADIENT_ATTR"] <- gsub(" ","", myDF[, "GRADIENT_ATTR"])
   myDF[, "WSAREA_ATTR"] <- gsub(" ","", myDF[, "WSAREA_ATTR"])
+  ## Helper Cols ----
   # code new columns
   ## match, any
   myDF[, "HABIT_BU"]     <- grepl("BU", myDF[, "HABIT"])
@@ -1366,6 +1370,7 @@ metric.values.bugs <- function(myDF
   myDF[, "LC_MULTI"]     <- grepl("MULTI", myDF[, "LIFE_CYCLE"])
   myDF[, "LC_SEMI"]      <- grepl("SEMI", myDF[, "LIFE_CYCLE"])
   myDF[, "LC_UNI"]       <- grepl("UNI", myDF[, "LIFE_CYCLE"])
+  myDF[, "FFG2_DD"]      <- grepl("DD", myDF[, "FFG2"])
   myDF[, "FFG2_PRE"]     <- grepl("PR", myDF[, "FFG2"])
   myDF[, "TI_STENOCOLD"] <- grepl("STENOC", myDF[, "THERMAL_INDICATOR"])
   myDF[, "TI_COLD"]      <- grepl("COLD", myDF[, "THERMAL_INDICATOR"])
@@ -1447,7 +1452,7 @@ metric.values.bugs <- function(myDF
   #   filter(row_number()<=5)
 
 
-  # Create Dominant N ####
+  ## Dominant N ----
   # Create df for Top N (without ties)
   if (verbose == TRUE) {
     debug_topic <- "Munging, Dom"
@@ -2595,12 +2600,19 @@ metric.values.bugs <- function(myDF
                                 ### FFG2 ####
                                 # marine
                                 ## nt_ffg2
+                                , nt_ffg2_deepdep = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                             & FFG2_DD == TRUE]
+                                                                      , na.rm = TRUE)
                                 , nt_ffg2_intface = NA
                                 , nt_ffg2_subsurf = NA
                                 ## pi_ffg2
+                                , pi_ffg2_deepdep = 100 * sum(N_TAXA[FFG2_DD == TRUE]
+                                                              , na.rm = TRUE) / ni_total
                                 , pi_ffg2_scavburr = NA
                                 ## pt_ffg2
-                                # = conveyorbelt, interface, scavengerbrowser, subsurface, watercolumn, predator
+                                , pi_ffg2_deepdep = 100 * nt_ffg2_deepdep / nt_total
+                                # = conveyorbelt, interface, scavengerbrowser, subsurface,
+                                # watercolumn, predator
 
                                 ### Habit ####
                                 #(need to be wild card. that is, counts both CN,CB and CB as climber)
@@ -2762,6 +2774,7 @@ metric.values.bugs <- function(myDF
 
                                 ### Density ####
                                 # Numbers per area sampled
+                                , ni_m2 = NA
 
                                 ### Estuary-Marine ####
                                 # Mixed in with other metrics
@@ -5156,12 +5169,14 @@ metric.values.fish <- function(myDF
                  #   OR are really different and probably only applicable
                  #   to a specific entity
                  #### Boise BCG
-                 , x_Obs_CatoRhin <- as.integer(min(1, dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                 , x_Obs_CatoRhin = as.integer(min(1, dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                         & GENUS  == "RHINICHTHYS"]
-                                                                        ,  na.rm = TRUE)) +
+                                                                        ,  na.rm = TRUE),
+                                                   na.rm = TRUE) +
                                                   min(1, dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                         & FAMILY == "CATOSTOMIDAE"]
-                                                                        , na.rm = TRUE)))
+                                                                        , na.rm = TRUE),
+                                                      na.rm = TRUE))
                  #### New Mexico Fish BCG
                  , nt_piscivore_BCG_att66s6t = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                         & TROPHIC_PI == TRUE

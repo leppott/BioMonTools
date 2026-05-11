@@ -4,9 +4,21 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-03-18 22:51:30.206983
+    #> Last Update: 2026-05-11 15:57:28.384427
 
 # Version History
+
+## Changes in version 1.2.4.9013 (2026-05-11)
+
+- refactor: Rename qc_taxa_match_official to qc_taxa_names_match
+- feature: Add qc_taxa_names_proof function
+  - Check for spelling issues
+- feature: Add qc_taxa_phylo for checking master taxa list names
+- refactor: Change names from distinct to parent in
+  qc_taxa_phylo\$unique_parent output
+- data: Create example final id issues dataset
+- docs: Document finalid_issues data
+- fix: Fix metric x_Obs_CatoRhin in metric.values, Issue \#138
 
 ## Changes in version 1.2.4.9012 (2026-03-18)
 
