@@ -750,3 +750,37 @@
 #'  }
 #' @source example data
 "data_mmi_dev_small"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_taxa_names_issues" ----
+#' \name{data_taxa_names_issues}
+#' \alias{data_taxa_names_issues}
+#' \docType{data}
+#' \title{
+#'   A Capitalized Title for the Data Set
+#' }
+# \description{
+#'   %%  ~~ A concise (1-5 lines) description of the dataset. ~~
+#' }
+#' \usage{data("data_taxa_names_issues")}
+#' \format{
+#'   A data frame with 215 observations on the following 3 variables.
+#'  \describe{
+#'     \item{\code{Source}}{a character vector}
+#'     \item{\code{Issue}}{a character vector}
+#'     \item{\code{FinalID}}{a character vector}
+#'   }
+#' }
+#' \details{
+#'   %%  ~~ If necessary, more details than the __description__ above ~~
+#' }
+#' \source{
+#'   %%  ~~ reference to a publication or URL from which the data were obtained ~~
+#' }
+#' \references{
+#'   %%  ~~ possibly secondary sources and usages ~~
+#' }
+#' \examples{
+#'   data(data_taxa_names_issues)
+#'   ## maybe str(data_taxa_names_issues) ; plot(data_taxa_names_issues) ...
+#' }
+#' \keyword{datasets}
