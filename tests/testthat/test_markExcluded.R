@@ -2,7 +2,7 @@
 test_that("markExcluded", {
 
   # # add pipe
-  # `%>%` <- dplyr::`%>%`
+  #
   #
   # # Data
   # df_samps_bugs <- readxl::read_excel(system.file(
@@ -58,7 +58,8 @@ test_that("markExcluded", {
   # tbl_diff <- table(df_compare$Diff)
   # knitr::kable(tbl_diff)
   # # sort
-  # df_compare <- df_compare %>% dplyr::arrange(desc(Diff))
+  # df_compare <- df_compare |>
+  #               dplyr::arrange(desc(Diff))
   #
   # # Number with issues
   # sum(abs(df_compare$Diff))

@@ -1510,8 +1510,7 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
 
   col_order <- names(df_metsc_calc)
 
-  # `%>%` <- dplyr::`%>%`
-  # df_metsc_qc<- df_metsc_qc %>%
+  # df_metsc_qc<- df_metsc_qc |>
   #   dplyr::select(dplyr::all_of(col_order))
 
   df_metsc_qc <- df_metsc_qc[, col_order]
@@ -2614,14 +2613,12 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
   # Round values to 1 or 2 digits
   #library(dplyr)
 
-  `%>%` <- dplyr::`%>%`
-
-  df_metval_calc <- df_metval_calc %>%
-    dplyr::mutate_if(is.integer, as.numeric) %>%
+  df_metval_calc <- df_metval_calc |>
+    dplyr::mutate_if(is.integer, as.numeric) |>
     dplyr::mutate_if(is.numeric, round, digits =2)
 
-  df_metval_qc <- df_metval_qc %>%
-    dplyr::mutate_if(is.integer, as.numeric) %>%
+  df_metval_qc <- df_metval_qc |>
+    dplyr::mutate_if(is.integer, as.numeric) |>
     dplyr::mutate_if(is.numeric, round, digits =2)
 
   # disable test, 20250908
@@ -2683,14 +2680,13 @@ testthat::test_that("metric values_scores, MA kick/lowgrad IBI", {
 #   # Round values to 1 or 2 digits
 #   #library(dplyr)
 #
-#   # `%>%` <- dplyr::`%>%`
 #   #
-#   # df_metval_calc <- df_metval_calc %>%
-#   #   dplyr::mutate_if(is.integer, as.numeric) %>%
+#   # df_metval_calc <- df_metval_calc |>
+#   #   dplyr::mutate_if(is.integer, as.numeric) |>
 #   #   dplyr::mutate_if(is.numeric, round, digits =2)
 #   #
-#   # df_metval_qc <- df_metval_qc %>%
-#   #   dplyr::mutate_if(is.integer, as.numeric) %>%
+#   # df_metval_qc <- df_metval_qc |>
+#   #   dplyr::mutate_if(is.integer, as.numeric) |>
 #   #   dplyr::mutate_if(is.numeric, round, digits =2)
 #
 #

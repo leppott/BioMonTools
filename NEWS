@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-05-18 09:57:08.751037
+    #> Last Update: 2026-05-18 12:05:57.16924
 
 # Version History
+
+## Changes in version 1.2.4.9015 (2026-05-18)
+
+- refactor: Replace migrittr pipe with native pipe, Issue \#130
+  - Tests
 
 ## Changes in version 1.2.4.9014 (2026-05-18)
 
