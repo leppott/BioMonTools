@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-05-11 15:57:28.384427
+    #> Last Update: 2026-05-18 09:57:08.751037
 
 # Version History
+
+## Changes in version 1.2.4.9014 (2026-05-18)
+
+- refactor: Additional metrics, Issue \#140
+- refactor: Update metricnames.xlsx and metricscoring.xlsx for
+  missing/extra values
 
 ## Changes in version 1.2.4.9013 (2026-05-11)
 

@@ -45,7 +45,7 @@ space, or more than 3
 * **sp** variants; (with/without .) sp and spp, inside next to slash
 
 * **stage** variants; adult, A, pupa, pupae, P, immature, I, imm, juv,
-juvenile, larva, larvae, L, zoea, myses, mysops?
+juvenile, larva, larvae, L, zoea, myses, mysops?, megalops, megadrile
 
 * **probably**, variants; "?", " prob ", " prob. ", " probably "
 * add parentheses
@@ -53,6 +53,8 @@ juvenile, larva, larvae, L, zoea, myses, mysops?
 * **cf**, variants start, or in string, cf, c.f., cf., c.f
 
 * backslash_dash_underscore
+
+* terrestrial (terr.), megadrile
 
 complex cmplx
 

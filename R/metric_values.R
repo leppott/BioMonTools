@@ -1523,6 +1523,14 @@ metric.values.bugs <- function(myDF
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(BCG_ATTR == "4") %>%
     dplyr::filter(dplyr::row_number() <= 1)
+  df.dom01_BCG_att456 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID)  %>%
+    dplyr::filter(BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6") %>%
+    dplyr::filter(dplyr::row_number() <= 1)
+  df.dom01_BCG_att456t <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID)  %>%
+    dplyr::filter(BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6t") %>%
+    dplyr::filter(dplyr::row_number() <= 1)
   df.dom01_BCG_att5 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(BCG_ATTR == "5") %>%
@@ -1601,6 +1609,18 @@ metric.values.bugs <- function(myDF
                                                    , INDEX_CLASS)
                                    , ni_dom01_BCG_att4 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
+  df.dom01_BCG_att456.sum <- dplyr::summarise(dplyr::group_by(df.dom01_BCG_att456
+                                                            , SAMPLEID
+                                                            , INDEX_NAME
+                                                            , INDEX_CLASS)
+                                            , ni_dom01_BCG_att456 = sum(N_TAXA, na.rm = TRUE)
+                                            , .groups = "drop_last")
+  df.dom01_BCG_att456t.sum <- dplyr::summarise(dplyr::group_by(df.dom01_BCG_att456t
+                                                            , SAMPLEID
+                                                            , INDEX_NAME
+                                                            , INDEX_CLASS)
+                                            , ni_dom01_BCG_att456t = sum(N_TAXA, na.rm = TRUE)
+                                            , .groups = "drop_last")
   df.dom01_BCG_att5.sum <- dplyr::summarise(dplyr::group_by(df.dom01_BCG_att5
                                                    , SAMPLEID
                                                    , INDEX_NAME
@@ -1622,12 +1642,16 @@ metric.values.bugs <- function(myDF
   myDF <- merge(myDF, df.dom10.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom02_NoJugaRiss_BCG_att456.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom01_BCG_att4.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom01_BCG_att456.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom01_BCG_att456t.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom01_BCG_att5.sum, all.x = TRUE)
 
   # Convert NA to 0 (avoid -Inf in later calculations)
   myDF[is.na(myDF[, "ni_dom02_NoJugaRiss_BCG_att456"])
        , "ni_dom02_NoJugaRiss_BCG_att456"] <- 0
   myDF[is.na(myDF[, "ni_dom01_BCG_att4"]), "ni_dom01_BCG_att4"] <- 0
+  myDF[is.na(myDF[, "ni_dom01_BCG_att456"]), "ni_dom01_BCG_att456"] <- 0
+  myDF[is.na(myDF[, "ni_dom01_BCG_att456t"]), "ni_dom01_BCG_att456t"] <- 0
   myDF[is.na(myDF[, "ni_dom01_BCG_att5"]), "ni_dom01_BCG_att5"] <- 0
 
   # Clean up extra Dom data frames
@@ -1657,6 +1681,8 @@ metric.values.bugs <- function(myDF
   rm(df.dom10.sum)
   rm(df.dom02_NoJugaRiss_BCG_att456.sum)
   rm(df.dom01_BCG_att4.sum)
+  rm(df.dom01_BCG_att456.sum)
+  rm(df.dom01_BCG_att456t.sum)
   rm(df.dom01_BCG_att5.sum)
 
   # Metric Calc -----
@@ -2259,7 +2285,7 @@ metric.values.bugs <- function(myDF
                                 , pi_dom02_BCG_att456_NoJugaRiss = 100 * max(ni_dom02_NoJugaRiss_BCG_att456) / ni_total
                                 #
                                 # 20180608, rework PacNW
-                                # NonINSECTA, Attribute 456
+                                # NonINSECTA, Attribute 456 (20250615, Boise, add "t")
                                 , nt_NonIns_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                                   & (is.na(CLASS) == TRUE
                                                                                      | CLASS != "INSECTA")
@@ -2275,6 +2301,14 @@ metric.values.bugs <- function(myDF
                                      | BCG_ATTR == "6")]
                                   , na.rm = TRUE) / ni_total
                                 , pt_NonIns_BCG_att456 = 100 * nt_NonIns_BCG_att456 / nt_total
+                                , nt_NonIns_BCG_att456t = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                                  & (is.na(CLASS) == TRUE
+                                                                                     | CLASS != "INSECTA")
+                                                                                  & (BCG_ATTR == "4"
+                                                                                     | BCG_ATTR == "5"
+                                                                                     | BCG_ATTR == "6t")]
+                                                                           , na.rm = TRUE)
+                                , pt_NonIns_BCG_att456t = 100 * nt_NonIns_BCG_att456t / nt_total
                                 # NonInsectaJugaRiss, Attribute 456
                                 , nt_NonInsJugaRiss_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                                           & (is.na(CLASS) == TRUE
@@ -3201,13 +3235,19 @@ metric.values.bugs <- function(myDF
                                 , pi_dom01_BCG_att4 = 100 * max(0
                                                                 , ni_dom01_BCG_att4
                                                                 , na.rm = TRUE) / ni_total
+                                , pi_dom01_BCG_att456 = 100 * max(0
+                                                                , ni_dom01_BCG_att456
+                                                                , na.rm = TRUE) / ni_total
+                                , pi_dom01_BCG_att456t = 100 * max(0
+                                                                , ni_dom01_BCG_att456t
+                                                                , na.rm = TRUE) / ni_total
                                 , pi_dom01_BCG_att5 = 100 * max(0
                                                                 , ni_dom01_BCG_att5
                                                                 , na.rm = TRUE) / ni_total
 
                                 # domX_BCG
-                                # pi_dom01_att 4, 5, 56
-                                # pi_dom05_att 123, not 456
+                                # pi_dom01_att 56
+                                # pi_dom05_att 123,
 
                                 ### UFC ----
                                 #Taxonomic Uncertainty Frequency Class (use HBI calculation)
