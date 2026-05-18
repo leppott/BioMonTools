@@ -44,6 +44,8 @@ A data frame with 598 observations on the following 38 variables.
 \item{\code{HabStruct}}{a character vector}
 \item{\code{BCG_Attr2}}{a character vector}
 \item{\code{AirBreather}}{a logical vector}
+\item{\code{SAMP_AREA_M2}}{a numeric vector}
+\item{\code{DENSITY_M2}}{a numeric vector}
 }
 }
 \source{

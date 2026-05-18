@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9016 (2026-05-18)
+
+* refactor: Additional metrics, Issue #140
+* fix: Reconcile differences between Metric.Names.xlsx and metric.calc()
+    + Add metrics to both
+* data: Update PacNW and MBSS benthos datasets for area metrics
+
 ## Changes in version 1.2.4.9015 (2026-05-18)
 
 * refactor: Replace migrittr pipe with native pipe, Issue #130

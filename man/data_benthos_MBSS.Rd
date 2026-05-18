@@ -50,6 +50,8 @@ A data frame with 5,666 observations on the following 40 variables.
   \item{\code{BCG_ATTR2}}{a character vector}
   \item{\code{NONTARGET}}{a logical vector}
   \item{\code{AIRBREATHER}}{a logical vector}
+  \item{\code{SAMP_AREA_M2}}{a numeric vector}
+  \item{\code{DENSITY_M2}}{a numeric vector}
  }
 }
 \source{

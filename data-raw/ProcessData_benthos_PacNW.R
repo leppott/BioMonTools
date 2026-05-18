@@ -6,6 +6,7 @@
 # 2022-05-18, add HabStruct
 # 2022-11-15 (EWL) update for INDEX_CLASS
 # 2025-09-05, non ASCII, Mesenchytraeus*
+# 2025-05-18, New columns for area
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 0. Prep####
@@ -46,6 +47,10 @@ df[df$TaxaID == "Aeshnidae", "BCG_Attr2"] <- "4_WORSE"
 
 # 20221111
 df$AirBreather <- NA
+
+# 20260518
+df[, "SAMP_AREA_M2"] <- 0.25
+df[, "DENSITY_M2"] <- df[, "N_TAXA"] / 0.25
 
 # Change Names
 names(df)[names(df) %in% "Index_Region"] <- "INDEX_CLASS"

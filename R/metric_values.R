@@ -923,7 +923,9 @@ metric.values.bugs <- function(myDF
   col.req_numeric <- c("N_TAXA",
                        "TOLVAL",
                        "TOLVAL2",
-                       "UFC")
+                       "UFC",
+                       "SAMP_AREA_M2",
+                       "DENSITY_M2")
   col.req <- c(col.req_character,
                col.req_logical,
                col.req_numeric)
@@ -2005,6 +2007,12 @@ metric.values.bugs <- function(myDF
                                                        , na.rm = TRUE) / ni_total
                                 , pi_Coleo = 100 * sum(N_TAXA[ORDER == "COLEOPTERA"]
                                                        , na.rm = TRUE) / ni_total
+                                , pi_Cole2Odon = 100 * sum(N_TAXA[ORDER == "COLEOPTERA"]
+                                                       , na.rm = TRUE) /
+                                                       max(0,
+                                                           sum(N_TAXA[ORDER == "ODONATA"]
+                                                           , na.rm = TRUE),
+                                                           na.rm = TRUE)
                                 , pi_COET = 100 * sum(N_TAXA[ORDER == "COLEOPTERA"
                                                              | ORDER == "ODONATA"
                                                              | ORDER == "EPHEMEROPTERA"
@@ -2066,6 +2074,12 @@ metric.values.bugs <- function(myDF
                                                                             | FAMILY != "HYDROPSYCHIDAE"))
                                                                       | ORDER == "PLECOPTERA"]
                                                                , na.rm = TRUE) / ni_total
+                                , pi_EPTnoCae = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
+                                                                  & (is.na(FAMILY) == TRUE
+                                                                     | FAMILY != "CAENIDAE"))
+                                                                 | ORDER == "TRICHOPTERA"
+                                                                 | ORDER == "PLECOPTERA"]
+                                                          , na.rm = TRUE) / ni_total
                                 , pi_EPTNoCheu = 100 * sum(N_TAXA[ORDER == "EPHEMEROPTERA"
                                                                   | ORDER == "TRICHOPTERA"
                                                                   | ORDER == "PLECOPTERA"
@@ -2250,6 +2264,12 @@ metric.values.bugs <- function(myDF
                                 , nt_Chiro = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                       & FAMILY == "CHIRONOMIDAE"]
                                                                , na.rm = TRUE)
+                                , nt_Ortho = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                      & SUBFAMILY == "ORTHOCLADIINAE"]
+                                                               , na.rm = TRUE)
+                                , nt_Tanyt = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                    & TRIBE == "TANYTARSINI"]
+                                                             , na.rm = TRUE)
                                 , pi_Chiro = 100 * ni_Chiro / ni_total
                                 , pt_Chiro = 100 * nt_Chiro / nt_total
                                 , pi_Ortho = 100 * sum(N_TAXA[SUBFAMILY == "ORTHOCLADIINAE"]
@@ -2272,6 +2292,8 @@ metric.values.bugs <- function(myDF
                                 , pi_Orth2Chi = 100 * sum(N_TAXA[SUBFAMILY == "ORTHOCLADIINAE"]
                                                           , na.rm = TRUE)/ni_Chiro
                                 , pi_Tanyp2Chi = 100 * sum(N_TAXA[SUBFAMILY == "TANYPODINAE"]
+                                                           , na.rm = TRUE)/ni_Chiro
+                                , pi_Tanyt2Chi = 100 * sum(N_TAXA[TRIBE == "TANYTARSINI"]
                                                            , na.rm = TRUE)/ni_Chiro
                                 #,nt_Ortho (Marine)
                                 #MB_pi_OrthocladiinaeCricotopusChironomus2Chironomidae
@@ -2808,7 +2830,8 @@ metric.values.bugs <- function(myDF
 
                                 ### Density ####
                                 # Numbers per area sampled
-                                , ni_m2 = NA
+                                , ni_m2 = sum(N_TAXA / SAMP_AREA_M2, na.rm = TRUE)
+                                , sum_density_m2 = sum(DENSITY_M2, na.rm = TRUE)
 
                                 ### Estuary-Marine ####
                                 # Mixed in with other metrics
@@ -5203,6 +5226,9 @@ metric.values.fish <- function(myDF
                  , n_ac_rbt = dplyr::n_distinct(AGECLASS[EXCLUDE != TRUE &
                                                             TAXAID == "ONCORHYNCHUS MYKISS"],
                                                  na.rm = TRUE)
+                 , n_ac_wmf = dplyr::n_distinct(AGECLASS[EXCLUDE != TRUE &
+                                                           TAXAID == "PROSOPIUM WILLIAMSONI"],
+                                                na.rm = TRUE)
 
                  ## SPECIAL ----
                  # odd ball metrics that don't fit the above groupings

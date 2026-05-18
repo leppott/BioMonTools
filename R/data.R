@@ -158,6 +158,8 @@
 #' \item{\code{HabStruct}}{a character vector}
 #' \item{\code{BCG_Attr2}}{a character vector}
 #' \item{\code{AirBreather}}{a logical vector}
+#' \item{\code{SAMP_AREA_M2}}{a numeric vector}
+#' \item{\code{DENSITY_M2}}{a numeric vector}
 #'}
 #' @source example data
 "data_benthos_PacNW"
@@ -260,6 +262,8 @@
 #'   \item{\code{BCG_ATTR2}}{a character vector}
 #'   \item{\code{NONTARGET}}{a logical vector}
 #'   \item{\code{AIRBREATHER}}{a logical vector}
+#'   \item{\code{SAMP_AREA_M2}}{a numeric vector}
+#'   \item{\code{DENSITY_M2}}{a numeric vector}
 #'  }
 #' @source example data from MBSS
 "data_benthos_MBSS"

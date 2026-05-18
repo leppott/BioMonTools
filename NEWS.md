@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-05-18 12:05:57.16924
+    #> Last Update: 2026-05-18 15:24:47.845468
 
 # Version History
+
+## Changes in version 1.2.4.9016 (2026-05-18)
+
+- refactor: Additional metrics, Issue \#140
+- fix: Reconcile differences between Metric.Names.xlsx and metric.calc()
+  - Add metrics to both
+- data: Update PacNW and MBSS benthos datasets for area metrics
 
 ## Changes in version 1.2.4.9015 (2026-05-18)
 

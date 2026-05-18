@@ -5,6 +5,7 @@
 # Benthic macroinvertebrate data from MBSStools::taxa_bugs_genus
 # 2022-11-15 (EWL) update for INDEX_CLASS and missing columns, other changes
 #   date is obfuscated to date of admission to the Union for MD
+# 2025-05-18, New columns for area
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 0. Prep ----
@@ -45,6 +46,9 @@ df[df$EXCLUDE == "Y", "EXCLUDE"] <- TRUE
 df[df$EXCLUDE == "", "EXCLUDE"] <- FALSE
 df$EXCLUDE <- as.logical(df$EXCLUDE)
 
+# 20260518
+df[, "SAMP_AREA_M2"] <- 0.25
+df[, "DENSITY_M2"] <- df[, "N_TAXA"] / 0.25
 
 # View
 # View(df)
