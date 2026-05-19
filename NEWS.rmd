@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9017 (2026-05-19)
+
+* fix: Rename metric n_ac_wmf to n_ac_mwf
+    + MetricNames.xlsx
+    + metric.values
+
 ## Changes in version 1.2.4.9016 (2026-05-18)
 
 * refactor: Additional metrics, Issue #140

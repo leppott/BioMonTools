@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-05-18 15:24:47.845468
+    #> Last Update: 2026-05-19 11:07:35.42834
 
 # Version History
+
+## Changes in version 1.2.4.9017 (2026-05-19)
+
+- fix: Rename metric n_ac_wmf to n_ac_mwf
+  - MetricNames.xlsx
+  - metric.values
 
 ## Changes in version 1.2.4.9016 (2026-05-18)
 

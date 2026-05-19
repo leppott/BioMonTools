@@ -5226,7 +5226,7 @@ metric.values.fish <- function(myDF
                  , n_ac_rbt = dplyr::n_distinct(AGECLASS[EXCLUDE != TRUE &
                                                             TAXAID == "ONCORHYNCHUS MYKISS"],
                                                  na.rm = TRUE)
-                 , n_ac_wmf = dplyr::n_distinct(AGECLASS[EXCLUDE != TRUE &
+                 , n_ac_mwf = dplyr::n_distinct(AGECLASS[EXCLUDE != TRUE &
                                                            TAXAID == "PROSOPIUM WILLIAMSONI"],
                                                 na.rm = TRUE)
 
