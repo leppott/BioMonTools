@@ -1531,7 +1531,7 @@ metric.values.bugs <- function(myDF
     dplyr::filter(dplyr::row_number() <= 1)
   df.dom01_BCG_att456t <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
-    dplyr::filter(BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6t") %>%
+    dplyr::filter(BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6T") %>%
     dplyr::filter(dplyr::row_number() <= 1)
   df.dom01_BCG_att5 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
@@ -2328,7 +2328,7 @@ metric.values.bugs <- function(myDF
                                                                                      | CLASS != "INSECTA")
                                                                                   & (BCG_ATTR == "4"
                                                                                      | BCG_ATTR == "5"
-                                                                                     | BCG_ATTR == "6t")]
+                                                                                     | BCG_ATTR == "6T")]
                                                                            , na.rm = TRUE)
                                 , pt_NonIns_BCG_att456t = 100 * nt_NonIns_BCG_att456t / nt_total
                                 # NonInsectaJugaRiss, Attribute 456

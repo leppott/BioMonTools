@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-05-19 11:07:35.42834
+    #> Last Update: 2026-05-21 15:26:50.167908
 
 # Version History
+
+## Changes in version 1.2.4.9018 (2026-05-21)
+
+- fix: Update metric.values pi_dom01_BCG_att456t
+  - 6t wasn’t being captured
 
 ## Changes in version 1.2.4.9017 (2026-05-19)
 
