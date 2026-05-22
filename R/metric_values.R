@@ -6570,6 +6570,246 @@ metric.values.algae <- function(myDF
                                      * POLL_TOL[!is.na(POLL_TOL)
                                               ]) / sum(N_TAXA[!is.na(POLL_TOL)])
 
+                ## BCG ----
+                # 1i, 1m, 1t
+                # Xi, Xm, Xt
+                # 5i, 5m, 5t
+                # 6i, 6m, 6t
+                # toupper(), 2022-02-22
+                #### BCG_nt----
+                , nt_BCG_att1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                         & BCG_ATTR == "1"]
+                                                  , na.rm = TRUE)
+                , nt_BCG_att1i = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & BCG_ATTR == "1I"]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att1m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & BCG_ATTR == "1M"]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att12 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & (BCG_ATTR == "1"
+                                                             | BCG_ATTR == "2")]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att1234 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & (BCG_ATTR == "1"
+                                                               | BCG_ATTR == "2"
+                                                               | BCG_ATTR == "3"
+                                                               | BCG_ATTR == "4")]
+                                                     , na.rm = TRUE)
+                , nt_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & (BCG_ATTR == "1I"
+                                                              | BCG_ATTR == "2")]
+                                                    , na.rm = TRUE)
+                , nt_BCG_att123 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           &
+                                                             (BCG_ATTR == "1"
+                                                              | BCG_ATTR == "2"
+                                                              | BCG_ATTR == "3")]
+                                                    , na.rm = TRUE)
+                , nt_BCG_att1i23 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & (BCG_ATTR == "1I"
+                                                               | BCG_ATTR == "2"
+                                                               | BCG_ATTR == "3")]
+                                                     , na.rm = TRUE)
+                , nt_BCG_att1i236i = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                              & (BCG_ATTR == "1I"
+                                                                 | BCG_ATTR == "2"
+                                                                 | BCG_ATTR == "3"
+                                                                 | BCG_ATTR == "6I")]
+                                                       , na.rm = TRUE)
+                , nt_BCG_att2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                         & (BCG_ATTR == "2")]
+                                                  , na.rm = TRUE)
+                , nt_BCG_att23 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & (BCG_ATTR == "2"
+                                                             | BCG_ATTR == "3")]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att234 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & (BCG_ATTR == "2"
+                                                              | BCG_ATTR == "3"
+                                                              | BCG_ATTR == "4")]
+                                                    , na.rm = TRUE)
+                , nt_BCG_att3 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                         & (BCG_ATTR == "3")]
+                                                  , na.rm = TRUE)
+                , nt_BCG_att4 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                         & (BCG_ATTR == "4")]
+                                                  , na.rm = TRUE)
+                , nt_BCG_att45 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & (BCG_ATTR == "4"
+                                                             | BCG_ATTR == "5")]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att456 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & (BCG_ATTR == "4"
+                                                              | BCG_ATTR == "5"
+                                                              | BCG_ATTR == "6")]
+                                                    , na.rm = TRUE)
+                , nt_BCG_att5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                         & (BCG_ATTR == "5")]
+                                                  , na.rm = TRUE)
+                , nt_BCG_att56 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & (BCG_ATTR == "5"
+                                                             | BCG_ATTR == "6")]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att56t = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & (BCG_ATTR == "5"
+                                                              | BCG_ATTR == "6T")]
+                                                    , na.rm = TRUE)
+                , nt_BCG_att6 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                         &  (BCG_ATTR == "6")]
+                                                  , na.rm = TRUE)
+                , nt_BCG_att6i = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          &  (BCG_ATTR == "6I")]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att6m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          &  (BCG_ATTR == "6M")]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att6t = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          &  (BCG_ATTR == "6T")]
+                                                   , na.rm = TRUE)
+                , nt_BCG_attNA = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          &  is.na(BCG_ATTR)]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att4b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & (BCG_ATTR2 == "4_BETTER")]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att4m = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & (BCG_ATTR2 == "4_MIDDLE")]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att4w = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & (BCG_ATTR2 == "4_WORSE")]
+                                                   , na.rm = TRUE)
+                , nt_BCG_att1i234b = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                              & BCG_ATTR2 == "4_BETTER"]
+                                                       , na.rm = TRUE) +
+                  dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                           & (BCG_ATTR == "1I"
+                                              | BCG_ATTR == "2"
+                                              | BCG_ATTR == "3")]
+                                    , na.rm = TRUE)
+
+                , nt_BCG_att4w5 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & BCG_ATTR2 == "4_WORSE"]
+                                                    , na.rm = TRUE) +
+                  dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                           & (BCG_ATTR == "5")]
+                                    , na.rm = TRUE)
+
+                #### BCG_pi----
+                , pi_BCG_att1 = 100 * sum(N_TAXA[(BCG_ATTR == "1")]
+                                          , na.rm = TRUE) / ni_total
+                , pi_BCG_att1i = 100 * sum(N_TAXA[(BCG_ATTR == "1I")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att1m = 100 * sum(N_TAXA[(BCG_ATTR == "1M")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att12 = 100 * sum(N_TAXA[(BCG_ATTR == "1"
+                                                   | BCG_ATTR == "2")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att1i2 = 100 * sum(N_TAXA[(BCG_ATTR == "1I"
+                                                    | BCG_ATTR == "2")]
+                                            , na.rm = TRUE) / ni_total
+                , pi_BCG_att123 = 100 * sum(N_TAXA[(BCG_ATTR == "1"
+                                                    | BCG_ATTR == "2"
+                                                    | BCG_ATTR == "3")]
+                                            , na.rm = TRUE) / ni_total
+                , pi_BCG_att1i23 = 100 * sum(N_TAXA[(BCG_ATTR == "1I"
+                                                     | BCG_ATTR == "2"
+                                                     | BCG_ATTR == "3")]
+                                             , na.rm = TRUE) / ni_total
+                , pi_BCG_att1i236i = 100 * sum(N_TAXA[(BCG_ATTR == "1I"
+                                                       | BCG_ATTR == "2"
+                                                       | BCG_ATTR == "3"
+                                                       | BCG_ATTR == "6I")]
+                                               , na.rm = TRUE) / ni_total
+                , pi_BCG_att2 = 100 * sum(N_TAXA[(BCG_ATTR == "2")]
+                                          , na.rm = TRUE) / ni_total
+                , pi_BCG_att23 = 100 * sum(N_TAXA[(BCG_ATTR == "2"
+                                                   | BCG_ATTR == "3")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att234 = 100 * sum(N_TAXA[(BCG_ATTR == "2"
+                                                    | BCG_ATTR == "3"
+                                                    | BCG_ATTR == "4")]
+                                            , na.rm = TRUE) / ni_total
+                , pi_BCG_att3 = 100 * sum(N_TAXA[(BCG_ATTR == "3")]
+                                          , na.rm = TRUE) / ni_total
+                , pi_BCG_att4 = 100 * sum(N_TAXA[(BCG_ATTR == "4")]
+                                          , na.rm = TRUE) / ni_total
+                , pi_BCG_att45 = 100 * sum(N_TAXA[(BCG_ATTR == "4"
+                                                   | BCG_ATTR == "5")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att456 = 100 * sum(N_TAXA[(BCG_ATTR == "4"
+                                                    | BCG_ATTR == "5"
+                                                    | BCG_ATTR == "6")]
+                                            , na.rm = TRUE) / ni_total
+                , pi_BCG_att5 = 100 * sum(N_TAXA[(BCG_ATTR == "5")]
+                                          , na.rm = TRUE) / ni_total
+                , pi_BCG_att5extra = 100 * sum(N_TAXA[(BCG_ATTR == "5"
+                                                       | BCG_ATTR == "5.5")]
+                                               , na.rm = TRUE) / ni_total
+                , pi_BCG_att56 = 100 * sum(N_TAXA[(BCG_ATTR == "5"
+                                                   | BCG_ATTR == "6")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att56t = 100 * sum(N_TAXA[(BCG_ATTR == "5"
+                                                    | BCG_ATTR == "6T")]
+                                            , na.rm = TRUE) / ni_total
+                , pi_BCG_att6 = 100 * sum(N_TAXA[(BCG_ATTR == "6")]
+                                          , na.rm = TRUE) / ni_total
+                , pi_BCG_att6i = 100 * sum(N_TAXA[(BCG_ATTR == "6I")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att6m = 100 * sum(N_TAXA[(BCG_ATTR == "6M")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att6t = 100 * sum(N_TAXA[(BCG_ATTR == "6T")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_attNA = 100 * sum(N_TAXA[(is.na(BCG_ATTR) == TRUE)]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att4b = 100 * sum(N_TAXA[(BCG_ATTR2 == "4_BETTER")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att4m = 100 * sum(N_TAXA[(BCG_ATTR2 == "4_MIDDLE")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att4w = 100 * sum(N_TAXA[(BCG_ATTR2 == "4_WORSE")]
+                                           , na.rm = TRUE) / ni_total
+                , pi_BCG_att1i234b = 100 * (sum(N_TAXA[BCG_ATTR2 == "4_BETTER"]
+                                                , na.rm = TRUE) +
+                                              sum(N_TAXA[BCG_ATTR == "1I"
+                                                         | BCG_ATTR == "2"
+                                                         | BCG_ATTR == "3"]
+                                                  , na.rm = TRUE)) / ni_total
+                , pi_BCG_att4w5 = 100 * (sum(N_TAXA[BCG_ATTR2 == "4_WORSE"]
+                                             , na.rm = TRUE) +
+                                           sum(N_TAXA[BCG_ATTR == "5"]
+                                               , na.rm = TRUE)) / ni_total
+
+
+                #### BCG_pt----
+                , pt_BCG_att1 =    100 * nt_BCG_att1 / nt_total
+                , pt_BCG_att1i =   100 * nt_BCG_att1i / nt_total
+                , pt_BCG_att1m =   100 * nt_BCG_att1m / nt_total
+                , pt_BCG_att12 =   100 * nt_BCG_att12 / nt_total
+                , pt_BCG_att1234 = 100 * nt_BCG_att1234 / nt_total
+                , pt_BCG_att1i2 =  100 * nt_BCG_att1i2 / nt_total
+                , pt_BCG_att123 =  100 * nt_BCG_att123 / nt_total
+                , pt_BCG_att1i23 = 100 * nt_BCG_att1i23 / nt_total
+                , pt_BCG_att1i236i = 100 * nt_BCG_att1i236i / nt_total
+                , pt_BCG_att2 =   100 * nt_BCG_att2 / nt_total
+                , pt_BCG_att23 =  100 * nt_BCG_att23 / nt_total
+                , pt_BCG_att234 = 100 * nt_BCG_att234 / nt_total
+                , pt_BCG_att3 =   100 * nt_BCG_att3 / nt_total
+                , pt_BCG_att4 =   100 * nt_BCG_att4 / nt_total
+                , pt_BCG_att45 =  100 * nt_BCG_att45 / nt_total
+                , pt_BCG_att456 = 100 * nt_BCG_att456 / nt_total
+                , pt_BCG_att5 =   100 * nt_BCG_att5 / nt_total
+                , pt_BCG_att56 =  100 * nt_BCG_att56 / nt_total
+                , pt_BCG_att56t = 100 * nt_BCG_att56t / nt_total
+                , pt_BCG_att6 =   100 * nt_BCG_att6 / nt_total
+                , pt_BCG_att6i =  100 * nt_BCG_att6i / nt_total
+                , pt_BCG_att6m =  100 * nt_BCG_att6m / nt_total
+                , pt_BCG_att6t =  100 * nt_BCG_att6t / nt_total
+                , pt_BCG_attNA =  100 * nt_BCG_attNA / nt_total
+                , pt_BCG_att4b =  100 * nt_BCG_att4b / nt_total
+                , pt_BCG_att4m =  100 * nt_BCG_att4m / nt_total
+                , pt_BCG_att4w =  100 * nt_BCG_att4w / nt_total
+                , pt_BCG_att1i234b = 100 * nt_BCG_att1i234b / nt_total
+                , pt_BCG_att4w5 = 100 * nt_BCG_att4w5 / nt_total
 
 
                 , .groups = "drop_last")##met.val.END

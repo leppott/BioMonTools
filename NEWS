@@ -4,14 +4,21 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-05-22 15:28:06.007223
+    #> Last Update: 2026-05-22 15:53:26.998206
 
 # Version History
+
+## Changes in version 1.2.4.9020 (2026-05-22)
+
+- refactor: Add metrics to metric.values and MetricNames.xlsx, Issue
+  \#142
+  - Algae, BCG versions of bug BCG, n = 86
 
 ## Changes in version 1.2.4.9019 (2026-05-22)
 
 - style: Replace pounds with dashes for outline in metric.values
-- refactor: Add metrics to metric.values, Issue \#142
+- refactor: Add metrics to metric.values and MetricNames.xlsx, Issue
+  \#142
   - Benthos, n = 7
 
 ## Changes in version 1.2.4.9018 (2026-05-21)
