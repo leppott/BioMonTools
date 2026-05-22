@@ -506,7 +506,7 @@ metric.values <- function(fun.DF,
 
   # define pipe
   `%>%` <- dplyr::`%>%`
-  # Munge ####
+  # Munge ----
   if (verbose == TRUE) {
     debug_topic <- "munge"
     debug_main_num <- debug_main_num + 1
@@ -1231,7 +1231,7 @@ metric.values.bugs <- function(myDF
 
   }##IF ~ BCG_Attr ~ END
 
-  # Data Munging ####
+  # Data Munging ----
   if (verbose == TRUE) {
     debug_topic <- "Munging"
     debug_sub_num <- debug_sub_num + 1
@@ -1769,7 +1769,7 @@ metric.values.bugs <- function(myDF
                                 #
                                 # one metric per line
                                 #
-                                ### Individuals ####
+                                ### Individuals ----
                                 , ni_total = sum(N_TAXA, na.rm = TRUE)
                                 , ni_totalNoDeca = sum(N_TAXA[is.na(ORDER) == TRUE |
                                                                 ORDER != "DECAPODA"], na.rm = TRUE)
@@ -1786,7 +1786,7 @@ metric.values.bugs <- function(myDF
                                 , ni_Ramello = sum(N_TAXA[GENUS == "RAMELLOGAMMARUS"], na.rm = TRUE)
 
 
-                                ### Phylo ####
+                                ### Phylo ----
                                 #### nt_phylo ----
                                 # account for "NONE" in nt_total, should be the only 0 N_TAXA
                                 , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -1807,6 +1807,13 @@ metric.values.bugs <- function(myDF
                                 , nt_Coleo = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                       & ORDER == "COLEOPTERA"]
                                                                , na.rm = TRUE)
+                                , nt_COEPT = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                     & (ORDER == "COLEOPTERA"
+                                                                        | ORDER == "ODONATA"
+                                                                        | ORDER == "EPHEMEROPTERA"
+                                                                        | ORDER == "PLECOPTERA"
+                                                                        | ORDER == "TRICHOPTERA")]
+                                                              , na.rm = TRUE)
                                 , nt_COET = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                      & (ORDER == "COLEOPTERA"
                                                                         | ORDER == "ODONATA"
@@ -1973,7 +1980,7 @@ metric.values.bugs <- function(myDF
                                                                , na.rm = TRUE)
                                 # ,intolMol, ,
 
-                                #### pi_phylo ####
+                                #### pi_phylo ----
                                 , pi_Ampe = NA #pi_Ampeliscidae
                                 , pi_AmpeHaust = NA
                                 , pi_Amph = 100 * sum(N_TAXA[ORDER == "AMPHIPODA"]
@@ -2197,7 +2204,7 @@ metric.values.bugs <- function(myDF
                                 #EPTsenstive in tolerance group
 
 
-                                #### pt_phylo ####
+                                #### pt_phylo ----
                                 , pt_Amph = 100 * nt_Amph / nt_total
                                 , pt_Bival = 100 * nt_Bival / nt_total
                                 , pt_Coleo = 100 * nt_Coleo / nt_total
@@ -2227,7 +2234,7 @@ metric.values.bugs <- function(myDF
                                 , pt_TrichNoHydro = 100 * nt_TrichNoHydro / nt_total
                                 , pt_Tromb = 100 * nt_Tromb / nt_total
 
-                                #### ratio_phylo ####
+                                #### ratio_phylo ----
                                 # nt_X / log(ni_total)
                                 # X = specialty group, e.g., Bivalves
                                 # Log is natural log
@@ -2255,7 +2262,7 @@ metric.values.bugs <- function(myDF
                                 #, rt_Tubif = nt_Tubif
 
 
-                                ### Midges ####
+                                ### Midges ----
                                 # Family    = Chironomidae
                                 # subfamily = Chironominae
                                 # subfamily = Orthocladiinae
@@ -2558,7 +2565,7 @@ metric.values.bugs <- function(myDF
                                 , pt_tv_stol = 100 * nt_tv_stol / nt_total
 
 
-                                ### Tolerance2 ####
+                                ### Tolerance2 ----
                                 ## special condition tolerance values
                                 # MBSS
                                 , pi_tv2_intol = sum(N_TAXA[TOLVAL2 <= 3
@@ -2568,7 +2575,7 @@ metric.values.bugs <- function(myDF
                                 , pi_tv2_intol_ISA_SalHi_xFL = NA
                                 , pt_tv2_intol_ISA_SalHi_xFL = NA
 
-                                ### FFG #####
+                                ### FFG ----
                                 #### nt_ffg----
                                 , nt_ffg_col = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                         & FFG_COL == TRUE]
@@ -2653,7 +2660,7 @@ metric.values.bugs <- function(myDF
                                 #, rt_ffg_pred
                                 # carnivoreomnivore, deepdeposit, suspension
 
-                                ### FFG2 ####
+                                ### FFG2 ----
                                 # marine
                                 ## nt_ffg2
                                 , nt_ffg2_deepdep = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -2670,7 +2677,7 @@ metric.values.bugs <- function(myDF
                                 # = conveyorbelt, interface, scavengerbrowser, subsurface,
                                 # watercolumn, predator
 
-                                ### Habit ####
+                                ### Habit ----
                                 #(need to be wild card. that is, counts both CN,CB and CB as climber)
                                 #### nt_habit----
                                 , nt_habit_burrow = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -2728,7 +2735,7 @@ metric.values.bugs <- function(myDF
 
 
 
-                                ### Life Cycle ####
+                                ### Life Cycle ----
                                 # pi and nt for mltvol, semvol, univol
                                 #### nt_LifeCycle----
                                 , nt_volt_multi = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -2752,8 +2759,15 @@ metric.values.bugs <- function(myDF
                                 , pt_volt_semi = 100 * nt_volt_semi / nt_total
                                 , pt_volt_uni = 100 * nt_volt_uni / nt_total
 
+                                #### other LifeCycle----
+                                , nt_EPT_volt_semi = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                              & (ORDER == "EPHEMEROPTERA"
+                                                                                 | ORDER == "TRICHOPTERA"
+                                                                                 | ORDER == "PLECOPTERA")
+                                                                              & LC_SEMI == TRUE]
+                                                                       , na.rm = TRUE)
 
-                                ### Dominant N ####
+                                ### Dominant N ----
                                 ## uses previously defined values added to myDF
                                 , pi_dom01 = 100 * max(ni_dom01, na.rm = TRUE) / ni_total
                                 , pi_dom02 = 100 * max(ni_dom02, na.rm = TRUE) / ni_total
@@ -2770,7 +2784,7 @@ metric.values.bugs <- function(myDF
                                 #https://stackoverflow.com/questions/27766054/getting-the-top-values-by-group
                                 # top_n uses ties so can't use it
 
-                                ### Indices ####
+                                ### Indices ----
                                 #, x_AMBI - may need extra function or like "top" functions do some precalc
                                 #,x_Becks.CLASS1=n_distinct(N_TAXA[EXCLUDE!=TRUE & TolVal>=0 & TolVal<=2.5])
                                 #,x_Becks.CLASS2=n_distinct(N_TAXA[EXCLUDE!=TRUE & TolVal>=2.5 & TolVal<=4])
@@ -2828,16 +2842,16 @@ metric.values.bugs <- function(myDF
                                 , x_Evenness = x_Shan_e/log(nt_total)
                                 # evenness - different from Pielou in MS Coastal Metric Calc 2011 db
 
-                                ### Density ####
+                                ### Density ----
                                 # Numbers per area sampled
                                 , ni_m2 = sum(N_TAXA / SAMP_AREA_M2, na.rm = TRUE)
                                 , sum_density_m2 = sum(DENSITY_M2, na.rm = TRUE)
 
-                                ### Estuary-Marine ####
+                                ### Estuary-Marine ----
                                 # Mixed in with other metrics
                                 , x_Becks_tv2 = NA
 
-                                ### Habitat ####
+                                ### Habitat ----
                                 # BCG PacNW group 2020
                                 # BRAC brackish
                                 # DEPO depositional
@@ -2919,7 +2933,7 @@ metric.values.bugs <- function(myDF
                                 , pt_habitat_terr = 100 * nt_habitat_terr / nt_total
                                 , pt_habitat_unkn = 100 * nt_habitat_unkn / nt_total
 
-                                ### BCG ####
+                                ### BCG ----
                                 # 1i, 1m, 1t
                                 # Xi, Xm, Xt
                                 # 5i, 5m, 5t
@@ -3063,6 +3077,13 @@ metric.values.bugs <- function(myDF
                                                                                   | BCG_ATTR == "2"
                                                                                   | BCG_ATTR == "3")]
                                                                         , na.rm = TRUE)
+                                , nt_EPT_BCG_att1i2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                                & (ORDER == "EPHEMEROPTERA"
+                                                                                   | ORDER == "TRICHOPTERA"
+                                                                                   | ORDER == "PLECOPTERA")
+                                                                                & (BCG_ATTR == "1I"
+                                                                                   | BCG_ATTR == "2")]
+                                                                         , na.rm = TRUE)
                                 , nt_EPT_BCG_att1i23 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                                 & (ORDER == "EPHEMEROPTERA"
                                                                                    | ORDER == "TRICHOPTERA"
@@ -3202,6 +3223,17 @@ metric.values.bugs <- function(myDF
                                                                        & (BCG_ATTR == "4"
                                                                           | BCG_ATTR == "5")]
                                                                 , na.rm = TRUE) / ni_total
+                                , pi_COEPT_BCG_att1i234b4m = 100 * sum(N_TAXA[(ORDER == "COLEOPTERA"
+                                                                         | ORDER == "ODONATA"
+                                                                         | ORDER == "EPHEMEROPTERA"
+                                                                         | ORDER == "PLECOPTERA"
+                                                                         | ORDER == "TRICHOPTERA")
+                                                                        & (BCG_ATTR == "1I"
+                                                                           | BCG_ATTR == "2"
+                                                                           | BCG_ATTR == "3"
+                                                                           | BCG_ATTR == "4_BETTER"
+                                                                           | BCG_ATTR == "4_MIDDLE")]
+                                                                 , na.rm = TRUE) / ni_total
                                 , pi_EPT_BCG_att123 = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
                                                                         | ORDER == "TRICHOPTERA"
                                                                         | ORDER == "PLECOPTERA")
@@ -3209,6 +3241,12 @@ metric.values.bugs <- function(myDF
                                                                           | BCG_ATTR == "2"
                                                                           | BCG_ATTR == "3")]
                                                                 , na.rm = TRUE) / ni_total
+                                , pi_EPT_BCG_att1i2 = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
+                                                                         | ORDER == "TRICHOPTERA"
+                                                                         | ORDER == "PLECOPTERA")
+                                                                        & (BCG_ATTR == "1I"
+                                                                           | BCG_ATTR == "2")]
+                                                                 , na.rm = TRUE) / ni_total
                                 , pi_EPT_BCG_att1i23 = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
                                                                          | ORDER == "TRICHOPTERA"
                                                                          | ORDER == "PLECOPTERA")
@@ -3252,6 +3290,7 @@ metric.values.bugs <- function(myDF
                                 # BCG_pt_Phylo
                                 , pt_Chiro_BCG_att45 =  100 * nt_Chiro_BCG_att45 / nt_total
                                 , pt_EPT_BCG_att123 =  100 * nt_EPT_BCG_att123 / nt_total
+                                , pt_EPT_BCG_att1i2 = 100 * nt_EPT_BCG_att1i2 / nt_total
                                 , pt_EPT_BCG_att1i23 = 100 * nt_EPT_BCG_att1i23 / nt_total
 
                                 #### BCG_pi_dom ----
@@ -3350,6 +3389,12 @@ metric.values.bugs <- function(myDF
 
                                 ### Number Group within Group ----
                                 #### nord_Order----
+                                , nord_COEPT = dplyr::n_distinct(ORDER[ORDER == "COLEOPTERA"
+                                                                      | ORDER == "ODONATA"
+                                                                      | ORDER == "EPHEMEROPTERA"
+                                                                      | ORDER == "PLECOPTERA"
+                                                                      | ORDER == "TRICHOPTERA"]
+                                                                , na.rm = TRUE)
                                 , nord_COET = dplyr::n_distinct(ORDER[ORDER == "COLEOPTERA"
                                                                       | ORDER == "ODONATA"
                                                                       | ORDER == "EPHEMEROPTERA"
@@ -3390,7 +3435,7 @@ metric.values.bugs <- function(myDF
                                 , ngen_Elmid = dplyr::n_distinct(GENUS[FAMILY == "ELMIDAE"]
                                                                  , na.rm = TRUE)
 
-                                ### SPECIAL ####
+                                ### SPECIAL ----
                                 # oddball or specialized metrics
                                 # , ni_NonIns = sum(N_TAXA[CLASS==NA | CLASS!="INSECTA"], na.rm = TRUE)
                                 # , ni_NonArach = sum(N_TAXA[CLASS==NA | CLASS!="ARACHNIDA"], na.rm = TRUE)
@@ -3547,7 +3592,7 @@ metric.values.bugs <- function(myDF
   # dim(met.val)
 
   #
-  # Clean Up ####
+  # Clean Up ----
   if (verbose == TRUE) {
     debug_topic <- "clean up"
     debug_sub_num <- debug_sub_num + 1
@@ -3802,7 +3847,7 @@ metric.values.fish <- function(myDF
   # define pipe
   `%>%` <- dplyr::`%>%`
 
-  # QC ####
+  # QC ----
 
   # Remove Non-Target Taxa
   #myDF <- myDF[myDF[,"NonTarget"]==0,] # not relevant for fish
@@ -4199,7 +4244,7 @@ metric.values.fish <- function(myDF
   myDF[, "WSAREA_XL"]      <- "XLARGE" == myDF[, "WSAREA_ATTR"]
 
 
-  ## Create Dominant N ####
+  ## Create Dominant N ----
   if (verbose == TRUE) {
     # 4
     debug_topic <- "Munge, Dom"
@@ -4430,7 +4475,7 @@ metric.values.fish <- function(myDF
   myDF[myDF$MOD_ANOMALIES == TRUE, "N_ANOMALIES"] <- myDF[myDF$MOD_ANOMALIES == TRUE
                                                         , "SUM_ANOMALIES"]
 
-  # Metric Calc ####
+  # Metric Calc ----
 
   if (verbose == TRUE) {
     # 6
@@ -4462,7 +4507,7 @@ metric.values.fish <- function(myDF
                        # when invoke a "x != abc" need to include "| is.na(x)"
                        # unless all "x" are populated (e.g., TRUE or FALSE)
 
-                       ## Individuals ####
+                       ## Individuals ----
                        # individuals, total
                        , ni_total = sum(N_TAXA, na.rm = TRUE)
                        , ni_total_notoler = sum(N_TAXA[TOLER != "TOLERANT" | is.na(TOLER)], na.rm = TRUE)
@@ -4474,7 +4519,7 @@ metric.values.fish <- function(myDF
                                                                        (TYPE != "MOSQUITOFISH" | is.na(TYPE)) &
                                                                        (GENUS != "LEPOMIS" | is.na(GENUS))], na.rm = TRUE)
                        #
-                        ## Percent Individuals ####
+                        ## Percent Individuals ----
                        , pi_AmmEthPerc = 100 * sum(N_TAXA[GENUS == "AMMOCRYPTA"
                                                           | GENUS == "ETHEOSTOMA"
                                                           | GENUS == "PERCINA"], na.rm = TRUE) / ni_total
@@ -4516,7 +4561,7 @@ metric.values.fish <- function(myDF
                        , pi_bfs = 100 * sum(N_TAXA[(TYPE == "BENTHIC" & TROPHIC_IV == TRUE) |
                                                    TYPE == "RBS" | TYPE == "SMM"], na.rm = TRUE) / ni_total
                         #
-                       ## Number of Taxa ####
+                       ## Number of Taxa ----
                        # account for "NONE" in nt_total, should be the only 0 N_TAXA
                        , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & N_TAXA > 0], na.rm = TRUE)
                        #, nt_benthic=dplyr::n_distinct(TAXAID[EXCLUDE != TRUE & TYPE == "DARTER" | TYPE == "SCULPIN" | TYPE == "MADTOM" | TYPE == "LAMPREY"])
@@ -4599,7 +4644,7 @@ metric.values.fish <- function(myDF
                        , pt_connect = 100 * nt_connect / nt_total
                        , pt_scc = 100 * nt_scc / nt_total
 
-                       ## Trophic ####
+                       ## Trophic ----
                        ### Trophic, nt----
                        , nt_beninvert = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                  & TYPE == "BENTHIC"
@@ -4675,7 +4720,7 @@ metric.values.fish <- function(myDF
                        , pt_topcarn = 100 * nt_topcarn / nt_total
 
                        #
-                       ## Tolerance ####
+                       ## Tolerance ----
                        , nt_tv_intol = dplyr::n_distinct(
                          TAXAID[EXCLUDE != TRUE & TOLER == "INTOLERANT"],
                          na.rm = TRUE)
@@ -4690,7 +4735,7 @@ metric.values.fish <- function(myDF
 
 
 
-                       ## Indices ####
+                       ## Indices ----
                        # Shannon-Weiner
                        #, x_Shan_Num= -sum(log(N_TAXA / ni_total)), na.rm = TRUE)
                        #, x_Shan_e=x_Shan_Num/log(exp(1))
@@ -4716,7 +4761,7 @@ metric.values.fish <- function(myDF
                      , pi_delt = 100 * sum(N_ANOMALIES, na.rm = TRUE) / ni_total
 
 
-                 ## Dominant N ####
+                 ## Dominant N ----
                  ## uses previously defined values added to myDF
                  , pi_dom01 = 100 * max(ni_dom01, na.rm = TRUE) / ni_total
                  , pi_dom02 = 100 * max(ni_dom02, na.rm = TRUE) / ni_total
@@ -4729,7 +4774,7 @@ metric.values.fish <- function(myDF
                  , pi_dom09 = 100 * max(ni_dom09, na.rm = TRUE) / ni_total
                  , pi_dom10 = 100 * max(ni_dom10, na.rm = TRUE) / ni_total
 
-                       ## BCG ####
+                       ## BCG ----
 
                   ### BCG, nt ----
                  , nt_BCG_att1 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -5049,7 +5094,7 @@ metric.values.fish <- function(myDF
                                                           | BCG_ATTR == "6A")]
                                                      , na.rm = TRUE) / ni_total
 
-                  ## Thermal Indicators ####
+                  ## Thermal Indicators ----
                   ## nt_ti
                   , nt_ti_corecold = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                               & TI_CORECOLD == TRUE]
@@ -5172,7 +5217,7 @@ metric.values.fish <- function(myDF
                   , pt_repro_lithophil = 100 * nt_repro_lithophil / nt_total
 
 
-                  ## Habitat ####
+                  ## Habitat ----
                   # BCG Great Plains 2021
                   # W = water column
                   # B = benthic
@@ -5468,7 +5513,7 @@ metric.values.fish <- function(myDF
 
 
                        #
-                       # name changes ####
+                       # name changes ----
                        # # MBSS metric names
                        # , STRMAREA  = area
                        # , TOTCNT    = ni_total
@@ -6529,7 +6574,7 @@ metric.values.algae <- function(myDF
 
                 , .groups = "drop_last")##met.val.END
 
-  # Clean Up ####
+  # Clean Up ----
     # replace NA with 0
     met.val[is.na(met.val)] <- 0
 
@@ -6972,7 +7017,7 @@ metric.values.coral <- function(myDF
               , pcol_Acropora =   100 * ncol_Acropora / ncol_total
 
               ## BCG ----
-              ### BCG, nt ####
+              ### BCG, nt ----
               , nt_BCG_att123 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "1"
                                                           | BCG_ATTR == "2"
                                                           | BCG_ATTR == "3")]
@@ -6987,7 +7032,7 @@ metric.values.coral <- function(myDF
               , nt_BCG_att5 = dplyr::n_distinct(TAXAID[(BCG_ATTR == "5")]
                                                 , na.rm = TRUE)
 
-              ### BCG, pt ####
+              ### BCG, pt ----
               , pt_BCG_att5 =   100 * nt_BCG_att5 / nt_total
 
               ## Surface Area ----
@@ -7002,11 +7047,11 @@ metric.values.coral <- function(myDF
                                      , na.rm = TRUE) / transect_area_m2
 
               ## Weedy ----
-              ### Weedy, ncol ####
+              ### Weedy, ncol ----
               , ncol_SmallWeedy = sum(WEEDY_CONFIRMED == TRUE, na.rm = TRUE)
 
 
-              ### Weedy, pcol ####
+              ### Weedy, pcol ----
               , pcol_SmallWeedy =   100 * ncol_SmallWeedy / ncol_total
 
 

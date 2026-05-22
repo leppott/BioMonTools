@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9019 (2026-05-22)
+
+* style: Replace pounds with dashes for outline in metric.values
+* refactor: Add metrics to metric.values, Issue #142
+    + Benthos, n = 7
+
 ## Changes in version 1.2.4.9018 (2026-05-21)
 
 * fix: Update metric.values pi_dom01_BCG_att456t

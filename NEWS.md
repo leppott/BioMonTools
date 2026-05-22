@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-05-21 15:26:50.167908
+    #> Last Update: 2026-05-22 15:28:06.007223
 
 # Version History
+
+## Changes in version 1.2.4.9019 (2026-05-22)
+
+- style: Replace pounds with dashes for outline in metric.values
+- refactor: Add metrics to metric.values, Issue \#142
+  - Benthos, n = 7
 
 ## Changes in version 1.2.4.9018 (2026-05-21)
 

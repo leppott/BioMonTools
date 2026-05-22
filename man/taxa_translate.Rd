@@ -107,7 +107,7 @@ Default is FALSE (no action).  All horizontal and vertical white space
 characters are removed.  See ?trimws for additional information.
 Additionally, non-breaking spaces (nbsp) inside the text string will be
 replaced with a normal space.  This cuts down on the number of permutations
-need to be added to the translation table.
+that need to be added to the translation table.
 
 Optional parameter `match_caps` is used to convert user and official taxaid
 values to ALL CAPS before matching.  Any non-ascii characters will cause this
