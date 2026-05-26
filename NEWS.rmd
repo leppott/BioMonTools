@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9021 (2026-05-26)
+
+* data: Update data_diatom_mmi_dev columns for new metrics, Issue #142
+    + Mertens, 7 new categorical columns
+
 ## Changes in version 1.2.4.9020 (2026-05-22)
 
 * refactor: Add metrics to metric.values and MetricNames.xlsx, Issue #142

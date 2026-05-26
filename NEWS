@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-05-22 15:53:26.998206
+    #> Last Update: 2026-05-26 11:34:54.741054
 
 # Version History
+
+## Changes in version 1.2.4.9021 (2026-05-26)
+
+- data: Update data_diatom_mmi_dev columns for new metrics, Issue \#142
+  - Mertens, 7 new categorical columns
 
 ## Changes in version 1.2.4.9020 (2026-05-22)
 
