@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9022 (2026-06-02)
+
+* style: Updates per good practice package
+    + Replace stray "=" with "<-"
+    + Long code lines
+* refactor: Update help text for qc functions
+
 ## Changes in version 1.2.4.9021 (2026-05-26)
 
 * data: Update data_diatom_mmi_dev columns for new metrics, Issue #142

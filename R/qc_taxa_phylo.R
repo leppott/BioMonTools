@@ -13,8 +13,8 @@
 #' Some checks will detect those with potential issues but others that are
 #' valid.
 #'
-#' * **unique_parent** Each taxonomic rank (child) has a unique parent (coarser rank).
-#' Parents include all coarser ranks (as defined by user).
+#' * **unique_parent** Each taxonomic rank (child) has a unique parent (coarser
+#' rank).  Parents include all coarser ranks (as defined by user).
 #'
 #' * **phylo_unique_rank** Each name is in only one phylogenetic rank column
 #'
@@ -30,8 +30,6 @@
 #' ?
 #' non A-Z (any case), e.g., slash, dash, underscore, parentheses, etc.
 #'
-#' NEED TRIGGER FOR ignore.case, default to FALSE
-#'
 #' If ignore_case is TRUE then all columns (finalid and phylo_names) will be
 #' converted to upper case before checks are performed.
 #'
@@ -41,9 +39,10 @@
 #' @param phylo_names Vector of phylogenetic names in order from coarse to fine.
 #' Default = c("Phylum", "Subphylum", "Class", "Subclass", "Order", "Suborder",
 #' "Family", "Subfamily", "Tribe", "Genus")
-#' @param ignore_case Should case be ignore for checks.  Default = FALSE.
+#' @param ignore_case Should case be ignored for checks.
+#' Default = FALSE.
 #'
-#' @return A list elements for each qc check.
+#' @return A list with elements for each qc check.
 #'
 #' @examples
 #' qc_phylo_PacNW <- qc_taxa_phylo(TaxaMaster_Ben_BCG_PacNW,
@@ -117,7 +116,7 @@ qc_taxa_phylo <- function(data,
   # 01. unique_parent ----
   # run as a list since number of "phylo_name"s unknown
 
-  # need extra loop if do all combinatins
+  # need extra loop if do all combinations
 
   # get all combinations of parent and child
   len_cols_phylo <- length(cols_phylo)
@@ -218,8 +217,8 @@ qc_taxa_phylo <- function(data,
     dplyr::filter(match_phylo == FALSE)
 
 
-
-  # Combine ----
+  # 05. Result ----
+  # combine
   results <- list(
     "issues"   = NULL,
     "unique_parent"     = df_unique_parent,
@@ -229,7 +228,7 @@ qc_taxa_phylo <- function(data,
   # report names of elements with length > 0 to "issues"
   results$issues <- names(results)[vapply(results, length, integer(1)) > 0]
 
-  # Result----
+  # Return Result
   return(results)
 
 }## FUNCTION ~ END

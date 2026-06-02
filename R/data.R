@@ -632,7 +632,8 @@
 # "data_coral_bcg_metric_qc" ####
 #' @title Coral metric value data; Florida BCG.
 #' @description A data set with coral metric value data.
-#' Used to compare to metric value calculations.  Data from Florida BCG providers.
+#' Used to compare to metric value calculations.  Data from Florida BCG
+#' providers.
 #'
 #' @format A data frame with 100 observations on the following 19 variables.
 #'
@@ -785,7 +786,8 @@
 #'   %%  ~~ If necessary, more details than the __description__ above ~~
 #' }
 #' \source{
-#'   %%  ~~ reference to a publication or URL from which the data were obtained ~~
+#'   %%  ~~ reference to a publication or URL from which the data were
+#'   obtained ~~
 #' }
 #' \references{
 #'   %%  ~~ possibly secondary sources and usages ~~

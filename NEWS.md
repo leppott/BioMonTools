@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-05-26 11:34:54.741054
+    #> Last Update: 2026-06-02 15:30:47.439417
 
 # Version History
+
+## Changes in version 1.2.4.9022 (2026-06-02)
+
+- style: Updates per good practice package
+  - Replace stray “=” with “\<-”
+  - Long code lines
+- refactor: Update help text for qc functions
 
 ## Changes in version 1.2.4.9021 (2026-05-26)
 

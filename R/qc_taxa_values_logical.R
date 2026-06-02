@@ -2,11 +2,11 @@
 #'
 #' Performs basic QC of a logical column showing occurrence.
 #'
-#' Returns a data frame the values from the input with counts (column = n) from
-#' the column.
+#' Returns a data frame of the values from the input with counts (column = n) by
+#' column.
 #'
 #' @param data A data frame containing autecological taxa data.
-#' @param col_vals The column containing Tolerance Values.  Default = "TolVal"
+#' @param col_vals The column containing the logical value.
 #'
 #' @return A data frame with col_vals values, occurrence (n), and valid
 #' (TRUE/FALSE).  Missing values (TRUE, FALSE, or NA) are appended.

@@ -51,7 +51,8 @@
 #' exceptions.  Default = NA
 #' Column 1 is the name used in the TaxaID column of df_samptax.
 #' Column 2 is the name used in the TaxaLevels columns of df_samptax.
-#' @param verbose Boolean value for if status messages are output to the console.
+#' @param verbose Boolean value for if status messages are output to the
+#' console.
 #' Default = FALSE
 #'
 #' @return Returns a data frame of df_samptax with an additional column,
@@ -348,7 +349,8 @@ markExcluded <- function(df_samptax,
     #ask to continue
     prompt_01 <- paste0("The user provided name for Exclude ('", Exclude
                         ,"') already exists in the user provided data.")
-    prompt_02 <- "Do you wish to overwrite it with the results of this function (YES or NO)?"
+    prompt_02 <- paste0("Do you wish to overwrite it with the results of this ",
+                        "function (YES or NO)?")
     msg_prompt <- paste(prompt_01, prompt_02, sep = "\n")
 
     #user_input <- readline(prompt=myPrompt)
@@ -356,7 +358,8 @@ markExcluded <- function(df_samptax,
     user_input <- utils::menu(c("YES", "NO"), title = msg_prompt)
     # any answer other than "YES" will stop the function.
     if(user_input != 1){##IF.user.input.START
-      stop(paste0("\n The user chose *not* to continue due to duplicate field name; "
+      stop(paste0("\n The user chose *not* to continue due to duplicate field ",
+                  "name; "
                   , Exclude))
     }##IF.user_input.END
   }##IF.prompt.END

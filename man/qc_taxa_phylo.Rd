@@ -21,10 +21,11 @@ qc_taxa_phylo(
 Default = c("Phylum", "Subphylum", "Class", "Subclass", "Order", "Suborder",
 "Family", "Subfamily", "Tribe", "Genus")}
 
-\item{ignore_case}{Should case be ignore for checks.  Default = FALSE.}
+\item{ignore_case}{Should case be ignored for checks.
+Default = FALSE.}
 }
 \value{
-A list elements for each qc check.
+A list with elements for each qc check.
 }
 \description{
 Performs basic quality control on a phylogenetic list.
@@ -41,8 +42,8 @@ The checks are listed below and only report the entries that fail.
 Some checks will detect those with potential issues but others that are
 valid.
 
-* **unique_parent** Each taxonomic rank (child) has a unique parent (coarser rank).
-Parents include all coarser ranks (as defined by user).
+* **unique_parent** Each taxonomic rank (child) has a unique parent (coarser
+rank).  Parents include all coarser ranks (as defined by user).
 
 * **phylo_unique_rank** Each name is in only one phylogenetic rank column
 
@@ -57,8 +58,6 @@ case (all lower, all upper)
 spaces
 ?
 non A-Z (any case), e.g., slash, dash, underscore, parentheses, etc.
-
-NEED TRIGGER FOR ignore.case, default to FALSE
 
 If ignore_case is TRUE then all columns (finalid and phylo_names) will be
 converted to upper case before checks are performed.

@@ -37,7 +37,8 @@
 #' color code the points on the map.  Default = NULL
 #' @param leg_loc Legend location text.  Default = "right"
 #' Other values may not work properly.
-#' @param verbose Boolean value for if status messages are output to the console.
+#' @param verbose Boolean value for if status messages are output to the
+#' console.
 #' Default = FALSE
 #' @param ... Optional arguments to be passed to methods.
 # @param map_xlim maps::map function xlim;
@@ -224,7 +225,8 @@ MapTaxaObs <- function(df_obs,
       leg_col <- grDevices::rainbow(n_leg_cat)
       #leg_col <- RColorBrewer::brewer.pal(n_leg_cat, "Set3")
       for(a in seq_len(n_leg_cat)){
-        pts_leg <- data.TargetMapCat[data.TargetMapCat[, map_grp] == leg_cat[a], ]
+        pts_leg <- data.TargetMapCat[data.TargetMapCat[, map_grp] ==
+                                       leg_cat[a], ]
         graphics::points(pts_leg[, Long]
                          , pts_leg[, Lat]
                          , col = leg_col[a]

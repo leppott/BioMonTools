@@ -9,7 +9,8 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # 0. Prep####
-wd <- file.path(system.file(package="BCGcalc"), "extdata") # assume is package directory
+# assume is package directory
+wd <- file.path(system.file(package="BCGcalc"), "extdata")
 #library(readxl)
 
 # df.1, date, time, and datetime

@@ -68,5 +68,6 @@ str(df)
 # 2. Save as RDA for use in package####
 #
 data_benthos_PacNW <- df
-usethis::use_data(data_benthos_PacNW, overwrite = TRUE) # change from devtools:: to usethis::
+# change from devtools:: to usethis::
+usethis::use_data(data_benthos_PacNW, overwrite = TRUE)
 

@@ -1,7 +1,7 @@
 Package: BioMonTools
 Type: Package
 Title: Biomonitoring and Bioassessment Calculations
-Version: 1.2.4.9021
+Version: 1.2.4.9022
 Authors@R: c(
     person("Erik W.", "Leppo", 
            email="Erik.Leppo@tetratech.com", 
@@ -47,4 +47,4 @@ Suggests:
 URL: https://github.com/leppott/BioMonTools
 BugReports: https://github.com/leppott/BioMonTools/issues
 VignetteBuilder: knitr
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0

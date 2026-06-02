@@ -2,28 +2,54 @@
 #'
 #' Performs basic QC of a character column against a list of accepted values.
 #'
-#' Returns a data frame the values from the input with counts (column = n) from
-#' the column and whether the values appeared in valid values (column =
+#' Returns a data frame of the values from the input with counts (column = n)
+#' from the column and whether the values appeared in valid values (column =
 #' valid). Values in the accepted values not appearing in the input are appended
 #' to the bottom of the returned data frame.  These values are marked as n = NA
 #' and valid = TRUE.  If NA is a valid value it must be included in valid_vals
 #' or in the output NA will be labeled as valid = FALSE.
 #'
-#' The default accepted values are the abbreviations are those used as
-#' metric.values().
+#' The default accepted values for the abbreviations are those used in the
+#' function metric.values().  See below for examples.
 #'
-#' For Function Feeding Group (FFG); CF, CG, MH, OM, PA, PI, PR, SC, SH, and XY.  User using FC
-#' and GC over CF and CG can modify the accepted values.  Both versions are
-#' accepted in metric.values().
+#' Function Feeding Group (FFG)
+#' CF, CG, MH, OM, PA, PI, PR, SC, SH, XY
+#' User using FC and GC over CF and CG can modify the accepted values.  Both
+#' versions are accepted in metric.values().
 #'
-#' For Habit; BU, CB, CN, SK, SP, and SW.  Valid separated with "," are
-#' first split apart and spaces removed.
+#' Habit
+#' BU, CB, CN, SK, SP, SW
+#' Values separated with "," are first split apart and spaces removed before
+#' checking.  Not necessary to supply all possible combinations as each part is
+#' checked against the valid values.
 #'
-#' life cycle
+#' Life Cycle (Voltinism)
+#' MULTI, SEMI, UNI
 #'
-#' bcg_attr
+#' FFG2
+#' DD, PRE
 #'
-#' habitat, habitat structure, elevation, gradient, thermal
+#' Thermal_Indicator
+#' STENOC, COLD, COOL, WARM, STENOW, EURYTHERMAL, COWA
+#'
+#' HabStruct
+#' CS, NF, RM, SG
+#'
+#' Habitat
+#' BRAC, DEPO, GENE, HEAD, LENT, LOTI, RHEA, RIVE, SPEC, TERR, UNKN
+#'
+#' Elevation
+#' LOW, HIGH
+#'
+#' Gradient
+#' LOW, MOD, HIGH
+#'
+#' WSArea
+#' SMALL, MEDIUM, LARGE, XLARGE
+#'
+#' BCG_ATTR
+#' 1, 2, 3, 4, 5, 6, 1I, 4_BETTER, 4_MIDDLE, 4_WORSE, 5.5, 6I, 6M, 6T,
+#'
 #'
 #' @param data A data frame containing autecological taxa data.
 #' @param col_char The column containing the character values to be checked.

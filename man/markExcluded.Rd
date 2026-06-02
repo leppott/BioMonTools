@@ -39,7 +39,8 @@ exceptions.  Default = NA
 Column 1 is the name used in the TaxaID column of df_samptax.
 Column 2 is the name used in the TaxaLevels columns of df_samptax.}
 
-\item{verbose}{Boolean value for if status messages are output to the console.
+\item{verbose}{Boolean value for if status messages are output to the
+console.
 Default = FALSE}
 }
 \value{

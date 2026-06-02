@@ -83,12 +83,12 @@ testthat::test_that("metric_stats & metric_stats2", {
   col_metstat_RefStatus <- "REF_V1"
   col_metstat_DataType <- "CALVAL_CLASS4"
   col_metstat_Subset <- "INDEX_CLASS"
-  RefStatus_Ref = "Ref"
-  RefStatus_Str = "Strs"
-  RefStatus_Oth = "Other"
-  DataType_Cal = "cal"
-  DataType_Ver = "verif"
-  Subset_Value = "CENTRALHILLS"
+  RefStatus_Ref <- "Ref"
+  RefStatus_Str <- "Strs"
+  RefStatus_Oth <- "Other"
+  DataType_Cal <- "cal"
+  DataType_Ver <- "verif"
+  Subset_Value <- "CENTRALHILLS"
   df_stats2 <- metric.stats2(data_metval
                                    , data_metstat
                                    , col_metval_RefStatus

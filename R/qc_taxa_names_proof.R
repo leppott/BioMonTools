@@ -6,7 +6,7 @@
 #' name, potential match(es)).  Not all hits are errors but are potential issues
 #' that may need to be addressed.
 #'
-#' The distance check Computes pairwise string distances between names and
+#' The distance check computes pairwise string distances between names and
 #' returns name pairs that are likely duplicates.
 #'
 #' Uses Jaro-Winkler (jw) distance by default which performs well for names.

@@ -1,15 +1,16 @@
 #' Quality Control Check on User Data Against Master Taxa List
 #'
 #' This function compares the user's data frame to a data frame with the
-#' official (or user supplied) master taxa list (benthic macroinvertebrates).
+#' official (or user supplied) master taxa list.  The function is agnostic to
+#' the type of data, i.e., it is only looking at the names.
+#'
+#' Some official lists are stored online but the user can input their own
+#' project specific file.
 #'
 #' Output is a data frame with matches.
 #'
 #' Messages are output to the console with the number of matches and which user
 #' taxa did not match the official list.
-#'
-#' The official list is stored online but the user can input their own saved
-#' copy.
 #'
 #' Any columns in the user input file that match the official master taxa list
 #' will be renamed with the "_NonOfficial" suffix.
@@ -49,12 +50,14 @@
 #'
 #' **Benthic Macroinvertebrates**
 #'
-#'     + TAXON, Phylum, Class, Order, Family, Genus, Other_Taxa, Tribe, FFG,
-#'       FAM_TV, Habit, FinalTolVal07, Comment
+#'     + TAXON, Phylum, Class, Order, Family, Tribe, Genus, Other_Taxa,
+#'       FFG, FAM_TV, Habit, FinalTolVal07, Comment
 #'
 #' This function was called qc_taxa prior to March 2026 update.
 #' The older function has been deprecated and may be removed in a future
 #' release.
+#'
+#' This function is still under development to make it more generic.
 #'
 #' @param DF_User User taxa data.
 #' @param DF_Official Official master taxa list.  Can be a local file or

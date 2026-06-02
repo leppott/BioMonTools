@@ -9,7 +9,7 @@ qc_taxa_values_logical(data, col_logical = NULL)
 \arguments{
 \item{data}{A data frame containing autecological taxa data.}
 
-\item{col_vals}{The column containing Tolerance Values.  Default = "TolVal"}
+\item{col_vals}{The column containing the logical value.}
 }
 \value{
 A data frame with col_vals values, occurrence (n), and valid
@@ -19,8 +19,8 @@ A data frame with col_vals values, occurrence (n), and valid
 Performs basic QC of a logical column showing occurrence.
 }
 \details{
-Returns a data frame the values from the input with counts (column = n) from
-the column.
+Returns a data frame of the values from the input with counts (column = n) by
+column.
 }
 \examples{
 # Exclude

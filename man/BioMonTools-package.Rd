@@ -36,6 +36,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Erik W. Leppo \email{Erik.Leppo@tetratech.com} (\href{https://orcid.org/0000-0001-8026-7474}{ORCID})
 
+Authors:
+\itemize{
+  \item Erik W. Leppo \email{Erik.Leppo@tetratech.com} (\href{https://orcid.org/0000-0001-8026-7474}{ORCID})
+}
+
 Other contributors:
 \itemize{
   \item Jen Stamp [contributor]

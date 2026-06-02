@@ -18,7 +18,8 @@ qc_taxa_values_numeric(
 
 \item{valid_max}{Valid values range maximum (inclusive).  Default = NA.}
 
-\item{col_vals}{The column containing Tolerance Values.  Default = NA.}
+\item{col_vals}{The column containing numeric values to be evaluated.
+Default = NA.}
 }
 \value{
 A data frame with col_vals values, occurrence (n), and valid
@@ -28,11 +29,11 @@ A data frame with col_vals values, occurrence (n), and valid
 Performs basic QC of a numeric column showing all values.
 }
 \details{
-Returns a data frame the values from the input with counts (column = n) from
-the column.  Given valid_min and valid_max are applied to each values and
-evaluated as valid TRUE or FALSE.
+Returns a data frame of the values from the input with counts (column = n) from
+the specified column.  User provided valid_min and valid_max are applied to
+each set of values and evaluated as valid TRUE or FALSE.
 
-The accepted values for TolVal are 0 - 10.
+The BioMonTools accepted values for TolVal are 0 - 10.
 
 The BioMonTools accepted values for UFC are 1 - 6.
 }

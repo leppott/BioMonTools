@@ -2,16 +2,17 @@
 #'
 #' Performs basic QC of a numeric column showing all values.
 #'
-#' Returns a data frame the values from the input with counts (column = n) from
-#' the column.  Given valid_min and valid_max are applied to each values and
-#' evaluated as valid TRUE or FALSE.
+#' Returns a data frame of the values from the input with counts (column = n) from
+#' the specified column.  User provided valid_min and valid_max are applied to
+#' each set of values and evaluated as valid TRUE or FALSE.
 #'
-#' The accepted values for TolVal are 0 - 10.
+#' The BioMonTools accepted values for TolVal are 0 - 10.
 #'
 #' The BioMonTools accepted values for UFC are 1 - 6.
 #'
 #' @param data A data frame containing autecological taxa data.
-#' @param col_vals The column containing Tolerance Values.  Default = NA.
+#' @param col_vals The column containing numeric values to be evaluated.
+#' Default = NA.
 #' @param valid_min Valid values range minimum (inclusive).  Default = NA.
 #' @param valid_max Valid values range maximum (inclusive).  Default = NA.
 #'

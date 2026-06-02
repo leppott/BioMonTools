@@ -37,6 +37,7 @@ data_coral_bcg_metric_qc
 }
 \description{
 A data set with coral metric value data.
-Used to compare to metric value calculations.  Data from Florida BCG providers.
+Used to compare to metric value calculations.  Data from Florida BCG
+providers.
 }
 \keyword{datasets}

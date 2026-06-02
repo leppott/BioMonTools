@@ -63,7 +63,12 @@ df <- df |>
                 TROPHIC_MERTENS = temp_1_6_x,
                 MOISTURE_MERTENS = temp_1_5) |>
   # drop temp cols
-  dplyr::select(-c(temp_1_5, temp_1_5_x, temp_1_4, temp_1_7, temp_1_6, temp_1_6_x))
+  dplyr::select(-c(temp_1_5,
+                   temp_1_5_x,
+                   temp_1_4,
+                   temp_1_7,
+                   temp_1_6,
+                   temp_1_6_x))
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 2. Save as RDA for use in package####

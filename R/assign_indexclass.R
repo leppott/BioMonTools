@@ -154,10 +154,10 @@ assign_IndexClass <- function(data,
   # data to long
   if (data_shape == "WIDE") {
     data_long <- tidyr::pivot_longer(
-                                   data[stats::complete.cases(data[, col_criteria]), ]
-                                   , cols = tidyr::all_of(col_criteria)
-                                   , names_to = "Data_Criteria_Name"
-                                   , values_to = "Data_Criteria_Value")
+      data[stats::complete.cases(data[, col_criteria]), ]
+      , cols = tidyr::all_of(col_criteria)
+      , names_to = "Data_Criteria_Name"
+      , values_to = "Data_Criteria_Value")
   } else if (data_shape == "LONG") {
     df_long <- data[stats::complete.cases(data[, col_criteria]), ]
   } else {

@@ -52,7 +52,8 @@ color code the points on the map.  Default = NULL}
 \item{leg_loc}{Legend location text.  Default = "right"
 Other values may not work properly.}
 
-\item{verbose}{Boolean value for if status messages are output to the console.
+\item{verbose}{Boolean value for if status messages are output to the
+console.
 Default = FALSE}
 
 \item{...}{Optional arguments to be passed to methods.}
