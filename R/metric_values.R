@@ -3400,7 +3400,10 @@ metric.values.bugs <- function(myDF
                                                                       | ORDER == "EPHEMEROPTERA"
                                                                       | ORDER == "TRICHOPTERA"]
                                                                 , na.rm = TRUE)
-
+                                , nord_EPT = dplyr::n_distinct(ORDER[ORDER == "EPHEMEROPTERA"
+                                                                     | ORDER == "PLECOPTERA"
+                                                                     | ORDER == "TRICHOPTERA"]
+                                                               , na.rm = TRUE)
                                 , nord_ET = dplyr::n_distinct(ORDER[ORDER == "EPHEMEROPTERA"
                                                                       | ORDER == "TRICHOPTERA"]
                                                                 , na.rm = TRUE)

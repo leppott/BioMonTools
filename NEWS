@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-06-02 15:30:47.439417
+    #> Last Update: 2026-06-04 16:05:16.50822
 
 # Version History
+
+## Changes in version 1.2.4.9023 (2026-06-04)
+
+- refactor: Add nord_EPT to metric.values
 
 ## Changes in version 1.2.4.9022 (2026-06-02)
 

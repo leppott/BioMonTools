@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9023 (2026-06-04)
+
+* refactor: Add nord_EPT to metric.values
+
 ## Changes in version 1.2.4.9022 (2026-06-02)
 
 * style: Updates per good practice package
