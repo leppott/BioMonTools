@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9025 (2026-06-09)
+
+* refactor: New metric for ORWA Flags, pi_dom02_BCG_att456
+
 ## Changes in version 1.2.4.9024 (2026-06-04)
 
 * refactor: Add nord_EPT to MetricNames.xlsx

@@ -1537,6 +1537,12 @@ metric.values.bugs <- function(myDF
     dplyr::group_by(SAMPLEID)  %>%
     dplyr::filter(BCG_ATTR == "5") %>%
     dplyr::filter(dplyr::row_number() <= 1)
+  df.dom02_BCG_att456 <-  dplyr::arrange(myDF_dom,
+                                         SAMPLEID,
+                                         dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID) %>%
+    dplyr::filter(BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6") %>%
+    dplyr::filter(dplyr::row_number() <= 2)
 
   # Summarise Top N
   df.dom01.sum <- dplyr::summarise(dplyr::group_by(df.dom01
@@ -1629,6 +1635,12 @@ metric.values.bugs <- function(myDF
                                                    , INDEX_CLASS)
                                    , ni_dom01_BCG_att5 = sum(N_TAXA, na.rm = TRUE)
                                    , .groups = "drop_last")
+  df.dom02_BCG_att456.sum <- dplyr::summarise(dplyr::group_by(df.dom02_BCG_att456
+                                                                         , SAMPLEID
+                                                                         , INDEX_NAME
+                                                                         , INDEX_CLASS)
+                                                         , ni_dom02_BCG_att456 = sum(N_TAXA)
+                                                         , .groups = "drop_last")
 
 
   # Add column of domN to main DF
@@ -1647,6 +1659,7 @@ metric.values.bugs <- function(myDF
   myDF <- merge(myDF, df.dom01_BCG_att456.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom01_BCG_att456t.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom01_BCG_att5.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom02_BCG_att456.sum, all.x = TRUE)
 
   # Convert NA to 0 (avoid -Inf in later calculations)
   myDF[is.na(myDF[, "ni_dom02_NoJugaRiss_BCG_att456"])
@@ -1655,6 +1668,7 @@ metric.values.bugs <- function(myDF
   myDF[is.na(myDF[, "ni_dom01_BCG_att456"]), "ni_dom01_BCG_att456"] <- 0
   myDF[is.na(myDF[, "ni_dom01_BCG_att456t"]), "ni_dom01_BCG_att456t"] <- 0
   myDF[is.na(myDF[, "ni_dom01_BCG_att5"]), "ni_dom01_BCG_att5"] <- 0
+  myDF[is.na(myDF[, "ni_dom02_BCG_att456"]), "ni_dom02_BCG_att456"] <- 0
 
   # Clean up extra Dom data frames
   rm(myDF_dom)
@@ -1681,11 +1695,13 @@ metric.values.bugs <- function(myDF
   rm(df.dom08.sum)
   rm(df.dom09.sum)
   rm(df.dom10.sum)
+  rm(df.dom02_BCG_att456)
   rm(df.dom02_NoJugaRiss_BCG_att456.sum)
   rm(df.dom01_BCG_att4.sum)
   rm(df.dom01_BCG_att456.sum)
   rm(df.dom01_BCG_att456t.sum)
   rm(df.dom01_BCG_att5.sum)
+  rm(df.dom02_BCG_att456.sum)
 
   # Metric Calc -----
   if (verbose == TRUE) {
@@ -2311,6 +2327,7 @@ metric.values.bugs <- function(myDF
 
                                 ### Other misc ----
                                 # dominant
+                                , pi_dom02_BCG_att456 = 100 * max(ni_dom02_BCG_att456) / ni_total
                                 , pi_dom02_BCG_att456_NoJugaRiss = 100 * max(ni_dom02_NoJugaRiss_BCG_att456) / ni_total
                                 #
                                 # 20180608, rework PacNW
