@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-06-09 15:16:21.484947
+    #> Last Update: 2026-07-01 10:02:36.873567
 
 # Version History
+
+## Changes in version 1.2.4.9026 (2026-07-01)
+
+- fix: Update pi_COEPT_BCG_att1i234b4m
+  - Use BCG_ATTR2 for 4b and 4m
 
 ## Changes in version 1.2.4.9025 (2026-06-09)
 

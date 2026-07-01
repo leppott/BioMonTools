@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9026 (2026-07-01)
+
+* fix: Update pi_COEPT_BCG_att1i234b4m
+    + Use BCG_ATTR2 for 4b and 4m
+
 ## Changes in version 1.2.4.9025 (2026-06-09)
 
 * refactor: New metric for ORWA Flags, pi_dom02_BCG_att456

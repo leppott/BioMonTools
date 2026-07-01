@@ -3248,8 +3248,8 @@ metric.values.bugs <- function(myDF
                                                                         & (BCG_ATTR == "1I"
                                                                            | BCG_ATTR == "2"
                                                                            | BCG_ATTR == "3"
-                                                                           | BCG_ATTR == "4_BETTER"
-                                                                           | BCG_ATTR == "4_MIDDLE")]
+                                                                           | BCG_ATTR2 == "4_BETTER"
+                                                                           | BCG_ATTR2 == "4_MIDDLE")]
                                                                  , na.rm = TRUE) / ni_total
                                 , pi_EPT_BCG_att123 = 100 * sum(N_TAXA[(ORDER == "EPHEMEROPTERA"
                                                                         | ORDER == "TRICHOPTERA"
