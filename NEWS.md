@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-01 10:02:36.873567
+    #> Last Update: 2026-07-07 12:48:11.287496
 
 # Version History
+
+## Changes in version 1.2.4.9027 (2026-07-07)
+
+- refactor: Additional metrics to metric_values and MetricNames.xlsx
+  - pi_NonInsTrombJuga_BCG_att456m6t
+  - pi_dom01_BCG_att456m6t
+  - pi_dom02_BCG_att456m6t
 
 ## Changes in version 1.2.4.9026 (2026-07-01)
 
