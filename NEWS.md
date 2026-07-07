@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-07 12:48:11.287496
+    #> Last Update: 2026-07-07 13:28:27.015872
 
 # Version History
+
+## Changes in version 1.2.4.9028 (2026-07-07)
+
+- refactor: Add metric for BCGcalc (Boise)
+  - pi_dom01_BCG_att456t
+  - pi_dom02_BCG_att456t
 
 ## Changes in version 1.2.4.9027 (2026-07-07)
 

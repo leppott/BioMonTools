@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9028 (2026-07-07)
+
+* refactor: Add metric for BCGcalc (Boise)
+    + pi_dom01_BCG_att456t
+    + pi_dom02_BCG_att456t
+
 ## Changes in version 1.2.4.9027 (2026-07-07)
 
 * refactor: Additional metrics to metric_values and MetricNames.xlsx

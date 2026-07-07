@@ -1519,7 +1519,9 @@ metric.values.bugs <- function(myDF
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter((is.na(GENUS) == TRUE | GENUS != "JUGA")
                   & (is.na(ORDER) == TRUE | ORDER != "RISSOOIDEA")
-                  & (BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6")) %>%
+                  & (BCG_ATTR == "4" |
+                       BCG_ATTR == "5" |
+                       BCG_ATTR == "6")) %>%
     dplyr::filter(dplyr::row_number() <= 2)
   df.dom01_BCG_att4 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
@@ -1527,7 +1529,15 @@ metric.values.bugs <- function(myDF
     dplyr::filter(dplyr::row_number() <= 1)
   df.dom01_BCG_att456 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
-    dplyr::filter(BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6") %>%
+    dplyr::filter(BCG_ATTR == "4" |
+                    BCG_ATTR == "5" |
+                    BCG_ATTR == "6") %>%
+    dplyr::filter(dplyr::row_number() <= 1)
+  df.dom01_BCG_att456t <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID)  %>%
+    dplyr::filter(BCG_ATTR == "4" |
+                    BCG_ATTR == "5" |
+                    BCG_ATTR == "6T") %>%
     dplyr::filter(dplyr::row_number() <= 1)
   df.dom01_BCG_att456m6t <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID)  %>%
@@ -1545,6 +1555,14 @@ metric.values.bugs <- function(myDF
                                          dplyr::desc(N_TAXA)) %>%
     dplyr::group_by(SAMPLEID) %>%
     dplyr::filter(BCG_ATTR == "4" | BCG_ATTR == "5" | BCG_ATTR == "6") %>%
+    dplyr::filter(dplyr::row_number() <= 2)
+  df.dom02_BCG_att456t <-  dplyr::arrange(myDF_dom,
+                                            SAMPLEID,
+                                            dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID) %>%
+    dplyr::filter(BCG_ATTR == "4" |
+                    BCG_ATTR == "5" |
+                    BCG_ATTR == "6T") %>%
     dplyr::filter(dplyr::row_number() <= 2)
   df.dom02_BCG_att456m6t <-  dplyr::arrange(myDF_dom,
                                          SAMPLEID,
@@ -1635,6 +1653,12 @@ metric.values.bugs <- function(myDF
                                                             , INDEX_CLASS)
                                             , ni_dom01_BCG_att456 = sum(N_TAXA, na.rm = TRUE)
                                             , .groups = "drop_last")
+  df.dom01_BCG_att456t.sum <- dplyr::summarise(dplyr::group_by(df.dom01_BCG_att456t
+                                                                 , SAMPLEID
+                                                                 , INDEX_NAME
+                                                                 , INDEX_CLASS)
+                                                 , ni_dom01_BCG_att456t = sum(N_TAXA, na.rm = TRUE)
+                                                 , .groups = "drop_last")
   df.dom01_BCG_att456m6t.sum <- dplyr::summarise(dplyr::group_by(df.dom01_BCG_att456m6t
                                                             , SAMPLEID
                                                             , INDEX_NAME
@@ -1653,6 +1677,12 @@ metric.values.bugs <- function(myDF
                                                                          , INDEX_CLASS)
                                                          , ni_dom02_BCG_att456 = sum(N_TAXA)
                                                          , .groups = "drop_last")
+  df.dom02_BCG_att456t.sum <- dplyr::summarise(dplyr::group_by(df.dom02_BCG_att456t
+                                                              , SAMPLEID
+                                                              , INDEX_NAME
+                                                              , INDEX_CLASS)
+                                              , ni_dom02_BCG_att456t = sum(N_TAXA)
+                                              , .groups = "drop_last")
   df.dom02_BCG_att456m6t.sum <- dplyr::summarise(dplyr::group_by(df.dom02_BCG_att456m6t
                                                               , SAMPLEID
                                                               , INDEX_NAME
@@ -1675,9 +1705,11 @@ metric.values.bugs <- function(myDF
   myDF <- merge(myDF, df.dom02_NoJugaRiss_BCG_att456.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom01_BCG_att4.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom01_BCG_att456.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom01_BCG_att456t.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom01_BCG_att456m6t.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom01_BCG_att5.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom02_BCG_att456.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom02_BCG_att456t.sum, all.x = TRUE)
   myDF <- merge(myDF, df.dom02_BCG_att456m6t.sum, all.x = TRUE)
 
   # Convert NA to 0 (avoid -Inf in later calculations)
@@ -1685,9 +1717,11 @@ metric.values.bugs <- function(myDF
        , "ni_dom02_NoJugaRiss_BCG_att456"] <- 0
   myDF[is.na(myDF[, "ni_dom01_BCG_att4"]), "ni_dom01_BCG_att4"] <- 0
   myDF[is.na(myDF[, "ni_dom01_BCG_att456"]), "ni_dom01_BCG_att456"] <- 0
+  myDF[is.na(myDF[, "ni_dom01_BCG_att456t"]), "ni_dom01_BCG_att456t"] <- 0
   myDF[is.na(myDF[, "ni_dom01_BCG_att456m6t"]), "ni_dom01_BCG_att456m6t"] <- 0
   myDF[is.na(myDF[, "ni_dom01_BCG_att5"]), "ni_dom01_BCG_att5"] <- 0
   myDF[is.na(myDF[, "ni_dom02_BCG_att456"]), "ni_dom02_BCG_att456"] <- 0
+  myDF[is.na(myDF[, "ni_dom02_BCG_att456t"]), "ni_dom02_BCG_att456t"] <- 0
   myDF[is.na(myDF[, "ni_dom02_BCG_att456m6t"]), "ni_dom02_BCG_att456m6t"] <- 0
 
   # Clean up extra Dom data frames
@@ -1719,9 +1753,11 @@ metric.values.bugs <- function(myDF
   rm(df.dom02_NoJugaRiss_BCG_att456.sum)
   rm(df.dom01_BCG_att4.sum)
   rm(df.dom01_BCG_att456.sum)
+  rm(df.dom01_BCG_att456t.sum)
   rm(df.dom01_BCG_att456m6t.sum)
   rm(df.dom01_BCG_att5.sum)
   rm(df.dom02_BCG_att456.sum)
+  rm(df.dom02_BCG_att456t.sum)
   rm(df.dom02_BCG_att456m6t.sum)
 
   # Metric Calc -----
@@ -3340,6 +3376,10 @@ metric.values.bugs <- function(myDF
                                       max(0
                                           , ni_dom01_BCG_att456
                                           , na.rm = TRUE) / ni_total
+                                , pi_dom01_BCG_att456t = 100 *
+                                  max(0
+                                      , ni_dom01_BCG_att456t
+                                      , na.rm = TRUE) / ni_total
                                 , pi_dom01_BCG_att456m6t = 100 *
                                       max(0
                                           , ni_dom01_BCG_att456m6t
@@ -3348,9 +3388,9 @@ metric.values.bugs <- function(myDF
                                       max(0
                                           , ni_dom01_BCG_att5
                                           , na.rm = TRUE) / ni_total
-                                , pi_dom02_BCG_att456 = 100 *
+                                , pi_dom02_BCG_att456t = 100 *
                                       max(0
-                                          , ni_dom02_BCG_att456
+                                          , ni_dom02_BCG_att456t
                                           , na.rm = TRUE) / ni_total
                                 , pi_dom02_BCG_att456m6t = 100 *
                                       max(0
