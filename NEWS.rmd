@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9029 (2026-07-17)
+
+* refactor: Add new algae metrics, Issue #144
+* fix: Add taxaid_dni to algae metrics
+* tests: Update algae tests for missing columns in example data
+  
 ## Changes in version 1.2.4.9028 (2026-07-07)
 
 * refactor: Add metric for BCGcalc (Boise)

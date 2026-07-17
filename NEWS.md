@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-07 13:28:27.015872
+    #> Last Update: 2026-07-17 17:09:11.71823
 
 # Version History
+
+## Changes in version 1.2.4.9029 (2026-07-17)
+
+- refactor: Add new algae metrics, Issue \#144
+- fix: Add taxaid_dni to algae metrics
+- tests: Update algae tests for missing columns in example data
 
 ## Changes in version 1.2.4.9028 (2026-07-07)
 

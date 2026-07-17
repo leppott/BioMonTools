@@ -45,8 +45,8 @@ Default = FALSE.}
 Default = NULL}
 
 \item{taxaid_dni}{Taxa names to be included in DNI (Do Not Include) metrics
-(n = 3) but dropped for all other metrics.  Only for benthic metrics.
-Default = NULL}
+(n = 3) but dropped for all other metrics.  Only for benthic and algae
+ metrics. Default = NULL}
 }
 \value{
 data frame of SampleID and metric values

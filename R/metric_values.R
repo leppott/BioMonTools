@@ -165,8 +165,8 @@
 #' @param metric_subset Subset of metrics to be generated.  Internal function.
 #' Default = NULL
 #' @param taxaid_dni Taxa names to be included in DNI (Do Not Include) metrics
-#' (n = 3) but dropped for all other metrics.  Only for benthic metrics.
-#' Default = NULL
+#' (n = 3) but dropped for all other metrics.  Only for benthic and algae
+#'  metrics. Default = NULL
 #'
 #' @return data frame of SampleID and metric values
 #'
@@ -721,7 +721,8 @@ metric.values <- function(fun.DF,
                         , cols2keep = fun.cols2keep
                         , MetricSort = NA
                         , boo.Shiny = boo.Shiny
-                        , verbose = verbose)
+                        , verbose = verbose
+                        , taxaid_dni = taxaid_dni)
   } else if (fun.Community == "CORAL") {
     metric.values.coral(myDF = fun.DF
                         , MetricNames = fun.MetricNames
@@ -2914,7 +2915,7 @@ metric.values.bugs <- function(myDF
                                 # Evenness, Pielou
                                 # H / Hmax  Hmax is log(nt_total)
                                 , x_Evenness = x_Shan_e/log(nt_total)
-                                # evenness - different from Pielou in MS Coastal Metric Calc 2011 db
+                                # evenness = different from Pielou in MS Coastal Metric Calc 2011 db
 
                                 ### Density ----
                                 # Numbers per area sampled
@@ -5825,7 +5826,8 @@ metric.values.algae <- function(myDF
                                 , cols2keep = NULL
                                 , MetricSort = NA
                                 , boo.Shiny = FALSE
-                                , verbose) {
+                                , verbose
+                                , taxaid_dni = NULL) {
 
   time_start <- Sys.time()
 
@@ -5953,6 +5955,7 @@ metric.values.algae <- function(myDF
   # Function fails if all NA (e.g., column was missing) (20200724)
   myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
 
+  ## Cols to Upper ----
   # Convert values to upper case (FFG, Habit, Life_Cycle)
   myDF[, "BC_USGS"] <- toupper(myDF[, "BC_USGS"])
   myDF[, "PT_USGS"] <- toupper(myDF[, "PT_USGS"])
@@ -5972,6 +5975,7 @@ metric.values.algae <- function(myDF
   myDF[, "MOTILE2_USGS"] <- toupper(myDF[, "MOTILE2_USGS"])
   myDF[, "DIATOM_ISA"] <- toupper(myDF[, "DIATOM_ISA"])
 
+  ## Helper Cols ----
   # Add extra columns for some fields
   # (need unique values for functions in summarise)
   # each will be TRUE or FALSE
@@ -6034,6 +6038,193 @@ metric.values.algae <- function(myDF
   myDF[, "ARAPHID"]         <- grepl("ARAPHID", myDF[, "MOTILE2_USGS"])
   myDF[, "REF_INDICATORS"]  <- grepl("^REF", myDF[, "DIATOM_ISA"])
 
+  ## Dominant N ----
+  # Create df for Top N (without ties)
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, Dom"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  # DF for dom so same taxa get combined
+  # 2023-10-24, remove taxaid_dni
+  myDF_dom <- dplyr::summarise(dplyr::group_by(myDF
+                                               , INDEX_NAME
+                                               , INDEX_CLASS
+                                               , SAMPLEID
+                                               , TAXAID
+                                               , GENUS
+                                               , ORDER
+                                               , BCG_ATTR)
+                               , N_TAXA = sum(N_TAXA, na.rm = TRUE)
+                               , .groups = "drop_last") %>%
+    dplyr::filter(!TAXAID %in% taxaid_dni) # doesn't work if do first
+
+  df.dom01 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID)  %>%
+    dplyr::filter(dplyr::row_number() <= 1)
+  df.dom02 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID)  %>%
+    dplyr::filter(dplyr::row_number() <= 2)
+  df.dom03 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID) %>%
+    dplyr::filter(dplyr::row_number() <= 3)
+  df.dom04 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID) %>%
+    dplyr::filter(dplyr::row_number() <= 4)
+  df.dom05 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID) %>%
+    dplyr::filter(dplyr::row_number() <= 5)
+  df.dom06 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID) %>%
+    dplyr::filter(dplyr::row_number() <= 6)
+  df.dom07 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID) %>%
+    dplyr::filter(dplyr::row_number() <= 7)
+  df.dom08 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID) %>%
+    dplyr::filter(dplyr::row_number() <= 8)
+  df.dom09 <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID) %>%
+    dplyr::filter(dplyr::row_number() <= 9)
+  df.dom10 <-  dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID)  %>%
+    dplyr::filter(dplyr::row_number() <= 10)
+  df.dom01_BCG_att456m6t <- dplyr::arrange(myDF_dom, SAMPLEID, dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID)  %>%
+    dplyr::filter(BCG_ATTR == "4" |
+                    BCG_ATTR == "5" |
+                    BCG_ATTR == "6M" |
+                    BCG_ATTR == "6T") %>%
+    dplyr::filter(dplyr::row_number() <= 1)
+  df.dom02_BCG_att456m6t <-  dplyr::arrange(myDF_dom,
+                                            SAMPLEID,
+                                            dplyr::desc(N_TAXA)) %>%
+    dplyr::group_by(SAMPLEID) %>%
+    dplyr::filter(BCG_ATTR == "4" |
+                    BCG_ATTR == "5" |
+                    BCG_ATTR == "6M" |
+                    BCG_ATTR == "6T") %>%
+    dplyr::filter(dplyr::row_number() <= 2)
+
+  # Summarise Top N
+  df.dom01.sum <- dplyr::summarise(dplyr::group_by(df.dom01
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom01 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df.dom02.sum <- dplyr::summarise(dplyr::group_by(df.dom02
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom02 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df.dom03.sum <- dplyr::summarise(dplyr::group_by(df.dom03
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom03 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df.dom04.sum <- dplyr::summarise(dplyr::group_by(df.dom04
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom04 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df.dom05.sum <- dplyr::summarise(dplyr::group_by(df.dom05
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom05 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df.dom06.sum <- dplyr::summarise(dplyr::group_by(df.dom06
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom06 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df.dom07.sum <- dplyr::summarise(dplyr::group_by(df.dom07
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom07 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df.dom08.sum <- dplyr::summarise(dplyr::group_by(df.dom08
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom08 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df.dom09.sum <- dplyr::summarise(dplyr::group_by(df.dom09
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom09 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df.dom10.sum <- dplyr::summarise(dplyr::group_by(df.dom10
+                                                   , SAMPLEID
+                                                   , INDEX_NAME
+                                                   , INDEX_CLASS)
+                                   , ni_dom10 = sum(N_TAXA, na.rm = TRUE)
+                                   , .groups = "drop_last")
+  df.dom01_BCG_att456m6t.sum <- dplyr::summarise(dplyr::group_by(df.dom01_BCG_att456m6t
+                                                                 , SAMPLEID
+                                                                 , INDEX_NAME
+                                                                 , INDEX_CLASS)
+                                                 , ni_dom01_BCG_att456m6t = sum(N_TAXA, na.rm = TRUE)
+                                                 , .groups = "drop_last")
+  df.dom02_BCG_att456m6t.sum <- dplyr::summarise(dplyr::group_by(df.dom02_BCG_att456m6t
+                                                                 , SAMPLEID
+                                                                 , INDEX_NAME
+                                                                 , INDEX_CLASS)
+                                                 , ni_dom02_BCG_att456m6t = sum(N_TAXA)
+                                                 , .groups = "drop_last")
+
+
+  # Add column of domN to main DF
+  myDF <- merge(myDF, df.dom01.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom02.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom03.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom04.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom05.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom06.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom07.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom08.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom09.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom10.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom01_BCG_att456m6t.sum, all.x = TRUE)
+  myDF <- merge(myDF, df.dom02_BCG_att456m6t.sum, all.x = TRUE)
+
+  # Convert NA to 0 (avoid -Inf in later calculations)
+  myDF[is.na(myDF[, "ni_dom01_BCG_att456m6t"]), "ni_dom01_BCG_att456m6t"] <- 0
+  myDF[is.na(myDF[, "ni_dom02_BCG_att456m6t"]), "ni_dom02_BCG_att456m6t"] <- 0
+
+  # Clean up extra Dom data frames
+  rm(myDF_dom)
+  rm(df.dom01)
+  rm(df.dom02)
+  rm(df.dom03)
+  rm(df.dom04)
+  rm(df.dom05)
+  rm(df.dom06)
+  rm(df.dom07)
+  rm(df.dom08)
+  rm(df.dom09)
+  rm(df.dom10)
+  rm(df.dom01.sum)
+  rm(df.dom02.sum)
+  rm(df.dom03.sum)
+  rm(df.dom01_BCG_att456m6t.sum)
+  rm(df.dom02_BCG_att456m6t.sum)
 
   # Metric Calc----
 
@@ -6927,6 +7118,48 @@ metric.values.algae <- function(myDF
                 , pt_BCG_att4w =  100 * nt_BCG_att4w / nt_total
                 , pt_BCG_att1i234b = 100 * nt_BCG_att1i234b / nt_total
                 , pt_BCG_att4w5 = 100 * nt_BCG_att4w5 / nt_total
+
+                #### BCG_pi_dom ----
+                , pi_dom01_BCG_att456m6t = 100 *
+                  max(0
+                      , ni_dom01_BCG_att456m6t
+                      , na.rm = TRUE) / ni_total
+                , pi_dom02_BCG_att456m6t = 100 *
+                  max(0
+                      , ni_dom02_BCG_att456m6t
+                      , na.rm = TRUE) / ni_total
+
+                ## Dominant N ----
+                ## uses previously defined values added to myDF
+                , pi_dom01 = 100 * max(ni_dom01, na.rm = TRUE) / ni_total
+                , pi_dom02 = 100 * max(ni_dom02, na.rm = TRUE) / ni_total
+                , pi_dom03 = 100 * max(ni_dom03, na.rm = TRUE) / ni_total
+                , pi_dom04 = 100 * max(ni_dom04, na.rm = TRUE) / ni_total
+                , pi_dom05 = 100 * max(ni_dom05, na.rm = TRUE) / ni_total
+                , pi_dom06 = 100 * max(ni_dom06, na.rm = TRUE) / ni_total
+                , pi_dom07 = 100 * max(ni_dom07, na.rm = TRUE) / ni_total
+                , pi_dom08 = 100 * max(ni_dom08, na.rm = TRUE) / ni_total
+                , pi_dom09 = 100 * max(ni_dom09, na.rm = TRUE) / ni_total
+                , pi_dom10 = 100 * max(ni_dom10, na.rm = TRUE) / ni_total
+
+
+                ## INDICES ----
+                , x_Shan_e = -sum((N_TAXA / ni_total) * log((N_TAXA / ni_total))
+                                  , na.rm = TRUE)
+                , x_Shan_2 = x_Shan_e/log(2)
+                , x_Shan_10 = x_Shan_e/log(10)
+                #, x_D Simpson
+                , x_D = 1 - sum((N_TAXA / ni_total)^2, na.rm = TRUE)
+                #, X_D_G (Gleason) - [nt_total]/Log([ni_total])
+                , x_D_G = (nt_total) / log(ni_total)
+                #, x_D_Mg Margalef -  ([nt_total]-1)/Log([ni_total])
+                , x_D_Mg = (nt_total - 1) / log(ni_total)
+                #, x_Hbe
+                #, x_H (Shannon)
+                # Evenness, Pielou
+                # H / Hmax  Hmax is log(nt_total)
+                , x_Evenness = x_Shan_e/log(nt_total)
+                # evenness = different from Pielou in MS Coastal Metric Calc 2011 db
 
 
                 , .groups = "drop_last")##met.val.END

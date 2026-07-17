@@ -11,7 +11,8 @@ metric.values.algae(
   cols2keep = NULL,
   MetricSort = NA,
   boo.Shiny = FALSE,
-  verbose
+  verbose,
+  taxaid_dni = NULL
 )
 }
 \arguments{
