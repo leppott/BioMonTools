@@ -37,6 +37,12 @@
 <url><loc>/reference/metvalgrpxl.html</loc></url>
 <url><loc>/reference/qc.checks.html</loc></url>
 <url><loc>/reference/qc_taxa.html</loc></url>
+<url><loc>/reference/qc_taxa_match_official.html</loc></url>
+<url><loc>/reference/qc_taxa_names_proof.html</loc></url>
+<url><loc>/reference/qc_taxa_phylo.html</loc></url>
+<url><loc>/reference/qc_taxa_values_character.html</loc></url>
+<url><loc>/reference/qc_taxa_values_logical.html</loc></url>
+<url><loc>/reference/qc_taxa_values_numeric.html</loc></url>
 <url><loc>/reference/rarify.html</loc></url>
 <url><loc>/reference/taxa_translate.html</loc></url>
 </urlset>

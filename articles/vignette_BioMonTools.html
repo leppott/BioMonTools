@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.4.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.4.9033</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@
       <h1 data-toc-skip>Vignette, BioMonTools</h1>
                         <h4 data-toc-skip class="author"><a href="mailto:Erik.Leppo@tetratech.com" class="email">Erik.Leppo@tetratech.com</a></h4>
             
-            <h4 data-toc-skip class="date">2026-03-19</h4>
+            <h4 data-toc-skip class="date">2026-07-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/leppott/BioMonTools/blob/main/vignettes/vignette_BioMonTools.Rmd" class="external-link"><code>vignettes/vignette_BioMonTools.Rmd</code></a></small>
       <div class="hidden name"><code>vignette_BioMonTools.Rmd</code></div>
@@ -335,10 +335,15 @@ below).</p>
 <span>                                       , package <span class="op">=</span> <span class="st">"BioMonTools"</span><span class="op">)</span></span>
 <span>                      , guess_max <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">6</span><span class="op">)</span></span>
 <span><span class="co"># Columns to keep</span></span>
-<span><span class="va">myCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Area_mi2"</span>, <span class="st">"SurfaceArea"</span>, <span class="st">"Density_m2"</span>, <span class="st">"Density_ft2"</span><span class="op">)</span></span>
+<span><span class="va">myCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Area_mi2"</span>, <span class="st">"SurfaceArea"</span>, <span class="st">"Density_ft2"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Add extra cols</span></span>
+<span><span class="va">df_data</span><span class="op">[</span>, <span class="st">"SAMP_AREA_M2"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA_real_</span></span>
 <span></span>
 <span><span class="co"># Run Function</span></span>
-<span><span class="va">df_metval</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df_data</span>, <span class="st">"bugs"</span>, fun.cols2keep <span class="op">=</span> <span class="va">myCols</span><span class="op">)</span></span>
+<span><span class="va">df_metval</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df_data</span>, </span>
+<span>                                        <span class="st">"bugs"</span>, </span>
+<span>                                        fun.cols2keep <span class="op">=</span> <span class="va">myCols</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Updated col class; TOLVAL2 to numeric</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span></span>
 <span><span class="co"># Metrics of Interest</span></span>
@@ -361,15 +366,14 @@ below).</p>
 <span><span class="co"># RMD table</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_metval_ci</span><span class="op">)</span>, </span>
 <span>             caption <span class="op">=</span> <span class="st">"Metric Calculation, select metrics"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <caption>Metric Calculation, select metrics</caption>
 <colgroup>
-<col width="13%">
+<col width="14%">
 <col width="5%">
 <col width="6%">
-<col width="5%">
 <col width="6%">
-<col width="9%">
+<col width="10%">
 <col width="6%">
 <col width="4%">
 <col width="4%">
@@ -384,7 +388,6 @@ below).</p>
 <th align="left">SAMPLEID</th>
 <th align="right">AREA_MI2</th>
 <th align="left">SURFACEAREA</th>
-<th align="left">DENSITY_M2</th>
 <th align="left">DENSITY_FT2</th>
 <th align="left">INDEX_NAME</th>
 <th align="left">INDEX_CLASS</th>
@@ -403,7 +406,6 @@ below).</p>
 <td align="right">1.791475</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
 <td align="left">Hi</td>
 <td align="right">6</td>
@@ -419,7 +421,6 @@ below).</p>
 <td align="left">03054CSR_Bug_2003-08-18_0</td>
 <td align="right">71.249741</td>
 <td align="left">8</td>
-<td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
 <td align="left">Lo</td>
@@ -437,7 +438,6 @@ below).</p>
 <td align="right">82.338353</td>
 <td align="left">8</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
 <td align="left">Hi</td>
 <td align="right">25</td>
@@ -453,7 +453,6 @@ below).</p>
 <td align="left">06027CSR_Bug_2006-07-17_0</td>
 <td align="right">33.632627</td>
 <td align="left">8</td>
-<td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
 <td align="left">Lo</td>
@@ -471,7 +470,6 @@ below).</p>
 <td align="right">48.091837</td>
 <td align="left">8</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
 <td align="left">Lo</td>
 <td align="right">3</td>
@@ -487,7 +485,6 @@ below).</p>
 <td align="left">07036OPR_Bug_2007-09-27_0</td>
 <td align="right">31.817986</td>
 <td align="left">8</td>
-<td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">BCG_PacNW_v1_500ct</td>
 <td align="left">Lo</td>
@@ -1168,6 +1165,17 @@ to how to handled flagged samples.</p>
 <span><span class="va">df.metrics</span> <span class="op">&lt;-</span> <span class="fu">BioMonTools</span><span class="fu">::</span><span class="fu"><a href="../reference/metric.values.html">metric.values</a></span><span class="op">(</span><span class="va">df.samps.bugs</span></span>
 <span>                                         , <span class="st">"bugs"</span></span>
 <span>                                         , fun.cols2keep <span class="op">=</span> <span class="va">keep.cols</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; There are 1 missing fields in the data:</span></span>
+<span><span class="co">#&gt; SAMP_AREA_M2</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; If you continue the metrics associated with these fields will be invalid.</span></span>
+<span><span class="co">#&gt; For example, if the HABIT field is missing all habit related metrics will not be correct.</span></span>
+<span><span class="co">#&gt; Do you wish to continue (YES or NO)?</span></span>
+<span><span class="co">#&gt; boo.Shiny == TRUE and interactive == FALSE</span></span>
+<span><span class="co">#&gt;                so prompt skipped and value set to '1'.</span></span>
+<span><span class="co">#&gt; Warning in metric.values.bugs(myDF = fun.DF, MetricNames = fun.MetricNames, : Metrics related to the following fields are invalid:</span></span>
+<span><span class="co">#&gt;    SAMP_AREA_M2</span></span>
 <span><span class="co">#&gt; Updated col class; TOLVAL2 to numeric</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span></span>
 <span></span>
@@ -1238,16 +1246,11 @@ to how to handled flagged samples.</p>
 <td align="right">47</td>
 </tr>
 <tr class="even">
-<td align="left">Low density (m2)</td>
-<td align="right">0</td>
-<td align="right">47</td>
-</tr>
-<tr class="odd">
 <td align="left">Ramellogammarus</td>
 <td align="right">0</td>
 <td align="right">47</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">surface area, small</td>
 <td align="right">7</td>
 <td align="right">40</td>
@@ -1274,7 +1277,7 @@ to how to handled flagged samples.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer>
