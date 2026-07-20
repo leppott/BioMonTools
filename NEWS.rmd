@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9031 (2026-07-20)
+
+* refactor: Update metric.values for Algae for all values of POLL_TOL as NA, Issue #145
+* tests: Add test for metric.values for Algae for all value of POLL_TOL as NA, Issue #145
+
 ## Changes in version 1.2.4.9030 (2026-07-20)
 
 * refactor: Update algae example data, data_diatom_mmi_dev

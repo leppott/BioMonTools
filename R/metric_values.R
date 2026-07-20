@@ -5918,8 +5918,10 @@ metric.values.algae <- function(myDF
       stop(paste("The user chose *not* to continue due to missing fields: "
                  , paste(paste0("   ",col.req.missing), collapse = "\n"), sep = "\n"))
     }##IF.user.input.END
+
     # Add missing fields
-    myDF[,col.req.missing] <- NA
+    myDF[, col.req.missing] <- NA
+    # user warning
     warning(paste("Metrics related to the following fields are invalid:"
                   , paste(paste0("   ", col.req.missing), collapse = "\n"), sep = "\n"))
   }##IF.num.col.req.missing.END
@@ -5949,6 +5951,14 @@ metric.values.algae <- function(myDF
     myDF[TolVal_Char_NA, "TOLVAL"] <- NA
     myDF[, "TOLVAL"] <- as.numeric(myDF[, "TOLVAL"])
   }##IF ~ TOLVAL ~ END
+
+  ## QC, POLL_TOL----
+  # need as numeric, if have "NA" as character it fails
+  POLL_TOL_Char_NA <- myDF[, "POLL_TOL"] == "NA"
+  if (sum(POLL_TOL_Char_NA, na.rm = TRUE) > 0) {
+    myDF[POLL_TOL_Char_NA, "POLL_TOL"] <- NA
+    myDF[, "POLL_TOL"] <- as.numeric(myDF[, "POLL_TOL"])
+  }##IF ~ POLL_TOL ~ END
 
   # Data Munging----
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)

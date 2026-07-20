@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-20 10:55:33.259118
+    #> Last Update: 2026-07-20 11:35:23.807614
 
 # Version History
+
+## Changes in version 1.2.4.9031 (2026-07-20)
+
+- refactor: Update metric.values for Algae for all values of POLL_TOL as
+  NA, Issue \#145
+- tests: Add test for metric.values for Algae for all value of POLL_TOL
+  as NA, Issue \#145
 
 ## Changes in version 1.2.4.9030 (2026-07-20)
 
