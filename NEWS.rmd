@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9030 (2026-07-20)
+
+* refactor: Update algae example data, data_diatom_mmi_dev
+* docs: Update algae example data help file, data_diatom_mmi_dev
+* tests: Remove extra column additions from algae tests
+
 ## Changes in version 1.2.4.9029 (2026-07-17)
 
 * refactor: Add new algae metrics, Issue #144

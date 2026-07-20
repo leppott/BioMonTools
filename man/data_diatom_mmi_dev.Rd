@@ -5,7 +5,7 @@
 \alias{data_diatom_mmi_dev}
 \title{Diatom taxa data; Indiana DEM}
 \format{
-A data frame with 24797 observations on the following 45 variables.
+A data frame with 24797 observations on the following 47 variables.
 
   \describe{
   \item{\code{INDEX_NAME}}{a character vector}
@@ -54,6 +54,8 @@ A data frame with 24797 observations on the following 45 variables.
   \item{\code{SAP_MERTENS}}{a numeric vector}
   \item{\code{TROPHIC_MERTENS}}{a character vector}
   \item{\code{MOISTURE_MERTENS}}{a numeric vector}
+  \item{\code{BCG_ATTR}}{a character vector}
+  \item{\code{BCG_ATTR2}}{a character vector}
 }
 }
 \source{

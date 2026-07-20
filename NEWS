@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-17 17:09:11.71823
+    #> Last Update: 2026-07-20 10:55:33.259118
 
 # Version History
+
+## Changes in version 1.2.4.9030 (2026-07-20)
+
+- refactor: Update algae example data, data_diatom_mmi_dev
+- docs: Update algae example data help file, data_diatom_mmi_dev
+- tests: Remove extra column additions from algae tests
 
 ## Changes in version 1.2.4.9029 (2026-07-17)
 

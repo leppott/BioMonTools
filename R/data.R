@@ -274,7 +274,7 @@
 #' @description A data set with example diatom data.
 #' Calculate metrics.  Data from IDEM.
 #'
-#' @format A data frame with 24797 observations on the following 45 variables.
+#' @format A data frame with 24797 observations on the following 47 variables.
 #'
 #'   \describe{
 #'   \item{\code{INDEX_NAME}}{a character vector}
@@ -323,6 +323,8 @@
 #'   \item{\code{SAP_MERTENS}}{a numeric vector}
 #'   \item{\code{TROPHIC_MERTENS}}{a character vector}
 #'   \item{\code{MOISTURE_MERTENS}}{a numeric vector}
+#'   \item{\code{BCG_ATTR}}{a character vector}
+#'   \item{\code{BCG_ATTR2}}{a character vector}
 #' }
 #' @source example data from IDEM
 "data_diatom_mmi_dev"

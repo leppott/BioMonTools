@@ -70,6 +70,11 @@ df <- df |>
                    temp_1_6,
                    temp_1_6_x))
 
+# 20260720, add extra cols for "tests"
+# 20260717
+df[, "BCG_ATTR"] <- NA_character_
+df[, "BCG_ATTR2"] <- NA_character_
+
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 2. Save as RDA for use in package####
 #
