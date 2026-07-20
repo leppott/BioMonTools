@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9032 (2026-07-20)
+
+* refactor: Update deprecation of qc_taxa()
+    + Was not pointing correctly to qc_taxa_names_match()
+* refactor: Update qc_taxa_names_match() to handle non-ASCII, Issue #141
+    + Add stringr to DESCRIPTION
+
 ## Changes in version 1.2.4.9031 (2026-07-20)
 
 * refactor: Update metric.values for Algae for all values of POLL_TOL as NA, Issue #145

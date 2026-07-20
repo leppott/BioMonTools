@@ -69,6 +69,8 @@
 #' See 'Details' for more information.
 #' Valid values are "only_Official", "only_user", "add_new".
 #' Default = "only_Official".
+#' @param col_taxon Column with taxa names.
+#' Default = TAXAID
 #'
 #' @return input data frame with master taxa information added to it.
 #'
@@ -82,25 +84,31 @@
 #' DF_Official   <- NULL   # NULL df_mt_bugs
 #' fun.Community <- "bugs"
 #' useOfficialTaxaInfo <- "only_Official"
+#' col_taxon <- "TAXON"
 #' # modify taxa id column
 #' DF_User[, "TAXON"] <- DF_User[, "TAXAID"]
 #'
 #' df_qc_taxa_bugs <- qc_taxa_match_official(DF_User,
 #'                                           DF_Official,
 #'                                           fun.Community,
-#'                                           useOfficialTaxaInfo)
+#'                                           useOfficialTaxaInfo,
+#'                                           col_taxon)
 #'
-#' # QC input/output
-#' dim(DF_User)
-#' dim(df_qc_taxa_bugs)
-#' names(DF_User)
-#' names(df_qc_taxa_bugs)
+#' # Example 2, Algae, non-ASCII included
+#' df_qc_taxa_algae <- qc_taxa_match_official(
+#'   DF_User = data_algae_names_user,
+#'   DF_Official = data_algae_names_official,
+#'   fun.Community = "algae",
+#'   useOfficialTaxaInfo = "only_Official",
+#'   col_taxon = "Taxon"
+#'   )
 #
 #' @export
 qc_taxa_match_official <- function(DF_User,
                                    DF_Official = NULL,
                                    fun.Community = NULL,
-                                   useOfficialTaxaInfo = "only_Official") {
+                                   useOfficialTaxaInfo = "only_Official",
+                                   col_taxon = "TAXAID") {
   # DEBUG ----
   boo_DEBUG <- FALSE
   if(boo_DEBUG==TRUE){##IF~boo_DEBUG~START
@@ -140,7 +148,7 @@ qc_taxa_match_official <- function(DF_User,
                 "Habit",
                 "FinalTolVal07",
                 "Comment")
-    col_taxon <- col_mt[1]
+    # col_taxon <- col_mt[1]
   # } else if(fun.Community == "fish"){
   #   url_mt <- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Fish.csv"
   #   col_mt <- c("SPECIES", "TYPE", "PTOLR", "NATIVE", "TROPHIC", "SILT"
@@ -149,8 +157,8 @@ qc_taxa_match_official <- function(DF_User,
   #   col_taxon <- col_mt[1]
     # future functionality
   } else {
-    msg <- "Valid values for fun.Community is only 'bugs'."
-    stop(msg)
+    # msg <- "Valid values for fun.Community is only 'bugs'."
+    # stop(msg)
   }##IF ~ fun.community ~ END
 
   # Master Taxa----
@@ -173,13 +181,15 @@ qc_taxa_match_official <- function(DF_User,
     stop(paste0("DF_User missing column; ", col_taxon))
   } ## IF, stop
 
-  # taxa names to ALL CAPS for bugs and fish----
-  DF_User[, col_taxon] <- toupper(DF_User[, col_taxon])
+  # taxa names to ALL CAPS----
+  # DF_User[, col_taxon] <- toupper(DF_User[, col_taxon])
+  DF_User[, "TAXA_MATCH_BMT"] <- stringr::str_to_upper(DF_User[, col_taxon])
+  df_mt[, "TAXA_MATCH_BMT"] <- stringr::str_to_upper(df_mt[, col_taxon])
 
   # Check Numbers----
-  taxa_user      <- sort(unique(DF_User[, col_taxon]))
+  taxa_user      <- sort(unique(DF_User[, "TAXA_MATCH_BMT"]))
   taxa_user_n    <- length(taxa_user)
-  boo_taxa_match <- taxa_user %in% df_mt[, col_taxon]
+  boo_taxa_match <- taxa_user %in% df_mt[, "TAXA_MATCH_BMT"]
   sum_taxa_match <- sum(boo_taxa_match)
   taxa_nonmatch  <- taxa_user[!boo_taxa_match]
   # Output to Console
@@ -217,12 +227,16 @@ qc_taxa_match_official <- function(DF_User,
   # df_merge <- merge(DF_User, df_mt
   #                    , by = col_taxon
   #                    , all.x = TRUE)
+
+  # remove col_taxon from df_mt
+  df_mt <- df_mt[, !names(df_mt) %in% col_taxon]
+
   ## Munge Cols
   if(useOfficialTaxaInfo == "only_Official"){
     # Do Nothing
     # leave in "_NonOfficial" columns
     df_result <- merge(DF_User, df_mt,
-                       by = col_taxon,
+                       by = "TAXA_MATCH_BMT",
                        all.x = TRUE,
                        suffixes = c(sfx_NonOfficial, ""))
 
@@ -241,7 +255,7 @@ qc_taxa_match_official <- function(DF_User,
     # names(df_result) <- gsub("_NonOfficial$", "", names(df_result))
 
     df_result <- merge(DF_User, df_mt,
-                       by = col_taxon,
+                       by = "TAXA_MATCH_BMT",
                        all.x = TRUE,
                        suffixes = c("", sfx_Official))
 
@@ -258,7 +272,7 @@ qc_taxa_match_official <- function(DF_User,
     # , "_NonOfficial")]
 
     df_result <- merge(DF_User, df_mt,
-                       by = col_taxon,
+                       by = "TAXA_MATCH_BMT",
                        all.x = TRUE,
                        suffixes = c(sfx_NonOfficial, ""))
 
@@ -290,6 +304,8 @@ qc_taxa_match_official <- function(DF_User,
   # Bugs = EXCLUDE, STRATA_R
   # Fish =
 
+  # remove taxa match from df_result
+  df_result <- df_result[, !names(df_result) %in% "TAXA_MATCH_BMT"]
 
   # Output----
   return(df_result)

@@ -49,10 +49,11 @@ qc_taxa <- function(DF_User,
                     fun.Community = NULL,
                     useOfficialTaxaInfo = "only_Official") {
   #
-  .Deprecated("qc_taxa")
-  qc_taxa(DF_User,
-          DF_Official,
-          fun.Community,
-          useOfficialTaxaInfo)
+  .Deprecated("qc_taxa_match_official")
+
+  qc_taxa_match_official(DF_User,
+                         DF_Official,
+                         fun.Community,
+                         useOfficialTaxaInfo)
   #
 }##FUNCTION ~ qc_taxa ~ END

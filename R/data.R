@@ -799,3 +799,49 @@
 #'   ## maybe str(data_taxa_names_issues) ; plot(data_taxa_names_issues) ...
 #' }
 #' \keyword{datasets}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_algae_names_official" ----
+#' \name{data_algae_names_official}
+#' \alias{data_algae_names_official}
+#' \docType{data}
+#' \title{
+#'    Algae Taxa Names, Official
+#' }
+#' \description{
+#'   Translation table for algae taxa.
+#' }
+#' \usage{data("data_algae_names_official")}
+#' \format{
+#'   A data frame with 3271 observations on the following 8 variables.
+#'   \describe{
+#'     \item{\code{Taxon}}{a character vector}
+#'     \item{\code{Issues}}{a character vector}
+#'     \item{\samp{Number of occurrences}}{a numeric vector}
+#'     \item{\samp{modified BCG}}{a character vector}
+#'     \item{\code{OTU_BCG}}{a character vector}
+#'     \item{\code{Notes}}{a character vector}
+#'     \item{\code{OTU_Carlisle}}{a character vector}
+#'     \item{\code{OTU_Mertens}}{a character vector}
+#'   }
+#' }
+#' \keyword{datasets}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_algae_names_user" ----
+#' \name{data_algae_names_user}
+#' \alias{data_algae_names_user}
+#' \docType{data}
+#' \title{
+#'   Algae Taxa Names, User
+#' }
+#' \description{
+#'   Example user taxa names
+#' }
+#' \usage{data("data_algae_names_user")}
+#' \format{
+#'  A data frame with 3271 observations on the following variable.
+#'  \describe{
+#'    \item{\code{Taxon}}{a character vector}
+#'   }
+#' }
+#' \keyword{datasets}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

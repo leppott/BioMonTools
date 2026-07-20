@@ -4,9 +4,17 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-20 11:35:23.807614
+    #> Last Update: 2026-07-20 14:51:25.507359
 
 # Version History
+
+## Changes in version 1.2.4.9032 (2026-07-20)
+
+- refactor: Update deprecation of qc_taxa()
+  - Was not pointing correctly to qc_taxa_names_match()
+- refactor: Update qc_taxa_names_match() to handle non-ASCII, Issue
+  \#141
+  - Add stringr to DESCRIPTION
 
 ## Changes in version 1.2.4.9031 (2026-07-20)
 
