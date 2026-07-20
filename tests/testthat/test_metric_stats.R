@@ -1,7 +1,7 @@
 # metric_stats and metric_stats2 ####
 testthat::test_that("metric_stats & metric_stats2", {
 
-  #' # data, benthos
+  # data, benthos
   df_bugs <- BioMonTools::data_mmi_dev
 
   # Add UFC, 2021-11-02
@@ -12,6 +12,8 @@ testthat::test_that("metric_stats & metric_stats2", {
   df_bugs$HABSTRUCT <- NA_character_
   df_bugs$BCG_ATTR2 <- NA_character_
   df_bugs$AIRBREATHER <- NA
+  df_bugs$SAMP_AREA_M2 <- NA_real_
+  df_bugs$DENSITY_M2 <- NA_real_
 
   # Munge Names
   names(df_bugs)[names(df_bugs) %in% "BenSampID"] <- "SAMPLEID"
@@ -65,7 +67,8 @@ testthat::test_that("metric_stats & metric_stats2", {
   #sum_qc <- 315244.8
   #sum_qc <- 331996.8 # new value, 2021-04-14
   # sum_qc <- 367118.8 # new value, 2022-02-22, new metrics
-  sum_qc <- 471247.6 # new value, 2025-09-08, new metrics
+  # sum_qc <- 471247.6 # new value, 2025-09-08, new metrics
+  sum_qc <- 489819 # new value, 2026-07-20, new metrics
 
   # test
   testthat::expect_equal(sum_calc, sum_qc, tolerance = 0.02)
@@ -88,7 +91,7 @@ testthat::test_that("metric_stats & metric_stats2", {
   RefStatus_Oth <- "Other"
   DataType_Cal <- "cal"
   DataType_Ver <- "verif"
-  Subset_Value <- "CENTRALHILLS"
+  Subset_Value <- "CentralHills" # Error if all CAPS
   df_stats2 <- metric.stats2(data_metval
                                    , data_metstat
                                    , col_metval_RefStatus
@@ -104,19 +107,17 @@ testthat::test_that("metric_stats & metric_stats2", {
                                    , DataType_Ver
                                    , Subset_Value)
 
-  # Error in data.frame(col_metval_DataType = DataType_Cal,
-  #                     col_metval_Subset = Subset_Value,  :
-  #                       arguments imply differing number of rows: 1, 0
-
 
   df_numbers2 <- df_stats2[, -(1:4)]
   # -Inf in CV column, replace with NA
   df_numbers2[df_numbers2 == -Inf] <- NA
+  df_numbers2[df_numbers2 == Inf] <- NA
   df_numbers2 <- df_numbers2[, 1:15]
 
   sum2_calc <- sum(df_numbers2, na.rm = TRUE)
 
-  sum2_qc <- 315376
+  # sum2_qc <- 315376
+  sum2_qc <- 490065 # 2026-07-20
 
   # test
   testthat::expect_equal(sum2_calc, sum2_qc, tolerance = 0.02)

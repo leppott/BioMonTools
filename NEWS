@@ -4,9 +4,20 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-20 14:51:25.507359
+    #> Last Update: 2026-07-20 17:03:24.460511
 
 # Version History
+
+## Changes in version 1.2.4.9033 (2026-07-20)
+
+- refactor: Update errors in vignettes
+- docs: Add stringdist to DESCRIPTION from qc_taxa_names_proof() \#
+  refactor: Comment out header in Examples for qc_taxa_values_char
+- refactor: Update parameters for consistency
+  - qc_taxa_values_character
+  - qc_taxa_values_logical
+  - qc_taxa_values_numeric
+- tests: Update tests for errors
 
 ## Changes in version 1.2.4.9032 (2026-07-20)
 

@@ -4,7 +4,7 @@ author: "Erik.Leppo@tetratech.com"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{BioMonTools}
+  %\VignetteIndexEntry{Vignette, BioMonTools}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -206,10 +206,15 @@ df_data <- readxl::read_excel(system.file("./extdata/Data_Benthos.xlsx"
                                        , package = "BioMonTools")
                       , guess_max = 10^6)
 # Columns to keep
-myCols <- c("Area_mi2", "SurfaceArea", "Density_m2", "Density_ft2")
+myCols <- c("Area_mi2", "SurfaceArea", "Density_ft2")
+
+# Add extra cols
+df_data[, "SAMP_AREA_M2"] <- NA_real_
 
 # Run Function
-df_metval <- BioMonTools::metric.values(df_data, "bugs", fun.cols2keep = myCols)
+df_metval <- BioMonTools::metric.values(df_data, 
+                                        "bugs", 
+                                        fun.cols2keep = myCols)
 # Metrics of Interest
 ## thermal indicator (_ti_)
 #names(df.metval)[grepl("_ti_", names(df.metval))]

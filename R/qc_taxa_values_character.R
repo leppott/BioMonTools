@@ -52,74 +52,74 @@
 #'
 #'
 #' @param data A data frame containing autecological taxa data.
-#' @param col_char The column containing the character values to be checked.
+#' @param col_vals The column containing the character values to be checked.
 #' @param valid_vals Accepted values.
 #' @param separator If values should be separated and checked include a
 #' delimiter.  Default = NULL
 #'
-#' @return A data frame with col_char values, occurrence (n), and if valid (TRUE/
+#' @return A data frame with col_vals values, occurrence (n), and if valid (TRUE/
 #' FALSE).  Any missing valid_vals are appended.
 #'
 #' @examples
-#' Values, FFG, Abr
-#' qc_taxa_values_char(data_benthos_PacNW,
-#'                     "FFG",
-#'                     valid_vals = c("CF",
-#'                                    "CG",
-#'                                    "MH",
-#'                                    "OM",
-#'                                    "PA",
-#'                                    "PH",
-#'                                    "PI",
-#'                                    "PR",
-#'                                    "SC",
-#'                                    "SH",
-#'                                    "XY",
-#'                                    NA))
+#' # Values, FFG, Abr
+#' qc_taxa_values_character(data_benthos_PacNW,
+#'                          "FFG",
+#'                          valid_vals = c("CF",
+#'                                         "CG",
+#'                                         "MH",
+#'                                         "OM",
+#'                                         "PA",
+#'                                         "PH",
+#'                                         "PI",
+#'                                         "PR",
+#'                                         "SC",
+#'                                         "SH",
+#'                                         "XY",
+#'                                         NA))
 #'
 #' # Values, FFG, full names
-#' qc_taxa_values_char(data_benthos_MBSS,
-#'                     "FFG",
-#'                     valid_vals = c("Collector",
-#'                                    "Filterer",
-#'                                    "Predator",
-#'                                    "Scraper",
-#'                                    "Shredder"))
+#' qc_taxa_values_character(data_benthos_MBSS,
+#'                          "FFG",
+#'                          valid_vals = c("Collector",
+#'                                         "Filterer",
+#'                                         "Predator",
+#'                                         "Scraper",
+#'                                         "Shredder"))
 #'
 #' # Values, Habit, no separator
-#' qc_taxa_values_char(data_benthos_MBSS,
-#'                     "Habit",
-#'                     valid_vals = c("bu", "cb", "cn", "dv", "sk", "sp", "sw"))
+#' qc_taxa_values_character(data_benthos_MBSS,
+#'                          "Habit",
+#'                          valid_vals = c("bu", "cb", "cn", "dv", "sk", "sp", "sw"))
 #'
 #' # Values, Habit, no separator
-#' qc_taxa_values_char(data_benthos_MBSS,
-#'                     "Habit",
-#'                     valid_vals = c("bu", "cb", "cn", "dv", "sk", "sp", "sw"),
-#'                     separator = ",")
+#' qc_taxa_values_character(data_benthos_MBSS,
+#'                          "Habit",
+#'                          valid_vals = c("bu", "cb", "cn", "dv", "sk", "sp", "sw"),
+#'                          separator = ",")
 #'
 #'
 #'
 #' @export
-qc_taxa_values_char <- function(data,
-                                col_char = NULL,
-                                valid_vals = NULL,
-                                separator = NULL) {
+qc_taxa_values_character <- function(data,
+                                     col_vals = NULL,
+                                     valid_vals = NULL,
+                                     separator = NULL) {
 
   # QC----
   # Check for values
   # stopifnot(!is.null(data))
-  stopifnot(!is.null(col_char))
+  stopifnot(!is.null(col_vals))
   stopifnot(!is.null(valid_vals))
-  # Check for col_char in data
-  if (!rlang::as_string(col_char) %in% names(data)) {
+  # Check for col_vals in data
+  if (!rlang::as_string(col_vals) %in% names(data)) {
     stop("Column '",
-         rlang::as_string(col_char),
+         rlang::as_string(col_vals),
          "' is missing from input data.", call. = FALSE)
-  }# IF ~ col_char
+  }# IF ~ col_vals
 
   # Convert valid_vals to data frame
   df_valid_vals <- as.data.frame(valid_vals)
-  names(df_valid_vals) <- col_char
+  names(df_valid_vals) <- col_vals
 
   # occurrence----
   ## separator ----
@@ -132,17 +132,17 @@ qc_taxa_values_char <- function(data,
   # as is, no separator
   df_result <- data |>
     # occurrence
-    dplyr::count(.data[[col_char]], name = "n") |>
+    dplyr::count(.data[[col_vals]], name = "n") |>
     # force valid value rows to exist
     # *ERROR*20260511*comment out
     # tidyr::complete(
-    #   .data[[col_char]] = c(TRUE, FALSE, NA),
+    #   .data[[col_vals]] = c(TRUE, FALSE, NA),
     #   fill = list(n = 0)) |>
     # valid
-    dplyr::mutate(valid = .data[[col_char]] %in% valid_vals) #|>
+    dplyr::mutate(valid = .data[[col_vals]] %in% valid_vals) #|>
     # ## values
     # dplyr::full_join(y = df_valid_vals,
-    #                  by = dplyr::join_by({{col_char}})) |>
+    #                  by = dplyr::join_by({{col_vals}})) |>
     # ## convert NA to TRUE
     # dplyr::mutate(valid = dplyr::case_when(is.na(valid) ~ TRUE,
     #                                        .default = valid))

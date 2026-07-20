@@ -31,29 +31,29 @@
 #'
 #' @export
 qc_taxa_values_numeric <- function(data,
-                                  col_numeric = NULL,
-                                  valid_min = NULL,
-                                  valid_max = NULL) {
+                                   col_vals = NULL,
+                                   valid_min = NULL,
+                                   valid_max = NULL) {
 
   # QC----
-  # col_numeric, missing
-  if (is.null(col_numeric)) {
-    stop("'col_numeric' is missing.", call. = FALSE)
-  }## IF ~ col_numeric is missing
+  # col_vals, missing
+  if (is.null(col_vals)) {
+    stop("'col_vals' is missing.", call. = FALSE)
+  }## IF ~ col_vals is missing
 
-  ## col_numeric in data
-  if (!rlang::as_string(col_numeric) %in% names(data)) {
+  ## col_vals in data
+  if (!rlang::as_string(col_vals) %in% names(data)) {
     stop("Column '",
-         rlang::as_string(col_numeric),
+         rlang::as_string(col_vals),
          "' is missing from input data.", call. = FALSE)
-  }# IF ~ col_numeric exists
+  }# IF ~ col_vals exists
 
-  ## col_numeric is numeric
-  if (!is.numeric(data[[rlang::as_string(col_numeric)]])) {
+  ## col_vals is numeric
+  if (!is.numeric(data[[rlang::as_string(col_vals)]])) {
     stop("Column '",
-         rlang::as_string(col_numeric),
+         rlang::as_string(col_vals),
          "' must be numeric", call. = FALSE)
-  }## IF ~ col_numeric is numeric
+  }## IF ~ col_vals is numeric
 
   ## valid_min, missing
   if (!is.null(valid_min)) {
@@ -78,12 +78,12 @@ qc_taxa_values_numeric <- function(data,
   # occurrence----
   df_result <- data |>
     # occurrence
-    dplyr::count(.data[[col_numeric]], name = "n") |>
+    dplyr::count(.data[[col_vals]], name = "n") |>
     # valid
     ## T/F
     dplyr::mutate(valid = dplyr::case_when(
-      .data[[col_numeric]] >= valid_min &
-        .data[[col_numeric]] <= valid_max ~ TRUE,
+      .data[[col_vals]] >= valid_min &
+        .data[[col_vals]] <= valid_max ~ TRUE,
       .default = FALSE))
 
   # Result----

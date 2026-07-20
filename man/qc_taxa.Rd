@@ -37,27 +37,3 @@ The new function is qc_taxa_match_official.
 
 This function exists only as a wrapper to avoid breaking older code.
 }
-\examples{
-# Example 1, Master Taxa List, Bugs
-url_mt_bugs <- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Bugs.csv"
-df_mt_bugs  <- read.csv(url_mt_bugs)
-
-# User data
-DF_User <- data_benthos_MBSS
-DF_Official <- NULL   # NULL df_mt_bugs
-fun.Community <- "bugs"
-useOfficialTaxaInfo <- "only_Official"
-# modify taxa id column
-DF_User[, "TAXON"] <- DF_User[, "TAXAID"]
-
-df_qc_taxa_bugs <- qc_taxa(DF_User,
-                           DF_Official,
-                           fun.Community,
-                           useOfficialTaxaInfo)
-
-# QC input/output
-dim(DF_User)
-dim(df_qc_taxa_bugs)
-names(DF_User)
-names(df_qc_taxa_bugs)
-}

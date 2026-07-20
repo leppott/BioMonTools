@@ -4,7 +4,7 @@
 \alias{qc_taxa_values_logical}
 \title{QC Autecological Logical Values}
 \usage{
-qc_taxa_values_logical(data, col_logical = NULL)
+qc_taxa_values_logical(data, col_vals = NULL)
 }
 \arguments{
 \item{data}{A data frame containing autecological taxa data.}

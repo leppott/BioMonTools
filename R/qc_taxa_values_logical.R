@@ -20,34 +20,34 @@
 #'
 #' @export
 qc_taxa_values_logical <- function(data,
-                                   col_logical = NULL) {
+                                   col_vals = NULL) {
 
   # QC----
-  # col_logical, missing
-  if (is.null(col_logical)) {
-    stop("'col_logical' is missing.", call. = FALSE)
-  }## IF ~ col_logical is missing
+  # col_vals, missing
+  if (is.null(col_vals)) {
+    stop("'col_vals' is missing.", call. = FALSE)
+  }## IF ~ col_vals is missing
 
-  ## col_logical in data
-  if (!rlang::as_string(col_logical) %in% names(data)) {
+  ## col_vals in data
+  if (!rlang::as_string(col_vals) %in% names(data)) {
     stop("Column '",
-         rlang::as_string(col_logical),
+         rlang::as_string(col_vals),
          "' is missing from input data.", call. = FALSE)
-  }# IF ~ col_logical exists
+  }# IF ~ col_vals exists
 
-  ## col_logical is logical
-  if (!is.logical(data[[rlang::as_string(col_logical)]])) {
+  ## col_vals is logical
+  if (!is.logical(data[[rlang::as_string(col_vals)]])) {
     stop("Column '",
-         rlang::as_string(col_logical),
+         rlang::as_string(col_vals),
          "' must be logical", call. = FALSE)
-  }## IF ~ col_logical is logical
+  }## IF ~ col_vals is logical
 
 
   # occurrence----
   df_result <- data |>
     # all_of and = not working together in complete
     # rename before and after
-    dplyr::rename(value = !!col_logical) |>
+    dplyr::rename(value = !!col_vals) |>
     # occurrence
     dplyr::count(value, name = "n") |>
     # force valid value rows to exist
@@ -55,11 +55,11 @@ qc_taxa_values_logical <- function(data,
       value = c(TRUE, FALSE, NA),
       fill = list(n = 0)) |>
     # rename back
-    dplyr::rename(!!col_logical := value) |>
+    dplyr::rename(!!col_vals := value) |>
     # valid
     dplyr::mutate(valid = dplyr::case_when(
-      is.na(.data[[col_logical]]) |
-        .data[[col_logical]] %in% c(TRUE, FALSE)~ TRUE,
+      is.na(.data[[col_vals]]) |
+        .data[[col_vals]] %in% c(TRUE, FALSE)~ TRUE,
       .default = FALSE))
 
   # Result----

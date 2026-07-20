@@ -6,7 +6,7 @@
 \usage{
 qc_taxa_values_numeric(
   data,
-  col_numeric = NULL,
+  col_vals = NULL,
   valid_min = NULL,
   valid_max = NULL
 )
@@ -14,12 +14,12 @@ qc_taxa_values_numeric(
 \arguments{
 \item{data}{A data frame containing autecological taxa data.}
 
+\item{col_vals}{The column containing numeric values to be evaluated.
+Default = NA.}
+
 \item{valid_min}{Valid values range minimum (inclusive).  Default = NA.}
 
 \item{valid_max}{Valid values range maximum (inclusive).  Default = NA.}
-
-\item{col_vals}{The column containing numeric values to be evaluated.
-Default = NA.}
 }
 \value{
 A data frame with col_vals values, occurrence (n), and valid
