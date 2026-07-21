@@ -5,7 +5,7 @@
 \alias{data_mmi_dev_small}
 \title{Metric data for metric stats for mmi development}
 \format{
-A data frame with 1,374 observations on the following 34 variables.
+A data frame with 1,374 observations on the following 36 variables.
 
  \describe{
    \item{\code{Class}}{a character vector}
@@ -42,6 +42,8 @@ A data frame with 1,374 observations on the following 34 variables.
    \item{\code{FFG2}}{a character vector}
    \item{\code{TOLVAL2}}{a character vector}
    \item{\code{HABITAT}}{a numeric vector}
+   \item{\code{SAMP_AREA_M2}}{a numeric vector}
+   \item{\code{DENSITY_M2}}{a numeric vector}
  }
 }
 \source{

@@ -724,7 +724,7 @@
 #' @description A data set with example benthic macroinvertebrate data.
 #' Calculate metrics then statistics.
 #'
-#' @format A data frame with 1,374 observations on the following 34 variables.
+#' @format A data frame with 1,374 observations on the following 36 variables.
 #'
 #'  \describe{
 #'    \item{\code{Class}}{a character vector}
@@ -761,6 +761,8 @@
 #'    \item{\code{FFG2}}{a character vector}
 #'    \item{\code{TOLVAL2}}{a character vector}
 #'    \item{\code{HABITAT}}{a numeric vector}
+#'    \item{\code{SAMP_AREA_M2}}{a numeric vector}
+#'    \item{\code{DENSITY_M2}}{a numeric vector}
 #'  }
 #' @source example data
 "data_mmi_dev_small"

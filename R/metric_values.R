@@ -869,6 +869,11 @@ metric.values.bugs <- function(myDF
     HS_NF <- HS_RM <- HS_SG <- nt_habstruct_coarsesub <- nt_habstruct_noflow <-
     nt_habstruct_rootmat <- nt_habstruct_snag <- nt_habstruct_NA <-
     AIRBREATHER <- nt_airbreath <- NULL
+  ni_dom02_BCG_att456 <- nt_NonIns_BCG_att456t <- FFG2_DD <-
+    nt_ffg2_deepdep <- ni_dom01 <- SAMP_AREA_M2 <- DENSITY_M2 <-
+    nt_EPT_BCG_att1i2 <- ni_dom01_BCG_att456 <- ni_dom01_BCG_att456t <-
+    ni_dom01_BCG_att456m6t <- ni_dom02_BCG_att456t <- ni_dom02_BCG_att456m6t <-
+    nt_NonInsTrombJuga_BCG_att456m6t  <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -3961,6 +3966,7 @@ metric.values.fish <- function(myDF
     TYPE_SL <- ni_total_ExclSchool <- REPRO_MA2 <- REPRO_MA3_noT <- REPRO_NE <-
     TROPHIC_IN_CYP <- TOLER_I <- TOLER_ICW <- TYPE_EX <- TYPE_MIN_noT <-
     TYPE_PERC <- ni_dom02_ExclSchool <- ni_total_notoler_mn <- NULL
+  nt_invert_native <- ni_dom01 <- AGECLASS <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`
@@ -5866,7 +5872,17 @@ metric.values.algae <- function(myDF
     POLL_TOL <- NULL
   nt_TROPHIC_12 <- nt_TROPHIC_56 <- pi_BC_12 <- pt_TROPHIC_12 <-
     pt_TROPHIC_56 <- NULL
-
+  debug_sub_community <- debug_sub_num_total <- ORDER <- BCG_ATTR <-
+    BCG_ATTR2  <- nt_BCG_att1 <- nt_BCG_att1i <- nt_BCG_att1m <- nt_BCG_att12 <-
+    nt_BCG_att1234 <- nt_BCG_att1i2 <- nt_BCG_att123 <- nt_BCG_att1i23 <-
+    nt_BCG_att1i236i <- nt_BCG_att2 <- nt_BCG_att23 <- nt_BCG_att234 <-
+    nt_BCG_att3 <- nt_BCG_att4 <- nt_BCG_att45 <- nt_BCG_att456 <-
+    nt_BCG_att5 <- nt_BCG_att56 <- nt_BCG_att56t <- nt_BCG_att6 <-
+    nt_BCG_att6i <- nt_BCG_att6m <- nt_BCG_att6t <- nt_BCG_attNA <-
+    nt_BCG_att4b <- nt_BCG_att4m <- nt_BCG_att4w <- nt_BCG_att1i234b <-
+    nt_BCG_att4w5 <- ni_dom01_BCG_att456m6t <- ni_dom02_BCG_att456m6t <-
+    ni_dom01 <- ni_dom02 <- ni_dom03 <- ni_dom04 <- ni_dom05 <- ni_dom06 <-
+    ni_dom07 <- ni_dom08 <- ni_dom09 <- ni_dom10 <- x_Shan_e <- NULL
 
   # define pipe
   `%>%` <- dplyr::`%>%`

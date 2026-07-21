@@ -140,6 +140,10 @@ qc_taxa_names_proof <- function(names,
                                 method = "jw",
                                 max_distance = 0.13) {
 
+  # global variable bindings ----
+  id <- name_x <- name_y <- distance <- name_orig <- name_lower <- NULL
+
+  # QC
   boo_debug <- FALSE
   if (boo_debug) {
     names = BioMonTools::data_benthos_MBSS$TAXAID

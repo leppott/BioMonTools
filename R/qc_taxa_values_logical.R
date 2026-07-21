@@ -22,6 +22,10 @@
 qc_taxa_values_logical <- function(data,
                                    col_vals = NULL) {
 
+
+  # global variable bindings ----
+  value <- NULL
+
   # QC----
   # col_vals, missing
   if (is.null(col_vals)) {

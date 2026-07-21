@@ -4,9 +4,21 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-21 08:34:08.206078
+    #> Last Update: 2026-07-21 16:38:05.932945
 
 # Version History
+
+## Changes in version 1.2.4.9035 (2026-07-21)
+
+- refactor: Update data_mmi_dev_small for missing columns
+- tests: Turn off metric.stats2() as not working when test or check but
+  is ok in console
+- refactor: CRAN prep
+  - global bindings in functions
+    - metric.values
+    - qc_taxa_names_proof
+    - qc_taxa_phylo
+    - qc_taxa_values_logical
 
 ## Changes in version 1.2.4.9034 (2026-07-21)
 

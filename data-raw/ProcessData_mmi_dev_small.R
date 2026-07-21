@@ -63,6 +63,10 @@ samp_small <- df |>
 df_small <- df |>
   dplyr::filter(Unique_ID %in% samp_small$Unique_ID)
 
+# 20260721, additional columns
+df_small$SAMP_AREA_M2 <- NA_real_
+df_small$DENSITY_M2 <- NA_real_
+
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 2. Save as RDA for use in package####
 #
@@ -70,4 +74,4 @@ data_mmi_dev_small <- df_small
 usethis::use_data(data_mmi_dev_small, overwrite = TRUE)
 
 # document
-promptData(data_mmi_dev_small)
+# promptData(data_mmi_dev_small)

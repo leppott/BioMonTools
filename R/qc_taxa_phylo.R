@@ -79,6 +79,11 @@ qc_taxa_phylo <- function(data,
                                           "Genus"),
                           ignore_case = FALSE) {
 
+  # global variable bindings ----
+  child_name <- child_rank <- parent_rank <- parent_n <- phylo_name <-
+    phylo_level <- n_phylo_name <- match_finalid <- num_phylo_col <- NULL
+
+  # QC
   boo_debug <- FALSE
   if (boo_debug) {
     data = BioMonTools::TaxaMaster_Ben_BCG_PacNW
@@ -210,7 +215,7 @@ qc_taxa_phylo <- function(data,
 
   # 04. finalid_as_phylo ----
   df_finalid_as_phylo <- data |>
-    dplyr::mutate(match_phylo = rowSums(dplyr::across(all_of(cols_phylo),
+    dplyr::mutate(match_phylo = rowSums(dplyr::across(dplyr::all_of(cols_phylo),
                                                       ~ .x == .data[[finalid]]),
                                         na.rm = TRUE) > 0) |>
     dplyr::select(dplyr::all_of(finalid), match_phylo) |>
