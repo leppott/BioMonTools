@@ -5874,21 +5874,18 @@ metric.values.algae <- function(myDF
   # QC----
   # QC, Required Fields
   ## QC, Missing Cols ----
-  # col.req_character <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS"
-  #                        , "PHYLUM", "ORDER", "FAMILY", "GENUS"
-  #                        )
-  # col.req_logical <- c("EXCLUDE", "NONTARGET")
-  # col.req_numeric <- c("N_TAXA")
-  # col.req <- c(col.req_character, col.req_logical, col.req_numeric)
-  col.req <- c("INDEX_NAME", "INDEX_CLASS", "SAMPLEID","TAXAID","N_TAXA"
-               ,"EXCLUDE","NONTARGET"
-               ,"PHYLUM","ORDER","FAMILY","GENUS","BC_USGS"
-               ,"TROPHIC_USGS","SAP_USGS","PT_USGS","O_USGS","SALINITY_USGS"
-               ,"BAHLS_USGS","P_USGS","N_USGS","HABITAT_USGS","N_FIXER_USGS"
-               ,"MOTILITY_USGS","SIZE_USGS","HABIT_USGS","MOTILE2_USGS"
-               ,"TOLVAL","DIATOM_ISA","DIAT_CL","POLL_TOL","BEN_SES"
-               ,"DIATAS_TP","DIATAS_TN","DIAT_COND","DIAT_CA","MOTILITY"
-               ,"NF")
+  col.req_character <- c("INDEX_NAME", "INDEX_CLASS", "SAMPLEID","TAXAID",
+                         "PHYLUM","ORDER","FAMILY","GENUS","BC_USGS",
+                         "TROPHIC_USGS","SAP_USGS","PT_USGS","O_USGS",
+                         "SALINITY_USGS","BAHLS_USGS","P_USGS","N_USGS",
+                         "HABITAT_USGS","N_FIXER_USGS","MOTILITY_USGS",
+                         "SIZE_USGS","HABIT_USGS","MOTILE2_USGS","DIATOM_ISA",
+                         "DIAT_CL","BEN_SES","DIATAS_TP","DIATAS_TN",
+                         "DIAT_COND","DIAT_CA","MOTILITY","NF",
+                         "BCG_ATTR", "BCG_ATTR2")
+  col.req_logical <- c("EXCLUDE", "NONTARGET")
+  col.req_numeric <- c("N_TAXA", "TOLVAL", "POLL_TOL")
+  col.req <- c(col.req_character, col.req_logical, col.req_numeric)
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
   num.col.req.missing <- length(col.req.missing)
   # Trigger prompt if any missing fields (and session is interactive)
@@ -5963,73 +5960,69 @@ metric.values.algae <- function(myDF
   # Data Munging----
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
-  myDF <- myDF %>% dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
+  myDF <- myDF %>%
+    dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
 
   ## Cols to Upper ----
-  # Convert values to upper case (FFG, Habit, Life_Cycle)
-  myDF[, "BC_USGS"] <- toupper(myDF[, "BC_USGS"])
-  myDF[, "PT_USGS"] <- toupper(myDF[, "PT_USGS"])
-  myDF[, "O_USGS"] <- toupper(myDF[, "O_USGS"])
-  myDF[, "SALINITY_USGS"] <- toupper(myDF[, "SALINITY_USGS"])
-  myDF[, "P_USGS"] <- toupper(myDF[, "P_USGS"])
-  myDF[, "N_USGS"] <- toupper(myDF[, "N_USGS"])
-  myDF[, "HABITAT_USGS"] <- toupper(myDF[, "HABITAT_USGS"])
-  myDF[, "BAHLS_USGS"] <- toupper(myDF[, "BAHLS_USGS"])
-  myDF[, "TROPHIC_USGS"] <- toupper(myDF[, "TROPHIC_USGS"])
-  myDF[, "DIATOM_ISA"] <- toupper(myDF[, "DIATOM_ISA"])
-  myDF[, "SAP_USGS"] <- toupper(myDF[, "SAP_USGS"])
-  myDF[, "N_FIXER_USGS"] <- toupper(myDF[, "N_FIXER_USGS"])
-  myDF[, "MOTILITY_USGS"] <- toupper(myDF[, "MOTILITY_USGS"])
-  myDF[, "SIZE_USGS"] <- toupper(myDF[, "SIZE_USGS"])
-  myDF[, "HABIT_USGS"] <- toupper(myDF[, "HABIT_USGS"])
-  myDF[, "MOTILE2_USGS"] <- toupper(myDF[, "MOTILE2_USGS"])
-  myDF[, "DIATOM_ISA"] <- toupper(myDF[, "DIATOM_ISA"])
+  # 2026-07-21, only specified some columns, replicate Bugs code
+  # Convert values to upper case
+  col2upper <- col.req_character[!(col.req_character %in%
+                                     c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"))]
+  # #myDF <- apply(myDF[, col2upper], 2, toupper)
+
+  for (i in col2upper) {
+    myDF[, i] <- toupper(myDF[, i])
+  }## FOR ~ i ~ END
+  # use toupper() earlier, don't need
+  # removed as causing issues with shiny.io with some missing fields
+  # 2022-02-21, previous no longer present, redo here (all fields now present)
+
 
   ## Helper Cols ----
   # Add extra columns for some fields
   # (need unique values for functions in summarise)
   # each will be TRUE or FALSE
   # finds any match so "CN, CB" is both "CN" and "CB"
-  myDF[, "BC_1"] <- grepl("BC_1", myDF[, "BC_USGS"])
-  myDF[, "BC_2"] <- grepl("BC_2", myDF[, "BC_USGS"])
-  myDF[, "BC_3"] <- grepl("BC_3", myDF[, "BC_USGS"])
-  myDF[, "BC_4"] <- grepl("BC_4", myDF[, "BC_USGS"])
-  myDF[, "BC_5"] <- grepl("BC_5", myDF[, "BC_USGS"])
-  myDF[, "PT_1"] <- grepl("PT_1", myDF[, "PT_USGS"])
-  myDF[, "PT_2"] <- grepl("PT_2", myDF[, "PT_USGS"])
-  myDF[, "PT_3"] <- grepl("PT_3", myDF[, "PT_USGS"])
-  myDF[, "PT_4"] <- grepl("PT_4", myDF[, "PT_USGS"])
-  myDF[, "PT_5"] <- grepl("PT_5", myDF[, "PT_USGS"])
-  myDF[, "O_1"]  <- grepl("O_1", myDF[, "O_USGS"])
-  myDF[, "O_2"]  <- grepl("O_2", myDF[, "O_USGS"])
-  myDF[, "O_3"]  <- grepl("O_3", myDF[, "O_USGS"])
-  myDF[, "O_4"]  <- grepl("O_4", myDF[, "O_USGS"])
-  myDF[, "O_5"]  <- grepl("O_5", myDF[, "O_USGS"])
-  myDF[, "SALINITY_1"] <- grepl("SALINITY_1", myDF[, "SALINITY_USGS"])
-  myDF[, "SALINITY_2"] <- grepl("SALINITY_2", myDF[, "SALINITY_USGS"])
-  myDF[, "SALINITY_3"] <- grepl("SALINITY_3", myDF[, "SALINITY_USGS"])
-  myDF[, "SALINITY_4"] <- grepl("SALINITY_4", myDF[, "SALINITY_USGS"])
-  myDF[, "HIGH_P"]     <- grepl("HIGH_P", myDF[, "P_USGS"])
-  myDF[, "LOW_P"]      <- grepl("LOW_P", myDF[, "P_USGS"])
-  myDF[, "HIGH_N"]     <- grepl("HIGH_N", myDF[, "N_USGS"])
-  myDF[, "LOW_N"]      <- grepl("LOW_N", myDF[, "N_USGS"])
-  myDF[, "BENTHIC_HABIT"]  <- grepl("BENTHIC_HABIT", myDF[, "HABITAT_USGS"])
-  myDF[, "SESTONIC_HABIT"] <- grepl("SESTONIC_HABIT", myDF[, "HABITAT_USGS"])
-  myDF[, "BAHLS_1"]   <- grepl("BAHLS_1", myDF[, "BAHLS_USGS"])
-  myDF[, "BAHLS_2"]   <- grepl("BAHLS_2", myDF[, "BAHLS_USGS"])
-  myDF[, "BAHLS_3"]   <- grepl("BAHLS_3", myDF[, "BAHLS_USGS"])
-  myDF[, "TROPHIC_1"] <- grepl("TROPHIC_1", myDF[, "TROPHIC_USGS"])
-  myDF[, "TROPHIC_2"] <- grepl("TROPHIC_2", myDF[, "TROPHIC_USGS"])
-  myDF[, "TROPHIC_3"] <- grepl("TROPHIC_3", myDF[, "TROPHIC_USGS"])
-  myDF[, "TROPHIC_4"] <- grepl("TROPHIC_4", myDF[, "TROPHIC_USGS"])
-  myDF[, "TROPHIC_5"] <- grepl("TROPHIC_5", myDF[, "TROPHIC_USGS"])
-  myDF[, "TROPHIC_6"] <- grepl("TROPHIC_6", myDF[, "TROPHIC_USGS"])
-  myDF[, "TROPHIC_7"] <- grepl("TROPHIC_7", myDF[, "TROPHIC_USGS"])
-  myDF[, "SAP_1"]     <- grepl("SAP_1", myDF[, "SAP_USGS"])
-  myDF[, "SAP_2"]     <- grepl("SAP_2", myDF[, "SAP_USGS"])
-  myDF[, "SAP_3"]     <- grepl("SAP_3", myDF[, "SAP_USGS"])
-  myDF[, "SAP_4"]     <- grepl("SAP_4", myDF[, "SAP_USGS"])
-  myDF[, "SAP_5"]     <- grepl("SAP_5", myDF[, "SAP_USGS"])
+  myDF[, "BC_1"]              <- grepl("BC_1", myDF[, "BC_USGS"])
+  myDF[, "BC_2"]              <- grepl("BC_2", myDF[, "BC_USGS"])
+  myDF[, "BC_3"]              <- grepl("BC_3", myDF[, "BC_USGS"])
+  myDF[, "BC_4"]              <- grepl("BC_4", myDF[, "BC_USGS"])
+  myDF[, "BC_5"]              <- grepl("BC_5", myDF[, "BC_USGS"])
+  myDF[, "PT_1"]              <- grepl("PT_1", myDF[, "PT_USGS"])
+  myDF[, "PT_2"]              <- grepl("PT_2", myDF[, "PT_USGS"])
+  myDF[, "PT_3"]              <- grepl("PT_3", myDF[, "PT_USGS"])
+  myDF[, "PT_4"]              <- grepl("PT_4", myDF[, "PT_USGS"])
+  myDF[, "PT_5"]              <- grepl("PT_5", myDF[, "PT_USGS"])
+  myDF[, "O_1"]               <- grepl("O_1", myDF[, "O_USGS"])
+  myDF[, "O_2"]               <- grepl("O_2", myDF[, "O_USGS"])
+  myDF[, "O_3"]               <- grepl("O_3", myDF[, "O_USGS"])
+  myDF[, "O_4"]               <- grepl("O_4", myDF[, "O_USGS"])
+  myDF[, "O_5"]               <- grepl("O_5", myDF[, "O_USGS"])
+  myDF[, "SALINITY_1"]        <- grepl("SALINITY_1", myDF[, "SALINITY_USGS"])
+  myDF[, "SALINITY_2"]        <- grepl("SALINITY_2", myDF[, "SALINITY_USGS"])
+  myDF[, "SALINITY_3"]        <- grepl("SALINITY_3", myDF[, "SALINITY_USGS"])
+  myDF[, "SALINITY_4"]        <- grepl("SALINITY_4", myDF[, "SALINITY_USGS"])
+  myDF[, "HIGH_P"]            <- grepl("HIGH_P", myDF[, "P_USGS"])
+  myDF[, "LOW_P"]             <- grepl("LOW_P", myDF[, "P_USGS"])
+  myDF[, "HIGH_N"]            <- grepl("HIGH_N", myDF[, "N_USGS"])
+  myDF[, "LOW_N"]             <- grepl("LOW_N", myDF[, "N_USGS"])
+  myDF[, "BENTHIC_HABIT"]     <- grepl("BENTHIC_HABIT", myDF[, "HABITAT_USGS"])
+  myDF[, "SESTONIC_HABIT"]    <- grepl("SESTONIC_HABIT", myDF[, "HABITAT_USGS"])
+  myDF[, "BAHLS_1"]           <- grepl("BAHLS_1", myDF[, "BAHLS_USGS"])
+  myDF[, "BAHLS_2"]           <- grepl("BAHLS_2", myDF[, "BAHLS_USGS"])
+  myDF[, "BAHLS_3"]           <- grepl("BAHLS_3", myDF[, "BAHLS_USGS"])
+  myDF[, "TROPHIC_1"]         <- grepl("TROPHIC_1", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_2"]         <- grepl("TROPHIC_2", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_3"]         <- grepl("TROPHIC_3", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_4"]         <- grepl("TROPHIC_4", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_5"]         <- grepl("TROPHIC_5", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_6"]         <- grepl("TROPHIC_6", myDF[, "TROPHIC_USGS"])
+  myDF[, "TROPHIC_7"]         <- grepl("TROPHIC_7", myDF[, "TROPHIC_USGS"])
+  myDF[, "SAP_1"]             <- grepl("SAP_1", myDF[, "SAP_USGS"])
+  myDF[, "SAP_2"]             <- grepl("SAP_2", myDF[, "SAP_USGS"])
+  myDF[, "SAP_3"]             <- grepl("SAP_3", myDF[, "SAP_USGS"])
+  myDF[, "SAP_4"]             <- grepl("SAP_4", myDF[, "SAP_USGS"])
+  myDF[, "SAP_5"]             <- grepl("SAP_5", myDF[, "SAP_USGS"])
   myDF[, "NON_N_FIXER"]       <- grepl("NON_N_FIXER", myDF[, "N_FIXER_USGS"])
   myDF[, "N_FIXER"]           <- grepl("\\bN_FIXER\\b", myDF[, "N_FIXER_USGS"])
   myDF[, "HIGHLY_MOTILE"]     <- grepl("HIGHLY_MOTILE", myDF[, "MOTILITY_USGS"])
@@ -6037,16 +6030,16 @@ metric.values.algae <- function(myDF
   myDF[, "NON_MOTILE"]        <- grepl("NON_MOTILE", myDF[, "MOTILITY_USGS"])
   myDF[, "SLIGHTLY_MOTILE"]   <- grepl("SLIGHTLY_MOTILE", myDF[, "MOTILITY_USGS"])
   myDF[, "WEAKLY_MOTILE"]     <- grepl("WEAKLY_MOTILE", myDF[, "MOTILITY_USGS"])
-  myDF[, "BIG"]        <- grepl("\\bBIG\\b", myDF[, "SIZE_USGS"])
-  myDF[, "MEDIUM"]     <- grepl("MEDIUM", myDF[, "SIZE_USGS"])
-  myDF[, "SMALL"]      <- grepl("\\bSMALL\\b", myDF[, "SIZE_USGS"])
-  myDF[, "VERY_BIG"]   <- grepl("VERY_BIG", myDF[, "SIZE_USGS"])
-  myDF[, "VERY_SMALL"] <- grepl("VERY_SMALL", myDF[, "SIZE_USGS"])
-  myDF[, "ADNATE"]     <- grepl("ADNATE", myDF[, "HABIT_USGS"])
-  myDF[, "STALKED"]    <- grepl("STALKED", myDF[, "HABIT_USGS"])
-  myDF[, "HIGHLY_MOTILE.1"] <- grepl("HIGHLY_MOTILE.1", myDF[, "MOTILE2_USGS"])
-  myDF[, "ARAPHID"]         <- grepl("ARAPHID", myDF[, "MOTILE2_USGS"])
-  myDF[, "REF_INDICATORS"]  <- grepl("^REF", myDF[, "DIATOM_ISA"])
+  myDF[, "BIG"]               <- grepl("\\bBIG\\b", myDF[, "SIZE_USGS"])
+  myDF[, "MEDIUM"]            <- grepl("MEDIUM", myDF[, "SIZE_USGS"])
+  myDF[, "SMALL"]             <- grepl("\\bSMALL\\b", myDF[, "SIZE_USGS"])
+  myDF[, "VERY_BIG"]          <- grepl("VERY_BIG", myDF[, "SIZE_USGS"])
+  myDF[, "VERY_SMALL"]        <- grepl("VERY_SMALL", myDF[, "SIZE_USGS"])
+  myDF[, "ADNATE"]            <- grepl("ADNATE", myDF[, "HABIT_USGS"])
+  myDF[, "STALKED"]           <- grepl("STALKED", myDF[, "HABIT_USGS"])
+  myDF[, "HIGHLY_MOTILE.1"]   <- grepl("HIGHLY_MOTILE.1", myDF[, "MOTILE2_USGS"])
+  myDF[, "ARAPHID"]           <- grepl("ARAPHID", myDF[, "MOTILE2_USGS"])
+  myDF[, "REF_INDICATORS"]    <- grepl("^REF", myDF[, "DIATOM_ISA"])
 
   ## Dominant N ----
   # Create df for Top N (without ties)
@@ -6253,8 +6246,8 @@ metric.values.algae <- function(myDF
 
                 ### Phylo----
                 , nt_Achnan_Navic = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                    & (GENUS == "Achnanthidium"
-                                                        | GENUS == "Navicula")]
+                                                    & (GENUS == "ACHNANTHIDIUM"
+                                                        | GENUS == "NAVICULA")]
                                                       , na.rm = TRUE)
                 ### N_USGS----
                 , nt_LOW_N = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
@@ -6543,8 +6536,8 @@ metric.values.algae <- function(myDF
 
                 ## Percent Individuals----
                 ### Phylo----
-                , pi_Achnan_Navic = 100 * sum(N_TAXA[GENUS == "Achnanthidium"
-                                                   | GENUS == "Navicula"]
+                , pi_Achnan_Navic = 100 * sum(N_TAXA[GENUS == "ACHNANTHIDIUM"
+                                                   | GENUS == "NAVICULA"]
                                             , na.rm = TRUE) / ni_total
                 ### N_USGS---
                 , pi_HIGH_N = 100 * sum(N_TAXA[HIGH_N == TRUE]

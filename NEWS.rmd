@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9034 (2026-07-21)
+
+* fix: Update Algae metrics to properly use required columns and convert 
+character columns to upper case
+* tests: Update metric_stats test for info columns
+
 ## Changes in version 1.2.4.9033 (2026-07-20)
 
 * refactor: Update errors in vignettes

@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-20 17:03:24.460511
+    #> Last Update: 2026-07-21 08:34:08.206078
 
 # Version History
+
+## Changes in version 1.2.4.9034 (2026-07-21)
+
+- fix: Update Algae metrics to properly use required columns and convert
+  character columns to upper case
+- tests: Update metric_stats test for info columns
 
 ## Changes in version 1.2.4.9033 (2026-07-20)
 

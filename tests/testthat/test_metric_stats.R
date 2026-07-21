@@ -57,7 +57,7 @@ testthat::test_that("metric_stats & metric_stats2", {
                                        , col_Subset
                                        , Subset_Value))
 
-  df_numbers <- df_stats[, -(1:4)]
+  df_numbers <- df_stats[, -(1:8)]
   # 2022-02-22, replace Inf and -Inf with NA
   df_num_inf <- sapply(df_numbers, is.infinite)
   df_numbers[df_num_inf] <- NA
@@ -68,7 +68,8 @@ testthat::test_that("metric_stats & metric_stats2", {
   #sum_qc <- 331996.8 # new value, 2021-04-14
   # sum_qc <- 367118.8 # new value, 2022-02-22, new metrics
   # sum_qc <- 471247.6 # new value, 2025-09-08, new metrics
-  sum_qc <- 489819 # new value, 2026-07-20, new metrics
+  # sum_qc <- 489819 # new value, 2026-07-20, new metrics
+  sum_qc <- 251051.2 # new value, 2026-07-21, remove extra header cols
 
   # test
   testthat::expect_equal(sum_calc, sum_qc, tolerance = 0.02)
@@ -92,7 +93,7 @@ testthat::test_that("metric_stats & metric_stats2", {
   DataType_Cal <- "cal"
   DataType_Ver <- "verif"
   Subset_Value <- "CentralHills" # Error if all CAPS
-  df_stats2 <- metric.stats2(data_metval
+  df_stats2 <- suppressWarnings(metric.stats2(data_metval
                                    , data_metstat
                                    , col_metval_RefStatus
                                    , col_metval_DataType
@@ -105,7 +106,7 @@ testthat::test_that("metric_stats & metric_stats2", {
                                    , RefStatus_Oth
                                    , DataType_Cal
                                    , DataType_Ver
-                                   , Subset_Value)
+                                   , Subset_Value))
 
 
   df_numbers2 <- df_stats2[, -(1:4)]
