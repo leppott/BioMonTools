@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.1</span>
       </span>
     </div>
 
@@ -160,78 +160,47 @@ Other checks caught:</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example Issues</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example</span></span></span>
 <span class="r-in"><span><span class="va">proof_issues</span> <span class="op">&lt;-</span> <span class="fu">qc_taxa_names_proof</span><span class="op">(</span><span class="va">data_taxa_names_issues</span><span class="op">$</span><span class="va">FinalID</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Issues (by type) in data</span></span></span>
 <span class="r-in"><span><span class="va">proof_issues</span><span class="op">$</span><span class="va">issues</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distance"                  "case"                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3] "stage"                     "cf"                       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5] "backslash_dash_underscore"</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">proof_issues</span>, <span class="va">nrow</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $issues</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 78</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $space</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $case</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $stage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $unk</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $cf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $backslash_dash_underscore</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Example Master Taxa Lists</span></span></span>
-<span class="r-in"><span><span class="va">proof_MBSS</span> <span class="op">&lt;-</span> <span class="fu">qc_taxa_names_proof</span><span class="op">(</span><span class="va">data_benthos_MBSS</span><span class="op">$</span><span class="va">TAXAID</span>, <span class="st">"jw"</span>, <span class="fl">0.13</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">proof_MBSS</span><span class="op">$</span><span class="va">issues</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distance"</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">proof_MBSS</span><span class="op">$</span><span class="va">distance</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            name_x id_x          name_y id_y   distance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 APSECTROTANYPUS  212  PSECTROTANYPUS  233 0.02222222</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   DICROTENDIPES   10   MICROTENDIPES   11 0.05128205</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    CLINOTANYPUS   20     NILOTANYPUS  197 0.05808081</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    ORTHOCLADIUS   18 SYNORTHOCLADIUS  157 0.06666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 LEPTOPHLEBIIDAE   27    LEPTOPHLEBIA  250 0.06666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     HYDROPSYCHE   39  HYDROPSYCHIDAE   65 0.07142857</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">proof_PacNW_taxaid</span> <span class="op">&lt;-</span> <span class="fu">qc_taxa_names_proof</span><span class="op">(</span><span class="va">data_benthos_PacNW</span><span class="op">$</span><span class="va">TaxaID</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">proof_PacNW_taxaid</span><span class="op">$</span><span class="va">issues</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distance"</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">proof_PacNW_taxaid</span><span class="op">$</span><span class="va">distance</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                        name_x id_x                     name_y id_y   distance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1               Microtendipes   84              Dicrotendipes  138 0.05128205</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 Hydropsyche   14             Hydropsychidae  104 0.07142857</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                   Cinygmula    5                    Cinygma   41 0.07407407</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                    Naididae   85                   Naidinae   86 0.08333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         Rhyacophila blarina   31        Rhyacophila arnaudi  125 0.09958720</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 Rhyacophila hyalinata group   61 Rhyacophila angelita group  207 0.10434473</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">proof_PacNW_master_taxaid</span> <span class="op">&lt;-</span> <span class="fu">qc_taxa_names_proof</span><span class="op">(</span><span class="va">TaxaMaster_Ben_BCG_PacNW</span><span class="op">$</span><span class="va">TaxaID</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">proof_PacNW_master_taxaid</span><span class="op">$</span><span class="va">issues</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distance" "stage"   </span>
-<span class="r-in"><span><span class="va">proof_PacNW_master_taxaid</span><span class="op">$</span><span class="va">stage</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lepidostoma-panel case larvae"  "Lepidostoma-turret case larvae"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "Lepidostoma-sand case larvae"  </span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">proof_PacNW_taxaid</span><span class="op">$</span><span class="va">distance</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                        name_x id_x                     name_y id_y   distance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1               Microtendipes   84              Dicrotendipes  138 0.05128205</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 Hydropsyche   14             Hydropsychidae  104 0.07142857</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                   Cinygmula    5                    Cinygma   41 0.07407407</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                    Naididae   85                   Naidinae   86 0.08333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         Rhyacophila blarina   31        Rhyacophila arnaudi  125 0.09958720</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 Rhyacophila hyalinata group   61 Rhyacophila angelita group  207 0.10434473</span>
+<span class="r-in"><span><span class="co"># different case of same name</span></span></span>
+<span class="r-in"><span><span class="va">proof_issues</span><span class="op">$</span><span class="va">case</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   name_lower              count original_names                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ablabesmyia rhamphe gr.     2 Ablabesmyia rhamphe Gr., Ablabesmyia rhamphe gr.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> c/o                         2 c/o, C/O                                        </span>
+<span class="r-in"><span><span class="co"># stage in final id</span></span></span>
+<span class="r-in"><span><span class="va">proof_issues</span><span class="op">$</span><span class="va">stage</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "3 CHIRONOMID PUPAE"                "21 Baetid pupae"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "Tubificidae unidentified immature"</span>
+<span class="r-in"><span><span class="co"># cf in final id</span></span></span>
+<span class="r-in"><span><span class="va">proof_issues</span><span class="op">$</span><span class="va">cf</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Brachycentrus cf. incanus Hagen"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "Cricotopus cf. sp. \"Ozarks\" (sensu Epler, 2001)"</span>
+<span class="r-in"><span><span class="co"># backslash, dash, underscore, or brackets in final id</span></span></span>
+<span class="r-in"><span><span class="va">proof_issues</span><span class="op">$</span><span class="va">backslash_dash_underscore</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "[no specimens present]"</span>
+<span class="r-in"><span><span class="co"># similar names (potentially many false positives)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">proof_issues</span><span class="op">$</span><span class="va">distance</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              name_x id_x                             name_y</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Tubificidae (imm w/ hair chaetae)  108 Tubificidae (imm w/o hair chaetae)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   Immature tubif. w/ hair chaetae  103   Immature tubif. w/o hair chaetae</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3              Thienemannimyia grp.   40                Thienemannimyia grp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4              Thienemannimyia grp.   40                Thienemannimyia gr.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                Eukiefferiella sp.  135                Eukiefferiella spp.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    Eukiefferiella claripennis gr.   51     Eukiefferiella claripennis gp.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   id_y    distance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  109 0.009803922</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  104 0.010416667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   41 0.016666667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   44 0.016666667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  136 0.017543860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   52 0.022222222</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
