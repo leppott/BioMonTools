@@ -12,22 +12,38 @@
 #'
 #' @param data A data frame containing autecological taxa data.
 #' @param col_vals The column containing numeric values to be evaluated.
-#' Default = NA.
-#' @param valid_min Valid values range minimum (inclusive).  Default = NA.
-#' @param valid_max Valid values range maximum (inclusive).  Default = NA.
+#' Default = NULL
+#' @param valid_min Valid values range minimum (inclusive).  Default = NULL
+#' @param valid_max Valid values range maximum (inclusive).  Default = NULL
 #'
 #' @return A data frame with col_vals values, occurrence (n), and valid
 #' (TRUE/FALSE) within range of valid_min and valid_max.
 #'
 #' @examples
-#' # TolVal
-#' qc_taxa_values_numeric(data_benthos_MBSS, "TOLVAL", 0, 10)
+#' # Example 1, TolVal
+#' values_tv <- qc_taxa_values_numeric(data_benthos_MBSS, "TOLVAL", 0, 10)
 #'
-#' # TolVal2
-#' qc_taxa_values_numeric(data_benthos_MBSS, "TOLVAL2", 0, 10)
+#' ## Plot
+#' values_tv |>
+#'     dplyr::filter(valid == TRUE) |>
+#'     ggplot2::ggplot(ggplot2::aes(x = TOLVAL, y = n)) +
+#'         ggplot2::geom_col() +
+#'         ggplot2::coord_flip() +
+#'         ggplot2::theme_bw() +
+#'         ggplot2::labs(y = "N")
 #'
-#' # UFC
-#' qc_taxa_values_numeric(data_benthos_MBSS, "UFC", 1, 6)
+#' # Example , TolVal2
+#' values_tv2 <- qc_taxa_values_numeric(data_benthos_MBSS, "TOLVAL2", 0, 10)
+#'
+#' # Example 3, UFC
+#' values_ufc <- qc_taxa_values_numeric(data_benthos_MBSS, "UFC", 1, 6)
+#'
+#' ## Plot
+#' barplot(height = values_ufc$n,
+#'         names.arg = values_ufc$UFC,
+#'         las = 2,
+#'         #xlab = "Name",
+#'         ylab = "N")
 #'
 #' @export
 qc_taxa_values_numeric <- function(data,
@@ -56,12 +72,12 @@ qc_taxa_values_numeric <- function(data,
   }## IF ~ col_vals is numeric
 
   ## valid_min, missing
-  if (!is.null(valid_min)) {
+  if (is.null(valid_min)) {
     stop("'valid_min' is missing.", call. = FALSE)
   }## IF ~ valid_min is missing
 
   ## valid_max, missing
-  if (!is.null(valid_min)) {
+  if (is.null(valid_min)) {
     stop("'valid_max' is missing.", call. = FALSE)
   }## IF ~ valid_max is missing
 

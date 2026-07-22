@@ -15,11 +15,11 @@ qc_taxa_values_numeric(
 \item{data}{A data frame containing autecological taxa data.}
 
 \item{col_vals}{The column containing numeric values to be evaluated.
-Default = NA.}
+Default = NULL}
 
-\item{valid_min}{Valid values range minimum (inclusive).  Default = NA.}
+\item{valid_min}{Valid values range minimum (inclusive).  Default = NULL}
 
-\item{valid_max}{Valid values range maximum (inclusive).  Default = NA.}
+\item{valid_max}{Valid values range maximum (inclusive).  Default = NULL}
 }
 \value{
 A data frame with col_vals values, occurrence (n), and valid
@@ -38,13 +38,29 @@ The BioMonTools accepted values for TolVal are 0 - 10.
 The BioMonTools accepted values for UFC are 1 - 6.
 }
 \examples{
-# TolVal
-qc_taxa_values_numeric(data_benthos_MBSS, "TOLVAL", 0, 10)
+# Example 1, TolVal
+values_tv <- qc_taxa_values_numeric(data_benthos_MBSS, "TOLVAL", 0, 10)
 
-# TolVal2
-qc_taxa_values_numeric(data_benthos_MBSS, "TOLVAL2", 0, 10)
+## Plot
+values_tv |>
+    dplyr::filter(valid == TRUE) |>
+    ggplot2::ggplot(ggplot2::aes(x = TOLVAL, y = n)) +
+        ggplot2::geom_col() +
+        ggplot2::coord_flip() +
+        ggplot2::theme_bw() +
+        ggplot2::labs(y = "N")
 
-# UFC
-qc_taxa_values_numeric(data_benthos_MBSS, "UFC", 1, 6)
+# Example , TolVal2
+values_tv2 <- qc_taxa_values_numeric(data_benthos_MBSS, "TOLVAL2", 0, 10)
+
+# Example 3, UFC
+values_ufc <- qc_taxa_values_numeric(data_benthos_MBSS, "UFC", 1, 6)
+
+## Plot
+barplot(height = values_ufc$n,
+        names.arg = values_ufc$UFC,
+        las = 2,
+        #xlab = "Name",
+        ylab = "N")
 
 }

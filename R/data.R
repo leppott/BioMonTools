@@ -662,6 +662,7 @@
 #' }
 #' @source example coral metric results from Florida BCG
 "data_coral_bcg_metric_qc"
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # "TaxaMaster_Ben_BCG_PacNW" ----
 #' @title TaxaMaster_Ben_BCG_PacNW
@@ -693,6 +694,7 @@
 #'   }
 #' @source example master taxa from BCG Pacific Northwest
 "TaxaMaster_Ben_BCG_PacNW"
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # "data_metval_scmb_ibi" ----
 #' @title data_metval_scmb_ibi
@@ -717,6 +719,7 @@
 #'   }
 #' @source example data
 "data_metval_scmb_ibi"
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # "data_mmi_dev_small" ####
 #' @title Metric data for metric stats for mmi development
@@ -766,55 +769,31 @@
 #'  }
 #' @source example data
 "data_mmi_dev_small"
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # "data_taxa_names_issues" ----
-#' \name{data_taxa_names_issues}
-#' \alias{data_taxa_names_issues}
-#' \docType{data}
-#' \title{
-#'   A Capitalized Title for the Data Set
-#' }
-# \description{
-#'   %%  ~~ A concise (1-5 lines) description of the dataset. ~~
-#' }
-#' \usage{data("data_taxa_names_issues")}
-#' \format{
-#'   A data frame with 215 observations on the following 3 variables.
+#' @title Taxa name data frame with issues
+#'
+#' @description A data frame with problems to use as example data
+#'
+#' @format A data frame with 215 observations on the following 3 variables.
+#'
 #'  \describe{
 #'     \item{\code{Source}}{a character vector}
 #'     \item{\code{Issue}}{a character vector}
 #'     \item{\code{FinalID}}{a character vector}
 #'   }
-#' }
-#' \details{
-#'   %%  ~~ If necessary, more details than the __description__ above ~~
-#' }
-#' \source{
-#'   %%  ~~ reference to a publication or URL from which the data were
-#'   obtained ~~
-#' }
-#' \references{
-#'   %%  ~~ possibly secondary sources and usages ~~
-#' }
-#' \examples{
-#'   data(data_taxa_names_issues)
-#'   ## maybe str(data_taxa_names_issues) ; plot(data_taxa_names_issues) ...
-#' }
-#' \keyword{datasets}
+#' @source example data
+"data_taxa_names_issues"
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # "data_algae_names_official" ----
-#' \name{data_algae_names_official}
-#' \alias{data_algae_names_official}
-#' \docType{data}
-#' \title{
-#'    Algae Taxa Names, Official
-#' }
-#' \description{
-#'   Translation table for algae taxa.
-#' }
-#' \usage{data("data_algae_names_official")}
-#' \format{
-#'   A data frame with 3271 observations on the following 8 variables.
+#' @title Algae Taxa Names, Official
+#'
+#' @description Translation table for algae taxa.
+#'
+#' @format A data frame with 3271 observations on the following 8 variables.
+#'
 #'   \describe{
 #'     \item{\code{Taxon}}{a character vector}
 #'     \item{\code{Issues}}{a character vector}
@@ -825,25 +804,21 @@
 #'     \item{\code{OTU_Carlisle}}{a character vector}
 #'     \item{\code{OTU_Mertens}}{a character vector}
 #'   }
-#' }
-#' \keyword{datasets}
+#' @source example data
+"data_algae_names_official"
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # "data_algae_names_user" ----
-#' \name{data_algae_names_user}
-#' \alias{data_algae_names_user}
-#' \docType{data}
-#' \title{
-#'   Algae Taxa Names, User
-#' }
-#' \description{
-#'   Example user taxa names
-#' }
-#' \usage{data("data_algae_names_user")}
-#' \format{
-#'  A data frame with 3271 observations on the following variable.
+#' @title Algae Taxa Names, User
+#'
+#' @description Example user taxa names
+#'
+#' @format A data frame with 3271 observations on the following variable.
+#'
 #'  \describe{
 #'    \item{\code{Taxon}}{a character vector}
 #'   }
-#' }
-#' \keyword{datasets}
+#' @source example data
+"data_algae_names_user"
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

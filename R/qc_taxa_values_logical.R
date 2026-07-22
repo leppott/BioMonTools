@@ -26,6 +26,9 @@ qc_taxa_values_logical <- function(data,
   # global variable bindings ----
   value <- NULL
 
+  # define dyn-dots (walrus) operator
+  `:=` <- rlang::`:=`
+
   # QC----
   # col_vals, missing
   if (is.null(col_vals)) {

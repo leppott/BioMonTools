@@ -18,6 +18,16 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.2.4.9036 (2026-07-22)
+
+* refactor: CRAN prep
+    + global bindings in functions
+        - qc_taxa_values_logical
+        - qc_taxa_phylo
+* fix: qc_taxa_values_numeric
+    + Modify qc conditions for no inputs (were flipped)
+    + Update examples to include plots
+
 ## Changes in version 1.2.4.9035 (2026-07-21)
 
 * refactor: Update data_mmi_dev_small for missing columns

@@ -4,9 +4,19 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-21 16:38:05.932945
+    #> Last Update: 2026-07-22 13:23:51.560573
 
 # Version History
+
+## Changes in version 1.2.4.9036 (2026-07-22)
+
+- refactor: CRAN prep
+  - global bindings in functions
+    - qc_taxa_values_logical
+    - qc_taxa_phylo
+- fix: qc_taxa_values_numeric
+  - Modify qc conditions for no inputs (were flipped)
+  - Update examples to include plots
 
 ## Changes in version 1.2.4.9035 (2026-07-21)
 
