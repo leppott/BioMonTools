@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-22 14:11:54.312975
+    #> Last Update: 2026-07-22 15:06:59.512747
 
 # Version History
+
+## Changes in version 1.3.1 (2026-07-22)
+
+- refactor: Modify examples in qc_taxa_names_proof to pass CRAN check,
+  Issue \#147
 
 ## Changes in version 1.3 (2026-07-22)
 

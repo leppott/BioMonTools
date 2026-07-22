@@ -127,24 +127,19 @@ some not included:
 * f. = forma = valid
 }
 \examples{
-# Example Issues
+# Example
 proof_issues <- qc_taxa_names_proof(data_taxa_names_issues$FinalID)
+# Issues (by type) in data
 proof_issues$issues
-lapply(proof_issues, nrow)
-
-
-# Example Master Taxa Lists
-proof_MBSS <- qc_taxa_names_proof(data_benthos_MBSS$TAXAID, "jw", 0.13)
-proof_MBSS$issues
-head(proof_MBSS$distance)
-
-proof_PacNW_taxaid <- qc_taxa_names_proof(data_benthos_PacNW$TaxaID)
-proof_PacNW_taxaid$issues
-head(proof_PacNW_taxaid$distance)
-
-proof_PacNW_master_taxaid <- qc_taxa_names_proof(TaxaMaster_Ben_BCG_PacNW$TaxaID)
-proof_PacNW_master_taxaid$issues
-proof_PacNW_master_taxaid$stage
-head(proof_PacNW_taxaid$distance)
+# different case of same name
+proof_issues$case
+# stage in final id
+proof_issues$stage
+# cf in final id
+proof_issues$cf
+# backslash, dash, underscore, or brackets in final id
+proof_issues$backslash_dash_underscore
+# similar names (potentially many false positives)
+head(proof_issues$distance)
 
 }
