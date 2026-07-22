@@ -13,6 +13,8 @@
 <url><loc>/reference/TaxaMaster_Ben_BCG_PacNW.html</loc></url>
 <url><loc>/reference/assign_IndexClass.html</loc></url>
 <url><loc>/reference/data_Taxa_MA.html</loc></url>
+<url><loc>/reference/data_algae_names_official.html</loc></url>
+<url><loc>/reference/data_algae_names_user.html</loc></url>
 <url><loc>/reference/data_benthos_MBSS.html</loc></url>
 <url><loc>/reference/data_benthos_PacNW.html</loc></url>
 <url><loc>/reference/data_bio2rarify.html</loc></url>
@@ -24,6 +26,7 @@
 <url><loc>/reference/data_metval_scmb_ibi.html</loc></url>
 <url><loc>/reference/data_mmi_dev.html</loc></url>
 <url><loc>/reference/data_mmi_dev_small.html</loc></url>
+<url><loc>/reference/data_taxa_names_issues.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
 <url><loc>/reference/markExcluded.html</loc></url>
 <url><loc>/reference/metric.scores.html</loc></url>
