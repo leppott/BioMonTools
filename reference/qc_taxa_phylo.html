@@ -74,6 +74,7 @@
 <span>  finalid <span class="op">=</span> <span class="st">"FinalID"</span>,</span>
 <span>  phylo_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Phylum"</span>, <span class="st">"Subphylum"</span>, <span class="st">"Class"</span>, <span class="st">"Subclass"</span>, <span class="st">"Order"</span>, <span class="st">"Suborder"</span>,</span>
 <span>    <span class="st">"Family"</span>, <span class="st">"Subfamily"</span>, <span class="st">"Tribe"</span>, <span class="st">"Genus"</span><span class="op">)</span>,</span>
+<span>  min_len <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  ignore_case <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -96,6 +97,10 @@ Default = c("Phylum", "Subphylum", "Class", "Subclass", "Order", "Suborder",
 "Family", "Subfamily", "Tribe", "Genus")</p></dd>
 
 
+<dt id="arg-min-len">min_len<a class="anchor" aria-label="anchor" href="#arg-min-len"></a></dt>
+<dd><p>Minimum length of each field.  Default = 2.</p></dd>
+
+
 <dt id="arg-ignore-case">ignore_case<a class="anchor" aria-label="anchor" href="#arg-ignore-case"></a></dt>
 <dd><p>Should case be ignored for checks.
 Default = FALSE.</p></dd>
@@ -115,38 +120,67 @@ order from coarse to fine along with a FinalID column.</p>
 <p>Some checks will detect those with potential issues but others that are
 valid.</p>
 <p>* **unique_parent** Each taxonomic rank (child) has a unique parent (coarser
-rank).  Parents include all coarser ranks (as defined by user).</p>
-<p>* **phylo_unique_rank** Each name is in only one phylogenetic rank column</p>
-<p>* **phylo_as_finalid** Each phylogenetic name is also in FinalID</p>
-<p>* **finalid_as_phylo** Each final id is a phylogenetic name</p>
+rank).  Parents include all coarser ranks (as defined by user).  Recommended
+to not include species and finer phylogenetic names as many false positives
+are generated.</p>
+<p>* **phylo_unique_rank** Each name is in only one phylogenetic rank column.
+Species and finer taxonomic ranks should be ignored as possible to generate
+false positives.</p>
+<p>* **phylo_as_finalid** Each phylogenetic name is also in FinalID.</p>
+<p>* **finalid_as_phylo** Each final id is a phylogenetic name.</p>
+<p>* **min_length** FinalID and each phylogenetic name is checked for
+number of characters.  Default = 2.</p>
 <p>others checks?</p>
 <p>case (all lower, all upper)</p>
-<p>spaces
-?
-non A-Z (any case), e.g., slash, dash, underscore, parentheses, etc.</p>
+<p>spaces, ending, starting, double, regular and non-breaking spaces</p>
+<p>?</p>
+<p>non A-Z (any case), e.g., slash, dash, underscore, parentheses, etc.</p>
 <p>If ignore_case is TRUE then all columns (finalid and phylo_names) will be
 converted to upper case before checks are performed.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">qc_phylo_PacNW</span> <span class="op">&lt;-</span> <span class="fu">qc_taxa_phylo</span><span class="op">(</span><span class="va">TaxaMaster_Ben_BCG_PacNW</span>,</span></span>
-<span class="r-in"><span>                                <span class="st">"TaxaID"</span>,</span></span>
-<span class="r-in"><span>                                 phylo_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Phylum"</span>,</span></span>
-<span class="r-in"><span>                                                 <span class="st">"SubPhylum"</span>,</span></span>
-<span class="r-in"><span>                                                 <span class="st">"Class"</span>,</span></span>
-<span class="r-in"><span>                                                 <span class="st">"SubClass"</span>,</span></span>
-<span class="r-in"><span>                                                 <span class="st">"Order"</span>,</span></span>
-<span class="r-in"><span>                                                 <span class="st">"SuperFamily"</span>,</span></span>
-<span class="r-in"><span>                                                 <span class="st">"Family"</span>,</span></span>
-<span class="r-in"><span>                                                 <span class="st">"Tribe"</span>,</span></span>
-<span class="r-in"><span>                                                 <span class="st">"Genus"</span>,</span></span>
-<span class="r-in"><span>                                                 <span class="st">"SubGenus"</span>,</span></span>
-<span class="r-in"><span>                                                 <span class="st">"Species"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">qc_phylo_PacNW</span><span class="op">$</span><span class="va">issues</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">qc_phylo</span> <span class="op">&lt;-</span> <span class="fu">qc_taxa_phylo</span><span class="op">(</span><span class="va">TaxaMaster_Ben_BCG_PacNW</span>,</span></span>
+<span class="r-in"><span>                          <span class="st">"TaxaID"</span>,</span></span>
+<span class="r-in"><span>                          phylo_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Phylum"</span>,</span></span>
+<span class="r-in"><span>                                          <span class="st">"SubPhylum"</span>,</span></span>
+<span class="r-in"><span>                                          <span class="st">"Class"</span>,</span></span>
+<span class="r-in"><span>                                          <span class="st">"SubClass"</span>,</span></span>
+<span class="r-in"><span>                                          <span class="st">"Order"</span>,</span></span>
+<span class="r-in"><span>                                          <span class="st">"SuperFamily"</span>,</span></span>
+<span class="r-in"><span>                                          <span class="st">"Family"</span>,</span></span>
+<span class="r-in"><span>                                          <span class="st">"Tribe"</span>,</span></span>
+<span class="r-in"><span>                                          <span class="st">"Genus"</span>,</span></span>
+<span class="r-in"><span>                                          <span class="st">"SubGenus"</span>,</span></span>
+<span class="r-in"><span>                                          <span class="st">"Species"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                          min_len <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># issues</span></span></span>
+<span class="r-in"><span><span class="va">qc_phylo</span><span class="op">$</span><span class="va">issues</span>         <span class="co"># names</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "unique_parent"     "phylo_unique_rank" "phylo_as_finalid" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "finalid_as_phylo" </span>
-<span class="r-in"><span><span class="va">qc_phylo_PacNW</span><span class="op">$</span><span class="va">unique_parent</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "finalid_as_phylo"  "min_length"       </span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">qc_phylo</span>, <span class="va">nrow</span><span class="op">)</span>  <span class="co"># names and number of records</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $issues</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $unique_parent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $phylo_unique_rank</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $phylo_as_finalid</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 354</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $finalid_as_phylo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 171</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $min_length</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="va">qc_phylo</span><span class="op">$</span><span class="va">unique_parent</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 11 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    child_name      child_rank parent_rank parent_n parent_names                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        </span>
@@ -161,7 +195,7 @@ converted to upper case before checks are performed.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> sp. A           Species    Genus              2 Heleniella, Paraphaenocladius</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> californica     Species    Tribe              2 Acroneuriini, Pteronarcyini  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> californica     Species    Family             2 Perlidae, Pteronarcyidae     </span>
-<span class="r-in"><span><span class="va">qc_phylo_PacNW</span><span class="op">$</span><span class="va">phylo_unique_rank</span></span></span>
+<span class="r-in"><span><span class="va">qc_phylo</span><span class="op">$</span><span class="va">phylo_unique_rank</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   phylo_name  phylo_level n_phylo_name match_finalid num_phylo_col</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
@@ -169,7 +203,7 @@ converted to upper case before checks are performed.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Polychaeta  Class                  2 FALSE                     2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Ptilostomis Genus                  2 FALSE                     2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Ptilostomis SubGenus               2 FALSE                     2</span>
-<span class="r-in"><span><span class="va">qc_phylo_PacNW</span><span class="op">$</span><span class="va">phylo_as_finalid</span></span></span>
+<span class="r-in"><span><span class="va">qc_phylo</span><span class="op">$</span><span class="va">phylo_as_finalid</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 354 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    phylo_name      phylo_level n_phylo_name match_finalid</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        </span>
@@ -184,7 +218,7 @@ converted to upper case before checks are performed.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Crustacea       SubPhylum             17 FALSE        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Hexapoda        SubPhylum            533 FALSE        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 344 more rows</span></span>
-<span class="r-in"><span><span class="va">qc_phylo_PacNW</span><span class="op">$</span><span class="va">finalid_as_phylo</span></span></span>
+<span class="r-in"><span><span class="va">qc_phylo</span><span class="op">$</span><span class="va">finalid_as_phylo</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                 TaxaID match_phylo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1             Heterlimnius corpulentus       FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2                      Ceratopogoninae       FALSE</span>
