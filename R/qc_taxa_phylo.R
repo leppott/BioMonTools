@@ -14,20 +14,29 @@
 #' valid.
 #'
 #' * **unique_parent** Each taxonomic rank (child) has a unique parent (coarser
-#' rank).  Parents include all coarser ranks (as defined by user).
+#' rank).  Parents include all coarser ranks (as defined by user).  Recommended
+#' to not include species and finer phylogenetic names as many false positives
+#' are generated.
 #'
-#' * **phylo_unique_rank** Each name is in only one phylogenetic rank column
+#' * **phylo_unique_rank** Each name is in only one phylogenetic rank column.
+#' Species and finer taxonomic ranks should be ignored as possible to generate
+#' false positives.
 #'
-#' * **phylo_as_finalid** Each phylogenetic name is also in FinalID
+#' * **phylo_as_finalid** Each phylogenetic name is also in FinalID.
 #'
-#' * **finalid_as_phylo** Each final id is a phylogenetic name
+#' * **finalid_as_phylo** Each final id is a phylogenetic name.
+#'
+#' * **min_length** FinalID and each phylogenetic name is checked for
+#' number of characters.  Default = 2.
 #'
 #' others checks?
 #'
 #' case (all lower, all upper)
 #'
-#' spaces
+#' spaces, ending, starting, double, regular and non-breaking spaces
+#'
 #' ?
+#'
 #' non A-Z (any case), e.g., slash, dash, underscore, parentheses, etc.
 #'
 #' If ignore_case is TRUE then all columns (finalid and phylo_names) will be
@@ -39,30 +48,36 @@
 #' @param phylo_names Vector of phylogenetic names in order from coarse to fine.
 #' Default = c("Phylum", "Subphylum", "Class", "Subclass", "Order", "Suborder",
 #' "Family", "Subfamily", "Tribe", "Genus")
+#' @param min_len Minimum length of each field.  Default = 2.
 #' @param ignore_case Should case be ignored for checks.
 #' Default = FALSE.
 #'
 #' @return A list with elements for each qc check.
 #'
 #' @examples
-#' qc_phylo_PacNW <- qc_taxa_phylo(TaxaMaster_Ben_BCG_PacNW,
-#'                                 "TaxaID",
-#'                                  phylo_names = c("Phylum",
-#'                                                  "SubPhylum",
-#'                                                  "Class",
-#'                                                  "SubClass",
-#'                                                  "Order",
-#'                                                  "SuperFamily",
-#'                                                  "Family",
-#'                                                  "Tribe",
-#'                                                  "Genus",
-#'                                                  "SubGenus",
-#'                                                  "Species"))
-#' qc_phylo_PacNW$issues
-#' qc_phylo_PacNW$unique_parent
-#' qc_phylo_PacNW$phylo_unique_rank
-#' qc_phylo_PacNW$phylo_as_finalid
-#' qc_phylo_PacNW$finalid_as_phylo
+#' qc_phylo <- qc_taxa_phylo(TaxaMaster_Ben_BCG_PacNW,
+#'                           "TaxaID",
+#'                           phylo_names = c("Phylum",
+#'                                           "SubPhylum",
+#'                                           "Class",
+#'                                           "SubClass",
+#'                                           "Order",
+#'                                           "SuperFamily",
+#'                                           "Family",
+#'                                           "Tribe",
+#'                                           "Genus",
+#'                                           "SubGenus",
+#'                                           "Species"),
+#'                           min_len = 2)
+#'
+#' # issues
+#' qc_phylo$issues         # names
+#' sapply(qc_phylo, nrow)  # names and number of records
+#' #
+#' qc_phylo$unique_parent
+#' qc_phylo$phylo_unique_rank
+#' qc_phylo$phylo_as_finalid
+#' qc_phylo$finalid_as_phylo
 #'
 #' @export
 qc_taxa_phylo <- function(data,
@@ -77,6 +92,7 @@ qc_taxa_phylo <- function(data,
                                           "Subfamily",
                                           "Tribe",
                                           "Genus"),
+                          min_len = 2,
                           ignore_case = FALSE) {
 
   # global variable bindings ----
@@ -222,17 +238,41 @@ qc_taxa_phylo <- function(data,
     dplyr::select(dplyr::all_of(finalid), match_phylo) |>
     dplyr::filter(match_phylo == FALSE)
 
+  # 05. min_length ----
+  df_min_len <- data |>
+    # select cols to keep
+    dplyr::select(dplyr::any_of(c(finalid, cols_phylo))) |>
+    # pivot
+    tidyr::pivot_longer(
+      cols = dplyr::any_of(cols_phylo),
+      names_to = "phylo_level",
+      values_to = "phylo_name",
+      values_drop_na = TRUE) |>
+    # length
+    dplyr::mutate(len = nchar(phylo_name)) |>
+    # min_len
+    dplyr::mutate(qc_min_len = min_len < len) |>
+    # filter
+    dplyr::filter(qc_min_len == FALSE)
 
-  # 05. Result ----
+
+  # 06. Result ----
   # combine
   results <- list(
     "issues"   = NULL,
     "unique_parent"     = df_unique_parent,
     "phylo_unique_rank" = df_phylo_unique_rank,
     "phylo_as_finalid"  = df_phylo_as_finalid,
-    "finalid_as_phylo"  = df_finalid_as_phylo)
+    "finalid_as_phylo"  = df_finalid_as_phylo,
+    "min_length" = df_min_len)
   # report names of elements with length > 0 to "issues"
   results$issues <- names(results)[vapply(results, length, integer(1)) > 0]
+  # as data frame
+  # results$issues <- data.frame(name = names(results),
+  #                              size = vapply(results, length, integer(1)),
+  #                              row.names = NULL) |>
+  #   # sort descending
+  #   dplyr::arrange(dplyr::desc(size))
 
   # Return Result
   return(results)

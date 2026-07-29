@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-22 15:06:59.512747
+    #> Last Update: 2026-07-29 09:10:04.7233
 
 # Version History
+
+## Changes in version 1.3.1.9001 (2026-07-29)
+
+- refactor: Update qc_taxa_phylo
+  - Update help text
+  - Add character length check
 
 ## Changes in version 1.3.1 (2026-07-22)
 
