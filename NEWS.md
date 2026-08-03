@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-07-29 09:10:04.7233
+    #> Last Update: 2026-08-03 11:55:53.537973
 
 # Version History
+
+## Changes in version 1.3.1.9002 (2026-08-03)
+
+- refactor: Update code coverage YAML and badge in README
 
 ## Changes in version 1.3.1.9001 (2026-07-29)
 
