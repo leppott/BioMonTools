@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-08-04 16:32:59.035245
+    #> Last Update: 2026-08-04 16:50:49.936505
 
 # Version History
+
+## Changes in version 1.3.1.9007 (2026-08-04)
+
+- refactor: Update metvalgrpxl(), Issue \#149
+  - Change order of assignment to agree with suggested change
 
 ## Changes in version 1.3.1.9006 (2026-08-04)
 

@@ -243,13 +243,13 @@ A1))+1,LEN(@CELL(\"filename\",A1))-FIND(\"]\",@CELL(\"filename\",A1)))"
 
   }## FOR ~ i
 
-  # Update NOTES
-  result[["NOTES"]] <- NOTES
-
   # 20260804, Issue #149
   # mark formulas
   NOTES[[2]] <- writexl::xl_formula(NOTES[[2]])
   NOTES[[3]] <- writexl::xl_formula(NOTES[[3]])
+
+  # Update NOTES
+  result[["NOTES"]] <- NOTES
 
   # Save to Excel
   writexl::write_xlsx(result
