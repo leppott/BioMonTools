@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-08-04 16:50:49.936505
+    #> Last Update: 2026-08-04 16:57:57.033386
 
 # Version History
+
+## Changes in version 1.3.2 (2026-08-04)
+
+- docs: Bump version for resubmittal to CRAN
+  - writexl fix, Issue \#149
 
 ## Changes in version 1.3.1.9007 (2026-08-04)
 
