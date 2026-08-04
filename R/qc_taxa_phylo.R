@@ -98,7 +98,7 @@ qc_taxa_phylo <- function(data,
   # global variable bindings ----
   child_name <- child_rank <- parent_rank <- parent_n <- phylo_name <-
     phylo_level <- n_phylo_name <- match_finalid <- num_phylo_col <-
-    match_phylo <- NULL
+    match_phylo <- len <- qc_min_len <- NULL
 
   # QC
   boo_debug <- FALSE

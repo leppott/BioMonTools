@@ -23,7 +23,7 @@
 #'
 #' @param fun.DF.MetVal Data frame of metric values.
 #' @param fun.DF.xlMetNames Data frame of metric names and groups.
-#' Default (NULL) will use the verion of MetricNames.xlsx that is in the
+#' Default (NULL) will use the version of MetricNames.xlsx that is in the
 #' BioMonTools package.
 #' @param fun.Community Community name of calculated metric values
 #' (bugs, fish, or algae)
@@ -151,20 +151,23 @@ metvalgrpxl <- function(fun.DF.MetVal,
   nrow_NOTES   <- 15
   #NOTES        <- data.frame(matrix(ncol = 3, nrow = nrow_NOTES))
   NOTES        <- data.frame(matrix(ncol = 3))
-  NOTES[, 2] <- writexl::xl_formula('=""') # set column as formula
-  NOTES[, 3] <- writexl::xl_formula('=""') # set column as formula
+  # 20260804, Issue #149
+  # drop seeding of cells as formula, writexl v1.5.4 to 2.0.0
+  # mark just before write
+  # NOTES[, 2]   <- writexl::xl_formula('=""') # set column as formula
+  # NOTES[, 3]   <- writexl::xl_formula('=""') # set column as formula
   NOTES[1, 1]  <- "BioMonTools, Metric Values Groups"
   NOTES[3, 1]  <- "Path and FileName"
   NOTES[3, 2]  <- "=LEFT(@CELL(\"filename\",A1),FIND(\"]\",@CELL(\"filename\",A1)))"
   NOTES[4, 1]  <- "FileName"
-  NOTES[4, 2]  <- "=MID(@CELL(\"filename\",B8),FIND(\"[\",@CELL(\"filename\",B8)),
-            (FIND(\"]\",@CELL(\"filename\",B8))-FIND(\"[\",@CELL(\"filename\",B8)))+1)"
+  NOTES[4, 2]  <- "=MID(@CELL(\"filename\",A1),FIND(\"[\",@CELL(\"filename\",A1)),
+            (FIND(\"]\",@CELL(\"filename\",A1))-FIND(\"[\",@CELL(\"filename\",A1)))+1)"
   NOTES[5, 1]  <- "Worksheet"
-  NOTES[5, 2]  <- "=MID(@CELL(\"filename\",B10),FIND(\"]\",@CELL(\"filename\",
-B10))+1,LEN(@CELL(\"filename\",B10))-FIND(\"]\",@CELL(\"filename\",B10)))"
+  NOTES[5, 2]  <- "=MID(@CELL(\"filename\",A1),FIND(\"]\",@CELL(\"filename\",
+A1))+1,LEN(@CELL(\"filename\",A1))-FIND(\"]\",@CELL(\"filename\",A1)))"
   NOTES[7, 1]  <- "Description of Work"
   NOTES[7, 2]  <- "=\"Metric value calculations from the R package BioMonTools.\""
-  NOTES[8, 2] <- "=\"Metrics are sorted by common groups. Groupings defined in MetricNames.\""
+  NOTES[8, 2]  <- "=\"Metrics are sorted by common groups. Groupings defined in MetricNames.\""
   NOTES[11, 1] <- "Input Data Frame"
   NOTES[11, 2] <- paste0('="', deparse(substitute(fun.DF.MetricNames)), '"')
   NOTES[12, 1] <- "Community"
@@ -242,6 +245,11 @@ B10))+1,LEN(@CELL(\"filename\",B10))-FIND(\"]\",@CELL(\"filename\",B10)))"
 
   # Update NOTES
   result[["NOTES"]] <- NOTES
+
+  # 20260804, Issue #149
+  # mark formulas
+  NOTES[[2]] <- writexl::xl_formula(NOTES[[2]])
+  NOTES[[3]] <- writexl::xl_formula(NOTES[[3]])
 
   # Save to Excel
   writexl::write_xlsx(result

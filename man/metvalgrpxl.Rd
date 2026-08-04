@@ -17,7 +17,7 @@ metvalgrpxl(
 \item{fun.DF.MetVal}{Data frame of metric values.}
 
 \item{fun.DF.xlMetNames}{Data frame of metric names and groups.
-Default (NULL) will use the verion of MetricNames.xlsx that is in the
+Default (NULL) will use the version of MetricNames.xlsx that is in the
 BioMonTools package.}
 
 \item{fun.Community}{Community name of calculated metric values

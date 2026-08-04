@@ -4,9 +4,18 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-08-04 13:18:05.701605
+    #> Last Update: 2026-08-04 15:05:51.086437
 
 # Version History
+
+## Changes in version 1.3.1.9004 (2026-08-04)
+
+- fix: Update metvalgrpxl() for breaking change in writexl 2.0.0, Issue
+  \#149
+- refactor: Update all formula references in metvalgrpxl() to A1
+- refactor: Add missing global bindings to qc_taxa_phylo()
+- docs: Update DESCRIPTION for R \>= 4.1.0
+  - Native pipe and … in functions
 
 ## Changes in version 1.3.1.9003 (2026-08-04)
 
