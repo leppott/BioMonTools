@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-08-04 15:05:51.086437
+    #> Last Update: 2026-08-04 15:15:08.974049
 
 # Version History
+
+## Changes in version 1.3.1.9005 (2026-08-04)
+
+- fix: Update README badges
+  - CRAN version
+  - downloads
 
 ## Changes in version 1.3.1.9004 (2026-08-04)
 

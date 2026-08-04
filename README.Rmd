@@ -34,7 +34,7 @@ indices and related data manipulation.
 [![Codecov test coverage](https://codecov.io/gh/leppott/BioMonTools/graph/badge.svg)](https://app.codecov.io/gh/leppott/BioMonTools)
 [![R-CMD-check](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml)
 
-[![CRAN release](https://www.r-pkg.org/badges/version/badger?color=orange)](https://cran.r-project.org/package=badger)
+[![CRAN release](https://www.r-pkg.org/badges/version/BioMonTools?color=orange)](https://cran.r-project.org/package=BioMonTools)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/BioMonTools?color=blue)](https://cran.r-project.org/package=BioMonTools)
 
 [![GitHub issues](https://img.shields.io/github/issues/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/issues/)

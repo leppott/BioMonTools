@@ -3,7 +3,7 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-08-04 13:16:45.944255
+    #> Last Update: 2026-08-04 15:14:46.998886
 
 # BioMonTools <img src="man/figures/logo.png" align="right" height="139" />
 
@@ -29,7 +29,7 @@ coverage](https://codecov.io/gh/leppott/BioMonTools/graph/badge.svg)](https://ap
 [![R-CMD-check](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml)
 
 [![CRAN
-release](https://www.r-pkg.org/badges/version/badger?color=orange)](https://cran.r-project.org/package=badger)
+release](https://www.r-pkg.org/badges/version/BioMonTools?color=orange)](https://cran.r-project.org/package=BioMonTools)
 [![CRAN
 downloads](http://cranlogs.r-pkg.org/badges/grand-total/BioMonTools?color=blue)](https://cran.r-project.org/package=BioMonTools)
 
