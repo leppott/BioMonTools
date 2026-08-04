@@ -3,7 +3,7 @@ README-BioMonTools
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-08-03 11:54:36.113773
+    #> Last Update: 2026-08-04 13:16:45.944255
 
 # BioMonTools <img src="man/figures/logo.png" align="right" height="139" />
 
@@ -24,7 +24,6 @@ Cycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecyc
 license](https://img.shields.io/github/license/leppott/BioMonTools.svg)](https://github.com/leppott/BioMonTools/blob/master/LICENSE)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/leppott/BioMonTools/badge)](https://www.codefactor.io/repository/github/leppott/BioMonTools)
-[![codecov](https://codecov.io/gh/leppott/BioMonTools/branch/master/graph/badge.svg)](https://app.codecov.io/gh/leppott/BioMonTools)
 [![Codecov test
 coverage](https://codecov.io/gh/leppott/BioMonTools/graph/badge.svg)](https://app.codecov.io/gh/leppott/BioMonTools)
 [![R-CMD-check](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/leppott/BioMonTools/actions/workflows/R-CMD-check.yaml)

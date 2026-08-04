@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-08-03 11:55:53.537973
+    #> Last Update: 2026-08-04 13:18:05.701605
 
 # Version History
+
+## Changes in version 1.3.1.9003 (2026-08-04)
+
+- docs: Remove duplicate CodeCov badge in README
 
 ## Changes in version 1.3.1.9002 (2026-08-03)
 
