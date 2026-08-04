@@ -151,8 +151,11 @@ metvalgrpxl <- function(fun.DF.MetVal,
   nrow_NOTES   <- 15
   #NOTES        <- data.frame(matrix(ncol = 3, nrow = nrow_NOTES))
   NOTES        <- data.frame(matrix(ncol = 3))
-  NOTES[, 2] <- writexl::xl_formula('=""') # set column as formula
-  NOTES[, 3] <- writexl::xl_formula('=""') # set column as formula
+  # Columns 2 and 3 hold Excel formulas.  They are marked as such after they
+  # are filled in, just before the write: writexl >= 2.0.0 has xl_formula()
+  # return a cell object rather than a classed character vector, so seeding an
+  # empty column with it and then overwriting rows leaves a plain list column,
+  # which write_xlsx() refuses.
   NOTES[1, 1]  <- "BioMonTools, Metric Values Groups"
   NOTES[3, 1]  <- "Path and FileName"
   NOTES[3, 2]  <- "=LEFT(@CELL(\"filename\",A1),FIND(\"]\",@CELL(\"filename\",A1)))"
@@ -241,6 +244,11 @@ B10))+1,LEN(@CELL(\"filename\",B10))-FIND(\"]\",@CELL(\"filename\",B10)))"
   }## FOR ~ i
 
   # Update NOTES
+  # Mark the formula columns now that every row of them has been assigned.
+  # `[[<-` rather than `[, j] <-`: writexl >= 2.0.0 returns a cell object,
+  # which `[<-.data.frame` treats as many rows rather than one column.
+  NOTES[[2]] <- writexl::xl_formula(NOTES[[2]])
+  NOTES[[3]] <- writexl::xl_formula(NOTES[[3]])
   result[["NOTES"]] <- NOTES
 
   # Save to Excel
