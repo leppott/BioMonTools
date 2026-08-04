@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-08-04 15:15:08.974049
+    #> Last Update: 2026-08-04 16:32:59.035245
 
 # Version History
+
+## Changes in version 1.3.1.9006 (2026-08-04)
+
+- docs: Remove URL in NEWS due to winbuilder (old) failure
 
 ## Changes in version 1.3.1.9005 (2026-08-04)
 
@@ -408,7 +412,7 @@ NEWS
 
 - docs: Update license file, Issue \#49
   - Split files per SO article
-    - <https://stackoverflow.com/questions/43550479/how-to-satisfy-both-cran-and-github-license-file-naming-requirements>
+    - stackoverflow.com/questions/43550479/how-to-satisfy-both-cran-and-github-license-file-naming-requirements
 - refactor: Update example data for shorter run times, Issue \#49
   - ext/Data_Benthos.xlsx
 - docs: Update columns for some datasets in data.R
