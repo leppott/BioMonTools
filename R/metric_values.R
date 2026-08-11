@@ -1252,23 +1252,6 @@ metric.values.bugs <- function(myDF
     message(msg)
   }## IF ~ verbose
 
-  ## Logical ----
-  # Logical Columns to Logical
-  # Ensure in correct format, Access converts sometimes to 0, -1
-  # 2025-06-13
-  for (i in col.req_logical) {
-    if(is.character(class(myDF[, i]))) {
-    # if(class(myDF[, i]) == "character") {
-      myDF[, i] <- toupper(myDF[, i])
-      myDF[, i] <- gsub("YES", "TRUE", myDF[, i])
-      myDF[, i] <- gsub("NO", "FALSE", myDF[, i])
-      myDF[, i] <- gsub("1", "TRUE", myDF[, i])
-      myDF[, i] <- gsub("-1", "TRUE", myDF[, i])
-      myDF[, i] <- gsub("0", "FALSE", myDF[, i])
-    }## IF ~ character
-    myDF[, i] <- as.logical(myDF[, i])
-  }## FOR ~ i ~ logical
-
   ## NonTarget ----
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
@@ -1293,7 +1276,24 @@ metric.values.bugs <- function(myDF
   myDF <- dplyr::filter(myDF,
                         NONTARGET != TRUE | is.na(NONTARGET))
 
-  ## ColNames to Upper ----
+  ## Logical ----
+  # Logical Columns to Logical
+  # Ensure in correct format, Access converts sometimes to 0, -1
+  # 2025-06-13
+  for (i in col.req_logical) {
+    if(is.character(class(myDF[, i]))) {
+      # if(class(myDF[, i]) == "character") {
+      myDF[, i] <- toupper(myDF[, i])
+      myDF[, i] <- gsub("YES", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("NO", "FALSE", myDF[, i])
+      myDF[, i] <- gsub("1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("-1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("0", "FALSE", myDF[, i])
+    }## IF ~ character
+    myDF[, i] <- as.logical(myDF[, i])
+  }## FOR ~ i ~ logical
+
+  ## ColVals to Upper ----
   # # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
   if (verbose == TRUE) {
     debug_topic <- "Munging, text cols, toupper"
@@ -1347,24 +1347,28 @@ metric.values.bugs <- function(myDF
 
   ## White Space ----
   # Remove white space
-  myDF[, "HABIT"] <- gsub(" ","", myDF[, "HABIT"])
-  myDF[, "FFG"] <- gsub(" ","", myDF[, "FFG"])
-  myDF[, "LIFE_CYCLE"] <- gsub(" ","", myDF[, "LIFE_CYCLE"])
-  myDF[, "FFG2"] <- gsub(" ","", myDF[, "FFG2"])
+  myDF[, "HABIT"]             <- gsub(" ","", myDF[, "HABIT"])
+  myDF[, "FFG"]               <- gsub(" ","", myDF[, "FFG"])
+  myDF[, "LIFE_CYCLE"]        <- gsub(" ","", myDF[, "LIFE_CYCLE"])
+  myDF[, "FFG2"]              <- gsub(" ","", myDF[, "FFG2"])
   myDF[, "THERMAL_INDICATOR"] <- gsub(" ","", myDF[, "THERMAL_INDICATOR"])
-  myDF[, "HABSTRUCT"] <- gsub(" ","", myDF[, "HABSTRUCT"])
-  myDF[, "ELEVATION_ATTR"] <- gsub(" ","", myDF[, "ELEVATION_ATTR"])
-  myDF[, "GRADIENT_ATTR"] <- gsub(" ","", myDF[, "GRADIENT_ATTR"])
-  myDF[, "WSAREA_ATTR"] <- gsub(" ","", myDF[, "WSAREA_ATTR"])
-  ## Helper Cols ----
+  myDF[, "HABSTRUCT"]         <- gsub(" ","", myDF[, "HABSTRUCT"])
+  myDF[, "HABITAT"]           <- gsub(" ","", myDF[, "HABITAT"])
+  myDF[, "ELEVATION_ATTR"]    <- gsub(" ","", myDF[, "ELEVATION_ATTR"])
+  myDF[, "GRADIENT_ATTR"]     <- gsub(" ","", myDF[, "GRADIENT_ATTR"])
+  myDF[, "WSAREA_ATTR"]       <- gsub(" ","", myDF[, "WSAREA_ATTR"])
+
+   ## Helper Cols ----
   # code new columns
-  ## match, any
+  ### match, any ----
+  #### HABIT ----
   myDF[, "HABIT_BU"]     <- grepl("BU", myDF[, "HABIT"])
   myDF[, "HABIT_CB"]     <- grepl("CB", myDF[, "HABIT"])
   myDF[, "HABIT_CN"]     <- grepl("CN", myDF[, "HABIT"])
   myDF[, "HABIT_SK"]     <- grepl("SK", myDF[, "HABIT"])
   myDF[, "HABIT_SP"]     <- grepl("SP", myDF[, "HABIT"])
   myDF[, "HABIT_SW"]     <- grepl("SW", myDF[, "HABIT"])
+  #### FFG ----
   myDF[, "FFG_COL"]      <- grepl("(CG|GC)", myDF[, "FFG"])
   myDF[, "FFG_FIL"]      <- grepl("(CF|FC)", myDF[, "FFG"])
   myDF[, "FFG_PRE"]      <- grepl("PR", myDF[, "FFG"])
@@ -1375,11 +1379,14 @@ metric.values.bugs <- function(myDF
   myDF[, "FFG_PAR"]      <- grepl("PA", myDF[, "FFG"])
   myDF[, "FFG_PIH"]      <- grepl("PH", myDF[, "FFG"])
   myDF[, "FFG_XYL"]      <- grepl("XY", myDF[, "FFG"])
+  #### LIFE_CYCLE ----
   myDF[, "LC_MULTI"]     <- grepl("MULTI", myDF[, "LIFE_CYCLE"])
   myDF[, "LC_SEMI"]      <- grepl("SEMI", myDF[, "LIFE_CYCLE"])
   myDF[, "LC_UNI"]       <- grepl("UNI", myDF[, "LIFE_CYCLE"])
+  #### FFG2 ----
   myDF[, "FFG2_DD"]      <- grepl("DD", myDF[, "FFG2"])
   myDF[, "FFG2_PRE"]     <- grepl("PR", myDF[, "FFG2"])
+  #### THERMAL_INDICATOR ----
   myDF[, "TI_STENOCOLD"] <- grepl("STENOC", myDF[, "THERMAL_INDICATOR"])
   myDF[, "TI_COLD"]      <- grepl("COLD", myDF[, "THERMAL_INDICATOR"])
   myDF[, "TI_COOL"]      <- grepl("COOL", myDF[, "THERMAL_INDICATOR"])
@@ -1387,13 +1394,16 @@ metric.values.bugs <- function(myDF
   myDF[, "TI_STENOWARM"] <- grepl("STENOW", myDF[, "THERMAL_INDICATOR"])
   myDF[, "TI_EURY"]      <- grepl("EURYTHERMAL", myDF[, "THERMAL_INDICATOR"])
   myDF[, "TI_COWA"]      <- grepl("COWA", myDF[,"THERMAL_INDICATOR"])
+  #### HABSTRUCT ----
   myDF[, "HS_CS"]        <- grepl("CS", myDF[, "HABSTRUCT"])
   myDF[, "HS_NF"]        <- grepl("NF", myDF[, "HABSTRUCT"])
   myDF[, "HS_RM"]        <- grepl("RM", myDF[, "HABSTRUCT"])
   myDF[, "HS_SG"]        <- grepl("SG", myDF[, "HABSTRUCT"])
-  ## match, exact only
+  ### match, exact only ----
+  #### TI ----
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"]) |
                                   myDF[, "THERMAL_INDICATOR"] == ""
+  #### HABITAT ----
   myDF[, "HABITAT_BRAC"]   <- "BRAC" == myDF[, "HABITAT"]
   myDF[, "HABITAT_DEPO"]   <- "DEPO" == myDF[, "HABITAT"]
   myDF[, "HABITAT_GENE"]   <- "GENE" == myDF[, "HABITAT"]
@@ -1405,11 +1415,14 @@ metric.values.bugs <- function(myDF
   myDF[, "HABITAT_SPEC"]   <- "SPEC" == myDF[, "HABITAT"]
   myDF[, "HABITAT_TERR"]   <- "TERR" == myDF[, "HABITAT"]
   myDF[, "HABITAT_UNKN"]   <- "UNKN" == myDF[, "HABITAT"]
+  #### ELEVATION_ATTR ----
   myDF[, "ELEVATION_LOW"]  <- "LOW" == myDF[, "ELEVATION_ATTR"]
   myDF[, "ELEVATION_HIGH"] <- "HIGH" == myDF[, "ELEVATION_ATTR"]
+  #### GRADIENT_ATTR ----
   myDF[, "GRADIENT_LOW"]   <- "LOW" == myDF[, "GRADIENT_ATTR"]
   myDF[, "GRADIENT_MOD"]   <- "MOD" == myDF[, "GRADIENT_ATTR"]
   myDF[, "GRADIENT_HIGH"]  <- "HIGH" == myDF[, "GRADIENT_ATTR"]
+  #### WSAREA_ATTR ----
   myDF[, "WSAREA_S"]       <- "SMALL" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_M"]       <- "MEDIUM" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_L"]       <- "LARGE" == myDF[, "WSAREA_ATTR"]
@@ -4150,6 +4163,11 @@ metric.values.fish <- function(myDF
 
   # Data Munging ----
 
+  ## NonTarget ----
+  # 20260811
+  # Not a required field for fish
+
+  ## Logical ----
   # Logical Columns to Logical
   # Ensure in correct format, Access converts sometimes to 0, -1
   # 2025-06-13
@@ -4166,6 +4184,8 @@ metric.values.fish <- function(myDF
     myDF[, i] <- as.logical(myDF[, i])
   }## FOR ~ i ~ logical
 
+
+  ##  ColVals to Upper ----
   if (verbose == TRUE) {
     # 2
     debug_topic <- "Munge, values to upper"
@@ -4180,17 +4200,22 @@ metric.values.fish <- function(myDF
                   , debug_topic)
     message(msg)
   }## IF ~ verbose
-
   # Column Values to UPPER case for met.val below
-  col2upper <- c("TAXAID" ,"FAMILY", "GENUS", "TYPE", "TOLER", "NATIVE"
-                 , "TROPHIC", "THERMAL_INDICATOR", "ELEVATION_ATTR"
-                 , "GRADIENT_ATTR", "WSAREA_ATTR", "REPRODUCTION", "HABITAT"
-                 , "CONNECTIVITY", "SCC", "BCG_ATTR", "BCG_ATTR2")
+  # col2upper <- c("TAXAID" ,"FAMILY", "GENUS", "TYPE", "TOLER", "NATIVE",
+  #                "TROPHIC", "THERMAL_INDICATOR", "ELEVATION_ATTR",
+  #                "GRADIENT_ATTR", "WSAREA_ATTR", "REPRODUCTION", "HABITAT",
+  #                "CONNECTIVITY", "SCC", "BCG_ATTR", "BCG_ATTR2")
+  # for (i in col2upper) {
+  #   if (i %in% names(myDF)) {
+  #     myDF[, i] <- toupper(myDF[, i])
+  #   }## IF ~ i %in%
+  # }##FOR ~ i col2upper
+  # 20260811, replace with bug code (generic)
+  col2upper <- col.req_character[!(col.req_character %in%
+                                     c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"))]
   for (i in col2upper) {
-    if (i %in% names(myDF)) {
-      myDF[, i] <- toupper(myDF[, i])
-    }## IF ~ i %in%
-  }##FOR ~ i col2upper
+    myDF[, i] <- toupper(myDF[, i])
+  }## FOR ~ i ~ END
 
 
   # Add extra columns for some fields
@@ -4210,16 +4235,27 @@ metric.values.fish <- function(myDF
     message(msg)
   }## IF ~ verbose
 
+  ## White Space ----
+  # Remove white space
+  myDF[, "HABITAT"]           <- gsub(" ", "", myDF[, "HABITAT"])
+  myDF[, "REPRODUCTION"]      <- gsub(" ", "", myDF[, "REPRODUCTION"])
+  myDF[, "THERMAL_INDICATOR"] <- gsub(" ", "", myDF[, "THERMAL_INDICATOR"])
+  myDF[, "TOLER"]             <- gsub(" ", "", myDF[, "TOLER"])
+  myDF[, "TROPHIC"]           <- gsub(" ", "", myDF[, "TROPHIC"])
+  myDF[, "TYPE"]              <- gsub(" ", "", myDF[, "TYPE"])
+  myDF[, "ELEVATION_ATTR"]    <- gsub(" ", "", myDF[, "ELEVATION_ATTR"])
+  myDF[, "GRADIENT_ATTR"]     <- gsub(" ", "", myDF[, "GRADIENT_ATTR"])
+  myDF[, "WSAREA_ATTR"]       <- gsub(" ", "", myDF[, "WSAREA_ATTR"])
+
+  ## Helper Cols ----
   # (need unique values for functions in summarise)
   # each will be TRUE or FALSE
   # finds any match so "GE, IV" is both "GE" and "IV"
 
-  ## HABITAT ----
+  ### HABITAT ----
   if (!"HABITAT" %in% names(myDF)) {
     myDF[, "HABITAT"] <- NA
   }## IF ~ HABITAT
-  # Remove white space
-  myDF[, "HABITAT"] <- gsub(" ", "", myDF[, "HABITAT"])
   # code new columns
   myDF[, "HABITAT_B"] <- grepl("B", myDF[,"HABITAT"])
   myDF[, "HABITAT_F"] <- grepl("F", myDF[,"HABITAT"]) # Fluvial
@@ -4231,12 +4267,10 @@ metric.values.fish <- function(myDF
   myDF[, "HABITAT_HW_noT"] <- grepl("HW-T", myDF[,"HABITAT"]) # Headwater Specialist, no Tolerant
   myDF[, "HABITAT_WE_noT"] <- grepl("WE-T", myDF[,"HABITAT"]) # Wetland, no Tolerant
 
-  ## REPRODUCTION ----
+  ### REPRODUCTION ----
   if (!"REPRODUCTION" %in% names(myDF)) {
     myDF[, "REPRODUCTION"] <- NA
   }## IF ~ REPRODUCTION
-  # Remove white space
-  myDF[, "REPRODUCTION"] <- gsub(" ", "", myDF[, "REPRODUCTION"])
   # code new columns
   myDF[, "REPRO_BCAST"] <- grepl("BROADCASTER", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_NS"]    <- grepl("SIMPLE NEST", myDF[,"REPRODUCTION"])
@@ -4251,12 +4285,10 @@ metric.values.fish <- function(myDF
   myDF[, "REPRO_SER"]     <- grepl("SER", myDF[,"REPRODUCTION"]) # Serial Spawner
   myDF[, "REPRO_SILI"]    <- grepl("SILI", myDF[,"REPRODUCTION"]) # Simple Lithophil
 
-  ## THERMAL_INDICATOR----
+  ### THERMAL_INDICATOR----
   if (!"THERMAL_INDICATOR" %in% names(myDF)) {
     myDF[, "THERMAL_INDICATOR"] <- NA
   }## IF ~ THERMAL_INDICATOR
-  # Remove white space
-  myDF[, "THERMAL_INDICATOR"] <- gsub(" ", "", myDF[, "THERMAL_INDICATOR"])
   # code new columns
   myDF[, "TI_CORECOLD"] <- grepl("COREC", myDF[,"THERMAL_INDICATOR"])
   myDF[, "TI_COLD"]     <- grepl("COLD", myDF[,"THERMAL_INDICATOR"])
@@ -4266,12 +4298,10 @@ metric.values.fish <- function(myDF
   # exact matches only
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])
 
-  ## TOLER ----
+  ### TOLER ----
   if (!"TOLER" %in% names(myDF)) {
     myDF[, "TOLER"] <- NA
   }## IF ~ TOLER
-  # Remove white space
-  myDF[, "TOLER"] <- gsub(" ", "", myDF[, "TOLER"])
   # code new columns
   myDF[, "TOLER_TOLERANT"] <- grepl("TOLERANT", myDF[, "TOLER"])     # NOT USED
   myDF[, "TOLER_INTOLERANT"] <- grepl("INTOLERANT", myDF[,"TOLER"])  # NOT USED
@@ -4285,13 +4315,11 @@ metric.values.fish <- function(myDF
   myDF[, "TOLER_TCW"] <- grepl("TCW", myDF[,"TOLER"])
   myDF[, "TOLER_VT"] <- grepl("VT", myDF[,"TOLER"])
 
-  ## TROPHIC ----
+  ### TROPHIC ----
   if (!"TROPHIC" %in% names(myDF)) {
     myDF[, "TROPHIC"] <- NA
   }## IF ~ TROPHIC
-  # Remove white space
-  myDF[, "TROPHIC"] <- gsub(" ", "", myDF[, "TROPHIC"])
-  # code new columns
+ # code new columns
   myDF[, "TROPHIC_GE"] <- grepl("GE", myDF[, "TROPHIC"]) # Generalist
   myDF[, "TROPHIC_HB"] <- grepl("HB|HE", myDF[, "TROPHIC"]) # Herbivore
   myDF[, "TROPHIC_IS"] <- grepl("IS", myDF[, "TROPHIC"]) # Insectivore
@@ -4308,12 +4336,10 @@ metric.values.fish <- function(myDF
   myDF[, "TROPHIC_IN_CYP"] <- grepl("INCYP", myDF[, "TROPHIC"]) # Insectivorous Cyprinidae
   myDF[, "TROPHIC_DEM"] <- grepl("DEM", myDF[, "TROPHIC"]) # Detritivore Minor
 
-  ## TYPE ----
+  ### TYPE ----
   if (!"TYPE" %in% names(myDF)) {
     myDF[, "TYPE"] <- NA
   }## IF ~ TYPE
-  # Remove white space
-  myDF[, "TYPE"] <- gsub(" ", "", myDF[, "TYPE"])
   # code new columns
   # Type is a catch all column so need to be specific in pattern match
   # MN, Composition
@@ -4334,39 +4360,32 @@ metric.values.fish <- function(myDF
   # GP, NPL
   myDF[, "TYPE_NPL"] <- grepl("NPL", myDF[, "TYPE"])
 
-  ## ELEVATION_ATTR ----
+  ### ELEVATION_ATTR ----
   if (!"ELEVATION_ATTR" %in% names(myDF)) {
     myDF[, "ELEVATION_ATTR"] <- NA
   }## IF ~ ELEVATION_ATTR
-  # Remove white space
-  myDF[, "ELEVATION_ATTR"] <- gsub(" ", "", myDF[, "ELEVATION_ATTR"])
   # code new columns
   myDF[, "ELEVATION_LOW"]  <- "LOW" == myDF[, "ELEVATION_ATTR"]
   myDF[, "ELEVATION_HIGH"] <- "HIGH" == myDF[, "ELEVATION_ATTR"]
 
-  ## GRADIENT_ATTR----
+  ### GRADIENT_ATTR----
   if (!"GRADIENT_ATTR" %in% names(myDF)) {
     myDF[, "GRADIENT_ATTR"] <- NA
   }## IF ~ GRADIENT_ATTR
-  # Remove white space
-  myDF[, "GRADIENT_ATTR"] <- gsub(" ", "", myDF[, "GRADIENT_ATTR"])
   # code new columns
   myDF[, "GRADIENT_LOW"]   <- "LOW" == myDF[, "GRADIENT_ATTR"]
   myDF[, "GRADIENT_MOD"]   <- "MOD" == myDF[, "GRADIENT_ATTR"]
   myDF[, "GRADIENT_HIGH"]  <- "HIGH" == myDF[, "GRADIENT_ATTR"]
 
-  ## WSAREA_ATTR ----
+  ### WSAREA_ATTR ----
   if (!"WSAREA_ATTR" %in% names(myDF)) {
     myDF[, "WSAREA_ATTR"] <- NA
   }## IF ~ WSAREA_ATTR
-  # Remove white space
-  myDF[, "WSAREA_ATTR"] <- gsub(" ", "", myDF[, "WSAREA_ATTR"])
   # code new columns
   myDF[, "WSAREA_S"]       <- "SMALL" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_M"]       <- "MEDIUM" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_L"]       <- "LARGE" == myDF[, "WSAREA_ATTR"]
   myDF[, "WSAREA_XL"]      <- "XLARGE" == myDF[, "WSAREA_ATTR"]
-
 
   ## Create Dominant N ----
   if (verbose == TRUE) {
@@ -5499,18 +5518,12 @@ metric.values.fish <- function(myDF
                  , nt_beninsct_notoler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                    & TROPHIC_BI_noT == TRUE]
                                                             , na.rm = TRUE) # MN, nt for pt
-                 , nt_detritivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                              & TROPHIC_DE == TRUE]
-                                                       , na.rm = TRUE) # MN, nt for pt
                  , nt_gen = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                       & TROPHIC_GE == TRUE]
                                                , na.rm = TRUE)
                  , nt_insectivore_notoler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                       & TROPHIC_IN_noT == TRUE]
                                                                , na.rm = TRUE) # MN, nt for pt
-                 , nt_omnivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                           & TROPHIC_OM == TRUE]
-                                                    , na.rm = TRUE) # MN, nt for pt
                  #### MN, nt, TYPE
                  , nt_dartersculpin = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                 & TYPE_DS == TRUE]
@@ -5621,10 +5634,8 @@ metric.values.fish <- function(myDF
                  , pt_tv_vtoler            = 100 * nt_tv_vtoler / nt_total
                  #### MN, pt, TROPHIC
                  , pt_beninsct_notoler     = 100 * nt_beninsct_notoler / nt_total
-                 , pt_detritivore          = 100 * nt_detritivore / nt_total
                  , pt_gen                  = 100 * nt_gen / nt_total
                  , pt_insectivore_notoler  = 100 * nt_insectivore_notoler / nt_total
-                 , pt_omnivore             = 100 * nt_omnivore / nt_total
                  #### MN, pt, TYPE
                  , pt_darterscultpinsucker = 100 * nt_darterscultpinsucker / nt_total
                  , pt_pioneer              = 100 * nt_pioneer / nt_total
@@ -5898,8 +5909,9 @@ metric.values.algae <- function(myDF
                          "SIZE_USGS","HABIT_USGS","MOTILE2_USGS","DIATOM_ISA",
                          "DIAT_CL","BEN_SES","DIATAS_TP","DIATAS_TN",
                          "DIAT_COND","DIAT_CA","MOTILITY","NF",
-                         "BCG_ATTR", "BCG_ATTR2")
-  col.req_logical <- c("EXCLUDE", "NONTARGET")
+                         "BCG_ATTR", "BCG_ATTR2",
+                         "PH_TOLANAL", "MAJORHABITATGRP", "NUTRIENTINDICATOR")
+  col.req_logical <- c("EXCLUDE", "NONTARGET", "ACIDIMPACTED")
   col.req_numeric <- c("N_TAXA", "TOLVAL", "POLL_TOL")
   col.req <- c(col.req_character, col.req_logical, col.req_numeric)
   col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
@@ -5974,12 +5986,31 @@ metric.values.algae <- function(myDF
   }##IF ~ POLL_TOL ~ END
 
   # Data Munging----
+
+  ## NonTarget ----
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
   myDF <- myDF %>%
     dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
 
-  ## Cols to Upper ----
+  ## Logical ----
+  # Logical Columns to Logical
+  # Ensure in correct format, Access converts sometimes to 0, -1
+  # 2025-06-13
+  for (i in col.req_logical) {
+    if(is.character(class(myDF[, i]))) {
+      # if(class(myDF[, i]) == "character") {
+      myDF[, i] <- toupper(myDF[, i])
+      myDF[, i] <- gsub("YES", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("NO", "FALSE", myDF[, i])
+      myDF[, i] <- gsub("1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("-1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("0", "FALSE", myDF[, i])
+    }## IF ~ character
+    myDF[, i] <- as.logical(myDF[, i])
+  }## FOR ~ i ~ logical
+
+  ## ColVals to Upper ----
   # 2026-07-21, only specified some columns, replicate Bugs code
   # Convert values to upper case
   col2upper <- col.req_character[!(col.req_character %in%
@@ -5993,40 +6024,73 @@ metric.values.algae <- function(myDF
   # removed as causing issues with shiny.io with some missing fields
   # 2022-02-21, previous no longer present, redo here (all fields now present)
 
+  ## White Space ----
+  # Remove white space
+  myDF[, "BC_USGS"]       <- gsub(" ", "", myDF[, "BC_USGS"])
+  myDF[, "PT_USGS"]       <- gsub(" ", "", myDF[, "PT_USGS"])
+  myDF[, "O_USGS"]        <- gsub(" ", "", myDF[, "O_USGS"])
+  myDF[, "SALINITY_USGS"] <- gsub(" ", "", myDF[, "SALINITY_USGS"])
+  myDF[, "P_USGS"]        <- gsub(" ", "", myDF[, "P_USGS"])
+  myDF[, "N_USGS"]        <- gsub(" ", "", myDF[, "N_USGS"])
+  myDF[, "HABITAT_USGS"]  <- gsub(" ", "", myDF[, "HABITAT_USGS"])
+  myDF[, "BAHLS_USGS"]    <- gsub(" ", "", myDF[, "BAHLS_USGS"])
+  myDF[, "TROPHIC_USGS"]  <- gsub(" ", "", myDF[, "TROPHIC_USGS"])
+  myDF[, "SAP_USGS"]      <- gsub(" ", "", myDF[, "SAP_USGS"])
+  myDF[, "N_FIXER_USGS"]  <- gsub(" ", "", myDF[, "N_FIXER_USGS"])
+  myDF[, "MOTILITY_USGS"] <- gsub(" ", "", myDF[, "MOTILITY_USGS"])
+  myDF[, "SIZE_USGS"]     <- gsub(" ", "", myDF[, "SIZE_USGS"])
+  myDF[, "HABIT_USGS"]    <- gsub(" ", "", myDF[, "HABIT_USGS"])
+  myDF[, "MOTILE2_USGS"]  <- gsub(" ", "", myDF[, "MOTILE2_USGS"])
+  myDF[, "DIATOM_ISA"]    <- gsub(" ", "", myDF[, "DIATOM_ISA"])
+  myDF[, "PH_TOLANAL"]    <- gsub(" ", "", myDF[, "PH_TOLANAL"])
+  myDF[, "MAJORHABITATGRP"]   <- gsub(" ", "", myDF[, "MAJORHABITATGRP"])
+  myDF[, "NUTRIENTINDICATOR"] <- gsub(" ", "", myDF[, "NUTRIENTINDICATOR"])
+
 
   ## Helper Cols ----
   # Add extra columns for some fields
   # (need unique values for functions in summarise)
   # each will be TRUE or FALSE
   # finds any match so "CN, CB" is both "CN" and "CB"
+  # "\\bFOO\b" if need a word that is part of another word
+  #    e.g., "FOO" when "HIFOO" is present
+  ### BC_USGS----
   myDF[, "BC_1"]              <- grepl("BC_1", myDF[, "BC_USGS"])
   myDF[, "BC_2"]              <- grepl("BC_2", myDF[, "BC_USGS"])
   myDF[, "BC_3"]              <- grepl("BC_3", myDF[, "BC_USGS"])
   myDF[, "BC_4"]              <- grepl("BC_4", myDF[, "BC_USGS"])
   myDF[, "BC_5"]              <- grepl("BC_5", myDF[, "BC_USGS"])
+  ### PT_USGS----
   myDF[, "PT_1"]              <- grepl("PT_1", myDF[, "PT_USGS"])
   myDF[, "PT_2"]              <- grepl("PT_2", myDF[, "PT_USGS"])
   myDF[, "PT_3"]              <- grepl("PT_3", myDF[, "PT_USGS"])
   myDF[, "PT_4"]              <- grepl("PT_4", myDF[, "PT_USGS"])
   myDF[, "PT_5"]              <- grepl("PT_5", myDF[, "PT_USGS"])
+  ### O_USGS----
   myDF[, "O_1"]               <- grepl("O_1", myDF[, "O_USGS"])
   myDF[, "O_2"]               <- grepl("O_2", myDF[, "O_USGS"])
   myDF[, "O_3"]               <- grepl("O_3", myDF[, "O_USGS"])
   myDF[, "O_4"]               <- grepl("O_4", myDF[, "O_USGS"])
   myDF[, "O_5"]               <- grepl("O_5", myDF[, "O_USGS"])
+  ### SALINITY_USGS----
   myDF[, "SALINITY_1"]        <- grepl("SALINITY_1", myDF[, "SALINITY_USGS"])
   myDF[, "SALINITY_2"]        <- grepl("SALINITY_2", myDF[, "SALINITY_USGS"])
   myDF[, "SALINITY_3"]        <- grepl("SALINITY_3", myDF[, "SALINITY_USGS"])
   myDF[, "SALINITY_4"]        <- grepl("SALINITY_4", myDF[, "SALINITY_USGS"])
+  ### P_USGS----
   myDF[, "HIGH_P"]            <- grepl("HIGH_P", myDF[, "P_USGS"])
   myDF[, "LOW_P"]             <- grepl("LOW_P", myDF[, "P_USGS"])
+  ### N_USGS----
   myDF[, "HIGH_N"]            <- grepl("HIGH_N", myDF[, "N_USGS"])
   myDF[, "LOW_N"]             <- grepl("LOW_N", myDF[, "N_USGS"])
+  ### HABITAT_USGS----
   myDF[, "BENTHIC_HABIT"]     <- grepl("BENTHIC_HABIT", myDF[, "HABITAT_USGS"])
   myDF[, "SESTONIC_HABIT"]    <- grepl("SESTONIC_HABIT", myDF[, "HABITAT_USGS"])
+  ### BAHLS_USGS----
   myDF[, "BAHLS_1"]           <- grepl("BAHLS_1", myDF[, "BAHLS_USGS"])
   myDF[, "BAHLS_2"]           <- grepl("BAHLS_2", myDF[, "BAHLS_USGS"])
   myDF[, "BAHLS_3"]           <- grepl("BAHLS_3", myDF[, "BAHLS_USGS"])
+  ### TROPHIC_USGS----
   myDF[, "TROPHIC_1"]         <- grepl("TROPHIC_1", myDF[, "TROPHIC_USGS"])
   myDF[, "TROPHIC_2"]         <- grepl("TROPHIC_2", myDF[, "TROPHIC_USGS"])
   myDF[, "TROPHIC_3"]         <- grepl("TROPHIC_3", myDF[, "TROPHIC_USGS"])
@@ -6034,28 +6098,51 @@ metric.values.algae <- function(myDF
   myDF[, "TROPHIC_5"]         <- grepl("TROPHIC_5", myDF[, "TROPHIC_USGS"])
   myDF[, "TROPHIC_6"]         <- grepl("TROPHIC_6", myDF[, "TROPHIC_USGS"])
   myDF[, "TROPHIC_7"]         <- grepl("TROPHIC_7", myDF[, "TROPHIC_USGS"])
+  ### SAP_USGS----
   myDF[, "SAP_1"]             <- grepl("SAP_1", myDF[, "SAP_USGS"])
   myDF[, "SAP_2"]             <- grepl("SAP_2", myDF[, "SAP_USGS"])
   myDF[, "SAP_3"]             <- grepl("SAP_3", myDF[, "SAP_USGS"])
   myDF[, "SAP_4"]             <- grepl("SAP_4", myDF[, "SAP_USGS"])
   myDF[, "SAP_5"]             <- grepl("SAP_5", myDF[, "SAP_USGS"])
+  ### N_FIXER_USGS----
   myDF[, "NON_N_FIXER"]       <- grepl("NON_N_FIXER", myDF[, "N_FIXER_USGS"])
   myDF[, "N_FIXER"]           <- grepl("\\bN_FIXER\\b", myDF[, "N_FIXER_USGS"])
+  ### BC_USGS----
   myDF[, "HIGHLY_MOTILE"]     <- grepl("HIGHLY_MOTILE", myDF[, "MOTILITY_USGS"])
   myDF[, "MODERATELY_MOTILE"] <- grepl("MODERATELY_MOTILE", myDF[, "MOTILITY_USGS"])
   myDF[, "NON_MOTILE"]        <- grepl("NON_MOTILE", myDF[, "MOTILITY_USGS"])
   myDF[, "SLIGHTLY_MOTILE"]   <- grepl("SLIGHTLY_MOTILE", myDF[, "MOTILITY_USGS"])
   myDF[, "WEAKLY_MOTILE"]     <- grepl("WEAKLY_MOTILE", myDF[, "MOTILITY_USGS"])
+  ### SIZE_USGS----
   myDF[, "BIG"]               <- grepl("\\bBIG\\b", myDF[, "SIZE_USGS"])
   myDF[, "MEDIUM"]            <- grepl("MEDIUM", myDF[, "SIZE_USGS"])
   myDF[, "SMALL"]             <- grepl("\\bSMALL\\b", myDF[, "SIZE_USGS"])
   myDF[, "VERY_BIG"]          <- grepl("VERY_BIG", myDF[, "SIZE_USGS"])
   myDF[, "VERY_SMALL"]        <- grepl("VERY_SMALL", myDF[, "SIZE_USGS"])
+  ### BC_USGS----
   myDF[, "ADNATE"]            <- grepl("ADNATE", myDF[, "HABIT_USGS"])
   myDF[, "STALKED"]           <- grepl("STALKED", myDF[, "HABIT_USGS"])
+  ### MOTILE2_USGS----
   myDF[, "HIGHLY_MOTILE.1"]   <- grepl("HIGHLY_MOTILE.1", myDF[, "MOTILE2_USGS"])
   myDF[, "ARAPHID"]           <- grepl("ARAPHID", myDF[, "MOTILE2_USGS"])
+  ### DIATOM_ISA----
   myDF[, "REF_INDICATORS"]    <- grepl("^REF", myDF[, "DIATOM_ISA"])
+  # 20260811
+  ### PH_TOLANAL----
+  myDF[, "PHTA_ACID"]     <- grepl("ACID", myDF[, "PH_TOLANAL"])
+  myDF[, "PHTA_NEUTRAL"]  <- grepl("NEUTRAL", myDF[, "PH_TOLANAL"])
+  myDF[, "PHTA_ALKALI"]   <- grepl("\\bALKALI\\b", myDF[, "PH_TOLANAL"])
+  myDF[, "PHTA_HIALKALI"] <- grepl("HIALKALI", myDF[, "PH_TOLANAL"])
+  ### MAJORHABITATGRP----
+  myDF[, "MHG_BENTHIC"]          <- grepl("\\bBENTHIC\\b", myDF[, "MAJORHABITATGRP"])
+  myDF[, "MHG_PLANKTONIC"]       <- grepl("\\bPLANKTONIC\\b", myDF[, "MAJORHABITATGRP"])
+  myDF[, "MHG_MACROPHYTIC"]      <- grepl("MACROPHYTIC", myDF[, "MAJORHABITATGRP"])
+  myDF[, "MHG_SANDMUD"]          <- grepl("SANDMUD", myDF[, "MAJORHABITATGRP"])
+  myDF[, "MHG_MOSTLYBENTHIC"]    <- grepl("MOSTLYBENTHIC", myDF[, "MAJORHABITATGRP"])
+  myDF[, "MHG_MOSTLYPLANKTONIC"] <- grepl("MOSTLYPLANKTONIC", myDF[, "MAJORHABITATGRP"])
+  ### NUTRIENTINDICATOR----
+  myDF[, "NI_HI"] <- grepl("HIGH", myDF[, "NUTRIENTINDICATOR"])
+  myDF[, "NI_LO"] <- grepl("LOW",  myDF[, "NUTRIENTINDICATOR"])
 
   ## Dominant N ----
   # Create df for Top N (without ties)
@@ -6548,6 +6635,49 @@ metric.values.algae <- function(myDF
                 , nt_NF_2 = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                      & NF == 2]
                                               , na.rm = TRUE)
+                ### PHTA ----
+                , nt_pH_acid = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & PHTA_ACID == TRUE]
+                                                   , na.rm = TRUE)
+                , nt_pH_neutral = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & PHTA_NEUTRAL == TRUE]
+                                                   , na.rm = TRUE)
+                , nt_pH_alkali = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & PHTA_ALKALI == TRUE]
+                                                   , na.rm = TRUE)
+                , nt_pH_hialkali = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & PHTA_HIALKALI == TRUE]
+                                                   , na.rm = TRUE)
+                ### AI ----
+                , nt_acidimpact = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & ACIDIMPACTED == TRUE]
+                                                     , na.rm = TRUE)
+                ### MHG ----
+                , nt_majorhab_benthic = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & MHG_BENTHIC == TRUE]
+                                                 , na.rm = TRUE)
+                , nt_majorhab_plank = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & MHG_PLANKTONIC == TRUE]
+                                                    , na.rm = TRUE)
+                , nt_majorhab_macrophytic = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                          & MHG_MACROPHYTIC == TRUE]
+                                                   , na.rm = TRUE)
+                , nt_majorhab_sandmud = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                     & MHG_SANDMUD == TRUE]
+                                                              , na.rm = TRUE)
+                , nt_majorhab_mostlybenthic = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                     & MHG_MOSTLYBENTHIC == TRUE]
+                                                              , na.rm = TRUE)
+                , nt_majorhab_mostlyplank = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                            & MHG_MOSTLYPLANKTONIC == TRUE]
+                                                     , na.rm = TRUE)
+                ### NI ----
+                , nt_nutrient_high = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                        & NI_HI == TRUE]
+                                                 , na.rm = TRUE)
+                , nt_nutrient_low = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & NI_LO == TRUE]
+                                                    , na.rm = TRUE)
 
 
                 ## Percent Individuals----
@@ -6734,52 +6864,83 @@ metric.values.algae <- function(myDF
                                           , na.rm = TRUE) / ni_total
                 , pi_NF_2 = 100 * sum(N_TAXA[NF == 2]
                                     , na.rm = TRUE) / ni_total
+                ### PHTA ----
+                , pi_pH_acid = 100 * sum(N_TAXA[PHTA_ACID == TRUE]
+                                          , na.rm = TRUE) / ni_total
+                , pi_pH_neutral = 100 * sum(N_TAXA[PHTA_NEUTRAL == TRUE]
+                                           , na.rm = TRUE) / ni_total
+                , pi_pH_alkali = 100 * sum(N_TAXA[PHTA_ALKALI == TRUE]
+                                           , na.rm = TRUE) / ni_total
+                , pi_pH_hialkali = 100 * sum(N_TAXA[PHTA_HIALKALI == TRUE]
+                                             , na.rm = TRUE) / ni_total
+                ### AI
+                , pi_acidimpact = 100 * sum(N_TAXA[ACIDIMPACTED == TRUE]
+                                         , na.rm = TRUE) / ni_total
+                ### MHG ----
+                , pi_majorhab_benthic = 100 * sum(N_TAXA[MHG_BENTHIC == TRUE]
+                                         , na.rm = TRUE) / ni_total
+                , pi_majorhab_plank = 100 * sum(N_TAXA[MHG_PLANKTONIC == TRUE]
+                                            , na.rm = TRUE) / ni_total
+                , pi_majorhab_macrophytic = 100 * sum(N_TAXA[MHG_MACROPHYTIC == TRUE]
+                                           , na.rm = TRUE) / ni_total
+                , pi_majorhab_sandmud = 100 * sum(N_TAXA[MHG_SANDMUD == TRUE]
+                                             , na.rm = TRUE) / ni_total
+                , pi_majorhab_mostlybenthic = 100 * sum(N_TAXA[MHG_MOSTLYBENTHIC == TRUE]
+                                               , na.rm = TRUE) / ni_total
+                , pi_majorhab_mostlyplank = 100 * sum(N_TAXA[MHG_MOSTLYPLANKTONIC == TRUE]
+                                               , na.rm = TRUE) / ni_total
+                ### NI ----
+                , pi_nutrient_high = 100 * sum(N_TAXA[NI_HI == TRUE]
+                                           , na.rm = TRUE) / ni_total
+                , pi_nutrient_low = 100 * sum(N_TAXA[NI_LO == TRUE]
+                                              , na.rm = TRUE) / ni_total
+
 
                 ## Percent of Taxa----
                 ### Phylo----
                 , pt_Achnan_Navic = 100 * nt_Achnan_Navic / nt_total
                 ### N_USGS----
                 , pt_HIGH_N = 100 * nt_HIGH_N / nt_total
-                , pt_LOW_N = 100 * nt_LOW_N / nt_total
+                , pt_LOW_N =  100 * nt_LOW_N / nt_total
                 ### P_USGS----
                 , pt_HIGH_P = 100 * nt_HIGH_P / nt_total
-                , pt_LOW_P = 100 * nt_LOW_P / nt_total
+                , pt_LOW_P =  100 * nt_LOW_P / nt_total
                 ### BC_USGS----
-                , pt_BC_1 = 100 * nt_BC_1 / nt_total
-                , pt_BC_2 = 100 * nt_BC_2 / nt_total
-                , pt_BC_3 = 100 * nt_BC_3 / nt_total
-                , pt_BC_4 = 100 * nt_BC_4 / nt_total
-                , pt_BC_5 = 100 * nt_BC_5 / nt_total
+                , pt_BC_1 =  100 * nt_BC_1 / nt_total
+                , pt_BC_2 =  100 * nt_BC_2 / nt_total
+                , pt_BC_3 =  100 * nt_BC_3 / nt_total
+                , pt_BC_4 =  100 * nt_BC_4 / nt_total
+                , pt_BC_5 =  100 * nt_BC_5 / nt_total
                 , pt_BC_12 = 100 * nt_BC_12 / nt_total
                 , pt_BC_12_adj = NA_real_
                 , pt_BC_45 = 100 * nt_BC_45 / nt_total
 
                 ### PT_USGS----
-                , pt_PT_1 = 100 * nt_PT_1 / nt_total
-                , pt_PT_2 = 100 * nt_PT_2 / nt_total
-                , pt_PT_3 = 100 * nt_PT_3 / nt_total
-                , pt_PT_4 = 100 * nt_PT_4 / nt_total
-                , pt_PT_5 = 100 * nt_PT_5 / nt_total
+                , pt_PT_1 =  100 * nt_PT_1 / nt_total
+                , pt_PT_2 =  100 * nt_PT_2 / nt_total
+                , pt_PT_3 =  100 * nt_PT_3 / nt_total
+                , pt_PT_4 =  100 * nt_PT_4 / nt_total
+                , pt_PT_5 =  100 * nt_PT_5 / nt_total
                 , pt_PT_12 = 100 * nt_PT_12 / nt_total
 
                 ### SALINITY_USGS----
-                , pt_SALINITY_1 = 100 * nt_SALINITY_1 / nt_total
-                , pt_SALINITY_2 = 100 * nt_SALINITY_2 / nt_total
-                , pt_SALINITY_3 = 100 * nt_SALINITY_3 / nt_total
-                , pt_SALINITY_4 = 100 * nt_SALINITY_4 / nt_total
+                , pt_SALINITY_1 =  100 * nt_SALINITY_1 / nt_total
+                , pt_SALINITY_2 =  100 * nt_SALINITY_2 / nt_total
+                , pt_SALINITY_3 =  100 * nt_SALINITY_3 / nt_total
+                , pt_SALINITY_4 =  100 * nt_SALINITY_4 / nt_total
                 , pt_SALINITY_34 = 100 * nt_SALINITY_34 / nt_total
 
                 ### O_USGS----
-                , pt_O_1 = 100 * nt_O_1 / nt_total
-                , pt_O_2 = 100 * nt_O_2 / nt_total
-                , pt_O_3 = 100 * nt_O_3 / nt_total
-                , pt_O_4 = 100 * nt_O_4 / nt_total
-                , pt_O_5 = 100 * nt_O_5 / nt_total
+                , pt_O_1 =   100 * nt_O_1 / nt_total
+                , pt_O_2 =   100 * nt_O_2 / nt_total
+                , pt_O_3 =   100 * nt_O_3 / nt_total
+                , pt_O_4 =   100 * nt_O_4 / nt_total
+                , pt_O_5 =   100 * nt_O_5 / nt_total
                 , pt_O_345 = 100 * nt_O_345 / nt_total
 
                 ### HABITAT_USGS----
                 , pt_SESTONIC_HABIT = 100 * nt_SESTONIC_HABIT / nt_total
-                , pt_BENTHIC_HABIT = 100 * nt_BENTHIC_HABIT / nt_total
+                , pt_BENTHIC_HABIT =  100 * nt_BENTHIC_HABIT / nt_total
 
                 ### BAHLS_USGS----
                 , pt_BAHLS_1 = 100 * nt_BAHLS_1 / nt_total
@@ -6787,16 +6948,16 @@ metric.values.algae <- function(myDF
                 , pt_BAHLS_3 = 100 * nt_BAHLS_3 / nt_total
 
                 ### TROPHIC_USGS----
-                , pt_TROPHIC_1 = 100 * nt_TROPHIC_1 / nt_total
-                , pt_TROPHIC_2 = 100 * nt_TROPHIC_2 / nt_total
-                , pt_TROPHIC_3 = 100 * nt_TROPHIC_3 / nt_total
-                , pt_TROPHIC_4 = 100 * nt_TROPHIC_4 / nt_total
-                , pt_TROPHIC_5 = 100 * nt_TROPHIC_5 / nt_total
-                , pt_TROPHIC_6 = 100 * nt_TROPHIC_6 / nt_total
-                , pt_TROPHIC_7 = 100 * nt_TROPHIC_7 / nt_total
-                , pt_TROPHIC_12 = 100 * nt_TROPHIC_12 / nt_total
+                , pt_TROPHIC_1 =   100 * nt_TROPHIC_1 / nt_total
+                , pt_TROPHIC_2 =   100 * nt_TROPHIC_2 / nt_total
+                , pt_TROPHIC_3 =   100 * nt_TROPHIC_3 / nt_total
+                , pt_TROPHIC_4 =   100 * nt_TROPHIC_4 / nt_total
+                , pt_TROPHIC_5 =   100 * nt_TROPHIC_5 / nt_total
+                , pt_TROPHIC_6 =   100 * nt_TROPHIC_6 / nt_total
+                , pt_TROPHIC_7 =   100 * nt_TROPHIC_7 / nt_total
+                , pt_TROPHIC_12 =  100 * nt_TROPHIC_12 / nt_total
                 , pt_TROPHIC_456 = 100 * nt_TROPHIC_456 / nt_total
-                , pt_TROPHIC_56 = 100 * nt_TROPHIC_56 / nt_total
+                , pt_TROPHIC_56 =  100 * nt_TROPHIC_56 / nt_total
 
                 ### SAP_USGS----
                 , pt_SAP_1 = 100 * nt_SAP_1 / nt_total
@@ -6807,20 +6968,20 @@ metric.values.algae <- function(myDF
 
                 ### N_FIXER_USGS----
                 , pt_NON_N_FIXER = 100 * nt_NON_N_FIXER / nt_total
-                , pt_N_FIXER = 100 * nt_N_FIXER / nt_total
+                , pt_N_FIXER =     100 * nt_N_FIXER / nt_total
 
                 ### MOTILITY_USGS----
-                , pt_HIGHLY_MOTILE = 100 * nt_HIGHLY_MOTILE / nt_total
+                , pt_HIGHLY_MOTILE =     100 * nt_HIGHLY_MOTILE / nt_total
                 , pt_MODERATELY_MOTILE = 100 * nt_MODERATELY_MOTILE / nt_total
-                , pt_NON_MOTILE = 100 * nt_NON_MOTILE / nt_total
-                , pt_SLIGHTLY_MOTILE = 100 * nt_SLIGHTLY_MOTILE / nt_total
-                , pt_WEAKLY_MOTILE = 100 * nt_WEAKLY_MOTILE / nt_total
+                , pt_NON_MOTILE =        100 * nt_NON_MOTILE / nt_total
+                , pt_SLIGHTLY_MOTILE =   100 * nt_SLIGHTLY_MOTILE / nt_total
+                , pt_WEAKLY_MOTILE =     100 * nt_WEAKLY_MOTILE / nt_total
 
                 ### SIZE_USGS----
-                , pt_BIG = 100 * nt_BIG / nt_total
-                , pt_SMALL = 100 * nt_SMALL / nt_total
-                , pt_MEDIUM = 100 * nt_MEDIUM / nt_total
-                , pt_VERY_BIG = 100 * nt_VERY_BIG / nt_total
+                , pt_BIG =        100 * nt_BIG / nt_total
+                , pt_SMALL =      100 * nt_SMALL / nt_total
+                , pt_MEDIUM =     100 * nt_MEDIUM / nt_total
+                , pt_VERY_BIG =   100 * nt_VERY_BIG / nt_total
                 , pt_VERY_SMALL = 100 * nt_VERY_SMALL / nt_total
 
                 ### HABIT_USGS----
@@ -6861,6 +7022,21 @@ metric.values.algae <- function(myDF
                 , pt_NF_1 = 100 * nt_NF_1 / nt_total
                 , pt_NF_2 = 100 * nt_NF_2 / nt_total
 
+                ### PHTA ----
+                , pt_pH_acid =     100 * nt_pH_acid / nt_total
+                , pt_pH_neutral =  100 * nt_pH_neutral / nt_total
+                , pt_pH_alkali =   100 * nt_pH_alkali / nt_total
+                , pt_pH_hialkali = 100 * nt_pH_hialkali / nt_total
+                ### MHG ----
+                , pt_majorhab_benthic =       100 * nt_majorhab_benthic / nt_total
+                , pt_majorhab_plank =         100 * nt_majorhab_plank / nt_total
+                , pt_majorhab_macrophytic =   100 * nt_majorhab_macrophytic / nt_total
+                , pt_majorhab_sandmud =       100 * nt_majorhab_sandmud / nt_total
+                , pt_majorhab_mostlybenthic = 100 * nt_majorhab_mostlybenthic / nt_total
+                , pt_majorhab_mostlyplank =   100 * nt_majorhab_mostlyplank / nt_total
+                ### NI ----
+                , pt_nutrient_high = 100 * nt_nutrient_high / nt_total
+                , pt_nutrient_low   = 100 * nt_nutrient_low / nt_total
 
                 ## Tolerance----
                 ### Number of Taxa----
@@ -7534,6 +7710,7 @@ metric.values.coral <- function(myDF
 
   # Data Munging----
 
+  ## Logical ----
   # Logical Columns to Logical
   # Ensure in correct format, Access converts sometimes to 0, -1
   # 2025-06-13
@@ -7550,7 +7727,7 @@ metric.values.coral <- function(myDF
     myDF[, i] <- as.logical(myDF[, i])
   }## FOR ~ i ~ logical
 
-
+  ## ColVals to Upper----
   # Convert columns to upper case
   if (verbose == TRUE) {
     debug_topic <- "Munging, text cols, toupper"
@@ -7572,6 +7749,12 @@ metric.values.coral <- function(myDF
     myDF[, i] <- toupper(myDF[, i])
   }## FOR ~ i ~ END
 
+  ## White Space ----
+  # Remove white space
+  #myDF[, "HABIT"]             <- gsub(" ","", myDF[, "HABIT"])
+  # none since no helper columns
+
+  ## Coral Calcs ----
   # Do some calcs
   myDF  <- myDF %>%
     dplyr::mutate(WEEDY_CONFIRMED = dplyr::case_when((WEEDY == "NEVER") ~ FALSE

@@ -272,9 +272,9 @@
 # "data_diatom_mmi_dev" ####
 #' @title Diatom taxa data; Indiana DEM
 #' @description A data set with example diatom data.
-#' Calculate metrics.  Data from IDEM.
+#' Calculate metrics.
 #'
-#' @format A data frame with 24797 observations on the following 47 variables.
+#' @format A data frame with 24797 observations on the following 51 variables.
 #'
 #'   \describe{
 #'   \item{\code{INDEX_NAME}}{a character vector}
@@ -325,6 +325,10 @@
 #'   \item{\code{MOISTURE_MERTENS}}{a numeric vector}
 #'   \item{\code{BCG_ATTR}}{a character vector}
 #'   \item{\code{BCG_ATTR2}}{a character vector}
+#'   \item{\code{PH_TOLANAL}}{a character vector}
+#'   \item{\code{ACIDIMPACTED}}{a logical vector}
+#'   \item{\code{MAJORHABITATGRP}}{a character vector}
+#'   \item{\code{NUTRIENTINDICATOR}}{a character vector}
 #' }
 #' @source example data from IDEM
 "data_diatom_mmi_dev"
@@ -333,7 +337,7 @@
 # "data_diatom_mmi_qc ####
 #' @title Diatom metric value data; Indiana DEM
 #' @description A data set with diatom metric value data.
-#' Used to compare to metric value calculations.  Data from IDEM.
+#' Used to compare to metric value calculations.
 #'
 #' @format A data frame with 497 observations on the following 250 variables.
 #'

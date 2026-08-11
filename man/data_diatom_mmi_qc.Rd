@@ -268,6 +268,6 @@ data_diatom_mmi_qc
 }
 \description{
 A data set with diatom metric value data.
-Used to compare to metric value calculations.  Data from IDEM.
+Used to compare to metric value calculations.
 }
 \keyword{datasets}

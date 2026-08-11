@@ -18,6 +18,42 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.3.2.9001 (2026-08-10)
+
+* tests: Write test for duplicate metrics in MetricNames.xlsx
+* fix: Remove duplicate metrics in MetricNames.xlsx
+    + bugs
+        - nt_Coleo_BCG_att234b4m
+        - nt_Ephem_BCG_att234b4m
+        - nt_Odon_BCG_att234b4m
+        - nt_Trich_BCG_att234b4m
+    + fish
+        - nt_detritivore
+        - nt_omnivore
+        - pt_detritivore
+        - pt_omnivore
+* tests: Write test for duplicate metrics in metric_values.R
+* fix: Remove duplicate metrics in metric_values.R
+    + fish
+        - nt_detritivore
+        - nt_omnivore
+        - pt_detritivore
+        - pt_omnivore
+* refactor: Additional algal metrics, Issue #151
+    + MetricNames.xlsx
+    + metric_values.R
+* style: Update section outlining to match between communities for data munging helper columns, Issue #152
+* refactor: Update data munging for consistency between communities in metric.values, Issue #152
+    + Fish
+        - Add remove non-target section, not code as not required
+    + Algae
+        - Add logical
+        _ Add white space
+    + Coral
+        - Add remove non-target section, not code as not required
+        - Add white space section but no columns modified
+* refactor: Add new columns to example algal data, Issue #151
+
 ## Changes in version 1.3.2 (2026-08-04)
 
 * docs: Bump version for resubmittal to CRAN

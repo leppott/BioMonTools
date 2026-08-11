@@ -75,6 +75,39 @@ df <- df |>
 df[, "BCG_ATTR"] <- NA_character_
 df[, "BCG_ATTR2"] <- NA_character_
 
+# 20260811, new cols for "tests", fake data
+# Create master taxa
+df_taxa <- df |>
+  dplyr::distinct(TAXAID)
+# Assign values to each taxon
+df_taxa[, "PH_TOLANAL"] <- rep(
+  c("ACID",
+    "NEUTRAL",
+    "ALKALI",
+    "HIALKALI",
+    NA),
+  length.out = nrow(df_taxa))
+df_taxa[, "ACIDIMPACTED"] <- seq_len(nrow(df_taxa)) %% 2 == 1
+df_taxa[, "MAJORHABITATGRP"] <- rep(
+  c("BENTHIC",
+    "PLANKTONIC",
+    "MACROPHYTIC",
+    "SANDMUD",
+    "MOSTLYBENTHIC",
+    "MOSTLYPLANKTONIC",
+    NA),
+  length.out = nrow(df_taxa))
+df_taxa[, "NUTRIENTINDICATOR"] <- rep(
+  c("HIGH",
+    "LOW",
+    NA),
+  length.out = nrow(df_taxa))
+# join with data
+df <- df |>
+  dplyr::left_join(y = df_taxa,
+                   by = dplyr::join_by("TAXAID"))
+
+
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 2. Save as RDA for use in package####
 #

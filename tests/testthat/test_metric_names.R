@@ -1,4 +1,31 @@
 # Bugs----
+## metval, names, bugs, Function, duplicates ####
+testthat::test_that("metric.values, names, bugs, Function, xlNames", {
+  # Packages
+  #library(readxl) # part of BioMonTools
+
+  # Benthic data
+  df_benthos <- BioMonTools::data_benthos_PacNW
+
+  # Function
+  df_metval <- BioMonTools::metric.values(df_benthos
+                                          , "bugs"
+                                          , boo.marine = TRUE
+                                          , boo.Shiny = TRUE)
+  metnam_fun <- colnames(df_metval)[-(1:3)] # remove first 3 columns
+
+  # dups
+  names_dup <- metnam_fun[duplicated(metnam_fun)]
+
+  metnam_len <- length(metnam_fun)
+  metnam_len_unique <- length(unique(metnam_fun))
+
+  # test
+  testthat::expect_equal(metnam_len, metnam_len_unique)
+
+})## Test ~ metric names, bugs, Function, duplicates
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, bugs, Function, xlNames ####
 testthat::test_that("metric.values, names, bugs, Function, xlNames", {
   # Packages
@@ -51,7 +78,7 @@ testthat::test_that("metric.values, names, bugs, Function, xlNames", {
   # test B to A
   testthat::expect_equal(metnam_match, metnam_len)
 
-})## Test ~ metric names, bugs, Function, Names ~ END
+})## Test ~ metric names, bugs, Function, Names
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, bugs, xlScoring, xlNames ####
@@ -91,7 +118,7 @@ testthat::test_that("metric.values, names, bugs, xlNames, xlScoring", {
 
   # test
   testthat::expect_equal(metnam_xlScoring_match, metnam_xlScoring_len)
-})## Test - metric.values, names, Excel, Scoring ~ END
+})## Test - metric.values, names, Excel, Scoring
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, bugs, xlScoring, Function  ####
@@ -132,7 +159,7 @@ testthat::test_that("metric.values, names, bugs, Function, xlScoring", {
 
   # test
   testthat::expect_equal(metnam_len, metnam_match)
-})## Test ~ metric.values, names, bugs, Function, Names ~ END
+})## Test ~ metric.values, names, bugs, Function, Names
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metsc, num metrics ####
@@ -195,9 +222,40 @@ testthat::test_that("metric.scores, index, number metrics", {
 
   # test
   testthat::expect_equal(nummet_metsc, nummet_indsc)
-})## Test ~ metric.scores, index, number metrics ~ END
+})## Test ~ metric.scores, index, number metrics
 
 # Fish ----
+## metval, names, fish, Function, duplicates ####
+testthat::test_that("metric.values, names, fish, Function, xlNames", {
+  # Packages
+  #library(readxl) # part of BioMonTools
+
+  # fish data
+  df_fish <- BioMonTools::data_fish_MBSS
+  # Munge (v1.0.2.9015, 2024-04-29)
+  df_fish$TOLVAL2 <- NA_integer_
+  df_fish$BCG_ATTR2 <- NA_character_
+  # 2025-12-26
+  df_fish$AGECLASS <- c(NA, 1:10)
+
+  # Function
+  df_metval <- BioMonTools::metric.values(df_fish
+                                          , "fish"
+                                          , boo.Shiny = TRUE)
+  metnam_fun <- colnames(df_metval)[-(1:5)] # remove first few columns
+
+  # dups
+  names_dup <- metnam_fun[duplicated(metnam_fun)]
+
+  metnam_len <- length(metnam_fun)
+  metnam_len_unique <- length(unique(metnam_fun))
+
+  # test
+  testthat::expect_equal(metnam_len, metnam_len_unique)
+
+})## Test ~ metric names, fish, Function, duplicates
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, fish, Function, xlNames ####
 # Need fish data
 testthat::test_that("metric.values, names, fish, Function, xlNames", {
@@ -248,7 +306,7 @@ testthat::test_that("metric.values, names, fish, Function, xlNames", {
   # test B to A
   testthat::expect_equal(metnam_match, metnam_len)
 
-})## Test ~ metric names, fish, Function, Names ~ END
+})## Test ~ metric names, fish, Function, Names
 
 ## metval, names, fish, xlScoring, xlNames ####
 testthat::test_that("metric.values, names, fish, xlNames, xlScoring", {
@@ -287,7 +345,7 @@ testthat::test_that("metric.values, names, fish, xlNames, xlScoring", {
 
   # test
   testthat::expect_equal(metnam_xlScoring_match, metnam_xlScoring_len)
-})## Test - metric.values, names, Excel, Scoring ~ END
+})## Test - metric.values, names, Excel, Scoring
 
 ## metval, names, fish, xlScoring, Function  ####
 testthat::test_that("metric.values, names, fish, Function, xlScoring", {
@@ -331,10 +389,42 @@ testthat::test_that("metric.values, names, fish, Function, xlScoring", {
 
   # test
   testthat::expect_equal(metnam_len, metnam_match)
-})## Test ~ metric.values, names, bugs, Function, Names ~ END
+})## Test ~ metric.values, names, bugs, Function, Names
 
 
 # Algae ----
+## metval, names, algae, Function, duplicates ####
+testthat::test_that("metric.values, names, algae, Function, xlNames", {
+  # Packages
+  #library(readxl) # part of BioMonTools
+
+  # Algae data
+  df_diatoms <- BioMonTools::data_diatom_mmi_dev
+
+  # 20250908
+  # Add Exclude = TRUE to avoid warning
+  # checking names only not values
+  # ok if data not correct
+  df_diatoms[1, "EXCLUDE"] <- TRUE
+
+  # Function
+  df_metval <- BioMonTools::metric.values(df_diatoms
+                                          , "algae"
+                                          , boo.Shiny = TRUE)
+  metnam_fun <- colnames(df_metval)[-(1:3)] # remove first 3 columns
+
+  # dups
+  names_dup <- metnam_fun[duplicated(metnam_fun)]
+
+  metnam_len <- length(metnam_fun)
+  metnam_len_unique <- length(unique(metnam_fun))
+
+  # test
+  testthat::expect_equal(metnam_len, metnam_len_unique)
+
+})## Test ~ metric names, algae, Function, duplicates
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, algae, Function, xlNames ####
 testthat::test_that("metric.values, names, algae, Function, xlNames", {
   # Packages
@@ -385,7 +475,7 @@ testthat::test_that("metric.values, names, algae, Function, xlNames", {
   # test B to A
   testthat::expect_equal(metnam_match, metnam_len)
 
-})## Test ~ metric names, algae, Function, Names ~ END
+})## Test ~ metric names, algae, Function, Names
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, algae, xlScoring, xlNames ####
@@ -425,7 +515,7 @@ testthat::test_that("metric.values, names, algae, xlScoring, xlNames", {
 
   # test
   testthat::expect_equal(metnam_xlScoring_match, metnam_xlScoring_len)
-})## Test - metric.values, names, Excel, Scoring ~ END
+})## Test - metric.values, names, Excel, Scoring
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, algae, xlScoring, Function ####
@@ -472,9 +562,35 @@ testthat::test_that("metric.values, names, algae, xlScoring, Function", {
 
   # test
   testthat::expect_equal(metnam_len, metnam_match)  # fails due to structure
-})## Test ~ metric.values, names, algae, Function, Names ~ END
+})## Test ~ metric.values, names, algae, Function, Names
 
 # Coral ----
+## metval, names, coral, Function, duplicates ####
+testthat::test_that("metric.values, names, coral, Function, xlNames", {
+  # Packages
+  #library(readxl) # part of BioMonTools
+
+  # coral data
+  df_corals <- BioMonTools::data_coral_bcg_metric_dev
+
+  # Function
+  df_metval <- BioMonTools::metric.values(df_corals
+                                          , "coral"
+                                          , boo.Shiny = TRUE)
+  metnam_fun <- colnames(df_metval)[-(1:3)] # remove first 3 columns
+
+  # dups
+  names_dup <- metnam_fun[duplicated(metnam_fun)]
+
+  metnam_len <- length(metnam_fun)
+  metnam_len_unique <- length(unique(metnam_fun))
+
+  # test
+  testthat::expect_equal(metnam_len, metnam_len_unique)
+
+})## Test ~ metric names, coral, Function, duplicates
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, coral, Function, xlNames ####
 testthat::test_that("metric.values, names, coral, Function, xlNames", {
   # Packages
@@ -519,7 +635,7 @@ testthat::test_that("metric.values, names, coral, Function, xlNames", {
   # test B to A
   testthat::expect_equal(metnam_match, metnam_len)
 
-})## Test ~ metric names, coral, Function, Names ~ END
+})## Test ~ metric names, coral, Function, Names
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, coral, xlScoring, xlNames ####
@@ -559,7 +675,7 @@ testthat::test_that("metric.values, names, coral, xlScoring, xlNames", {
 
   # test
   testthat::expect_equal(metnam_xlScoring_match, metnam_xlScoring_len)
-})## Test - metric.values, names, Excel, Scoring ~ END
+})## Test - metric.values, names, Excel, Scoring
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## metval, names, coral, xlScoring, Function ####
@@ -600,7 +716,7 @@ testthat::test_that("metric.values, names, coral, xlScoring, Function", {
 
   # test
   testthat::expect_equal(metnam_len, metnam_match)  # fails due to structure
-})## Test ~ metric.values, names, coral, Function, Names ~ END
+})## Test ~ metric.values, names, coral, Function, Names
 
 
 # Excel ----
@@ -634,5 +750,54 @@ testthat::test_that("metric.values, xlNames, description", {
   ### test, NA, COMMENTS ----
   testthat::expect_equal(num_NA_comm, 0)
 
-})## Test ~ metval, xlNames, NA ~ END
+})## Test ~ metval, xlNames, NA
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+## metval, xlNames, dups ####
+testthat::test_that("metric.values, names, xlNames, duplicates", {
+  # Packages
+  #library(readxl) # part of BioMonTools
+
+  # Data
+  fn_metnam_xlNames   <- file.path(system.file(package = "BioMonTools")
+                                   , "extdata"
+                                   , "MetricNames.xlsx")
+  # Import
+  df_metnam_xlNames   <- readxl::read_excel(fn_metnam_xlNames
+                                            , sheet = "MetricMetadata"
+                                            , skip = 4)
+  df_metnam_xlNames <- as.data.frame(df_metnam_xlNames)
+
+  # dups
+  df_metric_count <- df_metnam_xlNames |>
+    dplyr::count(Community,
+                 METRIC_NAME,
+                 name = "metric_count") |>
+    dplyr::filter(metric_count > 1)
+
+  ### test, dups, bugs ----
+  n_dups_bugs <- df_metric_count |>
+    dplyr::filter(Community == "bugs") |>
+    nrow()
+  testthat::expect_equal(n_dups_bugs, 0)
+
+  ### test, dups, fish ----
+  n_dups_fish <- df_metric_count |>
+    dplyr::filter(Community == "fish") |>
+    nrow()
+  testthat::expect_equal(n_dups_fish, 0)
+
+  ### test, dups, algae ----
+  n_dups_algae <- df_metric_count |>
+    dplyr::filter(Community == "algae") |>
+    nrow()
+  testthat::expect_equal(n_dups_algae, 0)
+
+  ### test, dups, coral ----
+  n_dups_coral <- df_metric_count |>
+    dplyr::filter(Community == "coral") |>
+    nrow()
+  testthat::expect_equal(n_dups_coral, 0)
+
+})## Test ~ metval, xlNames, dups
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
