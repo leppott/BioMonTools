@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.3.2.9002 (2026-08-12)
+
+* refactor: Add new benthic metrics, Issue #153
+    + pi_COEPT and pt_COEPT
+    + MetricNames.xlsx
+    + metric_values.R
+
 ## Changes in version 1.3.2.9001 (2026-08-10)
 
 * tests: Write test for duplicate metrics in MetricNames.xlsx

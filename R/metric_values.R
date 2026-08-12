@@ -2112,6 +2112,12 @@ metric.values.bugs <- function(myDF
                                                            sum(N_TAXA[ORDER == "ODONATA"]
                                                            , na.rm = TRUE),
                                                            na.rm = TRUE)
+                                , pi_COEPT = 100 * sum(N_TAXA[ORDER == "COLEOPTERA"
+                                                             | ORDER == "ODONATA"
+                                                             | ORDER == "EPHEMEROPTERA"
+                                                             | ORDER == "PLECOPTERA"
+                                                             | ORDER == "TRICHOPTERA"]
+                                                      , na.rm = TRUE) / ni_total
                                 , pi_COET = 100 * sum(N_TAXA[ORDER == "COLEOPTERA"
                                                              | ORDER == "ODONATA"
                                                              | ORDER == "EPHEMEROPTERA"
@@ -2300,6 +2306,7 @@ metric.values.bugs <- function(myDF
                                 , pt_Amph = 100 * nt_Amph / nt_total
                                 , pt_Bival = 100 * nt_Bival / nt_total
                                 , pt_Coleo = 100 * nt_Coleo / nt_total
+                                , pt_COEPT = 100 * nt_COEPT / nt_total
                                 , pt_COET = 100 * nt_COET / nt_total
                                 , pt_Deca = 100 * nt_Deca / nt_total
                                 , pt_Dipt = 100 * nt_Dipt / nt_total

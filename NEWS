@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-08-11 11:47:02.996492
+    #> Last Update: 2026-08-12 13:41:33.720883
 
 # Version History
+
+## Changes in version 1.3.2.9002 (2026-08-12)
+
+- refactor: Add new benthic metrics, Issue \#153
+  - pi_COEPT and pt_COEPT
+  - MetricNames.xlsx
+  - metric_values.R
 
 ## Changes in version 1.3.2.9001 (2026-08-10)
 

@@ -801,3 +801,4 @@ testthat::test_that("metric.values, names, xlNames, duplicates", {
 
 })## Test ~ metval, xlNames, dups
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
