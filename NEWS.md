@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-08-12 13:41:33.720883
+    #> Last Update: 2026-08-27 08:29:22.052291
 
 # Version History
+
+## Changes in version 1.3.2.9003 (2026-08-27)
+
+- refactor: Update MetricNames.xlsx
+  - Comm_Metric and Count
+  - Bugs_LargeRare to “non-bugs” for non-bug communities
 
 ## Changes in version 1.3.2.9002 (2026-08-12)
 
