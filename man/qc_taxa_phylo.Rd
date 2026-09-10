@@ -58,14 +58,19 @@ false positives.
 
 * **finalid_as_phylo** Each final id is a phylogenetic name.
 
+* **phylo_nonascii** Each phylogenetic name that contains non-ASCII
+characters. Cannot use View() in RStudio.  Use "print()" instead.  If any
+non-ACII then min_length will report as "ERROR".
+
 * **min_length** FinalID and each phylogenetic name is checked for
-number of characters.  Default = 2.
+number of characters.  Default = 2.  Will report as an error if any non-ASCII
+characters are present.
 
 others checks?
 
 case (all lower, all upper)
 
-spaces, ending, starting, double, regular and non-breaking spaces
+spaces, ending, starting, double, regular and non-breaking spaces, non-ASCII
 
 ?
 

@@ -26,14 +26,19 @@
 #'
 #' * **finalid_as_phylo** Each final id is a phylogenetic name.
 #'
+#' * **phylo_nonascii** Each phylogenetic name that contains non-ASCII
+#' characters. Cannot use View() in RStudio.  Use "print()" instead.  If any
+#' non-ACII then min_length will report as "ERROR".
+#'
 #' * **min_length** FinalID and each phylogenetic name is checked for
-#' number of characters.  Default = 2.
+#' number of characters.  Default = 2.  Will report as an error if any non-ASCII
+#' characters are present.
 #'
 #' others checks?
 #'
 #' case (all lower, all upper)
 #'
-#' spaces, ending, starting, double, regular and non-breaking spaces
+#' spaces, ending, starting, double, regular and non-breaking spaces, non-ASCII
 #'
 #' ?
 #'
@@ -238,25 +243,50 @@ qc_taxa_phylo <- function(data,
     dplyr::select(dplyr::all_of(finalid), match_phylo) |>
     dplyr::filter(match_phylo == FALSE)
 
-  # 05. min_length ----
-  df_min_len <- data |>
-    # select cols to keep
-    dplyr::select(dplyr::any_of(c(finalid, cols_phylo))) |>
-    # pivot
+  # 05. phylo_nonascii----
+  # if any non-ASCII min_length can fail
+  # nchar() shouldn't fail but it does
+  # CoPilot, 20260910
+  # [ ] = character class
+  # ^ at the beginning of a character class means "not"
+  # \\x00 = hexadecimal character value 0
+  # \\x7F = hexadecimal character value 127
+  # Match any character that is NOT in the range 0 to 127.
+  df_phylo_nonascii <- data |>
+    dplyr::select(dplyr::all_of(cols_phylo)) |>
+    dplyr::mutate(row_id = dplyr::row_number()) |>
     tidyr::pivot_longer(
-      cols = dplyr::any_of(cols_phylo),
-      names_to = "phylo_level",
-      values_to = "phylo_name",
-      values_drop_na = TRUE) |>
-    # length
-    dplyr::mutate(len = nchar(phylo_name)) |>
-    # min_len
-    dplyr::mutate(qc_min_len = min_len < len) |>
-    # filter
-    dplyr::filter(qc_min_len == FALSE)
+      -row_id,
+      names_to = "column_name",
+      values_to = "value") |>
+    dplyr::filter(
+      !is.na(value),
+      stringr::str_detect(value, "[^\\x00-\\x7F]"))
+
+  # 06. min_length----
+  # error if have any non-ASCII
+  if(nrow(df_phylo_nonascii) == 0) {
+    df_min_len <- data |>
+      # select cols to keep
+      dplyr::select(dplyr::any_of(c(finalid, cols_phylo))) |>
+      # pivot
+      tidyr::pivot_longer(
+        cols = dplyr::any_of(cols_phylo),
+        names_to = "phylo_level",
+        values_to = "phylo_name",
+        values_drop_na = TRUE) |>
+      # length
+      dplyr::mutate(len = nchar(phylo_name)) |>
+      # min_len
+      dplyr::mutate(qc_min_len = min_len < len) |>
+      # filter
+      dplyr::filter(qc_min_len == FALSE)
+  } else {
+    df_min_len <- "ERROR; check for non-ASCII"
+  }## IF ~ nrow(df_phylo_nonascii)
 
 
-  # 06. Result ----
+  # 07. Result ----
   # combine
   results <- list(
     "issues"   = NULL,
@@ -264,6 +294,7 @@ qc_taxa_phylo <- function(data,
     "phylo_unique_rank" = df_phylo_unique_rank,
     "phylo_as_finalid"  = df_phylo_as_finalid,
     "finalid_as_phylo"  = df_finalid_as_phylo,
+    "phylo_nonascii" = df_phylo_nonascii,
     "min_length" = df_min_len)
   # report names of elements with length > 0 to "issues"
   results$issues <- names(results)[vapply(results, length, integer(1)) > 0]

@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-08-27 08:29:22.052291
+    #> Last Update: 2026-09-10 13:44:35.833738
 
 # Version History
+
+## Changes in version 1.3.2.9004 (2026-09-10)
+
+- refactor: Add non-ASCII character check to qc_taxa_phylo(), Issue
+  \#155
 
 ## Changes in version 1.3.2.9003 (2026-08-27)
 

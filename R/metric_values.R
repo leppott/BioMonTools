@@ -5364,7 +5364,7 @@ metric.values.fish <- function(myDF
                  , pt_repro_nestcomp = 100 * nt_repro_nestcomp / nt_total
                  , pt_repro_bearer = 100 * nt_repro_bearer / nt_total
                  , pt_repro_migratory = 100 * nt_repro_migratory / nt_total
-                  , pt_repro_lithophil = 100 * nt_repro_lithophil / nt_total
+                 , pt_repro_lithophil = 100 * nt_repro_lithophil / nt_total
 
 
                   ## Habitat ----
