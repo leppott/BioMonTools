@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2.9004</span>
       </span>
     </div>
 
@@ -128,11 +128,15 @@ Species and finer taxonomic ranks should be ignored as possible to generate
 false positives.</p>
 <p>* **phylo_as_finalid** Each phylogenetic name is also in FinalID.</p>
 <p>* **finalid_as_phylo** Each final id is a phylogenetic name.</p>
+<p>* **phylo_nonascii** Each phylogenetic name that contains non-ASCII
+characters. Cannot use View() in RStudio.  Use "print()" instead.  If any
+non-ACII then min_length will report as "ERROR".</p>
 <p>* **min_length** FinalID and each phylogenetic name is checked for
-number of characters.  Default = 2.</p>
+number of characters.  Default = 2.  Will report as an error if any non-ASCII
+characters are present.</p>
 <p>others checks?</p>
 <p>case (all lower, all upper)</p>
-<p>spaces, ending, starting, double, regular and non-breaking spaces</p>
+<p>spaces, ending, starting, double, regular and non-breaking spaces, non-ASCII</p>
 <p>?</p>
 <p>non A-Z (any case), e.g., slash, dash, underscore, parentheses, etc.</p>
 <p>If ignore_case is TRUE then all columns (finalid and phylo_names) will be
@@ -159,7 +163,7 @@ converted to upper case before checks are performed.</p>
 <span class="r-in"><span><span class="co"># issues</span></span></span>
 <span class="r-in"><span><span class="va">qc_phylo</span><span class="op">$</span><span class="va">issues</span>         <span class="co"># names</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "unique_parent"     "phylo_unique_rank" "phylo_as_finalid" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "finalid_as_phylo"  "min_length"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "finalid_as_phylo"  "phylo_nonascii"    "min_length"       </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">qc_phylo</span>, <span class="va">nrow</span><span class="op">)</span>  <span class="co"># names and number of records</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $issues</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
@@ -175,6 +179,9 @@ converted to upper case before checks are performed.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $finalid_as_phylo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 171</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $phylo_nonascii</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $min_length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
