@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2.9007</span>
       </span>
     </div>
 
@@ -139,7 +139,9 @@ LOW, MOD, HIGH</p>
 <p>WSArea
 SMALL, MEDIUM, LARGE, XLARGE</p>
 <p>BCG_ATTR
-1, 2, 3, 4, 5, 6, 1I, 4_BETTER, 4_MIDDLE, 4_WORSE, 5.5, 6I, 6M, 6T,</p>
+1, 2, 3, 4, 5, 6, 1I, 4_BETTER, 4_MIDDLE, 4_WORSE, 5.5, 6I, 6M, 6T</p>
+<p>If you don't put in any valid values all values will be tagged as FALSE but
+the result will show all values in the column.</p>
     </div>
 
     <div id="ref-examples">
@@ -262,7 +264,17 @@ SMALL, MEDIUM, LARGE, XLARGE</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 31 sw, cn, sp    6 FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32     sw, dv    8 FALSE</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Values, FFG, no valid values</span></span></span>
+<span class="r-in"><span> <span class="fu">qc_taxa_values_character</span><span class="op">(</span><span class="va">data_benthos_MBSS</span>,</span></span>
+<span class="r-in"><span>                          <span class="st">"FFG"</span>,</span></span>
+<span class="r-in"><span>                          valid_vals <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         FFG    n valid</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            102 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Collector 1843 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  Filterer  968 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  Predator  847 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   Scraper  611 FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  Shredder  695 FALSE</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
