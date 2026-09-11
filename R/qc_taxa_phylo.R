@@ -253,7 +253,7 @@ qc_taxa_phylo <- function(data,
   # \\x7F = hexadecimal character value 127
   # Match any character that is NOT in the range 0 to 127.
   df_phylo_nonascii <- data |>
-    dplyr::select(dplyr::all_of(cols_phylo)) |>
+    dplyr::select(dplyr::all_of(c(finalid, cols_phylo))) |>
     dplyr::mutate(row_id = dplyr::row_number()) |>
     tidyr::pivot_longer(
       -row_id,

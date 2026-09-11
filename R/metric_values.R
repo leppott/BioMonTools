@@ -4306,42 +4306,47 @@ metric.values.fish <- function(myDF
   myDF[, "TI_NA"]          <- is.na(myDF[, "THERMAL_INDICATOR"])
 
   ### TOLER ----
+  # Should be single values but for I|II and T|TT included commas
   if (!"TOLER" %in% names(myDF)) {
     myDF[, "TOLER"] <- NA
   }## IF ~ TOLER
   # code new columns
-  myDF[, "TOLER_TOLERANT"] <- grepl("TOLERANT", myDF[, "TOLER"])     # NOT USED
-  myDF[, "TOLER_INTOLERANT"] <- grepl("INTOLERANT", myDF[,"TOLER"])  # NOT USED
   # MN
-  myDF[, "TOLER_ICW"] <- grepl("ICW", myDF[,"TOLER"])
-  myDF[, "TOLER_I"] <- grepl("^I$|^I,|,I$|,I,", myDF[,"TOLER"])
-  myDF[, "TOLER_ICW"] <- grepl("ICW", myDF[,"TOLER"])
-  myDF[, "TOLER_S"] <- grepl("^S$|^S,|,S$|,S,", myDF[,"TOLER"])
-  myDF[, "TOLER_SCW"] <- grepl("SCW", myDF[,"TOLER"])
-  myDF[, "TOLER_T"] <- grepl("^T$|^T,|,T$|,T,", myDF[,"TOLER"])
-  myDF[, "TOLER_TCW"] <- grepl("TCW", myDF[,"TOLER"])
-  myDF[, "TOLER_VT"] <- grepl("VT", myDF[,"TOLER"])
+  myDF[, "TOLER_I"] <- grepl("^I$|^I,|,I$|,I,|^II$|^II,|,II$|,II,",
+                             myDF[,"TOLER"])                    # intolerant
+  myDF[, "TOLER_ICW"] <- grepl("ICW", myDF[,"TOLER"])           # intolerant, Coldwater
+  myDF[, "TOLER_S"] <- grepl("^S$|^S,|,S$|,S,", myDF[,"TOLER"]) # sensitive
+  myDF[, "TOLER_SCW"] <- grepl("SCW", myDF[,"TOLER"])           # sensitive Coldwater
+  myDF[, "TOLER_T"] <- grepl("^T$|^T,|,T$|,T,|^TT$|^TT,|,TT$|,TT,",
+                             myDF[,"TOLER"])                    # tolerant
+  myDF[, "TOLER_TCW"] <- grepl("TCW", myDF[,"TOLER"])           # tolerant, Coldwater
+  myDF[, "TOLER_VT"] <- grepl("VT", myDF[,"TOLER"])             # very tolerant
+  # OK and ID
+  myDF[, "TOLER_MI"] <- grepl("MI", myDF[,"TOLER"])             # moderately intolerant
+  myDF[, "TOLER_MT"] <- grepl("MT", myDF[,"TOLER"])             # moderately tolerant
+  # NRSA
+  myDF[, "TOLER_INTER"] <- grepl("INTER", myDF[,"TOLER"])       # intermediate
 
   ### TROPHIC ----
   if (!"TROPHIC" %in% names(myDF)) {
     myDF[, "TROPHIC"] <- NA
   }## IF ~ TROPHIC
  # code new columns
-  myDF[, "TROPHIC_GE"] <- grepl("GE", myDF[, "TROPHIC"]) # Generalist
+  myDF[, "TROPHIC_GE"] <- grepl("GE", myDF[, "TROPHIC"])    # Generalist
   myDF[, "TROPHIC_HB"] <- grepl("HB|HE", myDF[, "TROPHIC"]) # Herbivore
-  myDF[, "TROPHIC_IS"] <- grepl("IS", myDF[, "TROPHIC"]) # Insectivore
+  myDF[, "TROPHIC_IS"] <- grepl("IS", myDF[, "TROPHIC"])    # Insectivore
+  myDF[, "TROPHIC_OM"] <- grepl("OM", myDF[, "TROPHIC"])    # Omnivore
+  myDF[, "TROPHIC_PL"] <- grepl("PL", myDF[, "TROPHIC"])    # Planktivore
+  myDF[, "TROPHIC_PI"] <- grepl("PI", myDF[, "TROPHIC"])    # Piscivore
   myDF[, "TROPHIC_IV"] <- grepl("^IV$|^IV,|,IV$|,IV,", myDF[, "TROPHIC"]) # Invertivore
-  myDF[, "TROPHIC_OM"] <- grepl("OM", myDF[, "TROPHIC"]) # Omnivore
   myDF[, "TROPHIC_TC"] <- grepl("^TC$|^TC,|,TC$|,TC,", myDF[, "TROPHIC"]) # Top Carnivore
   myDF[, "TROPHIC_DE"] <- grepl("^DE$|^DE,|,DE$|,DE,", myDF[, "TROPHIC"]) # Detritivore (mod for DEM)
-  myDF[, "TROPHIC_PL"] <- grepl("PL", myDF[, "TROPHIC"]) # Planktivore
-  myDF[, "TROPHIC_PI"] <- grepl("PI", myDF[, "TROPHIC"]) # Piscivore
   myDF[, "TROPHIC_IV_TC"] <- grepl("IV_TC", myDF[, "TROPHIC"]) # Invertivore and Top Carnivore
   # MN
-  myDF[, "TROPHIC_BI_noT"] <- grepl("BI-T", myDF[, "TROPHIC"]) # Benthic Insectivore, no Tolerant
-  myDF[, "TROPHIC_IN_noT"] <- grepl("IN-T", myDF[, "TROPHIC"]) # Insectivore, no Tolerant
+  myDF[, "TROPHIC_BI_noT"] <- grepl("BI-T", myDF[, "TROPHIC"])  # Benthic Insectivore, no Tolerant
+  myDF[, "TROPHIC_IN_noT"] <- grepl("IN-T", myDF[, "TROPHIC"])  # Insectivore, no Tolerant
   myDF[, "TROPHIC_IN_CYP"] <- grepl("INCYP", myDF[, "TROPHIC"]) # Insectivorous Cyprinidae
-  myDF[, "TROPHIC_DEM"] <- grepl("DEM", myDF[, "TROPHIC"]) # Detritivore Minor
+  myDF[, "TROPHIC_DEM"] <- grepl("DEM", myDF[, "TROPHIC"])      # Detritivore Minor
 
   ### TYPE ----
   if (!"TYPE" %in% names(myDF)) {

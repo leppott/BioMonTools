@@ -75,7 +75,10 @@ WSArea
 SMALL, MEDIUM, LARGE, XLARGE
 
 BCG_ATTR
-1, 2, 3, 4, 5, 6, 1I, 4_BETTER, 4_MIDDLE, 4_WORSE, 5.5, 6I, 6M, 6T,
+1, 2, 3, 4, 5, 6, 1I, 4_BETTER, 4_MIDDLE, 4_WORSE, 5.5, 6I, 6M, 6T
+
+If you don't put in any valid values all values will be tagged as FALSE but
+the result will show all values in the column.
 }
 \examples{
 # Values, FFG, Abr
@@ -114,6 +117,9 @@ qc_taxa_values_character(data_benthos_MBSS,
                          valid_vals = c("bu", "cb", "cn", "dv", "sk", "sp", "sw"),
                          separator = ",")
 
-
+# Values, FFG, no valid values
+ qc_taxa_values_character(data_benthos_MBSS,
+                          "FFG",
+                          valid_vals = NA)
 
 }

@@ -4,9 +4,24 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-09-10 13:44:35.833738
+    #> Last Update: 2026-09-11 12:14:22.243997
 
 # Version History
+
+## Changes in version 1.3.2.9007 (2026-09-11)
+
+- refactor: Add non-ASCII character check to qc_taxa_phylo() for
+  finalid, Issue \#155
+
+## Changes in version 1.3.2.9006 (2026-09-10)
+
+- refactor: Add example with no valid values for
+  qc_taxa_values_character()
+
+## Changes in version 1.3.2.9005 (2026-09-10)
+
+- refactor: Update fish TOLER metrics, Issue \#154
+  - Add helper columns for new values
 
 ## Changes in version 1.3.2.9004 (2026-09-10)
 
@@ -1671,7 +1686,7 @@ NEWS
 - refactor: Reorganize -raw folder with subfolders
   - Keep only the scripts to be run at the root
   - Will have to update scripts at later date to use the new structure
-- feature: Added HTML creation scripts for text in shiny app to -raw  
+- feature: Added HTML creation scripts for text in shiny app to -raw\
 - feature: Updates to Shiny app to include help text for each function
 - feature: Add runShiny() to launch shiny app from console
 - docs: Removed XLConnect from DESCRIPTION Suggests package list
@@ -1806,7 +1821,7 @@ NEWS
   - data description
 - refactor: Update MetricNames to match MetricScores
   - Failed test after addition of algal metrics
-  - Add metrics “pi_BCG_att5extra” and “x_UFC”  
+  - Add metrics “pi_BCG_att5extra” and “x_UFC”\
   - Add notes
 - tests: Update metric name tests
 - tests: Update metric stats test
@@ -1928,7 +1943,7 @@ NEWS
 ## Changes in Version 0.5.0.9052 (2021-05-10)
 
 - refactor: Metric.Scoring.xlsx, update to remove NA from index scoring
-  - Both numeric and narrative.  
+  - Both numeric and narrative.\
   - Caused an issue with scoring FFXCOVA_2018
 
 ## Changes in Version 0.5.0.9051 (2021-05-10)
