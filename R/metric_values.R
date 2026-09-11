@@ -4312,12 +4312,12 @@ metric.values.fish <- function(myDF
   }## IF ~ TOLER
   # code new columns
   # MN
-  myDF[, "TOLER_I"] <- grepl("^I$|^I,|,I$|,I,|^II$|^II,|,II$|,II,",
+  myDF[, "TOLER_I"] <- grepl("^I$|^I,|,I$|,I,|^II$|^II,|,II$|,II,|^INTOLERANT$",
                              myDF[,"TOLER"])                    # intolerant
   myDF[, "TOLER_ICW"] <- grepl("ICW", myDF[,"TOLER"])           # intolerant, Coldwater
   myDF[, "TOLER_S"] <- grepl("^S$|^S,|,S$|,S,", myDF[,"TOLER"]) # sensitive
   myDF[, "TOLER_SCW"] <- grepl("SCW", myDF[,"TOLER"])           # sensitive Coldwater
-  myDF[, "TOLER_T"] <- grepl("^T$|^T,|,T$|,T,|^TT$|^TT,|,TT$|,TT,",
+  myDF[, "TOLER_T"] <- grepl("^T$|^T,|,T$|,T,|^TT$|^TT,|,TT$|,TT,|^TOLERANT$",
                              myDF[,"TOLER"])                    # tolerant
   myDF[, "TOLER_TCW"] <- grepl("TCW", myDF[,"TOLER"])           # tolerant, Coldwater
   myDF[, "TOLER_VT"] <- grepl("VT", myDF[,"TOLER"])             # very tolerant
@@ -4326,6 +4326,7 @@ metric.values.fish <- function(myDF
   myDF[, "TOLER_MT"] <- grepl("MT", myDF[,"TOLER"])             # moderately tolerant
   # NRSA
   myDF[, "TOLER_INTER"] <- grepl("INTER", myDF[,"TOLER"])       # intermediate
+  myDF[, "TOLER_HWI"] <- grepl("HWI", myDF[,"TOLER"])           # Headwater Intolerant
 
   ### TROPHIC ----
   if (!"TROPHIC" %in% names(myDF)) {
@@ -4812,9 +4813,15 @@ metric.values.fish <- function(myDF
                        , nt_detritivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                    & TROPHIC_DE == TRUE]
                                                             , na.rm = TRUE)
+                       , nt_gen = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                           & TROPHIC_GE == TRUE]
+                                                    , na.rm = TRUE)
                        , nt_herbivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                  & TROPHIC_HB == TRUE]
                                                           , na.rm = TRUE)
+                       , nt_insectivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+                                                                   & TROPHIC_IS == TRUE]
+                                                            , na.rm = TRUE)
                        , nt_invertivore = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                  & TROPHIC_IV == TRUE]
                                                           , na.rm = TRUE)
@@ -4865,29 +4872,84 @@ metric.values.fish <- function(myDF
 
                        ### Trophic, pt ----
                        , pt_habitat_beninvert = 100 * nt_habitat_beninvert / nt_total
-                       , pt_detritivore = 100 * nt_detritivore / nt_total
-                       , pt_herbivore = 100 * nt_herbivore / nt_total
-                       , pt_invertivore = 100 * nt_invertivore / nt_total
+                       , pt_detritivore =   100 * nt_detritivore   / nt_total
+                       , pt_gen =           100 * nt_gen           / nt_total
+                       , pt_herbivore =     100 * nt_herbivore     / nt_total
+                       , pt_insectivore =   100 * nt_insectivore   / nt_total
+                       , pt_invertivore =   100 * nt_invertivore   / nt_total
                        , pt_invert_native = 100 * nt_invert_native / nt_total
                        , pt_inverttopcarn = 100 * nt_inverttopcarn / nt_total
-                       , pt_omnivore = 100 * nt_omnivore / nt_total
-                       , pt_planktivore = 100 * nt_planktivore / nt_total
-                       , pt_topcarn = 100 * nt_topcarn / nt_total
+                       , pt_omnivore =      100 * nt_omnivore      / nt_total
+                       , pt_planktivore =   100 * nt_planktivore   / nt_total
+                       , pt_topcarn =       100 * nt_topcarn       / nt_total
 
                        #
                        ## Tolerance ----
+                       ### nt
                        , nt_tv_intol = dplyr::n_distinct(
-                         TAXAID[EXCLUDE != TRUE & TOLER == "INTOLERANT"],
-                         na.rm = TRUE)
+                           TAXAID[EXCLUDE != TRUE & TOLER_I == TRUE],
+                           na.rm = TRUE)
                        , nt_tv_intolhwi = dplyr::n_distinct(
-                         TAXAID[EXCLUDE != TRUE &
-                                  (TOLER == "INTOLERANT" | TOLER == "HWI")],
-                         na.rm = TRUE)
+                           TAXAID[EXCLUDE != TRUE &
+                                    (TOLER_I == TRUE | TOLER_HWI == TRUE)],
+                           na.rm = TRUE)
+                       , nt_tv_sens = dplyr::n_distinct(
+                           TAXAID[EXCLUDE != TRUE & TOLER_S == TRUE]
+                           , na.rm = TRUE)
+                       , nt_tv_senscoldwater = dplyr::n_distinct(
+                           TAXAID[EXCLUDE != TRUE & TOLER_SCW == TRUE]
+                           , na.rm = TRUE)
+                       , nt_tv_modintol = dplyr::n_distinct(
+                         TAXAID[EXCLUDE != TRUE & TOLER_MI == TRUE]
+                         , na.rm = TRUE)
+                       , nt_tv_intermediate = dplyr::n_distinct(
+                         TAXAID[EXCLUDE != TRUE & TOLER_INTER == TRUE]
+                         , na.rm = TRUE)
+                       , nt_tv_modtoler = dplyr::n_distinct(
+                         TAXAID[EXCLUDE != TRUE & TOLER_MT == TRUE]
+                         , na.rm = TRUE)
+                       , nt_tv_toler = dplyr::n_distinct(
+                           TAXAID[EXCLUDE != TRUE & TOLER_T == TRUE]
+                           , na.rm = TRUE)
+                       , nt_tv_tolercoldwater = dplyr::n_distinct(
+                           TAXAID[EXCLUDE != TRUE & TOLER_TCW == TRUE]
+                           , na.rm = TRUE)
+                       , nt_tv_vtoler = dplyr::n_distinct(
+                           TAXAID[EXCLUDE != TRUE & TOLER_VT == TRUE]
+                           , na.rm = TRUE)
+                       ### pi
+                       , pi_tv_intol = 100 *
+                           sum(N_TAXA[TOLER_I == TRUE], na.rm = TRUE) /
+                           ni_total
+                       , pi_tv_sens = 100 *
+                           sum(N_TAXA[TOLER_S == TRUE], na.rm = TRUE) /
+                           ni_total
+                       , pi_tv_modintol = 100 *
+                           sum(N_TAXA[TOLER_MI == TRUE], na.rm = TRUE) /
+                           ni_total
+                       , pi_tv_intermediate = 100 *
+                           sum(N_TAXA[TOLER_INTER == TRUE], na.rm = TRUE) /
+                           ni_total
+                       , pi_tv_modtoler = 100 *
+                           sum(N_TAXA[TOLER_MT == TRUE], na.rm = TRUE) /
+                           ni_total
                        , pi_tv_toler = 100 *
-                         sum(N_TAXA[TOLER == "TOLERANT"], na.rm = TRUE) /
-                         ni_total
-                       #
-
+                           sum(N_TAXA[TOLER_T == TRUE], na.rm = TRUE) /
+                           ni_total
+                       , pi_tv_vtoler = 100 *
+                           sum(N_TAXA[TOLER_VT == TRUE], na.rm = TRUE) /
+                           ni_total
+                       ### pt
+                       , pt_tv_intol         = 100 * nt_tv_intol / nt_total
+                       , pt_tv_sens          = 100 * nt_tv_sens / nt_total
+                       , pt_tv_senscoldwater = 100 * nt_tv_senscoldwater / nt_total
+                       , pt_tv_modintol      = 100 * nt_tv_modintol / nt_total
+                       , pt_tv_intermediate  = 100 * nt_tv_intermediate / nt_total
+                       , pt_tv_modtoler      = 100 * nt_tv_modtoler / nt_total
+                       , pt_tv_toler         = 100 * nt_tv_toler / nt_total
+                       , pt_tv_vtoler        = 100 * nt_tv_vtoler / nt_total
+                       ### MN
+                       # more in MN section under SPECIAL
 
 
                        ## Indices ----
@@ -5510,29 +5572,11 @@ metric.values.fish <- function(myDF
                  , nt_simplelithophil = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                   & REPRO_SILI == TRUE]
                                                            , na.rm = TRUE)
-                 #### MN, nt, TOLER
-                 , nt_tv_sens = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                          & TOLER_S == TRUE]
-                                                   , na.rm = TRUE)
-                 , nt_tv_senscoldwater = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                   & TOLER_SCW == TRUE]
-                                                            , na.rm = TRUE)
-                 , nt_tv_tolercoldwater = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                                    & TOLER_TCW == TRUE]
-                                                             , na.rm = TRUE)
-                 , nt_tv_toler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                           & TOLER_T == TRUE]
-                                                    , na.rm = TRUE) # MN, nt for pt
-                 , nt_tv_vtoler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                            & TOLER_VT == TRUE]
-                                                     , na.rm = TRUE)
+
                  #### MN, nt, TROPHIC
                  , nt_beninsct_notoler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                    & TROPHIC_BI_noT == TRUE]
                                                             , na.rm = TRUE) # MN, nt for pt
-                 , nt_gen = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
-                                                      & TROPHIC_GE == TRUE]
-                                               , na.rm = TRUE)
                  , nt_insectivore_notoler = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
                                                                       & TROPHIC_IN_noT == TRUE]
                                                                , na.rm = TRUE) # MN, nt for pt
@@ -5639,11 +5683,6 @@ metric.values.fish <- function(myDF
                  #### MN, pt, REPRO
                  , pt_serialspawner        = 100 * nt_serialspawner / nt_total
                  , pt_simplelithophil      = 100 * nt_simplelithophil / nt_total
-                 #### MN, pt, TOLER
-                 , pt_tv_sens              = 100 * nt_tv_sens / nt_total
-                 , pt_tv_senscoldwater     = 100 * nt_tv_senscoldwater / nt_total
-                 , pt_tv_toler             = 100 * nt_tv_toler / nt_total
-                 , pt_tv_vtoler            = 100 * nt_tv_vtoler / nt_total
                  #### MN, pt, TROPHIC
                  , pt_beninsct_notoler     = 100 * nt_beninsct_notoler / nt_total
                  , pt_gen                  = 100 * nt_gen / nt_total

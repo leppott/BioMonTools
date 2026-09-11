@@ -4,9 +4,15 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-09-11 12:14:22.243997
+    #> Last Update: 2026-09-11 14:54:36.229134
 
 # Version History
+
+## Changes in version 1.3.2.9008 (2026-09-11)
+
+- refactor: Add new fish metrics (TOLER and TROPHIC), Issue \#154
+  - metric_values.R
+  - MetricNames.xlsx
 
 ## Changes in version 1.3.2.9007 (2026-09-11)
 

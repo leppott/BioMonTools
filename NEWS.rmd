@@ -18,6 +18,12 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.3.2.9008 (2026-09-11)
+
+* refactor: Add new fish metrics (TOLER and TROPHIC), Issue #154
+    + metric_values.R
+    + MetricNames.xlsx
+
 ## Changes in version 1.3.2.9007 (2026-09-11)
 
 * refactor: Add non-ASCII character check to qc_taxa_phylo() for finalid, Issue #155
