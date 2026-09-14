@@ -4,9 +4,14 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-09-11 14:54:36.229134
+    #> Last Update: 2026-09-14 08:03:26.52317
 
 # Version History
+
+## Changes in version 1.3.2.9009 (2026-09-14)
+
+- fix: Update metric.values for fish REPO metrics NS and NC, Issue \#157
+  - Code removed spaces but had spaces in search terms
 
 ## Changes in version 1.3.2.9008 (2026-09-11)
 

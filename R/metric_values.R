@@ -4279,9 +4279,10 @@ metric.values.fish <- function(myDF
     myDF[, "REPRODUCTION"] <- NA
   }## IF ~ REPRODUCTION
   # code new columns
+  # remove spaces from search terms as removed above
   myDF[, "REPRO_BCAST"] <- grepl("BROADCASTER", myDF[,"REPRODUCTION"])
-  myDF[, "REPRO_NS"]    <- grepl("SIMPLE NEST", myDF[,"REPRODUCTION"])
-  myDF[, "REPRO_NC"]    <- grepl("COMPLEX NEST", myDF[,"REPRODUCTION"])
+  myDF[, "REPRO_NS"]    <- grepl("SIMPLENEST", myDF[,"REPRODUCTION"])
+  myDF[, "REPRO_NC"]    <- grepl("COMPLEXNEST", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_BEAR"]  <- grepl("BEARER", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_MIG"]   <- grepl("MIGRATORY", myDF[,"REPRODUCTION"])
   myDF[, "REPRO_LITH"]  <- grepl("LITHOPHIL", myDF[,"REPRODUCTION"])

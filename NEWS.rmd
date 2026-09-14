@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.3.2.9009 (2026-09-14)
+
+* fix: Update metric.values for fish REPO metrics NS and NC, Issue #157
+    + Code removed spaces but had spaces in search terms
+
 ## Changes in version 1.3.2.9008 (2026-09-11)
 
 * refactor: Add new fish metrics (TOLER and TROPHIC), Issue #154
