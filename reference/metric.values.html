@@ -20,7 +20,7 @@ The dplyr package is used to generate the metric values."><meta property="og:ima
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2.9010</span>
       </span>
     </div>
 
@@ -249,7 +249,6 @@ boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">df_metval</span> <span class="op">&lt;-</span> <span class="fu">metric.values</span><span class="op">(</span><span class="fu">BioMonTools</span><span class="fu">::</span><span class="va"><a href="data_benthos_PacNW.html">data_benthos_PacNW</a></span>,</span></span>
 <span class="r-in"><span>                           <span class="st">"bugs"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></span></span>
 <span class="r-in"><span><span class="co"># Example 2, specific metrics or metrics in a specific order</span></span></span>
@@ -268,7 +267,6 @@ boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
 <span class="r-in"><span><span class="va">df_metval_myMetrics</span> <span class="op">&lt;-</span> <span class="fu">metric.values</span><span class="op">(</span><span class="fu">BioMonTools</span><span class="fu">::</span><span class="va"><a href="data_benthos_PacNW.html">data_benthos_PacNW</a></span>,</span></span>
 <span class="r-in"><span>                                     <span class="st">"bugs"</span>,</span></span>
 <span class="r-in"><span>                                     fun.MetricNames <span class="op">=</span> <span class="va">myMetrics</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(SAMPLEID, INDEX_NAME, INDEX_CLASS)`</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
