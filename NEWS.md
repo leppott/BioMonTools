@@ -4,9 +4,29 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-09-14 08:03:26.52317
+    #> Last Update: 2026-09-15 14:30:49.885715
 
 # Version History
+
+## Changes in version 1.3.2.9010 (2026-09-15)
+
+- tests: Write tests for metric.values for no errors
+  - verbose = TRUE, Issue \#159
+- tests: Write tests for metric.values for no messages
+- refactor: Update metric.values for each community
+  - standardize closing sections
+  - standardize global and qc sections
+  - Ensure have .groups = “drop_last” on calculate metrics
+    - Bugs, non-standard
+    - Coral
+  - Standardize verbose comments
+    - Fish
+    - Algae (add all), Issue \#159
+    - Coral
+  - Clean up, NA to 0
+    - Coral
+  - left_join add by so no message, Issue \#148
+    - Bugs
 
 ## Changes in version 1.3.2.9009 (2026-09-14)
 

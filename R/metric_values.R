@@ -474,6 +474,7 @@ metric.values <- function(fun.DF,
                           verbose = FALSE,
                           metric_subset = NULL,
                           taxaid_dni = NULL) {
+
   boo_debug_main <- FALSE
   debug_main_num <- 0
   debug_main_num_total <- 7
@@ -518,6 +519,7 @@ metric.values <- function(fun.DF,
                   , debug_topic)
     message(msg)
   }## IF ~ verbose
+
   # Data Munging (common to all data types)
   # Convert to data.frame.  Code breaks if fun.DF is a tibble.
   fun.DF <- as.data.frame(fun.DF)
@@ -551,6 +553,7 @@ metric.values <- function(fun.DF,
                   , debug_topic)
     message(msg)
   }## IF ~ boo_debug_main
+
   #QC, Add required fields for this part of the code
   if (toupper(fun.Community) == "CORAL") {
     col.req <- c("SAMPLEID", "TAXAID", "INDEX_NAME", "INDEX_CLASS")
@@ -607,6 +610,7 @@ metric.values <- function(fun.DF,
                     , debug_topic)
       message(msg)
     }## IF ~ verbose
+
     ## Add missing, Index_Name
     req.name <- "INDEX_NAME"
     if (req.name %in% col.req.missing) {
@@ -658,6 +662,7 @@ metric.values <- function(fun.DF,
                   , debug_topic)
     message(msg)
   }## IF ~ verbose
+
   #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
   if (toupper(fun.Community) != "CORAL") {
     fun.DF <- fun.DF %>%
@@ -776,8 +781,8 @@ metric.values.bugs <- function(myDF
                                , verbose
                                , metric_subset
                                , taxaid_dni = NULL) {
-  #
-  # QC
+
+  # QC_fun ----
   boo_QC <- FALSE
   if (boo_QC) {
     myDF <- fun.DF
@@ -791,17 +796,23 @@ metric.values.bugs <- function(myDF
     taxaid_dni <- "DNI"  #added last entry in previous function
   }## IF ~ boo_QC
 
+  # global ----
+  ## time
   time_start <- Sys.time()
 
-  # not carrying over from previous?!
+  ## define pipe
+  `%>%` <- dplyr::`%>%`
+
+  ## not carrying over from previous?!
   names(myDF) <- toupper(names(myDF))
 
+  ## messages
   debug_sub_community <- "BUGS"
   boo_debug_bugs <- FALSE
   debug_sub_num <- 0
   debug_sub_num_total <- 18
 
-  # global variable bindings ----
+  ## global variable bindings
   INDEX_NAME <- INDEX_CLASS <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
     BCG_ATTR <- NONTARGET <- LONGLIVED <- NOTEWORTHY <- TOLVAL <- TOLVAL2 <-
     UFC <- ELEVATION_ATTR <- GRADIENT_ATTR <- WSAREA_ATTR <- NULL
@@ -874,9 +885,6 @@ metric.values.bugs <- function(myDF
     nt_EPT_BCG_att1i2 <- ni_dom01_BCG_att456 <- ni_dom01_BCG_att456t <-
     ni_dom01_BCG_att456m6t <- ni_dom02_BCG_att456t <- ni_dom02_BCG_att456m6t <-
     nt_NonInsTrombJuga_BCG_att456m6t  <- NULL
-
-  # define pipe
-  `%>%` <- dplyr::`%>%`
 
   # QC----
   ## QC, Missing Cols ----
@@ -1807,6 +1815,7 @@ metric.values.bugs <- function(myDF
                                                 , SAMPLEID
                                                 , INDEX_NAME
                                                 , INDEX_CLASS)
+                                      , .groups = "drop_last"
                                 #
                                 # one metric per line
                                 #
@@ -1828,7 +1837,7 @@ metric.values.bugs <- function(myDF
                                                       , SAMPLEID
                                                       , INDEX_NAME
                                                       , INDEX_CLASS)
-                                      #
+                                      , .groups = "drop_last"
                                       # one metric per line
                                       #
                                       #### totals ----
@@ -1841,7 +1850,6 @@ metric.values.bugs <- function(myDF
                                                            , na.rm = TRUE) / ni_total
                                       , pt_dni = 100 * nt_dni / nt_total
 
-                                      , .groups = "drop_last"
     )## met.val.dni_F ~ END
 
     ### met.val, join----
@@ -1858,7 +1866,7 @@ metric.values.bugs <- function(myDF
                                                 , SAMPLEID
                                                 , INDEX_NAME
                                                 , INDEX_CLASS)
-                                #
+                                     , .groups = "drop_last"
                                 # one metric per line
                                 #
                                 ### Individuals ----
@@ -3692,10 +3700,7 @@ metric.values.bugs <- function(myDF
                                 , nt_COETNoBraBaeHydTri_RFadj = NA_real_
                                 , x_BCICTQa_RFadjB = NA_real_
 
-
-
-                                #
-                                , .groups = "drop_last")## met.val.dni_F
+                                )## met.val.dni_F
 
 
     ##met.val, DNI = TRUE----
@@ -3703,6 +3708,7 @@ metric.values.bugs <- function(myDF
                                                       , SAMPLEID
                                                       , INDEX_NAME
                                                       , INDEX_CLASS)
+                                      , .groups = "drop_last"
                                       #
                                       # one metric per line
                                       #
@@ -3718,13 +3724,14 @@ metric.values.bugs <- function(myDF
                                       , pi_dni = 100 * sum(N_TAXA[TAXAID == "DNI"]
                                                            , na.rm = TRUE) / ni_total
                                       , pt_dni = 100 * nt_dni / nt_total
-                                      , .groups = "drop_last")## met.val.dni_T
+                                      )## met.val.dni_T
 
     ## met.val, join----
     cols2match <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")
     met_dni <- c("nt_dni", "pi_dni", "pt_dni")
     met.val <- dplyr::left_join(met.val.dni_F
-                                , met.val.dni_T[, c(cols2match, met_dni)])
+                                , met.val.dni_T[, c(cols2match, met_dni)]
+                                , by = dplyr::join_by(!!!rlang::syms(cols2match)))
 
 
   }## IF ~ metric_subset
@@ -3734,7 +3741,7 @@ metric.values.bugs <- function(myDF
   # difftime(time_end2, time_start2)
   # dim(met.val)
 
-  #
+
   # Clean Up ----
   if (verbose == TRUE) {
     debug_topic <- "clean up"
@@ -3749,6 +3756,7 @@ metric.values.bugs <- function(myDF
                   , debug_topic)
     message(msg)
   }## IF ~ verbose
+
   # replace NA with 0
   #met.val[is.na(met.val)] <- 0
   # but exclude SAMPLEID,  INDEX_NAME  INDEX_CLASS
@@ -3756,7 +3764,8 @@ metric.values.bugs <- function(myDF
   #                                            , tidyr::replace_na
   #                                            , 0))
   met.val <- as.data.frame(met.val)
-  met.val <- met.val %>% dplyr::mutate_if(is.numeric, tidyr::replace_na, 0)
+  met.val <- met.val %>%
+    dplyr::mutate_if(is.numeric, tidyr::replace_na, 0)
   # Crazy slow on tibble (several minutes) convert to data frame (< 2 seconds)
 
  # met.val <- replace(is.na(met.val), 0)
@@ -3814,7 +3823,7 @@ metric.values.bugs <- function(myDF
                           , "x_Becks_tv2"
                           )
 
-  ## Subset ----
+  # Subset ----
   # # subset to only metrics specified by user
   if (verbose == TRUE) {
     debug_topic <- "subset"
@@ -3829,6 +3838,7 @@ metric.values.bugs <- function(myDF
                   , debug_topic)
     message(msg)
   }## IF ~ verbose
+
   if (is.null(MetricNames)) {
     # remove marine if MetrcNames not provided and boo.marine = false (default)
     if (boo.marine == FALSE) {
@@ -3855,6 +3865,7 @@ metric.values.bugs <- function(myDF
                   , debug_topic)
     message(msg)
   }## IF ~ verbose
+
   if (is.null(cols2keep)) {##IF.is.null.cols2keep.START
     df.return <- as.data.frame(met.val)
   } else {
@@ -3871,6 +3882,14 @@ metric.values.bugs <- function(myDF
                        , by = "SAMPLEID")
   }##IF.is.null.cols2keep.END
 
+  # Run Time----
+  if (verbose) {
+    time_end <- Sys.time()
+    msg <- capture.output(print(difftime(time_end, time_start)))
+    message(msg)
+  }## IF ~ verbose
+
+  # Results ----
   # df to report back
   if (verbose == TRUE) {
     debug_topic <- "return result"
@@ -3885,6 +3904,7 @@ metric.values.bugs <- function(myDF
                   , debug_topic)
     message(msg)
   }## IF ~ verbose
+
   return(df.return)
 }##FUNCTION.metric.values.bugs.END
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3917,7 +3937,7 @@ metric.values.fish <- function(myDF
                                , boo.Shiny
                                , verbose) {
 
-  # QC
+  # QC_fun ----
   boo_QC <- FALSE
   if (boo_QC) {
     myDF <- BioMonTools::data_fish_MBSS
@@ -3928,17 +3948,23 @@ metric.values.fish <- function(myDF
     verbose <- TRUE
   }## IF ~ boo_QC
 
+  # global ----
+  ## time
   time_start <- Sys.time()
 
-  # not carrying over from previous?!
+  ## define pipe
+  `%>%` <- dplyr::`%>%`
+
+  ## not carrying over from previous?!
   names(myDF) <- toupper(names(myDF))
 
+  ## messages
   debug_sub_community <- "FISH"
   boo_debug_sub <- FALSE
   debug_sub_num <- 0
   debug_sub_num_total <- 12
 
-  # global variable bindings ----
+  ## global variable bindings
   SAMPLEID <- INDEX_NAME <- INDEX_CLASS <- TAXAID <- N_TAXA <- NATIVE <-
     HYBRID <- TYPE <- TROPHIC <- SILT <- TOLER <- N_ANOMALIES <- GENUS <-
     FAMILY <- SAMP_WIDTH_M <- SAMP_LENGTH_M <- NULL
@@ -3987,9 +4013,6 @@ metric.values.fish <- function(myDF
     TROPHIC_IN_CYP <- TOLER_I <- TOLER_ICW <- TYPE_EX <- TYPE_MIN_noT <-
     TYPE_PERC <- ni_dom02_ExclSchool <- ni_total_notoler_mn <- NULL
   nt_invert_native <- ni_dom01 <- AGECLASS <- NULL
-
-  # define pipe
-  `%>%` <- dplyr::`%>%`
 
   # QC ----
 
@@ -5726,6 +5749,7 @@ metric.values.fish <- function(myDF
                        #
         )## met.val.END
 
+  # Clean Up ----
   if (verbose == TRUE) {
     # 7
     debug_topic <- "clean up"
@@ -5744,7 +5768,8 @@ metric.values.fish <- function(myDF
   #
   # replace NA with 0
   met.val[is.na(met.val)] <- 0
-  #
+
+  # Subset ----
   # # # subset to only metrics specified by user
   # # if (!is.null(MetricNames)) {
   # #   met.val <- met.val[,c(Index_Name, SITE, INDEX_CLASS, ACREAGE, LEN_SAMP, MetricNames)]
@@ -5783,7 +5808,6 @@ metric.values.fish <- function(myDF
   }##IF~MetricNames~END
 
   # Add extra fields
-
   if (verbose == TRUE) {
     # 9
     debug_topic <- "extra fields"
@@ -5845,8 +5869,16 @@ metric.values.fish <- function(myDF
   #
   # #}##IF.boo.Ajust.END
   #
-  # df to report back
 
+  # Run Time----
+  if (verbose) {
+    time_end <- Sys.time()
+    msg <- capture.output(print(difftime(time_end, time_start)))
+    message(msg)
+  }## IF ~ verbose
+
+  # Results ----
+  # df to report back
   if (verbose == TRUE) {
     # 10
     debug_topic <- "return results"
@@ -5863,6 +5895,7 @@ metric.values.fish <- function(myDF
   }## IF ~ verbose
 
   return(df.return)
+
 }##FUNCTION.metric.values.fish.END
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @title Calculate metric values, Algae
@@ -5898,9 +5931,25 @@ metric.values.algae <- function(myDF
                                 , verbose
                                 , taxaid_dni = NULL) {
 
+  # QC_fun ----
+
+  # global ----
+  ## time
   time_start <- Sys.time()
 
-  # global variable bindings ----
+  ## define pipe
+  `%>%` <- dplyr::`%>%`
+
+  ## not carrying over from previous
+  names(myDF) <- toupper(names(myDF))
+
+  ## messages
+  debug_sub_community <- "ALGAE"
+  boo_debug_bugs <- FALSE
+  debug_sub_num <- 0
+  debug_sub_num_total <- 19
+
+  ## global variable bindings
   N_TAXA <- NULL
   NONTARGET <- SAMPLEID <- INDEX_NAME <- INDEX_CLASS <- ni_total <- TAXAID <-
     EXCLUDE <- GENUS <- LOW_N <- HIGH_N <- LOW_P <- HIGH_P <- BC_1 <- BC_2 <-
@@ -5935,7 +5984,7 @@ metric.values.algae <- function(myDF
     POLL_TOL <- NULL
   nt_TROPHIC_12 <- nt_TROPHIC_56 <- pi_BC_12 <- pt_TROPHIC_12 <-
     pt_TROPHIC_56 <- NULL
-  debug_sub_community <- debug_sub_num_total <- ORDER <- BCG_ATTR <-
+  ORDER <- BCG_ATTR <-
     BCG_ATTR2  <- nt_BCG_att1 <- nt_BCG_att1i <- nt_BCG_att1m <- nt_BCG_att12 <-
     nt_BCG_att1234 <- nt_BCG_att1i2 <- nt_BCG_att123 <- nt_BCG_att1i23 <-
     nt_BCG_att1i236i <- nt_BCG_att2 <- nt_BCG_att23 <- nt_BCG_att234 <-
@@ -5947,12 +5996,24 @@ metric.values.algae <- function(myDF
     ni_dom01 <- ni_dom02 <- ni_dom03 <- ni_dom04 <- ni_dom05 <- ni_dom06 <-
     ni_dom07 <- ni_dom08 <- ni_dom09 <- ni_dom10 <- x_Shan_e <- NULL
 
-  # define pipe
-  `%>%` <- dplyr::`%>%`
 
   # QC----
   # QC, Required Fields
   ## QC, Missing Cols ----
+  if (verbose == TRUE) {
+    debug_topic <- "QC, missing cols"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   col.req_character <- c("INDEX_NAME", "INDEX_CLASS", "SAMPLEID","TAXAID",
                          "PHYLUM","ORDER","FAMILY","GENUS","BC_USGS",
                          "TROPHIC_USGS","SAP_USGS","PT_USGS","O_USGS",
@@ -6004,10 +6065,37 @@ metric.values.algae <- function(myDF
   }##IF.num.col.req.missing.END
 
   ## QC, Cols2Keep ----
+  if (verbose == TRUE) {
+    debug_topic <- "QC, Cols2Keep"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
   # remove duplicates with required so no errors, e.g., SAMPLEID
   cols2keep <- cols2keep[!cols2keep %in% col.req]
 
   ## QC, Exclude ----
+  if (verbose == TRUE) {
+    debug_topic <- "QC, Exclude"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # as TRUE/FALSE
   Exclude.T <- sum(myDF$EXCLUDE == TRUE, na.rm = TRUE)
   if (Exclude.T == 0) {##IF.Exclude.T.START
@@ -6015,6 +6103,19 @@ metric.values.algae <- function(myDF
   }##IF.Exclude.T.END
 
   ## QC, NonTarget ----
+  if (verbose == TRUE) {
+    debug_topic <- "QC, NonTarget"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
   # as TRUE/FALSE
   NonTarget.F <- sum(myDF$NONTARGET == FALSE, na.rm = TRUE)
   if (NonTarget.F == 0) {##IF.Exclude.T.START
@@ -6022,6 +6123,19 @@ metric.values.algae <- function(myDF
   }##IF.Exclude.T.END
 
   ## QC, TolVal----
+  if (verbose == TRUE) {
+    debug_topic <- "QC, TolVale"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
   # need as numeric, if have "NA" as character it fails
   TolVal_Char_NA <- myDF[, "TOLVAL"] == "NA"
   if (sum(TolVal_Char_NA, na.rm = TRUE) > 0) {
@@ -6030,6 +6144,19 @@ metric.values.algae <- function(myDF
   }##IF ~ TOLVAL ~ END
 
   ## QC, POLL_TOL----
+  if (verbose == TRUE) {
+    debug_topic <- "QC, POLL_TOL"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
   # need as numeric, if have "NA" as character it fails
   POLL_TOL_Char_NA <- myDF[, "POLL_TOL"] == "NA"
   if (sum(POLL_TOL_Char_NA, na.rm = TRUE) > 0) {
@@ -6038,14 +6165,55 @@ metric.values.algae <- function(myDF
   }##IF ~ POLL_TOL ~ END
 
   # Data Munging----
+  if (verbose == TRUE) {
+    debug_topic <- "Munging"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
 
   ## NonTarget ----
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, NonTarget"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
   # Function fails if all NA (e.g., column was missing) (20200724)
   myDF <- myDF %>%
     dplyr::filter(NONTARGET != TRUE | is.na(NONTARGET))
 
   ## Logical ----
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, Logical"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # Logical Columns to Logical
   # Ensure in correct format, Access converts sometimes to 0, -1
   # 2025-06-13
@@ -6063,6 +6231,21 @@ metric.values.algae <- function(myDF
   }## FOR ~ i ~ logical
 
   ## ColVals to Upper ----
+
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, ColVals to Upper"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # 2026-07-21, only specified some columns, replicate Bugs code
   # Convert values to upper case
   col2upper <- col.req_character[!(col.req_character %in%
@@ -6077,6 +6260,20 @@ metric.values.algae <- function(myDF
   # 2022-02-21, previous no longer present, redo here (all fields now present)
 
   ## White Space ----
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, White Space"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # Remove white space
   myDF[, "BC_USGS"]       <- gsub(" ", "", myDF[, "BC_USGS"])
   myDF[, "PT_USGS"]       <- gsub(" ", "", myDF[, "PT_USGS"])
@@ -6098,8 +6295,21 @@ metric.values.algae <- function(myDF
   myDF[, "MAJORHABITATGRP"]   <- gsub(" ", "", myDF[, "MAJORHABITATGRP"])
   myDF[, "NUTRIENTINDICATOR"] <- gsub(" ", "", myDF[, "NUTRIENTINDICATOR"])
 
-
   ## Helper Cols ----
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, Helper Cols"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # Add extra columns for some fields
   # (need unique values for functions in summarise)
   # each will be TRUE or FALSE
@@ -6197,6 +6407,20 @@ metric.values.algae <- function(myDF
   myDF[, "NI_LO"] <- grepl("LOW",  myDF[, "NUTRIENTINDICATOR"])
 
   ## Dominant N ----
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, Dominant N"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # Create df for Top N (without ties)
   if (verbose == TRUE) {
     debug_topic <- "Munging, Dom"
@@ -6385,10 +6609,25 @@ metric.values.algae <- function(myDF
   rm(df.dom02_BCG_att456m6t.sum)
 
   # Metric Calc----
+  if (verbose == TRUE) {
+    debug_topic <- "Calc, metrics"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
 
   # Calculate Metrics (could have used pipe, %>%)
     met.val <- dplyr::summarise(dplyr::group_by(myDF, SAMPLEID, INDEX_NAME
                                                 , INDEX_CLASS)
+                                , .groups = "drop_last"
                 #
                 ## Individuals ----
                 , ni_total = sum(N_TAXA, na.rm = TRUE)
@@ -7407,15 +7646,42 @@ metric.values.algae <- function(myDF
                 # H / Hmax  Hmax is log(nt_total)
                 , x_Evenness = x_Shan_e/log(nt_total)
                 # evenness = different from Pielou in MS Coastal Metric Calc 2011 db
-
-
-                , .groups = "drop_last")##met.val.END
+          )##met.val.END
 
   # Clean Up ----
+    if (verbose == TRUE) {
+      debug_topic <- "clean up"
+      debug_sub_num <- debug_sub_num + 1
+      msg <- paste0("debug_metval_sub, "
+                    , debug_sub_community
+                    , ", "
+                    , debug_sub_num
+                    , "/"
+                    , debug_sub_num_total
+                    , ", "
+                    , debug_topic)
+      message(msg)
+    }## IF ~ verbose
+
     # replace NA with 0
     met.val[is.na(met.val)] <- 0
 
+    # Subset ----
   # subset to only metrics specified by user
+    if (verbose == TRUE) {
+      debug_topic <- "subset"
+      debug_sub_num <- debug_sub_num + 1
+      msg <- paste0("debug_metval_sub, "
+                    , debug_sub_community
+                    , ", "
+                    , debug_sub_num
+                    , "/"
+                    , debug_sub_num_total
+                    , ", "
+                    , debug_topic)
+      message(msg)
+    }## IF ~ verbose
+
     if (is.null(MetricNames)) {
       met.val <- met.val
     } else {
@@ -7426,6 +7692,20 @@ metric.values.algae <- function(myDF
     }##IF~MetricNames~END
 
     # Add extra fields
+    if (verbose == TRUE) {
+      debug_topic <- "extra fields"
+      debug_sub_num <- debug_sub_num + 1
+      msg <- paste0("debug_metval_sub, "
+                    , debug_sub_community
+                    , ", "
+                    , debug_sub_num
+                    , "/"
+                    , debug_sub_num_total
+                    , ", "
+                    , debug_topic)
+      message(msg)
+    }## IF ~ verbose
+
     if (is.null(cols2keep)) {##IF.is.null.cols2keep.START
       df.return <- as.data.frame(met.val)
     } else {
@@ -7441,14 +7721,29 @@ metric.values.algae <- function(myDF
                          , as.data.frame(met.val), by = "SAMPLEID")
     }##IF.is.null.cols2keep.END
 
-    # Run Time
+    # Run Time----
     if (verbose) {
       time_end <- Sys.time()
-      msg <- difftime(time_end, time_start)
+      msg <- capture.output(print(difftime(time_end, time_start)))
       message(msg)
     }## IF ~ verbose
 
+    # Results ----
     # df to report back
+    if (verbose == TRUE) {
+      debug_topic <- "return result"
+      debug_sub_num <- debug_sub_num + 1
+      msg <- paste0("debug_metval_sub, "
+                    , debug_sub_community
+                    , ", "
+                    , debug_sub_num
+                    , "/"
+                    , debug_sub_num_total
+                    , ", "
+                    , debug_topic)
+      message(msg)
+    }## IF ~ verbose
+
     return(df.return)
 
 }##FUNCTION.metric.values.algae.END
@@ -7485,20 +7780,25 @@ metric.values.coral <- function(myDF
                                 , boo.Shiny = FALSE
                                 , verbose) {
 
-  # define pipe
-  `%>%` <- dplyr::`%>%`
+  # QC_fun ----
 
+  # global ----
+  ## time
   time_start <- Sys.time()
 
-  # not carrying over from previous
+  ## define pipe
+  `%>%` <- dplyr::`%>%`
+
+  ## not carrying over from previous
   names(myDF) <- toupper(names(myDF))
 
+  ## messages
   debug_sub_community <- "CORAL"
   boo_debug_bugs <- FALSE
   debug_sub_num <- 0
-  debug_sub_num_total <- 18
+  debug_sub_num_total <- 13
 
-  # global variable bindings ----
+  ## global variable bindings
   INDEX_NAME <- INDEX_CLASS <- SAMPLEID <- TAXAID <- BCG_ATTR <- WEEDY <- PHYLUM <-
     CLASS <- SUBCLASS <- ORDER <- FAMILY <- GENUS <- SUBGENUS <- SPECIES <- JUVENILE <-
     LRBC <- TOTTRANLNGTH_M <- DIAMMAX_CM <- DIAMPERP_CM <- HEIGHT_CM <- MORPHCONVFACT <-
@@ -7512,8 +7812,10 @@ metric.values.coral <- function(myDF
 
   # QC----
   ## QC, Missing Cols ----
+
+  # QC, Required Fields
   if (verbose == TRUE) {
-    debug_topic <- "QC, missing cols"
+    debug_topic <- "QC, Required Fields"
     debug_sub_num <- debug_sub_num + 1
     msg <- paste0("debug_metval_sub, "
                   , debug_sub_community
@@ -7525,8 +7827,6 @@ metric.values.coral <- function(myDF
                   , debug_topic)
     message(msg)
   }## IF ~ verbose
-
-  # QC, Required Fields
   col.req_character <- c("SAMPLEID", "TAXAID", "BCG_ATTR", "WEEDY", "PHYLUM"
                          , "CLASS", "SUBCLASS", "ORDER", "FAMILY"
                          , "GENUS", "SUBGENUS", "SPECIES")
@@ -7618,6 +7918,20 @@ metric.values.coral <- function(myDF
   }## IF ~ verbose
 
   ## QC, Cols2Keep ----
+  if (verbose == TRUE) {
+    debug_topic <- "QC, Cols2Keep"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
   # remove duplicates with required so no errors, e.g., SAMPLEID
   cols2keep <- cols2keep[!cols2keep %in% col.req]
 
@@ -7640,6 +7954,7 @@ metric.values.coral <- function(myDF
     msg <- paste0("Column (", myCol, ") exists; ", col_TF)
     message(msg)
   }## IF ~ verbose
+
   LRBC.T <- sum(myDF$LRBC == TRUE, na.rm = TRUE)
   if (LRBC.T == 0) {
     warning("LRBC column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
@@ -7834,12 +8149,26 @@ metric.values.coral <- function(myDF
     dplyr::select(-c(R2, LIVETISSUE_PCT))
 
   # Metric Calc----
+  if (verbose == TRUE) {
+    debug_topic <- "calc metrics"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
 
   # Calculate Metrics (could have used pipe, %>%)
   met.val <- dplyr::summarise(dplyr::group_by(myDF
                                               , SAMPLEID
                                               , INDEX_NAME
                                               , INDEX_CLASS)
+                              , .groups = "drop_last"
               # Transect width 1m
               , transect_area_m2 = max(TOTTRANLNGTH_M, na.rm = TRUE) * 1
 
@@ -7901,5 +8230,104 @@ metric.values.coral <- function(myDF
 
   )##met.val.END
 
+  # Clean Up ----
+  if (verbose == TRUE) {
+    debug_topic <- "clean up"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  # replace NA with 0
+  met.val[is.na(met.val)] <- 0
+
+  # Subset ----
+  # subset to only metrics specified by user
+  if (verbose == TRUE) {
+    debug_topic <- "subset"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  if (is.null(MetricNames)) {
+    met.val <- met.val
+  } else {
+    # met2include <- MetricNames[!(MetricNames %in% "ni_total")]
+    # remove ni_total if included as will always include it
+    met.val <- met.val[, c("SAMPLEID",
+                           "INDEX_CLASS",
+                           "INDEX_NAME",
+                           met2include)]
+  }##IF~MetricNames~END
+
+  # Add extra fields
+  if (verbose == TRUE) {
+    debug_topic <- "extra fields"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  if (is.null(cols2keep)) {##IF.is.null.cols2keep.START
+    df.return <- as.data.frame(met.val)
+  } else {
+    # create df with grouped fields
+    myDF.cols2keep <- myDF %>%
+      # dplyr::group_by(.dots = c("SAMPLEID", cols2keep)) %>%
+      dplyr::group_by(!!!rlang::syms(c("SAMPLEID", cols2keep))) %>%
+      dplyr::summarize(col.drop = sum(N_TAXA))
+    col.drop <- ncol(myDF.cols2keep)
+    myDF.cols2keep <- myDF.cols2keep[,-col.drop]
+    # merge
+    df.return <- merge(as.data.frame(myDF.cols2keep)
+                       , as.data.frame(met.val), by = "SAMPLEID")
+  }##IF.is.null.cols2keep.END
+
+
+  # Run Time----
+  if (verbose) {
+    time_end <- Sys.time()
+    msg <- capture.output(print(difftime(time_end, time_start)))
+    message(msg)
+  }## IF ~ verbose
+
+  # Results ----
+  if (verbose == TRUE) {
+    debug_topic <- "return result"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  return(df.return)
 
 }##FUNCTION.metric.values.coral.END
