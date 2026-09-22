@@ -18,6 +18,11 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.3.2.9011 (2026-09-22)
+
+* refactor: Additional checks for qc_taxa_names_proof
+    + sensu
+
 ## Changes in version 1.3.2.9010 (2026-09-15)
 
 * tests: Write tests for metric.values for no errors

@@ -26,6 +26,9 @@ Returns possible differences in a data frame with three columns (qc check,
 name, potential match(es)).  Not all hits are errors but are potential issues
 that may need to be addressed.
 
+The checks include:
+
+* **distance**,
 The distance check computes pairwise string distances between names and
 returns name pairs that are likely duplicates.
 
@@ -34,8 +37,6 @@ Other options are Levenshtein (lv), good for typos, and osa, like Levenshtein
 but slightly faster.
 
 Good thresholds are jw 0.1 to 0.2, lv and osa <= 2
-
-The checks include:
 
 * **spaces**, leading or trailing, including html white space, or doulble
 space, or more than 3
@@ -52,7 +53,11 @@ juvenile, larva, larvae, L, zoea, myses, mysops?, megalops, megadrile
 
 * **cf**, variants start, or in string, cf, c.f., cf., c.f
 
-* backslash_dash_underscore
+* **backslash_dash_underscore**
+
+* **sensu** sensu, sensu stricto, sensu lato, sensu latu
+
+Others under consideration:
 
 * terrestrial (terr.), megadrile
 
@@ -65,9 +70,6 @@ and, &
 star
 
 head
-
-possibly, poss, poss.
-
 
 unknown unk undetermined undet(.), indet, indetermined
 
@@ -88,7 +90,7 @@ diff without unid
 
 * **prob** variants; prob, prob., probably, including "?" (anywhere in text)
 
-* **sensu**
+possibly, poss, poss.
 
 * **parenthetical** text; sensu, prob, inc spec, (with/without .)
 

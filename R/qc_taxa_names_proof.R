@@ -6,6 +6,9 @@
 #' name, potential match(es)).  Not all hits are errors but are potential issues
 #' that may need to be addressed.
 #'
+#' The checks include:
+#'
+#' * **distance**,
 #' The distance check computes pairwise string distances between names and
 #' returns name pairs that are likely duplicates.
 #'
@@ -14,8 +17,6 @@
 #' but slightly faster.
 #'
 #' Good thresholds are jw 0.1 to 0.2, lv and osa <= 2
-#'
-#' The checks include:
 #'
 #' * **spaces**, leading or trailing, including html white space, or doulble
 #' space, or more than 3
@@ -32,7 +33,11 @@
 #'
 #' * **cf**, variants start, or in string, cf, c.f., cf., c.f
 #'
-#' * backslash_dash_underscore
+#' * **backslash_dash_underscore**
+#'
+#' * **sensu** sensu, sensu stricto, sensu lato, sensu latu
+#'
+#' Others under consideration:
 #'
 #' * terrestrial (terr.), megadrile
 #'
@@ -45,9 +50,6 @@
 #' star
 #'
 #' head
-#'
-#' possibly, poss, poss.
-#'
 #'
 #' unknown unk undetermined undet(.), indet, indetermined
 #'
@@ -68,7 +70,7 @@
 #'
 #' * **prob** variants; prob, prob., probably, including "?" (anywhere in text)
 #'
-#' * **sensu**
+#' possibly, poss, poss.
 #'
 #' * **parenthetical** text; sensu, prob, inc spec, (with/without .)
 #'
@@ -275,6 +277,20 @@ qc_taxa_names_proof <- function(names,
                        names,
                        ignore.case = TRUE)]
 
+  # 10. sensu
+  # sensu, sensu stricto, sensu lato, sensu latu
+  pat_sensu <- "\\b(?:sensu(?:\\s+(?:stricto|lato|latu))?)\\b"
+  # co-pilot derived
+  # two slashes to get one
+  # \b = word boundary
+  # (?: ... ) = non-capturing group, groups parts
+  # (?:\s+(?:stricto|lato|latu))? = non-cpaturing group
+  # \s+ = one or more white space
+
+  df_sensu <- names[grepl(pat_sensu,
+                          names,
+                          ignore.case = TRUE,
+                          perl = TRUE)]
 
   # Combine ----
   results <- list(
@@ -287,7 +303,9 @@ qc_taxa_names_proof <- function(names,
     # "probably" = df_prob,
     "unk"      = df_unk,
     "cf"       = df_cf,
-    "backslash_dash_underscore" = df_bsdus)
+    "backslash_dash_underscore" = df_bsdus,
+    "sensu"    = df_sensu
+    )
   # report names of elements with length > 0 to "issues"
   results$issues <- names(results)[vapply(results, length, integer(1)) > 0]
 
