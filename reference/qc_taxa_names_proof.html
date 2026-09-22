@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2.9010</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2.9011</span>
       </span>
     </div>
 
@@ -99,13 +99,14 @@ Default = "jw"</p></dd>
     <p>Returns possible differences in a data frame with three columns (qc check,
 name, potential match(es)).  Not all hits are errors but are potential issues
 that may need to be addressed.</p>
-<p>The distance check computes pairwise string distances between names and
+<p>The checks include:</p>
+<p>* **distance**,
+The distance check computes pairwise string distances between names and
 returns name pairs that are likely duplicates.</p>
 <p>Uses Jaro-Winkler (jw) distance by default which performs well for names.
 Other options are Levenshtein (lv), good for typos, and osa, like Levenshtein
 but slightly faster.</p>
 <p>Good thresholds are jw 0.1 to 0.2, lv and osa &lt;= 2</p>
-<p>The checks include:</p>
 <p>* **spaces**, leading or trailing, including html white space, or doulble
 space, or more than 3</p>
 <p>* **case**, differences</p>
@@ -115,15 +116,15 @@ juvenile, larva, larvae, L, zoea, myses, mysops?, megalops, megadrile</p>
 <p>* **probably**, variants; "?", " prob ", " prob. ", " probably "
 * add parentheses</p>
 <p>* **cf**, variants start, or in string, cf, c.f., cf., c.f</p>
-<p>* backslash_dash_underscore</p>
+<p>* **backslash_dash_underscore**</p>
+<p>* **sensu** sensu, sensu stricto, sensu lato, sensu latu</p>
+<p>Others under consideration:</p>
 <p>* terrestrial (terr.), megadrile</p>
 <p>complex cmplx</p>
 <p>all caps</p>
 <p>and, &amp;</p>
 <p>star</p>
 <p>head</p>
-<p>possibly, poss, poss.</p>
-
 <p>unknown unk undetermined undet(.), indet, indetermined</p>
 <p>large small with space or parentheses</p>
 <p>backslash_dash</p>
@@ -134,7 +135,7 @@ and dash and genus group, gp,  dash or space before</p>
 <p>* **unid** variants; unid, unidentified, unid diff, uid, (with/without .)</p>
 <p>diff without unid</p>
 <p>* **prob** variants; prob, prob., probably, including "?" (anywhere in text)</p>
-<p>* **sensu**</p>
+<p>possibly, poss, poss.</p>
 <p>* **parenthetical** text; sensu, prob, inc spec, (with/without .)</p>
 <p>* **near** variants; nr n</p>
 <p>aff.  , f
@@ -166,7 +167,7 @@ Other checks caught:</p>
 <span class="r-in"><span><span class="va">proof_issues</span><span class="op">$</span><span class="va">issues</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distance"                  "case"                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3] "stage"                     "cf"                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "backslash_dash_underscore"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "backslash_dash_underscore" "sensu"                    </span>
 <span class="r-in"><span><span class="co"># different case of same name</span></span></span>
 <span class="r-in"><span><span class="va">proof_issues</span><span class="op">$</span><span class="va">case</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 3</span></span>
