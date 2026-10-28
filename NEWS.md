@@ -4,9 +4,16 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-09-22 10:11:52.964933
+    #> Last Update: 2026-10-28 12:22:26.143232
 
 # Version History
+
+## Changes in version 1.3.2.9012 (2026-10-28)
+
+- feature: Add Macrophytes to metric.values, Issue \#160
+  - Draft; needs QC and further testing
+- feature: Create macrophytes data
+- docs: Document macrophytes data
 
 ## Changes in version 1.3.2.9011 (2026-09-22)
 

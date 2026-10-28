@@ -826,3 +826,42 @@
 "data_algae_names_user"
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# "data_macrophytes" ----
+#' @title Macrophytes taxa data
+#'
+#' @description Example sample data for macrophytes for a single location
+#'
+#' @format  A data frame with 175 observations on the following 26 variables.
+#'
+#'  \describe{
+#'    \item{\code{SurveyID}}{a numeric vector}
+#'    \item{\code{LakeID}}{a character vector}
+#'    \item{\code{SurveyDate}}{a character vector}
+#'    \item{\code{SiteNo}}{a numeric vector}
+#'    \item{\code{Depth_ft}}{a numeric vector}
+#'    \item{\code{SedType}}{a character vector}
+#'    \item{\code{RakePole}}{a character vector}
+#'    \item{\code{TotalAbundance}}{a numeric vector}
+#'    \item{\code{Latitude}}{a numeric vector}
+#'    \item{\code{Longitude}}{a numeric vector}
+#'    \item{\code{GENUS}}{a character vector}
+#'    \item{\code{SPECIES}}{a character vector}
+#'    \item{\code{Abundance}}{a numeric vector}
+#'    \item{\code{Units}}{a character vector}
+#'    \item{\code{TaxaID}}{a character vector}
+#'    \item{\code{TOLERANCE}}{a character vector}
+#'    \item{\code{GROWTHFORM}}{a character vector}
+#'    \item{\code{SAMPLEID}}{a character vector}
+#'    \item{\code{POINTID}}{a numeric vector}
+#'    \item{\code{SAMP_DEPTH}}{Depth of measurement}
+#'    \item{\code{N_TAXA}}{Abundance, point}
+#'    \item{\code{N_TAXA_RAKE}}{TotalAbundance, rake}
+#'    \item{\code{INDEX_NAME}}{a character vector}
+#'    \item{\code{INDEX_CLASS}}{a character vector}
+#'    \item{\code{NONTARGET}}{a logical vector}
+#'    \item{\code{EXCLUDE}}{a logical vector}
+#'   }
+#' @source example data
+"data_macrophytes"
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

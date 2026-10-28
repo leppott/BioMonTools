@@ -67,12 +67,12 @@
 #'
 #' * N_ANOMALIES
 #'
-#' * SAMP_BIOMASS (biomass total for sample, funciton uses max in case entered
+#' * SAMP_BIOMASS (biomass total for sample, function uses max in case entered
 #' for all taxa in sample)
 #'
 #' * NATIVE: NATIVE or other text values
 #'
-#' * DA_MI2, SAMP_WIDTH_M, SAMP_LENGTH_M, , TYPE, TOLER, TROPHIC, SILT,
+#' * DA_MI2, SAMP_WIDTH_M, SAMP_LENGTH_M, TYPE, TOLER, TROPHIC, SILT,
 #' FAMILY, GENUS, HYBRID, BCG_ATTR, THERMAL_INDICATOR, ELEVATION_ATTR,
 #' GRADIENT_ATTR, WSAREA_ATTR, REPRODUCTION, HABITAT, CONNECTIVITY, SCC
 #'
@@ -83,6 +83,19 @@
 #' HABITAT_USGS, N_FIXER_USGS, MOTILITY_USGS, SIZE_USGS, HABIT_USGS,
 #' MOTILE2_USGS, TOLVAL, DIATOM_ISA, DIAT_CL, POLL_TOL, BEN_SES, DIATAS_TP,
 #' DIATAS_TN, DIAT_COND, DIAT_CA, MOTILITY, NF
+#'
+#' Additional Required fields, macrophytes:
+#'
+#' * Character = SAMPLEID, POINTID, TAXAID, INDEX_NAME, INDEX_CLASS,
+#'               TOLERANCE, GROWTHFORM
+#' * Numeric = SAMP_DEPTH, N_TAXA, N_TAXA_RAKE
+#' * Logical = EXCLUDE, NONTARGET
+#'
+#' SAMPLEID = the lake or location
+#' POINTID = individual points at the location
+#'
+#' Macrophyte data without SAMP_DEPTH information will be ignored and assumed
+#' outside of the littoral zone.
 #'
 #' Valid values for fields:
 #'
@@ -133,8 +146,7 @@
 #' with that record. Other values for TAXAID with N_TAXA = 0 will be removed
 #' before calculations.
 #'
-#' For 'Oligochete' metrics either Class or Subclass is required for
-#' calculation.
+#' 'Oligocheta' can be either Class or Subclass for metric calculation.
 #'
 #' The parameter boo.Shiny can be set to TRUE when accessing this function in
 #' Shiny. Normally the QC check for required fields is interactive.  Setting
@@ -463,6 +475,10 @@
 # MetricNames <- fun.MetricNames
 # cols2keep <- fun.cols2keep
 #~~~~~~~~~~~~~~~~~~~~~~~~~~
+# df_metval_macrophytes <- metric.values(BioMonTools::data_macrophytes,
+#                                        "macrophytes")
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @export
 metric.values <- function(fun.DF,
                           fun.Community,
@@ -507,6 +523,7 @@ metric.values <- function(fun.DF,
 
   # define pipe
   `%>%` <- dplyr::`%>%`
+
   # Munge ----
   if (verbose == TRUE) {
     debug_topic <- "munge"
@@ -536,7 +553,6 @@ metric.values <- function(fun.DF,
   } else {
     metric_subset <- "ALL"
   }##IF~!is.null(metric_subset)~END
-
 
   metric_subset <- ifelse(is.na(metric_subset), NA, toupper(metric_subset))
 
@@ -664,7 +680,7 @@ metric.values <- function(fun.DF,
   }## IF ~ verbose
 
   #fun.DF <- fun.DF[fun.DF[,"N_TAXA"]>0, ]
-  if (toupper(fun.Community) != "CORAL") {
+  if (!toupper(fun.Community) %in% c("CORAL", "MACROPHYTES")) {
     fun.DF <- fun.DF %>%
       dplyr::filter(N_TAXA > 0 | TAXAID == "NONE")
   }## IF ~ taxa not zero
@@ -736,6 +752,13 @@ metric.values <- function(fun.DF,
                         , MetricSort = NA
                         , boo.Shiny = boo.Shiny
                         , verbose = verbose)
+
+  } else if (fun.Community == "MACROPHYTES") {
+    metric.values.macrophytes(myDF = fun.DF,
+                              MetricNames = fun.MetricNames,
+                              cols2keep = fun.cols2keep,
+                              boo.Shiny = boo.Shiny,
+                              verbose = verbose)
   }##IF.END
 }##FUNCTION.metric.values.START
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3840,7 +3863,7 @@ metric.values.bugs <- function(myDF
   }## IF ~ verbose
 
   if (is.null(MetricNames)) {
-    # remove marine if MetrcNames not provided and boo.marine = false (default)
+    # remove marine if MetricNames not provided and boo.marine = false (default)
     if (boo.marine == FALSE) {
       met.val <- met.val[, !(names(met.val) %in% MetricNames_Marine)]
     }## IF ~ boo.marine ~ END
@@ -8331,3 +8354,791 @@ metric.values.coral <- function(myDF
   return(df.return)
 
 }##FUNCTION.metric.values.coral.END
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#' @title Calculate metric values, Bugs
+#'
+#' @description Subfunction of metric.values for use with Macrophytes
+#'
+#' @details For internal use only.  Called from metric.values().
+#'
+#' @param myDF Data frame of taxa.
+#' @param MetricNames Optional vector of metric names to be returned.
+#' @param cols2keep Column names of fun.DF to retain in the output.  Uses
+#' column names.
+#' @param boo.Shiny Boolean value for if the function is accessed via Shiny.
+#' Default = FALSE.
+#' @param verbose Include messages to track progress.  Default = FALSE
+#'
+#' @return Data frame
+#'
+#' @keywords internal
+#'
+#' @export
+metric.values.macrophytes <- function(myDF,
+                                      MetricNames = NULL,
+                                      cols2keep = NULL,
+                                      boo.Shiny,
+                                      verbose,
+                                      metric_subset) {
+
+  # QC_fun ----
+  boo_QC <- FALSE
+  if (boo_QC) {
+    myDF <- fun.DF
+    boo.Adjust <- boo.Adjust
+    cols2keep <- fun.cols2keep
+    boo.Shiny <- boo.Shiny
+    verbose <- verbose
+  }## IF ~ boo_QC
+
+  # global ----
+  ## time
+  time_start <- Sys.time()
+
+  ## define pipe
+  `%>%` <- dplyr::`%>%`
+
+  ## not carrying over from previous?!
+  names(myDF) <- toupper(names(myDF))
+
+  ## messages
+  debug_sub_community <- "MACROPHYTES"
+  boo_debug_bugs <- FALSE
+  debug_sub_num <- 0
+  debug_sub_num_total <- 18 #? left over from bugs
+
+  ## global variable bindings
+  ### base
+  INDEX_NAME <- INDEX_CLASS <- SAMPLEID <- TAXAID <- N_TAXA <- EXCLUDE <-
+    NONTARGET <- SITEID <- POINTID <- TOLERANCE <- GROWTHFORM <- SAMP_DEPTH <-
+    NULL
+  ### metrics
+  nt_total <- NULL
+
+
+  # QC----
+  ## QC, Missing Cols ----
+  if (verbose == TRUE) {
+    debug_topic <- "QC, missing cols"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  # QC, Required Fields
+  col.req_character <- c("SAMPLEID",
+                         "POINTID",
+                         "TAXAID",
+                         "INDEX_NAME",
+                         "INDEX_CLASS",
+                         "TOLERANCE",
+                         "GROWTHFORM",
+                         "GENUS")
+  col.req_logical <- c("EXCLUDE",
+                       "NONTARGET")
+  col.req_numeric <- c("N_TAXA",
+                       "N_TAXA_RAKE",
+                       "SAMP_DEPTH")
+  col.req <- c(col.req_character,
+               col.req_logical,
+               col.req_numeric)
+  col.req.missing <- col.req[!(col.req %in% toupper(names(myDF)))]
+  col.req.missing_char <- col.req_character[!(col.req_character %in% toupper(names(myDF)))]
+  col.req.missing_log <- col.req_logical[!(col.req_logical %in% toupper(names(myDF)))]
+  col.req.missing_num <- col.req_numeric[!(col.req_numeric %in% toupper(names(myDF)))]
+
+  num.col.req.missing <- length(col.req.missing)
+  num.col.req.missing_char <- length(col.req.missing_char)
+  num.col.req.missing_log <- length(col.req.missing_log)
+  num.col.req.missing_num <- length(col.req.missing_num)
+
+  # Trigger prompt if any missing fields (and session is interactive)
+  if (num.col.req.missing != 0) {
+
+    # Create prompt for missing columns
+    myPrompt.01 <- paste0("There are ",num.col.req.missing," missing fields in the data:")
+    myPrompt.02 <- paste(col.req.missing, collapse = ", ")
+    myPrompt.03 <- "If you continue the metrics associated with these fields will be invalid."
+    myPrompt.04 <- "For example, if the SAMP_DEPTH field is missing all depth related metrics will not be correct."
+    myPrompt.05 <- "Do you wish to continue (YES or NO)?"
+
+    myPrompt <- paste(" "
+                      , myPrompt.01
+                      , myPrompt.02
+                      , " "
+                      , myPrompt.03
+                      , myPrompt.04
+                      , myPrompt.05
+                      , sep = "\n")
+    user.input <- NA
+
+    if (interactive() == TRUE & boo.Shiny == FALSE) {
+      #user.input <- readline(prompt=myPrompt)
+      user.input <- utils::menu(c("YES", "NO"), title = myPrompt)
+    } else {
+      message(myPrompt)
+      message("boo.Shiny == TRUE and interactive == FALSE
+               so prompt skipped and value set to '1'.")
+      user.input <- 1
+    }## IF ~ interactive & boo.Shiny
+
+    # any answer other than "YES" will stop the function.
+    if (user.input != 1) {
+      stop(paste("The user chose *not* to continue due to missing fields: "
+                 , paste(paste0("   ",col.req.missing), collapse = "\n"), sep = "\n"))
+    }##IF.user.input.END
+
+    # Add missing fields
+    #myDF[, col.req.missing] <- NA
+    if (num.col.req.missing_char > 0) {
+      myDF[, col.req.missing_char] <- NA_character_
+    }
+    if (num.col.req.missing_log > 0) {
+      myDF[, col.req.missing_log] <- NA
+    }
+    if (num.col.req.missing_num > 0) {
+      myDF[, col.req.missing_num] <- NA_real_
+    }
+    warning(paste("Metrics related to the following fields are invalid:"
+                  , paste(paste0("   ", col.req.missing)
+                          , collapse = "\n")
+                  , sep = "\n"))
+  }##IF.num.col.req.missing.END
+
+  # message col names
+  if (verbose == TRUE) {
+    debug_topic <- "colnames"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    msg <- paste(msg
+                 , paste("    ", names(myDF), collapse = "\n")
+                 , sep = "\n")
+    message(msg)
+  }## IF ~ verbose
+
+  ## QC, Cols2Keep ----
+  # remove duplicates with required so no errors, e.g., SAMPLEID
+  cols2keep <- cols2keep[!cols2keep %in% col.req]
+
+
+
+  ## QC, SAMP_DEPTH----
+  # need as numeric, if have "NA" as character it fails
+  if (verbose == TRUE) {
+    debug_topic <- "QC, cols, numeric, SAMP_DEPTH"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+    myCol <- "SAMP_DEPTH"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
+    message(msg)
+  }## IF ~ verbose
+  SampDepth_Char_NA <- myDF[, "SAMP_DEPTH"] == "NA"
+  # Fails with mix of NA and "NA", rework
+  SampDepth_Char_NA <- SampDepth_Char_NA == TRUE & !is.na(SampDepth_Char_NA)
+  if (sum(SampDepth_Char_NA, na.rm = TRUE) > 0) {
+    #myDF[TolVal_Char_NA, "TOLVAL"] <- NA
+    myDF[, "SAMP_DEPTH"] <- as.numeric(myDF[, "SAMP_DEPTH"])
+    # will give a warning - NAs introduced by coercion
+    msg <- "Updated col class; SAMP_DEPTH to numeric"
+    message(msg)
+  }##IF ~ SAMP_DEPTH ~ END
+
+  # Data Munging ----
+  if (verbose == TRUE) {
+    debug_topic <- "Munging"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  ## NonTarget ----
+  # Remove NonTarget Taxa (added back 20200715, missing since 20200224)
+  # Function fails if all NA (e.g., column was missing) (20200724)
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, NonTarget"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+    myCol <- "NONTARGET"
+    col_TF <- myCol %in% names(myDF)
+    msg <- paste0("Column (", myCol, ") exists; ", col_TF)
+    message(msg)
+  }## IF ~ verbose
+
+  myDF <- dplyr::filter(myDF,
+                        NONTARGET != TRUE | is.na(NONTARGET))
+
+  ## Logical ----
+  # Logical Columns to Logical
+  # Ensure in correct format, Access converts sometimes to 0, -1
+  # 2025-06-13
+  for (i in col.req_logical) {
+    if(is.character(class(myDF[, i]))) {
+      # if(class(myDF[, i]) == "character") {
+      myDF[, i] <- toupper(myDF[, i])
+      myDF[, i] <- gsub("YES", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("NO", "FALSE", myDF[, i])
+      myDF[, i] <- gsub("1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("-1", "TRUE", myDF[, i])
+      myDF[, i] <- gsub("0", "FALSE", myDF[, i])
+    }## IF ~ character
+    myDF[, i] <- as.logical(myDF[, i])
+  }## FOR ~ i ~ logical
+
+  ## ColVals to Upper ----
+  # # Convert columns to upper case (Phylo, FFG, Habit, Life_Cycle)
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, text cols, toupper"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  # col2upper <- c("TAXAID")
+  col2upper <- col.req_character[!(col.req_character %in%
+                                     c("SAMPLEID",
+                                       "POINTID",
+                                       "INDEX_NAME",
+                                       "INDEX_CLASS"))]
+  # #myDF <- apply(myDF[, col2upper], 2, toupper)
+
+  for (i in col2upper) {
+    myDF[, i] <- toupper(myDF[, i])
+  }## FOR ~ i ~ END
+  # use toupper() earlier, don't need
+  # removed as causing issues with shiny.io with some missing fields
+  # 2022-02-21, previous no longer present, redo here (all fields now present)
+
+  # Add extra columns for some fields
+  # (need unique values for functions in summarise)
+  # each will be TRUE or FALSE
+  # finds any match so "CN, CB" is both "CN" and "CB"
+  if (verbose == TRUE) {
+    debug_topic <- "Munging, TF"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  ## White Space ----
+  # Remove white space
+  myDF[, "TOLERANCE"]    <- gsub(" ", "", myDF[, "TOLERANCE"])
+  myDF[, "GROWTHFORM"]   <- gsub(" ", "", myDF[, "GROWTHFORM"])
+
+  ## Helper Cols ----
+  # code new columns
+  ### match, any ----
+  #### TOLERANCE ----
+  myDF[, "TOL_T"]     <- grepl("TOLERANT|\\bT\\b|HIGH",
+                               myDF[, "TOLERANCE"])
+  myDF[, "TOL_M"]     <- grepl("MODERATE|\\bM\\b|MEDIUM",
+                               myDF[, "TOLERANCE"])
+  myDF[, "TOL_S"]     <- grepl("SENSITIVE|\\bS\\b|LOW",
+                               myDF[, "TOLERANCE"])
+  #### GROWTHFORM ----
+  myDF[, "GF_A"]      <- grepl("A", myDF[, "GROWTHFORM"])
+  myDF[, "GF_B"]      <- grepl("B", myDF[, "GROWTHFORM"])
+  myDF[, "GF_E"]      <- grepl("E", myDF[, "GROWTHFORM"])
+  myDF[, "GF_FF"]     <- grepl("FF", myDF[, "GROWTHFORM"])
+  myDF[, "GF_FL"]     <- grepl("FL", myDF[, "GROWTHFORM"])
+  myDF[, "GF_M"]      <- grepl("M", myDF[, "GROWTHFORM"])
+  myDF[, "GF_SC"]     <- grepl("SC", myDF[, "GROWTHFORM"])
+  myDF[, "GF_SF"]     <- grepl("SF", myDF[, "GROWTHFORM"])
+  myDF[, "GF_SW"]     <- grepl("SW", myDF[, "GROWTHFORM"])
+
+
+  # Metric Calc -----
+  if (verbose == TRUE) {
+    debug_topic <- "Calc, metrics"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  time_start2 <- Sys.time()
+
+  ## Metric Calc, SAMPLEID ----
+  ### 20261023, use newer .by instead of group_by
+  # need to group data? Combine N_TAXA and sum N_TAXA?
+  met.val.sample <- dplyr::summarise(
+    myDF
+    , .by = c(SAMPLEID,
+              INDEX_NAME,
+              INDEX_CLASS)
+    # one metric per line
+    #
+    ### SAMPLE (LAKE) ----
+    , depth_macro_max = max(SAMP_DEPTH[
+        !is.na(SAMP_DEPTH) &
+        !is.na(TAXAID) &
+        N_TAXA != 0], na.rm = TRUE)
+    , depth_macro_mean = mean(SAMP_DEPTH[
+        !is.na(SAMP_DEPTH) &
+        !is.na(TAXAID) &
+        N_TAXA != 0], na.rm = TRUE)
+    #### Points
+    ##### all points
+    , n_points_total = dplyr::n_distinct(POINTID, na.rm = TRUE)
+    ##### points lte max depth of plants
+    , n_points_littoral =
+      dplyr::n_distinct(POINTID[
+        !is.na(SAMP_DEPTH) &
+        !is.na(depth_macro_max) &
+        SAMP_DEPTH <= depth_macro_max], na.rm = TRUE)
+    ##### points with plants
+    , n_points_macro =
+      dplyr::n_distinct(POINTID[
+        !is.na(SAMP_DEPTH) &
+        !is.na(depth_macro_max) &
+        SAMP_DEPTH <= depth_macro_max &
+        !is.na(TAXAID) &
+        N_TAXA != 0], na.rm = TRUE)
+    ##### percent coverage of macros
+    , p_ptstotal_macro = 100 * n_points_macro / n_points_total
+    , p_ptslittoral_macro = 100 * n_points_macro / n_points_littoral
+    #### General ----
+    , nt_total = dplyr::n_distinct(TAXAID[N_TAXA != 0])
+    , nt_total_nonvisual = dplyr::n_distinct(TAXAID[N_TAXA > 0])
+    , ni_total = sum(N_TAXA[N_TAXA > 0], na.rm = TRUE)
+    #### Diversity----
+    # -1 = visual
+    , samp_mean_rake_density = mean(N_TAXA_RAKE, na.rm = TRUE)
+    , n_macro = sum(N_TAXA != 0)
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # "-1" messing up calc of sum
+    #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # Shannon-Weiner
+    # , x_Shan_e = -sum((N_TAXA / ni_total) *
+    #                     log((N_TAXA / ni_total)), na.rm = TRUE)
+    # some can be zero or negative
+    , x_Shan_e = {
+        p <- N_TAXA[N_TAXA > 0] / ni_total
+        -sum(p[p > 0] * log(p[p > 0]), na.rm = TRUE)
+      }# x_Shan_e
+    , x_Shan_2 = x_Shan_e/log(2)
+    , x_Shan_10 = x_Shan_e/log(10)
+    #, x_D Simpson
+    , x_D = 1 - sum((N_TAXA / ni_total)^2, na.rm = TRUE)
+    # #, X_D_G (Gleason) - [nt_total]/Log([ni_total])
+    # , x_D_G = (nt_total) / log(ni_total)
+    # #, x_D_Mg Margalef -  ([nt_total]-1)/Log([ni_total])
+    # , x_D_Mg = (nt_total - 1) / log(ni_total)
+    # Evenness, Pielou
+    # H = x_Shan_e
+    # Hmax = log(nt_total)
+    # H / Hmax
+    , x_Evenness = x_Shan_e / log(nt_total)
+    #### Points, Genus----
+    , n_ptstotal_Gen_Bidens = dplyr::n_distinct(POINTID[GENUS == "BIDENS"], na.rm = TRUE)
+    , n_ptstotal_Gen_Brasen = dplyr::n_distinct(POINTID[GENUS == "BRASENIA"], na.rm = TRUE)
+    , n_ptstotal_Gen_Cerato = dplyr::n_distinct(POINTID[GENUS == "CERATOPHYLLUM"], na.rm = TRUE)
+    , n_ptstotal_Gen_Chara = dplyr::n_distinct(POINTID[GENUS == "CHARA"], na.rm = TRUE)
+    , n_ptstotal_Gen_Dulich = dplyr::n_distinct(POINTID[GENUS == "DULICHIUM"], na.rm = TRUE)
+    , n_ptstotal_Gen_Eleoch = dplyr::n_distinct(POINTID[GENUS == "ELEOCHARIS"], na.rm = TRUE)
+    , n_ptstotal_Gen_Elodea = dplyr::n_distinct(POINTID[GENUS == "ELODEA"], na.rm = TRUE)
+    , n_ptstotal_Gen_Erioca = dplyr::n_distinct(POINTID[GENUS == "ERIOCAULON"], na.rm = TRUE)
+    , n_ptstotal_Gen_Fontin = dplyr::n_distinct(POINTID[GENUS == "FONTINALIS"], na.rm = TRUE)
+    , n_ptstotal_Gen_Isoete = dplyr::n_distinct(POINTID[GENUS == "ISOETES"], na.rm = TRUE)
+    , n_ptstotal_Gen_Myriop = dplyr::n_distinct(POINTID[GENUS == "MYRIOPHYLLUM"], na.rm = TRUE)
+    , n_ptstotal_Gen_Najas = dplyr::n_distinct(POINTID[GENUS == "NAJAS"], na.rm = TRUE)
+    , n_ptstotal_Gen_Nitell = dplyr::n_distinct(POINTID[GENUS == "NITELLA"], na.rm = TRUE)
+    , n_ptstotal_Gen_Nuphar = dplyr::n_distinct(POINTID[GENUS == "NUPHAR"], na.rm = TRUE)
+    , n_ptstotal_Gen_Nympae = dplyr::n_distinct(POINTID[GENUS == "NYMPAEA"], na.rm = TRUE)
+    , n_ptstotal_Gen_Potamo = dplyr::n_distinct(POINTID[GENUS == "POTAMOGETON"], na.rm = TRUE)
+    , n_ptstotal_Gen_Sagitt = dplyr::n_distinct(POINTID[GENUS == "SAGITTARIA"], na.rm = TRUE)
+    , n_ptstotal_Gen_Schoen = dplyr::n_distinct(POINTID[GENUS == "SCHOENOPLECTUS"], na.rm = TRUE)
+    , n_ptstotal_Gen_Sparga = dplyr::n_distinct(POINTID[GENUS == "SPARGANIUM"], na.rm = TRUE)
+    , n_ptstotal_Gen_Tolype = dplyr::n_distinct(POINTID[GENUS == "TOLYPELLA"], na.rm = TRUE)
+    , n_ptstotal_Gen_Utricu = dplyr::n_distinct(POINTID[GENUS == "UTRICULARIA"], na.rm = TRUE)
+    , n_ptstotal_Gen_Vallis = dplyr::n_distinct(POINTID[GENUS == "VALLISNERIA"], na.rm = TRUE)
+    , n_ptstotal_Gen_Zoster = dplyr::n_distinct(POINTID[GENUS == "ZOSTERELLA"], na.rm = TRUE)
+    #### Points, GrowthForm----
+    , n_ptstotal_GF_A = dplyr::n_distinct(POINTID[GF_A == TRUE], na.rm = TRUE)
+    , n_ptstotal_GF_B = dplyr::n_distinct(POINTID[GF_B == TRUE], na.rm = TRUE)
+    , n_ptstotal_GF_E = dplyr::n_distinct(POINTID[GF_E == TRUE], na.rm = TRUE)
+    , n_ptstotal_GF_FF = dplyr::n_distinct(POINTID[GF_FF == TRUE], na.rm = TRUE)
+    , n_ptstotal_GF_FL = dplyr::n_distinct(POINTID[GF_FL == TRUE], na.rm = TRUE)
+    , n_ptstotal_GF_M = dplyr::n_distinct(POINTID[GF_M == TRUE], na.rm = TRUE)
+    , n_ptstotal_GF_SC = dplyr::n_distinct(POINTID[GF_SC == TRUE], na.rm = TRUE)
+    , n_ptstotal_GF_SF = dplyr::n_distinct(POINTID[GF_SF == TRUE], na.rm = TRUE)
+    , n_ptstotal_GF_SW = dplyr::n_distinct(POINTID[GF_SW == TRUE], na.rm = TRUE)
+    #### Points, Tolerance----
+    , n_ptstotal_Tol_T = dplyr::n_distinct(POINTID[TOL_T == TRUE], na.rm = TRUE)
+    , n_ptstotal_Tol_M = dplyr::n_distinct(POINTID[TOL_M == TRUE], na.rm = TRUE)
+    , n_ptstotal_Tol_S = dplyr::n_distinct(POINTID[TOL_S == TRUE], na.rm = TRUE)
+    #### Points, Macros, Percent, Genera ----
+    , p_ptsmacro_Gen_Bidens = 100 * n_ptstotal_Gen_Bidens / n_points_macro
+    , p_ptsmacro_Gen_Brasen = 100 * n_ptstotal_Gen_Brasen / n_points_macro
+    , p_ptsmacro_Gen_Cerato = 100 * n_ptstotal_Gen_Cerato / n_points_macro
+    , p_ptsmacro_Gen_Chara = 100 * n_ptstotal_Gen_Chara / n_points_macro
+    , p_ptsmacro_Gen_Dulich = 100 * n_ptstotal_Gen_Dulich / n_points_macro
+    , p_ptsmacro_Gen_Eleoch = 100 * n_ptstotal_Gen_Eleoch / n_points_macro
+    , p_ptsmacro_Gen_Elodea = 100 * n_ptstotal_Gen_Elodea / n_points_macro
+    , p_ptsmacro_Gen_Erioca = 100 * n_ptstotal_Gen_Erioca / n_points_macro
+    , p_ptsmacro_Gen_Fontin = 100 * n_ptstotal_Gen_Fontin / n_points_macro
+    , p_ptsmacro_Gen_Isoete = 100 * n_ptstotal_Gen_Isoete / n_points_macro
+    , p_ptsmacro_Gen_Myriop = 100 * n_ptstotal_Gen_Myriop / n_points_macro
+    , p_ptsmacro_Gen_Najas = 100 * n_ptstotal_Gen_Najas / n_points_macro
+    , p_ptsmacro_Gen_Nitell = 100 * n_ptstotal_Gen_Nitell / n_points_macro
+    , p_ptsmacro_Gen_Nuphar = 100 * n_ptstotal_Gen_Nuphar / n_points_macro
+    , p_ptsmacro_Gen_Nympae = 100 * n_ptstotal_Gen_Nympae / n_points_macro
+    , p_ptsmacro_Gen_Potamo = 100 * n_ptstotal_Gen_Potamo / n_points_macro
+    , p_ptsmacro_Gen_Sagitt = 100 * n_ptstotal_Gen_Sagitt / n_points_macro
+    , p_ptsmacro_Gen_Schoen = 100 * n_ptstotal_Gen_Schoen / n_points_macro
+    , p_ptsmacro_Gen_Sparga = 100 * n_ptstotal_Gen_Sparga / n_points_macro
+    , p_ptsmacro_Gen_Tolype = 100 * n_ptstotal_Gen_Tolype / n_points_macro
+    , p_ptsmacro_Gen_Utricu = 100 * n_ptstotal_Gen_Utricu / n_points_macro
+    , p_ptsmacro_Gen_Vallis = 100 * n_ptstotal_Gen_Vallis / n_points_macro
+    , p_ptsmacro_Gen_Zoster = 100 * n_ptstotal_Gen_Zoster / n_points_macro
+    #### Points, Macros, Percent, GrowthForm ----
+    , p_ptsmacro_GF_A = 100 * n_ptstotal_GF_A / n_points_macro
+    , p_ptsmacro_GF_B = 100 * n_ptstotal_GF_B / n_points_macro
+    , p_ptsmacro_GF_E = 100 * n_ptstotal_GF_E / n_points_macro
+    , p_ptsmacro_GF_FF = 100 * n_ptstotal_GF_FF / n_points_macro
+    , p_ptsmacro_GF_FL = 100 * n_ptstotal_GF_FL / n_points_macro
+    , p_ptsmacro_GF_M = 100 * n_ptstotal_GF_M / n_points_macro
+    , p_ptsmacro_GF_SC = 100 * n_ptstotal_GF_SC / n_points_macro
+    , p_ptsmacro_GF_SF = 100 * n_ptstotal_GF_SF / n_points_macro
+    , p_ptsmacro_GF_SW = 100 * n_ptstotal_GF_SW / n_points_macro
+    #### Points, Macros, Percent, Tolerance ----
+    , p_ptsmacro_Tol_T = 100 * n_ptstotal_Tol_T / n_points_macro
+    , p_ptsmacro_Tol_M = 100 * n_ptstotal_Tol_M / n_points_macro
+    , p_ptsmacro_Tol_S = 100 * n_ptstotal_Tol_S / n_points_macro
+    #### Points, Total, Percent, Genera ----
+    , p_ptstotal_Gen_Bidens = 100 * n_ptstotal_Gen_Bidens / n_points_total
+    , p_ptstotal_Gen_Brasen = 100 * n_ptstotal_Gen_Brasen / n_points_total
+    , p_ptstotal_Gen_Cerato = 100 * n_ptstotal_Gen_Cerato / n_points_total
+    , p_ptstotal_Gen_Chara = 100 * n_ptstotal_Gen_Chara / n_points_total
+    , p_ptstotal_Gen_Dulich = 100 * n_ptstotal_Gen_Dulich / n_points_total
+    , p_ptstotal_Gen_Eleoch = 100 * n_ptstotal_Gen_Eleoch / n_points_total
+    , p_ptstotal_Gen_Elodea = 100 * n_ptstotal_Gen_Elodea / n_points_total
+    , p_ptstotal_Gen_Erioca = 100 * n_ptstotal_Gen_Erioca / n_points_total
+    , p_ptstotal_Gen_Fontin = 100 * n_ptstotal_Gen_Fontin / n_points_total
+    , p_ptstotal_Gen_Isoete = 100 * n_ptstotal_Gen_Isoete / n_points_total
+    , p_ptstotal_Gen_Myriop = 100 * n_ptstotal_Gen_Myriop / n_points_total
+    , p_ptstotal_Gen_Najas = 100 * n_ptstotal_Gen_Najas / n_points_total
+    , p_ptstotal_Gen_Nitell = 100 * n_ptstotal_Gen_Nitell / n_points_total
+    , p_ptstotal_Gen_Nuphar = 100 * n_ptstotal_Gen_Nuphar / n_points_total
+    , p_ptstotal_Gen_Nympae = 100 * n_ptstotal_Gen_Nympae / n_points_total
+    , p_ptstotal_Gen_Potamo = 100 * n_ptstotal_Gen_Potamo / n_points_total
+    , p_ptstotal_Gen_Sagitt = 100 * n_ptstotal_Gen_Sagitt / n_points_total
+    , p_ptstotal_Gen_Schoen = 100 * n_ptstotal_Gen_Schoen / n_points_total
+    , p_ptstotal_Gen_Sparga = 100 * n_ptstotal_Gen_Sparga / n_points_total
+    , p_ptstotal_Gen_Tolype = 100 * n_ptstotal_Gen_Tolype / n_points_total
+    , p_ptstotal_Gen_Utricu = 100 * n_ptstotal_Gen_Utricu / n_points_total
+    , p_ptstotal_Gen_Vallis = 100 * n_ptstotal_Gen_Vallis / n_points_total
+    , p_ptstotal_Gen_Zoster = 100 * n_ptstotal_Gen_Zoster / n_points_total
+    #### Points, Total, Percent, GrowthForm ----
+    , p_ptstotal_GF_A = 100 * n_ptstotal_GF_A / n_points_total
+    , p_ptstotal_GF_B = 100 * n_ptstotal_GF_B / n_points_total
+    , p_ptstotal_GF_E = 100 * n_ptstotal_GF_E / n_points_total
+    , p_ptstotal_GF_FF = 100 * n_ptstotal_GF_FF / n_points_total
+    , p_ptstotal_GF_FL = 100 * n_ptstotal_GF_FL / n_points_total
+    , p_ptstotal_GF_M = 100 * n_ptstotal_GF_M / n_points_total
+    , p_ptstotal_GF_SC = 100 * n_ptstotal_GF_SC / n_points_total
+    , p_ptstotal_GF_SF = 100 * n_ptstotal_GF_SF / n_points_total
+    , p_ptstotal_GF_SW = 100 * n_ptstotal_GF_SW / n_points_total
+    #### Points, Total, Percent, Tolerance ----
+    , p_ptstotal_Tol_T = 100 * n_ptstotal_Tol_T / n_points_total
+    , p_ptstotal_Tol_M = 100 * n_ptstotal_Tol_M / n_points_total
+    , p_ptstotal_Tol_S = 100 * n_ptstotal_Tol_S / n_points_total
+
+  )## met.val.sample
+
+  # add total sites to raw data for relative abundance calcs
+  met.val.relabund <- myDF |>
+    # get metrics
+    dplyr::left_join(met.val.sample,
+                     by = dplyr::join_by(SAMPLEID,
+                                         INDEX_NAME,
+                                         INDEX_CLASS)) |>
+    # # mod -1 to 1
+    # dplyr::mutate(N_TAXA = abs(N_TAXA)) |>
+    # dplyr::mutate(N_TAXA_RAKE = abs(N_TAXA_RAKE)) |>
+    # remove non-littoral sites
+    dplyr::filter(SAMP_DEPTH <= depth_macro_max) |>
+    # rel abund
+    dplyr::summarize(
+      .by = c(SAMPLEID,
+              INDEX_NAME,
+              INDEX_CLASS,
+              TAXAID)
+      # one taxa per line
+      , calc_n = dplyr::n()
+      ) |>
+    # pivot
+    tidyr::pivot_wider(
+      id_cols = c(SAMPLEID, INDEX_NAME, INDEX_CLASS),
+      names_from = TAXAID,
+      names_prefix = "n_taxaid_",
+      names_sort = TRUE,
+      values_from = "calc_n")
+
+
+
+
+  # ## Combine SAMPLEID w/data----
+  # ## Need some Sample metrics for Point data
+  # myDF_met <- dplyr::left_join(x = myDF,
+  #                              y = met.val.sample,
+  #                              by = dplyr::join_by(SAMPLEID,
+  #                                                  INDEX_NAME,
+  #                                                  INDEX_CLASS)) |>
+  #   # Filter on Depth
+  #   ## no data, NA
+  #   dplyr::filter(!is.na(SAMP_DEPTH )) |>
+  #   ## no data, ""
+  #   dplyr::filter(SAMP_DEPTH != "") |>
+  #   ## depth < max depth for SAMPLEID
+  #   dplyr::filter(SAMP_DEPTH <= depth_macro_max)
+  #
+  #
+  # ## Metric Calc, POINTID ----
+  # met.val.point <- dplyr::summarise(
+  #   myDF_met
+  #   , .by = c(SAMPLEID,
+  #             POINTID,
+  #             INDEX_NAME,
+  #             INDEX_CLASS)
+  #   # one metric per line
+  #   #
+  #   ### POINT ----
+  #   #### Sample/Point
+  #
+  #
+  #   #### Basic ----
+  #   # account for "NONE" in nt_total, should be the only 0 N_TAXA
+  #   , nt_total = dplyr::n_distinct(TAXAID[EXCLUDE != TRUE
+  #                                         & N_TAXA > 0], na.rm = TRUE)
+  #   , ni_total = sum(N_TAXA, na.rm = TRUE)
+  #
+  #   #### Indices ----
+  #
+  #
+  #
+  #   # Shannon-Weiner
+  #   #, x_Shan_Num = -sum(log(N_TAXA / ni_total)), na.rm = TRUE)
+  #   #, x_Shan_e = x_Shan_Num/log(exp(1))
+  #   , x_Shan_e = -sum((N_TAXA / ni_total) *
+  #                       log((N_TAXA / ni_total)), na.rm = TRUE)
+  #   , x_Shan_2 = x_Shan_e/log(2)
+  #   , x_Shan_10 = x_Shan_e/log(10)
+  #   #, x_D Simpson
+  #   , x_D = 1 - sum((N_TAXA / ni_total)^2, na.rm = TRUE)
+  #   #, X_D_G (Gleason) - [nt_total]/Log([ni_total])
+  #   , x_D_G = (nt_total) / log(ni_total)
+  #   #, x_D_Mg Margalef -  ([nt_total]-1)/Log([ni_total])
+  #   , x_D_Mg = (nt_total - 1) / log(ni_total)
+  #   #, x_Hbe
+  #   #, x_H (Shannon)
+  #   # Evenness, Pielou
+  #   # H = x_Shan_e
+  #   # Hmax = log(nt_total)
+  #   # H / Hmax
+  #   , x_Evenness = x_Shan_e / log(nt_total)
+  #
+  #
+  #
+  #   )## met.val.point
+
+  ## Metric Calc, Combine ----
+  # met.val <- dplyr:: left_join(met.val.sample,
+  #                              met.val.point,
+  #                              by = dplyr::join_by(SAMPLEID,
+  #                                                  INDEX_NAME,
+  #                                                  INDEX_CLASS)) %>%
+  #   dplyr::relocate(POINTID, .after = SAMPLEID)
+
+  met.val <- met.val.sample |>
+    dplyr::left_join(met.val.relabund,
+                     by = dplyr::join_by(SAMPLEID,
+                                         INDEX_NAME,
+                                         INDEX_CLASS)) |>
+    # abund
+    ## include if/else for divide by zero
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::starts_with("n_taxaid_"),
+        ~ dplyr::if_else(n_macro > 0,
+                         .x * 100 / n_macro,
+                         NA_real_),
+        .names = "p_macro_{sub('n_', '', .col)}"))
+
+  time_end2 <- Sys.time()
+  # difftime(time_end2, time_start2)
+  # dim(met.val)
+
+
+  # Clean Up ----
+  if (verbose == TRUE) {
+    debug_topic <- "clean up"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  # replace NA with 0
+  #met.val[is.na(met.val)] <- 0
+  # but exclude SAMPLEID,  INDEX_NAME  INDEX_CLASS
+  # met.val <- met.val %>% dplyr::mutate(dplyr::across(where(is.numeric)
+  #                                            , tidyr::replace_na
+  #                                            , 0))
+  met.val <- as.data.frame(met.val)
+  met.val <- met.val %>%
+    dplyr::mutate_if(is.numeric, tidyr::replace_na, 0)
+  # Crazy slow on tibble (several minutes) convert to data frame (< 2 seconds)
+
+  # met.val <- replace(is.na(met.val), 0)
+
+
+  # Subset ----
+  # # subset to only metrics specified by user
+  if (verbose == TRUE) {
+    debug_topic <- "subset"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  if (is.null(MetricNames)) {
+    met.val <- met.val
+  } else {
+    met2include <- MetricNames[!(MetricNames %in% "ni_total")]
+    # remove ni_total if included as will always include it
+    met.val <- met.val[, c("SAMPLEID",
+                           "INDEX_CLASS",
+                           "INDEX_NAME",
+                           "ni_total",
+                           met2include)]
+  }##IF~MetricNames~END
+
+  # Add extra fields
+  if (verbose == TRUE) {
+    debug_topic <- "extra fields"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  if (is.null(cols2keep)) {##IF.is.null.cols2keep.START
+    df.return <- as.data.frame(met.val)
+  } else {
+    # create df with grouped fields
+    myDF.cols2keep <- myDF %>%
+      # dplyr::group_by(.dots = c("SAMPLEID", cols2keep)) %>%
+      dplyr::group_by(!!!rlang::syms(c("SAMPLEID", cols2keep))) %>%
+      dplyr::summarize(col.drop = sum(N_TAXA))
+    col.drop <- ncol(myDF.cols2keep)
+    myDF.cols2keep <- myDF.cols2keep[,-col.drop]
+    # merge
+    df.return <- merge(as.data.frame(myDF.cols2keep)
+                       , as.data.frame(met.val)
+                       , by = "SAMPLEID") %>%
+      # move POINTID (again), (Should be gone)
+      dplyr::relocate(POINTID, .after = SAMPLEID)
+  }##IF.is.null.cols2keep.END
+
+  # Run Time----
+  if (verbose) {
+    time_end <- Sys.time()
+    msg <- capture.output(print(difftime(time_end, time_start)))
+    message(msg)
+  }## IF ~ verbose
+
+  # Results ----
+  # df to report back
+  if (verbose == TRUE) {
+    debug_topic <- "return result"
+    debug_sub_num <- debug_sub_num + 1
+    msg <- paste0("debug_metval_sub, "
+                  , debug_sub_community
+                  , ", "
+                  , debug_sub_num
+                  , "/"
+                  , debug_sub_num_total
+                  , ", "
+                  , debug_topic)
+    message(msg)
+  }## IF ~ verbose
+
+  return(df.return)
+}##FUNCTION.metric.values.bugs.END

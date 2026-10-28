@@ -120,12 +120,12 @@ Additional Required fields, fish:
 
 * N_ANOMALIES
 
-* SAMP_BIOMASS (biomass total for sample, funciton uses max in case entered
+* SAMP_BIOMASS (biomass total for sample, function uses max in case entered
 for all taxa in sample)
 
 * NATIVE: NATIVE or other text values
 
-* DA_MI2, SAMP_WIDTH_M, SAMP_LENGTH_M, , TYPE, TOLER, TROPHIC, SILT,
+* DA_MI2, SAMP_WIDTH_M, SAMP_LENGTH_M, TYPE, TOLER, TROPHIC, SILT,
 FAMILY, GENUS, HYBRID, BCG_ATTR, THERMAL_INDICATOR, ELEVATION_ATTR,
 GRADIENT_ATTR, WSAREA_ATTR, REPRODUCTION, HABITAT, CONNECTIVITY, SCC
 
@@ -136,6 +136,19 @@ SAP_USGS, PT_USGS, O_USGS, SALINITY_USGS, BAHLS_USGS, P_USGS, N_USGS,
 HABITAT_USGS, N_FIXER_USGS, MOTILITY_USGS, SIZE_USGS, HABIT_USGS,
 MOTILE2_USGS, TOLVAL, DIATOM_ISA, DIAT_CL, POLL_TOL, BEN_SES, DIATAS_TP,
 DIATAS_TN, DIAT_COND, DIAT_CA, MOTILITY, NF
+
+Additional Required fields, macrophytes:
+
+* Character = SAMPLEID, POINTID, TAXAID, INDEX_NAME, INDEX_CLASS,
+              TOLERANCE, GROWTHFORM
+* Numeric = SAMP_DEPTH, N_TAXA, N_TAXA_RAKE
+* Logical = EXCLUDE, NONTARGET
+
+SAMPLEID = the lake or location
+POINTID = individual points at the location
+
+Macrophyte data without SAMP_DEPTH information will be ignored and assumed
+outside of the littoral zone.
 
 Valid values for fields:
 
@@ -186,8 +199,7 @@ If TAXAID is 'NONE' and N_TAXA is '0' then metrics **will** be calculated
 with that record. Other values for TAXAID with N_TAXA = 0 will be removed
 before calculations.
 
-For 'Oligochete' metrics either Class or Subclass is required for
-calculation.
+'Oligocheta' can be either Class or Subclass for metric calculation.
 
 The parameter boo.Shiny can be set to TRUE when accessing this function in
 Shiny. Normally the QC check for required fields is interactive.  Setting

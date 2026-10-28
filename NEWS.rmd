@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.3.2.9012 (2026-10-28)
+
+* feature: Add Macrophytes to metric.values, Issue #160
+    + Draft; needs QC and further testing
+* feature: Create macrophytes data
+* docs: Document macrophytes data
+
 ## Changes in version 1.3.2.9011 (2026-09-22)
 
 * refactor: Additional checks for qc_taxa_names_proof
