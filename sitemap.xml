@@ -23,6 +23,7 @@
 <url><loc>/reference/data_diatom_mmi_dev.html</loc></url>
 <url><loc>/reference/data_diatom_mmi_qc.html</loc></url>
 <url><loc>/reference/data_fish_MBSS.html</loc></url>
+<url><loc>/reference/data_macrophytes.html</loc></url>
 <url><loc>/reference/data_metval_scmb_ibi.html</loc></url>
 <url><loc>/reference/data_mmi_dev.html</loc></url>
 <url><loc>/reference/data_mmi_dev_small.html</loc></url>
@@ -37,6 +38,7 @@
 <url><loc>/reference/metric.values.coral.html</loc></url>
 <url><loc>/reference/metric.values.fish.html</loc></url>
 <url><loc>/reference/metric.values.html</loc></url>
+<url><loc>/reference/metric.values.macrophytes.html</loc></url>
 <url><loc>/reference/metvalgrpxl.html</loc></url>
 <url><loc>/reference/qc.checks.html</loc></url>
 <url><loc>/reference/qc_taxa.html</loc></url>

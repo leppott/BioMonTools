@@ -20,7 +20,7 @@ The dplyr package is used to generate the metric values."><meta property="og:ima
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BioMonTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2.9011</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2.9012</span>
       </span>
     </div>
 
@@ -191,10 +191,10 @@ LONGLIVED, NOTEWORTHY, HABITAT, UFC, ELEVATION_ATTR, GRADIENT_ATTR,
 WSAREA_ATTR, HABSTRUCT</p>
 <p>Additional Required fields, fish:</p>
 <p>* N_ANOMALIES</p>
-<p>* SAMP_BIOMASS (biomass total for sample, funciton uses max in case entered
+<p>* SAMP_BIOMASS (biomass total for sample, function uses max in case entered
 for all taxa in sample)</p>
 <p>* NATIVE: NATIVE or other text values</p>
-<p>* DA_MI2, SAMP_WIDTH_M, SAMP_LENGTH_M, , TYPE, TOLER, TROPHIC, SILT,
+<p>* DA_MI2, SAMP_WIDTH_M, SAMP_LENGTH_M, TYPE, TOLER, TROPHIC, SILT,
 FAMILY, GENUS, HYBRID, BCG_ATTR, THERMAL_INDICATOR, ELEVATION_ATTR,
 GRADIENT_ATTR, WSAREA_ATTR, REPRODUCTION, HABITAT, CONNECTIVITY, SCC</p>
 <p>Additional Required fields, algae:</p>
@@ -203,6 +203,15 @@ SAP_USGS, PT_USGS, O_USGS, SALINITY_USGS, BAHLS_USGS, P_USGS, N_USGS,
 HABITAT_USGS, N_FIXER_USGS, MOTILITY_USGS, SIZE_USGS, HABIT_USGS,
 MOTILE2_USGS, TOLVAL, DIATOM_ISA, DIAT_CL, POLL_TOL, BEN_SES, DIATAS_TP,
 DIATAS_TN, DIAT_COND, DIAT_CA, MOTILITY, NF</p>
+<p>Additional Required fields, macrophytes:</p>
+<p>* Character = SAMPLEID, POINTID, TAXAID, INDEX_NAME, INDEX_CLASS,
+              TOLERANCE, GROWTHFORM
+* Numeric = SAMP_DEPTH, N_TAXA, N_TAXA_RAKE
+* Logical = EXCLUDE, NONTARGET</p>
+<p>SAMPLEID = the lake or location
+POINTID = individual points at the location</p>
+<p>Macrophyte data without SAMP_DEPTH information will be ignored and assumed
+outside of the littoral zone.</p>
 <p>Valid values for fields:</p>
 <p>* FFG: CG, CF, PR, SC, SH</p>
 <p>* HABIT: BU, CB, CN, SP, SW</p>
@@ -233,8 +242,7 @@ NCBI where the NCBI uses a different set of tolerance values (TOLVAL2).</p>
 <p>If TAXAID is 'NONE' and N_TAXA is '0' then metrics **will** be calculated
 with that record. Other values for TAXAID with N_TAXA = 0 will be removed
 before calculations.</p>
-<p>For 'Oligochete' metrics either Class or Subclass is required for
-calculation.</p>
+<p>'Oligocheta' can be either Class or Subclass for metric calculation.</p>
 <p>The parameter boo.Shiny can be set to TRUE when accessing this function in
 Shiny. Normally the QC check for required fields is interactive.  Setting
 boo.Shiny to TRUE will always continue.  The default is FALSE.</p>
