@@ -1851,9 +1851,7 @@ metric.values.bugs <- function(myDF
                                 # WAopt
                                 , x_tv2_min = min(TOLVAL2, na.rm = TRUE)
                                 , x_tv2_max = max(TOLVAL2, na.rm = TRUE)
-
-                                , .groups = "drop_last"
-    )## met.val.dni_F ~ END
+    )## met.val.dni_F
 
     ### met.val, DNI = TRUE----
     met.val.dni_T <- dplyr::summarise(dplyr::group_by(myDF
@@ -1872,8 +1870,7 @@ metric.values.bugs <- function(myDF
                                       , pi_dni = 100 * sum(N_TAXA[TAXAID == "DNI"]
                                                            , na.rm = TRUE) / ni_total
                                       , pt_dni = 100 * nt_dni / nt_total
-
-    )## met.val.dni_F ~ END
+    )## met.val.dni_F
 
     ### met.val, join----
     cols2match <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS")

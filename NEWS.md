@@ -4,9 +4,13 @@ NEWS
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2026-10-28 12:22:26.143232
+    #> Last Update: 2026-10-30 16:46:20.045873
 
 # Version History
+
+## Changes in version 1.3.2.9013 (2026-10-28)
+
+- fix: Update metric.values for MTTI calc, Issue \#161
 
 ## Changes in version 1.3.2.9012 (2026-10-28)
 

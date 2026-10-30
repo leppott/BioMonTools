@@ -18,6 +18,10 @@ cat(paste0("Last Update: ",Sys.time()))
 
 # Version History
 
+## Changes in version 1.3.2.9013 (2026-10-28)
+
+* fix: Update metric.values for MTTI calc, Issue #161
+
 ## Changes in version 1.3.2.9012 (2026-10-28)
 
 * feature: Add Macrophytes to metric.values, Issue #160
