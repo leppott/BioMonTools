@@ -5,7 +5,7 @@
 \alias{data_bio2rarify}
 \title{rarify example data}
 \format{
-A data frame with 223 rows and 28 variables:
+A data frame with 350 rows and 3 variables:
 \describe{
    \item{SampleID}{Sample ID}
    \item{TaxaID}{unique taxonomic identifier}
